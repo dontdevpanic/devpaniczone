@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML-Listen im Überblick – geordnet, ungeordnet und mit verschachtelten Elementen. Ideal zum schnellen Nachschlagen.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>Listen in HTML- DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Listen</span></nav>
+                <h1 class="hero-title">HTML Listen</h1>
+                <p class="hero-subtitle">In diesem Tutorial siehst du die verschiedenen Listentypen, wie sie aufgebaut
+                    sind und
+                    worauf du beim Schreiben achten solltest.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#was-sind-listen-in-html">Was sind Listen in HTML?</a></li>
+                    <li class="toc-level-1"><a href="#ungeordnete-listen-ul">Ungeordnete Listen - &lt;ul&gt;</a></li>
+                    <li class="toc-level-1"><a href="#geordnete-listen-ol">Geordnete Listen - &lt;ol&gt;</a></li>
+                    <li class="toc-level-1"><a href="#beschreibungslisten-dl">Beschreibungslisten - &lt;dl&gt;</a></li>
+                    <li class="toc-level-1"><a href="#best-practices-fuer-listen">Best Practices für Listen</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li><a href="/tutorials/html/html-basics/html-basics.html">HTML Basics</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-listen.html" class="active">HTML Listen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Intro -->
+                <section class="categories section-top">
+                    <h2 id="was-sind-listen-in-html">Was sind Listen in HTML?</h2>
+                    <p>Listen sind ein zentrales Element in HTML. Sie strukturieren Inhalte übersichtlich – egal ob du
+                        eine Einkaufsliste, eine Navigation oder eine Schritt-für-Schritt-Anleitung erstellen möchtest.
+                    </p>
+                    <p>Listen helfen, zusammengehörige Inhalte zu gliedern. Sie bestehen immer aus einem
+                        umschließenden Listentag und einzelnen Listenelementen, den sogenannten <code class="inline">&lt;li&gt;</code>-Tags, den <em>list items</em>.</p>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice">Merke
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
+                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p>Jedes <code>&lt;li&gt;</code>-Element steht für einen einzelnen Eintrag in
+                            deiner Liste.
+                            Listen können verschachtelt werden und sogar andere HTML-Elemente enthalten – wie Links,
+                            Bilder oder Absätze.</p>
+                    </div>
+
+                    <!-- Code Block language-html -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;ul&gt;
+    &lt;li&gt;Erster Punkt&lt;/li&gt;
+    &lt;li&gt;Zweiter Punkt&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- Ungeordnete Listen -->
+                <section class="categories">
+                    <h2 id="ungeordnete-listen-ul">Ungeordnete Listen - &lt;ul&gt;</h2>
+                    <p>Ungeordnete Listen werden mit <code>&lt;ul&gt;</code> - <em>unordered list</em> - erstellt.
+                        Sie sind ideal für Aufzählungen, bei denen die Reihenfolge keine Rolle spielt – wie z. B.
+                        Zutaten oder Kategorien.</p>
+                    <ul class="arrow-list">
+                        <li>Einträge werden standardmäßig mit Punkten dargestellt.</li>
+                        <li>Die Darstellung kann später per CSS angepasst werden (z. B. Kreise, Quadrate, Symbole - ich
+                            habe mich für Pfeile entschieden).
+                        </li>
+                        <li>Jedes Listenelement steht in einem eigenen <code>&lt;li&gt;</code>-Tag.
+                        </li>
+                    </ul>
+                    <div class="grid-2col">
+                        <div>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;ul&gt;
+    &lt;li&gt;Apfel&lt;/li&gt;
+    &lt;li&gt;Banane&lt;/li&gt;
+    &lt;li&gt;Kirsche&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                            </div>
+                        </div>
+                        <div class="grid-2col-bg" style="margin: auto 0; padding-left: 3rem">
+                            <ul>
+                                <li>Apfel</li>
+                                <li>Banane</li>
+                                <li>Kirsche</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Geordnete Listen -->
+                <section class="categories">
+                    <h2 id="geordnete-listen-ol">Geordnete Listen - &lt;ol&gt;</h2>
+                    <p>Geordnete Listen <code>&lt;ol&gt;</code> - <em>ordered lists</em> - werden verwendet, wenn die
+                        Reihenfolge wichtig ist
+                        Etwa bei Schritt-für-Schritt-Anleitungen oder Rangfolgen.</p>
+                    <ul class="arrow-list">
+                        <li>Die Punkte werden automatisch nummeriert.</li>
+                        <li>Mit dem <code>type</code>-Attribut kannst du den Stil ändern (z. B.
+                            Zahlen, Buchstaben, römische Ziffern).</li>
+                        <li>Nummerierung kann über <code>start</code> angepasst werden.</li>
+                    </ul>
+
+
+                    <div class="grid-2col" style="margin-top: 1.5rem;">
+                        <div class="grid-2col-bg">
+                            <pre style="background-color: var(--bg-secondary);"><code class="language-html">&lt;ol&gt;
+    &lt;li&gt;Erster Schritt&lt;/li&gt;
+    &lt;li&gt;Zweiter Schritt&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <ol>
+                                <li>Erster Schritt</li>
+                                <li>Zweiter Schritt</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="grid-2col" style="margin-top: 1.5rem;">
+                        <div class="grid-2col-bg">
+                            <pre style="background-color: var(--bg-secondary);"><code class="language-html">&lt;ol type="a"&gt;
+    &lt;li&gt;Erster Schritt&lt;/li&gt;
+    &lt;li&gt;Zweiter Schritt&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <ol type="a">
+                                <li>Erster Schritt</li>
+                                <li>Zweiter Schritt</li>
+                            </ol>
+                        </div>
+                    </div>
+                
+                </section>
+
+                <!-- Beschreibungslisten -->
+                <section class="categories">
+                    <h2 id="beschreibungslisten-dl">Beschreibungslisten - &lt;dl&gt;</h2>
+                    <p>Beschreibungslisten sind eine besondere Form, mit der du Begriffe und deren Erklärungen
+                        strukturieren
+                        kannst.
+                        Sie bestehen aus <code>&lt;dt&gt;</code> = Begriff / <em>definition term</em> und
+                        <code>&lt;dd&gt;</code> = Beschreibung / <em>definition description</em>.
+                    </p>
+
+
+
+
+                    <!-- Code Block language-html -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;HyperText Markup Language – die Struktur einer Webseite.&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Cascading Style Sheets – das Aussehen einer Webseite.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                    </div>
+                    <dl>
+                        <dt>HTML</dt>
+                        <dd>HyperText Markup Language – die Struktur einer Webseite.</dd>
+                        <dt>CSS</dt>
+                        <dd>Cascading Style Sheets – das Aussehen einer Webseite.</dd>
+                    </dl>
+
+                    <div class="info-box">
+                        <strong class="box-title">Einsatzbereiche
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>Glossare oder Begriffserklärungen</li>
+                            <li>FAQ-Bereiche mit Frage und Antwort</li>
+                            <li>Produktinformationen (z. B. technische Daten)</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- Best Practices -->
+                <section class="categories">
+                    <h2 id="best-practices-fuer-listen">Best Practices für Listen</h2>
+                    <ul class="arrow-list">
+                        <li>Verwende Listen nur für inhaltlich zusammengehörige Punkte.</li>
+                        <li>Verschachtel Listen nur, wenn es wirklich nötig ist – zu viele Ebenen erschweren die
+                            Lesbarkeit.
+                        </li>
+                        <li>Nutze semantisch passende Listentypen - <code class="inline">&lt;ul&gt;</code> für
+                            Aufzählungen,
+                            <code class="inline">&lt;ol&gt;</code> für Schritte.
+                        </li>
+                        <li>Verwende CSS, um die Darstellung anzupassen, statt zusätzliche HTML-Tags zu verwenden.</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <strong class="box-title">Tipp
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p>Listen sind nicht nur für Text – du kannst sie auch für Navigationen, Inhaltsverzeichnisse
+                            oder Filterlisten nutzen.
+                            Sie sorgen für klare Struktur und verbessern die Barrierefreiheit deiner Website.</p>
+                    </div>
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                <section class="categories">
+                    <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/html/html-basics/html-typografie.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">HTML Typografie</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/html/html-basics/html-links.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">HTML Links & Anker</span>
+            </a>
+        </div></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+
+
+
+
+</body></html>

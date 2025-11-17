@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="CSS Cheatsheet – Die Grundlagen von CSS: Selektoren, Flexbox, Grid, Animationen und mehr. Schnell nachschlagen, direkt umsetzen.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>CSS - Gestaltung und Stil</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero Section -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <!-- Breadcrumbs -->
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">CSS</span></nav>
+                <h1 class="hero-title">CSS – Gestaltung und Stil</h1>
+                <p class="hero-subtitle">CSS (Cascading Style Sheets) trennt Design von Inhalt. Mit CSS legst du fest,
+                    wie
+                    deine Website aussieht: Farben, Abstände, Schriftarten, Layouts und Animationen.</p>
+            </div>
+        </section>
+
+        <!-- Wrapper -->
+        <div class="container">
+
+            <!-- Intro -->
+            <section class="tutorials-content">
+                <div class="grid-2col">
+                    <div class="grid-2col-bg">
+                        <h2>Was dich hier erwartet</h2>
+                        <p>Ein gutes Stylesheet ist logisch aufgebaut. Du kannst Regeln nach Themen ordnen, z. B.
+                            Typografie, Layout, Navigation.</p>
+                        <p>Die Kaskade (Cascading) sorgt dafür, dass später definierte Regeln frühere überschreiben
+                            – das eröffnet viele Gestaltungsmöglichkeiten.</p>
+                    </div>
+                    <div class="grid-2col-bg">
+                        <h2>Warum CSS wichtig ist</h2>
+                        <p>CSS trennt Content von Design – ein Prinzip, das deine Website wartbar und skalierbar
+                            macht.</p>
+                        <p>Mit modernen Features wie Flexbox, Grid und CSS Variables kannst du komplexe Layouts
+                            erstellen, ohne auf JavaScript zurückgreifen zu müssen.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Links Section -->
+            <section class="tutorials-content">
+                <div>
+                    <h2>Wähle ein Thema und starte direkt durch</h2>
+                    <p class="section-subtitle"></p>
+
+                    <!-- Wichtig: data-category muss mit dem Ordnernamen übereinstimmen -->
+                    <div id="tutorialButtons" class="tutorial-buttons" data-category="css">
+                        <div class="tutorial-group">
+                            <h3 class="tutorial-group-title">CSS Basics</h3>
+                            <div class="tutorial-group-buttons">
+                                <a href="/tutorials/css/css-basics/css-einbinden.html" class="tutorial-button">CSS
+                                    einbinden</a>
+                                <a href="/tutorials/css/css-basics/css-color-units.html" class="tutorial-button">CSS
+                                    Color Units</a>
+                                <a href="/tutorials/css/css-basics/css-variables.html" class="tutorial-button">CSS
+                                    Variables</a>
+                                <a href="/tutorials/css/css-basics/css-typografie.html" class="tutorial-button">CSS
+                                    Typografie</a>
+                                <a href="/tutorials/css/css-basics/css-textstyling.html" class="tutorial-button">CSS
+                                    Textstyling</a>
+                                <a href="/tutorials/css/css-basics/css-padding-margin.html" class="tutorial-button">CSS
+                                    Padding Margin</a>
+                                <a href="/tutorials/css/css-basics/css-box-model.html" class="tutorial-button">CSS Box
+                                    Model</a>
+                                <a href="/tutorials/css/css-basics/css-flexbox-grid.html" class="tutorial-button">CSS
+                                    Flexbox Grid</a>
+                                <a href="/tutorials/css/css-basics/css-background-effects.html"
+                                    class="tutorial-button">CSS Background Effects</a>
+                                <a href="/tutorials/css/css-basics/css-text-shadows-text-effects.html"
+                                    class="tutorial-button">CSS Text Shadows Text Effects</a>
+                                <a href="/tutorials/css/css-basics/css-borders-outlines.html"
+                                    class="tutorial-button">CSS Borders Outlines</a>
+                                <a href="/tutorials/css/css-basics/css-responsive.html" class="tutorial-button">CSS
+                                    Responsive</a>
+                                <a href="/tutorials/css/css-basics/css-media-queries.html" class="tutorial-button">CSS
+                                    Media Queries</a>
+                                <a href="/tutorials/css/css-basics/css-mobile-first.html" class="tutorial-button">CSS
+                                    Mobile First</a>
+                            </div>
+                        </div>
+                        <div class="tutorial-group">
+                            <h3 class="tutorial-group-title">CSS Advanced</h3>
+                            <div class="tutorial-group-buttons">
+                                <a href="/tutorials/css/css-advanced/css-positioning.html" class="tutorial-button">CSS
+                                    Positioning</a>
+                                <a href="/tutorials/css/css-advanced/css-z-index.html"
+                                    class="tutorial-button">Z-Index</a>
+                                <a href="/tutorials/css/css-advanced/css-transitions.html" class="tutorial-button">CSS
+                                    Transitions</a>
+                                <a href="/tutorials/css/css-advanced/css-animation.html" class="tutorial-button">CSS
+                                    Animation</a>
+                                <a href="/tutorials/css/css-advanced/css-transform-3d.html" class="tutorial-button">CSS
+                                    Transform 3d</a>
+                                <a href="/tutorials/css/css-advanced/css-dark-mode.html" class="tutorial-button">CSS
+                                    Dark Mode</a>
+                                <a href="/tutorials/css/css-advanced/css-functions.html" class="tutorial-button">CSS
+                                    Functions</a>
+                            </div>
+                        </div>
+                        <div class="tutorial-group">
+                            <h3 class="tutorial-group-title">CSS Specials</h3>
+                            <div class="tutorial-group-buttons">
+                                <a href="/tutorials/css/css-specials/css-custom-fonts.html"
+                                    class="tutorial-button">Custom Fonts</a>
+                                <a href="/tutorials/css/css-specials/css-pseudo-elements.html"
+                                    class="tutorial-button">CSS Pseudo Elements</a>
+                                <a href="/tutorials/css/css-specials/css-pseudo-classes.html"
+                                    class="tutorial-button">CSS Pseudo Classes</a>
+                                <a href="/tutorials/css/css-specials/css-shapes.html" class="tutorial-button">CSS
+                                    Shapes</a>
+                                <a href="/tutorials/css/css-specials/css-filters-effects.html"
+                                    class="tutorial-button">CSS Filters Effects</a>
+                                <a href="/tutorials/css/css-specials/css-container-queries.html"
+                                    class="tutorial-button">CSS Container Queries</a>
+                                <a href="/tutorials/css/css-specials/css-grid-deep-dive.html"
+                                    class="tutorial-button">CSS Grid Deep Dive</a>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+
+
+        </div> <!-- Wrapper .container -->
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/search.js"></script>
+</body>
+
+</html>

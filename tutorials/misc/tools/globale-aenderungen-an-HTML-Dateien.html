@@ -1,0 +1,1974 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wie du globale Änderungen an mehreren HTML-Dateien gleichzeitig vornimmst. Mit VS Code Find &amp; Replace, RegEx-Patterns, Terminal-Tools und Node.js Scripts.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>Globale Änderungen an HTML-Dateien - DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Globale Änderungen an HTML-Dateien</span></nav>
+                <h1 class="hero-title">Globale Änderungen an HTML-Dateien</h1>
+                <p class="hero-subtitle">Wie du Header, Footer und andere Elemente über mehrere Seiten hinweg
+                    aktualisierst,
+                    ohne den Verstand zu verlieren.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#das-problem-aenderungen-ueber-viele-dateien-hinweg">Das Problem: Änderungen über viele
+                        Dateien
+                        hinweg</a></li>
+                    <li class="toc-level-1"><a href="#methode-1-vs-code-find-replace-mit-regex">Methode 1: VS Code Find &amp; Replace mit RegEx</a></li>
+                    <li class="toc-level-2"><a href="#warum-funktioniert-deine-regex-suche-nicht">Warum funktioniert deine RegEx-Suche nicht?</a></li>
+                    <li class="toc-level-2"><a href="#so-funktioniert-find-replace-in-files">So funktioniert Find &amp; Replace in Files</a></li>
+                    <li class="toc-level-2"><a href="#regex-aktivieren">RegEx aktivieren</a></li>
+                    <li class="toc-level-2"><a href="#praktisches-beispiel-header-komplett-ersetzen">Praktisches Beispiel: Header komplett
+                        ersetzen</a></li>
+                    <li class="toc-level-1"><a href="#dateien-gezielt-filtern">Dateien gezielt filtern</a></li>
+                    <li class="toc-level-2"><a href="#files-to-include">Files to Include</a></li>
+                    <li class="toc-level-2"><a href="#files-to-exclude">Files to Exclude</a></li>
+                    <li class="toc-level-2"><a href="#weitere-nuetzliche-filter">Weitere nützliche Filter</a></li>
+                    <li class="toc-level-1"><a href="#praktische-regex-patterns-fuer-haeufige-aufgaben">Praktische RegEx-Patterns für häufige
+                        Aufgaben</a></li>
+                    <li class="toc-level-2"><a href="#pattern-1-footer-ersetzen">Pattern 1: Footer ersetzen</a></li>
+                    <li class="toc-level-2"><a href="#pattern-2-klassen-zu-allen-h2-ueberschriften-hinzufuegen">Pattern 2: Klassen zu allen
+                            H2-Überschriften hinzufügen</a></li>
+                    <li class="toc-level-2"><a href="#pattern-3-nur-h2-ohne-bestehende-klassen-matchen">Pattern 3: Nur H2 OHNE bestehende
+                            Klassen
+                            matchen</a></li>
+                    <li class="toc-level-2"><a href="#pattern-4-klassen-zu-allen-ueberschriften-hinzufuegen">Pattern 4: Klassen zu allen
+                            Überschriften
+                            hinzufügen</a></li>
+                    <li class="toc-level-2"><a href="#pattern-5-meta-description-ersetzen-aber-nicht-title">Pattern 5: Meta-Description
+                            ersetzen
+                            (aber
+                            nicht Title)</a></li>
+                    <li class="toc-level-2"><a href="#pattern-6-spezifischen-css-link-ersetzen">Pattern 6: Spezifischen CSS-Link ersetzen</a></li>
+                    <li class="toc-level-2"><a href="#pattern-7-script-tags-am-ende-hinzufuegen">Pattern 7: Script-Tags am Ende hinzufügen</a></li>
+                    <li class="toc-level-1"><a href="#mehrere-capture-groups-verwenden">Mehrere Capture Groups verwenden</a></li>
+                    <li class="toc-level-2"><a href="#beispiel-section-struktur-umbauen">Beispiel: Section-Struktur umbauen</a></li>
+                    <li class="toc-level-1"><a href="#methode-2-terminal-tools-sed-grep">Methode 2: Terminal-Tools (sed, grep)</a></li>
+                    <li class="toc-level-2"><a href="#sed-stream-editor">sed (Stream Editor)</a></li>
+                    <li class="toc-level-2"><a href="#grep-vor-dem-aendern-pruefen">grep: Vor dem Ändern prüfen</a></li>
+                    <li class="toc-level-2"><a href="#awk-fuer-komplexere-operationen">awk für komplexere Operationen</a></li>
+                    <li class="toc-level-1"><a href="#methode-3-nodejs-scripts-empfohlen-fuer-komplexe-aenderungen">Methode 3: Node.js Scripts
+                        (Empfohlen für komplexe Änderungen)</a></li>
+                    <li class="toc-level-1"><a href="#best-practice-dry-run-mode">Best Practice: Dry Run Mode</a></li>
+                    <li class="toc-level-1"><a href="#npm-scripts-in-packagejson">npm Scripts in package.json</a></li>
+                    <li class="toc-level-1"><a href="#welche-methode-wann-verwenden">Welche Methode wann verwenden?</a></li>
+                    <li class="toc-level-2"><a href="#vs-code-find-replace">VS Code Find &amp; Replace</a></li>
+                    <li class="toc-level-2"><a href="#terminal-tools-sed-awk">Terminal-Tools (sed, awk)</a></li>
+                    <li class="toc-level-2"><a href="#nodejs-scripts">Node.js Scripts</a></li>
+                    <li class="toc-level-1"><a href="#tipps-und-tricks">Tipps und Tricks</a></li>
+                    <li class="toc-level-2"><a href="#1-immer-mit-git-arbeiten">1. Immer mit Git arbeiten</a></li>
+                    <li class="toc-level-2"><a href="#2-teste-erst-mit-einer-kopie">2. Teste erst mit einer Kopie</a></li>
+                    <li class="toc-level-2"><a href="#3-verwende-case-sensitive-search">3. Verwende Case-Sensitive Search</a></li>
+                    <li class="toc-level-2"><a href="#4-escape-special-characters-in-regex">4. Escape Special Characters in RegEx</a></li>
+                    <li class="toc-level-2"><a href="#5-multiline-flag-in-javascript-regex">5. Multiline Flag in JavaScript RegEx</a></li>
+                    <li class="toc-level-2"><a href="#6-named-capture-groups-modern-regex">6. Named Capture Groups (Modern RegEx)</a></li>
+                    <li class="toc-level-2"><a href="#7-vs-code-replace-mit-n-fuer-zeilenumbrueche">7. VS Code Replace mit \n für Zeilenumbrüche</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler und wie du sie vermeidest</a></li>
+                    <li class="toc-level-2"><a href="#fehler-3-replace-all-ohne-vorschau">Fehler 3: Replace All ohne Vorschau</a></li>
+                    <li class="toc-level-1"><a href="#quick-reference-regex-cheat-sheet">Quick Reference: RegEx Cheat Sheet</a></li>
+                    <li class="toc-level-1"><a href="#praktische-workflows-fuer-devpaniczone">Praktische Workflows für DevPanicZone</a></li>
+                    <li class="toc-level-2"><a href="#workflow-1-neues-tutorial-template-verteilen">Workflow 1: Neues Tutorial-Template verteilen</a></li>
+                    <li class="toc-level-2"><a href="#workflow-2-neue-css-klasse-zu-allen-ueberschriften">Workflow 2: Neue CSS-Klasse zu allen
+                        Überschriften</a></li>
+                    <li class="toc-level-2"><a href="#workflow-3-neues-script-tag-zu-allen-seiten">Workflow 3: Neues Script-Tag zu allen Seiten</a></li>
+                    <li class="toc-level-1"><a href="#nach-globalen-aenderungen-testing">Nach globalen Änderungen: Testing</a></li>
+                    <li class="toc-level-2"><a href="#1-visual-check-mit-live-server">1. Visual Check mit Live Server</a></li>
+                    <li class="toc-level-2"><a href="#2-html-validation">2. HTML Validation</a></li>
+                    <li class="toc-level-2"><a href="#3-find-broken-patterns">3. Find Broken Patterns</a></li>
+                    <li class="toc-level-2"><a href="#4-git-diff-review">4. Git Diff Review</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html" class="active">Globale Änderungen an HTML-Dateien</a></li>
+                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale Versionskontrolle</a></li>
+                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Das Problem -->
+                <section class="categories section-top">
+                    <h2 id="das-problem-aenderungen-ueber-viele-dateien-hinweg">Das Problem: Änderungen über viele
+                        Dateien
+                        hinweg</h2>
+                    <p>Stell dir vor: Du hast 50 HTML-Dateien auf deiner Website. Plötzlich musst du den Header ändern,
+                        weil
+                        du einen neuen Menüpunkt hinzufügen möchtest. Oder der Footer braucht ein Update. Oder du willst
+                        allen Überschriften eine bestimmte Klasse hinzufügen.</p>
+
+                    <p>Jede Datei einzeln zu öffnen und manuell zu bearbeiten? Das ist nicht nur zeitraubend, sondern
+                        auch
+                        fehleranfällig. Ein kleiner Tippfehler in Datei 23 und du suchst stundenlang nach dem Bug.</p>
+
+                    <p>Die gute Nachricht: Es gibt mehrere Wege, solche globalen Änderungen effizient durchzuführen. In
+                        diesem Tutorial schauen wir uns drei Hauptmethoden an:</p>
+
+                    <div class="info-box no-title">
+                        <ul class="arrow-list">
+                            <li><strong>VS Code Find &amp; Replace:</strong> Die schnellste Methode für einfache bis
+                                mittlere Änderungen</li>
+                            <li><strong>Terminal-Tools (sed, grep):</strong> Mächtig, aber mit Vorsicht zu genießen</li>
+                            <li><strong>Node.js Scripts:</strong> Die flexibelste Lösung für komplexe Änderungen</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- VS Code Find & Replace -->
+                <section class="categories">
+                    <h2 id="methode-1-vs-code-find-replace-mit-regex">Methode 1: VS Code Find &amp; Replace mit RegEx
+                    </h2>
+                    <p>VS Code hat eine sehr mächtige Find &amp; Replace Funktion, die mit Regular Expressions (RegEx)
+                        arbeiten kann. Das ist vermutlich die Methode, die du am häufigsten verwenden wirst.</p>
+
+                    <h3 id="warum-funktioniert-deine-regex-suche-nicht">Warum funktioniert deine RegEx-Suche nicht?</h3>
+                    <p>Du findest die Stellen, kannst sie aber nicht überschreiben. Das liegt wahrscheinlich daran, dass
+                        du
+                        nur die <strong>Find-Funktion</strong> <code>Cmd+F</code> verwendest statt <strong>Find &amp;
+                            Replace</strong> <code>Cmd+Shift+H</code>.</p>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Der Unterschied:
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><code>Cmd+F</code> (Find): Sucht nur in der aktuellen Datei</li>
+                            <li><code>Cmd+Shift+F</code> (Find in Files): Sucht in allen Dateien, aber kann nicht
+                                ersetzen
+                            </li>
+                            <li><code>Cmd+Shift+H</code> (Replace in Files): Sucht UND ersetzt in allen Dateien</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="so-funktioniert-find-replace-in-files">So funktioniert Find &amp; Replace in Files</h3>
+                    <p>Öffne Find &amp; Replace mit <code>Cmd+Shift+H</code> (Mac) oder <code>Ctrl+Shift+H</code>
+                        (Windows).
+                        Du siehst dann zwei Eingabefelder:</p>
+
+                    <ol>
+                        <li><strong>Oberes Feld:</strong> Was suchst du?</li>
+                        <li><strong>Unteres Feld:</strong> Womit soll es ersetzt werden?</li>
+                    </ol>
+
+                    <h3 id="regex-aktivieren">RegEx aktivieren</h3>
+                    <p>Klicke auf das <code>.*</code> Symbol rechts neben dem Suchfeld. Dadurch wird der RegEx-Modus
+                        aktiviert. Jetzt kannst du Regular Expressions verwenden.</p>
+
+                    <h3 id="praktisches-beispiel-header-komplett-ersetzen">Praktisches Beispiel: Header komplett
+                        ersetzen
+                    </h3>
+                    <p>Angenommen, du willst den kompletten Header-Bereich zwischen den Kommentaren ersetzen:</p>
+
+                    <pre><code class="language-html">&lt;!-- Header-Start --&gt;
+&lt;header class="site-header"&gt;
+    &lt;!-- Main-Nav-Start --&gt;
+    &lt;!-- Main-Nav-End --&gt;
+&lt;/header&gt;
+&lt;!-- Header-End --&gt;</code></pre>
+
+                    <h4>Schritt 1: Der Such-Pattern</h4>
+                    <pre><code class="language-regex">&lt;!-- Header-Start --&gt;[\s\S]*?&lt;!-- Header-End --&gt;</code></pre>
+
+                    <details>
+                        <summary>Was bedeutet dieser Pattern?</summary>
+                        <ul>
+                            <li><code>&lt;!-- Header-Start --&gt;</code>: Sucht nach diesem exakten Kommentar</li>
+                            <li><code>[\s\S]*?</code>: Matcht ALLES (inklusive Zeilenumbrüche) zwischen Start und End
+                            </li>
+                            <li><code>*?</code>: Das Fragezeichen macht das Matching "non-greedy" (stoppt beim ersten
+                                End-Kommentar)</li>
+                            <li><code>&lt;!-- Header-End --&gt;</code>: Sucht nach dem Ende-Kommentar</li>
+                        </ul>
+                    </details>
+
+                    <h4>Schritt 2: Der Ersetzungs-Text</h4>
+                    <p>Ins untere Feld kommt dein neuer Header-Code, inklusive der Start- und End-Kommentare:</p>
+
+                    <pre><code class="language-html">&lt;!-- Header-Start --&gt;
+&lt;header class="site-header"&gt;
+    &lt;div class="container"&gt;
+        &lt;nav class="main-nav"&gt;
+            &lt;!-- Dein neuer Header-Inhalt --&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+&lt;/header&gt;
+&lt;!-- Header-End --&gt;</code></pre>
+
+                    <h4>Schritt 3: Vor dem Ersetzen prüfen</h4>
+                    <p>Bevor du auf "Replace All" klickst:</p>
+                    <ol>
+                        <li>Schau dir die Vorschau an (VS Code zeigt alle Fundstellen)</li>
+                        <li>Teste erst mit "Replace" für eine einzelne Datei</li>
+                        <li>Überprüfe das Ergebnis</li>
+                        <li>Erst dann "Replace All" für alle Dateien</li>
+                    </ol>
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Wichtig: Backup erstellen!
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Bevor du globale Änderungen vornimmst, erstelle ein Backup oder committe deine Änderungen in
+                            Git.
+                            Ein falscher RegEx-Pattern kann viele Dateien gleichzeitig kaputt machen.</p>
+                    </div>
+                </section>
+
+                <!-- Dateien filtern -->
+                <section class="categories">
+                    <h2 id="dateien-gezielt-filtern">Dateien gezielt filtern</h2>
+                    <p>Du willst nicht versehentlich JavaScript-Dateien oder andere Nicht-HTML-Dateien verändern. VS
+                        Code
+                        bietet dafür Filter-Optionen.</p>
+
+                    <h3 id="files-to-include">Files to Include</h3>
+                    <p>Klicke auf "..." rechts neben dem Replace-Feld und dann auf "Files to Include". Hier kannst du
+                        angeben:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Plain Text</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-text">tutorials/**/*.html</code></pre>
+                    </div>
+
+                    <p>Das bedeutet: Nur HTML-Dateien im tutorials-Ordner und allen Unterordnern.</p>
+
+                    <h3 id="files-to-exclude">Files to Exclude</h3>
+                    <p>Oder schließe bestimmte Dateien aus:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Plain Text</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-text">**/node_modules/**, **/.git/**, **/dist/**</code></pre>
+                    </div>
+
+
+                    <h3 id="weitere-nuetzliche-filter">Weitere nützliche Filter</h3>
+                    <ul class="arrow-list">
+                        <li><code>*.html</code>: Alle HTML-Dateien im aktuellen Workspace</li>
+                        <li><code>tutorials/html/**</code>: Nur im html-Unterordner</li>
+                        <li><code>tutorials/{html,css}/**</code>: Nur in html und css Ordnern</li>
+                    </ul>
+                </section>
+
+                <!-- Praktische RegEx-Patterns -->
+                <section class="categories">
+                    <h2 id="praktische-regex-patterns-fuer-haeufige-aufgaben">Praktische RegEx-Patterns für häufige
+                        Aufgaben
+                    </h2>
+
+                    <!-- Pattern 1 -->
+                    <div>
+                        <h3 id="pattern-1-footer-ersetzen">Pattern 1: Footer ersetzen</h3>
+                        <p>Suchen:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">ReGex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Footer-Start --&gt;[\s\S]*?&lt;!-- Footer-End --&gt;</code></pre>
+                        </div>
+                        <p>Ersetzen mit deinem neuen Footer-Code (inklusive Kommentare).</p>
+                    </div> <!-- Pattern 1 -->
+
+                    <!-- Pattern 2 -->
+                    <div>
+                        <h3 id="pattern-2-klassen-zu-allen-h2-ueberschriften-hinzufuegen">Pattern 2: Klassen zu allen
+                            H2-Überschriften hinzufügen</h3>
+                        <p>Das ist ein perfektes Beispiel für Capture Groups!</p>
+
+                        <p>Suchen:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">ReGex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;h2&gt;(.*?)&lt;/h2&gt;</code></pre>
+                        </div>
+
+                        <p>Ersetzen:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;h2 class="section-title"&gt;$1&lt;/h2&gt;</code></pre>
+                        </div>
+
+                        <details>
+                            <summary>Wie funktioniert das?</summary>
+                            <ul class="arrow-list">
+                                <li><code>(.*?)</code>: Capture Group - speichert den Inhalt zwischen den Tags</li>
+                                <li><code>$1</code>: Referenziert die erste Capture Group (den gespeicherten Inhalt)
+                                </li>
+                                <li>Das Ergebnis: Die Klasse wird hinzugefügt, aber der ursprüngliche Text bleibt
+                                    erhalten
+                                </li>
+                            </ul>
+                        </details>
+                    </div> <!-- Pattern 1 -->
+
+                    <!-- Pattern 3 -->
+                    <div>
+                        <h3 id="pattern-3-nur-h2-ohne-bestehende-klassen-matchen">Pattern 3: Nur H2 OHNE bestehende
+                            Klassen
+                            matchen</h3>
+                        <p>Wenn du nur H2s ohne Klassen erwischen willst:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">ReGex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-regex">&lt;h2(?!.*class)&gt;(.*?)&lt;/h2&gt;</code></pre>
+                        </div>
+
+                        <p>Das <code>(?!.*class)</code> ist ein "Negative Lookahead" - es matcht nur, wenn KEIN "class"
+                            im
+                            Tag
+                            vorkommt.</p>
+                    </div> <!-- Pattern 3 -->
+
+                    <!-- Pattern 4 -->
+                    <div>
+                        <h3 id="pattern-4-klassen-zu-allen-ueberschriften-hinzufuegen">Pattern 4: Klassen zu allen
+                            Überschriften
+                            hinzufügen</h3>
+                        <p>Für H2, H3 und H4 gleichzeitig:</p>
+
+                        <p>Suchen:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">ReGex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;(h[234])&gt;(.*?)&lt;/(h[234])&gt;</code></pre>
+                        </div>
+
+                        <p>Ersetzen:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">html</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;$1 class="section-title"&gt;$2&lt;/$3&gt;</code></pre>
+                        </div>
+                    </div> <!-- Pattern 4 -->
+
+                    <!-- Pattern 5 -->
+                    <div>
+                        <h3 id="pattern-5-meta-description-ersetzen-aber-nicht-title">Pattern 5: Meta-Description
+                            ersetzen
+                            (aber
+                            nicht Title)</h3>
+                        <p>Hier wird's tricky, weil du Title NICHT verändern willst.</p>
+
+                        <p>Suchen (nur die Description-Zeile):</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">regex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;meta name="description" content=".*?"&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box danger">
+                            <strong class="box-title danger no-toc" id="achtung">Aber STOP!
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                                </svg>
+                            </strong>
+                            <p>Das ist gefährlich, weil es alle Descriptions mit dem gleichen Text ersetzen würde. Für
+                                diesen Fall brauchst du entweder:</p>
+                            <ul class="arrow-list">
+                                <li>Eine manuelle Überprüfung jeder Datei (Replace statt Replace All)</li>
+                                <li>Oder ein Node.js Script (siehe unten)</li>
+                            </ul>
+                        </div>
+                    </div> <!-- Pattern 5 -->
+
+                    <!-- Pattern 6 -->
+                    <div>
+                        <h3 id="pattern-6-spezifischen-css-link-ersetzen">Pattern 6: Spezifischen CSS-Link ersetzen</h3>
+                        <p>Suchen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">regex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;link rel="stylesheet" href="/assets/css/old-style\.css"&gt;</code></pre>
+                        </div>
+
+                        <p>Ersetzen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">regex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;link rel="stylesheet" href="/assets/css/style.css"&gt;</code></pre>
+                        </div>
+
+                        <p>Beachte: Der Punkt vor "css" muss escaped werden <code>\.</code>, weil Punkt in RegEx
+                            "beliebiges
+                            Zeichen" bedeutet.</p>
+                    </div> <!-- Pattern 6 -->
+
+                    <!-- Pattern 7 -->
+                    <div>
+                        <h3 id="pattern-7-script-tags-am-ende-hinzufuegen">Pattern 7: Script-Tags am Ende hinzufügen
+                        </h3>
+                        <p>Suchen (vor dem schließenden body-Tag):</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">regex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">(\s*)&lt;/body&gt;</code></pre>
+                        </div>
+
+                        <p>Ersetzen:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">regex</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">$1    &lt;script src="/assets/js/new-script.js" defer&gt;&lt;/script&gt;
+$1&lt;/body&gt;</code></pre>
+                        </div>
+
+                        <p>Die Capture Group <code>(\s*)</code> erfasst die Einrückung, sodass dein neues Script korrekt
+                            eingerückt wird.</p>
+                    </div> <!-- Pattern 7 -->
+                </section>
+
+                <!-- Mehrere Capture Groups -->
+                <section class="categories">
+                    <h2 id="mehrere-capture-groups-verwenden">Mehrere Capture Groups verwenden</h2>
+                    <p>Du kannst mehrere Teile des gefundenen Texts speichern und wiederverwenden.</p>
+
+                    <h3 id="beispiel-section-struktur-umbauen">Beispiel: Section-Struktur umbauen</h3>
+                    <p>Angenommen, du hast:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">html</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;div class="section"&gt;
+    &lt;h2&gt;Titel&lt;/h2&gt;
+    &lt;p&gt;Inhalt&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <p>Und möchtest es ändern zu:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">html</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;section class="categories"&gt;
+    &lt;h2 class="section-title"&gt;Titel&lt;/h2&gt;
+    &lt;p&gt;Inhalt&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
+
+                    <p>Suchen:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">regex</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;div class="section"&gt;\s*&lt;h2&gt;(.*?)&lt;/h2&gt;\s*([\s\S]*?)&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <p>Ersetzen:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">regex</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;section class="categories"&gt;
+    &lt;h2 class="section-title"&gt;$1&lt;/h2&gt;
+    $2
+&lt;/section&gt;</code></pre>
+                    </div>
+
+                    <p>Hier wird <code>$1</code> für den Titel und <code>$2</code> für den restlichen Inhalt verwendet.
+                    </p>
+                </section>
+
+                <!-- Terminal-Tools -->
+                <section class="categories">
+                    <h2 id="methode-2-terminal-tools-sed-grep">Methode 2: Terminal-Tools (sed, grep)</h2>
+                    <p>Für Kommandozeilen-Freunde gibt es mächtige Unix-Tools. Diese sind besonders nützlich für
+                        automatisierte Workflows oder wenn VS Code bei vielen Dateien langsam wird.</p>
+
+                    <h3 id="sed-stream-editor">sed (Stream Editor)</h3>
+                    <p>Das Standard-Tool für Suchen und Ersetzen im Terminal.</p>
+
+                    <h4>Grundlegende Syntax</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash">sed -i '' 's/SUCHEN/ERSETZEN/g' datei.html</code></pre>
+                    </div>
+
+                    <ul class="arrow-list">
+                        <li><code>-i ''</code>: In-place Bearbeitung (Mac benötigt die leeren Quotes)</li>
+                        <li><code>s/</code>: Substitute-Befehl</li>
+                        <li><code>g</code>: Global (alle Vorkommen in jeder Zeile)</li>
+                    </ul>
+
+                    <h4>Beispiel: Klasse zu allen H2s hinzufügen</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash">find tutorials -name "*.html" -exec sed -i '' \
+  's/&lt;h2&gt;\(.*\)&lt;\/h2&gt;/&lt;h2 class="section-title"&gt;\1&lt;\/h2&gt;/g' {} \;</code></pre>
+                    </div>
+
+                    <details>
+                        <summary>Was passiert hier?</summary>
+                        <ul class="arrow-list">
+                            <li><code>find tutorials -name "*.html"</code>: Findet alle HTML-Dateien</li>
+                            <li><code>-exec</code>: Führt für jede gefundene Datei den sed-Befehl aus</li>
+                            <li><code>\(.*\)</code>: Capture Group in sed (mit Backslash escaped)</li>
+                            <li><code>\1</code>: Referenz zur ersten Capture Group</li>
+                            <li><code>{}</code>: Platzhalter für den Dateinamen</li>
+                            <li><code>\;</code>: Beendet den -exec Befehl</li>
+                        </ul>
+                    </details>
+
+                    <h4>Mehrere Zeilen mit sed ersetzen</h4>
+                    <p>Für mehrzeilige Ersetzungen wird sed kompliziert. Hier ein Beispiel für Header-Ersetzung:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">sed -i '' '/&lt;!-- Header-Start --&gt;/,/&lt;!-- Header-End --&gt;/{
+  /&lt;!-- Header-Start --&gt;/!{
+    /&lt;!-- Header-End --&gt;/!d
+  }
+}' datei.html</code></pre>
+                    </div>
+
+                    <p>Ehrlich gesagt: Für komplexe mehrzeilige Änderungen ist sed nicht ideal. Besser: VS Code oder ein
+                        Script.</p>
+
+                    <h3 id="grep-vor-dem-aendern-pruefen">grep: Vor dem Ändern prüfen</h3>
+                    <p>Bevor du Änderungen vornimmst, prüfe mit grep, was gefunden wird:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html"># Zeige alle Zeilen mit &lt;h2&gt; Tags
+grep -r "&lt;h2&gt;" tutorials/
+
+# Zähle die Vorkommen
+grep -r "&lt;h2&gt;" tutorials/ | wc -l
+
+# Zeige Dateinamen ohne Duplikate
+grep -rl "&lt;h2&gt;" tutorials/</code></pre>
+                    </div>
+
+                    <h3 id="awk-fuer-komplexere-operationen">awk für komplexere Operationen</h3>
+                    <p>awk ist noch mächtiger, aber auch komplexer:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html"># Zeige nur HTML-Dateien mit &lt;h2&gt; ohne Klasse
+awk '/&lt;h2&gt;[^&lt;]*&lt;\/h2&gt;/' tutorials/**/*.html</code></pre>
+                    </div>
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc" id="achtung">Vorsicht mit Terminal-Tools!
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Terminal-Befehle haben keine Undo-Funktion. Teste immer erst ohne <code>-i</code> Flag und
+                            prüfe
+                            die Ausgabe. Oder erstelle Backups mit:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">bash</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">cp -r tutorials/ tutorials-backup/</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Node.js Scripts -->
+                <section class="categories">
+                    <h2 id="methode-3-nodejs-scripts-empfohlen-fuer-komplexe-aenderungen">Methode 3: Node.js Scripts
+                        (Empfohlen für komplexe Änderungen)</h2>
+                    <p>Für komplexe Änderungen, besonders wenn du bestimmte Inhalte NICHT überschreiben willst (wie
+                        Title
+                        und Description), ist ein eigenes Script die beste Lösung.</p>
+
+                    <h3 class="no-toc" id="warum-nodejs-scripts">Warum Node.js Scripts?</h3>
+                    <ul class="arrow-list">
+                        <li>Volle Kontrolle über die Logik</li>
+                        <li>Kann HTML parsen und verstehen</li>
+                        <li>Kann Bedingungen prüfen (z.B. "nur wenn keine Klasse vorhanden")</li>
+                        <li>Kann spezifische Elemente erhalten (Title, Description)</li>
+                        <li>Gut testbar und wiederverwendbar</li>
+                    </ul>
+
+                    <h3 class="no-toc" id="beispiel-headerfooter-script">Beispiel: Header/Footer Script</h3>
+                    <p>Erstelle eine Datei <code>scripts/update-structure.js</code>:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">const fs = require('fs');
+const path = require('path');
+
+// Konfiguration
+const TUTORIALS_DIR = path.join(__dirname, '../tutorials');
+
+// Dein neuer Header (als String)
+const NEW_HEADER = `&lt;!-- Header-Start --&gt;
+&lt;header class="site-header"&gt;
+    &lt;div class="container"&gt;
+        &lt;!-- Dein neuer Header-Inhalt --&gt;
+    &lt;/div&gt;
+&lt;/header&gt;
+&lt;!-- Header-End --&gt;`;
+
+// Dein neuer Footer
+const NEW_FOOTER = `&lt;!-- Footer-Start --&gt;
+&lt;footer class="site-footer"&gt;
+    &lt;!-- Wird automatisch generiert --&gt;
+&lt;/footer&gt;
+&lt;!-- Footer-End --&gt;`;
+
+// Funktion: Alle HTML-Dateien finden
+function findHTMLFiles(dir, fileList = []) {
+    const files = fs.readdirSync(dir);
+    
+    files.forEach(file =&gt; {
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+        
+        if (stat.isDirectory()) {
+            // Rekursiv in Unterordner gehen
+            findHTMLFiles(filePath, fileList);
+        } else if (file.endsWith('.html')) {
+            fileList.push(filePath);
+        }
+    });
+    
+    return fileList;
+}
+
+// Funktion: Header ersetzen (Title &amp; Description bleiben erhalten!)
+function updateFile(filePath) {
+    let content = fs.readFileSync(filePath, 'utf-8');
+    
+    // Header ersetzen
+    content = content.replace(
+        /&lt;!-- Header-Start --&gt;[\s\S]*?&lt;!-- Header-End --&gt;/,
+        NEW_HEADER
+    );
+    
+    // Footer ersetzen
+    content = content.replace(
+        /&lt;!-- Footer-Start --&gt;[\s\S]*?&lt;!-- Footer-End --&gt;/,
+        NEW_FOOTER
+    );
+    
+    // Datei speichern
+    fs.writeFileSync(filePath, content, 'utf-8');
+    console.log(`✓ Updated: ${path.basename(filePath)}`);
+}
+
+// Hauptfunktion
+function main() {
+    console.log('Searching for HTML files...');
+    const htmlFiles = findHTMLFiles(TUTORIALS_DIR);
+    
+    console.log(`Found ${htmlFiles.length} HTML files`);
+    console.log('Starting updates...\n');
+    
+    htmlFiles.forEach(updateFile);
+    
+    console.log('\n✓ All files updated!');
+}
+
+// Script ausführen
+main();</code></pre>
+                    </div>
+
+                    <h3 class="no-toc" id="script-ausfuehren">Script ausführen</h3>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash">node scripts/update-structure.js</code></pre>
+                    </div>
+
+                    <h3 class="no-toc" id="erweitertes-beispiel-klassen-hinzufuegen-nur-wenn-nicht-vorhanden">
+                        Erweitertes
+                        Beispiel: Klassen
+                        hinzufügen nur wenn nicht vorhanden</h3>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">function addClassToHeadings(filePath) {
+    let content = fs.readFileSync(filePath, 'utf-8');
+    let modified = false;
+    
+    // H2 ohne Klasse finden und Klasse hinzufügen
+    const h2Pattern = /&lt;h2(?![^&gt;]*class)&gt;(.*?)&lt;\/h2&gt;/g;
+    if (h2Pattern.test(content)) {
+        content = content.replace(
+            h2Pattern,
+            '&lt;h2 class="section-title"&gt;$1&lt;/h2&gt;'
+        );
+        modified = true;
+    }
+    
+    // H3 behandeln
+    const h3Pattern = /&lt;h3(?![^&gt;]*class)&gt;(.*?)&lt;\/h3&gt;/g;
+    if (h3Pattern.test(content)) {
+        content = content.replace(
+            h3Pattern,
+            '&lt;h3 class="section-title"&gt;$1&lt;/h3&gt;'
+        );
+        modified = true;
+    }
+    
+    if (modified) {
+        fs.writeFileSync(filePath, content, 'utf-8');
+        console.log(`✓ Updated: ${path.basename(filePath)}`);
+    } else {
+        console.log(`- Skipped: ${path.basename(filePath)} (no changes needed)`);
+    }
+}</code></pre>
+                    </div>
+
+                    <h3 class="no-toc" id="mit-html-parser-arbeiten-jsdom">Mit HTML-Parser arbeiten (jsdom)</h3>
+                    <p>Für noch präzisere Kontrolle kannst du HTML richtig parsen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash"># jsdom installieren
+npm install jsdom</code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">const { JSDOM } = require('jsdom');
+
+function updateWithParser(filePath) {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const dom = new JSDOM(content);
+    const document = dom.window.document;
+    
+    // Alle H2 ohne Klasse finden
+    const h2s = document.querySelectorAll('h2:not([class])');
+    h2s.forEach(h2 =&gt; {
+        h2.classList.add('section-title');
+    });
+    
+    // Zurück in String konvertieren
+    const updatedContent = dom.serialize();
+    fs.writeFileSync(filePath, updatedContent, 'utf-8');
+}</code></pre>
+                    </div>
+
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning">Achtung bei jsdom!
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>jsdom kann manchmal HTML leicht verändern (Whitespace, Formatierung). Teste es erst mit einer
+                            Kopie deiner Dateien.</p>
+                    </div>
+                </section>
+
+                <!-- Dry Run -->
+                <section class="categories">
+                    <h2 id="best-practice-dry-run-mode">Best Practice: Dry Run Mode</h2>
+                    <p>Füge deinen Scripts immer einen "Dry Run" Mode hinzu, der nur anzeigt, was geändert würde, ohne
+                        die
+                        Dateien tatsächlich zu verändern.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Am Anfang der Datei
+const DRY_RUN = process.argv.includes('--dry-run');
+
+// In der Update-Funktion
+function updateFile(filePath) {
+    let content = fs.readFileSync(filePath, 'utf-8');
+    
+    // Änderungen vornehmen
+    const updatedContent = content.replace(/.../, '...');
+    
+    if (DRY_RUN) {
+        console.log(`[DRY RUN] Would update: ${path.basename(filePath)}`);
+        // Optional: Zeige Unterschiede
+        if (content !== updatedContent) {
+            console.log('  - Changes detected');
+        }
+    } else {
+        fs.writeFileSync(filePath, updatedContent, 'utf-8');
+        console.log(`✓ Updated: ${path.basename(filePath)}`);
+    }
+}</code></pre>
+                    </div>
+
+                    <p>Dann kannst du es erst im Dry Run Modus testen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash"># Zeigt nur an, was geändert würde
+node scripts/update-structure.js --dry-run
+
+# Führt die Änderungen wirklich aus
+node scripts/update-structure.js</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- Package.json Scripts -->
+                <section class="categories">
+                    <h2 id="npm-scripts-in-packagejson">npm Scripts in package.json</h2>
+                    <p>Füge deine Scripts zu <code>package.json</code> hinzu für einfache Ausführung:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">json</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">{
+  "name": "devpaniczone",
+  "scripts": {
+    "update:structure": "node scripts/update-structure.js",
+    "update:structure:dry": "node scripts/update-structure.js --dry-run",
+    "update:classes": "node scripts/add-classes.js",
+    "generate:nav": "node scripts/generate-navigation.js"
+  }
+}</code></pre>
+                    </div>
+
+                    <p>Dann kannst du einfach schreiben:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash">npm run update:structure:dry
+npm run update:structure</code></pre>
+                    </div>
+                </section>
+
+                <!-- Welche Methode wann? -->
+                <section class="categories">
+                    <h2 id="welche-methode-wann-verwenden">Welche Methode wann verwenden?</h2>
+                    <h3 id="vs-code-find-replace">VS Code Find &amp; Replace</h3>
+
+                    <div class="grid-2col">
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Verwende es für:
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>Einfache Such- und Ersetz-Operationen</li>
+                                <li>Änderungen, die du visuell überprüfen willst</li>
+                                <li>Schnelle, einmalige Änderungen</li>
+                                <li>Wenn du die Vorschau vor dem Ersetzen sehen willst</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box danger">
+                            <strong class="box-title danger no-toc">Vermeide es für
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>Sehr komplexe mehrzeilige Ersetzungen</li>
+                                <li>Änderungen mit Bedingungslogik</li>
+                                <li>Wenn du bestimmte Teile gezielt erhalten musst</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <h3 id="terminal-tools-sed-awk">Terminal-Tools (sed, awk)</h3>
+
+                    <div class="grid-2col">
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Verwende es für:
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>Schnelle, einfache Ersetzungen via Kommandozeile</li>
+                                <li>Automatisierte Build-Prozesse</li>
+                                <li>Wenn du mit Shell-Scripts arbeitest</li>
+                                <li>Sehr große Dateien (schneller als VS Code)</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box danger">
+                            <strong class="box-title danger no-toc">Vermeide es für
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>Komplexe mehrzeilige Änderungen</li>
+                                <li>Wenn du nicht sicher bist, was du tust</li>
+                                <li>HTML-spezifische Logik (Parser sind besser)</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <h3 id="nodejs-scripts">Node.js Scripts</h3>
+
+                    <div class="grid-2col">
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Verwende es für:
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>Komplexe Änderungen mit Bedingungslogik</li>
+                                <li>Wenn du bestimmte Teile erhalten musst (Title, Description)</li>
+                                <li>Wiederholbare, dokumentierte Workflows</li>
+                                <li>Wenn du HTML wirklich parsen musst</li>
+                                <li>Automatisierung, die du öfter brauchst</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box danger">
+                            <strong class="box-title danger no-toc">Vermeide es für
+                                <!-- Screenreader überspringen dieses Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>Komplexe mehrzeilige Änderungen</li>
+                                <li>Wenn du nicht sicher bist, was du tust</li>
+                                <li>HTML-spezifische Logik (Parser sind besser)</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="grid-2col">
+                    <div>
+                        <p><strong>Verwende es für:</strong></p>
+                        <ul class="arrow-list">
+                            <li>Sehr einfache, einmalige Änderungen (Overhead zu groß)</li>
+                            <li>Wenn du es schnell brauchst und VS Code ausreicht</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p><strong>Vermeide es für:</strong></p>
+                        <ul class="arrow-list">
+                            <li>Sehr einfache, einmalige Änderungen (Overhead zu groß)</li>
+                            <li>Wenn du es schnell brauchst und VS Code ausreicht</li>
+                        </ul>
+                    </div>
+                </div> -->
+
+                </section>
+
+                <!-- Tipps und Tricks -->
+                <section class="categories">
+                    <h2 id="tipps-und-tricks">Tipps und Tricks</h2>
+
+                    <h3 id="1-immer-mit-git-arbeiten">1. Immer mit Git arbeiten</h3>
+                    <p>Bevor du globale Änderungen vornimmst:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash">git add .
+git commit -m "Before global changes"</code></pre>
+                    </div>
+
+
+                    <p>Dann kannst du notfalls zurück:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash">git reset --hard HEAD</code></pre>
+                    </div>
+
+
+                    <h3 id="2-teste-erst-mit-einer-kopie">2. Teste erst mit einer Kopie</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">bash</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash"># Kopie erstellen
+cp -r tutorials/ tutorials-test/
+
+# An Kopie testen
+# Wenn's klappt, am Original durchführen</code></pre>
+                    </div>
+
+
+
+                    <h3 id="3-verwende-case-sensitive-search">3. Verwende Case-Sensitive Search</h3>
+                    <p>In VS Code: Klicke auf "Aa" Button für Case-Sensitive Suche. Vermeidet ungewollte Matches.</p>
+
+                    <h3 id="4-escape-special-characters-in-regex">4. Escape Special Characters in RegEx</h3>
+                    <p>Diese Zeichen müssen mit Backslash escaped werden:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">plain text</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-plaintext">. * + ? ^ $ { } [ ] ( ) | \</code></pre>
+                    </div>
+
+
+
+                    <p>Beispiel:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">regex</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-regex">style\.css statt style.css
+\(Klammer\) statt (Klammer)</code></pre>
+                    </div>
+
+
+
+                    <h3 id="5-multiline-flag-in-javascript-regex">5. Multiline Flag in JavaScript RegEx</h3>
+                    <p>In Node.js Scripts, wenn du mit Zeilenumbrüchen arbeitest:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">regex</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Falsch (matcht keine Zeilenumbrüche)
+content.replace(/&lt;header&gt;.*&lt;\/header&gt;/, '...');
+
+// Richtig (matcht auch über Zeilen hinweg)
+content.replace(/&lt;header&gt;[\s\S]*?&lt;\/header&gt;/, '...');</code></pre>
+                    </div>
+
+                    <h3 id="6-named-capture-groups-modern-regex">6. Named Capture Groups (Modern RegEx)</h3>
+                    <p>In neueren JavaScript-Versionen kannst du Capture Groups benennen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">regex</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">const pattern = /&lt;h2&gt;(?&lt;title&gt;.*?)&lt;\/h2&gt;/;
+const match = pattern.exec(content);
+console.log(match.groups.title); // Statt match[1]</code></pre>
+                    </div>
+
+
+
+                    <h3 id="7-vs-code-replace-mit-n-fuer-zeilenumbrueche">7. VS Code Replace mit \n für Zeilenumbrüche
+                    </h3>
+                    <p>Im Replace-Feld von VS Code kannst du <code>\n</code> für neue Zeilen verwenden:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">regex</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-regex">Suchen: (&lt;/h2&gt;)
+Ersetzen: $1\n&lt;p&gt;Neuer Absatz&lt;/p&gt;</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- Häufige Fehler -->
+                <section class="categories">
+                    <h2 id="haeufige-fehler">Häufige Fehler und wie du sie vermeidest</h2>
+
+                    <h3 class="no-toc">Fehler 1: Greedy vs. Non-Greedy Matching</h3>
+
+                    <div class="grid-2col">
+
+                        <div class="info-box notice" style="margin-top: 0">
+                            <strong class="box-title notice no-toc">Richtig (Non-Greedy)
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-regex">&lt;header&gt;.*?&lt;/header&gt;</code></pre>
+                            <p>Matcht vom <strong>ersten</strong> <code>&lt;header&gt;</code> bis zum
+                                <strong>NÄCHSTEN</strong>
+                                <code>&lt;/header&gt;</code>.
+                            </p>
+                        </div>
+
+                        <div class="info-box danger" style="margin-top: 0">
+                            <strong class="box-title danger no-toc">Falsch (Greedy)
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-regex">&lt;header&gt;.*&lt;/header&gt;</code></pre>
+                            <p>Matcht vom <strong>ersten</strong> <code>&lt;header&gt;</code> bis zum
+                                <strong>LETZTEN</strong>
+                                <code>&lt;/header&gt;</code>
+                                auf
+                                der Seite!
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <h3 class="no-toc">Fehler 2: Vergessen, Special Characters zu
+                        escapen</h3>
+
+                    <div class="grid-2col">
+
+                        <div class="info-box notice" style="margin-top: 0">
+                            <strong class="box-title notice no-toc">Richtig
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-regex">style\.css    (matcht nur "style.css")</code></pre>
+                        </div>
+
+                        <div class="info-box danger" style="margin-top: 0">
+                            <strong class="box-title danger no-toc">Falsch
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-regex">style.css    (matcht auch "styleXcss")</code></pre>
+                        </div>
+
+                    </div>
+
+
+                    <h3 id="fehler-3-replace-all-ohne-vorschau">Fehler 3: Replace All ohne Vorschau</h3>
+                    <p>Klicke IMMER erst auf einzelne Ergebnisse und prüfe die Vorschau, bevor du "Replace All"
+                        verwendest.
+                    </p>
+
+
+
+
+
+
+
+
+
+                    <h3 class="no-toc">Fehler 4: Capture Groups falsch referenzieren</h3>
+                    <div class="grid-2col">
+
+                        <div class="info-box notice" style="margin-top: 0">
+                            <strong class="box-title notice no-toc">Richtig
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-text">Ersetzen: &lt;h2&gt;$1&lt;/h2&gt;    (VS Code, JavaScript)
+Ersetzen: &lt;h2&gt;\1&lt;/h2&gt;    (sed, grep)</code></pre>
+                        </div>
+
+                        <div class="info-box danger" style="margin-top: 0">
+                            <strong class="box-title danger no-toc">Falsch
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-regex">Ersetzen: &lt;h2&gt;{1}&lt;/h2&gt;     (falsche Syntax)</code></pre>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <h3 class="no-toc">Fehler 5: Zeilenumbrüche nicht matchen</h3>
+                    <div class="grid-2col">
+                        <div class="info-box notice" style="margin-top: 0">
+                            <strong class="box-title notice no-toc">Richtig
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-text">[\s\S]*? (matcht alles inklusive Zeilenumbrüche)</code></pre>
+                        </div>
+
+                        <div class="info-box danger" style="margin-top: 0">
+                            <strong class="box-title danger no-toc">Falsch
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-regex">.* (matcht keine Zeilenumbrüche)</code></pre>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <h3 class="no-toc">Fehler 6: In sed: Backslashes vergessen</h3>
+                    <p>In sed müssen Capture Groups mit Backslash escaped werden:</p>
+                    <div class="grid-2col">
+                        <div class="info-box notice" style="margin-top: 0">
+                            <strong class="box-title notice no-toc">Richtig
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-text">sed 's/&lt;h2&gt;\(.*\)&lt;\/h2&gt;/&lt;h2&gt;\1&lt;\/h2&gt;/'</code></pre>
+                        </div>
+
+                        <div class="info-box danger" style="margin-top: 0">
+                            <strong class="box-title danger no-toc">Falsch
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-regex">sed 's/&lt;h2&gt;(.*)&lt;\/h2&gt;/&lt;h2&gt;$1&lt;\/h2&gt;/'</code></pre>
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+                <!-- Cheat Sheet -->
+                <section class="categories">
+                    <h2 id="quick-reference-regex-cheat-sheet">Quick Reference: RegEx Cheat Sheet</h2>
+
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Pattern</th>
+                                <th>Bedeutung</th>
+                                <th>Beispiel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>.</code></td>
+                                <td>Beliebiges Zeichen</td>
+                                <td><code>a.c</code> matcht "abc", "a5c"</td>
+                            </tr>
+                            <tr>
+                                <td><code>*</code></td>
+                                <td>0 oder mehr (greedy)</td>
+                                <td><code>a*</code> matcht "", "a", "aaa"</td>
+                            </tr>
+                            <tr>
+                                <td><code>*?</code></td>
+                                <td>0 oder mehr (non-greedy)</td>
+                                <td><code>&lt;.*?&gt;</code> matcht erste Tag</td>
+                            </tr>
+                            <tr>
+                                <td><code>+</code></td>
+                                <td>1 oder mehr</td>
+                                <td><code>a+</code> matcht "a", "aaa"</td>
+                            </tr>
+                            <tr>
+                                <td><code>?</code></td>
+                                <td>0 oder 1 (optional)</td>
+                                <td><code>colou?r</code> matcht "color", "colour"</td>
+                            </tr>
+                            <tr>
+                                <td><code>^</code></td>
+                                <td>Zeilenanfang</td>
+                                <td><code>^&lt;h1&gt;</code> nur wenn Zeile beginnt</td>
+                            </tr>
+                            <tr>
+                                <td><code>$</code></td>
+                                <td>Zeilenende</td>
+                                <td><code>&lt;/h1&gt;$</code> nur wenn Zeile endet</td>
+                            </tr>
+                            <tr>
+                                <td><code>[]</code></td>
+                                <td>Zeichenklasse</td>
+                                <td><code>[abc]</code> matcht "a", "b" oder "c"</td>
+                            </tr>
+                            <tr>
+                                <td><code>[^]</code></td>
+                                <td>Negierte Zeichenklasse</td>
+                                <td><code>[^abc]</code> matcht alles außer a, b, c</td>
+                            </tr>
+                            <tr>
+                                <td><code>()</code></td>
+                                <td>Capture Group</td>
+                                <td><code>(.*)</code> speichert für $1</td>
+                            </tr>
+                            <tr>
+                                <td><code>(?:)</code></td>
+                                <td>Non-Capturing Group</td>
+                                <td><code>(?:abc)</code> gruppiert ohne zu speichern</td>
+                            </tr>
+                            <tr>
+                                <td><code>(?!)</code></td>
+                                <td>Negative Lookahead</td>
+                                <td><code>h2(?!.*class)</code> h2 ohne "class"</td>
+                            </tr>
+                            <tr>
+                                <td><code>|</code></td>
+                                <td>ODER</td>
+                                <td><code>cat|dog</code> matcht "cat" oder "dog"</td>
+                            </tr>
+                            <tr>
+                                <td><code>\s</code></td>
+                                <td>Whitespace</td>
+                                <td>Space, Tab, Newline</td>
+                            </tr>
+                            <tr>
+                                <td><code>\S</code></td>
+                                <td>Nicht-Whitespace</td>
+                                <td>Alle Zeichen außer Whitespace</td>
+                            </tr>
+                            <tr>
+                                <td><code>[\s\S]</code></td>
+                                <td>Alles (inkl. Newlines)</td>
+                                <td>Matcht wirklich ALLES</td>
+                            </tr>
+                            <tr>
+                                <td><code>\d</code></td>
+                                <td>Ziffer</td>
+                                <td><code>\d+</code> matcht "123"</td>
+                            </tr>
+                            <tr>
+                                <td><code>\w</code></td>
+                                <td>Wort-Zeichen</td>
+                                <td>Buchstaben, Ziffern, Underscore</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Praktische Workflows -->
+                <section class="categories">
+                    <h2 id="praktische-workflows-fuer-devpaniczone">Praktische Workflows für DevPanicZone</h2>
+
+                    <h3 id="workflow-1-neues-tutorial-template-verteilen">Workflow 1: Neues Tutorial-Template verteilen
+                    </h3>
+                    <ol>
+                        <li>Template in einer Datei perfektionieren</li>
+                        <li>Git commit erstellen</li>
+                        <li>Node.js Script schreiben, das nur Header/Footer/Scripts updated</li>
+                        <li>Script im Dry Run Modus testen</li>
+                        <li>Script ausführen</li>
+                        <li>git diff prüfen, dass Title/Description nicht verändert wurden</li>
+                    </ol>
+
+                    <h3 id="workflow-2-neue-css-klasse-zu-allen-ueberschriften">Workflow 2: Neue CSS-Klasse zu allen
+                        Überschriften</h3>
+                    <ol>
+                        <li>VS Code öffnen: <code>Cmd+Shift+H</code></li>
+                        <li>RegEx aktivieren</li>
+                        <li>Files to Include: <code>tutorials/**/*.html</code></li>
+                        <li>Suchen: <code>&lt;h2(?![^&gt;]*class)&gt;(.*?)&lt;/h2&gt;</code></li>
+                        <li>Ersetzen: <code>&lt;h2 class="section-title"&gt;$1&lt;/h2&gt;</code></li>
+                        <li>Erst mit "Replace" testen (einzelne Datei)</li>
+                        <li>Dann "Replace All"</li>
+                    </ol>
+
+                    <h3 id="workflow-3-neues-script-tag-zu-allen-seiten">Workflow 3: Neues Script-Tag zu allen Seiten
+                    </h3>
+                    <ol>
+                        <li><code>Cmd+Shift+H</code> in VS Code</li>
+                        <li>RegEx aktivieren</li>
+                        <li>Suchen: <code>(\s*)&lt;/body&gt;</code></li>
+                        <li>Ersetzen:
+                            <code>$1    &lt;script src="/assets/js/new-script.js" defer&gt;&lt;/script&gt;\n$1&lt;/body&gt;</code>
+                        </li>
+                        <li>Replace All</li>
+                    </ol>
+                </section>
+
+                <!-- Testing -->
+                <section class="categories">
+                    <h2 id="nach-globalen-aenderungen-testing">Nach globalen Änderungen: Testing</h2>
+                    <p>Nach großen Änderungen solltest du immer prüfen, dass nichts kaputt gegangen ist.</p>
+
+                    <h3 id="1-visual-check-mit-live-server">1. Visual Check mit Live Server</h3>
+                    <ul class="arrow-list">
+                        <li>Öffne mehrere Tutorial-Seiten</li>
+                        <li>Prüfe Header/Footer/Navigation</li>
+                        <li>Teste Mobile View</li>
+                    </ul>
+
+                    <h3 id="2-html-validation">2. HTML Validation</h3>
+                    <p>Nutze den W3C Validator oder ein lokales Tool:</p>
+                    <pre><code class="language-bash">npm install -g html-validator-cli
+html-validator tutorials/**/*.html</code></pre>
+
+                    <h3 id="3-find-broken-patterns">3. Find Broken Patterns</h3>
+                    <p>Suche nach häufigen Fehlern:</p>
+                    <pre><code class="language-bash"># Doppelte Klassen?
+grep -r 'class=".*class=' tutorials/
+
+# Unclosed Tags?
+grep -r '&lt;h2&gt;.*&lt;h2&gt;' tutorials/
+
+# Falsche Struktur?
+grep -r '&lt;/h2&gt;&lt;h2&gt;' tutorials/</code></pre>
+
+                    <h3 id="4-git-diff-review">4. Git Diff Review</h3>
+                    <pre><code class="language-bash">git diff</code></pre>
+                    <p>Scroll durch die Änderungen und prüfe, dass nur gewollte Änderungen gemacht wurden.</p>
+                </section>
+
+                <!-- Zusammenfassung -->
+                <section class="categories">
+                    <h2 id="zusammenfassung">Zusammenfassung</h2>
+                    <p>Globale Änderungen an vielen HTML-Dateien müssen nicht kompliziert sein. Die wichtigsten
+                        Takeaways:
+                    </p>
+
+                    <ul class="arrow-list">
+                        <li><strong>VS Code Find &amp; Replace</strong> (<code>Cmd+Shift+H</code>) ist dein
+                            Hauptwerkzeug
+                            für die meisten Aufgaben</li>
+                        <li><strong>RegEx ist mächtig</strong>, aber teste immer erst einzelne Dateien</li>
+                        <li><strong>Capture Groups</strong> (<code>$1, $2</code>) erlauben es dir, Teile des Originals
+                            zu
+                            behalten</li>
+                        <li><strong>Non-greedy Matching</strong> (<code>*?</code>) verhindert, dass zu viel gematcht
+                            wird
+                        </li>
+                        <li><strong>Node.js Scripts</strong> geben dir volle Kontrolle für komplexe Logik</li>
+                        <li><strong>Immer mit Git arbeiten</strong>, damit du Änderungen rückgängig machen kannst</li>
+                        <li><strong>Dry Run Mode</strong> hilft, Fehler zu vermeiden</li>
+                    </ul>
+
+                    <p>Für DevPanicZone:</p>
+                    <ul class="arrow-list">
+                        <li>Header/Footer Updates: Node.js Script (wie generate-navigation.js)</li>
+                        <li>Klassen hinzufügen: VS Code Find &amp; Replace</li>
+                        <li>Neue Scripts/Links einfügen: VS Code Find &amp; Replace</li>
+                        <li>Komplexe strukturelle Änderungen: Node.js Script</li>
+                    </ul>
+
+                    <p>Mit diesen Tools bist du bestens gerüstet, um deine Website zu warten, auch wenn sie auf 100+
+                        Seiten
+                        anwächst!</p>
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                <section class="categories">
+                    <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/misc/tools/bash-terminal.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">Terminal & Bash Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/misc/tools/git-versionskontrolle.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">Git - Lokale Versionskontrolle</span>
+            </a>
+        </div></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

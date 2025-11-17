@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sammlung von Code-Snippets und Layout-Parts für Tutorials – von Info-Boxen über Code-Blocks bis zu wiederverwendbaren Strukturen für schnellen Copy &amp; Paste-Einsatz in der DevPanicZone.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>Meine Cheatsheets für Code-Snippets - DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                    </span>
+                </button>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
+
+                <nav class="main-nav" id="mainNav">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                        <!-- Search Toggle -->
+                        <li>
+                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Search Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown" hidden>
+                        <div class="search-input-group">
+                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path
+                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                            </svg>
+                            <input type="search" id="globalSearch" class="search-input"
+                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                        </div>
+
+                        <div class="search-results" id="searchResults" hidden>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                            <div class="search-results-footer">
+                                <button class="search-view-all" id="searchViewAll">
+                                    Alle Ergebnisse anzeigen →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                        class="breadcrumb-separator">›</span><a href="/tutorials/documentation/"
+                        class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span
+                        class="breadcrumb-current">Layout-Parts für die Cheetsheets</span></nav>
+                <h1 class="hero-title">Layout-Parts für die Cheetsheets</h1>
+                <p class="hero-subtitle">Copy &amp; Paste für das schnelle Erstellen neuer Inhalte und gleichzeitig eine
+                    gute Dokumentation.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+            title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                        <li class="toc-level-1"><a href="#das-grundgeruest-fuer-tutorials">Das Grundgerüst für
+                                Tutorials</a></li>
+                        <li class="toc-level-1"><a href="#code-escaper">Code Escaper</a></li>
+                        <li class="toc-level-1"><a href="#layout-parts">Layout Parts</a></li>
+                        <li class="toc-level-2"><a href="#grid-boxes-mit-hintergrund">Grid Boxes mit Hintergrund</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#grid-boxes-ohne-hintergrund">Grid Boxes ohne Hintergrund</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#code-block-html">Code-Block HTML</a></li>
+                        <li class="toc-level-2"><a href="#code-block-css">Code-Block CSS</a></li>
+                        <li class="toc-level-2"><a href="#code-block-2er-grid">Code-Block 2er Grid</a></li>
+                        <li class="toc-level-2"><a href="#info-box">Info Boxes</a></li>
+                        <li class="toc-level-2"><a href="#tag-grid-kleine-infoboxen">Tag Grid - Kleine Infoboxen</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#table">Table</a></li>
+                        <li class="toc-level-2"><a href="#cta-buttons-hero">CTA Buttons Hero</a></li>
+                        <li class="toc-level-2"><a href="#cta-buttons-content">CTA Buttons Content</a></li>
+                        <li class="toc-level-2"><a href="#icons">Icons</a></li>
+                        <li class="toc-level-2"><a href="#toggle-more-info">Toggle more Info</a></li>
+                        <li class="toc-level-2"><a href="#headings-uebersicht">Headings Übersicht</a></li>
+                        <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-automation.html">Automatisches
+                                Generieren der Navigationen</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-code-snippets.html"
+                                class="active">Layout-Parts für die Cheetsheets</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-generate-navigation-js.html">Was
+                                macht generate-navigation.js</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-main-navigation.html">Main Nav
+                                Header</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-sidebars-system.html">Wie
+                                funktionieren die Sidebars?</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-breadcrumbs.html">Hero
+                                Breadcrumbs</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-prev-next.html">Prev / Next
+                                Buttons in den Tutorials</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-tutorial-buttons.html">Tutorial
+                                Buttons</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-toggle-night-mode.html">Toggle
+                                Night Mode</a></li>
+                        <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-current-year-footer.html">currentYear
+                                im Footer</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Grundgerüst -->
+                <section class="categories section-top">
+                    <h2 id="das-grundgeruest-fuer-tutorials">Das Grundgerüst für Tutorials</h2>
+                    <p>Das Grundgerüst als Copy &amp; Paste ist der Quick Start für ein leeres Tutorial-Dokument.</p>
+                    <details>
+                        <summary>
+                            Grundgerüst Tutorial
+                        </summary>
+                        <div class="toggle-detail">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;!------------------------------------------------ 
+    ============== DESCRIPTION ERSETZEN ==============
+    -------------------------------------------------&gt;
+    &lt;meta name="description" content="------------------- DIESER TEXT WIRD ERSETZT -------------------"&gt;
+    &lt;meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials"&gt;
+    &lt;meta name="author" content="DevPanicZone"&gt;
+
+    &lt;!------------------------------------------------ 
+    ============== OPEN GRAPH (Optional) ==============
+    Benötigt: /assets/images/og-preview.jpg (1200x630px)
+    Nur aktivieren, wenn Bild existiert!
+    -------------------------------------------------&gt;
+    &lt;!--
+    &lt;meta property="og:type" content="website"&gt;
+    &lt;meta property="og:title" content="DevPanicZone – Webentwicklung lernen mit Spaß"&gt;
+    &lt;meta property="og:description" content="Deine Ressource für Webentwicklung, Tutorials und kreative Projekte."&gt;
+    &lt;meta property="og:image" content="https://devpaniczone.de/assets/images/og-preview.jpg"&gt;
+    &lt;meta property="og:url" content="https://devpaniczone.de"&gt;
+    --&gt;
+
+    &lt;!------------------------------------------ 
+    ============== TITLE ERSETZEN ==============
+    -------------------------------------------&gt;
+    &lt;title&gt;HTML Basics - DevPanicZone&lt;/title&gt;
+    &lt;link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg"&gt;
+    &lt;link rel="icon" type="image/png" href="/assets/icons/favicon.png"&gt;
+    &lt;link rel="stylesheet" href="/assets/css/style.css"&gt;
+    &lt;link rel="stylesheet" href="/assets/css/sidebar.css"&gt;
+    &lt;link rel="stylesheet" href="/assets/vendor/prism/prism.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;!-- Header-Start --&gt;
+    &lt;header class="site-header"&gt;
+        &lt;!-- Main-Nav-Start --&gt;
+        &lt;!-- Main-Nav-End --&gt;
+    &lt;/header&gt;
+    &lt;!-- Header-End --&gt;
+
+    &lt;main class="site-main"&gt;
+
+        &lt;!-- Hero --&gt;
+        &lt;section class="hero tutorial-hero"&gt;
+            &lt;div class="container"&gt;
+                &lt;nav class="breadcrumbs"&gt;&lt;/nav&gt;
+                &lt;!----------------------------------------------- 
+                ================ HERO BEARBEITEN ================
+                ------------------------------------------------&gt;
+                &lt;h1 class="hero-title"&gt;HERO Title&lt;/h1&gt;
+                &lt;p class="hero-subtitle"&gt;HERO Subtitle.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- Floating Button Links (Sidebar) --&gt;
+        &lt;button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite"&gt;
+            &lt;span class="toggle-icon"&gt;☰&lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;!-- Floating Button Rechts (Tutorial Navigation) --&gt;
+        &lt;button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen"&gt;
+            &lt;span class="toggle-icon"&gt;
+                &lt;img src="/assets/icons/library.svg" alt="" class="library-icon"&gt;
+            &lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;!-- Sidebar Overlay für Mobile --&gt;
+        &lt;div class="sidebar-overlay" id="sidebarOverlay"&gt;&lt;/div&gt;
+
+        &lt;!-- Tutorial Layout --&gt;
+        &lt;div class="tutorial-layout"&gt;
+
+            &lt;!-- Linke Sidebar (Floating Panel) --&gt;
+            &lt;aside class="tutorial-sidebar" id="tutorialSidebar"&gt;
+                &lt;div class="sidebar-header"&gt;
+                    &lt;h3 class="sidebar-title no-toc"&gt;Auf dieser Seite&lt;/h3&gt;
+                    &lt;button class="sidebar-close" id="sidebarClose" aria-label="Schließen"&gt;
+                        &lt;span&gt;×&lt;/span&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+
+                &lt;nav class="sidebar-toc" aria-label="Inhaltsverzeichnis"&gt;
+                    &lt;ul class="toc-list"&gt;
+                        &lt;!-- Sidebar-Anchor-Start --&gt;
+                        &lt;!-- Sidebar-Anchor-End --&gt;
+                    &lt;/ul&gt;
+                &lt;/nav&gt;
+            &lt;/aside&gt;
+
+            &lt;!-- Rechte Sidebar (Floating Panel) --&gt;
+            &lt;aside class="tutorial-related"&gt;
+                &lt;div class="sidebar-header"&gt;
+                    &lt;h3 class="sidebar-title no-toc"&gt;Tutorials&lt;/h3&gt;
+                    &lt;button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen"&gt;
+                        &lt;span&gt;×&lt;/span&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+
+                &lt;div class="sidebar-nav"&gt;
+                    &lt;ul class="sidebar-nav-list"&gt;&lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/aside&gt;
+
+            &lt;!-- Wrapper .container --&gt;
+            &lt;div class="container"&gt;
+
+                &lt;!-- Abschnitte in Sections --&gt;
+                &lt;section class="categories section-top"&gt;
+                    &lt;h2&gt;Abschnittstitel&lt;/h2&gt;
+                    &lt;p&gt;Inhalt...&lt;/p&gt;
+                &lt;/section&gt;
+
+                &lt;!-- Weitere Sections nach Bedarf --&gt;
+                &lt;section class="categories"&gt;
+                    &lt;h2&gt;Weiterer Abschnitt&lt;/h2&gt;
+                    &lt;p&gt;Inhalt...&lt;/p&gt;
+                &lt;/section&gt;
+
+                &lt;!-- Weitere Sections nach Bedarf --&gt;
+                &lt;section class="categories"&gt;
+                    &lt;h3&gt;Weiterer Abschnitt&lt;/h3&gt;
+                    &lt;p&gt;Inhalt...&lt;/p&gt;
+                &lt;/section&gt;
+
+                &lt;!-- Weitere Sections nach Bedarf --&gt;
+                &lt;section class="categories"&gt;
+                    &lt;h4&gt;Weiterer Abschnitt&lt;/h4&gt;
+                    &lt;p&gt;Inhalt...&lt;/p&gt;
+                &lt;/section&gt;
+
+                &lt;!-- Prev/Next Navigation --&gt;
+                &lt;section class="categories"&gt;
+                    &lt;nav class="tutorial-nav"&gt;&lt;/nav&gt;
+                &lt;/section&gt;
+
+            &lt;/div&gt; &lt;!-- Wrapper .container --&gt;
+
+        &lt;/div&gt; &lt;!-- Tutorial Layout --&gt;
+
+    &lt;/main&gt;
+
+    &lt;!-- Footer-Start --&gt;
+    &lt;footer class="site-footer"&gt;
+        &lt;!-- Wird automatisch generiert --&gt;
+    &lt;/footer&gt;
+    &lt;!-- Footer-End --&gt;
+
+    &lt;button id="scrollTopBtn" title="Nach oben"&gt;↑&lt;/button&gt;
+    &lt;script src="/assets/js/main.js" defer&gt;&lt;/script&gt;
+    &lt;script src="/assets/js/code-copy.js" defer&gt;&lt;/script&gt;
+    &lt;script src="/assets/js/sidebar.js" defer&gt;&lt;/script&gt;
+    &lt;script src="/assets/js/scroll-spy.js"&gt;&lt;/script&gt;
+    &lt;script src="/assets/js/search.js"&gt;&lt;/script&gt;
+    &lt;script src="/assets/vendor/prism/prism.js" defer&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+                            </div>
+                        </div>
+                    </details>
+                </section> <!-- Grundgerüst -->
+
+                <!-- Code Escaper -->
+                <section class="categories">
+                    <h2 id="code-escaper">Code Escaper</h2>
+                    <p>Für ein noch schnelleres Copy &amp; Paste, das Praktische Tool aus dem Tutorial <a
+                            href="/tutorials/javascript/javascript-projects/js-code-escaper.html">HTML Escape Tool</a>.
+                    </p>
+
+                    <div class="code-block html-escaper">
+                        <div class="code-header">
+                            <span class="code-lang">HTML Escaper</span>
+                            <div class="code-actions">
+                                <button class="code-copy escape-btn">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/escape.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Escapen</span>
+                                </button>
+                                <button class="code-copy copy-btn">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <textarea class="code-input" placeholder="Füge hier deinen Code ein..."></textarea>
+                        <textarea class="code-output" placeholder="Hier erscheint der escaped Code..."
+                            readonly></textarea>
+                    </div>
+                </section> <!-- Code Escaper -->
+
+                <!-- Layout Parts -->
+                <section class="categories">
+                    <h2 id="layout-parts">Layout Parts</h2>
+                    <p>Einzelnen Code-Snippets mit den entsprechenden Klassen.</p>
+                    <p>Diese Snippets werden innerhalb der <code
+                            class="inline">&lt;section class="categories"&gt;...&lt;/section&gt;</code> eingefügt.
+                    </p>
+                    <p>Die einzelnen Sections liegen im Wrapper <code
+                            class="inline">&lt;div class="container"&gt;...&lt;/div&gt;</code></p>
+                    <p>Eine schnelle Copy&amp;Paste-Lösung zum erstellen neuer Inhalte - auch nach längerer Zeit gut
+                        nachvollziehbar.</p>
+                </section> <!-- Layout Parts -->
+
+                <!-- 2 Spalten BG -->
+                <section class="categories">
+                    <h3 id="grid-boxes-mit-hintergrund">Grid Boxes mit Hintergrund</h3>
+                    <div class="grid-2col">
+
+                        <div class="grid-2col-bg">
+                            <strong class="box-title no-toc" id="was-dich-hier-erwartet">Was dich hier erwartet</strong>
+                            <p>Ein gutes Stylesheet ist logisch aufgebaut. Du kannst Regeln nach Themen ordnen, z. B.
+                                Typografie, Layout, Navigation.</p>
+                            <p>Die Kaskade (Cascading) sorgt dafür, dass später definierte Regeln frühere überschreiben
+                                –
+                                das eröffnet viele Gestaltungsmöglichkeiten.</p>
+                        </div>
+
+                        <div class="grid-2col-bg">
+                            <strong class="box-title no-toc" id="warum-css-wichtig-ist">Warum CSS wichtig ist</strong>
+                            <p>CSS trennt Content von Design – ein Prinzip, das deine Website wartbar und skalierbar
+                                macht.
+                            </p>
+                            <p>Mit modernen Features wie Flexbox, Grid und CSS Variables kannst du komplexe Layouts
+                                erstellen, ohne auf JavaScript zurückgreifen zu müssen.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;h2&gt;2 Spalten mit Hintergrund&lt;/h2&gt;
+&lt;div class="grid-2col"&gt;
+
+    &lt;div class="grid-2col-bg"&gt;
+        &lt;strong class="box-title no-toc"&gt;Was dich hier erwartet&lt;/strong&gt;
+        &lt;p&gt;Ein gutes Stylesheet ist logisch aufgebaut. Du kannst Regeln nach Themen ordnen, z. B.
+            Typografie, Layout, Navigation.&lt;/p&gt;
+        &lt;p&gt;Die Kaskade (Cascading) sorgt dafür, dass später definierte Regeln frühere überschreiben –
+            das eröffnet viele Gestaltungsmöglichkeiten.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="grid-2col-bg"&gt;
+        &lt;strong class="box-title no-toc"&gt;Warum CSS wichtig ist&lt;/strong&gt;
+        &lt;p&gt;CSS trennt Content von Design – ein Prinzip, das deine Website wartbar und skalierbar macht.
+        &lt;/p&gt;
+        &lt;p&gt;Mit modernen Features wie Flexbox, Grid und CSS Variables kannst du komplexe Layouts
+            erstellen, ohne auf JavaScript zurückgreifen zu müssen.&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+                    </div>
+                </section> <!-- 2 Spalten BG -->
+
+                <!-- 2 Spalten -->
+                <section class="categories">
+                    <h3 id="grid-boxes-ohne-hintergrund">Grid Boxes ohne Hintergrund</h3>
+                    <div class="grid-2col">
+                        <div>
+                            <strong class="box-title no-toc">DevPanicZone!</strong>
+                            <p>Hier dreht sich alles um Webentwicklung – von den Grundlagen mit HTML und CSS bis hin zu
+                                Frameworks wie Bootstrap, JavaScript für dynamische Funktionen und PHP für serverseitige
+                                Logik.</p>
+                        </div>
+                        <div>
+                            <strong class="box-title no-toc">Meine Cheatsheets</strong>
+                            <p>Diese Seite wächst mit meinen Projekten und Experimenten: Du findest meine Sammlung an
+                                Code-Beispielen, Lernnotizen, kleine Tests und vielleicht auch den ein oder anderen
+                                Aha-Moment.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;h2&gt;2 Spalten ohne Hintergrund - Intro&lt;/h2&gt;
+&lt;div class="grid-2col"&gt;
+    &lt;div&gt;
+        &lt;strong class="no-toc"&gt;DevPanicZone!&lt;/strong&gt;
+        &lt;p&gt;Hier dreht sich alles um Webentwicklung – von den Grundlagen mit HTML und CSS bis hin zu
+            Frameworks wie Bootstrap, JavaScript für dynamische Funktionen und PHP für serverseitige
+            Logik.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;strong class="no-toc"&gt;Meine Cheatsheets&lt;/strong&gt;
+        &lt;p&gt;Diese Seite wächst mit meinen Projekten und Experimenten: Du findest meine Sammlung an
+            Code-Beispielen, Lernnotizen, kleine Tests und vielleicht auch den ein oder anderen
+            Aha-Moment.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </section> <!-- 2 Spalten -->
+
+                <!-- Code-Block HTML -->
+                <section class="categories">
+                    <h3 id="code-block-html">Code-Block HTML</h3>
+                    <div class="cta-content">
+                        <a href="#code-escaper" class="btn btn-secondary">Zum Code Escaper</a>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Code Block language-html --&gt;
+&lt;div class="code-block"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-lang"&gt;HTML&lt;/span&gt;
+        &lt;button class="code-copy"&gt;
+            &lt;span class="copy-icon"&gt;
+                &lt;img src="/assets/icons/clipboard.svg" alt="" width="16" height="16"&gt;
+            &lt;/span&gt;
+            &lt;span class="copy-text"&gt;Kopieren&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;pre&gt;&lt;code class="language-html"&gt;
+    &lt;!-- Hier wird der escapte Code eingefügt --&gt;
+    &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </section> <!-- Code-Block HTML -->
+
+                <!-- Code-Block CSS -->
+                <section class="categories">
+                    <h3 id="code-block-css">Code-Block CSS</h3>
+                    <div class="cta-content">
+                        <a href="#code-escaper" class="btn btn-secondary">Zum Code Escaper</a>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Code Block language-css --&gt;
+&lt;div class="code-block"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-lang"&gt;HTML&lt;/span&gt;
+        &lt;button class="code-copy"&gt;
+            &lt;span class="copy-icon"&gt;
+                &lt;img src="/assets/icons/clipboard.svg" alt="" width="16" height="16"&gt;
+            &lt;/span&gt;
+            &lt;span class="copy-text"&gt;Kopieren&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;pre&gt;&lt;code class="language-css"&gt;
+    &lt;!-- Hier wird der CSS Code eingefügt --&gt;
+    &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </section> <!-- Code-Block CSS -->
+
+                <!-- Code-Block 2er Grid -->
+                <section class="categories">
+                    <h3 id="code-block-2er-grid">Code-Block 2er Grid</h3>
+                    <div class="cta-content">
+                        <a href="#code-escaper" class="btn btn-secondary">Zum Code Escaper</a>
+                    </div>
+                    <div class="grid-2col">
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- HTML Code --&gt;</code></pre>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* CSS Code */</code></pre>
+                        </div>
+
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;div class="grid-2col"&gt;
+
+&lt;div class="code-block"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-lang"&gt;HTML&lt;/span&gt;
+        &lt;button class="code-copy"&gt;
+            &lt;span class="copy-icon"&gt;
+                &lt;img src="/assets/icons/clipboard.svg" alt="" width="16" height="16"&gt;
+            &lt;/span&gt;
+            &lt;span class="copy-text"&gt;Kopieren&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;pre&gt;&lt;code class="language-html"&gt;&lt;!-- HTML Code --&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class="code-block"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-lang"&gt;CSS&lt;/span&gt;
+        &lt;button class="code-copy"&gt;
+            &lt;span class="copy-icon"&gt;
+                &lt;img src="/assets/icons/clipboard.svg" alt="" width="16" height="16"&gt;
+            &lt;/span&gt;
+            &lt;span class="copy-text"&gt;Kopieren&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;pre&gt;&lt;code class="language-css"&gt;/* CSS Code */
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+                    </div>
+                </section> <!-- Code-Block 2er Grid -->
+
+                <!-- Info-Box -->
+                <section class="categories">
+                    <h3 id="info-box">Info Boxes</h3>
+
+                    <!-- Info-Box Standard Blue -->
+                    <div>
+                        <h4 id="info-box-blau">Info-Box Standard</h4>
+                        <div class="info-box">
+                            <strong class="box-title no-toc" id="merke">Info Standard
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Info</strong>: Das ist eine allgemeine Info</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="info-box"&gt;
+    &lt;strong class="box-title no-toc"&gt;Info
+        &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+            fill="currentColor"&gt;
+            &lt;path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"/&gt;
+        &lt;/svg&gt;
+    &lt;/strong&gt;
+    &lt;ul class="arrow-list"&gt;
+        &lt;li&gt;&lt;strong&gt;Info&lt;/strong&gt;: Das ist eine allgemeine Info&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Info-Box Notice Green -->
+                    <div>
+                        <h4 id="info-box-notice">Info-Box Notice</h4>
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc" id="merke">Merke
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Merke</strong>: Das ist wichtig</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="info-box notice"&gt;
+    &lt;strong class="box-title notice no-toc"&gt;Merke
+        &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+            fill="currentColor"&gt;
+            &lt;path
+                d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
+                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z" /&gt;
+        &lt;/svg&gt;
+    &lt;/strong&gt;
+    &lt;ul class="arrow-list"&gt;
+        &lt;li&gt;&lt;strong&gt;Merke&lt;/strong&gt;: Das ist wichtig&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Info-Box Danger -->
+                    <div>
+                        <h4 id="info-box danger">Info-Box Danger</h4>
+                        <div class="info-box danger">
+                            <strong class="box-title danger no-toc" id="achtung">Achtung
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                                    15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                                    0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                                    0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                                    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                                    1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Achtung:</strong> Dies ist eine Warnung!</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="info-box danger"&gt;
+    &lt;strong class="box-title danger no-toc" id="achtung"&gt;Achtung
+        &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor"&gt;
+            &lt;path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/strong&gt;
+    &lt;ul class="arrow-list"&gt;
+        &lt;li&gt;&lt;strong&gt;Achtung:&lt;/strong&gt; Dies ist eine Warnung!&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Info-Box Warning -->
+                    <div>
+                        <h4 id="info-box warning">Info-Box Warning</h4>
+                        <div class="info-box warning">
+                            <strong class="box-title warning no-toc">Vorsicht
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                                    15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                                    0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                                    0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                                    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                                    1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Vorsicht:</strong> Hier ist Achtung geboten!</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="info-box warning"&gt;
+    &lt;strong class="box-title warning no-toc"&gt;Vorsicht
+        &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+            fill="currentColor"&gt;
+            &lt;path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/strong&gt;
+    &lt;ul class="arrow-list"&gt;
+        &lt;li&gt;&lt;strong&gt;Vorsicht:&lt;/strong&gt; Hier ist Achtung geboten!&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4>Info-Box Grid Do / Don't</h4>
+                        <div class="grid-2col">
+
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Do
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30"
+                                        height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                        <path
+                                            d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                        </path>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li><strong>Richtig</strong>: So kannst du es machen.</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box danger">
+                                <strong class="box-title danger no-toc">Don't
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30"
+                                        height="30" class="icon-danger" fill="currentColor" role="img"
+                                        aria-label="Falsch">
+                                        <path
+                                            d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+    20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+    0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                        </path>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li><strong>Falsch</strong>: So besser nicht.</li>
+                                </ul>
+                            </div>
+
+                        </div> <!-- < class="grid-2col"> -->
+
+                        <!-- Code Block language-html -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="grid-2col"&gt;
+
+    &lt;div class="info-box notice"&gt;
+        &lt;strong class="box-title notice no-toc"&gt;Do
+            &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                class="icon-success" fill="#20a66e" role="img" aria-label="Richtig"&gt;
+                &lt;path
+                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"&gt;
+                &lt;/path&gt;
+            &lt;/svg&gt;
+        &lt;/strong&gt;
+        &lt;ul class="arrow-list"&gt;
+            &lt;li&gt;&lt;strong&gt;Richtig&lt;/strong&gt;: So kannst du es machen.&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="info-box danger"&gt;
+        &lt;strong class="box-title danger no-toc"&gt;Don't
+            &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                class="icon-danger" fill="currentColor" role="img" aria-label="Falsch"&gt;
+                &lt;path
+                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z"&gt;
+                &lt;/path&gt;
+            &lt;/svg&gt;
+        &lt;/strong&gt;
+        &lt;ul class="arrow-list"&gt;
+            &lt;li&gt;&lt;strong&gt;Falsch&lt;/strong&gt;: So besser nicht.&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                    </div>
+
+
+
+                </section> <!-- Info-Box -->
+
+                <!-- Tag Grid 3er -->
+                <section class="categories">
+                    <h3 id="tag-grid-kleine-infoboxen">Tag Grid - Kleine Infoboxen</h3>
+                    <div class="tag-grid">
+                        <!-- Blue Tags -->
+                        <div class="tag-item tag-blue">
+                            <strong><code class="inline">&lt;html&gt;</code></strong> – Root-Element
+                        </div>
+
+                        <!-- Green Tags -->
+                        <div class="tag-item tag-green">
+                            <strong><code class="inline">&lt;h1&gt;-&lt;h6&gt;</code></strong> – Überschriften
+                        </div>
+
+                        <!-- Yellow Tags -->
+                        <div class="tag-item tag-yellow">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Purple Tags -->
+                        <div class="tag-item tag-purple">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Red Tags -->
+                        <div class="tag-item tag-red">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Cyan Tags -->
+                        <div class="tag-item tag-cyan">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Orange Tags -->
+                        <div class="tag-item tag-orange">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Mint Tags -->
+                        <div class="tag-item tag-mint">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Magenta Tags -->
+                        <div class="tag-item tag-magenta">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Blue Tags --&gt;
+&lt;div class="tag-item tag-blue"&gt;
+    &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;html&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Root-Element
+&lt;/div&gt;
+&lt;!-- &lt;div class="tag-item tag-green"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-yellow"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-purple"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-red"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-cyan"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-gray"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-orange"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-mint"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-magenta"&gt; --&gt;                   
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <!-- Code Block language-html -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;div class=&quot;tag-grid&quot;&gt;
+    &lt;!-- Blue Tags --&gt;
+    &lt;div class=&quot;tag-item tag-blue&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;html&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Root-Element
+    &lt;/div&gt;
+
+    &lt;!-- Green Tags --&gt;
+    &lt;div class=&quot;tag-item tag-green&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;h1&amp;gt;-&amp;lt;h6&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Überschriften
+    &lt;/div&gt;
+
+    &lt;!-- Yellow Tags --&gt;
+    &lt;div class=&quot;tag-item tag-yellow&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Purple Tags --&gt;
+    &lt;div class=&quot;tag-item tag-purple&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Red Tags --&gt;
+    &lt;div class=&quot;tag-item tag-red&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Cyan Tags --&gt;
+    &lt;div class=&quot;tag-item tag-cyan&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Orange Tags --&gt;
+    &lt;div class=&quot;tag-item tag-orange&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Mint Tags --&gt;
+    &lt;div class=&quot;tag-item tag-mint&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Magenta Tags --&gt;
+    &lt;div class=&quot;tag-item tag-magenta&quot;&gt;
+        &lt;strong&gt;&lt;code class=&quot;inline&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                </section> <!-- Tag Grid 3er -->
+
+                <!-- Table -->
+                <section class="categories">
+                    <h3 id="table">Table</h3>
+
+                    <!-- Tabelle 3 Spalten -->
+                    <div>
+                        <h4 id="tabelle-3-spalten">Tabelle 3 Spalten</h4>
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Tag</th>
+                                    <th>Beschreibung</th>
+                                    <th>Beispiel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>&lt;h1&gt;</code></td>
+                                    <td>Hauptüberschrift - wichtigste Überschrift der Seite</td>
+                                    <td><code>&lt;h1&gt;Willkommen&lt;/h1&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>&lt;p&gt;</code></td>
+                                    <td>Absatz für Fließtext</td>
+                                    <td><code>&lt;p&gt;Dies ist ein Text.&lt;/p&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>&lt;a&gt;</code></td>
+                                    <td>Link zu einer anderen Seite</td>
+                                    <td><code>&lt;a href="/"&gt;Home&lt;/a&gt;</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;table class="ref-table"&gt;
+&lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Tag&lt;/th&gt;
+        &lt;th&gt;Beschreibung&lt;/th&gt;
+        &lt;th&gt;Beispiel&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;Hauptüberschrift - wichtigste Überschrift der Seite&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;&amp;lt;h1&amp;gt;Willkommen&amp;lt;/h1&amp;gt;&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;Absatz für Fließtext&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;&amp;lt;p&amp;gt;Dies ist ein Text.&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;Link zu einer anderen Seite&lt;/td&gt;
+        &lt;td&gt;&lt;code&gt;&amp;lt;a href="/"&amp;gt;Home&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </div> <!-- Tabelle 3 Spalten -->
+
+                    <!-- Tabelle 2 Spalten -->
+                    <div>
+                        <h4 id="tabelle-2-spalten">Tabelle 2 Spalten</h4>
+                        <table class="ref-table table-2col">
+                            <thead>
+                                <tr>
+                                    <th>Tag</th>
+                                    <th>Beschreibung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>&lt;div&gt;</code></td>
+                                    <td>Block-Container für Gruppierung von Elementen</td>
+                                </tr>
+                                <tr>
+                                    <td><code>&lt;span&gt;</code></td>
+                                    <td>Inline-Container für Text-Formatierung</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;table class="ref-table table-2col"&gt;
+&lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Tag&lt;/th&gt;
+        &lt;th&gt;Beschreibung&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;Block-Container für Gruppierung von Elementen&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;&lt;/td&gt;
+        &lt;td&gt;Inline-Container für Text-Formatierung&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </div> <!-- Tabelle 2 Spalten -->
+
+                </section> <!-- Table -->
+
+                <!-- CTA Buttons Hero -->
+                <section class="categories">
+                    <h3 id="cta-buttons-hero">CTA Buttons Hero</h3>
+                    <p>Zentrierte Buttons mit <code class="inline">display: flex;</code>.</p>
+                    <div class="hero-cta">
+                        <a href="/tutorials/html/" class="btn btn-primary">Tutorials starten</a>
+                        <a href="/glossary.html" class="btn btn-secondary">Zum Glossar</a>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;div class="hero-cta"&gt;
+    &lt;a href="/tutorials/html/" class="btn btn-primary"&gt;Tutorials starten&lt;/a&gt;
+    &lt;a href="/glossary.html" class="btn btn-secondary"&gt;Zum Glossar&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    <details>
+                        <summary>
+                            Toggle für CSS
+                        </summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">.hero-cta {
+    display: flex;
+    flex-direction: column;
+    /* Untereinander auf Mobile */
+    gap: 1rem;
+    /* = 16px */
+    align-items: center;
+}</code></pre>
+                        </div>
+                    </details>
+                </section> <!-- Buttons Hero -->
+
+                <!-- CTA Buttons Content -->
+                <section class="categories">
+                    <h3 id="cta-buttons-content">CTA Buttons Content</h3>
+                    <p>Beispiele für verschiedene Button-Styles.</p>
+
+                    <!-- row 1 -->
+                    <div class="grid-2col">
+                        <div class="cta-content"> <!-- col 1 -->
+                            <a href="/tutorials/javascript/javascript-projects/js-code-escaper.html"
+                                class="btn btn-primary">Zum
+                                HTML Code Escaper</a>
+                        </div> <!-- col 1 -->
+
+                        <div style="margin-bottom: 2rem"> <!-- col 2 -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;div class="cta-content"&gt;
+    &lt;a href="/tutorials/javascript/javascript-projects/js-code-escaper.html"
+    class="btn btn-primary"&gt;Zum HTML Code Escaper&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+                        </div> <!-- col 2 -->
+                    </div> <!-- row 1 -->
+
+                    <hr>
+                    <!-- row 2 -->
+                    <div class="grid-2col">
+                        <div class="cta-content"> <!-- col 1 -->
+                            <a href="/glossary.html" class="btn btn-secondary">Zum Glossar</a>
+                        </div> <!-- col 1 -->
+                        <div style="margin-bottom: 2rem"> <!-- col 2 -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;div class="cta-content"&gt;
+    &lt;a href="/glossary.html" class="btn btn-secondary"&gt;Zum Glossar&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+                        </div> <!-- col 2 -->
+                    </div> <!-- row 2 -->
+
+                    <hr>
+
+                    <!-- row 3 -->
+                    <div class="grid-2col">
+                        <div class="cta-content" style="margin-top: 0.5rem"> <!-- col 1 -->
+                            <a href="/tutorials/css/" class="btn btn-tertiary">Zu den CSS Tutorials</a>
+                        </div> <!-- col 1 -->
+
+                        <div style="margin-bottom: 2rem"> <!-- col 2 -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;div class="cta-content"&gt;
+    &lt;a href="/tutorials/css/" class="btn"&gt;Zu den CSS Tutorials&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+                        </div> <!-- col 2 -->
+                    </div> <!-- row 3 -->
+
+                    <hr>
+
+                    <!-- row 4 -->
+                    <div>
+                        <div class="cta-content"> <!-- col 1 -->
+                            <a href="/tutorials/css/css-basics/css-einbinden.html" class="btn tutorial-button">Zum
+                                Tutorial
+                                CSS einbinden</a>
+                        </div> <!-- col 1 -->
+
+                        <div> <!-- col 2 -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;div class="cta-content"&gt;
+    &lt;a href="/tutorials/css/css-basics/css-einbinden.html" class="btn tutorial-button"&gt;
+    Zum Tutorial CSS einbinden&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+                        </div> <!-- col 2 -->
+                    </div> <!-- row 4 -->
+                </section> <!-- Buttons Content -->
+
+                <!-- Icons -->
+                <section class="categories">
+                    <h3 id="icons">Icons</h3>
+                    <!-- <p>Im Gegensatz zu <code class="inline">&lt;img&gt;</code> wird <code class="inline">alt=""</code> bei <code class="inline">&lt;svg&gt;</code> ignoriert.</p> -->
+                    <p>SVGs sind kein Bild-Tag, sondern eigener XML-Code, daher braucht man hier einen anderen Weg, um
+                        Barrierefreiheit und Semantik herzustellen. Meine Icons erfüllen in den meisten Fällen rein
+                        dekorative Zwecke.</p>
+
+                    <p>Wenn das Icon rein dekorativ ist (z. B. visuelle Ergänzung ohne Informationswert), sollte es für
+                        Screenreader unsichtbar gemacht werden.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+     fill="currentColor" aria-hidden="true"&gt;
+    &lt;!-- Pfade --&gt;
+&lt;/svg&gt;</code></pre>
+                    </div>
+
+
+                    <p>Wenn das Icon eine Bedeutung hat (z. B. „Warning“, „Error“, „Info“), sollte es für Screenreader
+                        mit
+                        <code class="inline">role="img"</code> und <code class="inline">aria-label</code> beschrieben
+                        werden.
+                    </p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+    fill="currentColor" role="img" aria-label="Warnung"&gt;
+    &lt;!-- currentColor: Passt sich automatisch der Textfarbe an --&gt;
+    &lt;!-- Pfade --&gt;
+&lt;/svg&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Reihenfolge der Attribute
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
+                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p>Die Reihenfolge der Attribute ist funktional egal – der Browser interpretiert sie in
+                            beliebiger
+                            Reihenfolge korrekt.</p>
+                        <p>Es gibt Best Practices für eine logische Sortierung:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;svg 
+xmlns="http://www.w3.org/2000/svg"     &lt;!-- 1. Namespace --&gt;
+viewBox="0 0 30.5 30.5"                 &lt;!-- 2. Koordinatensystem --&gt;
+width="50"                              &lt;!-- 3. Dimensionen --&gt;
+height="50"
+class="icon-warning"                    &lt;!-- 4. CSS-Klasse --&gt;
+fill="currentColor"                     &lt;!-- 5. Styling --&gt;
+role="img"                              &lt;!-- 6. Accessibility --&gt;
+aria-label="Warnung"&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <details>
+                        <summary>
+                            Die Logik dahinter
+                        </summary>
+                        <div>
+                            <ol>
+                                <li>xmlns → Definiert, dass es SVG ist (immer zuerst)</li>
+                                <li>viewBox → Legt Koordinatensystem fest (wichtig für Skalierung)</li>
+                                <li>width/height → Sichtbare Größe</li>
+                                <li>class → CSS-Styling Hook</li>
+                                <li>fill → Visuelle Eigenschaften</li>
+                                <li>role/aria-* → Barrierefreiheit (am Ende)</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <!-- Checkmark -->
+                    <div class="grid-1-2col">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+                                class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="code-block" style="margin-bottom: 2rem">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Screenreader überspringen dieses Icon --&gt;
+&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+    class="icon-success" fill="#20a66e" aria-hidden="true"&gt;
+    &lt;path
+        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+                    </div> <!-- Checkmark -->
+
+
+                    <!-- Wrong -->
+                    <div class="grid-1-2col">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+                                class="icon-danger" fill="currentColor" role="img" aria-label="Warnung">
+                                <path
+                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+                            0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="code-block" style="margin-bottom: 2rem">
+
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+    class="icon-danger" fill="currentColor" role="img" aria-label="Warnung"&gt;
+    &lt;path
+        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+    20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+    0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z"&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                    </div> <!-- Wrong -->
+
+
+                    <!-- Warning -->
+                    <div class="grid-1-2col">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+                                class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+                1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="code-block" style="margin-bottom: 2rem">
+
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Screenreader berücksichtigen dieses Icon --&gt;
+&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+    class="icon-warning" fill="currentColor" role="img" aria-label="Achtung"&gt;
+    &lt;path
+        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                    </div> <!-- Warning -->
+
+
+                    <!-- Info -->
+                    <div class="grid-1-2col">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+                                class="icon-blue" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="code-block" style="margin-bottom: 2rem">
+
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+    class="icon-blue" fill="currentColor" aria-hidden="true"&gt;
+    &lt;path
+        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"&gt;
+    &lt;/path&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                    </div> <!-- Info -->
+
+
+                    <!-- Bulb -->
+                    <div class="grid-1-2col">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50"
+                                fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="code-block" style="margin-bottom: 2rem">
+
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50" 
+    fill="currentColor" aria-hidden="true"&gt;
+    &lt;path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z"&gt;&lt;/path&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+                    </div> <!-- Bulb -->
+
+
+                </section> <!-- Icons -->
+
+
+
+
+
+                <section class="categories">
+                    <h3 id="toggle-more-info">Toggle more Info</h3>
+                    <p><code class="inline">&lt;summary&gt;</code> hat die Toggle-Funktion „von Haus aus“. Das Verhalten
+                        steckt nativ im HTML-Tag <code class="inline">&lt;details&gt;</code>.</p>
+                    <details>
+                        <summary style="cursor: pointer; font-weight: bold; user-select: none;">
+                            So funktioniert das Prinzip:
+                        </summary>
+                        <div class="toggle-detail">
+                            <ul class="arrow-list">
+                                <li>Der <code class="inline">&lt;summary&gt;</code>-Tag ist automatisch klickbar und
+                                    steuert
+                                    das Öffnen/Schließen.</li>
+                                <li>Beim Klick: bekommt <code class="inline">&lt;details&gt;</code> das Attribut open
+                                    und
+                                    der Browser zeigt den restlichen Inhalt an.
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;details&gt;
+&lt;summary&gt;
+    Toggle für mehr Infos
+&lt;/summary&gt;
+&lt;div&gt;
+    &lt;!-- INHALT --&gt;        
+&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Gut zu Wissen
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><code class="inline">&lt;details&gt;</code> + <code
+                                    class="inline">&lt;summary&gt;</code>
+                                funktionieren ohne JavaScript.</li>
+                            <li><code class="inline">&lt;summary&gt;</code> ist automatisch klickbar.</li>
+                            <li>Mit CSS kann das Styling angepasst und visuell erweitert werden.</li>
+                            <li>Das open-Attribut <code class="inline">details[open] summary</code> erlaubt gezieltes
+                                Styling für den geöffneten Zustand.</li>
+                        </ul>
+                    </div>
+
+                    <details>
+                        <summary style="cursor: pointer; font-weight: bold; user-select: none;">
+                            Infos CSS &amp; typische Ergänzungen:
+                        </summary>
+                        <div class="toggle-detail">
+                            <!-- Code Block language-css -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">summary {
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+    color: var(--accent-blue);
+    padding: 0.5rem 0;
+    text-align: left;
+}
+
+.toggle-detail {
+    padding: 15px 0 1rem 0;
+    margin-top: 10px;
+}</code></pre>
+                            </div>
+
+                        </div>
+                        <p>Typische Ergänzungen:</p>
+                        <div class="toggle-detail">
+                            <!-- Code Block language-css -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">details {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  background: var(--bg-light);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+  list-style: none; /* entfernt das Standard-Dreieck bei Safari */
+}
+
+summary::-webkit-details-marker {
+  display: none; /* entfernt das Standard-Dreieck bei Chrome/Safari */
+}
+
+details[open] summary {
+  color: var(--accent-blue);
+}</code></pre>
+                            </div>
+
+                        </div>
+
+                    </details>
+
+
+
+                </section> <!-- Toggle -->
+
+                <!-- Überschriften -->
+                <section class="categories">
+                    <h3 id="headings-uebersicht">Headings Übersicht</h3>
+                    <p>Optische Übersicht der Überschriften - die H1 ist aus semantischen Gründen nicht aufgeführt.</p>
+                    <h2 class="no-toc">Das ist die H2 ohne Klasse</h2>
+                    <!-- <h2 class="section-title no-toc">Das ist die H2 mit class="section-title"</h2> -->
+                    <h3 class="no-toc">Das ist die H3 ohne Klasse</h3>
+                    <!-- <h3 class="section-title no-toc" id="das-ist-die-h3-mit-classsection-title">Das ist die H3 mit
+                        class="section-title"</h3> -->
+                    <h4>Das ist die H4 ohne Klasse</h4>
+                    <!-- <h4 class="section-title">Das ist die H4 mit class="section-title"</h4> -->
+                </section> <!-- Überschriften -->
+
+                <!-- Weitere Sections nach Bedarf -->
+                <!-- <section class="categories">
+                <h4 class="section-title">Weiterer Abschnitt</h4>
+                <p>Inhalt...</p>
+            </section> -->
+
+                <!-- Prev/Next Navigation -->
+                <section class="categories">
+                    <nav class="tutorial-nav">
+                        <div class="tutorial-nav-prev">
+                            <a href="/tutorials/documentation/devpaniczone/devpaniczone-automation.html">
+                                <span class="tutorial-nav-label">← Vorheriges</span>
+                                <span class="tutorial-nav-link">Automatisches Generieren der Navigationen</span>
+                            </a>
+                        </div>
+                        <div class="tutorial-nav-next">
+                            <a href="/tutorials/documentation/devpaniczone/devpaniczone-generate-navigation-js.html">
+                                <span class="tutorial-nav-label">Nächstes →</span>
+                                <span class="tutorial-nav-link">Was macht generate-navigation.js</span>
+                            </a>
+                        </div>
+                    </nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutz.html">Datenschutz</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+    <script>
+        document.querySelectorAll('.html-escaper').forEach(block => {
+            const input = block.querySelector('.code-input');
+            const output = block.querySelector('.code-output');
+            const escapeBtn = block.querySelector('.escape-btn');
+            const copyBtn = block.querySelector('.copy-btn');
+
+            function escapeHTML(str) {
+                return str
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
+
+            escapeBtn.addEventListener('click', () => {
+                const escaped = escapeHTML(input.value);
+                output.value = escaped;
+                output.focus();
+                output.select();
+
+                escapeBtn.classList.add('copied');
+                escapeBtn.querySelector('.copy-text').textContent = 'Fertig!';
+                setTimeout(() => {
+                    escapeBtn.classList.remove('copied');
+                    escapeBtn.querySelector('.copy-text').textContent = 'Escapen';
+                }, 1500);
+            });
+
+            copyBtn.addEventListener('click', () => {
+                output.select();
+                document.execCommand('copy');
+
+                copyBtn.classList.add('copied');
+                copyBtn.querySelector('.copy-text').textContent = 'Kopiert!';
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.querySelector('.copy-text').textContent = 'Kopieren';
+                }, 1500);
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>

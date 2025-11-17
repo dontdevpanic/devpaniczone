@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Details zum JacaScript currentYear im Footer">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>currentYear im Footer - DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">currentYear im Footer</span></nav>
+                <h1 class="hero-title">currentYear im Footer</h1>
+                <p class="hero-subtitle">Automatische Aktualisierung des aktuellen Jahres mit JavaScript.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#current-year-footer">currentYear im Footer</a></li>
+                    <li class="toc-level-1"><a href="#html-struktur-im-footer">HTML-Struktur im Footer</a></li>
+                    <li class="toc-level-1"><a href="#javascript-code">JavaScript-Code</a></li>
+                    <li class="toc-level-1"><a href="#alternative-inline-script-im-footer">Alternative: Inline Script im Footer</a></li>
+                    <li class="toc-level-1"><a href="#fallback-javascript-deaktiviert">Fallback: JavaScript deaktiviert</a></li>
+                    <li class="toc-level-1"><a href="#erweiterung-zeitraum-anzeigen-zb-2023-2025">Erweiterung: Zeitraum anzeigen (z.B. 2023-2025)</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-code-snippets.html">Layout-Parts für die Cheetsheets</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-generate-navigation-js.html">Was macht generate-navigation.js</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-main-navigation.html">Main Nav Header</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-sidebars-system.html">Wie funktionieren die Sidebars?</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-breadcrumbs.html">Hero Breadcrumbs</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-prev-next.html">Prev / Next Buttons in den Tutorials</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-tutorial-buttons.html">Tutorial Buttons</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-toggle-night-mode.html">Toggle Night Mode</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-current-year-footer.html" class="active">currentYear im Footer</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <section class="categories section-top">
+                    <h2 id="current-year-footer">currentYear im Footer</h2>
+                    <p>Das aktuelle Jahr im Footer ist nicht direkt Teil der automatischen Generierung, das HTML hierzu ist aber im Script
+                        <code>generate-navigation.js</code> hinterlegt und erscheint bei der Ausführung. Das JavaScript für das aktuelle Jahr 
+                        selbst ist Teil der <code>main.js</code>
+                    </p>
+                </section>
+
+                <!-- HTML-Struktur -->
+                <section class="categories">
+                    <h2 id="html-struktur-im-footer">HTML-Struktur im Footer</h2>
+                    <p>Füge einen <code class="inline">&lt;span id="currentYear"&gt;&lt;/span&gt;</code> im
+                        Copyright-Text ein:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;footer class="site-footer"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="footer-content"&gt;
+            &lt;p class="footer-text"&gt;© &lt;span id="currentYear"&gt;&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;
+            &lt;nav class="footer-nav"&gt;
+                &lt;a href="/impressum.html"&gt;Impressum&lt;/a&gt;
+                &lt;a href="/datenschutz.html"&gt;Datenschutz&lt;/a&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- JavaScript-Code -->
+                <section class="categories">
+                    <h2 id="javascript-code">JavaScript-Code</h2>
+                    <p>Das JavaScript füllt automatisch das aktuelle Jahr ein. Platziere den Code in <code class="inline">main.js</code> oder direkt vor dem schließenden <code class="inline">&lt;/body&gt;</code> Tag:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// ============================================================================
+// CURRENT YEAR im Footer
+// ============================================================================
+
+/**
+ * Setzt das aktuelle Jahr im Footer
+ * Wird beim Laden der Seite ausgeführt
+ */
+const yearElement = document.getElementById('currentYear');
+if (yearElement) {
+    const currentYear = new Date().getFullYear();
+    yearElement.textContent = currentYear;
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- Alternative: Inline Script -->
+                <section class="categories">
+                    <h2 id="alternative-inline-script-im-footer">Alternative: Inline Script im Footer</h2>
+                    <p>Falls du es nicht in einer separaten JavaScript-Datei haben möchtest, kannst du es auch direkt im
+                        Footer einfügen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;footer class="site-footer"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="footer-content"&gt;
+            &lt;p class="footer-text"&gt;© &lt;span id="currentYear"&gt;&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;
+            &lt;nav class="footer-nav"&gt;
+                &lt;a href="/impressum.html"&gt;Impressum&lt;/a&gt;
+                &lt;a href="/datenschutz.html"&gt;Datenschutz&lt;/a&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;script&gt;
+    // Setze aktuelles Jahr
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+&lt;/script&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- Fallback für JavaScript deaktiviert -->
+                <section class="categories">
+                    <h2 id="fallback-javascript-deaktiviert">Fallback: JavaScript deaktiviert</h2>
+                    <p>Falls JavaScript deaktiviert ist, kannst du einen Fallback-Wert direkt im HTML einfügen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;p class="footer-text"&gt;© &lt;span id="currentYear"&gt;2025&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <p>Das JavaScript überschreibt dann "2025" mit dem aktuellen Jahr. Wenn JavaScript aus ist, bleibt
+                        "2025" stehen.</p>
+                </section>
+
+                <!-- Warum automatisch? -->
+                <section class="categories">
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Warum automatisch?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p><strong>Vorteile der automatischen Jahr-Aktualisierung:</strong></p>
+                        <ul class="arrow-list">
+                            <li>Kein manuelles Update am 1. Januar nötig</li>
+                            <li>Copyright ist immer aktuell</li>
+                            <li>Funktioniert auf allen Seiten automatisch</li>
+                            <li>Eine Zeile Code, unendlicher Nutzen</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Erweiterung: Zeitraum anzeigen -->
+                <section class="categories">
+                    <h2 id="erweiterung-zeitraum-anzeigen-zb-2023-2025">Erweiterung: Zeitraum anzeigen (z.B. 2023-2025)</h2>
+                    <p>Wenn deine Website seit 2023 besteht, kannst du einen Zeitraum anzeigen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;p class="footer-text"&gt;© 2023-&lt;span id="currentYear"&gt;&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <p>Oder noch schlauer: Zeige nur das Startjahr, wenn es das aktuelle Jahr ist:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// ============================================================================
+// CURRENT YEAR im Footer - Erweiterte Version
+// ============================================================================
+
+const yearElement = document.getElementById('currentYear');
+if (yearElement) {
+    const startYear = 2023;  // Gründungsjahr der Website
+    const currentYear = new Date().getFullYear();
+    
+    // Wenn aktuelles Jahr = Startjahr: "2023"
+    // Wenn aktuelles Jahr &gt; Startjahr: "2023-2025"
+    if (currentYear === startYear) {
+        yearElement.textContent = startYear;
+    } else {
+        yearElement.textContent = `${startYear}-${currentYear}`;
+    }
+}</code></pre>
+                    </div>
+
+                    <p><strong>Ergebnis:</strong></p>
+                    <ul class="arrow-list">
+                        <li>2023: <code>© 2023 DevPanicZone</code></li>
+                        <li>2024: <code>© 2023-2024 DevPanicZone</code></li>
+                        <li>2025: <code>© 2023-2025 DevPanicZone</code></li>
+                    </ul>
+
+                </section> <!-- currentYear Footer -->
+
+                <!-- Prev/Next Navigation -->
+                <section class="categories">
+                    <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-toggle-night-mode.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">Toggle Night Mode</span>
+            </a>
+        </div><div class="tutorial-nav-next"></div></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+</body></html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Code Escaper - praktisches Tool, um deinen Quellcode sichtbar zu machen.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>JavaScript Code Escaper - DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- <link rel="stylesheet" href="/css/tutorials.css"> -->
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    <style>
+        .code-block {
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-secondary);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-tertiary);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .code-lang {
+            font-weight: 600;
+            font-family: var(--font-mono);
+            color: var(--text-primary);
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .code-copy {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 150ms ease;
+        }
+
+        .code-copy:hover {
+            background-color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+        }
+
+        .code-copy:active {
+            transform: scale(0.95);
+        }
+
+        .code-copy.copied {
+            background-color: var(--color-success);
+            border-color: var(--color-success);
+            color: white;
+        }
+
+        .copy-icon img {
+            width: 16px;
+            height: 16px;
+            filter: brightness(0) saturate(100%) invert(89%) sepia(2%) saturate(158%) hue-rotate(182deg) brightness(85%) contrast(87%);
+            transition: filter 150ms ease;
+        }
+
+        .code-copy:hover .copy-icon img,
+        .code-copy.copied .copy-icon img {
+            filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+        }
+
+        .code-input,
+        .code-output {
+            width: 100%;
+            box-sizing: border-box;
+            font-family: var(--font-mono);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 1rem;
+            border: none;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .code-output {
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 640px) {
+            .copy-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="Dark Mode Swith" width="20" height="20" title="Dark Mode umschalten">
+                    </span>
+                </button>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
+
+                <nav class="main-nav" id="mainNav">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-main">
+
+    <!-- Hero -->
+    <section class="hero tutorial-hero">
+        <div class="container">
+            <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">JavaScript: HTML-Code Escaper</span></nav>
+            <h1 class="hero-title">HTML Escape Tool</h1>
+            <p class="hero-subtitle">Wenn du Code sichtbar machen willst, musst du ihn escapen.</p>
+        </div>
+    </section>
+
+    <!-- Floating Button Links (Sidebar) -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+        <span class="toggle-icon">☰</span>
+    </button>
+
+    <!-- Floating Button Rechts (Tutorial Navigation) - OPTIONAL -->
+    <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+        <span class="toggle-icon"><img src="/assets/icons/library.svg" alt="Library Logo" class="library-icon" title="In dieser Kategorie" aria-label="Kategorie Übersicht"></span>
+    </button>
+
+    <!-- Tutorial Layout -->
+    <div class="tutorial-layout">
+
+        <!-- Linke Sidebar (Floating Panel) -->
+        <aside class="tutorial-sidebar" id="tutorialSidebar">
+            <div class="sidebar-header">
+                <h3 class="sidebar-title no-toc" id="auf-dieser-seite">Auf dieser Seite</h3>
+                <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                    <span>×</span>
+                </button>
+            </div>
+
+            <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                <ul class="toc-list">
+                    <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#code-escaper">Code Escaper</a></li>
+                    <li class="toc-level-1"><a href="#script">Script</a></li>
+                    <li class="toc-level-1"><a href="#html">HTML</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Rechte Sidebar (Floating Panel) - OPTIONAL -->
+        <aside class="tutorial-related">
+            <div class="sidebar-header">
+                <h3 class="sidebar-title no-toc" id="css-tutorials">CSS Tutorials</h3>
+                <button class="sidebar-close" onclick="document.querySelector('.tutorial-related').classList.remove('is-open'); document.querySelector('.sidebar-overlay').classList.remove('is-visible');" aria-label="Schließen">
+                    <span>×</span>
+                </button>
+            </div>
+
+            <div class="sidebar-nav">
+                <ul class="sidebar-nav-list">
+                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html" class="active">JavaScript: HTML-Code Escaper</a></li>
+                    <li><a href="/tutorials/javascript/javascript-projects/to-do-app.html">ToDo-App mit JavaScript</a></li>
+                </ul>
+            </div> 
+        </aside>
+
+        <!-- Wrapper Container Tutorial-->
+        <div class="container">
+
+            <!-- Intro -->
+            <section class="categories">
+
+                <h2 id="code-escaper">Code Escaper</h2>
+                <p>Wie bereits im Tutorial <a href="#">Quellcode sichtbar machen</a> erklärt, kannst du Code für
+                    Besucher sichtbar machen, indem du in "escapest".</p>
+                <p>Je nach Umfang kann das sehr zeitaufwendig werden, daher gibt es hier dieses kleine Tool.</p>
+                <!-- Intro -->
+
+                <!-- Code Escaper -->
+                <div class="code-block html-escaper">
+                    <div class="code-header">
+                        <span class="code-lang">HTML Escaper</span>
+                        <div class="code-actions">
+                            <button class="code-copy escape-btn">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/escape.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Escapen</span>
+                            </button>
+                            <button class="code-copy copy-btn">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <textarea class="code-input" placeholder="Füge hier deinen Code ein..."></textarea>
+                    <textarea class="code-output" placeholder="Hier erscheint der escaped Code..." readonly></textarea>
+                </div>
+            </section>
+
+
+            <!-- Script -->
+            <section class="categories">
+                <h2 id="script">Script</h2>
+                <p>Das Script wird am Ende der Seite vor dem schließenden <code class="inline">&lt;/body&gt;</code>
+                    eingefügt.</p>
+                <p>Entwerder direkt inline in <code class="inline">&lt;script&gt;</code><code class="inline">&lt;/script&gt;</code>, oder mit Verweis auf ein externes Script <code class="inline">&lt;script src="/assets/js/code-escaper.js" defer&gt;&lt;/script&gt;</code>
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">JavaScript</span>
+                        <button class="code-copy">
+                            <span class="copy-icon">
+                                <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                            </span>
+                            <span class="copy-text">Kopieren</span>
+                        </button>
+                    </div>
+                    <pre><code class="language-javascript">&lt;script&gt;
+    document.querySelectorAll('.html-escaper').forEach(block =&gt; {
+        const input = block.querySelector('.code-input');
+        const output = block.querySelector('.code-output');
+        const escapeBtn = block.querySelector('.escape-btn');
+        const copyBtn = block.querySelector('.copy-btn');
+
+        function escapeHTML(str) {
+            return str
+                .replace(/&amp;/g, '&amp;amp;')
+                .replace(/&lt;/g, '&amp;lt;')
+                .replace(/&gt;/g, '&amp;gt;')
+                .replace(/"/g, '&amp;quot;')
+                .replace(/'/g, '&amp;#39;');
+        }
+
+        escapeBtn.addEventListener('click', () =&gt; {
+            const escaped = escapeHTML(input.value);
+            output.value = escaped;
+            output.focus();
+            output.select();
+
+            escapeBtn.classList.add('copied');
+            escapeBtn.querySelector('.copy-text').textContent = 'Fertig!';
+            setTimeout(() =&gt; {
+                escapeBtn.classList.remove('copied');
+                escapeBtn.querySelector('.copy-text').textContent = 'Escapen';
+            }, 1500);
+        });
+
+        copyBtn.addEventListener('click', () =&gt; {
+            output.select();
+            document.execCommand('copy');
+
+            copyBtn.classList.add('copied');
+            copyBtn.querySelector('.copy-text').textContent = 'Kopiert!';
+            setTimeout(() =&gt; {
+                copyBtn.classList.remove('copied');
+                copyBtn.querySelector('.copy-text').textContent = 'Kopieren';
+            }, 1500);
+        });
+    });
+&lt;/script&gt;</code></pre>
+
+
+                </div>
+            </section>
+
+
+            <!-- HTML -->
+            <section class="categories">
+                <h2 id="html">HTML</h2>
+
+                <!-- Code Block language-html -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">HTML</span>
+                        <button class="code-copy">
+                            <span class="copy-icon">
+                                <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                            </span>
+                            <span class="copy-text">Kopieren</span>
+                        </button>
+                    </div>
+                    <pre><code class="language-html">&lt;div class="code-block html-escaper"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-lang"&gt;HTML Escaper&lt;/span&gt;
+        &lt;div class="code-actions"&gt;
+            &lt;button class="code-copy escape-btn"&gt;
+                &lt;span class="copy-icon"&gt;
+                    &lt;img src="/assets/icons/escape.svg" alt="" width="16" height="16"&gt;
+                &lt;/span&gt;
+                &lt;span class="copy-text"&gt;Escapen&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;button class="code-copy copy-btn"&gt;
+                &lt;span class="copy-icon"&gt;
+                    &lt;img src="/assets/icons/clipboard.svg" alt="" width="16" height="16"&gt;
+                &lt;/span&gt;
+                &lt;span class="copy-text"&gt;Kopieren&lt;/span&gt;
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;textarea class="code-input" placeholder="Füge hier deinen Code ein..."&gt;&lt;/textarea&gt;
+    &lt;textarea class="code-output" placeholder="Hier erscheint der escaped Code..."
+        readonly&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </section>
+
+
+
+
+
+
+            <!-- Prev/Next -->
+            <section class="categories">
+                <nav class="tutorial-nav"><div class="tutorial-nav-prev"></div><div class="tutorial-nav-next">
+            <a href="/tutorials/javascript/javascript-projects/to-do-app.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">ToDo-App mit JavaScript</span>
+            </a>
+        </div></nav>
+            </section>
+
+        </div> <!-- Wrapper -->
+
+    </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear"></span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutz.html">Datenschutz</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+
+    <script>
+        document.querySelectorAll('.html-escaper').forEach(block => {
+            const input = block.querySelector('.code-input');
+            const output = block.querySelector('.code-output');
+            const escapeBtn = block.querySelector('.escape-btn');
+            const copyBtn = block.querySelector('.copy-btn');
+
+            function escapeHTML(str) {
+                return str
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
+
+            escapeBtn.addEventListener('click', () => {
+                const escaped = escapeHTML(input.value);
+                output.value = escaped;
+                output.focus();
+                output.select();
+
+                escapeBtn.classList.add('copied');
+                escapeBtn.querySelector('.copy-text').textContent = 'Fertig!';
+                setTimeout(() => {
+                    escapeBtn.classList.remove('copied');
+                    escapeBtn.querySelector('.copy-text').textContent = 'Escapen';
+                }, 1500);
+            });
+
+            copyBtn.addEventListener('click', () => {
+                output.select();
+                document.execCommand('copy');
+
+                copyBtn.classList.add('copied');
+                copyBtn.querySelector('.copy-text').textContent = 'Kopiert!';
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.querySelector('.copy-text').textContent = 'Kopieren';
+                }, 1500);
+            });
+        });
+    </script>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+
+
+</body></html>

@@ -1,0 +1,369 @@
+/* ===================================
+   SIDEBAR.CSS - FLOATING SIDEBAR SYSTEM
+   Nur auf Tutorial-Seiten mit Sidebar einbinden
+   =================================== */
+
+/* ===================================
+   FLOATING BUTTONS (Links & Rechts)
+   =================================== */
+
+.sidebar-toggle {
+    position: fixed;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 150ms ease;
+    color: var(--text-primary);
+}
+
+.sidebar-toggle:hover {
+    background: var(--bg-secondary);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.sidebar-toggle .toggle-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.sidebar-toggle .toggle-text {
+    display: none;
+}
+
+.tutorial-nav-toggle {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 150ms ease;
+    color: var(--text-primary);
+}
+
+.tutorial-nav-toggle:hover {
+    background: var(--bg-secondary);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+/* Mobile: Buttons nach unten */
+@media (max-width: 768px) {
+    .sidebar-toggle,
+    .tutorial-nav-toggle {
+        top: auto;
+        bottom: 2rem;
+        transform: none;
+    }
+    
+    .sidebar-toggle {
+        left: 1rem;
+    }
+    
+    .tutorial-nav-toggle {
+        right: 1rem;
+    }
+}
+
+/* ===================================
+   SIDEBAR (Links) - FLOATING PANEL
+   =================================== */
+
+.tutorial-sidebar {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    bottom: 0;
+    width: 300px;
+    max-width: 85vw;
+    z-index: 100;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    overflow-y: auto;
+    transition: left 300ms ease;
+}
+
+.tutorial-sidebar.is-open {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-title {
+    font-size: 1.125rem;
+    margin: 0;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.sidebar-close {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 150ms ease;
+}
+
+.sidebar-close:hover {
+    color: var(--accent-blue);
+}
+
+/* ===================================
+   OVERLAY
+   =================================== */
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.sidebar-overlay.is-visible {
+    display: block;
+    opacity: 1;
+}
+
+/* ===================================
+   TABLE OF CONTENTS (in Sidebar)
+   =================================== */
+
+/* .sidebar-toc {
+    margin-bottom: 2rem;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-list li {
+    margin-bottom: 0.5rem;
+}
+
+.toc-link {             
+    display: block;
+    padding: 0.2rem 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    border-left: 2px solid transparent;
+    transition: all 150ms ease;
+    border-radius: 0 4px 4px 0;
+}
+
+.toc-link:hover {
+    color: var(--accent-blue);
+    background: var(--bg-tertiary);
+    border-left-color: var(--accent-blue);
+}
+
+.toc-link.active {
+    color: var(--accent-blue);
+    font-weight: 600;
+    background: var(--bg-tertiary);
+    border-left-color: var(--accent-blue);
+}
+
+.toc-sublist {
+    list-style: none;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.toc-sublist .toc-link {
+    font-size: 0.8125rem;
+    padding: 0.15rem 0.75rem;
+} */
+
+/* ===================================
+   TABLE OF CONTENTS (Linke Sidebar)
+   =================================== */
+
+.sidebar-toc {
+    margin-bottom: 2rem;
+}
+
+.toc-list {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+
+.toc-list li {
+    margin-bottom: 0.25rem;  /* Weniger Abstand wie rechts */
+}
+
+/* TOC Links Styling (identisch wie rechte Sidebar) */
+.toc-list a {
+    display: block;
+    padding: 0.35rem 0.75rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.toc-list a:hover {
+    background: var(--bg-tertiary);
+    color: var(--accent-blue);
+}
+
+.toc-list a.active {
+    background: var(--bg-tertiary);
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+/* Einrückungen für verschiedene Heading-Levels */
+.toc-level-1 a {
+    font-size: 0.875rem;
+    padding-left: 0.75rem;
+}
+
+.toc-level-2 a {
+    padding-left: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.toc-level-3 a {
+    padding-left: 2.25rem;
+    font-size: 0.875rem;
+}/* ===================================
+   SIDEBAR NAVIGATION RECHTS
+   =================================== */
+
+.sidebar-nav {
+    padding-top: 0.2rem 0.75rem;
+    /* border-top: 1px solid var(--border-color); */
+}
+
+.sidebar-nav-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.sidebar-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav-list li {
+    margin-bottom: 0.25rem;
+}
+
+.sidebar-nav-list a {
+    display: block;
+    padding: 0.35rem 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    border-radius: 4px;
+    transition: all 150ms ease;
+}
+
+.sidebar-nav-list a:hover {
+    color: var(--accent-blue);
+    background: var(--bg-tertiary);
+}
+
+.sidebar-nav-list a.active {
+    color: var(--accent-blue);
+    font-weight: 600;
+    background: var(--bg-tertiary);
+}
+
+/* ===================================
+   TUTORIAL RELATED (Rechts) - FLOATING PANEL
+   =================================== */
+
+.tutorial-related {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    bottom: 0;
+    width: 300px;
+    max-width: 85vw;
+    z-index: 100;
+    background: var(--bg-secondary);
+    border-left: 1px solid var(--border-color);
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    overflow-y: auto;
+    transition: right 300ms ease;
+}
+
+.tutorial-related.is-open {
+    right: 0;
+}
+
+/* ===================================
+   SCROLLBAR STYLING
+   =================================== */
+
+.tutorial-sidebar::-webkit-scrollbar,
+.tutorial-related::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tutorial-sidebar::-webkit-scrollbar-track,
+.tutorial-related::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.tutorial-sidebar::-webkit-scrollbar-thumb,
+.tutorial-related::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.tutorial-sidebar::-webkit-scrollbar-thumb:hover,
+.tutorial-related::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+}

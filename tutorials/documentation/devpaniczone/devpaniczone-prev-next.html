@@ -1,0 +1,544 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Details zu den automatisch generierten vorheriges / nächstes Buttons am Ende der Cheatsheets.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>Prev / Next Buttons - DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Prev / Next Buttons in den Tutorials</span></nav>
+                <h1 class="hero-title">Prev / Next Buttons in den Tutorials</h1>
+                <p class="hero-subtitle">Die Prev/Next Navigation wird automatisch durch <code class="inline">generate-navigation.js</code>
+                    basierend auf der manuellen Reihenfolge in <code class="inline">manualOrder</code> generiert.</p>
+
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#tutorial-navigation">Tutorial Navigation</a></li>
+                    <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
+                    <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
+                    <li class="toc-level-1"><a href="#manualorder-konfiguration">manualOrder Konfiguration</a></li>
+                    <li class="toc-level-1"><a href="#neues-tutorial-hinzufuegen">Neues Tutorial zur Reihenfolge hinzufügen</a></li>
+                    <li class="toc-level-1"><a href="#button-titel-anpassen">Button-Titel anpassen</a></li>
+                    <li class="toc-level-1"><a href="#technische-details-wie-das-script-arbeitet">Technische Details: Wie das Script arbeitet</a></li>
+                    <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-code-snippets.html">Layout-Parts für die Cheetsheets</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-generate-navigation-js.html">Was macht generate-navigation.js</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-main-navigation.html">Main Nav Header</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-sidebars-system.html">Wie funktionieren die Sidebars?</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-breadcrumbs.html">Hero Breadcrumbs</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-prev-next.html" class="active">Prev / Next Buttons in den Tutorials</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-tutorial-buttons.html">Tutorial Buttons</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-toggle-night-mode.html">Toggle Night Mode</a></li>
+                    <li><a href="/tutorials/documentation/devpaniczone/devpaniczone-current-year-footer.html">currentYear im Footer</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Intro -->
+                <section class="categories section-top">
+                    <h2 id="tutorial-navigation">Tutorial Navigation</h2>
+                    <p>Ähnlich in Blogs kannst du am Ende der Tutorials zum vorheringen oder zum nächsten Tutorial springen. Die Buttons werden automatisch generiert.</p>
+                </section>
+
+                <!-- HTML-Struktur -->
+                <section class="categories">
+                    <h2 id="html-struktur">HTML-Struktur</h2>
+                    <p>Die Navigation wird am Ende des Tutorial-Contents eingefügt (vor dem schließenden <code class="inline">&lt;/div&gt;</code> des Wrappers <code>&lt;div class="container"&gt;</code>):
+                    </p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Prev/Next Navigation --&gt;
+&lt;section class="categories"&gt;
+    &lt;nav class="tutorial-nav"&gt;
+        &lt;div class="tutorial-nav-prev"&gt;
+            &lt;!-- Wird automatisch gefüllt --&gt;
+        &lt;/div&gt;
+        &lt;div class="tutorial-nav-next"&gt;
+            &lt;!-- Wird automatisch gefüllt --&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+&lt;/section&gt;
+
+&lt;/div&gt; &lt;!-- Ende Wrapper --&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- Wie funktioniert's -->
+                <section class="categories">
+                    <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
+                    <p>Das Script <code class="inline">generate-navigation.js</code> liest die Datei-Reihenfolge aus
+                        <code class="inline">manualOrder</code> und generiert automatisch:
+                    </p>
+
+                    <div class="grid-2col">
+                        <div class="grid-2col-bg">
+                            <ul class="arrow-list">
+                                <li><strong>Prev-Button:</strong> Link zum vorherigen Tutorial in der Reihenfolge</li>
+                                <li><strong>Next-Button:</strong> Link zum nächsten Tutorial in der Reihenfolge</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <ul class="arrow-list">
+                                <li><strong>Erstes Tutorial:</strong> Kein Prev-Button (leeres <code>div</code>)
+                                </li>
+                                <li><strong>Letztes Tutorial:</strong> Kein Next-Button (leeres <code>div</code>)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- manualOrder Konfiguration -->
+                <section class="categories">
+                    <h2 id="manualorder-konfiguration">manualOrder Konfiguration</h2>
+                    <p>Die Reihenfolge wird in <code class="inline">generate-navigation.js</code> unter <code class="inline">manualOrder</code> definiert:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// ============================================================================
+// Manuelle Sortierung für Tutorial-Seiten (Prev/Next Navigation)
+// ============================================================================
+const manualOrder = {
+    'tutorials/css/css-basics': [
+        'css-einbinden.html',
+        'css-color-units.html',
+        'css-variables.html',
+        'css-typografie.html',
+        'css-textstyling.html'
+        // Reihenfolge bestimmt Prev/Next Links
+        // Index 0 = Erstes Tutorial (kein Prev)
+        // Letzter Index = Letztes Tutorial (kein Next)
+    ],
+    'tutorials/css/css-advanced': [
+        'css-positioning.html',
+        'css-z-index.html',
+        'css-transitions.html'
+    ]
+};</code></pre>
+                    </div>
+                </section>
+
+                <!-- Neues Tutorial hinzufügen -->
+                <section class="categories">
+                    <h2 id="neues-tutorial-hinzufuegen">Neues Tutorial zur Reihenfolge hinzufügen</h2>
+                    <ol>
+                        <li>Öffne <code class="inline">generate-navigation.js</code></li>
+                        <li>Finde die passende Kategorie im <code class="inline">manualOrder</code> Objekt</li>
+                        <li>Füge den Dateinamen an der gewünschten Position ein:</li>
+                    </ol>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">'tutorials/css/css-basics': [
+    'css-einbinden.html',
+    'css-color-units.html',
+    'mein-neues-tutorial.html',  // &lt;-- Neues Tutorial an gewünschter Stelle einfügen
+    'css-variables.html',
+    'css-typografie.html'
+]</code></pre>
+                    </div>
+                    <p>Führe dann <code class="inline">npm run generate</code> aus, um die Navigation zu aktualisieren.
+                    </p>
+                </section>
+
+                <!-- Custom Titles -->
+                <section class="categories">
+                    <h2 id="button-titel-anpassen">Button-Titel anpassen</h2>
+                    <p>Standardmäßig wird der Dateiname als Titel verwendet. Um einen individuellen Titel zu setzen,
+                        füge ihn in <code class="inline">customTitles</code> hinzu:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// ============================================================================
+// Custom Titles für einzelne Tutorial-Seiten (statt Dateinamen)
+// ============================================================================
+const customTitles = {
+    'tutorials/css/css-basics/css-einbinden.html': 'CSS einbinden',
+    'tutorials/css/css-advanced/css-z-index.html': 'Z-Index',
+    // Voller Pfad ab 'tutorials/' = Custom Title
+};</code></pre>
+                    </div>
+
+                    <!-- Beispiel generierte Navigation -->
+                    <h4 class="no-toc">Beispiel: Generierte Navigation</h4>
+                    <p>Wenn das Script läuft, wird aus der leeren Struktur eine vollständige Navigation:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;nav class="tutorial-nav"&gt;
+    &lt;div class="tutorial-nav-prev"&gt;
+        &lt;span class="tutorial-nav-label"&gt;← Vorheriges Tutorial&lt;/span&gt;
+        &lt;a href="/tutorials/css/css-basics/css-einbinden.html" class="tutorial-nav-link"&gt;CSS einbinden&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="tutorial-nav-next"&gt;
+        &lt;span class="tutorial-nav-label"&gt;Nächstes Tutorial →&lt;/span&gt;
+        &lt;a href="/tutorials/css/css-basics/css-variables.html" class="tutorial-nav-link"&gt;CSS Variables&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- Technische Details -->
+                <section class="categories">
+                    <h2 id="technische-details-wie-das-script-arbeitet">Technische Details: Wie das Script arbeitet</h2>
+                    <p>Das Script durchläuft folgende Schritte:</p>
+                    <ol>
+                        <li><strong>Datei erkennen:</strong> Liest die aktuelle Datei-URL</li>
+                        <li><strong>Kategorie finden:</strong> Sucht passenden Eintrag in <code class="inline">manualOrder</code></li>
+                        <li><strong>Position bestimmen:</strong> Findet Index des aktuellen Tutorials im Array</li>
+                        <li><strong>Prev/Next ermitteln:</strong> Index -1 = Prev, Index +1 = Next</li>
+                        <li><strong>HTML generieren:</strong> Erstellt die Buttons mit Titeln aus <code class="inline">customTitles</code></li>
+                        <li><strong>DOM updaten:</strong> Ersetzt den Inhalt zwischen den <code class="inline">&lt;nav&gt;</code>-Tags</li>
+                    </ol>
+                    <details>
+                        <summary style="cursor: pointer; font-weight: bold; user-select: none;">
+                            JavaScript Code
+                        </summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// ============================================================================
+// TUTORIAL NAVIGATION (PREV/NEXT)
+// ============================================================================
+
+/**
+ * Findet die vorherige und nächste Seite für Tutorial-Navigation
+ */
+function findPrevNext(currentFile) {
+    // Normalisiere den Pfad
+    currentFile = currentFile.replace(/\\/g, '/');
+
+    // Finde den passenden Ordner in manualOrder
+    for (const [folder, files] of Object.entries(manualOrder)) {
+        if (currentFile.includes(folder)) {
+            const fileName = path.basename(currentFile);
+            const index = files.indexOf(fileName);
+
+            if (index !== -1) {
+                const prev = index &gt; 0 ? path.join(folder, files[index - 1]).replace(/\\/g, '/') : null;
+                const next = index &lt; files.length - 1 ? path.join(folder, files[index + 1]).replace(/\\/g, '/') : null;
+
+                return { prev, next };
+            }
+        }
+    }
+
+    return { prev: null, next: null };
+}
+
+/**
+ * Generiert HTML für Tutorial Navigation
+ */
+function generateTutorialNav(currentFile, prev, next) {
+    let navHTML = '';
+
+    if (prev) {
+        const prevPath = '/' + prev; // Absoluter Pfad
+        const prevTitle = customTitles[prev] || fileNameToTitle(path.basename(prev));
+        navHTML += `        &lt;div class="tutorial-nav-prev"&gt;
+            &lt;span class="tutorial-nav-label"&gt;← Vorheriges Tutorial&lt;/span&gt;
+            &lt;a href="${prevPath}" class="tutorial-nav-link"&gt;${prevTitle}&lt;/a&gt;
+        &lt;/div&gt;\n`;
+    } else {
+        navHTML += `        &lt;div class="tutorial-nav-prev"&gt;&lt;/div&gt;\n`;
+    }
+
+    if (next) {
+        const nextPath = '/' + next; // Absoluter Pfad
+        const nextTitle = customTitles[next] || fileNameToTitle(path.basename(next));
+        navHTML += `        &lt;div class="tutorial-nav-next"&gt;
+            &lt;span class="tutorial-nav-label"&gt;Nächstes Tutorial →&lt;/span&gt;
+            &lt;a href="${nextPath}" class="tutorial-nav-link"&gt;${nextTitle}&lt;/a&gt;
+        &lt;/div&gt;`;
+    } else {
+        navHTML += `        &lt;div class="tutorial-nav-next"&gt;&lt;/div&gt;`;
+    }
+
+    return navHTML;
+}
+
+/**
+ * Aktualisiert die Tutorial Navigation in allen HTML-Dateien
+ */
+function updateTutorialNavigation(files) {
+    let updatedCount = 0;
+
+    files.forEach(file =&gt; {
+        const filePath = path.join(BASE_DIR, file);
+        let content = fs.readFileSync(filePath, 'utf8');
+
+        // Suche nach &lt;nav class="tutorial-nav"&gt;&lt;/nav&gt;
+        const navRegex = /&lt;nav\s+class=["']tutorial-nav["'][^&gt;]*&gt;[\s\S]*?&lt;\/nav&gt;/;
+
+        if (navRegex.test(content)) {
+            const { prev, next } = findPrevNext(file);
+
+            if (prev || next) {
+                const newNav = `&lt;nav class="tutorial-nav"&gt;\n${generateTutorialNav(file, prev, next)}\n    &lt;/nav&gt;`;
+                content = content.replace(navRegex, newNav);
+
+                fs.writeFileSync(filePath, content, 'utf8');
+                updatedCount++;
+            }
+        }
+    });
+
+    console.log(`✅ Tutorial Navigation aktualisiert in ${updatedCount} Dateien`);
+}</code></pre>
+                        </div>
+                    </details>
+                </section>
+
+                <section class="categories">
+                    <h2 id="ausfuehren">Ausführen</h2>
+                    <p>Nach allen Änderungen ausführen:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Plain Text</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-text">npm run generate</code></pre>
+                    </div>
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                <section class="categories">
+                    <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-breadcrumbs.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">Hero Breadcrumbs</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-tutorial-buttons.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">Tutorial Buttons</span>
+            </a>
+        </div></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+</body></html>

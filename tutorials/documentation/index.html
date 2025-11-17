@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Meine Sammlung von Code-Snippets, Grundgerüsten und Notizen, die beim Aufbau und Lernen rund um DevPanicZone entstehen.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>Dokumentation & Cheatsheets – DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero Section -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <!-- Breadcrumbs -->
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">DevPanicZone!</span></nav>
+                <h1 class="hero-title">Dokumentation & Cheatsheets</h1>
+                <p class="hero-subtitle">Dokumentation, Grundgerüst, Code-Snippets & Design für DevPanicZone!
+                </p>
+            </div>
+        </section>
+
+        <!-- Wrapper -->
+        <div class="container">
+
+            <!-- Intro -->
+            <section class="tutorials-content">
+                <div class="grid-2col">
+                    <div class="grid-2col-bg">
+                        <h2>Was dich hier erwartet</h2>
+                        <p>Meine persönliche Doku, eine wachsende Sammlung aus Code-Snippets, Platzhaltern für die
+                            Automationen, Grundgerüsten und kurzen Erklärungen –
+                            alles für den schnellen Zugriff.</p>
+                    </div>
+                    <div class="grid-2col-bg">
+                        <h2>Warum das wichtig ist</h2>
+                        <p>Für klaren Überblick, wiederverwendbare Strukturen und einen flüssigeren Workflow – auch
+                            nach
+                            längeren Pausen.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Links Section -->
+            <section class="tutorials-content">
+                <div>
+                    <h2 class="section-title">Wähle ein Thema und starte direkt durch</h2>
+                    <p class="section-subtitle"></p>
+
+                    <!-- Wichtig: data-category muss mit dem Ordnernamen übereinstimmen -->
+                    <!-- Tutorial-Buttons-Start -->
+<div id="tutorialButtons" class="tutorial-buttons" data-category="documentation">
+
+    <div class="tutorial-group">
+        <h3 class="tutorial-group-title">Devpaniczone</h3>
+        <div class="tutorial-group-buttons">
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-automation.html" class="tutorial-button">Automatisches Generieren der Navigationen</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-code-snippets.html" class="tutorial-button">Layout-Parts für die Cheetsheets</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-generate-navigation-js.html" class="tutorial-button">Was macht generate-navigation.js</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-main-navigation.html" class="tutorial-button">Main Nav Header</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-sidebars-system.html" class="tutorial-button">Wie funktionieren die Sidebars?</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-breadcrumbs.html" class="tutorial-button">Hero Breadcrumbs</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-prev-next.html" class="tutorial-button">Prev / Next Buttons in den Tutorials</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-tutorial-buttons.html" class="tutorial-button">Tutorial Buttons</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-toggle-night-mode.html" class="tutorial-button">Toggle Night Mode</a>
+            <a href="/tutorials/documentation/devpaniczone/devpaniczone-current-year-footer.html" class="tutorial-button">currentYear im Footer</a>
+        </div>
+    </div>
+</div>
+<!-- Tutorial-Buttons-End -->
+                </div>
+            </section>
+
+        </div> <!-- Wrapper .container -->
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/search.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1064 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Git Guide: Installation, Grundbefehle, Branches, Remote Repositories, GitHub Integration und Best Practices für Webentwickler.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>Git Guide - Versionskontrolle von A bis Z - DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Git - Versionskontrolle meistern</span></nav>
+                <h1 class="hero-title">Git - Versionskontrolle meistern</h1>
+                <p class="hero-subtitle">Von der Installation bis zum GitHub-Profi: Alles was du über Git wissen musst.
+                </p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#was-ist-git">Was ist Git?</a></li>
+                    <li class="toc-level-2"><a href="#wie-git-funktioniert">Wie Git funktioniert</a></li>
+                    <li class="toc-level-2"><a href="#warum-git">Warum Git?</a></li>
+                    <li class="toc-level-1"><a href="#installation-setup">Installation &amp; Setup</a></li>
+                    <li class="toc-level-2"><a href="#git-installieren">Git installieren</a></li>
+                    <li class="toc-level-2"><a href="#globale-konfiguration">Globale Konfiguration</a></li>
+                    <li class="toc-level-2"><a href="#konfiguration-pruefen">Konfiguration prüfen</a></li>
+                    <li class="toc-level-1"><a href="#repository-erstellen">Repository erstellen</a></li>
+                    <li class="toc-level-2"><a href="#neues-projekt-initialisieren">Neues Projekt initialisieren</a></li>
+                    <li class="toc-level-2"><a href="#bestehendes-repository-klonen">Bestehendes Repository klonen</a></li>
+                    <li class="toc-level-2"><a href="#gitignore-einrichten">.gitignore einrichten</a></li>
+                    <li class="toc-level-1"><a href="#die-drei-zustaende">Die drei Zustände</a></li>
+                    <li class="toc-level-2"><a href="#1-working-directory">1. Working Directory</a></li>
+                    <li class="toc-level-2"><a href="#2-staging-area-index">2. Staging Area (Index)</a></li>
+                    <li class="toc-level-2"><a href="#3-repository-git">3. Repository (.git)</a></li>
+                    <li class="toc-level-2"><a href="#der-workflow">Der Workflow</a></li>
+                    <li class="toc-level-1"><a href="#grundlegende-befehle">Grundlegende Befehle</a></li>
+                    <li class="toc-level-2"><a href="#status-pruefen">Status prüfen</a></li>
+                    <li class="toc-level-2"><a href="#aenderungen-stagen">Änderungen stagen</a></li>
+                    <li class="toc-level-2"><a href="#commit-erstellen">Commit erstellen</a></li>
+                    <li class="toc-level-2"><a href="#aenderungen-ansehen">Änderungen ansehen</a></li>
+                    <li class="toc-level-2"><a href="#staging-rueckgaengig-machen">Staging rückgängig machen</a></li>
+                    <li class="toc-level-2"><a href="#aenderungen-verwerfen">Änderungen verwerfen</a></li>
+                    <li class="toc-level-1"><a href="#historie-logs">Historie &amp; Logs</a></li>
+                    <li class="toc-level-2"><a href="#commit-historie-anzeigen">Commit-Historie anzeigen</a></li>
+                    <li class="toc-level-2"><a href="#einzelnen-commit-ansehen">Einzelnen Commit ansehen</a></li>
+                    <li class="toc-level-2"><a href="#wer-hat-was-geaendert">Wer hat was geändert?</a></li>
+                    <li class="toc-level-2"><a href="#suchen-in-der-historie">Suchen in der Historie</a></li>
+                    <li class="toc-level-1"><a href="#branches-verzweigungen">Branches (Verzweigungen)</a></li>
+                    <li class="toc-level-2"><a href="#branch-grundlagen">Branch-Grundlagen</a></li>
+                    <li class="toc-level-2"><a href="#branch-umbenennen">Branch umbenennen</a></li>
+                    <li class="toc-level-2"><a href="#branch-loeschen">Branch löschen</a></li>
+                    <li class="toc-level-2"><a href="#branches-zusammenfuehren-merge">Branches zusammenführen (Merge)</a></li>
+                    <li class="toc-level-2"><a href="#typischer-branch-workflow">Typischer Branch-Workflow</a></li>
+                    <li class="toc-level-1"><a href="#remote-repositories-github">Remote Repositories (GitHub)</a></li>
+                    <li class="toc-level-2"><a href="#remote-hinzufuegen">Remote hinzufügen</a></li>
+                    <li class="toc-level-2"><a href="#pushen-hochladen">Pushen (Hochladen)</a></li>
+                    <li class="toc-level-2"><a href="#pullen-herunterladen">Pullen (Herunterladen)</a></li>
+                    <li class="toc-level-2"><a href="#github-repository-erstellen">GitHub Repository erstellen</a></li>
+                    <li class="toc-level-2"><a href="#ssh-vs-https">SSH vs HTTPS</a></li>
+                    <li class="toc-level-1"><a href="#rueckgaengig-machen-wiederherstellen">Rückgängig machen &amp; Wiederherstellen</a></li>
+                    <li class="toc-level-2"><a href="#letzten-commit-korrigieren">Letzten Commit korrigieren</a></li>
+                    <li class="toc-level-2"><a href="#commits-rueckgaengig-machen">Commits rückgängig machen</a></li>
+                    <li class="toc-level-2"><a href="#branch-zuruecksetzen-vorsicht">Branch zurücksetzen (VORSICHT!)</a></li>
+                    <li class="toc-level-2"><a href="#geloeschte-commits-wiederfinden">Gelöschte Commits wiederfinden</a></li>
+                    <li class="toc-level-2"><a href="#einzelne-datei-aus-commit-wiederherstellen">Einzelne Datei aus Commit wiederherstellen</a></li>
+                    <li class="toc-level-1"><a href="#stashing-zwischenspeichern">Stashing (Zwischenspeichern)</a></li>
+                    <li class="toc-level-2"><a href="#aenderungen-stashen">Änderungen stashen</a></li>
+                    <li class="toc-level-2"><a href="#stash-wiederherstellen">Stash wiederherstellen</a></li>
+                    <li class="toc-level-2"><a href="#stashes-verwalten">Stashes verwalten</a></li>
+                    <li class="toc-level-2"><a href="#typischer-stash-workflow">Typischer Stash-Workflow</a></li>
+                    <li class="toc-level-1"><a href="#tags-versionen-markieren">Tags (Versionen markieren)</a></li>
+                    <li class="toc-level-2"><a href="#tag-erstellen">Tag erstellen</a></li>
+                    <li class="toc-level-2"><a href="#tags-anzeigen">Tags anzeigen</a></li>
+                    <li class="toc-level-2"><a href="#tags-pushen">Tags pushen</a></li>
+                    <li class="toc-level-2"><a href="#tag-loeschen">Tag löschen</a></li>
+                    <li class="toc-level-2"><a href="#semantic-versioning">Semantic Versioning</a></li>
+                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                    <li class="toc-level-2"><a href="#commit-hygiene">Commit-Hygiene</a></li>
+                    <li class="toc-level-2"><a href="#konventionelle-commit-nachrichten">Konventionelle Commit-Nachrichten</a></li>
+                    <li class="toc-level-2"><a href="#branch-strategie">Branch-Strategie</a></li>
+                    <li class="toc-level-2"><a href="#gitignore-grundregeln">.gitignore Grundregeln</a></li>
+                    <li class="toc-level-2"><a href="#vor-dem-push">Vor dem Push</a></li>
+                    <li class="toc-level-1"><a href="#git-cheatsheet">Git Cheatsheet</a></li>
+                    <li class="toc-level-2"><a href="#einrichtung">Einrichtung</a></li>
+                    <li class="toc-level-2"><a href="#taegliche-arbeit">Tägliche Arbeit</a></li>
+                    <li class="toc-level-2"><a href="#branches">Branches</a></li>
+                    <li class="toc-level-2"><a href="#historie">Historie</a></li>
+                    <li class="toc-level-2"><a href="#rueckgaengig">Rückgängig</a></li>
+                    <li class="toc-level-2"><a href="#remote">Remote</a></li>
+                    <li class="toc-level-1"><a href="#troubleshooting">Troubleshooting</a></li>
+                    <li class="toc-level-2"><a href="#problem-fatal-not-a-git-repository">Problem: &quot;fatal: not a git repository&quot;</a></li>
+                    <li class="toc-level-2"><a href="#problem-merge-konflikt">Problem: Merge-Konflikt</a></li>
+                    <li class="toc-level-2"><a href="#problem-falscher-branch">Problem: Falscher Branch</a></li>
+                    <li class="toc-level-2"><a href="#problem-grosse-datei-versehentlich-committed">Problem: Große Datei versehentlich committed</a></li>
+                    <li class="toc-level-2"><a href="#problem-push-wird-abgelehnt">Problem: Push wird abgelehnt</a></li>
+                    <li class="toc-level-2"><a href="#problem-commit-nachricht-falsch">Problem: Commit-Nachricht falsch</a></li>
+                    <li class="toc-level-2"><a href="#problem-alles-kaputt-zurueck-zum-letzten-funktionierenden-zustand">Problem: Alles kaputt, zurück zum letzten funktionierenden Zustand</a></li>
+                    <li class="toc-level-1"><a href="#weiterfuehrende-ressourcen">Weiterführende Ressourcen</a></li>
+                    <li class="toc-level-2"><a href="#offizielle-dokumentation">Offizielle Dokumentation</a></li>
+                    <li class="toc-level-2"><a href="#interaktives-lernen">Interaktives Lernen</a></li>
+                    <li class="toc-level-2"><a href="#github-spezifisch">GitHub-spezifisch</a></li>
+                    <li class="toc-level-2"><a href="#cheatsheets">Cheatsheets</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
+                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale Versionskontrolle</a></li>
+                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Was ist Git? -->
+                <section class="categories section-top">
+                    <h2 id="was-ist-git">Was ist Git?</h2>
+                    <p>Git ist ein <strong>verteiltes Versionskontrollsystem</strong>, das 2005 von Linus Torvalds (dem
+                        Erfinder von Linux) entwickelt wurde. Es trackt Änderungen an Dateien und ermöglicht dir, zu
+                        jedem gespeicherten Zustand zurückzukehren.</p>
+                </section>
+
+                <!-- Wie Git funktioniert -->
+                <section class="categories">
+                    <div class="grid-2col">
+                        <div class="grid-2col-bg">
+                            <h3 id="wie-git-funktioniert">Wie Git funktioniert</h3>
+                            <p>Git erstellt einen versteckten <code>.git</code>-Ordner in deinem Projekt. Darin
+                                speichert es:
+                            </p>
+                            <ul class="arrow-list">
+                                <li><strong>Snapshots</strong> - Momentaufnahmen deiner Dateien (nicht komplette Kopien,
+                                    sondern
+                                    nur Änderungen)</li>
+                                <li><strong>Timeline</strong> - Chronologische Historie aller Commits</li>
+                                <li><strong>Metadaten</strong> - Wer hat wann was geändert</li>
+                            </ul>
+                            <!-- </section> -->
+                        </div>
+                        <div class="grid-2col-bg">
+                            <!-- Warum Git? -->
+                            <!-- <section class="categories"> -->
+                            <h3 id="warum-git">Warum Git?</h3>
+                            <ul class="arrow-list">
+                                <li><strong>Sicherheit</strong> - Nie wieder Datenverlust, jeder Zustand ist
+                                    wiederherstellbar
+                                </li>
+                                <li><strong>Speichereffizient</strong> - Speichert nur Unterschiede (Deltas), nicht
+                                    komplette
+                                    Kopien</li>
+                                <li><strong>Branching</strong> - Experimentiere ohne das Hauptprojekt zu gefährden</li>
+                                <li><strong>Zusammenarbeit</strong> - Mehrere Entwickler können parallel arbeiten</li>
+                                <li><strong>Industrie-Standard</strong> - Wird von fast allen Entwicklern weltweit
+                                    genutzt
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Installation &amp; Setup -->
+                <section class="categories">
+                    <h2 id="installation-setup">Installation &amp; Setup</h2>
+
+                    <h3 id="git-installieren">Git installieren</h3>
+
+                    <h4>macOS</h4>
+                    <p>Git ist oft schon vorinstalliert. Prüfe im Terminal:</p>
+                    <pre><code class="language-bash">git --version</code></pre>
+                    <p>Falls nicht installiert, fragt macOS automatisch nach den Xcode Command Line Tools. Alternativ:
+                    </p>
+                    <pre><code class="language-bash">xcode-select --install</code></pre>
+
+                    <h4>Windows</h4>
+                    <p>Lade Git von <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com</a> herunter und führe den Installer aus.</p>
+
+                    <h4>Linux (Ubuntu/Debian)</h4>
+                    <pre><code class="language-bash">sudo apt update
+sudo apt install git</code></pre>
+
+                    <h3 id="globale-konfiguration">Globale Konfiguration</h3>
+                    <p>Nach der Installation musst du Git einmalig konfigurieren:</p>
+                    <pre><code class="language-bash"># Dein Name (erscheint in Commits)
+git config --global user.name "Dein Name"
+
+# Deine E-Mail (sollte mit GitHub übereinstimmen)
+git config --global user.email "deine@email.com"
+
+# Optional: Standard-Editor setzen
+git config --global core.editor "code --wait"  # VS Code
+
+# Optional: Standard-Branch-Name (main statt master)
+git config --global init.defaultBranch main</code></pre>
+
+                    <h3 id="konfiguration-pruefen">Konfiguration prüfen</h3>
+                    <pre><code class="language-bash"># Alle Einstellungen anzeigen
+git config --list
+
+# Einzelne Einstellung prüfen
+git config user.name
+git config user.email</code></pre>
+
+                </section>
+
+                <!-- Weitere Sections nach Bedarf -->
+                <section class="categories">
+                        <h2 id="repository-erstellen">Repository erstellen</h2>
+    
+    <h3 id="neues-projekt-initialisieren">Neues Projekt initialisieren</h3>
+    <p>Im Projektordner:</p>
+    <pre><code class="language-bash">cd /pfad/zu/deinem/projekt
+git init</code></pre>
+    <p>Das erstellt den versteckten <code>.git</code>-Ordner. Dein Projekt ist jetzt ein Git-Repository.</p>
+    
+    <h3 id="bestehendes-repository-klonen">Bestehendes Repository klonen</h3>
+    <p>Ein Projekt von GitHub (oder anderem Server) herunterladen:</p>
+    <pre><code class="language-bash">git clone https://github.com/username/repository.git</code></pre>
+    <p>Das erstellt einen neuen Ordner mit dem kompletten Projekt und seiner Git-Historie.</p>
+    
+    <h3 id="gitignore-einrichten">.gitignore einrichten</h3>
+    <p>Die <code>.gitignore</code>-Datei sagt Git, welche Dateien NICHT getrackt werden sollen:</p>
+    <pre><code class="language-bash"># Dependencies - werden über package.json neu installiert
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS-spezifische Dateien
+.DS_Store          # macOS
+Thumbs.db          # Windows
+
+# Editor-Einstellungen
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Persönliche/temporäre Ordner
+-noupload/
+README/
+temp/
+*.tmp</code></pre>
+    
+    <h4>.gitignore Syntax</h4>
+    <ul class="arrow-list">
+        <li><code>datei.txt</code> - Ignoriert diese spezifische Datei</li>
+        <li><code>ordner/</code> - Ignoriert kompletten Ordner (/ am Ende = Verzeichnis)</li>
+        <li><code>*.log</code> - Ignoriert alle Dateien mit .log-Endung</li>
+        <li><code>!wichtig.log</code> - Ausnahme: Diese Datei NICHT ignorieren</li>
+        <li><code>**/temp</code> - Ignoriert "temp" in allen Unterordnern</li>
+        <li><code># Kommentar</code> - Kommentarzeile</li>
+    </ul>
+</section>
+
+<section class="categories">
+    <h2 id="die-drei-zustaende">Die drei Zustände</h2>
+    
+    <p>Git kennt drei Bereiche für deine Dateien:</p>
+    
+    <h3 id="1-working-directory">1. Working Directory</h3>
+    <p>Dein aktueller Projektordner. Hier arbeitest du an deinen Dateien.</p>
+    
+    <h3 id="2-staging-area-index">2. Staging Area (Index)</h3>
+    <p>Ein Zwischenbereich. Hier sammelst du Änderungen, die in den nächsten Commit sollen.</p>
+    
+    <h3 id="3-repository-git">3. Repository (.git)</h3>
+    <p>Die permanente Git-Datenbank mit allen Commits.</p>
+    
+    <h3 id="der-workflow">Der Workflow</h3>
+    <pre><code class="language-plaintext">Working Directory  →  Staging Area  →  Repository
+    (bearbeiten)        (git add)       (git commit)</code></pre>
+    
+    <p>Beispiel:</p>
+    <pre><code class="language-bash"># 1. Du änderst index.html (Working Directory)
+
+# 2. Du markierst die Änderung für den Commit
+git add index.html        # → Staging Area
+
+# 3. Du speicherst den Snapshot permanent
+git commit -m "Header aktualisiert"  # → Repository</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="grundlegende-befehle">Grundlegende Befehle</h2>
+    
+    <h3 id="status-pruefen">Status prüfen</h3>
+    <pre><code class="language-bash">git status</code></pre>
+    <p>Zeigt:</p>
+    <ul class="arrow-list">
+        <li>Geänderte Dateien (rot = nicht staged)</li>
+        <li>Staged Dateien (grün = bereit für Commit)</li>
+        <li>Ungetrackte neue Dateien</li>
+    </ul>
+    
+    <h3 id="aenderungen-stagen">Änderungen stagen</h3>
+    <pre><code class="language-bash"># Einzelne Datei stagen
+git add datei.html
+
+# Mehrere Dateien
+git add datei1.html datei2.css
+
+# Alle Änderungen im aktuellen Ordner
+git add .
+
+# Alle Änderungen im gesamten Repository
+git add -A
+
+# Interaktiv auswählen
+git add -p</code></pre>
+    
+    <h3 id="commit-erstellen">Commit erstellen</h3>
+    <pre><code class="language-bash"># Mit Nachricht
+git commit -m "Beschreibung der Änderung"
+
+# Staging + Commit in einem (nur für bereits getrackte Dateien)
+git commit -am "Alle Änderungen committen"
+
+# Editor öffnen für längere Nachricht
+git commit</code></pre>
+    
+    <h4>Gute Commit-Nachrichten</h4>
+    <pre><code class="language-bash"># Schlecht
+git commit -m "Update"
+git commit -m "Fix"
+git commit -m "asdf"
+
+# Gut
+git commit -m "Navigation: Dropdown-Menü für mobile Ansicht hinzugefügt"
+git commit -m "Bugfix: Sidebar scrollt jetzt korrekt auf kleinen Bildschirmen"
+git commit -m "SEO: Meta-Descriptions für alle Tutorial-Seiten ergänzt"</code></pre>
+    
+    <h3 id="aenderungen-ansehen">Änderungen ansehen</h3>
+    <pre><code class="language-bash"># Unterschiede im Working Directory (noch nicht staged)
+git diff
+
+# Unterschiede in der Staging Area
+git diff --staged
+
+# Unterschied zu einem bestimmten Commit
+git diff abc123
+
+# Nur Dateinamen anzeigen
+git diff --name-only</code></pre>
+    
+    <h3 id="staging-rueckgaengig-machen">Staging rückgängig machen</h3>
+    <pre><code class="language-bash"># Datei aus Staging entfernen (Änderungen bleiben erhalten)
+git restore --staged datei.html
+
+# Ältere Git-Version
+git reset HEAD datei.html</code></pre>
+    
+    <h3 id="aenderungen-verwerfen">Änderungen verwerfen</h3>
+    <pre><code class="language-bash"># VORSICHT: Verwirft alle Änderungen an der Datei!
+git restore datei.html
+
+# Ältere Git-Version
+git checkout -- datei.html</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="historie-logs">Historie &amp; Logs</h2>
+    
+    <h3 id="commit-historie-anzeigen">Commit-Historie anzeigen</h3>
+    <pre><code class="language-bash"># Standard-Log
+git log
+
+# Kompakte Einzeiler-Ansicht
+git log --oneline
+
+# Mit Grafik für Branches
+git log --oneline --graph
+
+# Letzte 5 Commits
+git log -5
+
+# Commits einer bestimmten Datei
+git log -- datei.html
+
+# Commits mit Änderungen anzeigen
+git log -p
+
+# Schöne formatierte Ausgabe
+git log --pretty=format:"%h - %an, %ar : %s"</code></pre>
+    
+    <h3 id="einzelnen-commit-ansehen">Einzelnen Commit ansehen</h3>
+    <pre><code class="language-bash"># Details eines Commits
+git show abc123
+
+# Nur die geänderten Dateien
+git show --name-only abc123</code></pre>
+    
+    <h3 id="wer-hat-was-geaendert">Wer hat was geändert?</h3>
+    <pre><code class="language-bash"># Zeigt für jede Zeile, wer sie zuletzt geändert hat
+git blame datei.html
+
+# Nur bestimmte Zeilen
+git blame -L 10,20 datei.html</code></pre>
+    
+    <h3 id="suchen-in-der-historie">Suchen in der Historie</h3>
+    <pre><code class="language-bash"># Commits mit bestimmtem Text in der Nachricht
+git log --grep="Navigation"
+
+# Commits die bestimmten Code geändert haben
+git log -S "function initSidebar"
+
+# Commits von bestimmtem Autor
+git log --author="Dein Name"
+
+# Commits in Zeitraum
+git log --since="2024-01-01" --until="2024-12-31"</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="branches-verzweigungen">Branches (Verzweigungen)</h2>
+    
+    <p>Branches ermöglichen parallele Entwicklung. Du kannst an Features arbeiten, ohne den Hauptcode zu beeinflussen.</p>
+    
+    <h3 id="branch-grundlagen">Branch-Grundlagen</h3>
+    <pre><code class="language-bash"># Alle Branches anzeigen
+git branch
+
+# Auch Remote-Branches anzeigen
+git branch -a
+
+# Neuen Branch erstellen
+git branch feature-navigation
+
+# Zu Branch wechseln
+git checkout feature-navigation
+
+# Erstellen + Wechseln in einem
+git checkout -b feature-navigation
+
+# Neuere Git-Version (switch statt checkout)
+git switch feature-navigation
+git switch -c neuer-branch</code></pre>
+    
+    <h3 id="branch-umbenennen">Branch umbenennen</h3>
+    <pre><code class="language-bash"># Aktuellen Branch umbenennen
+git branch -m neuer-name
+
+# Anderen Branch umbenennen
+git branch -m alter-name neuer-name</code></pre>
+    
+    <h3 id="branch-loeschen">Branch löschen</h3>
+    <pre><code class="language-bash"># Branch löschen (nur wenn gemerged)
+git branch -d feature-navigation
+
+# Branch erzwungen löschen (auch wenn nicht gemerged)
+git branch -D feature-navigation</code></pre>
+    
+    <h3 id="branches-zusammenfuehren-merge">Branches zusammenführen (Merge)</h3>
+    <pre><code class="language-bash"># Erst zum Ziel-Branch wechseln
+git checkout main
+
+# Dann anderen Branch hineinmergen
+git merge feature-navigation</code></pre>
+    
+    <h4>Merge-Konflikte</h4>
+    <p>Wenn beide Branches die gleiche Stelle geändert haben:</p>
+    <pre><code class="language-plaintext">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Deine Änderung im aktuellen Branch
+=======
+Änderung aus dem anderen Branch
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-navigation</code></pre>
+    <p>Lösung:</p>
+    <ol>
+        <li>Öffne die Datei und entscheide, welche Version (oder Kombination) richtig ist</li>
+        <li>Lösche die Konflikt-Marker (<code>&lt;&lt;&lt;</code>, <code>===</code>, <code>&gt;&gt;&gt;</code>)</li>
+        <li>Stage die Datei: <code>git add datei.html</code></li>
+        <li>Commit: <code>git commit -m "Merge-Konflikt gelöst"</code></li>
+    </ol>
+    
+    <h3 id="typischer-branch-workflow">Typischer Branch-Workflow</h3>
+    <pre><code class="language-bash"># 1. Neues Feature starten
+git checkout -b feature-search
+
+# 2. Arbeiten und committen
+git add .
+git commit -m "Suchfunktion: Grundstruktur"
+git commit -m "Suchfunktion: Ergebnisanzeige"
+
+# 3. Zurück zum Hauptbranch
+git checkout main
+
+# 4. Feature integrieren
+git merge feature-search
+
+# 5. Feature-Branch löschen
+git branch -d feature-search</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="remote-repositories-github">Remote Repositories (GitHub)</h2>
+    
+    <p>Ein Remote Repository ist eine Kopie deines Projekts auf einem Server (z.B. GitHub, GitLab, Bitbucket).</p>
+    
+    <h3 id="remote-hinzufuegen">Remote hinzufügen</h3>
+    <pre><code class="language-bash"># Remote-Repository verbinden
+git remote add origin https://github.com/username/repository.git
+
+# Prüfen welche Remotes existieren
+git remote -v
+
+# Remote umbenennen
+git remote rename origin hauptserver
+
+# Remote entfernen
+git remote remove origin</code></pre>
+    
+    <h3 id="pushen-hochladen">Pushen (Hochladen)</h3>
+    <pre><code class="language-bash"># Ersten Push (setzt Upstream)
+git push -u origin main
+
+# Danach reicht
+git push
+
+# Bestimmten Branch pushen
+git push origin feature-branch
+
+# Alle Branches pushen
+git push --all</code></pre>
+    
+    <h3 id="pullen-herunterladen">Pullen (Herunterladen)</h3>
+    <pre><code class="language-bash"># Änderungen vom Server holen und mergen
+git pull
+
+# Nur holen, nicht mergen (sicherer)
+git fetch
+git merge origin/main
+
+# Mit Rebase statt Merge
+git pull --rebase</code></pre>
+    
+    <h3 id="github-repository-erstellen">GitHub Repository erstellen</h3>
+    <ol>
+        <li>Auf GitHub einloggen</li>
+        <li>"New Repository" klicken</li>
+        <li>Name eingeben (z.B. "DevPanicZone")</li>
+        <li>Public oder Private wählen</li>
+        <li>OHNE README erstellen (du hast ja schon Code)</li>
+        <li>Den angezeigten Befehlen folgen:</li>
+    </ol>
+    <pre><code class="language-bash"># Bestehendes Projekt mit GitHub verbinden
+git remote add origin https://github.com/deinname/DevPanicZone.git
+git branch -M main
+git push -u origin main</code></pre>
+    
+    <h3 id="ssh-vs-https">SSH vs HTTPS</h3>
+    <p><strong>HTTPS</strong> - Einfacher einzurichten, fragt nach Passwort/Token</p>
+    <p><strong>SSH</strong> - Sicherer, keine Passwort-Eingabe nach Setup</p>
+    <pre><code class="language-bash"># SSH-Key generieren
+ssh-keygen -t ed25519 -C "deine@email.com"
+
+# Key anzeigen und auf GitHub hinzufügen
+cat ~/.ssh/id_ed25519.pub
+
+# Repository mit SSH klonen
+git clone git@github.com:username/repository.git</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="rueckgaengig-machen-wiederherstellen">Rückgängig machen &amp; Wiederherstellen</h2>
+    
+    <h3 id="letzten-commit-korrigieren">Letzten Commit korrigieren</h3>
+    <pre><code class="language-bash"># Commit-Nachricht ändern
+git commit --amend -m "Neue Nachricht"
+
+# Datei zum letzten Commit hinzufügen
+git add vergessene-datei.html
+git commit --amend --no-edit</code></pre>
+    <p><strong>Wichtig:</strong> Nur bei lokalen Commits! Gepushte Commits nicht amenden.</p>
+    
+    <h3 id="commits-rueckgaengig-machen">Commits rückgängig machen</h3>
+    <pre><code class="language-bash"># Neuen Commit erstellen, der Änderungen rückgängig macht
+git revert abc123
+
+# Mehrere Commits reverten
+git revert abc123..def456</code></pre>
+    <p><code>git revert</code> ist sicher für geteilte Repositories, da es die Historie nicht ändert.</p>
+    
+    <h3 id="branch-zuruecksetzen-vorsicht">Branch zurücksetzen (VORSICHT!)</h3>
+    <pre><code class="language-bash"># Soft: Commits entfernen, Änderungen behalten (staged)
+git reset --soft HEAD~1
+
+# Mixed (Standard): Commits entfernen, Änderungen behalten (unstaged)
+git reset HEAD~1
+
+# Hard: Commits UND Änderungen komplett löschen
+git reset --hard HEAD~1
+
+# Zu bestimmtem Commit zurück
+git reset --hard abc123</code></pre>
+    <p><strong>WARNUNG:</strong> <code>--hard</code> löscht unwiderruflich! Nur bei lokalen, nicht gepushten Commits verwenden.</p>
+    
+    <h3 id="geloeschte-commits-wiederfinden">Gelöschte Commits wiederfinden</h3>
+    <pre><code class="language-bash"># Reflog zeigt ALLE Aktionen, auch "gelöschte" Commits
+git reflog
+
+# Zu einem reflog-Eintrag zurück
+git reset --hard HEAD@{2}</code></pre>
+    
+    <h3 id="einzelne-datei-aus-commit-wiederherstellen">Einzelne Datei aus Commit wiederherstellen</h3>
+    <pre><code class="language-bash"># Datei aus bestimmtem Commit holen
+git checkout abc123 -- datei.html
+
+# Aus letztem Commit
+git checkout HEAD -- datei.html</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="stashing-zwischenspeichern">Stashing (Zwischenspeichern)</h2>
+    
+    <p>Stash speichert deine aktuellen Änderungen temporär, damit du den Branch wechseln kannst.</p>
+    
+    <h3 id="aenderungen-stashen">Änderungen stashen</h3>
+    <pre><code class="language-bash"># Änderungen zwischenspeichern
+git stash
+
+# Mit Beschreibung
+git stash save "Angefangenes Feature"
+
+# Auch ungetrackte Dateien
+git stash -u
+
+# Auch ignorierte Dateien
+git stash -a</code></pre>
+    
+    <h3 id="stash-wiederherstellen">Stash wiederherstellen</h3>
+    <pre><code class="language-bash"># Letzten Stash anwenden und behalten
+git stash apply
+
+# Letzten Stash anwenden und löschen
+git stash pop
+
+# Bestimmten Stash anwenden
+git stash apply stash@{2}</code></pre>
+    
+    <h3 id="stashes-verwalten">Stashes verwalten</h3>
+    <pre><code class="language-bash"># Alle Stashes anzeigen
+git stash list
+
+# Inhalt eines Stash ansehen
+git stash show stash@{0}
+
+# Mit Diff
+git stash show -p stash@{0}
+
+# Einen Stash löschen
+git stash drop stash@{0}
+
+# Alle Stashes löschen
+git stash clear</code></pre>
+    
+    <h3 id="typischer-stash-workflow">Typischer Stash-Workflow</h3>
+    <pre><code class="language-bash"># Du arbeitest an Feature A, musst aber dringend Bug fixen
+
+# 1. Aktuelle Arbeit zwischenspeichern
+git stash save "Feature A - Work in Progress"
+
+# 2. Zum Bugfix-Branch wechseln
+git checkout bugfix-branch
+
+# 3. Bug fixen und committen
+git commit -am "Kritischen Bug gefixt"
+
+# 4. Zurück zu deinem Feature
+git checkout feature-a
+
+# 5. Arbeit wiederherstellen
+git stash pop</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="tags-versionen-markieren">Tags (Versionen markieren)</h2>
+    
+    <p>Tags markieren wichtige Punkte in der Geschichte, typischerweise Release-Versionen.</p>
+    
+    <h3 id="tag-erstellen">Tag erstellen</h3>
+    <pre><code class="language-bash"># Lightweight Tag (nur Marker)
+git tag v1.0.0
+
+# Annotated Tag (mit Metadaten) - empfohlen
+git tag -a v1.0.0 -m "Version 1.0.0 - Erste stabile Version"
+
+# Tag für älteren Commit
+git tag -a v0.9.0 abc123 -m "Beta Release"</code></pre>
+    
+    <h3 id="tags-anzeigen">Tags anzeigen</h3>
+    <pre><code class="language-bash"># Alle Tags
+git tag
+
+# Tags mit Muster
+git tag -l "v1.*"
+
+# Tag-Details
+git show v1.0.0</code></pre>
+    
+    <h3 id="tags-pushen">Tags pushen</h3>
+    <pre><code class="language-bash"># Einzelnen Tag pushen
+git push origin v1.0.0
+
+# Alle Tags pushen
+git push origin --tags</code></pre>
+    
+    <h3 id="tag-loeschen">Tag löschen</h3>
+    <pre><code class="language-bash"># Lokal löschen
+git tag -d v1.0.0
+
+# Remote löschen
+git push origin --delete v1.0.0</code></pre>
+    
+    <h3 id="semantic-versioning">Semantic Versioning</h3>
+    <p>Empfohlenes Format: <code>vMAJOR.MINOR.PATCH</code></p>
+    <ul class="arrow-list">
+        <li><strong>MAJOR</strong> - Inkompatible Änderungen</li>
+        <li><strong>MINOR</strong> - Neue Features, abwärtskompatibel</li>
+        <li><strong>PATCH</strong> - Bugfixes, abwärtskompatibel</li>
+    </ul>
+    <p>Beispiele: <code>v1.0.0</code>, <code>v1.2.3</code>, <code>v2.0.0-beta</code></p>
+</section>
+
+<section class="categories">
+    <h2 id="best-practices">Best Practices</h2>
+    
+    <h3 id="commit-hygiene">Commit-Hygiene</h3>
+    <ul class="arrow-list">
+        <li><strong>Oft committen</strong> - Kleine, logische Einheiten</li>
+        <li><strong>Aussagekräftige Nachrichten</strong> - Was wurde geändert und warum?</li>
+        <li><strong>Ein Thema pro Commit</strong> - Nicht alles vermischen</li>
+        <li><strong>Funktionierenden Code committen</strong> - Keine kaputten Zustände</li>
+    </ul>
+    
+    <h3 id="konventionelle-commit-nachrichten">Konventionelle Commit-Nachrichten</h3>
+    <pre><code class="language-bash">feat: Suchfunktion hinzugefügt
+fix: Sidebar-Scroll-Bug behoben
+docs: README aktualisiert
+style: CSS-Formatierung korrigiert
+refactor: Navigation-Code vereinfacht
+test: Unit-Tests für Search hinzugefügt
+chore: Dependencies aktualisiert</code></pre>
+    
+    <h3 id="branch-strategie">Branch-Strategie</h3>
+    <ul class="arrow-list">
+        <li><code>main</code> oder <code>master</code> - Stabile, produktionsreife Version</li>
+        <li><code>develop</code> - Entwicklungsversion (optional)</li>
+        <li><code>feature/name</code> - Neue Features</li>
+        <li><code>bugfix/name</code> - Bug-Behebungen</li>
+        <li><code>hotfix/name</code> - Kritische Fixes für Production</li>
+    </ul>
+    
+    <h3 id="gitignore-grundregeln">.gitignore Grundregeln</h3>
+    <ul class="arrow-list">
+        <li><strong>Dependencies</strong> nie committen (<code>node_modules/</code>)</li>
+        <li><strong>Build-Artefakte</strong> ignorieren (<code>dist/</code>, <code>build/</code>)</li>
+        <li><strong>Persönliche Einstellungen</strong> ignorieren (<code>.vscode/</code>, <code>.idea/</code>)</li>
+        <li><strong>Sensible Daten</strong> nie committen (<code>.env</code>, Passwörter)</li>
+        <li><strong>OS-Dateien</strong> ignorieren (<code>.DS_Store</code>, <code>Thumbs.db</code>)</li>
+    </ul>
+    
+    <h3 id="vor-dem-push">Vor dem Push</h3>
+    <ol>
+        <li><code>git status</code> - Was wird committet?</li>
+        <li><code>git diff</code> - Änderungen prüfen</li>
+        <li><code>git log</code> - Commit-Historie kontrollieren</li>
+        <li>Code testen - Funktioniert alles?</li>
+    </ol>
+</section>
+
+<section class="categories">
+    <h2 id="git-cheatsheet">Git Cheatsheet</h2>
+    
+    <h3 id="einrichtung">Einrichtung</h3>
+    <pre><code class="language-bash">git config --global user.name "Name"
+git config --global user.email "email@example.com"
+git init
+git clone &lt;url&gt;</code></pre>
+    
+    <h3 id="taegliche-arbeit">Tägliche Arbeit</h3>
+    <pre><code class="language-bash">git status                  # Status prüfen
+git add .                   # Alles stagen
+git commit -m "Nachricht"   # Committen
+git push                    # Hochladen
+git pull                    # Herunterladen</code></pre>
+    
+    <h3 id="branches">Branches</h3>
+    <pre><code class="language-bash">git branch                  # Branches anzeigen
+git checkout -b name        # Neuer Branch
+git checkout main           # Branch wechseln
+git merge name              # Branch mergen
+git branch -d name          # Branch löschen</code></pre>
+    
+    <h3 id="historie">Historie</h3>
+    <pre><code class="language-bash">git log --oneline           # Kompakte Historie
+git diff                    # Änderungen anzeigen
+git blame datei             # Wer hat was geändert</code></pre>
+    
+    <h3 id="rueckgaengig">Rückgängig</h3>
+    <pre><code class="language-bash">git restore datei           # Änderungen verwerfen
+git restore --staged datei  # Unstagen
+git revert abc123           # Commit rückgängig
+git stash                   # Zwischenspeichern</code></pre>
+    
+    <h3 id="remote">Remote</h3>
+    <pre><code class="language-bash">git remote -v               # Remotes anzeigen
+git remote add origin url   # Remote hinzufügen
+git push -u origin main     # Erster Push
+git fetch                   # Änderungen holen</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="troubleshooting">Troubleshooting</h2>
+    
+    <h3 id="problem-fatal-not-a-git-repository">Problem: "fatal: not a git repository"</h3>
+    <p>Du bist nicht in einem Git-Repository.</p>
+    <pre><code class="language-bash"># Lösung: Repository initialisieren
+git init
+
+# Oder: In richtiges Verzeichnis wechseln
+cd /pfad/zum/projekt</code></pre>
+    
+    <h3 id="problem-merge-konflikt">Problem: Merge-Konflikt</h3>
+    <pre><code class="language-bash"># 1. Konflikte in Dateien suchen (markiert mit &lt;&lt;&lt;&lt;&lt;&lt;&lt;)
+# 2. Manuell korrigieren
+# 3. Datei stagen
+git add konflikt-datei.html
+# 4. Merge abschließen
+git commit</code></pre>
+    
+    <h3 id="problem-falscher-branch">Problem: Falscher Branch</h3>
+    <pre><code class="language-bash"># Änderungen noch nicht committet?
+git stash
+git checkout richtiger-branch
+git stash pop</code></pre>
+    
+    <h3 id="problem-grosse-datei-versehentlich-committed">Problem: Große Datei versehentlich committed</h3>
+    <pre><code class="language-bash"># Aus Historie entfernen (VORSICHT!)
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch pfad/zur/datei" \
+  --prune-empty --tag-name-filter cat -- --all</code></pre>
+    
+    <h3 id="problem-push-wird-abgelehnt">Problem: Push wird abgelehnt</h3>
+    <pre><code class="language-bash"># Jemand hat vor dir gepusht
+git pull --rebase
+git push
+
+# Oder wenn du sicher bist (VORSICHT!)
+git push --force</code></pre>
+    
+    <h3 id="problem-commit-nachricht-falsch">Problem: Commit-Nachricht falsch</h3>
+    <pre><code class="language-bash"># Letzter Commit, noch nicht gepusht
+git commit --amend -m "Richtige Nachricht"</code></pre>
+    
+    <h3 id="problem-alles-kaputt-zurueck-zum-letzten-funktionierenden-zustand">Problem: Alles kaputt, zurück zum letzten funktionierenden Zustand</h3>
+    <pre><code class="language-bash"># Alle Änderungen verwerfen und zum letzten Commit zurück
+git reset --hard HEAD
+
+# Zu bestimmtem Commit zurück
+git reflog  # Finde den Commit
+git reset --hard abc123</code></pre>
+</section>
+
+<section class="categories">
+    <h2 id="weiterfuehrende-ressourcen">Weiterführende Ressourcen</h2>
+    
+    <h3 id="offizielle-dokumentation">Offizielle Dokumentation</h3>
+    <ul class="arrow-list">
+        <li><a href="https://git-scm.com/doc" target="_blank" rel="noopener">Git Documentation</a> - Offizielle Referenz</li>
+        <li><a href="https://git-scm.com/book/de/v2" target="_blank" rel="noopener">Pro Git Buch</a> - Kostenloses, umfassendes Buch (auch auf Deutsch)</li>
+    </ul>
+    
+    <h3 id="interaktives-lernen">Interaktives Lernen</h3>
+    <ul class="arrow-list">
+        <li><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a> - Visuelles, interaktives Tutorial</li>
+        <li><a href="https://ohmygit.org/" target="_blank" rel="noopener">Oh My Git!</a> - Git als Spiel lernen</li>
+    </ul>
+    
+    <h3 id="github-spezifisch">GitHub-spezifisch</h3>
+    <ul class="arrow-list">
+        <li><a href="https://docs.github.com/de" target="_blank" rel="noopener">GitHub Docs</a> - Offizielle GitHub-Dokumentation</li>
+        <li><a href="https://skills.github.com/" target="_blank" rel="noopener">GitHub Skills</a> - Interaktive GitHub-Kurse</li>
+    </ul>
+    
+    <h3 id="cheatsheets">Cheatsheets</h3>
+    <ul class="arrow-list">
+        <li><a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank" rel="noopener">GitHub Git Cheat Sheet</a> - PDF zum Ausdrucken</li>
+    </ul>
+</section>
+
+
+                <!-- Prev/Next Navigation -->
+                <section class="categories">
+                    <nav class="tutorial-nav"></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+</body></html>
