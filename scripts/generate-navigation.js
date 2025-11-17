@@ -155,7 +155,8 @@ const TUTORIAL_ORDER = {
         'html-typografie.html',
         'html-listen.html',
         'html-links.html',
-        'html-bilder.html'
+        'html-bilder.html',
+        'html-tabellen.html'
     ],
     'tutorials/html/html-advanced': [
         // Platzhalter 

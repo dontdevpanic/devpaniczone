@@ -307,18 +307,22 @@ a:hover {
 
 /* ----- Lists ----- */
 
-/* Ordered Lists */
-
-ol {
+ol, ul {
     margin: 1.5rem 0;
     padding-left: 1.25rem;
 }
 
-ol li {
-    margin-bottom: 0.5rem;
+ol li,
+ul li {
+    margin-bottom: 0.25rem;
     padding-left: 0.5rem;
 }
 
+ol li:last-child,
+ul li:last-child {
+    margin-bottom: 0;
+}
+    
 ol li::marker {
     color: var(--text-secondary);
     font-weight: 600;
@@ -327,6 +331,24 @@ ol li::marker {
 ol li:last-child {
     margin-bottom: 0;
 }
+
+ul ul > li:first-child {
+    margin-top: 0;   /* Beispielwert */
+}
+
+ul ul > li:last-child {
+    margin-bottom: 0;
+}
+
+/* Nur verschachtelte ULs */
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+    margin-top: 0.5rem;   /* nach oben weniger Abstand */
+    margin-bottom: 0.5rem;
+}
+
 
 /* ----- Inline Code ----- */
 code {
@@ -348,7 +370,7 @@ pre {
     font-size: 0.9em;
     padding: 0.2em 0.4em;
     margin: 0 0 0 1.5rem;
-    background-color: var(--bg-tertiary);    
+    background-color: var(--bg-tertiary);
     border-radius: 8px;
 }
 
@@ -1440,7 +1462,7 @@ h4.section-title {
 }
 
 .grid-2col-bg h3 {
-    padding: 0.75rem 0 0;    
+    padding: 0.75rem 0 0;
 }
 
 .grid-1-2col {
@@ -1771,9 +1793,9 @@ h4.section-title {
 code.inline,
 code:not([class]) {
     font-family: var(--font-code);
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     background: var(--bg-tertiary);
-    padding: 0.2em 0.5em;
+    padding: 0.25em 0.5em 0.15rem;
     border-radius: 4px;
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
@@ -2025,6 +2047,18 @@ dt {
 
 dd {
     color: var(--text);
+}
+
+.list-demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 600px) {
+    .list-demo-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ===================================
