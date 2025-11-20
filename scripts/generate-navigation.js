@@ -214,7 +214,8 @@ const TUTORIAL_ORDER = {
         'bash-terminal.html',
         'globale-aenderungen-an-HTML-Dateien.html',
         'git-versionskontrolle.html',
-        'github-remote.html'
+        'github-remote.html',
+        'ftp-client-filezilla.html'
     ],
     'tutorials/misc/projects': [
         'assets-structure.html',
