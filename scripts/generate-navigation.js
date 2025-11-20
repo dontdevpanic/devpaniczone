@@ -160,7 +160,7 @@ const TUTORIAL_ORDER = {
         'html-meta-tags.html'
     ],
     'tutorials/html/html-advanced': [
-        // Platzhalter 
+        'html-semantik.html'
     ],
     'tutorials/css/css-basics': [
         'css-einbinden.html',
