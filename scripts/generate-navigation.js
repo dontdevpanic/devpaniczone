@@ -151,12 +151,13 @@ const TUTORIAL_ORDER = {
     'tutorials/html/html-basics': [
         'html-basics.html',
         'html-grundgeruest.html',
-        'html-meta-tags.html',
         'html-typografie.html',
+        'html-navigation.html',
         'html-listen.html',
         'html-links.html',
         'html-bilder.html',
-        'html-tabellen.html'
+        'html-tabellen.html',
+        'html-meta-tags.html'
     ],
     'tutorials/html/html-advanced': [
         // Platzhalter 
