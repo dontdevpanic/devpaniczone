@@ -222,9 +222,9 @@
                             </strong>
                             <ul class="arrow-list">
                                 <li><strong>Inhalt:</strong> Inhaltsverzeichnis der aktuellen Seite</li>
-                                <li><strong>Generierung:</strong> Server-seitig via <code>generate-navigation.js</code>
+                                <li><strong>Generierung:</strong> Server-seitig via <code class="inline">generate-navigation.js</code>
                                 </li>
-                                <li><strong>Basis:</strong> <code>h2</code> &amp; <code>h3</code> Überschriften</li>
+                                <li><strong>Basis:</strong> <code class="inline">h2</code> &amp; <code class="inline">h3</code> Überschriften</li>
                                 <li><strong>Features:</strong> ScrollSpy, Smooth Scroll</li>
                             </ul>
                         </div>
@@ -237,9 +237,9 @@
                             </strong>
                             <ul class="arrow-list">
                                 <li><strong>Inhalt:</strong> Alle Tutorials der Kategorie</li>
-                                <li><strong>Generierung:</strong> Server-seitig via <code>generate-navigation.js</code>
+                                <li><strong>Generierung:</strong> Server-seitig via <code class="inline">generate-navigation.js</code>
                                 </li>
-                                <li><strong>Basis:</strong> <code>TUTORIAL_ORDER</code> Konfiguration</li>
+                                <li><strong>Basis:</strong> <code class="inline">TUTORIAL_ORDER</code> Konfiguration</li>
                                 <li><strong>Features:</strong> Active-Link Highlighting</li>
                             </ul>
                         </div>
@@ -255,7 +255,7 @@
                         </strong>
                         <strong>Beide Sidebars werden server-seitig generiert!</strong>
                         <ul class="arrow-list">
-                            <li><strong>Server-seitig:</strong> HTML wird beim <code>npm run build</code> erstellt und
+                            <li><strong>Server-seitig:</strong> HTML wird beim <code class="inline">npm run build</code> erstellt und
                                 in die Datei geschrieben</li>
                             <li><strong>Browser-seitig:</strong> JavaScript würde im Browser HTML erstellen (langsamer,
                                 fehleranfällig)</li>
@@ -297,11 +297,11 @@ assets/
                     </h3>
                     <div class="grid-2col-bg">
                         <ol>
-                            <li><strong>Build-Zeit:</strong> <code>generate-navigation.js</code> erstellt HTML für beide
+                            <li><strong>Build-Zeit:</strong> <code class="inline">generate-navigation.js</code> erstellt HTML für beide
                                 Sidebars</li>
                             <li><strong>HTML-Datei:</strong> Sidebar-HTML ist fest im HTML eingebettet</li>
                             <li><strong>Seite lädt:</strong> Browser rendert die Sidebars (noch nicht sichtbar)</li>
-                            <li><strong>JavaScript lädt:</strong> <code>sidebar.js</code> und <code>scroll-spy.js</code>
+                            <li><strong>JavaScript lädt:</strong> <code class="inline">sidebar.js</code> und <code class="inline">scroll-spy.js</code>
                                 werden aktiv</li>
                             <li><strong>User-Interaktion:</strong> Klick auf Button → Sidebar öffnet sich</li>
                             <li><strong>Scrollen:</strong> ScrollSpy hebt aktiven Link hervor</li>
@@ -316,7 +316,7 @@ assets/
                         Überschriften generiert.</p>
 
                     <h3 id="1-generierung-generate-navigationjs">1. Generierung (generate-navigation.js)</h3>
-                    <p>Die Funktion <code>addIdsToHeadingsAndGenerateSidebar()</code> macht folgendes:</p>
+                    <p>Die Funktion <code class="inline">addIdsToHeadingsAndGenerateSidebar()</code> macht folgendes:</p>
 
                     <div class="code-block">
                         <div class="code-header">
@@ -388,11 +388,11 @@ assets/
 
 
                         <ol>
-                            <li>Finde alle <code>&lt;h2&gt;</code> und <code>&lt;h3&gt;</code> Überschriften</li>
-                            <li>Überspringe Überschriften mit <code>class="no-toc"</code></li>
+                            <li>Finde alle <code class="inline">&lt;h2&gt;</code> und <code class="inline">&lt;h3&gt;</code> Überschriften</li>
+                            <li>Überspringe Überschriften mit <code class="inline">class="no-toc"</code></li>
                             <li>Generiere eine ID aus dem Überschriften-Text (z.B. "Was ist CSS?" → "was-ist-css")</li>
-                            <li>Füge die ID direkt in die Überschrift ein: <code>&lt;h2 id="was-ist-css"&gt;</code></li>
-                            <li>Erstelle einen Link: <code>&lt;a href="#was-ist-css"&gt;Was ist CSS?&lt;/a&gt;</code>
+                            <li>Füge die ID direkt in die Überschrift ein: <code class="inline">&lt;h2 id="was-ist-css"&gt;</code></li>
+                            <li>Erstelle einen Link: <code class="inline">&lt;a href="#was-ist-css"&gt;Was ist CSS?&lt;/a&gt;</code>
                             </li>
                             <li>Gib sowohl das modifizierte HTML als auch die Links zurück</li>
                         </ol>
@@ -436,13 +436,13 @@ assets/
                             </svg>
                         </strong>
                         <ul class="arrow-list">
-                            <li><code>.toc-level-1</code> → h2-Überschriften (Hauptabschnitte)</li>
-                            <li><code>.toc-level-2</code> → h3-Überschriften (Unterabschnitte, eingerückt)</li>
+                            <li><code class="inline">.toc-level-1</code> → h2-Überschriften (Hauptabschnitte)</li>
+                            <li><code class="inline">.toc-level-2</code> → h3-Überschriften (Unterabschnitte, eingerückt)</li>
                         </ul>
                     </div>
 
                     <h3 id="3-interaktivitaet-sidebarjs">3. Interaktivität (sidebar.js)</h3>
-                    <p>Das <code>sidebar.js</code> Script steuert das Öffnen und Schließen:</p>
+                    <p>Das <code class="inline">sidebar.js</code> Script steuert das Öffnen und Schließen:</p>
 
                     <div class="code-block">
                         <div class="code-header">
@@ -497,7 +497,7 @@ assets/
                     <h4>Was passiert beim Öffnen?</h4>
                     <div class="grid-2col-bg">
                         <ol>
-                            <li>Klasse <code>.is-open</code> wird zur Sidebar hinzugefügt</li>
+                            <li>Klasse <code class="inline">.is-open</code> wird zur Sidebar hinzugefügt</li>
                             <li>CSS transform bewegt die Sidebar ins Sichtfeld</li>
                             <li>Overlay wird sichtbar (dunkler Hintergrund)</li>
                             <li>Body-Scrolling wird deaktiviert</li>
@@ -554,7 +554,7 @@ assets/
                         hervorhebt.</p>
 
                     <h3 id="wie-funktioniert-scrollspy">Wie funktioniert ScrollSpy?</h3>
-                    <p>Das <code>scroll-spy.js</code> Script trackt deine Scroll-Position und vergleicht sie mit den
+                    <p>Das <code class="inline">scroll-spy.js</code> Script trackt deine Scroll-Position und vergleicht sie mit den
                         Positionen der Überschriften:</p>
 
                     <div class="code-block">
@@ -660,7 +660,7 @@ new ScrollSpy();</code></pre>
                     <h4 class="no-toc">1. Initialisierung</h4>
                     <p>Beim Laden der Seite:</p>
                     <ol>
-                        <li>Finde alle Links in der TOC (<code>.toc-list a</code>)</li>
+                        <li>Finde alle Links in der TOC (<code class="inline">.toc-list a</code>)</li>
                         <li>Für jeden Link: Finde die zugehörige Überschrift via ID</li>
                         <li>Speichere Link + Überschrift zusammen in einem Array</li>
                     </ol>
@@ -727,16 +727,16 @@ new ScrollSpy();</code></pre>
 
                     <p><strong>Was passiert hier?</strong></p>
                     <ul class="arrow-list">
-                        <li><code>requestAnimationFrame</code> wartet bis zum nächsten Browser-Repaint</li>
+                        <li><code class="inline">requestAnimationFrame</code> wartet bis zum nächsten Browser-Repaint</li>
                         <li>Dadurch läuft die Funktion maximal 60x pro Sekunde (statt 1000x!)</li>
-                        <li><code>ticking</code> Flag verhindert mehrfache Aufrufe</li>
+                        <li><code class="inline">ticking</code> Flag verhindert mehrfache Aufrufe</li>
                     </ul>
 
                     <h4 class="no-toc">4. Active-Klasse setzen</h4>
                     <p>Wenn der aktive Abschnitt sich ändert:</p>
                     <ol>
-                        <li>Entferne <code>.active</code> von ALLEN TOC-Links</li>
-                        <li>Füge <code>.active</code> zum aktiven Link hinzu</li>
+                        <li>Entferne <code class="inline">.active</code> von ALLEN TOC-Links</li>
+                        <li>Füge <code class="inline">.active</code> zum aktiven Link hinzu</li>
                         <li>CSS hebt den Link hervor (z.B. blaue Farbe, fetter Text)</li>
                     </ol>
 
@@ -795,7 +795,7 @@ if ((window.innerHeight + window.scrollY) &gt;= document.body.offsetHeight - 10)
                         generiert!</p>
 
                     <h3 id="1-generierung-generate-navigationjs-1">1. Generierung (generate-navigation.js)</h3>
-                    <p>Die Funktion <code>generateSidebarNavList()</code> erstellt die Tutorial-Liste:</p>
+                    <p>Die Funktion <code class="inline">generateSidebarNavList()</code> erstellt die Tutorial-Liste:</p>
 
                     <div class="code-block">
                         <div class="code-header">
@@ -831,9 +831,9 @@ if ((window.innerHeight + window.scrollY) &gt;= document.body.offsetHeight - 10)
                     <div class="grid-2col-bg">
                         <ol>
                             <li>Ermittle die Unterkategorie aus dem Dateipfad</li>
-                            <li>Hole die Tutorial-Liste aus <code>TUTORIAL_ORDER</code></li>
+                            <li>Hole die Tutorial-Liste aus <code class="inline">TUTORIAL_ORDER</code></li>
                             <li>Für jedes Tutorial: Erstelle einen Link</li>
-                            <li>Das aktuelle Tutorial bekommt <code>class="active"</code></li>
+                            <li>Das aktuelle Tutorial bekommt <code class="inline">class="active"</code></li>
                             <li>Füge alle Links zusammen</li>
                         </ol>
                     </div>
@@ -900,10 +900,10 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 
                     <!-- <div class="info-box notice">
                         <h4 class="box-title notice no-toc">Wichtig: sidebar-right.js ist veraltet!</h4>
-                        <p>Die Datei <code>sidebar-right.js</code> enthält noch alte hardcoded Tutorial-Daten. Diese
+                        <p>Die Datei <code class="inline">sidebar-right.js</code> enthält noch alte hardcoded Tutorial-Daten. Diese
                             wird NICHT mehr verwendet!</p>
-                        <p>Die Tutorial-Liste wird jetzt komplett von <code>generate-navigation.js</code> erstellt. Das
-                            JavaScript ist nur noch für das Öffnen/Schließen zuständig (in <code>sidebar.js</code>).</p>
+                        <p>Die Tutorial-Liste wird jetzt komplett von <code class="inline">generate-navigation.js</code> erstellt. Das
+                            JavaScript ist nur noch für das Öffnen/Schließen zuständig (in <code class="inline">sidebar.js</code>).</p>
                     </div> -->
                 </section>
 
@@ -914,7 +914,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 
                     <h3 id="phase-1-build-zeit-npm-run-build">Phase 1: Build-Zeit (npm run build)</h3>
                     <ol>
-                        <li><code>generate-navigation.js</code> wird ausgeführt</li>
+                        <li><code class="inline">generate-navigation.js</code> wird ausgeführt</li>
                         <li>Es findet alle HTML-Dateien</li>
                         <li>Für jede Datei:
                             <ul class="arrow-list">
@@ -932,19 +932,19 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                     <ol>
                         <li>Browser lädt HTML-Datei</li>
                         <li>Beide Sidebars sind im HTML, aber nicht sichtbar (CSS:
-                            <code>transform: translateX(-100%)</code>)
+                            <code class="inline">transform: translateX(-100%)</code>)
                         </li>
                         <li>CSS-Dateien laden:
                             <ul class="arrow-list">
-                                <li style="padding-top: 0.3rem"><code>style.css</code> → Basis-Styling</li>
-                                <li><code>sidebar.css</code> → Sidebar-Styling</li>
+                                <li style="padding-top: 0.3rem"><code class="inline">style.css</code> → Basis-Styling</li>
+                                <li><code class="inline">sidebar.css</code> → Sidebar-Styling</li>
                             </ul>
                         </li>
                         <li>JavaScript-Dateien laden:
                             <ul class="arrow-list">
-                                <li style="padding-top: 0.3rem"><code>main.js</code> → Header, Theme Toggle</li>
-                                <li><code>sidebar.js</code> → Sidebar-Interaktionen</li>
-                                <li><code>scroll-spy.js</code> → Active-Link-Tracking</li>
+                                <li style="padding-top: 0.3rem"><code class="inline">main.js</code> → Header, Theme Toggle</li>
+                                <li><code class="inline">sidebar.js</code> → Sidebar-Interaktionen</li>
+                                <li><code class="inline">scroll-spy.js</code> → Active-Link-Tracking</li>
                             </ul>
                         </li>
                     </ol>
@@ -954,7 +954,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                     <h4 class="no-toc">User klickt auf Sidebar-Button</h4>
                     <ol>
                         <li>Button-Click Event</li>
-                        <li><code>sidebar.js</code> fügt <code>.is-open</code> Klasse hinzu</li>
+                        <li><code class="inline">sidebar.js</code> fügt <code class="inline">.is-open</code> Klasse hinzu</li>
                         <li>CSS Transition schiebt Sidebar ins Sichtfeld</li>
                         <li>Overlay wird sichtbar</li>
                     </ol>
@@ -962,19 +962,19 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                     <h4 class="no-toc">User scrollt auf der Seite</h4>
                     <ol>
                         <li>Scroll Event</li>
-                        <li><code>scroll-spy.js</code> prüft Scroll-Position</li>
+                        <li><code class="inline">scroll-spy.js</code> prüft Scroll-Position</li>
                         <li>Findet aktive Überschrift</li>
-                        <li>Fügt <code>.active</code> Klasse zum passenden TOC-Link hinzu</li>
+                        <li>Fügt <code class="inline">.active</code> Klasse zum passenden TOC-Link hinzu</li>
                         <li>CSS hebt den Link hervor</li>
                     </ol>
 
                     <h4 class="no-toc">User klickt auf TOC-Link</h4>
                     <ol>
                         <li>Link-Click Event</li>
-                        <li><code>sidebar.js</code> verhindert Standard-Verhalten</li>
+                        <li><code class="inline">sidebar.js</code> verhindert Standard-Verhalten</li>
                         <li>Smooth Scroll zur Überschrift (mit 100px Offset)</li>
                         <li>Sidebar schließt sich automatisch</li>
-                        <li><code>scroll-spy.js</code> aktualisiert aktiven Link</li>
+                        <li><code class="inline">scroll-spy.js</code> aktualisiert aktiven Link</li>
                     </ol>
                 </section>
 
@@ -1008,10 +1008,10 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 }</code></pre>
                     </div>
 
-                    <p><strong>Warum <code>transform</code> statt <code>left</code>?</strong></p>
+                    <p><strong>Warum <code class="inline">transform</code> statt <code class="inline">left</code>?</strong></p>
                     <ul class="arrow-list">
-                        <li><code>transform</code> nutzt GPU-Beschleunigung → butterweiche Animation</li>
-                        <li><code>left</code> triggert Reflow → langsamer und ruckelig</li>
+                        <li><code class="inline">transform</code> nutzt GPU-Beschleunigung → butterweiche Animation</li>
+                        <li><code class="inline">left</code> triggert Reflow → langsamer und ruckelig</li>
                     </ul>
 
                     <h3 id="open-state">Open-State</h3>
@@ -1060,7 +1060,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                             <ul class="arrow-list">
                                 <li>Sidebars sind dauerhaft sichtbar</li>
                                 <li>Floating Buttons werden ausgeblendet</li>
-                                <li>Sidebars scrollen mit (<code>position: sticky</code>)</li>
+                                <li>Sidebars scrollen mit (<code class="inline">position: sticky</code>)</li>
                             </ul>
                         </div>
                         <div class="grid-2col-bg">
@@ -1084,11 +1084,11 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <li>Nutze Kleinbuchstaben</li>
                         <li>Nutze Bindestriche statt Leerzeichen</li>
                         <li>Vermeide Sonderzeichen</li>
-                        <li>Beispiel: <code>id="was-ist-css"</code></li>
+                        <li>Beispiel: <code class="inline">id="was-ist-css"</code></li>
                     </ul>
 
                     <h3 id="2-no-toc-klasse">2. no-toc Klasse</h3>
-                    <p>Nutze <code>class="no-toc"</code> für Überschriften, die NICHT im Inhaltsverzeichnis erscheinen
+                    <p>Nutze <code class="inline">class="no-toc"</code> für Überschriften, die NICHT im Inhaltsverzeichnis erscheinen
                         sollen:</p>
                     <div class="code-block">
                         <div class="code-header">
@@ -1104,11 +1104,11 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                     </div>
 
                     <h3 id="3-tutorial-reihenfolge">3. Tutorial-Reihenfolge</h3>
-                    <p>Halte <code>TUTORIAL_ORDER</code> immer aktuell:</p>
+                    <p>Halte <code class="inline">TUTORIAL_ORDER</code> immer aktuell:</p>
                     <ul class="arrow-list">
                         <li>Neue Tutorials sofort eintragen</li>
                         <li>Reihenfolge logisch gestalten (Basics → Advanced)</li>
-                        <li>Nach Änderungen <code>npm run build</code> ausführen</li>
+                        <li>Nach Änderungen <code class="inline">npm run build</code> ausführen</li>
                     </ul>
 
                     <h3 id="4-performance">4. Performance</h3>
@@ -1117,7 +1117,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <li>HTML wird beim Build generiert (nicht im Browser!)</li>
                         <li>ScrollSpy nutzt Throttling</li>
                         <li>CSS Transforms für Animationen</li>
-                        <li><code>passive: true</code> für Scroll-Events</li>
+                        <li><code class="inline">passive: true</code> für Scroll-Events</li>
                     </ul>
                 </section>
 
@@ -1136,9 +1136,9 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <div class="grid-2col-bg">
                             <p><strong>Lösung:</strong></p>
                             <ul class="arrow-list">
-                                <li>Führe <code>npm run build</code> aus</li>
+                                <li>Führe <code class="inline">npm run build</code> aus</li>
                                 <li>Prüfe ob Überschriften jetzt IDs haben</li>
-                                <li>Falls nicht: Überprüfe <code>addIdsToHeadingsAndGenerateSidebar()</code></li>
+                                <li>Falls nicht: Überprüfe <code class="inline">addIdsToHeadingsAndGenerateSidebar()</code></li>
                             </ul>
                         </div>
                     </div>
@@ -1155,7 +1155,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <div class="grid-2col-bg">
                             <p><strong>Lösung:</strong></p>
                             <ul class="arrow-list">
-                                <li>Prüfe ob <code>scroll-spy.js</code> eingebunden ist</li>
+                                <li>Prüfe ob <code class="inline">scroll-spy.js</code> eingebunden ist</li>
                                 <li>Öffne Browser-Konsole auf Fehler prüfen</li>
                                 <li>Prüfe ob Überschriften IDs haben</li>
                             </ul>
@@ -1170,15 +1170,15 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <div class="grid-2col-bg">
                             <p><strong>Ursache:</strong></p>
                             <ul class="arrow-list">
-                                <li>Falsche Unterkategorie oder <code>TUTORIAL_ORDER</code> fehlt</li>
+                                <li>Falsche Unterkategorie oder <code class="inline">TUTORIAL_ORDER</code> fehlt</li>
                             </ul>
                         </div>
                         <div class="grid-2col-bg">
                             <p><strong>Lösung:</strong></p>
                             <ul class="arrow-list">
-                                <li>Prüfe ob Unterkategorie in <code>TUTORIAL_ORDER</code> existiert</li>
-                                <li>Prüfe Ordnerstruktur (z.B. <code>/tutorials/css/css-basics/</code>)</li>
-                                <li>Führe <code>npm run build</code> aus</li>
+                                <li>Prüfe ob Unterkategorie in <code class="inline">TUTORIAL_ORDER</code> existiert</li>
+                                <li>Prüfe Ordnerstruktur (z.B. <code class="inline">/tutorials/css/css-basics/</code>)</li>
+                                <li>Führe <code class="inline">npm run build</code> aus</li>
                             </ul>
                         </div>
                     </div>
@@ -1197,8 +1197,8 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                             <ul class="arrow-list">
                                 <li>Öffne Browser-Konsole</li>
                                 <li>Prüfe auf Fehler</li>
-                                <li>Prüfe ob <code>sidebar.js</code> geladen ist</li>
-                                <li>Prüfe HTML-IDs: <code>tutorialSidebar</code>, <code>sidebarToggle</code>, etc.</li>
+                                <li>Prüfe ob <code class="inline">sidebar.js</code> geladen ist</li>
+                                <li>Prüfe HTML-IDs: <code class="inline">tutorialSidebar</code>, <code class="inline">sidebarToggle</code>, etc.</li>
                             </ul>
                         </div>
                     </div>
@@ -1213,19 +1213,19 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <div class="grid-2col-bg">
                             <strong class="box-title no-toc">Linke Sidebar (TOC)</strong>
                             <ul class="arrow-list">
-                                <li><strong>Generierung:</strong> <code>generate-navigation.js</code></li>
+                                <li><strong>Generierung:</strong> <code class="inline">generate-navigation.js</code></li>
                                 <li><strong>Basis:</strong> h2/h3 Überschriften</li>
                                 <li><strong>Features:</strong> ScrollSpy, Smooth Scroll</li>
-                                <li><strong>Interaktion:</strong> <code>sidebar.js</code></li>
+                                <li><strong>Interaktion:</strong> <code class="inline">sidebar.js</code></li>
                             </ul>
                         </div>
                         <div class="grid-2col-bg">
                             <strong class="box-title no-toc">Rechte Sidebar (Tutorial-Nav)</strong>
                             <ul class="arrow-list">
-                                <li><strong>Generierung:</strong> <code>generate-navigation.js</code></li>
-                                <li><strong>Basis:</strong> <code>TUTORIAL_ORDER</code></li>
+                                <li><strong>Generierung:</strong> <code class="inline">generate-navigation.js</code></li>
+                                <li><strong>Basis:</strong> <code class="inline">TUTORIAL_ORDER</code></li>
                                 <li><strong>Features:</strong> Active-Link</li>
-                                <li><strong>Interaktion:</strong> <code>sidebar.js</code></li>
+                                <li><strong>Interaktion:</strong> <code class="inline">sidebar.js</code></li>
                             </ul>
                         </div>
                     </div>

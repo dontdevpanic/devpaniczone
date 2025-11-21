@@ -262,7 +262,7 @@
                     <div class="grid-2col">
                         <div class="grid-2col-bg">
                             <h3 id="wie-git-funktioniert">Wie Git funktioniert</h3>
-                            <p>Git erstellt einen versteckten <code>.git</code>-Ordner in deinem Projekt. Darin
+                            <p>Git erstellt einen versteckten <code class="inline">.git</code>-Ordner in deinem Projekt. Darin
                                 speichert es:
                             </p>
                             <ul class="arrow-list">
@@ -347,7 +347,7 @@ git config user.email</code></pre>
     <p>Im Projektordner:</p>
     <pre><code class="language-bash">cd /pfad/zu/deinem/projekt
 git init</code></pre>
-    <p>Das erstellt den versteckten <code>.git</code>-Ordner. Dein Projekt ist jetzt ein Git-Repository.</p>
+    <p>Das erstellt den versteckten <code class="inline">.git</code>-Ordner. Dein Projekt ist jetzt ein Git-Repository.</p>
     
     <h3 id="bestehendes-repository-klonen">Bestehendes Repository klonen</h3>
     <p>Ein Projekt von GitHub (oder anderem Server) herunterladen:</p>
@@ -355,7 +355,7 @@ git init</code></pre>
     <p>Das erstellt einen neuen Ordner mit dem kompletten Projekt und seiner Git-Historie.</p>
     
     <h3 id="gitignore-einrichten">.gitignore einrichten</h3>
-    <p>Die <code>.gitignore</code>-Datei sagt Git, welche Dateien NICHT getrackt werden sollen:</p>
+    <p>Die <code class="inline">.gitignore</code>-Datei sagt Git, welche Dateien NICHT getrackt werden sollen:</p>
     <pre><code class="language-bash"># Dependencies - werden über package.json neu installiert
 node_modules/
 package-lock.json
@@ -382,12 +382,12 @@ temp/
     
     <h4>.gitignore Syntax</h4>
     <ul class="arrow-list">
-        <li><code>datei.txt</code> - Ignoriert diese spezifische Datei</li>
-        <li><code>ordner/</code> - Ignoriert kompletten Ordner (/ am Ende = Verzeichnis)</li>
-        <li><code>*.log</code> - Ignoriert alle Dateien mit .log-Endung</li>
-        <li><code>!wichtig.log</code> - Ausnahme: Diese Datei NICHT ignorieren</li>
-        <li><code>**/temp</code> - Ignoriert "temp" in allen Unterordnern</li>
-        <li><code># Kommentar</code> - Kommentarzeile</li>
+        <li><code class="inline">datei.txt</code> - Ignoriert diese spezifische Datei</li>
+        <li><code class="inline">ordner/</code> - Ignoriert kompletten Ordner (/ am Ende = Verzeichnis)</li>
+        <li><code class="inline">*.log</code> - Ignoriert alle Dateien mit .log-Endung</li>
+        <li><code class="inline">!wichtig.log</code> - Ausnahme: Diese Datei NICHT ignorieren</li>
+        <li><code class="inline">**/temp</code> - Ignoriert "temp" in allen Unterordnern</li>
+        <li><code class="inline"># Kommentar</code> - Kommentarzeile</li>
     </ul>
 </section>
 
@@ -605,9 +605,9 @@ Deine Änderung im aktuellen Branch
     <p>Lösung:</p>
     <ol>
         <li>Öffne die Datei und entscheide, welche Version (oder Kombination) richtig ist</li>
-        <li>Lösche die Konflikt-Marker (<code>&lt;&lt;&lt;</code>, <code>===</code>, <code>&gt;&gt;&gt;</code>)</li>
-        <li>Stage die Datei: <code>git add datei.html</code></li>
-        <li>Commit: <code>git commit -m "Merge-Konflikt gelöst"</code></li>
+        <li>Lösche die Konflikt-Marker (<code class="inline">&lt;&lt;&lt;</code>, <code class="inline">===</code>, <code class="inline">&gt;&gt;&gt;</code>)</li>
+        <li>Stage die Datei: <code class="inline">git add datei.html</code></li>
+        <li>Commit: <code class="inline">git commit -m "Merge-Konflikt gelöst"</code></li>
     </ol>
     
     <h3 id="typischer-branch-workflow">Typischer Branch-Workflow</h3>
@@ -716,7 +716,7 @@ git revert abc123
 
 # Mehrere Commits reverten
 git revert abc123..def456</code></pre>
-    <p><code>git revert</code> ist sicher für geteilte Repositories, da es die Historie nicht ändert.</p>
+    <p><code class="inline">git revert</code> ist sicher für geteilte Repositories, da es die Historie nicht ändert.</p>
     
     <h3 id="branch-zuruecksetzen-vorsicht">Branch zurücksetzen (VORSICHT!)</h3>
     <pre><code class="language-bash"># Soft: Commits entfernen, Änderungen behalten (staged)
@@ -730,7 +730,7 @@ git reset --hard HEAD~1
 
 # Zu bestimmtem Commit zurück
 git reset --hard abc123</code></pre>
-    <p><strong>WARNUNG:</strong> <code>--hard</code> löscht unwiderruflich! Nur bei lokalen, nicht gepushten Commits verwenden.</p>
+    <p><strong>WARNUNG:</strong> <code class="inline">--hard</code> löscht unwiderruflich! Nur bei lokalen, nicht gepushten Commits verwenden.</p>
     
     <h3 id="geloeschte-commits-wiederfinden">Gelöschte Commits wiederfinden</h3>
     <pre><code class="language-bash"># Reflog zeigt ALLE Aktionen, auch "gelöschte" Commits
@@ -850,13 +850,13 @@ git tag -d v1.0.0
 git push origin --delete v1.0.0</code></pre>
     
     <h3 id="semantic-versioning">Semantic Versioning</h3>
-    <p>Empfohlenes Format: <code>vMAJOR.MINOR.PATCH</code></p>
+    <p>Empfohlenes Format: <code class="inline">vMAJOR.MINOR.PATCH</code></p>
     <ul class="arrow-list">
         <li><strong>MAJOR</strong> - Inkompatible Änderungen</li>
         <li><strong>MINOR</strong> - Neue Features, abwärtskompatibel</li>
         <li><strong>PATCH</strong> - Bugfixes, abwärtskompatibel</li>
     </ul>
-    <p>Beispiele: <code>v1.0.0</code>, <code>v1.2.3</code>, <code>v2.0.0-beta</code></p>
+    <p>Beispiele: <code class="inline">v1.0.0</code>, <code class="inline">v1.2.3</code>, <code class="inline">v2.0.0-beta</code></p>
 </section>
 
 <section class="categories">
@@ -881,27 +881,27 @@ chore: Dependencies aktualisiert</code></pre>
     
     <h3 id="branch-strategie">Branch-Strategie</h3>
     <ul class="arrow-list">
-        <li><code>main</code> oder <code>master</code> - Stabile, produktionsreife Version</li>
-        <li><code>develop</code> - Entwicklungsversion (optional)</li>
-        <li><code>feature/name</code> - Neue Features</li>
-        <li><code>bugfix/name</code> - Bug-Behebungen</li>
-        <li><code>hotfix/name</code> - Kritische Fixes für Production</li>
+        <li><code class="inline">main</code> oder <code class="inline">master</code> - Stabile, produktionsreife Version</li>
+        <li><code class="inline">develop</code> - Entwicklungsversion (optional)</li>
+        <li><code class="inline">feature/name</code> - Neue Features</li>
+        <li><code class="inline">bugfix/name</code> - Bug-Behebungen</li>
+        <li><code class="inline">hotfix/name</code> - Kritische Fixes für Production</li>
     </ul>
     
     <h3 id="gitignore-grundregeln">.gitignore Grundregeln</h3>
     <ul class="arrow-list">
-        <li><strong>Dependencies</strong> nie committen (<code>node_modules/</code>)</li>
-        <li><strong>Build-Artefakte</strong> ignorieren (<code>dist/</code>, <code>build/</code>)</li>
-        <li><strong>Persönliche Einstellungen</strong> ignorieren (<code>.vscode/</code>, <code>.idea/</code>)</li>
-        <li><strong>Sensible Daten</strong> nie committen (<code>.env</code>, Passwörter)</li>
-        <li><strong>OS-Dateien</strong> ignorieren (<code>.DS_Store</code>, <code>Thumbs.db</code>)</li>
+        <li><strong>Dependencies</strong> nie committen (<code class="inline">node_modules/</code>)</li>
+        <li><strong>Build-Artefakte</strong> ignorieren (<code class="inline">dist/</code>, <code class="inline">build/</code>)</li>
+        <li><strong>Persönliche Einstellungen</strong> ignorieren (<code class="inline">.vscode/</code>, <code class="inline">.idea/</code>)</li>
+        <li><strong>Sensible Daten</strong> nie committen (<code class="inline">.env</code>, Passwörter)</li>
+        <li><strong>OS-Dateien</strong> ignorieren (<code class="inline">.DS_Store</code>, <code class="inline">Thumbs.db</code>)</li>
     </ul>
     
     <h3 id="vor-dem-push">Vor dem Push</h3>
     <ol>
-        <li><code>git status</code> - Was wird committet?</li>
-        <li><code>git diff</code> - Änderungen prüfen</li>
-        <li><code>git log</code> - Commit-Historie kontrollieren</li>
+        <li><code class="inline">git status</code> - Was wird committet?</li>
+        <li><code class="inline">git diff</code> - Änderungen prüfen</li>
+        <li><code class="inline">git log</code> - Commit-Historie kontrollieren</li>
         <li>Code testen - Funktioniert alles?</li>
     </ol>
 </section>
