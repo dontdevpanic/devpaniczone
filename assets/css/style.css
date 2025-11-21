@@ -205,7 +205,7 @@ h4,
 h5,
 h6 {
     font-family: var(--font-heading);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.2;
     margin-bottom: 1rem;
     color: var(--heading-secondary);
@@ -223,7 +223,7 @@ h1 {
 
 h2 {
     font-size: 1.65rem;
-    padding: 1rem 0 0.5rem 0;
+    padding: 3rem 0 0.5rem 0;
     border-bottom: 2px solid var(--text-secondary);
     text-align: left;
 }
@@ -235,14 +235,14 @@ h3 {
     font-size: 1.6rem;
     text-align: left;
     color: var(--heading-primary);
-    padding: 2rem 0 0.5rem 0;
+    padding: 3rem 0 0 0;
     /* border-bottom: 2px solid var(--heading-primary) */
 }
 
 h4 {
     font-size: 1.4rem;
     color: var(--text-secondary);
-    padding: 2.5rem 0 0.5rem 0;
+    padding: 3rem 0 0 0;
 }
 
 h5 {
@@ -309,7 +309,8 @@ a:hover {
 
 /* ----- Lists ----- */
 
-ol, ul {
+ol,
+ul {
     margin: 1.5rem 0;
     padding-left: 1.25rem;
 }
@@ -324,7 +325,7 @@ ol li:last-child,
 ul li:last-child {
     margin-bottom: 0;
 }
-    
+
 ol li::marker {
     color: var(--text-secondary);
     font-weight: 600;
@@ -334,11 +335,12 @@ ol li:last-child {
     margin-bottom: 0;
 }
 
-ul ul > li:first-child {
-    margin-top: 0;   /* Beispielwert */
+ul ul>li:first-child {
+    margin-top: 0;
+    /* Beispielwert */
 }
 
-ul ul > li:last-child {
+ul ul>li:last-child {
     margin-bottom: 0;
 }
 
@@ -347,13 +349,14 @@ ul ul,
 ol ul,
 ul ol,
 ol ol {
-    margin-top: 0.5rem;   /* nach oben weniger Abstand */
+    margin-top: 0.5rem;
+    /* nach oben weniger Abstand */
     margin-bottom: 0.5rem;
 }
 
 
 /* ----- Inline Code ----- */
-code {
+code.inline {
     font-family: var(--font-code);
     font-size: 0.9em;
     letter-spacing: 0.025rem;
@@ -375,6 +378,7 @@ pre {
     background-color: var(--bg-tertiary);
     border-radius: 8px;
 }
+
 
 /* ===================================
    5. LAYOUT (Container, Sections)
@@ -1467,6 +1471,16 @@ h4.section-title {
     padding: 0.75rem 0 0;
 }
 
+.grid-2col .arrow-list,
+.grid-2col-bg .arrow-list {
+    margin: 0;
+}
+
+.grid-2col ol,
+.grid-2col-bg ol {
+    margin: 0;
+}
+
 .grid-1-2col {
     display: grid;
     gap: 1.5rem;
@@ -1816,6 +1830,17 @@ mark {
     background-color: var(--color-warning);
 }
 
+/* Keyboard Keys */
+kbd {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+    box-shadow: 0 2px 0 var(--border-color);
+}
+
 /* ===================================
    INFO BOXES
    =================================== */
@@ -1858,6 +1883,8 @@ strong.box-title {
     color: var(--accent-blue);
 }
 
+
+
 /* === Standard Blue === */
 
 .info-box {
@@ -1898,7 +1925,9 @@ strong.box-title {
     flex-shrink: 0;
 }
 
-
+.info-box .arrow-list {
+    margin-top: 0;
+}
 /* === NOTICE GREEN === */
 
 .info-box.notice {
@@ -1938,6 +1967,9 @@ ul.info-box.notice li::before {
     color: var(--accent-green);
 } */
 
+.info-box.notice strong {
+    color: var(--text-secondary);
+}
 
 /* === DANGER RED === */
 
@@ -1974,6 +2006,10 @@ ul.info-box.danger li::before {
     left: 0;
     color: var(--accent-red-light);
     font-weight: bold;
+}
+
+.info-box.danger strong {
+    color: var(--text-secondary);
 }
 
 /* === WARNING ORANGE === */
@@ -2035,7 +2071,7 @@ ul.arrow-list li::before {
 
 /* ======================
    NAV DEMOS
-   ====================== */  
+   ====================== */
 
 /* .demo-header {
     margin-top: 1rem;
@@ -2508,18 +2544,25 @@ dd {
 /* ===================================
    TOGGLE MORE INFO
    =================================== */
+details {
+    margin-top: 1rem;
+}
 
 summary {
     cursor: pointer;
-    font-weight: bold;
     user-select: none;
-    color: var(--accent-blue);
+    color: var(--accent-blue-light);
+    font-weight: 500;
     padding: 0.5rem 0;
     text-align: left;
 }
 
+summary:hover {
+    color: var(--accent-blue-hover);
+}
+
 .toggle-detail {
-    padding: 1rem 0 0.5rem 0;
+    padding: 0.5rem 0 0.5rem 0;
     margin-top: 10px;
 }
 

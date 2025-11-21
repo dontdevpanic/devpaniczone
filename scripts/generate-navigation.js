@@ -160,7 +160,8 @@ const TUTORIAL_ORDER = {
         'html-meta-tags.html'
     ],
     'tutorials/html/html-advanced': [
-        'html-semantik.html'
+        'html-semantik.html',
+        'html-formulare.html'
     ],
     'tutorials/css/css-basics': [
         'css-einbinden.html',
@@ -211,18 +212,19 @@ const TUTORIAL_ORDER = {
         // Platzhalter
     ],
     'tutorials/misc/tools': [
+        'browser-dev-tools.html',                           // ← HIER, ganz vorne!
         'bash-terminal.html',
-        'globale-aenderungen-an-HTML-Dateien.html',
         'git-versionskontrolle.html',
         'github-remote.html',
-        'ftp-client-filezilla.html'
+        'ftp-client-filezilla.html',
+        'globale-aenderungen-an-HTML-Dateien.html'
     ],
     'tutorials/misc/projects': [
         'assets-structure.html',
         'project-structure.html'
     ],
     'tutorials/misc/web': [
-        // Platzhalter
+        'console-security.html'
     ],
     'tutorials/documentation/devpaniczone': [
         'devpaniczone-automation.html',
