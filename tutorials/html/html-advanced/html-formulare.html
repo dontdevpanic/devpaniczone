@@ -1,0 +1,2709 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="HTML-Formulare erstellen: von Eingabefeldern, Radiobuttons und Dropdowns bis zu Buttons, Labels und Validierungen – mit Barrierefreiheit und Praxisbeispielen.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>HTML Formulare | DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+
+    <!-- Demo-Styling für Formulare -->
+    <style>
+        /* Unstyled Demo Container */
+        .demo-unstyled {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        /* Browser-Defaults anzeigen */
+        .demo-unstyled label,
+        .demo-unstyled input,
+        .demo-unstyled select,
+        .demo-unstyled textarea,
+        .demo-unstyled button {
+            all: revert;
+            font-family: inherit;
+        }
+
+        /* Styled Demo Container */
+        .demo-styled {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .demo-styled label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .demo-styled input[type="text"],
+        .demo-styled input[type="email"],
+        .demo-styled input[type="password"],
+        .demo-styled input[type="tel"],
+        .demo-styled input[type="url"],
+        .demo-styled input[type="search"],
+        .demo-styled input[type="number"],
+        .demo-styled input[type="date"],
+        .demo-styled input[type="time"],
+        .demo-styled input[type="datetime-local"],
+        .demo-styled select,
+        .demo-styled textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Disabled Inputs ausgrauen */
+        .demo-styled input:disabled,
+        .demo-styled input[disabled] {
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .demo-styled input:focus,
+        .demo-styled select:focus,
+        .demo-styled textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue-hover);
+            /* box-shadow: 0 0 0 3px rgba(46, 61, 78, 0.2); */
+        }
+
+        .demo-styled input::placeholder,
+        .demo-styled textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .demo-styled button {
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-blue-hover);
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .demo-styled button:hover {
+            background: var(--accent-blue-hover);
+            transform: translateY(-1px);
+        }
+
+        .demo-styled button:active {
+            transform: translateY(0);
+        }
+
+        .demo-styled button[type="reset"] {
+            background: var(--bg-tertiary);
+            margin-left: 0.5rem;
+        }
+
+        .demo-styled button[type="reset"]:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .demo-styled-disabled {
+            color: var(--text-muted);
+        }
+
+        /* Input mit Datalist - besser sichtbares Styling */
+        .demo-styled input[list] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .demo-styled input[list]:focus {
+            outline: none;
+            border-color: var(--accent-blue-light);
+            box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.2);
+            background: var(--bg-secondary);
+        }
+
+        .demo-styled input[list]::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Deaktivierte Buttons */
+        .demo-styled button:disabled,
+        .demo-styled button[disabled] {
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Hover-Effekt bei disabled Buttons deaktivieren */
+        .demo-styled button:disabled:hover,
+        .demo-styled button[disabled]:hover {
+            background: var(--heading-dark);
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Checkbox & Radio Styling */
+        .demo-styled .checkbox-group,
+        .demo-styled .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .demo-styled .checkbox-group label,
+        .demo-styled .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .demo-styled input[type="checkbox"],
+        .demo-styled input[type="radio"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--accent-blue);
+        }
+
+        /* Range Slider */
+        .demo-styled input[type="range"] {
+            width: 100%;
+            margin-bottom: 1rem;
+            accent-color: var(--accent-blue-hover);
+        }
+
+        /* Color Picker */
+        .demo-styled input[type="color"] {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        /* Fieldset Styling */
+        .demo-styled fieldset {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .demo-styled legend {
+            color: var(--accent-blue);
+            font-weight: 600;
+            padding: 0 0.5rem;
+        }
+
+        /* Form Grid */
+        .demo-styled .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .demo-styled .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Required Indicator */
+        .demo-styled .required::after {
+            content: " *";
+            color: var(accent-red-light);
+        }
+
+        /* Error Styling */
+        .demo-styled input:invalid:not(:placeholder-shown) {
+            border-color: var(accent-red-light);
+        }
+
+        .demo-styled input:valid:not(:placeholder-shown) {
+            border-color: var(--border-color);
+        }
+
+        /* DevPanicZone Kontaktformular */
+        .dpz-contact-form {
+            /* max-width: 600px; */
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
+        }
+
+        /* .dpz-contact-form h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue-light);
+            font-size: 1.5rem;
+        } */
+
+        .dpz-contact-form .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .dpz-contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .dpz-contact-form input,
+        .dpz-contact-form select,
+        .dpz-contact-form textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .dpz-contact-form input:focus,
+        .dpz-contact-form select:focus,
+        .dpz-contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue-light);
+            box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.15);
+            background: var(--bg-tertiary);
+        }
+
+        .dpz-contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .dpz-contact-form .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .dpz-contact-form .btn-submit {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: var(--accent-blue-light);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dpz-contact-form .btn-submit:hover {
+            background: var(--accent-blue-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 155, 209, 0.4);
+        }
+
+        .dpz-contact-form .btn-reset {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dpz-contact-form .btn-reset:hover {
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .dpz-contact-form .privacy-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* 2-Spalten Kontaktformular */
+        .dpz-contact-form-wide {
+            width: 100%;
+            /* background: linear-gradient(135deg, var(--color-bg-dark, #1a1a2e) 0%, var(--color-bg-darker, #0f0f1a) 100%); */
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
+        }
+
+        .dpz-contact-form-wide h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue-light);
+            font-size: 1.5rem;
+        }
+
+        .dpz-contact-form-wide .form-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .dpz-contact-form-wide .form-columns {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        .dpz-contact-form-wide .form-column-left,
+        .dpz-contact-form-wide .form-column-right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dpz-contact-form-wide .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .dpz-contact-form-wide label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .dpz-contact-form-wide input,
+        .dpz-contact-form-wide select,
+        .dpz-contact-form-wide textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .dpz-contact-form-wide input:focus,
+        .dpz-contact-form-wide select:focus,
+        .dpz-contact-form-wide textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue-hover);
+            box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.15);
+            background: var(--bg-primary);
+        }
+
+        .dpz-contact-form-wide .form-column-right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dpz-contact-form-wide .form-column-right .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dpz-contact-form-wide .form-column-right textarea {
+            flex: 1;
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .dpz-contact-form-wide .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .dpz-contact-form-wide .btn-submit {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: var(--accent-blue-light);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dpz-contact-form-wide .btn-submit:hover {
+            background: var(--color-accent-hover, #5a8ac0);
+            transform: translateY(-2px);
+            /* box-shadow: 0 4px 12px rgba(108, 155, 209, 0.4); */
+        }
+
+        .dpz-contact-form-wide .btn-reset {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dpz-contact-form-wide .btn-reset:hover {
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .dpz-contact-form-wide .privacy-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        /* Details/Summary für gestylte Demos */
+        details.styled-demo {
+            margin-top: 1rem;
+        }
+
+        details.styled-demo summary {
+            cursor: pointer;
+            color: var(--accent-blue-light);
+            font-weight: 500;
+            padding: 0.5rem 0;
+        }
+
+        details.styled-demo summary:hover {
+            color: var(--accent-blue-hover);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header-Start -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                    </span>
+                </button>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
+
+                <nav class="main-nav" id="mainNav">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                        <!-- Search Toggle -->
+                        <li>
+                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Search Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown" hidden>
+                        <div class="search-input-group">
+                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path
+                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                            </svg>
+                            <input type="search" id="globalSearch" class="search-input"
+                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                        </div>
+
+                        <div class="search-results" id="searchResults" hidden>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                            <div class="search-results-footer">
+                                <button class="search-view-all" id="searchViewAll">
+                                    Alle Ergebnisse anzeigen →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                        class="breadcrumb-separator">›</span><a href="/tutorials/html/"
+                        class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span
+                        class="breadcrumb-current">HTML Formulare</span></nav>
+                <h1 class="hero-title">HTML Formulare</h1>
+                <p class="hero-subtitle">Formulare sind das Bindeglied zwischen Nutzer*innen und Website – sie sammeln
+                    Informationen, schicken Daten ab und ermöglichen Interaktion. Hier lernst du, wie du sie richtig
+                    aufbaust, strukturierst und barrierefrei machst.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+            title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                        <li class="toc-level-1"><a href="#grundaufbau-eines-formulars">Grundaufbau eines Formulars</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#form-attribute">Form-Attribute</a></li>
+                        <li class="toc-level-1"><a href="#html-attribute-erklaert-kein-doppelt-gemoppelt">HTML-Attribute
+                                erklärt – kein &quot;doppelt gemoppelt&quot;!</a></li>
+                        <li class="toc-level-2"><a href="#warum-brauchen-wir-alle-diese-attribute">Warum brauchen wir
+                                alle diese Attribute?</a></li>
+                        <li class="toc-level-2"><a href="#praktisches-beispiel-alle-attribute-im-einsatz">Praktisches
+                                Beispiel: Alle Attribute im Einsatz</a></li>
+                        <li class="toc-level-1"><a href="#eingabefelder-text-basiert">Eingabefelder (Text-basiert)</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#eingabefelder-zahlen-datum">Eingabefelder (Zahlen &amp;
+                                Datum)</a></li>
+                        <li class="toc-level-1"><a href="#eingabefelder-auswahl-sonstige">Eingabefelder (Auswahl &amp;
+                                Sonstige)</a></li>
+                        <li class="toc-level-1"><a href="#wichtige-input-attribute">Wichtige Input-Attribute</a></li>
+                        <li class="toc-level-1"><a href="#dropdowns-textbereiche">Dropdowns &amp; Textbereiche</a></li>
+                        <li class="toc-level-1"><a href="#datalist-auto-vervollstaendigung">Datalist –
+                                Auto-Vervollständigung</a></li>
+                        <li class="toc-level-1"><a href="#fieldset-legend-felder-gruppieren">Fieldset &amp; Legend –
+                                Felder gruppieren</a></li>
+                        <li class="toc-level-1"><a href="#labels-barrierefreiheit">Labels &amp; Barrierefreiheit</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#formularvalidierung">Formularvalidierung</a></li>
+                        <li class="toc-level-1"><a href="#buttons">Buttons</a></li>
+                        <li class="toc-level-1"><a href="#praxis-tipp-barrierefreie-formulare">Praxis-Tipp:
+                                Barrierefreie Formulare</a></li>
+                        <li class="toc-level-1"><a href="#praxisbeispiel-kontaktformular">Praxisbeispiel:
+                                Kontaktformular</a></li>
+                        <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                        <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Grundaufbau eines Formulars -->
+                <section class="categories section-top">
+                    <h2 id="grundaufbau-eines-formulars">Grundaufbau eines Formulars</h2>
+                    <p>Ein Formular beginnt immer mit dem <code class="inline">&lt;form&gt;</code>-Element. Darin
+                        befinden sich die Eingabefelder und Schaltflächen, die der Browser dann an den angegebenen
+                        Server oder eine andere Zieladresse sendet.</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;form action="/formular-verarbeiten" method="post"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    
+    &lt;button type="submit"&gt;Absenden&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+
+                    <h3 id="form-attribute">Form-Attribute</h3>
+                    <div class="grid-2col">
+                        <div>
+                            <p>Die Attribute <code>action</code> und <code>method</code> steuern, wohin die
+                                Formulardaten
+                                geschickt werden und wie:</p>
+                            <ul class="arrow-list">
+                                <li><code class="inline">action</code> = Zieladresse, z. B. eine Datei oder URL</li>
+                                <li><code class="inline">method="get"</code> = Daten in der URL (sichtbar)</li>
+                                <li><code class="inline">method="post"</code> = Daten im Request-Body (unsichtbar,
+                                    sicherer)
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>Neben <code>action</code> und <code>method</code> gibt es weitere nützliche Attribute:
+                            </p>
+                            <ul class="arrow-list">
+                                <li><code class="inline">enctype</code> – Für Datei-Uploads:
+                                    <code>"multipart/form-data"</code>
+                                </li>
+                                <li><code class="inline">novalidate</code> – Schaltet Browser-Validierung aus</li>
+                                <li><code class="inline">autocomplete="off"</code> – Deaktiviert Auto-Vervollständigung
+                                </li>
+                                <li><code class="inline">target="_blank"</code> – Öffnet Ergebnis in neuem Tab</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Formular mit Datei-Upload --&gt;
+&lt;form action="/upload" method="post" enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="dokument"&gt;
+    &lt;button type="submit"&gt;Hochladen&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- HTML-Attribute erklärt -->
+                <section class="categories">
+                    <h2 id="html-attribute-erklaert-kein-doppelt-gemoppelt">HTML-Attribute erklärt – kein "doppelt
+                        gemoppelt"!</h2>
+                    <p>Wenn du dir Formular-Code anschaust, siehst du viele verschiedene Attribute, die auf den ersten
+                        Blick verwirrend wirken können:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;label for="name"&gt;Name:&lt;/label&gt;
+&lt;input type="text" id="name" name="name" class="form-input"&gt;</code></pre>
+                    </div>
+
+                    <p>Hier sehen wir <code>for</code>, <code>type</code>, <code>id</code>, <code>name</code> und
+                        <code>class</code> – das sind alles <strong>HTML-Attribute</strong> (keine CSS-Klassen!), und
+                        jedes hat eine eigene, wichtige Funktion:
+                    </p>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">HTML-Attribute ≠ CSS-Klassen!
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p>Die meisten Attribute in Formularen haben nichts mit Styling zu tun, sondern steuern das
+                            Verhalten und die Funktion der Felder.</p>
+                    </div>
+
+                    <h3 class="no-toc">Die wichtigsten Attribute und ihre Funktionen</h3>
+
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Attribut</th>
+                                <th>Wo?</th>
+                                <th>Funktion</th>
+                                <th>Beispiel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>for</code></td>
+                                <td><code>&lt;label&gt;</code></td>
+                                <td>Verbindet das Label mit einem Input-Feld (muss mit <code>id</code> übereinstimmen)
+                                </td>
+                                <td><code>&lt;label for="email"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>id</code></td>
+                                <td><code>&lt;input&gt;</code></td>
+                                <td>Eindeutige ID für das Element (wichtig für Labels und CSS/JS)</td>
+                                <td><code>&lt;input id="email"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>name</code></td>
+                                <td><code>&lt;input&gt;</code></td>
+                                <td>Der Name, unter dem die Daten ans Backend gesendet werden</td>
+                                <td><code>&lt;input name="user_email"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>type</code></td>
+                                <td><code>&lt;input&gt;</code></td>
+                                <td>Bestimmt die Art des Eingabefelds (Text, E-Mail, Passwort...)</td>
+                                <td><code>&lt;input type="email"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>class</code></td>
+                                <td>Überall</td>
+                                <td>CSS-Klasse(n) für Styling</td>
+                                <td><code>&lt;input class="form-input"&gt;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="warum-brauchen-wir-alle-diese-attribute">Warum brauchen wir alle diese Attribute?</h3>
+
+                    <div class="grid-2col">
+                        <div class="grid-2col-bg" style="padding-top: 0;">
+                            <h4 class="no-toc">Beispiel ohne eindeutige Namen:</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Schlecht: alles heißt gleich --&gt;
+&lt;label for="name"&gt;Name:&lt;/label&gt;
+&lt;input type="text" 
+       id="name" 
+       name="name"&gt;</code></pre>
+                            </div>
+                            <p><strong>Problem:</strong> Wenn du mehrere Formulare hast, gibt's Konflikte – IDs müssen
+                                auf der ganzen Seite eindeutig sein!</p>
+                        </div>
+
+                        <div class="grid-2col-bg" style="padding-top: 0;">
+                            <h4 class="no-toc">Besser mit eindeutigen Namen:</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Gut: eindeutige Namen --&gt;
+&lt;label for="contact-name"&gt;Name:&lt;/label&gt;
+&lt;input type="text" 
+       id="contact-name" 
+       name="user_name"&gt;</code></pre>
+                            </div>
+                            <p><strong>Vorteil:</strong> <code>id</code> ist eindeutig, <code>name</code> ist sprechend
+                                für die Datenbank.</p>
+                        </div>
+                    </div>
+
+                    <h3 id="praktisches-beispiel-alle-attribute-im-einsatz">Praktisches Beispiel: Alle Attribute im
+                        Einsatz</h3>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;form action="/register" method="post"&gt;
+    &lt;!-- Label verbindet sich mit Input über for/id --&gt;
+    &lt;label for="register-email"&gt;E-Mail-Adresse&lt;/label&gt;
+    
+    &lt;input 
+        type="email"           &lt;!-- Art des Felds: E-Mail mit Validierung --&gt;
+        id="register-email"    &lt;!-- Eindeutige ID für Label und CSS/JS --&gt;
+        name="user_email"      &lt;!-- Name für Backend/Datenbank --&gt;
+        class="form-input"     &lt;!-- CSS-Klasse für Styling --&gt;
+        placeholder="deine@email.de"  &lt;!-- Hinweistext --&gt;
+        required&gt;              &lt;!-- Pflichtfeld --&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+
+                    <p><strong>Was passiert hier?</strong></p>
+                    <ul class="arrow-list">
+                        <li><code>type="email"</code> → Browser validiert, ob eine E-Mail eingegeben wurde</li>
+                        <li><code>id="register-email"</code> → Verbindet sich mit
+                            <code>&lt;label for="register-email"&gt;</code>
+                        </li>
+                        <li><code>name="user_email"</code> → Wenn du das Formular abschickst, kommt am Server an:
+                            <code>user_email=deine@email.de</code>
+                        </li>
+                        <li><code>class="form-input"</code> → Nur für CSS-Styling</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Namenskonventionen
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><code>id</code> → sprechend und eindeutig: <code>contact-form-email</code>,
+                                <code>newsletter-signup-name</code>
+                            </li>
+                            <li><code>name</code> → Backend-freundlich: <code>user_email</code>,
+                                <code>customer_name</code> (oft mit Unterstrichen)
+                            </li>
+                            <li><code>class</code> → wiederverwendbar: <code>form-input</code>, <code>btn-primary</code>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Eingabefelder (Text-basiert) -->
+                <section class="categories">
+                    <h2 id="eingabefelder-text-basiert">Eingabefelder (Text-basiert)</h2>
+                    <p>Das wichtigste Formular-Element ist <code class="inline">&lt;input&gt;</code>. Je nach
+                        <code>type</code> ändert sich das Verhalten und die Darstellung. Hier sind die textbasierten
+                        Typen:
+                    </p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Typ</th>
+                                <th>Beschreibung</th>
+                                <th>Beispiel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>text</code></td>
+                                <td>Einzeiliges Texteingabefeld</td>
+                                <td><code>&lt;input type="text"&gt;</code><br>
+                                    <input type="text" placeholder="Text eingeben">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>email</code></td>
+                                <td>Validiert E-Mail-Format</td>
+                                <td><code>&lt;input type="email"&gt;</code><br>
+                                    <input type="email" placeholder="mail@example.com">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>password</code></td>
+                                <td>Versteckt eingegebenen Text</td>
+                                <td><code>&lt;input type="password"&gt;</code><br>
+                                    <input type="password" placeholder="Passwort">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>tel</code></td>
+                                <td>Telefonnummer (zeigt Zifferntastatur auf Mobilgeräten)</td>
+                                <td><code>&lt;input type="tel"&gt;</code><br>
+                                    <input type="tel" placeholder="+49 123 456789">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>url</code></td>
+                                <td>Validiert URL-Format</td>
+                                <td><code>&lt;input type="url"&gt;</code><br>
+                                    <input type="url" placeholder="https://...">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>search</code></td>
+                                <td>Suchfeld (oft mit Lösch-Button)</td>
+                                <td><code>&lt;input type="search"&gt;</code><br>
+                                    <input type="search" placeholder="Suchen...">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Eingabefelder (Zahlen & Datum) -->
+                <section class="categories">
+                    <h2 id="eingabefelder-zahlen-datum">Eingabefelder (Zahlen &amp; Datum)</h2>
+                    <p>Diese Typen bieten spezielle UI-Elemente für Zahlen und Zeitangaben:</p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Typ</th>
+                                <th>Beschreibung</th>
+                                <th>Beispiel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>number</code></td>
+                                <td>Nur Zahlen, mit Spinner-Buttons</td>
+                                <td><code>&lt;input type="number" min="0" max="100"&gt;</code><br>
+                                    <input type="number" min="0" max="100" placeholder="0-100">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>range</code></td>
+                                <td>Schieberegler</td>
+                                <td><code>&lt;input type="range" min="0" max="100"&gt;</code><br>
+                                    <input type="range" min="0" max="100" value="50">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>date</code></td>
+                                <td>Datumsauswahl</td>
+                                <td><code>&lt;input type="date"&gt;</code><br>
+                                    <input type="date">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>time</code></td>
+                                <td>Zeitauswahl</td>
+                                <td><code>&lt;input type="time"&gt;</code><br>
+                                    <input type="time">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>datetime-local</code></td>
+                                <td>Datum und Uhrzeit kombiniert</td>
+                                <td><code>&lt;input type="datetime-local"&gt;</code><br>
+                                    <input type="datetime-local">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>month</code></td>
+                                <td>Monat und Jahr</td>
+                                <td><code>&lt;input type="month"&gt;</code><br>
+                                    <input type="month">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>week</code></td>
+                                <td>Kalenderwoche</td>
+                                <td><code>&lt;input type="week"&gt;</code><br>
+                                    <input type="week">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Eingabefelder (Auswahl & Sonstige) -->
+                <section class="categories">
+                    <h2 id="eingabefelder-auswahl-sonstige">Eingabefelder (Auswahl &amp; Sonstige)</h2>
+                    <p>Diese Typen dienen zur Auswahl oder haben spezielle Funktionen:</p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Typ</th>
+                                <th>Beschreibung</th>
+                                <th>Beispiel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>checkbox</code></td>
+                                <td>Ankreuzfeld (mehrere wählbar)</td>
+                                <td><code>&lt;input type="checkbox"&gt;</code><br>
+                                    <label><input type="checkbox"> Option A</label><br>
+                                    <label><input type="checkbox"> Option B</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>radio</code></td>
+                                <td>Auswahl (nur eine Option)</td>
+                                <td><code>&lt;input type="radio" name="gruppe"&gt;</code><br>
+                                    <label><input type="radio" name="demo-radio"> Ja</label><br>
+                                    <label><input type="radio" name="demo-radio"> Nein</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>color</code></td>
+                                <td>Farbauswahl-Dialog</td>
+                                <td><code>&lt;input type="color"&gt;</code><br>
+                                    <input type="color" value="#6c9bd1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>file</code></td>
+                                <td>Datei-Upload</td>
+                                <td><code>&lt;input type="file"&gt;</code><br>
+                                    <input type="file">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>hidden</code></td>
+                                <td>Unsichtbares Feld (für technische Daten)</td>
+                                <td><code>&lt;input type="hidden" name="token" value="abc123"&gt;</code><br>
+                                    <em>(nicht sichtbar)</em>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Wichtige Input-Attribute -->
+                <section class="categories">
+                    <h2 id="wichtige-input-attribute">Wichtige Input-Attribute</h2>
+                    <p>Diese Attribute erweitern die Funktionalität von Eingabefeldern:</p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Attribut</th>
+                                <th>Beschreibung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>placeholder</code></td>
+                                <td>Grauer Hinweistext, verschwindet bei Eingabe</td>
+                            </tr>
+                            <tr>
+                                <td><code>value</code></td>
+                                <td>Vorbelegter Wert im Feld</td>
+                            </tr>
+                            <tr>
+                                <td><code>name</code></td>
+                                <td>Name für die Datenübertragung (wichtig für Backend!)</td>
+                            </tr>
+                            <tr>
+                                <td><code>id</code></td>
+                                <td>Eindeutige ID (für Labels und CSS)</td>
+                            </tr>
+                            <tr>
+                                <td><code>required</code></td>
+                                <td>Pflichtfeld</td>
+                            </tr>
+                            <tr>
+                                <td><code>disabled</code></td>
+                                <td>Feld ist deaktiviert (nicht bearbeitbar, wird nicht gesendet)</td>
+                            </tr>
+                            <tr>
+                                <td><code>readonly</code></td>
+                                <td>Feld ist schreibgeschützt (wird aber gesendet)</td>
+                            </tr>
+                            <tr>
+                                <td><code>autofocus</code></td>
+                                <td>Setzt den Cursor automatisch in dieses Feld</td>
+                            </tr>
+                            <tr>
+                                <td><code>autocomplete</code></td>
+                                <td>Steuert Browser-Autovervollständigung (<code>on</code>/<code>off</code>)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Beispiel mit verschiedenen Attributen --&gt;
+&lt;input type="email" 
+       id="email" 
+       name="email" 
+       placeholder="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="315554585f5471545c50585d1f5554">[email&nbsp;protected]</a>"
+       required
+       autofocus
+       autocomplete="email"&gt;
+
+&lt;!-- Schreibgeschütztes Feld mit Wert --&gt;
+&lt;input type="text" 
+       value="Dieser Wert ist fest" 
+       readonly&gt;
+
+&lt;!-- Deaktiviertes Feld --&gt;
+&lt;input type="text" 
+       value="Nicht verfügbar" 
+       disabled&gt;</code></pre>
+                    </div>
+
+                    <div class="grid-2col">
+                        <!-- Demo ungestyled -->
+                        <div class="demo-unstyled">
+                            <p><strong>Demo Browser-Default:</strong></p>
+                            <label for="demo-attr-email">E-Mail:</label>
+                            <input type="email" id="demo-attr-email" placeholder="deine@email.de" required><br><br>
+                            <label for="demo-attr-readonly">Readonly:</label>
+                            <input type="text" id="demo-attr-readonly" value="Dieser Wert ist fest" readonly><br><br>
+                            <label for="demo-attr-disabled">Disabled:</label>
+                            <input type="text" id="demo-attr-disabled" value="Nicht verfügbar" disabled>
+                        </div>
+                        <div class="demo-styled">
+                            <p><strong>Demo mit CSS gestyled:</strong></p>
+                            <label for="demo-styled-email">E-Mail:</label>
+                            <input type="email" id="demo-styled-email" placeholder="deine@email.de" required>
+                            <label for="demo-styled-readonly">Readonly:</label>
+                            <input type="text" id="demo-styled-readonly" value="Dieser Wert ist fest" readonly>
+                            <label for="demo-styled-disabled">Disabled:</label>
+                            <input type="text" id="demo-styled-disabled" value="Nicht verfügbar" disabled>
+                        </div>
+                    </div>
+
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Demo Container */
+.demo-styled {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+/* Labels */
+.demo-styled label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Input-Felder */
+.demo-styled input[type="text"],
+.demo-styled input[type="email"],
+.demo-styled input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus-Status */
+.demo-styled input:focus {
+    outline: none;
+    border-color: var(--accent-blue-hover);
+}
+
+/* Placeholder */
+.demo-styled input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Disabled Inputs ausgrauen */
+.demo-styled input:disabled,
+.demo-styled input[disabled] {
+    color: var(--text-muted);
+    background: var(--bg-primary);
+    opacity: 0.6;
+    cursor: not-allowed;
+}</code></pre>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Dropdowns, Textbereiche & Gruppen -->
+                <section class="categories">
+                    <h2 id="dropdowns-textbereiche">Dropdowns &amp; Textbereiche</h2>
+                    <p>Für Auswahlmenüs und mehrzeilige Eingaben gibt es eigene Tags:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Dropdown/Select --&gt;
+&lt;label for="land"&gt;Land:&lt;/label&gt;
+&lt;select id="land" name="land"&gt;
+    &lt;option value=""&gt;Bitte wählen...&lt;/option&gt;
+    &lt;option value="de"&gt;Deutschland&lt;/option&gt;
+    &lt;option value="at"&gt;Österreich&lt;/option&gt;
+    &lt;option value="ch"&gt;Schweiz&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;!-- Textarea für lange Texte --&gt;
+&lt;label for="nachricht"&gt;Nachricht:&lt;/label&gt;
+&lt;textarea id="nachricht" name="nachricht" rows="5" cols="40"&gt;&lt;/textarea&gt;</code></pre>
+                    </div>
+
+                    <div class="grid-2col">
+                        <!-- Demo ungestyled -->
+                        <div class="demo-unstyled">
+                            <p><strong>Demo Browser-Default:</strong></p>
+                            <label for="demo-land">Land:</label><br>
+                            <select id="demo-land" name="land">
+                                <option value="">Bitte wählen...</option>
+                                <option value="de">Deutschland</option>
+                                <option value="at">Österreich</option>
+                                <option value="ch">Schweiz</option>
+                            </select><br><br>
+                            <label for="demo-nachricht">Nachricht:</label><br>
+                            <textarea id="demo-nachricht" rows="4" cols="40"
+                                placeholder="Deine Nachricht..."></textarea>
+                        </div>
+                        <div class="demo-styled">
+                            <p><strong>Demo mit CSS gestyled:</strong></p>
+                            <label for="demo-styled-land">Land:</label>
+                            <select id="demo-styled-land" name="land">
+                                <option value="">Bitte wählen...</option>
+                                <option value="de">Deutschland</option>
+                                <option value="at">Österreich</option>
+                                <option value="ch">Schweiz</option>
+                            </select>
+                            <label for="demo-styled-nachricht">Nachricht:</label>
+                            <textarea id="demo-styled-nachricht" rows="4" placeholder="Deine Nachricht..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Select &amp; Textarea */
+.demo-styled select,
+.demo-styled textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demo-styled select:focus,
+.demo-styled textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue-hover);
+}
+
+.demo-styled textarea::placeholder {
+    color: var(--text-muted);
+}</code></pre>
+                        </div>
+                    </details>
+
+                    <h3 class="no-toc">Optgroup – Optionen gruppieren</h3>
+                    <p>Mit <code class="inline">&lt;optgroup&gt;</code> kannst du Dropdown-Optionen in Kategorien
+                        unterteilen:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;select name="fahrzeug"&gt;
+    &lt;optgroup label="Autos"&gt;
+        &lt;option value="vw"&gt;VW&lt;/option&gt;
+        &lt;option value="bmw"&gt;BMW&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label="Motorräder"&gt;
+        &lt;option value="honda"&gt;Honda&lt;/option&gt;
+        &lt;option value="yamaha"&gt;Yamaha&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+                    </div>
+                    <div class="grid-2col">
+                        <div class="demo-unstyled">
+                            <p><strong>Demo Browser-Default:</strong></p>
+                            <select name="fahrzeug">
+                                <optgroup label="Autos">
+                                    <option value="vw">VW</option>
+                                    <option value="bmw">BMW</option>
+                                </optgroup>
+                                <optgroup label="Motorräder">
+                                    <option value="honda">Honda</option>
+                                    <option value="yamaha">Yamaha</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="demo-styled">
+                            <p><strong>Demo mit CSS gestyled:</strong></p>
+                            <select name="fahrzeug">
+                                <optgroup label="Autos">
+                                    <option value="vw">VW</option>
+                                    <option value="bmw">BMW</option>
+                                </optgroup>
+                                <optgroup label="Motorräder">
+                                    <option value="honda">Honda</option>
+                                    <option value="yamaha">Yamaha</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <p style="padding-top: 1rem;">Das Styling von <code>&lt;optgroup&gt;</code> und
+                        <code>&lt;option&gt;</code> im Dropdown ist
+                        stark browserspezifisch begrenzt. Die meisten Browser rendern das Dropdown nativ und ignorieren
+                        viele CSS-Eigenschaften.
+                        Die größten Unterschiede sieht man am Select-Feld selbst (Padding, Border,
+                        Border-Radius, Focus-State).
+                    </p>
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Select Dropdown */
+.demo-styled select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--color-bg-darker, #0f0f1a);
+    border: 1px solid var(--color-border, #3d3d5c);
+    border-radius: 6px;
+    color: var(--color-text, #e0e0e0);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demo-styled select:focus {
+    outline: none;
+    border-color: var(--color-accent, #6c9bd1);
+    box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.2);
+}
+
+/* Optgroup Labels (Gruppierungen) */
+.demo-styled optgroup {
+    font-weight: 600;
+    color: var(--color-accent, #6c9bd1);
+    font-style: normal;
+}
+
+/* Optionen innerhalb der Gruppen */
+.demo-styled option {
+    padding: 0.5rem;
+    background: var(--color-bg-darker, #0f0f1a);
+    color: var(--color-text, #e0e0e0);
+}</code></pre>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Datalist – Auto-Vervollständigung -->
+                <section class="categories">
+                    <h2 id="datalist-auto-vervollstaendigung">Datalist – Auto-Vervollständigung</h2>
+                    <p>Das <code class="inline">&lt;datalist&gt;</code>-Element bietet Vorschläge während der Eingabe –
+                        die Nutzer*innen können aber auch eigene Werte eingeben:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;label for="browser"&gt;Browser:&lt;/label&gt;
+&lt;input list="browsers" id="browser" name="browser" placeholder="Bitte auswählen..."&gt;
+
+&lt;datalist id="browsers"&gt;
+    &lt;option value="Chrome"&gt;
+    &lt;option value="Firefox"&gt;
+    &lt;option value="Safari"&gt;
+    &lt;option value="Edge"&gt;
+    &lt;option value="Opera"&gt;
+&lt;/datalist&gt;</code></pre>
+                    </div>
+
+                    <div class="grid-2col">
+                        <!-- Demo ungestyled -->
+                        <div class="demo-unstyled">
+                            <p><strong>Demo Browser-Default:</strong></p>
+                            <label for="demo-browser">Browser:</label><br>
+                            <input list="browsers" id="demo-browser" name="browser" placeholder="Bitte auswählen...">
+                            <datalist id="browsers">
+                                <option value="Chrome">
+                                </option>
+                                <option value="Firefox">
+                                </option>
+                                <option value="Safari">
+                                </option>
+                                <option value="Edge">
+                                </option>
+                                <option value="Opera">
+                                </option>
+                            </datalist>
+                        </div>
+                        <div class="demo-styled">
+                            <p><strong>Demo mit CSS gestyled:</strong></p>
+                            <label for="demo-styled-browser">Browser:</label>
+                            <input list="browsers-styled" id="demo-styled-browser" name="browser"
+                                placeholder="Bitte auswählen...">
+                            <datalist id="browsers-styled">
+                                <option value="Chrome">
+                                </option>
+                                <option value="Firefox">
+                                </option>
+                                <option value="Safari">
+                                </option>
+                                <option value="Edge">
+                                </option>
+                                <option value="Opera">
+                                </option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <p style="padding-top: 1rem;">Bei <code>&lt;datalist&gt;</code> kann man leider nur das Input-Feld
+                        selbst stylen, nicht das
+                        aufklappende Dropdown (das rendert der Browser nativ).</p>
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Input mit Datalist */
+.demo-styled input[list] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demo-styled input[list]:focus {
+    outline: none;
+    border-color: var(--accent-blue-light);
+    box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.2);
+    background: var(--bg-secondary);
+}
+
+.demo-styled input[list]::placeholder {
+    color: var(--text-muted);
+}</code></pre>
+                        </div>
+                    </details>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Info
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p>Der Unterschied zu <code>&lt;select&gt;</code>: Bei <code>&lt;datalist&gt;</code> sind die
+                            Optionen nur Vorschläge – Nutzer*innen können auch andere Werte eingeben.</p>
+                    </div>
+                </section>
+
+                <!-- Fieldset & Legend -->
+                <section class="categories">
+                    <h2 id="fieldset-legend-felder-gruppieren">Fieldset &amp; Legend – Felder gruppieren</h2>
+                    <p>Mit <code class="inline">&lt;fieldset&gt;</code> und <code class="inline">&lt;legend&gt;</code>
+                        kannst du zusammengehörige Formularfelder visuell und semantisch gruppieren. Das ist besonders
+                        wichtig für Barrierefreiheit:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;fieldset&gt;
+    &lt;legend&gt;Persönliche Daten&lt;/legend&gt;
+    
+    &lt;label for="vorname"&gt;Vorname:&lt;/label&gt;
+    &lt;input type="text" id="vorname" name="vorname"&gt;
+    
+    &lt;label for="nachname"&gt;Nachname:&lt;/label&gt;
+    &lt;input type="text" id="nachname" name="nachname"&gt;
+&lt;/fieldset&gt;
+
+&lt;fieldset&gt;
+    &lt;legend&gt;Zahlungsmethode&lt;/legend&gt;
+    
+    &lt;label&gt;
+        &lt;input type="radio" name="zahlung" value="karte"&gt;
+        Kreditkarte
+    &lt;/label&gt;
+    &lt;label&gt;
+        &lt;input type="radio" name="zahlung" value="paypal"&gt;
+        PayPal
+    &lt;/label&gt;
+    &lt;label&gt;
+        &lt;input type="radio" name="zahlung" value="rechnung"&gt;
+        Rechnung
+    &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+                    </div>
+
+                    <div class="grid-2col">
+                        <!-- Demo ungestyled -->
+                        <div class="demo-unstyled">
+                            <p><strong>Demo Browser-Default:</strong></p>
+                            <fieldset>
+                                <legend>Persönliche Daten</legend>
+                                <label for="demo-vorname">Vorname:</label><br>
+                                <input type="text" id="demo-vorname" name="vorname"><br><br>
+                                <label for="demo-nachname">Nachname:</label><br>
+                                <input type="text" id="demo-nachname" name="nachname">
+                            </fieldset>
+                            <br>
+                            <fieldset>
+                                <legend>Zahlungsmethode</legend>
+                                <label><input type="radio" name="demo-zahlung" value="karte"> Kreditkarte</label><br>
+                                <label><input type="radio" name="demo-zahlung" value="paypal"> PayPal</label><br>
+                                <label><input type="radio" name="demo-zahlung" value="rechnung"> Rechnung</label>
+                            </fieldset>
+                        </div>
+                        <div class="demo-styled">
+                            <p><strong>Demo mit CSS gestyled:</strong></p>
+                            <fieldset>
+                                <legend>Persönliche Daten</legend>
+                                <div class="form-row">
+                                    <div>
+                                        <label for="demo-styled-vorname">Vorname:</label>
+                                        <input type="text" id="demo-styled-vorname" name="vorname">
+                                    </div>
+                                    <div>
+                                        <label for="demo-styled-nachname">Nachname:</label>
+                                        <input type="text" id="demo-styled-nachname" name="nachname">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Zahlungsmethode</legend>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="demo-styled-zahlung" value="karte">
+                                        Kreditkarte</label>
+                                    <label><input type="radio" name="demo-styled-zahlung" value="paypal"> PayPal</label>
+                                    <label><input type="radio" name="demo-styled-zahlung" value="rechnung">
+                                        Rechnung</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Fieldset &amp; Legend */
+.demo-styled fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.demo-styled legend {
+    color: var(--accent-blue);
+    font-weight: 600;
+    padding: 0 0.5rem;
+}
+
+/* Form Grid für nebeneinander liegende Felder */
+.demo-styled .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 600px) {
+    .demo-styled .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Radio-Button Gruppe */
+.demo-styled .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.demo-styled .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.demo-styled input[type="radio"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--accent-blue);
+}</code></pre>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Labels & Barrierefreiheit -->
+                <section class="categories">
+                    <h2 id="labels-barrierefreiheit">Labels &amp; Barrierefreiheit</h2>
+                    <p>Labels machen Formulare zugänglich – sie verbinden Beschriftungen mit Eingabefeldern. Der
+                        <code class="inline">for</code>-Wert muss dem <code class="inline">id</code> des Feldes
+                        entsprechen.
+                    </p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Explizites Label (empfohlen) --&gt;
+&lt;label for="email"&gt;E-Mail-Adresse&lt;/label&gt;
+&lt;input type="email" id="email" name="email" required&gt;
+
+&lt;!-- Implizites Label (Input innerhalb des Labels) --&gt;
+&lt;label&gt;
+    Newsletter abonnieren
+    &lt;input type="checkbox" name="newsletter"&gt;
+&lt;/label&gt;</code></pre>
+                    </div>
+
+                    <h3 class="no-toc">ARIA-Attribute für bessere Zugänglichkeit</h3>
+                    <p>Zusätzliche Attribute helfen Screenreadern, den Inhalt korrekt wiederzugeben:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- aria-label für Felder ohne sichtbares Label --&gt;
+&lt;input type="search" aria-label="Website durchsuchen"&gt;
+
+&lt;!-- aria-describedby für zusätzliche Hinweise --&gt;
+&lt;label for="passwort"&gt;Passwort&lt;/label&gt;
+&lt;input type="password" id="passwort" aria-describedby="pw-hinweis"&gt;
+&lt;small id="pw-hinweis"&gt;Mindestens 8 Zeichen&lt;/small&gt;
+
+&lt;!-- aria-required für Pflichtfelder --&gt;
+&lt;input type="text" required aria-required="true"&gt;
+
+&lt;!-- aria-invalid für Validierungsfehler --&gt;
+&lt;input type="email" aria-invalid="true" aria-errormessage="email-error"&gt;
+&lt;span id="email-error"&gt;Bitte gültige E-Mail eingeben&lt;/span&gt;</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- Formularvalidierung -->
+                <section class="categories">
+                    <h2 id="formularvalidierung">Formularvalidierung</h2>
+                    <p>HTML5 bietet eingebaute Validierungsregeln – ohne JavaScript:</p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Attribut</th>
+                                <th>Beschreibung</th>
+                                <th>Beispiel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>required</code></td>
+                                <td>Pflichtfeld</td>
+                                <td><code>&lt;input required&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>minlength</code> / <code>maxlength</code></td>
+                                <td>Min/Max Textlänge</td>
+                                <td><code>&lt;input minlength="3" maxlength="20"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>min</code> / <code>max</code></td>
+                                <td>Min/Max Zahlenwert</td>
+                                <td><code>&lt;input type="number" min="1" max="100"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>pattern</code></td>
+                                <td>Regex-Muster</td>
+                                <td><code>&lt;input pattern="[A-Za-z]+"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>step</code></td>
+                                <td>Erlaubte Schrittweite</td>
+                                <td><code>&lt;input type="number" step="0.01"&gt;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Nur Buchstaben, mind. 2 Zeichen --&gt;
+&lt;input type="text" 
+       pattern="[A-Za-zÄÖÜäöüß\s]{2,}" 
+       title="Nur Buchstaben, mindestens 2 Zeichen" 
+       required&gt;
+
+&lt;!-- Telefonnummer --&gt;
+&lt;input type="tel" 
+       pattern="[\+]?[0-9\s\-]{6,}"
+       title="Gültige Telefonnummer eingeben"&gt;
+
+&lt;!-- Postleitzahl (5 Ziffern) --&gt;
+&lt;input type="text" 
+       pattern="[0-9]{5}" 
+       title="5-stellige Postleitzahl"&gt;</code></pre>
+                    </div>
+
+                    <div class="grid-2col">
+                        <!-- Demo ungestyled -->
+                        <div class="demo-unstyled">
+                            <p><strong>Demo Browser-Default:</strong> Klicke auf "Prüfen".</p>
+                            <form onsubmit="event.preventDefault(); alert('Validierung erfolgreich!');">
+                                <label for="demo-valid-name">Name (nur Buchstaben):</label><br>
+                                <input type="text" id="demo-valid-name" pattern="[A-Za-zÄÖÜäöüß\s]{2,}"
+                                    title="Nur Buchstaben, mindestens 2 Zeichen" required><br><br>
+                                <label for="demo-valid-plz">PLZ (5 Ziffern):</label><br>
+                                <input type="text" id="demo-valid-plz" pattern="[0-9]{5}"
+                                    title="5-stellige Postleitzahl" required><br><br>
+                                <button type="submit">Prüfen</button>
+                            </form>
+                        </div>
+                        <div class="demo-styled">
+                            <p><strong>Demo mit CSS gestyled:</strong> Klicke auf "Prüfen".</p>
+                            <form onsubmit="event.preventDefault(); alert('Validierung erfolgreich!');">
+                                <label for="demo-styled-valid-name">Name (nur Buchstaben):</label>
+                                <input type="text" id="demo-styled-valid-name" pattern="[A-Za-zÄÖÜäöüß\s]{2,}"
+                                    title="Nur Buchstaben, mindestens 2 Zeichen" placeholder="Max Mustermann" required>
+                                <label for="demo-styled-valid-plz">PLZ (5 Ziffern):</label>
+                                <input type="text" id="demo-styled-valid-plz" pattern="[0-9]{5}"
+                                    title="5-stellige Postleitzahl" placeholder="12345" required>
+                                <button type="submit">Prüfen</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Validierungsstatus visualisieren */
+.demo-styled input:invalid:not(:placeholder-shown) {
+    border-color: #ff6b6b;
+}
+
+.demo-styled input:valid:not(:placeholder-shown) {
+    border-color: #51cf66;
+}
+
+/* Button Styling */
+.demo-styled button {
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent, #6c9bd1);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.demo-styled button:hover {
+    background: var(--color-accent-hover, #5a8ac0);
+    transform: translateY(-1px);
+}</code></pre>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Buttons -->
+                <section class="categories">
+                    <h2 id="buttons">Buttons</h2>
+                    <p>Buttons können Aktionen auslösen – der <code>type</code> bestimmt das Verhalten:</p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Typ</th>
+                                <th>Beschreibung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>submit</code></td>
+                                <td>Sendet das Formular ab (Standard)</td>
+                            </tr>
+                            <tr>
+                                <td><code>reset</code></td>
+                                <td>Setzt alle Felder auf Anfangswerte zurück</td>
+                            </tr>
+                            <tr>
+                                <td><code>button</code></td>
+                                <td>Keine Standard-Aktion (für JavaScript)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;button type="submit"&gt;Absenden&lt;/button&gt;
+&lt;button type="reset"&gt;Zurücksetzen&lt;/button&gt;
+&lt;button type="button" onclick="alert('Klick!')"&gt;Klick mich&lt;/button&gt;
+
+&lt;!-- Button mit Icon --&gt;
+&lt;button type="submit"&gt;
+    &lt;svg&gt;...&lt;/svg&gt; Speichern
+&lt;/button&gt;
+
+&lt;!-- Deaktivierter Button --&gt;
+&lt;button type="submit" disabled&gt;Nicht verfügbar&lt;/button&gt;</code></pre>
+                    </div>
+
+                    <div class="grid-2col">
+                        <div class="demo-unstyled">
+                            <p><strong>Demo Browser-Default:</strong></p>
+                            <button type="submit">Absenden</button>
+                            <button type="reset">Zurücksetzen</button>
+                            <button type="button" onclick="alert('Klick!')">Klick mich</button>
+                            <button type="submit" disabled>Deaktiviert</button>
+                        </div>
+                        <div class="demo-styled">
+                            <p><strong>Demo mit CSS gestyled:</strong></p>
+                            <button type="submit">Absenden</button>
+                            <button type="reset">Zurücksetzen</button>
+                            <button type="button" onclick="alert('Klick!')">Klick mich</button>
+                            <button type="submit" disabled>Deaktiviert</button>
+                        </div>
+                    </div>
+
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Buttons */
+.demo-styled button {
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent, #6c9bd1);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.demo-styled button:hover {
+    background: var(--color-accent-hover, #5a8ac0);
+    transform: translateY(-1px);
+}
+
+.demo-styled button:active {
+    transform: translateY(0);
+}
+
+/* Reset-Button in anderer Farbe */
+.demo-styled button[type="reset"] {
+    background: var(--color-bg-light, #2a2a4e);
+    margin-left: 0.5rem;
+}
+
+.demo-styled button[type="reset"]:hover {
+    background: var(--color-bg-lighter, #3a3a5e);
+}
+
+/* Deaktivierte Buttons */
+.demo-styled button:disabled,
+.demo-styled button[disabled] {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Hover-Effekt bei disabled Buttons deaktivieren */
+.demo-styled button:disabled:hover,
+.demo-styled button[disabled]:hover {
+    background: var(--heading-dark);
+    transform: none;
+    box-shadow: none;
+}</code></pre>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Praxis-Tipp: Barrierefreie Formulare -->
+                <section class="categories">
+                    <h2 id="praxis-tipp-barrierefreie-formulare">Praxis-Tipp: Barrierefreie Formulare</h2>
+                    <div class="grid-2col">
+                        <div>
+                            <ul class="arrow-list">
+                                <li>Labels <strong>immer</strong> mit Eingabefeldern verbinden</li>
+                                <li>Fehlermeldungen <strong>klar und verständlich</strong> ausgeben</li>
+                                <li>Logische Tab-Reihenfolge sicherstellen</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="arrow-list">
+                                <li>Fokus sichtbar gestalten (z. B. durch CSS)</li>
+                                <li>ARIA-Attribute nur ergänzend einsetzen</li>
+                                <li>Ausreichend Kontrast für Text und Rahmen</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Gut sichtbarer Fokus */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: 3px solid #6c9bd1;
+    outline-offset: 2px;
+}
+
+/* Validierungsstatus visualisieren */
+input:valid {
+    border-color: #51cf66;
+}
+
+input:invalid {
+    border-color: #ff6b6b;
+}
+
+/* Pflichtfeld-Indikator */
+label.required::after {
+    content: " *";
+    color: #ff6b6b;
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- Praxisbeispiel: Kontaktformular -->
+                <section class="categories">
+                    <h2 id="praxisbeispiel-kontaktformular">Praxisbeispiel: Kontaktformular</h2>
+                    <p>Hier ein vollständiges Kontaktformular mit Betreffzeile, wie es auf der DevPanicZone aussehen
+                        könnte. Das Formular ist barrierefrei, validiert und responsiv.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;form action="/kontakt-verarbeiten.php" method="post" class="dpz-contact-form"&gt;
+    &lt;h3&gt;Kontakt aufnehmen&lt;/h3&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;label for="contact-name"&gt;Name *&lt;/label&gt;
+        &lt;input type="text" id="contact-name" name="name" 
+               placeholder="Dein Name" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;label for="contact-email"&gt;E-Mail *&lt;/label&gt;
+        &lt;input type="email" id="contact-email" name="email" 
+               placeholder="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff9b9a96919abf9a929e9693d19b9a">[email&nbsp;protected]</a>" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;label for="contact-subject"&gt;Betreff *&lt;/label&gt;
+        &lt;select id="contact-subject" name="subject" required&gt;
+            &lt;option value=""&gt;Bitte wählen...&lt;/option&gt;
+            &lt;option value="feedback"&gt;Feedback zum Tutorial&lt;/option&gt;
+            &lt;option value="fehler"&gt;Fehler melden&lt;/option&gt;
+            &lt;option value="vorschlag"&gt;Themenvorschlag&lt;/option&gt;
+            &lt;option value="sonstiges"&gt;Sonstiges&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;label for="contact-message"&gt;Nachricht *&lt;/label&gt;
+        &lt;textarea id="contact-message" name="message" 
+                  placeholder="Deine Nachricht..." required&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-actions"&gt;
+        &lt;button type="submit" class="btn-submit"&gt;Nachricht senden&lt;/button&gt;
+        &lt;button type="reset" class="btn-reset"&gt;Zurücksetzen&lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;p class="privacy-note"&gt;* Pflichtfelder. Deine Daten werden nicht gespeichert.&lt;/p&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+
+                    <h3 class="no-toc">Live-Demo</h3>
+                    <p>So würde das Kontaktformular auf der DevPanicZone aussehen:</p>
+
+
+                    <form action="#" method="post" class="dpz-contact-form"
+                        onsubmit="event.preventDefault(); alert('Demo: Formular würde abgesendet werden!');">
+                        <h3 class="no-toc" style="padding-top: 1rem;">Kontakt aufnehmen</h3>
+
+                        <div class="form-group">
+                            <label for="contact-name">Name *</label>
+                            <input type="text" id="contact-name" name="name" placeholder="Dein Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">E-Mail *</label>
+                            <input type="email" id="contact-email" name="email" placeholder="deine@email.de" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Betreff *</label>
+                            <select id="contact-subject" name="subject" required>
+                                <option value="">Bitte wählen...</option>
+                                <option value="feedback">Feedback zum Tutorial</option>
+                                <option value="fehler">Fehler melden</option>
+                                <option value="vorschlag">Themenvorschlag</option>
+                                <option value="sonstiges">Sonstiges</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Nachricht *</label>
+                            <textarea id="contact-message" name="message"
+                                placeholder="Deine Nachricht... (Demo, deine Nachricht wird nicht gesendet)"
+                                required></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit">Nachricht senden</button>
+                            <button type="reset" class="btn-reset">Zurücksetzen</button>
+                        </div>
+
+                        <p class="privacy-note">* Pflichtfelder. Deine Daten werden nicht gespeichert.</p>
+                    </form>
+
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* DevPanicZone Kontaktformular */
+.dpz-contact-form {    
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.dpz-contact-form .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.dpz-contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.dpz-contact-form input,
+.dpz-contact-form select,
+.dpz-contact-form textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form input:focus,
+.dpz-contact-form select:focus,
+.dpz-contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue-light);
+    box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.15);
+    background: var(--bg-tertiary);
+}
+
+.dpz-contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.dpz-contact-form .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.dpz-contact-form .btn-submit {
+    flex: 1;
+    padding: 1rem 2rem;
+    background: var(--accent-blue-light);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form .btn-submit:hover {
+    background: var(--accent-blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 155, 209, 0.4);
+}
+
+.dpz-contact-form .btn-reset {
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form .btn-reset:hover {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.dpz-contact-form .privacy-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    text-align: center;
+}</code></pre>
+                        </div>
+                    </details>
+
+                    <h3 class="no-toc">Alternative: 2-Spalten-Layout</h3>
+                    <p>Für breitere Layouts kannst du das Formular in zwei Spalten aufteilen – links die kurzen Felder,
+                        rechts die Nachricht:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;form action="/kontakt-verarbeiten.php" method="post" class="dpz-contact-form-wide"&gt;
+    &lt;h3&gt;Kontakt aufnehmen&lt;/h3&gt;
+    
+    &lt;div class="form-columns"&gt;
+        &lt;!-- Linke Spalte --&gt;
+        &lt;div class="form-column-left"&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label for="contact-name"&gt;Name *&lt;/label&gt;
+                &lt;input type="text" id="contact-name" name="name" 
+                       placeholder="Dein Name" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="contact-email"&gt;E-Mail *&lt;/label&gt;
+                &lt;input type="email" id="contact-email" name="email" 
+                       placeholder="<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8de9e8e4e3e8cde8e0ece4e1a3e9e8">[email&nbsp;protected]</a>" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="contact-subject"&gt;Betreff *&lt;/label&gt;
+                &lt;select id="contact-subject" name="subject" required&gt;
+                    &lt;option value=""&gt;Bitte wählen...&lt;/option&gt;
+                    &lt;option value="feedback"&gt;Feedback zum Tutorial&lt;/option&gt;
+                    &lt;option value="fehler"&gt;Fehler melden&lt;/option&gt;
+                    &lt;option value="vorschlag"&gt;Themenvorschlag&lt;/option&gt;
+                    &lt;option value="sonstiges"&gt;Sonstiges&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- Rechte Spalte --&gt;
+        &lt;div class="form-column-right"&gt;
+            &lt;div class="form-group"&gt;
+                &lt;label for="contact-message"&gt;Nachricht *&lt;/label&gt;
+                &lt;textarea id="contact-message" name="message" 
+                          placeholder="Deine Nachricht..." required&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-actions"&gt;
+                &lt;button type="submit" class="btn-submit"&gt;Senden&lt;/button&gt;
+                &lt;button type="reset" class="btn-reset"&gt;Zurücksetzen&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p class="privacy-note"&gt;* Pflichtfelder&lt;/p&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+
+                    <form action="#" method="post" class="dpz-contact-form-wide"
+                        onsubmit="event.preventDefault(); alert('Demo: Formular würde abgesendet werden!');">
+                        <h3 class="no-toc">Kontakt aufnehmen</h3>
+
+                        <div class="form-columns">
+                            <!-- Linke Spalte -->
+                            <div class="form-column-left">
+                                <div class="form-group">
+                                    <label for="contact-name-wide">Name *</label>
+                                    <input type="text" id="contact-name-wide" name="name" placeholder="Dein Name"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contact-email-wide">E-Mail *</label>
+                                    <input type="email" id="contact-email-wide" name="email"
+                                        placeholder="deine@email.de" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contact-subject-wide">Betreff *</label>
+                                    <select id="contact-subject-wide" name="subject" required>
+                                        <option value="">Bitte wählen...</option>
+                                        <option value="feedback">Feedback zum Tutorial</option>
+                                        <option value="fehler">Fehler melden</option>
+                                        <option value="vorschlag">Themenvorschlag</option>
+                                        <option value="sonstiges">Sonstiges</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Rechte Spalte -->
+                            <div class="form-column-right">
+                                <div class="form-group">
+                                    <label for="contact-message-wide">Nachricht *</label>
+                                    <textarea id="contact-message-wide" name="message"
+                                        placeholder="Deine Nachricht... (Demo, deine Nachricht wird nicht gesendet)"
+                                        required></textarea>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-submit">Senden</button>
+                                    <button type="reset" class="btn-reset">Zurücksetzen</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="privacy-note">* Pflichtfelder</p>
+                    </form>
+
+                    <!-- CSS unter details -->
+                    <details class="styled-demo">
+                        <summary>CSS anzeigen</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* 2-Spalten Kontaktformular */
+.dpz-contact-form-wide {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.dpz-contact-form-wide h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--accent-blue-light);
+    font-size: 1.5rem;
+}
+
+.dpz-contact-form-wide .form-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .dpz-contact-form-wide .form-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+.dpz-contact-form-wide .form-column-left,
+.dpz-contact-form-wide .form-column-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.dpz-contact-form-wide .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.dpz-contact-form-wide label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.dpz-contact-form-wide input,
+.dpz-contact-form-wide select,
+.dpz-contact-form-wide textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form-wide input:focus,
+.dpz-contact-form-wide select:focus,
+.dpz-contact-form-wide textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue-hover);
+    box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.15);
+    background: var(--bg-primary);
+}
+
+.dpz-contact-form-wide .form-column-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.dpz-contact-form-wide .form-column-right .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.dpz-contact-form-wide .form-column-right textarea {
+    flex: 1;
+    min-height: 120px;
+    resize: vertical;
+}
+
+.dpz-contact-form-wide .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.dpz-contact-form-wide .btn-submit {
+    flex: 1;
+    padding: 1rem 2rem;
+    background: var(--accent-blue-light);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form-wide .btn-submit:hover {
+    background: var(--color-accent-hover, #5a8ac0);
+    transform: translateY(-2px);
+    /* box-shadow: 0 4px 12px rgba(108, 155, 209, 0.4); */
+}
+
+.dpz-contact-form-wide .btn-reset {
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form-wide .btn-reset:hover {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.dpz-contact-form-wide .privacy-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    text-align: center;
+    grid-column: 1 / -1;
+}</code></pre>
+                        </div>
+                    </details>
+
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Demo Info
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p>Diese Formulare sind nur Demos – um sie funktionsfähig zu machen, brauchst du ein Backend
+                            (z. B. PHP), das die Daten verarbeitet und die E-Mail versendet. Das behandeln wir im
+                            PHP-Tutorial!</p>
+                    </div>
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                <section class="categories">
+                    <nav class="tutorial-nav"></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutz.html">Datenschutz</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+</body>
+
+</html>
