@@ -193,14 +193,25 @@ const TUTORIAL_ORDER = {
         // Platzhalter
     ],
     'tutorials/javascript/basics': [
-        // Platzhalter
+        // 'js-variables.html',
+        // 'js-functions.html',
+        // 'js-conditions.html',
+        // 'js-loops.html',
+        // 'js-arrays-objects.html',
+        // 'js-events.html',
+        // 'js-scroll-to-top.html'
     ],
     'tutorials/javascript/advanced': [
-        // Platzhalter
+        // 'js-async-await.html',
+        // 'js-dom.html',
+        // 'js-fetch.html',
+        // 'js-storage.html',
+        // 'js-event-delegation.html'
     ],
     'tutorials/javascript/javascript-projects': [
         'js-code-escaper.html',
-        'to-do-app.html'
+        'js-to-do-app.html'
+        // 'js-modal.html'
     ],
     'tutorials/php/php-basics': [
         // Platzhalter
@@ -293,6 +304,33 @@ const CATEGORY_NAMES = {
     'documentation': 'DevPanicZone!'
 };
 
+// Spezielle Kapitalisierung für Akronyme
+const ACRONYMS = {
+    'html': 'HTML',
+    'css': 'CSS',
+    'php': 'PHP',
+    'js': 'JS',
+    'javascript': 'JavaScript',
+    'seo': 'SEO',
+    'ftp': 'FTP',
+    'devpaniczone': 'DevPanicZone'
+};
+
+// Kapitalisiert Wörter korrekt, berücksichtigt Akronyme
+function capitalizeWithAcronyms(text) {
+    return text.split('-')
+        .map(word => {
+            const lower = word.toLowerCase();
+            // Prüfe ob es ein Akronym ist
+            if (ACRONYMS[lower]) {
+                return ACRONYMS[lower];
+            }
+            // Normale Kapitalisierung
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(' ');
+}
+
 // ============================================
 // HILFSFUNKTIONEN
 // ============================================
@@ -380,10 +418,11 @@ function getSubcategoriesForCategory(category) {
             // Prüfe ob es Tutorials in dieser Unterkategorie gibt
             if (TUTORIAL_ORDER[key] && TUTORIAL_ORDER[key].length > 0) {
                 // Display Name: "html-basics" → "HTML Basics"
-                const displayName = subcategoryName
-                    .split('-')
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(' ');
+                // const displayName = subcategoryName
+                //     .split('-')
+                //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                //     .join(' ');
+                const displayName = capitalizeWithAcronyms(subcategoryName);
 
                 subcategories[subcategoryName] = {
                     name: displayName,
@@ -409,10 +448,12 @@ function getAllTutorialsForCategory(category) {
 
             if (tutorials.length > 0) {
                 // Display Name: "html-basics" → "HTML Basics"
-                const displayName = subcategoryName
-                    .split('-')
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(' ');
+                // const displayName = subcategoryName
+                //     .split('-')
+                //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                //     .join(' ');
+
+                const displayName = capitalizeWithAcronyms(subcategoryName);
 
                 grouped[subcategoryName] = {
                     displayName: displayName,
@@ -441,10 +482,12 @@ function getAllTutorialsFlat(category) {
                 allTutorials.push({
                     ...tutorial,
                     subcategory: subcategoryName,
-                    subcategoryDisplay: subcategoryName
-                        .split('-')
-                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(' ')
+                    // subcategoryDisplay: subcategoryName
+                    //     .split('-')
+                    //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    //     .join(' ')
+                    subcategoryDisplay: capitalizeWithAcronyms(subcategoryName)
+
                 });
             });
         }
@@ -533,13 +576,19 @@ function generateTutorialButtons(category) {
             return;
         }
 
-        const displayName = subcategoryName
-            .split('-')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
+        // const displayName = subcategoryName
+        //     .split('-')
+        //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        //     .join(' ');
+        const displayName = capitalizeWithAcronyms(subcategoryName);
+
+        //     html += `
+        // <div class="tutorial-group">
+        //     <h3 class="tutorial-group-title">${displayName}</h3>
+        //     <div class="tutorial-group-buttons">`;
 
         html += `
-    <div class="tutorial-group">
+    <div id="${subcategoryName}" class="tutorial-group">
         <h3 class="tutorial-group-title">${displayName}</h3>
         <div class="tutorial-group-buttons">`;
 

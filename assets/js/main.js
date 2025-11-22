@@ -171,44 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Nested Submenu Toggle (Click-Handler)
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     const nestedItems = document.querySelectorAll('.nav-item-nested > .nav-link');
-
-    //     nestedItems.forEach(link => {
-    //         link.addEventListener('click', function (e) {
-    // Nur das Icon-Klick abfangen, nicht den ganzen Link
-    // if (e.target.classList.contains('submenu-icon') ||
-    //     e.target.closest('.submenu-icon')) {
-    //     e.preventDefault();
-
-    //     const parentLi = this.closest('.nav-item-nested');
-
-    // Toggle aktiven Zustand
-    // parentLi.classList.toggle('is-active');
-
-    // Optional: Schließe andere Submenus
-    //     document.querySelectorAll('.nav-item-nested').forEach(item => {
-    //         if (item !== parentLi) {
-    //             item.classList.remove('is-active');
-    //         }
-    //     });
-    // }
-    // Wenn man auf den Text klickt, lasse den Link normal funktionieren
-    //     });
-    // });
-
-    // Schließe Submenus wenn außerhalb geklickt wird
-    //     document.addEventListener('click', function (e) {
-    //         if (!e.target.closest('.nav-item-nested')) {
-    //             document.querySelectorAll('.nav-item-nested').forEach(item => {
-    //                 item.classList.remove('is-active');
-    //             });
-    //         }
-    //     });
-    // });
-
-
     // ===================================
     // NESTED SUBMENU (Kategorien im Tutorials-Dropdown)
     // ===================================
