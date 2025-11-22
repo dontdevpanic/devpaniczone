@@ -69,6 +69,7 @@
                             <span class="submenu-icon">▸</span>
                         </a>
                         <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#basics">Basics</a></li>
                             <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
                         </ul>
                     </li>
@@ -184,6 +185,7 @@
                     <li class="toc-level-1"><a href="#layout-parts">Layout Parts</a></li>
                     <li class="toc-level-2"><a href="#grid-boxes-mit-hintergrund">Grid Boxes mit Hintergrund</a></li>
                     <li class="toc-level-2"><a href="#grid-boxes-ohne-hintergrund">Grid Boxes ohne Hintergrund</a></li>
+                    <li class="toc-level-2"><a href="#comparsion-grid">Comparsion Grid</a></li>
                     <li class="toc-level-2"><a href="#code-block-html">Code-Block HTML</a></li>
                     <li class="toc-level-2"><a href="#code-block-css">Code-Block CSS</a></li>
                     <li class="toc-level-2"><a href="#code-block-2er-grid">Code-Block 2er Grid</a></li>
@@ -448,7 +450,7 @@
                 </section> <!-- Code Escaper -->
 
                 <!-- Layout Parts -->
-                <section class="categories">
+                <section class="tutorials-content">
                     <h2 id="layout-parts">Layout Parts</h2>
                     <p>Einzelnen Code-Snippets mit den entsprechenden Klassen.</p>
                     <p>Diese Snippets werden innerhalb der <code class="inline">&lt;section class="categories"&gt;...&lt;/section&gt;</code> eingefügt.
@@ -458,8 +460,8 @@
                         nachvollziehbar.</p>
                 </section> <!-- Layout Parts -->
 
-                <!-- 2 Spalten BG -->
-                <section class="categories">
+                <!-- Grid Boxes mit Hintergrund -->
+                <section class="tutorials-content">
                     <h3 id="grid-boxes-mit-hintergrund">Grid Boxes mit Hintergrund</h3>
                     <div class="grid-2col">
 
@@ -514,10 +516,10 @@
 
 &lt;/div&gt;</code></pre>
                     </div>
-                </section> <!-- 2 Spalten BG -->
+                </section>
 
-                <!-- 2 Spalten -->
-                <section class="categories">
+                <!-- Grid Boxes ohne Hintergrund -->
+                <section class="tutorials-content">
                     <h3 id="grid-boxes-ohne-hintergrund">Grid Boxes ohne Hintergrund</h3>
                     <div class="grid-2col">
                         <div>
@@ -562,6 +564,69 @@
                     </div>
                 </section> <!-- 2 Spalten -->
 
+                <!-- Comparsion Grid -->
+                <section class="tutorials-content">
+                    <h3 id="comparsion-grid">Comparsion Grid</h3>
+                    <div class="comparison-grid">
+                        <div class="comparison-box unsafe-example">
+                            <div class="example-label">UNSICHER - innerHTML</div>
+                            <div class="code-block">
+                                <pre><code class="language-javascript">// Führt HTML/JavaScript aus!
+element.innerHTML = userInput;</code></pre>
+                            </div>
+                            <p><strong>Wann verwenden:</strong> Nur mit vertrauenswürdigen Daten, NIE mit
+                                User-Input!
+                            </p>
+                        </div>
+
+                        <div class="comparison-box safe-example">
+                            <div class="example-label">SICHER - textContent</div>
+                            <div class="code-block">
+                                <pre><code class="language-javascript">// Zeigt nur Text, kein Code!
+element.textContent = userInput;</code></pre>
+                            </div>
+                            <p><strong>Wann verwenden:</strong> Immer bei User-Input! Code wird nicht ausgeführt.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Code Block language-html -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;div class="comparison-grid"&gt;
+    &lt;div class="comparison-box unsafe-example"&gt;
+        &lt;div class="example-label"&gt;UNSICHER - innerHTML&lt;/div&gt;
+        &lt;div class="code-block"&gt;
+            &lt;pre&gt;&lt;code class="language-javascript"&gt;// Führt HTML/JavaScript aus!
+element.innerHTML = userInput;&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+        &lt;p&gt;&lt;strong&gt;Wann verwenden:&lt;/strong&gt; Nur mit vertrauenswürdigen Daten, NIE mit
+            User-Input!
+        &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="comparison-box safe-example"&gt;
+        &lt;div class="example-label"&gt;SICHER - textContent&lt;/div&gt;
+        &lt;div class="code-block"&gt;
+            &lt;pre&gt;&lt;code class="language-javascript"&gt;// Zeigt nur Text, kein Code!
+element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+        &lt;p&gt;&lt;strong&gt;Wann verwenden:&lt;/strong&gt; Immer bei User-Input! Code wird nicht ausgeführt.
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                </section>
+
                 <!-- Code-Block HTML -->
                 <section class="categories">
                     <h3 id="code-block-html">Code-Block HTML</h3>
@@ -595,6 +660,7 @@
     &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;</code></pre>
                     </div>
+                    
                 </section> <!-- Code-Block HTML -->
 
                 <!-- Code-Block CSS -->
@@ -1053,32 +1119,6 @@
                         </div>
 
                     </div>
-
-                    <!-- Comparsion Grid -->
-                    <section class="tutorials-content">
-                    <h2>innerHTML vs. textContent - Der Unterschied ist wichtig!</h2>
-                    <div class="comparison-grid">
-                        <div class="comparison-box unsafe-example">
-                            <div class="example-label">UNSICHER - innerHTML</div>
-                            <div class="code-block">
-                                <pre><code class="language-javascript">// Führt HTML/JavaScript aus!
-element.innerHTML = userInput;</code></pre>
-                            </div>
-                            <p><strong>Wann verwenden:</strong> Nur mit vertrauenswürdigen Daten, NIE mit User-Input!
-                            </p>
-                        </div>
-
-                        <div class="comparison-box safe-example">
-                            <div class="example-label">SICHER - textContent</div>
-                            <div class="code-block">
-                                <pre><code class="language-javascript">// Zeigt nur Text, kein Code!
-element.textContent = userInput;</code></pre>
-                            </div>
-                            <p><strong>Wann verwenden:</strong> Immer bei User-Input! Code wird nicht ausgeführt.</p>
-                        </div>
-                    </div>
-                </section>
-
 
 
                 </section> <!-- Info-Box -->
@@ -2020,6 +2060,8 @@ details[open] summary {
             });
         });
     </script>
+
+
 
 
 
