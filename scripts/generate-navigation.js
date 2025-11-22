@@ -161,7 +161,8 @@ const TUTORIAL_ORDER = {
     ],
     'tutorials/html/html-advanced': [
         'html-semantik.html',
-        'html-formulare.html'
+        'html-formulare.html',
+        'html-audio-video.html'
     ],
     'tutorials/css/css-basics': [
         'css-einbinden.html',
