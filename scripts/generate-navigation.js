@@ -368,6 +368,34 @@ function getOrderedTutorials(subcategory) {
     }).filter(item => item !== null);
 }
 
+// Extrahiert alle Unterkategorien einer Hauptkategorie
+function getSubcategoriesForCategory(category) {
+    const subcategories = {};
+
+    Object.keys(TUTORIAL_ORDER).forEach(key => {
+        if (key.startsWith(`tutorials/${category}/`)) {
+            const parts = key.split('/');
+            const subcategoryName = parts[2]; // z.B. "html-basics"
+
+            // Prüfe ob es Tutorials in dieser Unterkategorie gibt
+            if (TUTORIAL_ORDER[key] && TUTORIAL_ORDER[key].length > 0) {
+                // Display Name: "html-basics" → "HTML Basics"
+                const displayName = subcategoryName
+                    .split('-')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+
+                subcategories[subcategoryName] = {
+                    name: displayName,
+                    path: key.replace('tutorials/', '/tutorials/')
+                };
+            }
+        }
+    });
+
+    return subcategories;
+}
+
 // ============================================
 // HILFSFUNKTION: Boolean-Attribute bereinigen
 // ============================================
@@ -500,19 +528,59 @@ ${buttonsHtml}
 // Navigation generieren
 // ============================================
 
+// function generateMainNavigation() {
+//     const categories = Object.keys(CATEGORY_NAMES);
+//     const navItems = [];
+
+//     categories.forEach(category => {
+//         const categoryName = CATEGORY_NAMES[category];
+
+//         const hasEntry = Object.keys(TUTORIAL_ORDER).some(key =>
+//             key.startsWith('tutorials/' + category + '/')
+//         );
+
+//         if (hasEntry) {
+//             navItems.push(`<li><a href="/tutorials/${category}/">${categoryName}</a></li>`);
+//         }
+//     });
+
+//     return navItems;
+// }
+
+// NEUE VERSION mit Unterkategorien-Dropdowns
+// 
+
+// KORRIGIERTE VERSION v2 - Verschachtelte Struktur für bestehendes Tutorials-Dropdown
 function generateMainNavigation() {
     const categories = Object.keys(CATEGORY_NAMES);
     const navItems = [];
 
     categories.forEach(category => {
         const categoryName = CATEGORY_NAMES[category];
+        const subcategories = getSubcategoriesForCategory(category);
 
-        const hasEntry = Object.keys(TUTORIAL_ORDER).some(key =>
-            key.startsWith('tutorials/' + category + '/')
-        );
+        // Prüfe ob es Tutorials in dieser Kategorie gibt
+        if (Object.keys(subcategories).length > 0) {
+            // Item mit Unterkategorien
+            let navItem = `<li class="nav-item-nested">
+                        <a href="/tutorials/${category}/" class="nav-link">
+                            ${categoryName}
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">`;
 
-        if (hasEntry) {
-            navItems.push(`<li><a href="/tutorials/${category}/">${categoryName}</a></li>`);
+            // Füge Unterkategorien hinzu
+            Object.keys(subcategories).forEach(subKey => {
+                const sub = subcategories[subKey];
+                navItem += `
+                            <li><a href="/tutorials/${category}/#${subKey}">${sub.name}</a></li>`;
+            });
+
+            navItem += `
+                        </ul>
+                    </li>`;
+
+            navItems.push(navItem);
         }
     });
 

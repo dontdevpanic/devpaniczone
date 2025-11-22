@@ -1,8 +1,8 @@
 // === SICHERHEITSWARNUNG (Immer zuerst!) ===
-console.log('%c⚠️ Console-Warnung', 
+console.log('%c⚠️ Console-Warnung',
     'color: #ff6b6b; font-size: 18px; font-weight: bold;');
 console.log('%cFalls dich jemand gebeten hat, Code hier einzufügen: DON\'T! ' +
-            'Das könnte ein Betrugsversuch sein.',
+    'Das könnte ein Betrugsversuch sein.',
     'color: #f06595; font-size: 13px;');
 console.log('%cMehr Infos: https://de.wikipedia.org/wiki/Self-XSS',
     'color: #999; font-size: 11px;');
@@ -19,12 +19,12 @@ console.log(`
          ⚡ Don't Panic. Cheat. ⚡
 `);
 
-console.log('%cHey! Schön, dass du hier bist! 👋', 
+console.log('%cHey! Schön, dass du hier bist! 👋',
     'color: #4ecdc4; font-size: 14px; font-weight: bold;');
-console.log('%c💡 Du siehst: Sauberer Code, responsive Design, made with ☕', 
+console.log('%c💡 Du siehst: Sauberer Code, responsive Design, made with ☕',
     'color: #95e1d3; font-size: 12px;');
 // console.log('%c📫 hello@devpaniczone.de', 
-    // 'color: #f38181; font-size: 11px;');
+// 'color: #f38181; font-size: 11px;');
 
 // Theme Icon Pfade (deine SVG-Dateien)
 const THEME_ICONS = {
@@ -171,6 +171,92 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Nested Submenu Toggle (Click-Handler)
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     const nestedItems = document.querySelectorAll('.nav-item-nested > .nav-link');
+
+    //     nestedItems.forEach(link => {
+    //         link.addEventListener('click', function (e) {
+    // Nur das Icon-Klick abfangen, nicht den ganzen Link
+    // if (e.target.classList.contains('submenu-icon') ||
+    //     e.target.closest('.submenu-icon')) {
+    //     e.preventDefault();
+
+    //     const parentLi = this.closest('.nav-item-nested');
+
+    // Toggle aktiven Zustand
+    // parentLi.classList.toggle('is-active');
+
+    // Optional: Schließe andere Submenus
+    //     document.querySelectorAll('.nav-item-nested').forEach(item => {
+    //         if (item !== parentLi) {
+    //             item.classList.remove('is-active');
+    //         }
+    //     });
+    // }
+    // Wenn man auf den Text klickt, lasse den Link normal funktionieren
+    //     });
+    // });
+
+    // Schließe Submenus wenn außerhalb geklickt wird
+    //     document.addEventListener('click', function (e) {
+    //         if (!e.target.closest('.nav-item-nested')) {
+    //             document.querySelectorAll('.nav-item-nested').forEach(item => {
+    //                 item.classList.remove('is-active');
+    //             });
+    //         }
+    //     });
+    // });
+
+
+    // ===================================
+    // NESTED SUBMENU (Kategorien im Tutorials-Dropdown)
+    // ===================================
+
+    const nestedItems = document.querySelectorAll('.nav-item-nested > .nav-link');
+
+    nestedItems.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const parentLi = this.closest('.nav-item-nested');
+            const isActive = parentLi.classList.contains('is-active');
+
+            // Schließe alle anderen Submenus im gleichen Dropdown
+            const dropdown = this.closest('.dropdown-menu');
+            if (dropdown) {
+                dropdown.querySelectorAll('.nav-item-nested').forEach(item => {
+                    if (item !== parentLi) {
+                        item.classList.remove('is-active');
+                    }
+                });
+            }
+
+            // Toggle das aktuelle Submenu
+            parentLi.classList.toggle('is-active');
+        });
+    });
+
+    // Schließe Submenus wenn außerhalb geklickt wird
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.nav-item-nested') && !e.target.closest('.dropdown-menu')) {
+            document.querySelectorAll('.nav-item-nested').forEach(item => {
+                item.classList.remove('is-active');
+            });
+        }
+    });
+
+    // Schließe Submenus wenn außerhalb geklickt wird
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.nav-item-nested') && !e.target.closest('.dropdown-menu')) {
+            document.querySelectorAll('.nav-item-nested').forEach(item => {
+                item.classList.remove('is-active');
+            });
+        }
+    });
+
+
     // ===================================
     // SCROLL TO TOP BUTTON
     // ===================================
@@ -247,7 +333,7 @@ const searchInput = document.getElementById('globalSearch');
 if (searchToggle && searchDropdown) {
     searchToggle.addEventListener('click', () => {
         const isHidden = searchDropdown.hasAttribute('hidden');
-        
+
         if (isHidden) {
             searchDropdown.removeAttribute('hidden');
             searchInput.focus();
@@ -255,14 +341,14 @@ if (searchToggle && searchDropdown) {
             searchDropdown.setAttribute('hidden', '');
         }
     });
-    
+
     // Schließen wenn außerhalb geklickt
     document.addEventListener('click', (e) => {
         if (!searchToggle.contains(e.target) && !searchDropdown.contains(e.target)) {
             searchDropdown.setAttribute('hidden', '');
         }
     });
-    
+
     // ESC schließt Dropdown
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
