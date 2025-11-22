@@ -194,6 +194,8 @@ const TUTORIAL_ORDER = {
         // Platzhalter
     ],
     'tutorials/javascript/basics': [
+        'js-basics.html',
+        'js-security.html'
         // 'js-variables.html',
         // 'js-functions.html',
         // 'js-conditions.html',
