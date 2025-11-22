@@ -1,0 +1,1446 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Die wichtigsten JavaScript-Grundlagen: Variablen, Datentypen, Funktionen, Events und DOM-Manipulation. Praktische Beispiele und interaktive Demos für Anfänger.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>JavaScript Basics | DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    <link rel="stylesheet" href="/assets/css/tutorial-demos.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#basics">Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#projects">Projects</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">JavaScript Basics</span></nav>
+                <h1 class="hero-title">JavaScript Basics</h1>
+                <p class="hero-subtitle">Die wichtigsten Grundlagen, um mit JavaScript zu starten - von Variablen bis zu
+                    Event-Handlern.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#javascript">JavaScript.</a></li>
+                    <li class="toc-level-1"><a href="#wo-kommt-javascript-hin">Wo kommt JavaScript hin?</a></li>
+                    <li class="toc-level-1"><a href="#variablen-und-datentypen">Variablen und Datentypen</a></li>
+                    <li class="toc-level-2"><a href="#let-const-und-var">let, const und var</a></li>
+                    <li class="toc-level-2"><a href="#datentypen">Datentypen</a></li>
+                    <li class="toc-level-2"><a href="#interaktives-beispiel-variablen">Interaktives Beispiel: Variablen</a></li>
+                    <li class="toc-level-1"><a href="#operatoren">Operatoren</a></li>
+                    <li class="toc-level-2"><a href="#arithmetische-operatoren">Arithmetische Operatoren</a></li>
+                    <li class="toc-level-2"><a href="#vergleichsoperatoren">Vergleichsoperatoren</a></li>
+                    <li class="toc-level-2"><a href="#logische-operatoren">Logische Operatoren</a></li>
+                    <li class="toc-level-1"><a href="#funktionen">Funktionen</a></li>
+                    <li class="toc-level-2"><a href="#function-declaration-klassisch">Function Declaration (klassisch)</a></li>
+                    <li class="toc-level-2"><a href="#arrow-function-modern">Arrow Function (modern)</a></li>
+                    <li class="toc-level-2"><a href="#parameter-und-return">Parameter und Return</a></li>
+                    <li class="toc-level-2"><a href="#interaktives-beispiel-funktionen">Interaktives Beispiel: Funktionen</a></li>
+                    <li class="toc-level-1"><a href="#ifelse---bedingungen">If/Else - Bedingungen</a></li>
+                    <li class="toc-level-2"><a href="#ternaerer-operator-kurzform">Ternärer Operator (Kurzform)</a></li>
+                    <li class="toc-level-2"><a href="#interaktives-beispiel-bedingungen">Interaktives Beispiel: Bedingungen</a></li>
+                    <li class="toc-level-1"><a href="#schleifen-loops">Schleifen (Loops)</a></li>
+                    <li class="toc-level-2"><a href="#for-schleife">For-Schleife</a></li>
+                    <li class="toc-level-2"><a href="#while-schleife">While-Schleife</a></li>
+                    <li class="toc-level-2"><a href="#foreach-fuer-arrays">forEach (für Arrays)</a></li>
+                    <li class="toc-level-2"><a href="#interaktives-beispiel-schleifen">Interaktives Beispiel: Schleifen</a></li>
+                    <li class="toc-level-1"><a href="#dom-manipulation">DOM-Manipulation</a></li>
+                    <li class="toc-level-2"><a href="#elemente-auswaehlen">Elemente auswählen</a></li>
+                    <li class="toc-level-2"><a href="#inhalt-aendern">Inhalt ändern</a></li>
+                    <li class="toc-level-2"><a href="#klassen-hinzufuegenentfernen">Klassen hinzufügen/entfernen</a></li>
+                    <li class="toc-level-2"><a href="#interaktives-beispiel-dom-manipulation">Interaktives Beispiel: DOM-Manipulation</a></li>
+                    <li class="toc-level-1"><a href="#events-ereignisse">Events (Ereignisse)</a></li>
+                    <li class="toc-level-2"><a href="#event-listener-hinzufuegen">Event Listener hinzufügen</a></li>
+                    <li class="toc-level-2"><a href="#wichtige-event-typen">Wichtige Event-Typen</a></li>
+                    <li class="toc-level-2"><a href="#event-objekt">Event-Objekt</a></li>
+                    <li class="toc-level-2"><a href="#interaktives-beispiel-events">Interaktives Beispiel: Events</a></li>
+                    <li class="toc-level-1"><a href="#wichtige-array-methoden">Wichtige Array-Methoden</a></li>
+                    <li class="toc-level-2"><a href="#interaktives-beispiel-array-methoden">Interaktives Beispiel: Array-Methoden</a></li>
+                    <li class="toc-level-1"><a href="#console-und-debugging">Console und Debugging</a></li>
+                    <li class="toc-level-2"><a href="#console-methoden">Console-Methoden</a></li>
+                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">JavaScript Projects</li>
+                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript: HTML-Code Escaper</a></li>
+                    <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit JavaScript</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Wo kommt JavaScript hin? -->
+                <section class="tutorials-content section-top">
+                    <h2 id="javascript">JavaScript.</h2>
+                    <p>Ein mächtiges Werkzeug. Nicht erschrecken, auf dieser Seite siehst du viel Code - wir stecken mal den großen Zeh ins kalte Wasser. Vielleicht geht´s dir besser, mein erster Eindruck war: Oh Gott. Aber die Seite ist ein Sneak-Peak auf die kommenden Tutorials, wir gehen auf die spärlich erklärten Codes natürlich noch genauer ein.</p>
+                    
+                </section>
+
+                <!-- Wo kommt JavaScript hin? -->
+                <section class="tutorials-content">
+                    <h2 id="wo-kommt-javascript-hin">Wo kommt JavaScript hin?</h2>
+                    <p>JavaScript kann an drei Stellen eingebunden werden:</p>
+
+                    <h3 class="no-toc" id="1-inline-javascript-direkt-im-html">1. Inline JavaScript (direkt im HTML)</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;button onclick="alert('Hallo!')"&gt;Klick mich&lt;/button&gt;</code></pre>
+                    </div>
+                    <p><strong>Funktioniert, aber nicht empfohlen</strong> - mischt Verhalten mit Struktur.</p>
+
+                    <h3 class="no-toc" id="2-internal-javascript-im-script-tag">2. Internal JavaScript (im &lt;script&gt;-Tag)</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;script&gt;
+    console.log('Hallo von JavaScript!');
+    // Dein JavaScript-Code hier
+&lt;/script&gt;</code></pre>
+                    </div>
+                    <p>Gut für kleine Scripte oder zum Testen.</p>
+
+                    <h3 class="no-toc" id="3-external-javascript-separate-datei---best-practice">3. External JavaScript (separate Datei) - BEST PRACTICE</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Vor dem schließenden &lt;/body&gt;-Tag --&gt;
+&lt;script src="js/script.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Tipp
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Externe Dateien sind am übersichtlichsten und wie ich hier gelernt habe, auch am sichersten!
+                            Das Script-Tag kommt meist kurz vor <code class="inline">&lt;/body&gt;</code>, damit erst
+                            das HTML geladen wird, bevor JavaScript darauf zugreift.
+                        </p>
+                    </div>
+                    <div class="cta-content">
+                        <a href="/tutorials/javascript/javascript-basics/js-security.html" target="_blank" class="btn tutorial-button">
+                            <span class="pd-rt">→</span> Hier erfährst du mehr über die Sicherheit bei
+                            JavaScript</a>
+                    </div>
+                </section>
+
+                <!-- Variablen und Datentypen -->
+                <section class="tutorials-content">
+                    <h2 id="variablen-und-datentypen">Variablen und Datentypen</h2>
+                    <p>Variablen sind Container für Daten. Es gibt drei Möglichkeiten, sie zu deklarieren:</p>
+
+                    <h3 id="let-const-und-var">let, const und var</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// let - kann später geändert werden (empfohlen für veränderliche Werte)
+let name = "Anna-Maria";
+name = "Anna";  // Funktioniert
+
+// const - konstant, kann nicht geändert werden (empfohlen, wenn möglich)
+const maxAge = 99;
+// maxAge = 100;  // Würde einen Fehler werfen
+
+// var - alte Methode (besser vermeiden)
+var oldStyle = "nicht mehr modern";</code></pre>
+                    </div>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Best Practice
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Immer <code class="inline">const</code> verwenden, außer du weißt, dass sich der Wert ändern
+                            wird - dann
+                            <code class="inline">let</code>.
+                        </p>
+                        <p><code class="inline">var</code> einfach vergessen - ich habe es niemals erwähnt.
+                        </p>
+                    </div>
+
+                    <h3 id="datentypen">Datentypen</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// String - Text in Anführungszeichen
+let text = "Hallo Welt";
+let text2 = 'Auch mit einfachen Anführungszeichen';
+let text3 = `Template Literal mit ${text}`;  // Kann Variablen enthalten
+
+// Number - Zahlen (ganze und Dezimalzahlen)
+let ganzzahl = 42;
+let dezimal = 3.14;
+
+// Boolean - wahr oder falsch
+let istWahr = true;
+let istFalsch = false;
+
+// Array - Liste von Werten
+let farben = ["rot", "grün", "blau"];
+let zahlen = [1, 2, 3, 4, 5];
+
+// Object - Sammlung von Eigenschaften
+let person = {
+    name: "Max",
+    alter: 30,
+    stadt: "Berlin"
+};
+
+// undefined - Variable wurde deklariert, aber hat keinen Wert
+let nochNichtsDefiniert;
+
+// null - absichtlich kein Wert
+let leer = null;</code></pre>
+                    </div>
+
+                    <h3 id="interaktives-beispiel-variablen">Interaktives Beispiel: Variablen</h3>
+                    <div class="demo-container">
+                        <p>Gib einen Text ein, und ich speichere ihn in einer Variable:</p>
+                        <input type="text" id="userInput" class="demo-input" placeholder="Dein Text...">
+                        <button class="demo-button" id="speichernBtn">Speichern</button>
+                        <button class="demo-button" id="zeigenBtn">Variable anzeigen</button>
+                        <div class="demo-output" id="variableOutput"></div>
+                    </div>
+
+                    <!-- Code Block language-html -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Variable Demo
+let gespeicherterWert;
+
+function speichereVariable() {
+    let input = document.getElementById("userInput").value;
+    gespeicherterWert = input;
+    document.getElementById("variableOutput").innerHTML = 
+        `✅ Gespeichert in Variable: &lt;strong&gt;gespeicherterWert = "${gespeicherterWert}"&lt;/strong&gt;`;
+}
+
+function zeigeVariable() {
+    if (gespeicherterWert !== undefined) {
+        document.getElementById("variableOutput").innerHTML = 
+            `📦 Variable enthält: &lt;strong&gt;"${gespeicherterWert}"&lt;/strong&gt;`;
+    } else {
+        document.getElementById("variableOutput").innerHTML = 
+            `⚠️ Variable ist noch &lt;strong&gt;undefined&lt;/strong&gt; - erst speichern!`;
+    }
+}</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- Operatoren -->
+                <section class="tutorials-content">
+                    <h2 id="operatoren">Operatoren</h2>
+                    <h3 id="arithmetische-operatoren">Arithmetische Operatoren</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let a = 10;
+let b = 3;
+
+console.log(a + b);   // 13 (Addition)
+console.log(a - b);   // 7 (Subtraktion)
+console.log(a * b);   // 30 (Multiplikation)
+console.log(a / b);   // 3.333... (Division)
+console.log(a % b);   // 1 (Modulo - Rest der Division)
+console.log(a ** b);  // 1000 (Potenz - 10³)</code></pre>
+                    </div>
+
+                    <h3 id="vergleichsoperatoren">Vergleichsoperatoren</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let x = 5;
+
+console.log(x == 5);    // true (gleicher Wert)
+console.log(x == "5");  // true (gleicher Wert, andere Typen erlaubt)
+console.log(x === "5"); // false (gleicher Wert UND gleicher Typ)
+console.log(x !== "5"); // true (ungleich in Wert oder Typ)
+console.log(x &gt; 3);     // true (größer als)
+console.log(x &gt;= 5);    // true (größer oder gleich)
+console.log(x &lt; 10);    // true (kleiner als)
+console.log(x &lt;= 4);    // false (kleiner oder gleich)</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Wichtig
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Immer <code class="inline">===</code> statt <code class="inline">==</code> verwenden! Das
+                            prüft auch den Datentyp und
+                            verhindert unerwartete Bugs.
+                        </p>
+                    </div>
+
+                    <h3 id="logische-operatoren">Logische Operatoren</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let istErwachsen = true;
+let hatFuehrerschein = false;
+
+console.log(istErwachsen &amp;&amp; hatFuehrerschein);  // false (UND - beide müssen wahr sein)
+console.log(istErwachsen || hatFuehrerschein);  // true (ODER - einer muss wahr sein)
+console.log(!istErwachsen);                     // false (NICHT - kehrt Wert um)</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- Funktionen -->
+                <section class="tutorials-content">
+                    <h2 id="funktionen">Funktionen</h2>
+                    <p>Funktionen sind wiederverwendbare Code-Blöcke. Es gibt mehrere Möglichkeiten, sie zu schreiben:
+                    </p>
+
+                    <h3 id="function-declaration-klassisch">Function Declaration (klassisch)</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">function gruss(name) {
+    return "Hallo " + name + "!";
+}
+
+console.log(gruss("Max"));  // "Hallo Max!"</code></pre>
+                    </div>
+
+                    <h3 id="arrow-function-modern">Arrow Function (modern)</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Kurze Schreibweise
+const gruss = (name) =&gt; "Hallo " + name + "!";
+
+// Mit mehreren Zeilen
+const berechneFlaeche = (breite, hoehe) =&gt; {
+    let flaeche = breite * hoehe;
+    return flaeche;
+};
+
+console.log(gruss("Anna"));              // "Hallo Anna!"
+console.log(berechneFlaeche(5, 10));     // 50</code></pre>
+                    </div>
+
+                    <h3 id="parameter-und-return">Parameter und Return</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Funktion mit mehreren Parametern
+function addiere(a, b) {
+    return a + b;
+}
+
+// Funktion ohne Return (gibt undefined zurück)
+function sagHallo() {
+    console.log("Hallo!");
+}
+
+// Default-Parameter (wenn kein Wert übergeben wird)
+function begruessung(name = "Gast") {
+    return `Willkommen, ${name}!`;
+}
+
+console.log(addiere(5, 3));        // 8
+sagHallo();                        // Gibt "Hallo!" in der Konsole aus
+console.log(begruessung());        // "Willkommen, Gast!"
+console.log(begruessung("Max"));   // "Willkommen, Max!"</code></pre>
+                    </div>
+
+                    <h3 id="interaktives-beispiel-funktionen">Interaktives Beispiel: Funktionen</h3>
+                    <div class="demo-container">
+                        <p>Teste eine einfache Addition-Funktion:</p>
+                        <input type="number" id="num1" class="demo-input" placeholder="Zahl 1" value="5">
+                        <span style="font-size: 24px;">+</span>
+                        <input type="number" id="num2" class="demo-input" placeholder="Zahl 2" value="3">
+                        <button class="demo-button" id="additionBtn">Berechnen</button>
+                        <div class="demo-output" id="functionOutput"></div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Function Demo
+function berechneAddition() {
+    let num1 = parseFloat(document.getElementById("num1").value);
+    let num2 = parseFloat(document.getElementById("num2").value);
+    let ergebnis = num1 + num2;
+    
+    document.getElementById("functionOutput").innerHTML = 
+        `&lt;strong&gt;Funktion ausgeführt:&lt;/strong&gt;&lt;br&gt;
+        addiere(${num1}, ${num2}) = &lt;strong&gt;${ergebnis}&lt;/strong&gt;`;
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- If/Else - Bedingungen -->
+                <section class="tutorials-content">
+                    <h2 id="ifelse---bedingungen">If/Else - Bedingungen</h2>
+                    <p>Mit Bedingungen kann dein Code Entscheidungen treffen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let alter = 18;
+
+if (alter &gt;= 18) {
+    console.log("Du bist volljährig");
+} else {
+    console.log("Du bist noch minderjährig");
+}
+
+// Mit else if für mehrere Bedingungen
+let note = 2;
+
+if (note === 1) {
+    console.log("Sehr gut!");
+} else if (note === 2) {
+    console.log("Gut!");
+} else if (note === 3) {
+    console.log("Befriedigend");
+} else {
+    console.log("Da ist noch Luft nach oben");
+}</code></pre>
+                    </div>
+
+                    <h3 id="ternaerer-operator-kurzform">Ternärer Operator (Kurzform)</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Bedingung ? wennWahr : wennFalsch
+let alter = 20;
+let status = alter &gt;= 18 ? "erwachsen" : "minderjährig";
+console.log(status);  // "erwachsen"</code></pre>
+                    </div>
+
+                    <h3 id="interaktives-beispiel-bedingungen">Interaktives Beispiel: Bedingungen</h3>
+                    <div class="demo-container">
+                        <p>Gib dein Alter ein:</p>
+                        <input type="number" id="ageInput" class="demo-input" placeholder="Dein Alter">
+                        <button class="demo-button" id="alterBtn">Prüfen</button>
+                        <div class="demo-output" id="conditionOutput"></div>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Condition Demo
+function pruefeAlter() {
+    let alter = parseInt(document.getElementById("ageInput").value);
+    let output = document.getElementById("conditionOutput");
+    
+    if (isNaN(alter)) {
+        output.innerHTML = "⚠️ Bitte gib eine Zahl ein!";
+        return;
+    }
+    
+    if (alter &gt;= 18) {
+        output.innerHTML = `✅ Mit ${alter} Jahren bist du &lt;strong&gt;volljährig&lt;/strong&gt;!`;
+    } else {
+        output.innerHTML = `🔒 Mit ${alter} Jahren bist du noch &lt;strong&gt;minderjährig&lt;/strong&gt;.`;
+    }
+}</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- Schleifen -->
+                <section class="tutorials-content">
+                    <h2 id="schleifen-loops">Schleifen (Loops)</h2>
+                    <p>Schleifen wiederholen Code mehrmals:</p>
+
+                    <h3 id="for-schleife">For-Schleife</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Zähle von 0 bis 4
+for (let i = 0; i &lt; 5; i++) {
+    console.log(i);
+}
+// Ausgabe: 0, 1, 2, 3, 4
+
+// Durchlaufe ein Array
+let farben = ["rot", "grün", "blau"];
+for (let i = 0; i &lt; farben.length; i++) {
+    console.log(farben[i]);
+}</code></pre>
+                    </div>
+
+                    <h3 id="while-schleife">While-Schleife</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let zaehler = 0;
+while (zaehler &lt; 5) {
+    console.log(zaehler);
+    zaehler++;
+}
+// Ausgabe: 0, 1, 2, 3, 4</code></pre>
+                    </div>
+
+                    <h3 id="foreach-fuer-arrays">forEach (für Arrays)</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let fruechte = ["Apfel", "Banane", "Orange"];
+
+fruechte.forEach(function(frucht) {
+    console.log(frucht);
+});
+
+// Mit Arrow Function (kürzer)
+fruechte.forEach(frucht =&gt; console.log(frucht));</code></pre>
+                    </div>
+
+                    <h3 id="interaktives-beispiel-schleifen">Interaktives Beispiel: Schleifen</h3>
+                    <div class="demo-container">
+                        <button class="demo-button" id="schleifeBtn">For-Schleife starten</button>
+                        <div class="demo-output" id="loopOutput"></div>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Loop Demo
+function zeigeSchleife() {
+    let output = "&lt;strong&gt;For-Schleife läuft:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;";
+    for (let i = 1; i &lt;= 5; i++) {
+        output += `Durchlauf ${i}: i = ${i}&lt;br&gt;`;
+    }
+    document.getElementById("loopOutput").innerHTML = output;
+}</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- DOM-Manipulation -->
+                <section class="tutorials-content">
+                    <h2 id="dom-manipulation">DOM-Manipulation</h2>
+                    <p>Das DOM (Document Object Model) ist die JavaScript-Repräsentation deiner HTML-Seite. Damit kannst
+                        du HTML-Elemente finden, ändern, erstellen oder löschen.</p>
+
+                    <h3 id="elemente-auswaehlen">Elemente auswählen</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Ein Element per ID
+let element = document.getElementById("meinElement");
+
+// Ein Element per CSS-Selektor (das erste gefundene)
+let element = document.querySelector(".meine-klasse");
+let element = document.querySelector("#meine-id");
+
+// Alle Elemente per CSS-Selektor
+let elemente = document.querySelectorAll(".meine-klasse");
+
+// Alle Elemente mit einem Tag-Namen
+let absaetze = document.getElementsByTagName("p");</code></pre>
+                    </div>
+
+                    <h3 id="inhalt-aendern">Inhalt ändern</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let element = document.getElementById("output");
+
+// Text ändern (nur Text, kein HTML)
+element.textContent = "Neuer Text";
+
+// HTML ändern (kann HTML-Tags enthalten)
+element.innerHTML = "&lt;strong&gt;Fetter Text&lt;/strong&gt;";
+
+// Attribute ändern
+element.setAttribute("class", "neue-klasse");
+element.style.color = "red";
+element.style.fontSize = "20px";</code></pre>
+                    </div>
+
+                    <h3 id="klassen-hinzufuegenentfernen">Klassen hinzufügen/entfernen</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let element = document.getElementById("box");
+
+// Klasse hinzufügen
+element.classList.add("aktiv");
+
+// Klasse entfernen
+element.classList.remove("inaktiv");
+
+// Klasse toggeln (hinzufügen wenn nicht da, entfernen wenn da)
+element.classList.toggle("highlight");
+
+// Prüfen ob Klasse existiert
+if (element.classList.contains("aktiv")) {
+    console.log("Element ist aktiv");
+}</code></pre>
+                    </div>
+
+                    <h3 id="interaktives-beispiel-dom-manipulation">Interaktives Beispiel: DOM-Manipulation</h3>
+                    <div class="demo-container">
+                        <div id="demoBox" class="dom-demo-box">
+                            <p id="demoText">Dieser Text kann geändert werden!</p>
+                        </div>
+                        <button class="demo-button" id="textBtn">Text ändern</button>
+                        <button class="demo-button" id="farbeBtn">Farbe ändern</button>
+                        <button class="demo-button" id="klasseBtn">Klasse toggeln</button>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// DOM Manipulation Demo
+let farbIndex = 0;
+let farben = ["#344149ff", "#635b4eff", "#5e4462ff", "#344e4cff"];
+let hatKlasse = false;
+
+function aendereText() {
+    let texte = [
+        "Text wurde geändert! 🎉",
+        "Noch ein neuer Text!",
+        "JavaScript macht Spaß! 😊",
+        "Dieser Text kann geändert werden!"
+    ];
+    let randomText = texte[Math.floor(Math.random() * texte.length)];
+    document.getElementById("demoText").textContent = randomText;
+}
+
+function aendereFarbe() {
+    farbIndex = (farbIndex + 1) % farben.length;
+    document.getElementById("demoBox").style.backgroundColor = farben[farbIndex];
+}
+
+function toggleKlasse() {
+    let box = document.getElementById("demoBox");
+    if (hatKlasse) {
+        box.style.border = "none";
+        box.style.transform = "scale(1)";
+        hatKlasse = false;
+    } else {
+        box.style.border = "4px solid var(--heading-primary)";
+        box.style.transform = "scale(1.05)";
+        hatKlasse = true;
+    }
+}
+</code></pre>
+                    </div>
+                </section>
+
+                <!-- Events (Ereignisse) -->
+                <section class="tutorials-content">
+                    <h2 id="events-ereignisse">Events (Ereignisse)</h2>
+                    <p>Events sind Aktionen, die auf der Webseite passieren - z.B. Klicks, Tastatureingaben,
+                        Mausbewegungen.</p>
+
+                    <h3 id="event-listener-hinzufuegen">Event Listener hinzufügen</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Element auswählen
+let button = document.getElementById("meinButton");
+
+// Event Listener hinzufügen
+button.addEventListener("click", function() {
+    console.log("Button wurde geklickt!");
+});
+
+// Mit Arrow Function (kürzer)
+button.addEventListener("click", () =&gt; {
+    console.log("Button wurde geklickt!");
+});</code></pre>
+                    </div>
+
+                    <h3 id="wichtige-event-typen">Wichtige Event-Typen</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Click - Mausklick
+element.addEventListener("click", () =&gt; {});
+
+// DblClick - Doppelklick
+element.addEventListener("dblclick", () =&gt; {});
+
+// MouseOver - Maus bewegt sich über Element
+element.addEventListener("mouseover", () =&gt; {});
+
+// MouseOut - Maus verlässt Element
+element.addEventListener("mouseout", () =&gt; {});
+
+// KeyPress, KeyDown, KeyUp - Tastatur-Events
+document.addEventListener("keydown", (e) =&gt; {
+    console.log("Taste gedrückt:", e.key);
+});
+
+// Input - Text wird in ein Feld eingegeben
+inputField.addEventListener("input", (e) =&gt; {
+    console.log("Aktueller Wert:", e.target.value);
+});
+
+// Submit - Formular wird abgeschickt
+form.addEventListener("submit", (e) =&gt; {
+    e.preventDefault();  // Verhindert Standard-Verhalten
+    console.log("Formular würde abgeschickt");
+});</code></pre>
+                    </div>
+
+                    <h3 id="event-objekt">Event-Objekt</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">button.addEventListener("click", function(event) {
+    console.log(event);              // Das komplette Event-Objekt
+    console.log(event.target);       // Das Element, das geklickt wurde
+    console.log(event.type);         // Der Event-Typ ("click")
+    console.log(event.clientX);      // X-Position der Maus
+    console.log(event.clientY);      // Y-Position der Maus
+});</code></pre>
+                    </div>
+
+                    <h3 id="interaktives-beispiel-events">Interaktives Beispiel: Events</h3>
+                    <div class="demo-container">
+                        <button class="demo-button" id="eventButton">Klick mich!</button>
+                        <input type="text" id="eventInput" class="demo-input" placeholder="Tippe hier...">
+                        <div class="demo-output" id="eventOutput">Warte auf Events...</div>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Event Listeners initialisieren wenn DOM geladen ist
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // Variable Demo Buttons
+    let speichernBtn = document.getElementById("speichernBtn");
+    let zeigenBtn = document.getElementById("zeigenBtn");
+    if (speichernBtn) speichernBtn.addEventListener("click", speichereVariable);
+    if (zeigenBtn) zeigenBtn.addEventListener("click", zeigeVariable);
+    
+    // Function Demo Button
+    let additionBtn = document.getElementById("additionBtn");
+    if (additionBtn) additionBtn.addEventListener("click", berechneAddition);
+    
+    // Condition Demo Button
+    let alterBtn = document.getElementById("alterBtn");
+    if (alterBtn) alterBtn.addEventListener("click", pruefeAlter);
+    
+    // Loop Demo Button
+    let schleifeBtn = document.getElementById("schleifeBtn");
+    if (schleifeBtn) schleifeBtn.addEventListener("click", zeigeSchleife);
+    
+    // DOM Manipulation Demo Buttons
+    let textBtn = document.getElementById("textBtn");
+    let farbeBtn = document.getElementById("farbeBtn");
+    let klasseBtn = document.getElementById("klasseBtn");
+    if (textBtn) textBtn.addEventListener("click", aendereText);
+    if (farbeBtn) farbeBtn.addEventListener("click", aendereFarbe);
+    if (klasseBtn) klasseBtn.addEventListener("click", toggleKlasse);
+    
+    // Array Demo Buttons
+    let geradeBtn = document.getElementById("geradeBtn");
+    let verdoppelBtn = document.getElementById("verdoppelBtn");
+    let summeBtn = document.getElementById("summeBtn");
+    if (geradeBtn) geradeBtn.addEventListener("click", zeigeGeradeZahlen);
+    if (verdoppelBtn) verdoppelBtn.addEventListener("click", verdoppleZahlen);
+    if (summeBtn) summeBtn.addEventListener("click", berechneArraySumme);
+    
+    // Event Demo - Click Counter und Input Tracking
+    let eventButton = document.getElementById("eventButton");
+    let eventInput = document.getElementById("eventInput");
+    let eventOutput = document.getElementById("eventOutput");
+    let clickCount = 0;
+    
+    if (eventButton) {
+        eventButton.addEventListener("click", function() {
+            clickCount++;
+            eventOutput.innerHTML = 
+                `🖱️ &lt;strong&gt;Click-Event!&lt;/strong&gt;&lt;br&gt;Button wurde ${clickCount}x geklickt`;
+        });
+    }
+    
+    if (eventInput) {
+        eventInput.addEventListener("input", function(e) {
+            eventOutput.innerHTML = 
+                `⌨️ &lt;strong&gt;Input-Event!&lt;/strong&gt;&lt;br&gt;Du hast getippt: "${e.target.value}"`;
+        });
+    }
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Wichtige Array-Methoden -->
+                <section class="tutorials-content">
+                    <h2 id="wichtige-array-methoden">Wichtige Array-Methoden</h2>
+                    <p>Arrays haben viele nützliche Methoden:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">let zahlen = [1, 2, 3, 4, 5];
+
+// map() - transformiert jedes Element
+let verdoppelt = zahlen.map(zahl =&gt; zahl * 2);
+console.log(verdoppelt);  // [2, 4, 6, 8, 10]
+
+// filter() - filtert Elemente nach Bedingung
+let gerade = zahlen.filter(zahl =&gt; zahl % 2 === 0);
+console.log(gerade);  // [2, 4]
+
+// find() - findet das erste Element, das die Bedingung erfüllt
+let gefunden = zahlen.find(zahl =&gt; zahl &gt; 3);
+console.log(gefunden);  // 4
+
+// reduce() - reduziert Array auf einen Wert
+let summe = zahlen.reduce((acc, zahl) =&gt; acc + zahl, 0);
+console.log(summe);  // 15
+
+// push() - Element am Ende hinzufügen
+zahlen.push(6);
+console.log(zahlen);  // [1, 2, 3, 4, 5, 6]
+
+// pop() - letztes Element entfernen
+let letztes = zahlen.pop();
+console.log(letztes);  // 6
+
+// shift() - erstes Element entfernen
+let erstes = zahlen.shift();
+console.log(erstes);  // 1
+
+// unshift() - Element am Anfang hinzufügen
+zahlen.unshift(0);
+console.log(zahlen);  // [0, 2, 3, 4, 5]</code></pre>
+                    </div>
+
+                    <h3 id="interaktives-beispiel-array-methoden">Interaktives Beispiel: Array-Methoden</h3>
+                    <div class="demo-container">
+                        <p>Array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</p>
+                        <button class="demo-button" id="geradeBtn">Nur gerade Zahlen</button>
+                        <button class="demo-button" id="verdoppelBtn">Alle verdoppeln</button>
+                        <button class="demo-button" id="summeBtn">Summe berechnen</button>
+                        <div class="demo-output" id="arrayOutput"></div>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Array Demo
+function zeigeGeradeZahlen() {
+    let zahlen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let gerade = zahlen.filter(zahl =&gt; zahl % 2 === 0);
+    document.getElementById("arrayOutput").innerHTML = 
+        `&lt;strong&gt;.filter()&lt;/strong&gt; → Nur gerade Zahlen: &lt;strong&gt;[${gerade.join(", ")}]&lt;/strong&gt;`;
+}
+
+function verdoppleZahlen() {
+    let zahlen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let verdoppelt = zahlen.map(zahl =&gt; zahl * 2);
+    document.getElementById("arrayOutput").innerHTML = 
+        `&lt;strong&gt;.map()&lt;/strong&gt; → Alle verdoppelt: &lt;strong&gt;[${verdoppelt.join(", ")}]&lt;/strong&gt;`;
+}
+
+function berechneArraySumme() {
+    let zahlen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let summe = zahlen.reduce((acc, zahl) =&gt; acc + zahl, 0);
+    document.getElementById("arrayOutput").innerHTML = 
+        `&lt;strong&gt;.reduce()&lt;/strong&gt; → Summe aller Zahlen: &lt;strong&gt;${summe}&lt;/strong&gt;`;
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- Console und Debugging -->
+                <section class="tutorials-content">
+                    <h2 id="console-und-debugging">Console und Debugging</h2>
+                    <p>Die Browser-Konsole ist dein bester Freund beim Debuggen:</p>
+
+                    <h3 id="console-methoden">Console-Methoden</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Normale Ausgabe
+console.log("Hallo Welt");
+console.log("Wert:", variable);
+
+// Warnung (gelb)
+console.warn("Das ist eine Warnung");
+
+// Fehler (rot)
+console.error("Das ist ein Fehler");
+
+// Info (blau)
+console.info("Das ist eine Info");
+
+// Tabelle für Arrays/Objects
+let personen = [
+    { name: "Max", alter: 30 },
+    { name: "Anna", alter: 25 }
+];
+console.table(personen);
+
+// Gruppierung
+console.group("Meine Gruppe");
+console.log("Nachricht 1");
+console.log("Nachricht 2");
+console.groupEnd();</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Konsole öffnen
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>Chrome/Edge:</strong> F12 oder Rechtsklick → "Untersuchen" → Tab "Console"</li>
+                            <li><strong>Firefox:</strong> F12 oder Rechtsklick → "Element untersuchen" → Tab "Konsole"
+                            </li>
+                            <li><strong>Safari:</strong> Cmd+Option+C (Mac) - erst in Einstellungen aktivieren</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Best Practices -->
+                <section class="tutorials-content">
+                    <h2 id="best-practices">Best Practices</h2>
+                    <p>Was ich beim Lernen von JavaScript als wichtig empfunden habe:</p>
+                    <div class="grid-2col-bg">
+                        <ul class="arrow-list">
+                            <li><strong>Verwende const und let, nie var</strong> - Moderne Variablen-Deklaration ist
+                                sicherer</li>
+                            <li><strong>Verwende <code class="inline">===</code> statt <code class="inline">==</code></strong> - Vergleicht auch den Datentyp, verhindert
+                                Bugs</li>
+                            <li><strong>Benenne Variablen aussagekräftig</strong> - <code class="inline">userName</code>
+                                ist besser als <code class="inline">x</code></li>
+                            <li><strong>Kommentiere deinen Code</strong> - Dein zukünftiges Ich wird es dir danken</li>
+                            <li><strong>Eine Funktion = eine Aufgabe</strong> - Halte Funktionen klein und fokussiert
+                            </li>
+                            <li><strong>Nutze die Konsole zum Testen</strong> - <code class="inline">console.log()</code> ist dein Freund</li>
+                            <li><strong>Externe Scripts am Ende des &lt;body&gt;</strong> - Damit das HTML erst geladen
+                                ist</li>
+                            <li><strong>Event Listener statt Inline-Events</strong> - Trennt JavaScript von HTML</li>
+                            <li><strong>Camel Case für Variablen</strong> - <code class="inline">meineLangeVariable</code></li>
+                            <li><strong>Prüfe auf undefined/null</strong> - Bevor du mit Werten arbeitest</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Häufige Fehler -->
+                <section class="tutorials-content">
+                    <h2 id="haeufige-fehler">Häufige Fehler</h2>
+                    <p>Dinge, über die ich beim Lernen gestolpert bin:</p>
+
+                    <div>
+                        <h3 class="no-toc" id="1-element-existiert-noch-nicht">1. Element existiert noch nicht</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">javascript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// FALSCH - Script im &lt;head&gt;, Element existiert noch nicht
+let button = document.getElementById("button");
+button.addEventListener("click", ...);  // Fehler!
+
+// RICHTIG - Script am Ende oder mit DOMContentLoaded
+document.addEventListener("DOMContentLoaded", function() {
+    let button = document.getElementById("button");
+    button.addEventListener("click", ...);
+});</code></pre>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="no-toc" id="2-const-aendern-wollen">2. Const ändern wollen</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">javascript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// FALSCH
+const name = "Max";
+name = "Anna";  // Fehler!
+
+// RICHTIG - use let wenn sich der Wert ändern soll
+let name = "Max";
+name = "Anna";  // OK!</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3 class="no-toc" id="3-statt-">3. == statt ===</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">javascript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Unerwartetes Verhalten
+console.log(5 == "5");   // true (!)
+console.log(5 === "5");  // false (korrekt)</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3 class="no-toc" id="4-event-listener-syntax">4. Event Listener Syntax</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">javascript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// FALSCH - Funktion wird sofort ausgeführt
+button.addEventListener("click", meineFunktion());
+
+// RICHTIG - Funktion wird als Referenz übergeben
+button.addEventListener("click", meineFunktion);
+
+// ODER mit Arrow Function
+button.addEventListener("click", () =&gt; meineFunktion());</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                <section class="tutorials-content">
+                    <nav class="tutorial-nav"></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutz.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+    <script src="/assets/js/javascript-basics-demos.js"></script>
+
+
+
+</body></html>
