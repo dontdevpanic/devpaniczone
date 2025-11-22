@@ -1,0 +1,591 @@
+/* ===============================================================================
+   DEVPANICZONE - TUTORIALS STYLESHEET
+   ===============================================================================
+   
+   Dieses Stylesheet enthält alle Tutorial-spezifischen Styles, die aus der
+   style.css ausgelagert wurden. Es sollte zusätzlich zur style.css geladen
+   werden, aber NUR auf Tutorial-Seiten.
+   
+   Verwendung im HTML:
+   <link rel="stylesheet" href="/assets/css/style.css">
+   <link rel="stylesheet" href="/assets/css/tutorials.css">
+   
+   TABLE OF CONTENTS:
+   1. Tutorial Layout & Wrapper..................... Zeile 27   ===
+   2. Tutorial Sections............................. Zeile 57   ===
+   3. Tutorial Sidebar (ToC)........................ Zeile 88   ===
+   4. Tutorial Related Sidebar (Navigation)......... Zeile 213  ===
+   5. Floating Buttons.............................. Zeile 370  ===
+   6. Tutorial-spezifische Grid Boxes............... Zeile 496  ===
+   7. Tutorial Section Titles....................... Zeile 536  ===
+   
+   =============================================================================== */
+
+
+/* ===============================================================================
+   1. TUTORIAL LAYOUT & WRAPPER
+   =============================================================================== */
+
+/* position: relative; für absolute positionierte Sidebar */
+/* .tutorial-layout {
+    position: relative;    
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+} */
+
+/* @media (min-width: 768px) {
+    .tutorial-layout {
+        padding: 0 2rem;
+    }
+} */
+
+/* .tutorial-content {
+    max-width: 900px;
+    margin: 0 auto;
+} */
+
+/* Wrapper für den Hauptinhalt (wenn Sidebar verwendet wird) */
+/* .tutorial-wrapper {
+    display: grid;
+    gap: 2rem;
+} */
+
+
+/* ===============================================================================
+   2. TUTORIAL SECTIONS
+   =============================================================================== */
+
+.tutorial-section {
+    margin-bottom: 3rem;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 1.5rem;
+    color: var(--heading-primary);
+    margin-bottom: 1rem;
+    padding: 2rem 0 0.5rem 0;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-title.no-border {
+    border-bottom: none;
+}
+
+/* No ToC - Verhindert dass Heading ins Inhaltsverzeichnis aufgenommen wird */
+/* .no-toc {
+} */
+
+
+/* ===============================================================================
+   3. TUTORIAL SIDEBAR (Table of Contents)
+   =============================================================================== */
+
+.tutorial-sidebar {
+    position: fixed;
+    top: 70px;
+    /* Unter Header */
+    left: -320px;
+    /* Versteckt auf Mobile */
+    width: 280px;
+    height: calc(100vh - 70px);
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+    transition: left 300ms ease;
+    z-index: 95;
+    padding: 1.5rem;
+}
+
+.tutorial-sidebar.is-open {
+    left: 0;
+    /* Sidebar sichtbar */
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 1280px) {
+    .tutorial-sidebar {
+        left: 0;
+        /* Immer sichtbar auf großen Screens */
+        position: sticky;
+        /* Sticky statt fixed */
+        height: calc(100vh - 100px);
+        box-shadow: none;
+    }
+
+    .tutorial-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        /* Sidebar + Content */
+        gap: 3rem;
+        /* = 48px */
+    }
+
+    .tutorial-content {
+        max-width: 100%;
+    }
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    /* = 24px */
+}
+
+.sidebar-title {
+    font-size: 1.125rem;
+    /* = 18px */
+    color: var(--heading-secondary);
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.sidebar-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    /* = 24px */
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: color 150ms ease;
+}
+
+.sidebar-close:hover {
+    color: var(--accent-blue);
+}
+
+@media (min-width: 1280px) {
+    .sidebar-close {
+        display: none;
+        /* Close-Button auf Desktop verstecken */
+    }
+}
+
+/* Table of Contents Navigation */
+.sidebar-toc {
+    margin: 0;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-list li {
+    margin-bottom: 0;
+}
+
+.toc-list a {
+    display: block;
+    padding: 0.5rem 0;
+    /* = 8px oben/unten */
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    /* = 15px */
+    border-left: 2px solid transparent;
+    padding-left: 1rem;
+    /* = 16px */
+    transition: all 150ms ease;
+}
+
+.toc-list a:hover {
+    color: var(--accent-blue);
+    border-left-color: var(--accent-blue);
+}
+
+.toc-list a.active {
+    color: var(--accent-blue);
+    border-left-color: var(--accent-blue);
+    font-weight: 600;
+}
+
+/* ===============================================================================
+   !!!!!!!!!!! S I D E B A R . C S S !!!!!!!!!!!!!!
+   =============================================================================== */
+
+/* Verschachtelte ToC Levels */
+    /* Hauptebene */
+/* .toc-level-1 {
+} */
+
+/* .toc-level-2 {
+    margin-left: 1rem;
+} */
+
+/* .toc-level-2 a {
+    font-size: 0.875rem;
+    padding-left: 0.75rem;
+} */
+
+/* .toc-level-3 {
+    margin-left: 2rem;
+} */
+
+/* .toc-level-3 a {
+    font-size: 0.8125rem;
+    padding-left: 0.5rem;
+} */
+
+
+/* ===============================================================================
+   4. TUTORIAL RELATED SIDEBAR (Navigation zu anderen Tutorials)
+   !!!!!!!!!!! S I D E B A R . C S S !!!!!!!!!!!!!!
+   =============================================================================== */
+/* top: 70px; - unter Header */
+/* right: -320px; - versteckt auf Mobile */
+/* .tutorial-related {
+    position: fixed;
+    top: 70px;
+    right: -320px;    
+    width: 280px;
+    height: calc(100vh - 70px);
+    background: var(--bg-secondary);
+    border-left: 1px solid var(--border-color);
+    overflow-y: auto;
+    transition: right 300ms ease;
+    z-index: 95;
+    padding: 1.5rem;
+} */
+
+/* Sidebar sichtbar */
+/* .tutorial-related.is-open {
+    right: 0;    
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+} */
+
+/* Immer sichtbar auf sehr großen Screens */
+/* Sticky statt fixed */
+/* .tutorial-layout - Links Sidebar, Content, Rechts Sidebar */
+
+/* @media (min-width: 1440px) {
+    .tutorial-related {
+        right: 0;
+        position: sticky;        
+        height: calc(100vh - 100px);
+        box-shadow: none;
+    }
+
+    .tutorial-layout {
+        grid-template-columns: 280px 1fr 280px;
+    }
+} */
+
+/* Tutorial Categories in Related Sidebar */
+/* .tutorial-category {
+    margin-bottom: 2rem;
+} */
+
+/* .tutorial-category-title {
+    font-size: 1rem;
+    color: var(--heading-secondary);
+    margin-bottom: 0.75rem;
+    padding: 0;
+    border: none;
+    font-weight: 600;
+} */
+
+/* .tutorial-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+} */
+
+/* .tutorial-list li {
+    margin-bottom: 0;
+} */
+
+/* .tutorial-list a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    border-radius: 6px;
+    transition: all 150ms ease;
+} */
+
+/* .tutorial-list a:hover {
+    background: var(--bg-tertiary);
+    color: var(--accent-blue);
+} */
+
+/* .tutorial-list a.active {
+    background: var(--accent-blue);
+    color: white;
+    font-weight: 600;
+} */
+
+/* ===============================================================================
+   !!!!!!!!!!! CATEGORIES index.html !!!!!!!!!!!!!!
+   =============================================================================== */
+
+/* Tutorial Group/Category Collapsible */
+/* .tutorial-group {
+    margin-bottom: 1.5rem;
+} */
+
+/* .tutorial-group-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    color: var(--heading-secondary);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 150ms ease;
+} */
+
+/* .tutorial-group-toggle:hover {
+    background: var(--bg-tertiary);
+} */
+
+/* .tutorial-group-icon {
+    transition: transform 150ms ease;
+} */
+
+/* .tutorial-group-toggle[aria-expanded="true"] .tutorial-group-icon {
+    transform: rotate(90deg);
+} */
+
+/* .tutorial-group-list {
+    display: none;
+    margin-top: 0.5rem;
+} */
+
+/* .tutorial-group-list.is-open {
+    display: block;
+} */
+
+
+/* ===============================================================================
+   5. FLOATING BUTTONS (Sidebar Toggle & Tutorial Nav Toggle)
+   =============================================================================== */
+
+/* Sidebar Toggle Button (Links) */
+.sidebar-toggle {
+    position: fixed;
+    bottom: 2rem;
+    /* = 32px */
+    left: 1rem;
+    /* = 16px */
+    width: 44px;
+    height: 44px;
+    background: var(--accent-blue);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: white;
+    font-size: 1.25rem;
+    /* = 20px */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(88, 166, 255, 0.3);
+    transition: all 150ms ease;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-toggle:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(88, 166, 255, 0.5);
+}
+
+@media (min-width: 1280px) {
+    .sidebar-toggle {
+        display: none;
+        /* Verstecken auf großen Screens */
+    }
+}
+
+/* Tutorial Nav Toggle Button (Rechts) */
+.tutorial-nav-toggle {
+    position: fixed;
+    bottom: 2rem;
+    /* = 32px */
+    right: 1rem;
+    /* = 16px */
+    width: 44px;
+    height: 44px;
+    background: var(--accent-blue);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(88, 166, 255, 0.3);
+    transition: all 150ms ease;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tutorial-nav-toggle:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(88, 166, 255, 0.5);
+}
+
+@media (min-width: 1440px) {
+    .tutorial-nav-toggle {
+        display: none;
+        /* Verstecken auf sehr großen Screens */
+    }
+}
+
+/* Toggle Icons */
+.toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-icon svg,
+.toggle-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Sidebar Overlay (für Mobile) */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+}
+
+.sidebar-overlay.is-active {
+    display: block;
+}
+
+/* Wenn beide Buttons vorhanden sind, verschiebe sie */
+@media (max-width: 768px) {
+    body:has(.tutorial-nav-toggle) .sidebar-toggle {
+        left: 1rem;
+        bottom: 6.5rem;
+        /* Über dem Tutorial-Nav-Button */
+    }
+}
+
+
+/* ===============================================================================
+   6. TUTORIAL-SPEZIFISCHE GRID BOXES
+   =============================================================================== */
+
+/* Grid Box ohne Hintergrund (nur für Tutorials) */
+.grid-box-plain {
+    padding: 1rem 0;
+    /* = 16px nur oben/unten */
+}
+
+.grid-box-plain h3,
+.grid-box-plain h4 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Tutorial Grid - spezielle Variante für Tutorial-Übersichten */
+.tutorial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    /* = 24px */
+    margin: 2rem 0;
+}
+
+@media (min-width: 640px) {
+    .tutorial-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .tutorial-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* ===============================================================================
+   7. TUTORIAL SECTION TITLES
+   =============================================================================== */
+
+/* Alternative Section Title Style */
+.section-title-alt {
+    font-size: 1.4rem;
+    /* = 22.4px */
+    color: var(--heading-primary);
+    margin: 2rem 0 1rem;
+    /* = 32px 0 16px */
+    padding: 0;
+    border: none;
+    position: relative;
+}
+
+.section-title-alt::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--accent-blue);
+    margin-bottom: 0.5rem;
+    /* = 8px */
+}
+
+/* Tutorial Step Counter */
+.tutorial-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    /* = 32px */
+    height: 2rem;
+    /* = 32px */
+    background: var(--accent-blue);
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.875rem;
+    /* = 14px */
+    margin-right: 0.75rem;
+    /* = 12px */
+}
+
+
+/* ===============================================================================
+   HINWEISE FÜR MIGRATION
+   ===============================================================================
+   
+   FOLGENDE KLASSEN WURDEN AUS STYLE.CSS HIERHER VERSCHOBEN:
+   - Tutorial Layout & Wrapper
+   - Tutorial Sections
+   - Tutorial Sidebar (ToC)
+   - Tutorial Related Sidebar
+   - Floating Buttons (sidebar-toggle, tutorial-nav-toggle)
+   - Tutorial-spezifische Grid Boxes
+   - Tutorial Section Titles
+   
+   DIESE KLASSEN SOLLTEN AUS STYLE.CSS ENTFERNT WERDEN:
+   Aktuell sind sie noch in beiden Dateien, um Kompatibilität zu gewährleisten.
+   Nach dem Testen kann der entsprechende Code aus style.css gelöscht werden.
+   
+   IN HTML EINBINDEN:
+   <link rel="stylesheet" href="/assets/css/style.css">
+   <link rel="stylesheet" href="/assets/css/tutorials.css">  <!-- NUR auf Tutorial-Seiten -->
+   
+   =============================================================================== */

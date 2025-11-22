@@ -23,8 +23,8 @@ console.log('%cHey! Schön, dass du hier bist! 👋',
     'color: #4ecdc4; font-size: 14px; font-weight: bold;');
 console.log('%c💡 Du siehst: Sauberer Code, responsive Design, made with ☕', 
     'color: #95e1d3; font-size: 12px;');
-console.log('%c📫 hello@devpaniczone.de', 
-    'color: #f38181; font-size: 11px;');
+// console.log('%c📫 hello@devpaniczone.de', 
+    // 'color: #f38181; font-size: 11px;');
 
 // Theme Icon Pfade (deine SVG-Dateien)
 const THEME_ICONS = {

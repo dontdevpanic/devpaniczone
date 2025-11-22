@@ -92,6 +92,7 @@
     --accent-orange: #e4884a;
     --accent-red: #e94e4e;
     --accent-red-light: #f48771;
+    --accent-cyan: #4fc1e9;
     --accent-blue-gray: #64748b;
     /* --accent-blue: #569cd6; */
     /* --accent-blue-hover: #4a8cc7; */
@@ -164,6 +165,7 @@
 
 html {
     font-size: 16px;
+    /* Basis für rem-Werte: 1rem = 16px */
     scroll-behavior: smooth;
     /* Smooth Scrolling für Anker-Links */
     scroll-padding-top: 60px;
@@ -172,7 +174,9 @@ html {
 body {
     font-family: var(--font-body);
     font-size: 1rem;
+    /* = 16px */
     line-height: 1.6;
+    /* Zeilenhöhe für bessere Lesbarkeit */
     color: var(--text-primary);
     background-color: var(--bg-primary);
     min-height: 100vh;
@@ -224,12 +228,15 @@ h2 {
     text-align: left;
 }
 
-/* border-bottom: 2px solid var(--heading-primary) */
-h3 {    
+h3 {
+    /* font-size: 1.5rem; */
+    /* 32px */
+    /* padding: 3rem 0 0; */
     font-size: 1.6rem;
     text-align: left;
     color: var(--heading-primary);
-    padding: 3rem 0 0 0;    
+    padding: 3rem 0 0 0;
+    /* border-bottom: 2px solid var(--heading-primary) */
 }
 
 h4 {
@@ -240,10 +247,12 @@ h4 {
 
 h5 {
     font-size: 1rem;
+    /* 20px */
 }
 
 h6 {
     font-size: 0.875rem;
+    /* 16px */
 }
 
 h3 img {
@@ -258,9 +267,12 @@ h3 img {
         font-size: 2rem;
     }
 
+    /* = 32px auf Mobile */
     h2 {
         font-size: 1.5rem;
     }
+
+    /* = 24px auf Mobile */
 }
 
 /* ----- Paragraphs & Text ----- */
@@ -274,14 +286,13 @@ em {
     color: var(--heading-secondary);
 }
 
-
 strong {
-    font-family: var(--font-heading);
+    font: var(--font-heading);
     color: var(--heading-secondary);
 }
 
 strong {
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* ----- Links ----- */
@@ -320,8 +331,13 @@ ol li::marker {
     font-weight: 600;
 }
 
+ol li:last-child {
+    margin-bottom: 0;
+}
+
 ul ul>li:first-child {
     margin-top: 0;
+    /* Beispielwert */
 }
 
 ul ul>li:last-child {
@@ -334,19 +350,18 @@ ol ul,
 ul ol,
 ol ol {
     margin-top: 0.5rem;
+    /* nach oben weniger Abstand */
     margin-bottom: 0.5rem;
 }
 
-/* Verschiebt die Linie nach unten */
 abbr {
     text-decoration: underline dashed var(--text-muted);
     text-underline-offset: 0.3rem;
+    /* Verschiebt die Linie nach unten */
     cursor: help;
 }
 
 /* ----- Inline Code ----- */
-/* overflow-wrap: normal; - verhindert Umbrüche an Trennstellen */
-/* word-break: normal; - falls nötig */
 code.inline {
     font-family: var(--font-code);
     font-size: 0.9em;
@@ -355,8 +370,10 @@ code.inline {
     padding: 0.2em 0.4em;
     border-radius: 4px;
     white-space: nowrap;
-    overflow-wrap: normal;    
-    word-break: normal;    
+    overflow-wrap: normal;
+    /* verhindert Umbrüche an Trennstellen */
+    word-break: normal;
+    /* falls nötig */
 }
 
 pre {
@@ -381,17 +398,13 @@ pre {
     padding: 0 1rem;
 }
 
-/* .container-content {
+.container-content {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
     padding: 2.4rem 1rem;
-} */
-
-/* ----- Sections ----- */
-.tutorials-content {
-    padding: 3rem 0;
 }
+
 
 /* ----- Horizontal Rules ----- */
 hr {
@@ -423,16 +436,20 @@ hr {
    =============================================================================== */
 
     /* ----- Container ----- */
-    /* .container {
+    .container {
         padding: 0 2rem;
+        /* = 32px auf Desktop */
     }
-} */
+}
 
 /* ===================================
    LAYOUT - SECTIONS
    =================================== */
 
-
+/* ----- Sections ----- */
+.tutorials-content {
+    padding: 3rem 0;
+}
 
 /* ===================================
    6. COMPONENTS
@@ -987,8 +1004,6 @@ hr {
 }
 
 /* ===== NAVIGATION ===== */
-/* HINWEIS: .main-nav wird für Mobile (display:none) und Desktop (display:block im Media Query) 
-   definiert - das ist korrekt für Mobile-First CSS! */
 .main-nav {
     display: none;
     /* Versteckt auf Mobile (wird per JS geöffnet) */
@@ -1198,8 +1213,8 @@ hr {
 /* ===============================================================================
    5. LAYOUT (Container, Sections)
    =============================================================================== */
-
-   /* ----- Container ----- */
+/* WICHTIG: Container im Hero begrenzt den INHALT auf 1200px */
+/* ----- Container ----- */
 .hero .container {
     max-width: 1200px;
     /* Inhalt bleibt begrenzt */
@@ -1210,6 +1225,12 @@ hr {
 }
 
 @media (min-width: 768px) {
+
+    /* ===============================================================================
+   5. 📦 LAYOUT (Container, Sections)
+   =============================================================================== */
+
+    /* ----- Container ----- */
     .hero .container {
         padding: 0 2rem;
         /* = 32px auf Desktop */
@@ -2823,6 +2844,12 @@ summary:hover {
 
     /* Wenn Sidebar-Buttons vorhanden sind */
     body:has(.sidebar-toggle) #scrollTopBtn,
+
+
+    /* -----------------------------------------------------------------------------
+   SCROLL TO TOP BUTTON
+   ----------------------------------------------------------------------------- */
+
     body:has(.tutorial-nav-toggle) #scrollTopBtn {
         right: 1rem;
         bottom: 5rem;
@@ -2860,4 +2887,4 @@ summary:hover {
    768px  = Desktop (Navigation, mehr Padding)
    1024px = Große Screens (3 Spalten)
    
-   =================================== */}
+   =================================== */
