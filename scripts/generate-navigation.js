@@ -396,6 +396,35 @@ function getSubcategoriesForCategory(category) {
     return subcategories;
 }
 
+// Holt ALLE Tutorials einer Hauptkategorie, gruppiert nach Unterkategorie
+function getAllTutorialsForCategory(category) {
+    const grouped = {};
+
+    Object.keys(TUTORIAL_ORDER).forEach(key => {
+        if (key.startsWith(`tutorials/${category}/`)) {
+            const parts = key.split('/');
+            const subcategoryName = parts[2]; // z.B. "html-basics"
+
+            const tutorials = getOrderedTutorials(key);
+
+            if (tutorials.length > 0) {
+                // Display Name: "html-basics" → "HTML Basics"
+                const displayName = subcategoryName
+                    .split('-')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+
+                grouped[subcategoryName] = {
+                    displayName: displayName,
+                    tutorials: tutorials
+                };
+            }
+        }
+    });
+
+    return grouped;
+}
+
 // ============================================
 // HILFSFUNKTION: Boolean-Attribute bereinigen
 // ============================================
@@ -711,16 +740,42 @@ function escapeHtml(text) {
         .replace(/'/g, '&#39;');
 }
 
-function generateSidebarNavList(filePath) {
-    const subcategory = getSubcategoryFromPath(filePath);
-    const tutorials = getOrderedTutorials(subcategory);
-    const currentUrl = getRelativeUrl(filePath);
+// function generateSidebarNavList(filePath) {
+//     const subcategory = getSubcategoryFromPath(filePath);
+//     const tutorials = getOrderedTutorials(subcategory);
+//     const currentUrl = getRelativeUrl(filePath);
 
-    return tutorials.map(tutorial => {
-        const isActive = tutorial.url === currentUrl;
-        const activeClass = isActive ? ' class="active"' : '';
-        return `<li><a href="${tutorial.url}"${activeClass}>${tutorial.title}</a></li>`;
-    }).join('\n                    ');
+//     return tutorials.map(tutorial => {
+//         const isActive = tutorial.url === currentUrl;
+//         const activeClass = isActive ? ' class="active"' : '';
+//         return `<li><a href="${tutorial.url}"${activeClass}>${tutorial.title}</a></li>`;
+//     }).join('\n                    ');
+// }
+
+// NEUE VERSION - alle Tutorials der Kategorie, gruppiert
+function generateSidebarNavList(filePath) {
+    const category = getCategoryFromPath(filePath);
+    const currentUrl = getRelativeUrl(filePath);
+    const allTutorials = getAllTutorialsForCategory(category);
+
+    let html = '';
+
+    // Iteriere durch alle Unterkategorien
+    Object.keys(allTutorials).forEach(subcategoryKey => {
+        const group = allTutorials[subcategoryKey];
+
+        // Gruppen-Überschrift
+        html += `<li class="sidebar-group-title">${group.displayName}</li>\n                    `;
+
+        // Tutorials dieser Gruppe
+        group.tutorials.forEach(tutorial => {
+            const isActive = tutorial.url === currentUrl;
+            const activeClass = isActive ? ' class="active"' : '';
+            html += `<li><a href="${tutorial.url}"${activeClass}>${tutorial.title}</a></li>\n                    `;
+        });
+    });
+
+    return html.trim();
 }
 
 // ============================================
