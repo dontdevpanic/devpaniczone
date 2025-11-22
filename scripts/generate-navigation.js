@@ -425,6 +425,34 @@ function getAllTutorialsForCategory(category) {
     return grouped;
 }
 
+// Holt ALLE Tutorials einer Hauptkategorie als flache, geordnete Liste
+function getAllTutorialsFlat(category) {
+    const allTutorials = [];
+
+    // Iteriere durch TUTORIAL_ORDER in der definierten Reihenfolge
+    Object.keys(TUTORIAL_ORDER).forEach(key => {
+        if (key.startsWith(`tutorials/${category}/`)) {
+            const tutorials = getOrderedTutorials(key);
+            const parts = key.split('/');
+            const subcategoryName = parts[2];
+
+            // Füge Unterkategorie-Info zu jedem Tutorial hinzu
+            tutorials.forEach(tutorial => {
+                allTutorials.push({
+                    ...tutorial,
+                    subcategory: subcategoryName,
+                    subcategoryDisplay: subcategoryName
+                        .split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ')
+                });
+            });
+        }
+    });
+
+    return allTutorials;
+}
+
 // ============================================
 // HILFSFUNKTION: Boolean-Attribute bereinigen
 // ============================================
@@ -630,38 +658,92 @@ function generateBreadcrumbs(filePath, currentTitle) {
     return `<a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/${category}/" class="breadcrumb-link">${categoryName}</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">${currentTitle}</span>`;
 }
 
+// Für Tutorial-Seiten: prev/next Buttons
+// function generatePrevNextNav(filePath) {
+//     const subcategory = getSubcategoryFromPath(filePath);
+//     const tutorials = getOrderedTutorials(subcategory);
+//     const currentIndex = tutorials.findIndex(t => t.filePath === filePath);
+
+//     if (currentIndex === -1) return '';
+
+//     const prev = currentIndex > 0 ? tutorials[currentIndex - 1] : null;
+//     const next = currentIndex < tutorials.length - 1 ? tutorials[currentIndex + 1] : null;
+
+//     let navHtml = '';
+
+// WICHTIG: Keine Leerzeichen/Zeilenumbrüche zwischen den divs!
+// Das CSS braucht sie direkt nebeneinander für flexbox
+// if (prev) {
+//     navHtml += `
+//     <div class="tutorial-nav-prev">
+//         <a href="${prev.url}">
+//             <span class="tutorial-nav-label">← Vorheriges</span>
+//             <span class="tutorial-nav-link">${prev.title}</span>
+//         </a>
+//     </div>`;
+// } else {
+//     navHtml += '<div class="tutorial-nav-prev"></div>';
+// }
+
+// Direkt anschließend ohne Leerzeichen!
+//     if (next) {
+//         navHtml += `<div class="tutorial-nav-next">
+//             <a href="${next.url}">
+//                 <span class="tutorial-nav-label">Nächstes →</span>
+//                 <span class="tutorial-nav-link">${next.title}</span>
+//             </a>
+//         </div>`;
+//     } else {
+//         navHtml += '<div class="tutorial-nav-next"></div>';
+//     }
+
+//     return navHtml;
+// }
+
+// NEUE VERSION - alle Tutorials der Kategorie mit Unterkategorie-Hinweis
 function generatePrevNextNav(filePath) {
-    const subcategory = getSubcategoryFromPath(filePath);
-    const tutorials = getOrderedTutorials(subcategory);
-    const currentIndex = tutorials.findIndex(t => t.filePath === filePath);
+    const category = getCategoryFromPath(filePath);
+    const currentSubcategory = getSubcategoryFromPath(filePath);
+    const allTutorials = getAllTutorialsFlat(category);
+    const currentIndex = allTutorials.findIndex(t => t.filePath === filePath);
 
     if (currentIndex === -1) return '';
 
-    const prev = currentIndex > 0 ? tutorials[currentIndex - 1] : null;
-    const next = currentIndex < tutorials.length - 1 ? tutorials[currentIndex + 1] : null;
+    const prev = currentIndex > 0 ? allTutorials[currentIndex - 1] : null;
+    const next = currentIndex < allTutorials.length - 1 ? allTutorials[currentIndex + 1] : null;
+    const current = allTutorials[currentIndex];
 
     let navHtml = '';
 
-    // WICHTIG: Keine Leerzeichen/Zeilenumbrüche zwischen den divs!
-    // Das CSS braucht sie direkt nebeneinander für flexbox
+    // PREV Button
     if (prev) {
+        const prevSubcategory = `tutorials/${category}/${prev.subcategory}`;
+        const isNewCategory = prevSubcategory !== currentSubcategory;
+        const categoryClass = isNewCategory ? ' is-new' : '';
+
         navHtml += `
         <div class="tutorial-nav-prev">
             <a href="${prev.url}">
                 <span class="tutorial-nav-label">← Vorheriges</span>
                 <span class="tutorial-nav-link">${prev.title}</span>
+                <span class="tutorial-nav-category${categoryClass}">${prev.subcategoryDisplay}</span>
             </a>
         </div>`;
     } else {
         navHtml += '<div class="tutorial-nav-prev"></div>';
     }
 
-    // Direkt anschließend ohne Leerzeichen!
+    // NEXT Button
     if (next) {
+        const nextSubcategory = `tutorials/${category}/${next.subcategory}`;
+        const isNewCategory = nextSubcategory !== currentSubcategory;
+        const categoryClass = isNewCategory ? ' is-new' : '';
+
         navHtml += `<div class="tutorial-nav-next">
             <a href="${next.url}">
                 <span class="tutorial-nav-label">Nächstes →</span>
                 <span class="tutorial-nav-link">${next.title}</span>
+                <span class="tutorial-nav-category${categoryClass}">${next.subcategoryDisplay}</span>
             </a>
         </div>`;
     } else {
