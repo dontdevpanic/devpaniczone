@@ -1,0 +1,498 @@
+/* Demo-Styling für Formulare */
+
+/* Unstyled Demo Container */
+.demo-unstyled {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+/* Browser-Defaults anzeigen */
+.demo-unstyled label,
+.demo-unstyled input,
+.demo-unstyled select,
+.demo-unstyled textarea,
+.demo-unstyled button {
+    all: revert;
+    font-family: inherit;
+}
+
+/* Styled Demo Container */
+.demo-styled {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.demo-styled label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.demo-styled input[type="text"],
+.demo-styled input[type="email"],
+.demo-styled input[type="password"],
+.demo-styled input[type="tel"],
+.demo-styled input[type="url"],
+.demo-styled input[type="search"],
+.demo-styled input[type="number"],
+.demo-styled input[type="date"],
+.demo-styled input[type="time"],
+.demo-styled input[type="datetime-local"],
+.demo-styled select,
+.demo-styled textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Disabled Inputs ausgrauen */
+.demo-styled input:disabled,
+.demo-styled input[disabled] {
+    color: var(--text-muted);
+    background: var(--bg-primary);
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.demo-styled input:focus,
+.demo-styled select:focus,
+.demo-styled textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue-hover);
+    /* box-shadow: 0 0 0 3px rgba(46, 61, 78, 0.2); */
+}
+
+.demo-styled input::placeholder,
+.demo-styled textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.demo-styled button {
+    padding: 0.75rem 1.5rem;
+    background: var(--accent-blue-hover);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.demo-styled button:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-1px);
+}
+
+.demo-styled button:active {
+    transform: translateY(0);
+}
+
+.demo-styled button[type="reset"] {
+    background: var(--bg-tertiary);
+    margin-left: 0.5rem;
+}
+
+.demo-styled button[type="reset"]:hover {
+    background: var(--bg-tertiary);
+}
+
+.demo-styled-disabled {
+    color: var(--text-muted);
+}
+
+/* Input mit Datalist - besser sichtbares Styling */
+.demo-styled input[list] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demo-styled input[list]:focus {
+    outline: none;
+    border-color: var(--accent-blue-light);
+    box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.2);
+    background: var(--bg-secondary);
+}
+
+.demo-styled input[list]::placeholder {
+    color: var(--text-muted);
+}
+
+/* Deaktivierte Buttons */
+.demo-styled button:disabled,
+.demo-styled button[disabled] {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Hover-Effekt bei disabled Buttons deaktivieren */
+.demo-styled button:disabled:hover,
+.demo-styled button[disabled]:hover {
+    background: var(--heading-dark);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Checkbox & Radio Styling */
+.demo-styled .checkbox-group,
+.demo-styled .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.demo-styled .checkbox-group label,
+.demo-styled .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.demo-styled input[type="checkbox"],
+.demo-styled input[type="radio"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--accent-blue);
+}
+
+/* Range Slider */
+.demo-styled input[type="range"] {
+    width: 100%;
+    margin-bottom: 1rem;
+    accent-color: var(--accent-blue-hover);
+}
+
+/* Color Picker */
+.demo-styled input[type="color"] {
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+/* Fieldset Styling */
+.demo-styled fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.demo-styled legend {
+    color: var(--accent-blue);
+    font-weight: 600;
+    padding: 0 0.5rem;
+}
+
+/* Form Grid */
+.demo-styled .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 600px) {
+    .demo-styled .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Required Indicator */
+.demo-styled .required::after {
+    content: " *";
+    color: var(accent-red-light);
+}
+
+/* Error Styling */
+.demo-styled input:invalid:not(:placeholder-shown) {
+    border-color: var(accent-red-light);
+}
+
+.demo-styled input:valid:not(:placeholder-shown) {
+    border-color: var(--border-color);
+}
+
+/* DevPanicZone Kontaktformular */
+.dpz-contact-form {
+    /* max-width: 600px; */
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
+}
+
+/* .dpz-contact-form h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue-light);
+            font-size: 1.5rem;
+        } */
+
+.dpz-contact-form .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.dpz-contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.dpz-contact-form input,
+.dpz-contact-form select,
+.dpz-contact-form textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form input:focus,
+.dpz-contact-form select:focus,
+.dpz-contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue-light);
+    box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.15);
+    background: var(--bg-tertiary);
+}
+
+.dpz-contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.dpz-contact-form .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.dpz-contact-form .btn-submit {
+    flex: 1;
+    padding: 1rem 2rem;
+    background: var(--accent-blue-light);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form .btn-submit:hover {
+    background: var(--accent-blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 155, 209, 0.4);
+}
+
+.dpz-contact-form .btn-reset {
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form .btn-reset:hover {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.dpz-contact-form .privacy-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* 2-Spalten Kontaktformular */
+.dpz-contact-form-wide {
+    width: 100%;
+    /* background: linear-gradient(135deg, var(--color-bg-dark, #1a1a2e) 0%, var(--color-bg-darker, #0f0f1a) 100%); */
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
+}
+
+.dpz-contact-form-wide h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--accent-blue-light);
+    font-size: 1.5rem;
+}
+
+.dpz-contact-form-wide .form-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .dpz-contact-form-wide .form-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+.dpz-contact-form-wide .form-column-left,
+.dpz-contact-form-wide .form-column-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.dpz-contact-form-wide .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.dpz-contact-form-wide label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.dpz-contact-form-wide input,
+.dpz-contact-form-wide select,
+.dpz-contact-form-wide textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form-wide input:focus,
+.dpz-contact-form-wide select:focus,
+.dpz-contact-form-wide textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue-hover);
+    box-shadow: 0 0 0 3px rgba(108, 155, 209, 0.15);
+    background: var(--bg-primary);
+}
+
+.dpz-contact-form-wide .form-column-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.dpz-contact-form-wide .form-column-right .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.dpz-contact-form-wide .form-column-right textarea {
+    flex: 1;
+    min-height: 120px;
+    resize: vertical;
+}
+
+.dpz-contact-form-wide .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.dpz-contact-form-wide .btn-submit {
+    flex: 1;
+    padding: 1rem 2rem;
+    background: var(--accent-blue-light);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form-wide .btn-submit:hover {
+    background: var(--color-accent-hover, #5a8ac0);
+    transform: translateY(-2px);
+    /* box-shadow: 0 4px 12px rgba(108, 155, 209, 0.4); */
+}
+
+.dpz-contact-form-wide .btn-reset {
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dpz-contact-form-wide .btn-reset:hover {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.dpz-contact-form-wide .privacy-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+/* Details/Summary für gestylte Demos */
+details.styled-demo {
+    margin-top: 1rem;
+}
+
+details.styled-demo summary {
+    cursor: pointer;
+    color: var(--accent-blue-light);
+    font-weight: 500;
+    padding: 0.5rem 0;
+}
+
+details.styled-demo summary:hover {
+    color: var(--accent-blue-hover);
+}

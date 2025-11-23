@@ -8,6 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
     <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tutorials.css">
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
 </head>
@@ -26,7 +27,7 @@
 
             <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
                 <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
                 </span>
             </button>
 
@@ -144,26 +145,11 @@
         <section class="hero tutorial-hero">
             <div class="container">
                 <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">ToDo-App mit JavaScript</span></nav>
-                <!----------------------------------------------- 
-            ================ HERO BEARBEITEN ================
-            ------------------------------------------------>
                 <h1 class="hero-title">ToDo-App mit JavaScript</h1>
                 <p class="hero-subtitle">Ein kleines Projekt, das komplett im Browser läuft – ohne Frameworks oder
                     Backend!</p>
             </div>
         </section>
-
-        <!-- <section class="hero hero-inner">
-        <div class="container">
-            <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
-                    class="breadcrumb-separator">›</span><a href="/tutorials/javascript/"
-                    class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span
-                    class="breadcrumb-current">ToDo-App mit JavaScript</span></nav>
-            <h1>ToDo-App mit JavaScript</h1>
-            <p class="hero-subtitle">Ein kleines Projekt, das komplett im Browser läuft – ohne Frameworks oder
-                Backend!</p>
-        </div>
-    </section> -->
 
         <!-- Floating Button Links (Sidebar) -->
         <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
@@ -173,7 +159,7 @@
         <!-- Floating Button Rechts (Tutorial Navigation) -->
         <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
             <span class="toggle-icon">
-                <img src="/assets/icons/library.svg" alt="" class="library-icon">
+                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
             </span>
         </button>
 
@@ -228,28 +214,27 @@
             </aside>
 
             <div class="container">
-                <div class="content-wrapper">
-                    <article class="tutorial-content">
+                <div class="content-wrapper">                    
 
-                        <section>
+                        <section class="tutorials-content">
                             <h2 id="projektüberblick">Projektüberblick</h2>
                             <p>In diesem Tutorial erstellst du eine kleine <strong>ToDo-App</strong> mit HTML, CSS und
                                 JavaScript.
-                                Sie läuft komplett im Browser und speichert deine Aufgaben im <code>localStorage</code>.
+                                Sie läuft komplett im Browser und speichert deine Aufgaben im <code class="inline">localStorage</code>.
                             </p>
                         </section>
 
-                        <section>
+                        <section class="tutorials-content">
                             <h2 id="app-ausprobieren">App ausprobieren</h2>
                             <p>Hier kannst du die fertige App direkt testen:</p>
 
-                            <div class="todo-app-demo" style="margin-top:1em;padding:1em;border:1px solid var(--accent-red-light);border-radius:12px;max-width:400px;">
-                                <h3 id="-meine-aufgaben">📝 Meine Aufgaben</h3>
+                            <div class="todo-app-demo grid-2col-bg">
+                                <h3 id="-meine-aufgaben">Meine Aufgaben</h3>
                                 <div class="todo-input">
                                     <input type="text" id="todoInput" placeholder="Neue Aufgabe hinzufügen..." style="width:70%;padding:0.5em;">
-                                    <button id="addTodo" style="padding:0.5em;">Hinzufügen</button>
+                                    <button id="addTodo" class="btn">Hinzufügen</button>
                                 </div>
-                                <ul id="todoList" style="margin-top:1em;list-style:none;padding:0;"></ul>
+                                <ul class="pt-md" id="todoList"></ul>
                             </div>
 
                             <script>
@@ -312,9 +297,9 @@
                             </script>
                         </section>
 
-                        <section>
+                        <section class="tutorials-content">
                             <h2 id="code-verstehen">Code verstehen</h2>
-                            <p>Die App nutzt <code>localStorage</code>, um Aufgaben im Browser zu speichern. Wenn du die
+                            <p>Die App nutzt <code class="inline">localStorage</code>, um Aufgaben im Browser zu speichern. Wenn du die
                                 Seite neu lädst, bleiben sie erhalten.</p>
 
                             <pre><code class="language-js">// Aufgaben speichern
@@ -331,16 +316,16 @@ function addNewTodo() {
   saveTodos();
 }</code></pre>
 
-                            <p>Die Funktionen <code>toggleDone()</code> und <code>deleteTodo()</code> ändern bzw.
+                            <p>Die Funktionen <code class="inline">toggleDone()</code> und <code class="inline">deleteTodo()</code> ändern bzw.
                                 löschen Aufgaben und aktualisieren dann den Speicher.</p>
                         </section>
 
-                        <section>
+                        <section class="tutorials-content">
                             <h2 id="weiterführende-ideen">Weiterführende Ideen</h2>
-                            <ul>
+                            <ul class="arrow-list">
                                 <li>Filtere nach „Erledigt“ / „Offen“</li>
                                 <li>Füge ein Datum hinzu</li>
-                                <li>Nutze <code>localStorage.clear()</code> für einen Reset-Button</li>
+                                <li>Nutze <code class="inline">localStorage.clear()</code> für einen Reset-Button</li>
                                 <li>Styling mit CSS verbessern (z. B. Checkbox-Design)</li>
                             </ul>
                         </section>
@@ -353,7 +338,7 @@ function addNewTodo() {
                 <span class="tutorial-nav-category">JavaScript Projects</span>
             </a>
         </div><div class="tutorial-nav-next"></div></nav>
-                    </article>
+                    
 
                     <aside class="sticky-sidebar">
                         <nav class="sidebar-nav">
@@ -389,11 +374,6 @@ function addNewTodo() {
     <script src="/assets/js/search.js"></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
 
+</body>
 
-
-
-
-
-
-
-</body></html>
+</html>

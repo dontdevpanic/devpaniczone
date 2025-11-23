@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const originalText = copyText.textContent;
                 const originalIcon = copyIcon.innerHTML;
                 
-                // copyIcon.innerHTML = '<img src="/assets/checkmark.svg" alt="" width="16" height="16">';
-                copyIcon.innerHTML = '<img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">';
+                // copyIcon.innerHTML = '<img src="/assets/checkmark.svg" alt="Copy Icon" width="16" height="16">';
+                copyIcon.innerHTML = '<img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">';
                 copyText.textContent = 'Kopiert!';
                 button.classList.add('copied');
                 

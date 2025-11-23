@@ -1,0 +1,93 @@
+.code-block {
+    margin-top: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-secondary);
+    overflow: hidden;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-tertiary);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-lang {
+    font-weight: 600;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+}
+
+.code-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.code-copy {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.code-copy:hover {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: white;
+}
+
+.code-copy:active {
+    transform: scale(0.95);
+}
+
+.code-copy.copied {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+    color: white;
+}
+
+.copy-icon img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) saturate(100%) invert(89%) sepia(2%) saturate(158%) hue-rotate(182deg) brightness(85%) contrast(87%);
+    transition: filter 150ms ease;
+}
+
+.code-copy:hover .copy-icon img,
+.code-copy.copied .copy-icon img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
+.code-input,
+.code-output {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--font-mono);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 1rem;
+    border: none;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.code-output {
+    border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 640px) {
+    .copy-text {
+        display: none;
+    }
+}

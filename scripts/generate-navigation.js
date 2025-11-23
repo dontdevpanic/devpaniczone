@@ -64,7 +64,7 @@ const HEADER_TEMPLATE = `<header class="site-header">
 
             <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
                 <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="" width="20" height="20">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
                 </span>
             </button>
 
