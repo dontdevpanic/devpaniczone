@@ -1,569 +1,928 @@
-/* ===============================================================================
-   DEVPANICZONE - TUTORIALS STYLESHEET
-   ===============================================================================
+/* ============================================================================
+    DEVPANICZONE - TUTORIALS STYLESHEET
+    ===========================================================================
+     
+    TABLE OF CONTENTS:
+    1. Tutorial Layout & Wrapper..................... Zeile 27   ===
+    2. Tutorial Sections............................. Zeile 57   ===
+    3. Tutorial Grid Boxes........................... Zeile 496  ===
+    4. Tutorial Code Blocks Copy Code................ Zeile 496  ===
+    5. Tutorial Info-Boxes........................... Zeile 57   ===   
+    6. Tutorial Reference Tables..................... Zeile 536  ===
+    7. Tutorial Description Lists.................... Zeile 536  ===
+    8. Tutorial Toggle............................... Zeile 536  ===
+    9. Tutorial Navigation (Prev/Next)............... Zeile 536  ===
    
-   Dieses Stylesheet enthält alle Tutorial-spezifischen Styles, die aus der
-   style.css ausgelagert wurden. Es sollte zusätzlich zur style.css geladen
-   werden, aber NUR auf Tutorial-Seiten.
-   
-   Verwendung im HTML:
-   <link rel="stylesheet" href="/assets/css/style.css">
-   <link rel="stylesheet" href="/assets/css/tutorials.css">
-   
-   TABLE OF CONTENTS:
-   1. Tutorial Layout & Wrapper..................... Zeile 27   ===
-   2. Tutorial Sections............................. Zeile 57   ===
-   3. Tutorial Sidebar (ToC)........................ Zeile 88   ===
-   4. Tutorial Related Sidebar (Navigation)......... Zeile 213  ===
-   5. Floating Buttons.............................. Zeile 370  ===
-   6. Tutorial-spezifische Grid Boxes............... Zeile 496  ===
-   7. Tutorial Section Titles....................... Zeile 536  ===
-   
-   =============================================================================== */
+    =========================================================================== */
 
+/* ============================================================================
+    1. TUTORIAL LAYOUT & WRAPPER
+=============================================================================== */
 
-/* ===============================================================================
-   1. TUTORIAL LAYOUT & WRAPPER
-   =============================================================================== */
-
-/* position: relative; für absolute positionierte Sidebar */
-/* .tutorial-layout {
-    position: relative;    
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-} */
-
-/* @media (min-width: 768px) {
-    .tutorial-layout {
-        padding: 0 2rem;
-    }
-} */
-
-/* .tutorial-content {
-    max-width: 900px;
-    margin: 0 auto;
-} */
-
-/* Wrapper für den Hauptinhalt (wenn Sidebar verwendet wird) */
-/* .tutorial-wrapper {
-    display: grid;
-    gap: 2rem;
-} */
-
-
-/* ===============================================================================
-   2. TUTORIAL SECTIONS
-   =============================================================================== */
-
-.tutorial-section {
-    margin-bottom: 3rem;
+/* ----- Sections ----- */
+.tutorials-content {
+    padding: 1.5rem 0;
 }
 
-/* Section Title */
-.section-title {
-    font-size: 1.5rem;
-    color: var(--heading-primary);
-    margin-bottom: 1rem;
-    padding: 2rem 0 0.5rem 0;
-    border-bottom: 2px solid var(--border-color);
+/* ============================================================================
+2. TUTORIAL SECTIONS
+=============================================================================== */
+
+/* ----- Tutorial Hero ----- */
+.tutorial-hero {
+    padding: 3rem 0;
+    margin-bottom: 0.5rem;
 }
 
-.section-title.no-border {
-    border-bottom: none;
+/* Kleiner als Homepage */
+.tutorial-hero .hero-title {
+    font-size: 2rem;
+    padding-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-/* No ToC - Verhindert dass Heading ins Inhaltsverzeichnis aufgenommen wird */
-/* .no-toc {
-} */
-
-
-/* ===============================================================================
-   3. TUTORIAL SIDEBAR (Table of Contents)
-   =============================================================================== */
-
-.tutorial-sidebar {
-    position: fixed;
-    top: 70px;
-    /* Unter Header */
-    left: -320px;
-    /* Versteckt auf Mobile */
-    width: 280px;
-    height: calc(100vh - 70px);
-    background: var(--bg-secondary);
-    border-right: 1px solid var(--border-color);
-    overflow-y: auto;
-    transition: left 300ms ease;
-    z-index: 95;
-    padding: 1.5rem;
-}
-
-.tutorial-sidebar.is-open {
-    left: 0;
-    /* Sidebar sichtbar */
-    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
-}
-
-@media (min-width: 1280px) {
-    .tutorial-sidebar {
-        left: 0;
-        /* Immer sichtbar auf großen Screens */
-        position: sticky;
-        /* Sticky statt fixed */
-        height: calc(100vh - 100px);
-        box-shadow: none;
-    }
-
-    .tutorial-layout {
-        display: grid;
-        grid-template-columns: 280px 1fr;
-        /* Sidebar + Content */
-        gap: 3rem;
-        /* = 48px */
-    }
-
-    .tutorial-content {
-        max-width: 100%;
-    }
-}
-
-.sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    /* = 24px */
-}
-
-.sidebar-title {
+.tutorial-hero .hero-subtitle {
     font-size: 1.125rem;
-    /* = 18px */
-    color: var(--heading-secondary);
-    margin: 0;
-    padding: 0;
-    border: none;
+    /* margin-bottom: 0; */
 }
 
-.sidebar-close {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    /* = 24px */
-    cursor: pointer;
-    padding: 0.25rem;
-    line-height: 1;
-    transition: color 150ms ease;
-}
+/* ============================================================================
+3. TUTORIAL GRID BOXES
+=============================================================================== */
 
-.sidebar-close:hover {
-    color: var(--accent-blue);
-}
-
-@media (min-width: 1280px) {
-    .sidebar-close {
-        display: none;
-        /* Close-Button auf Desktop verstecken */
-    }
-}
-
-/* Table of Contents Navigation */
-.sidebar-toc {
-    margin: 0;
-}
-
-.toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.toc-list li {
-    margin-bottom: 0;
-}
-
-.toc-list a {
-    display: block;
-    padding: 0.5rem 0;
-    /* = 8px oben/unten */
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
-    /* = 15px */
-    border-left: 2px solid transparent;
-    padding-left: 1rem;
-    /* = 16px */
-    transition: all 150ms ease;
-}
-
-.toc-list a:hover {
-    color: var(--accent-blue);
-    border-left-color: var(--accent-blue);
-}
-
-.toc-list a.active {
-    color: var(--accent-blue);
-    border-left-color: var(--accent-blue);
-    font-weight: 600;
-}
-
-/* ===============================================================================
-   !!!!!!!!!!! S I D E B A R . C S S !!!!!!!!!!!!!!
-   =============================================================================== */
-
-/* Verschachtelte ToC Levels */
-    /* Hauptebene */
-/* .toc-level-1 {
-} */
-
-/* .toc-level-2 {
-    margin-left: 1rem;
-} */
-
-/* .toc-level-2 a {
-    font-size: 0.875rem;
-    padding-left: 0.75rem;
-} */
-
-/* .toc-level-3 {
-    margin-left: 2rem;
-} */
-
-/* .toc-level-3 a {
-    font-size: 0.8125rem;
-    padding-left: 0.5rem;
-} */
-
-
-/* ===============================================================================
-   4. TUTORIAL RELATED SIDEBAR (Navigation zu anderen Tutorials)
-   !!!!!!!!!!! S I D E B A R . C S S !!!!!!!!!!!!!!
-   =============================================================================== */
-/* top: 70px; - unter Header */
-/* right: -320px; - versteckt auf Mobile */
-/* .tutorial-related {
-    position: fixed;
-    top: 70px;
-    right: -320px;    
-    width: 280px;
-    height: calc(100vh - 70px);
-    background: var(--bg-secondary);
-    border-left: 1px solid var(--border-color);
-    overflow-y: auto;
-    transition: right 300ms ease;
-    z-index: 95;
-    padding: 1.5rem;
-} */
-
-/* Sidebar sichtbar */
-/* .tutorial-related.is-open {
-    right: 0;    
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
-} */
-
-/* Immer sichtbar auf sehr großen Screens */
-/* Sticky statt fixed */
-/* .tutorial-layout - Links Sidebar, Content, Rechts Sidebar */
-
-/* @media (min-width: 1440px) {
-    .tutorial-related {
-        right: 0;
-        position: sticky;        
-        height: calc(100vh - 100px);
-        box-shadow: none;
-    }
-
-    .tutorial-layout {
-        grid-template-columns: 280px 1fr 280px;
-    }
-} */
-
-/* Tutorial Categories in Related Sidebar */
-/* .tutorial-category {
-    margin-bottom: 2rem;
-} */
-
-/* .tutorial-category-title {
-    font-size: 1rem;
-    color: var(--heading-secondary);
-    margin-bottom: 0.75rem;
-    padding: 0;
-    border: none;
-    font-weight: 600;
-} */
-
-/* .tutorial-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-} */
-
-/* .tutorial-list li {
-    margin-bottom: 0;
-} */
-
-/* .tutorial-list a {
-    display: block;
-    padding: 0.5rem 0.75rem;
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-    border-radius: 6px;
-    transition: all 150ms ease;
-} */
-
-/* .tutorial-list a:hover {
-    background: var(--bg-tertiary);
-    color: var(--accent-blue);
-} */
-
-/* .tutorial-list a.active {
-    background: var(--accent-blue);
-    color: white;
-    font-weight: 600;
-} */
-
-/* ===============================================================================
-   !!!!!!!!!!! CATEGORIES index.html !!!!!!!!!!!!!!
-   =============================================================================== */
-
-/* Tutorial Group/Category Collapsible */
-/* .tutorial-group {
-    margin-bottom: 1.5rem;
-} */
-
-/* .tutorial-group-toggle {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: none;
-    border: none;
-    padding: 0.5rem 0.75rem;
-    color: var(--heading-secondary);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 150ms ease;
-} */
-
-/* .tutorial-group-toggle:hover {
-    background: var(--bg-tertiary);
-} */
-
-/* .tutorial-group-icon {
-    transition: transform 150ms ease;
-} */
-
-/* .tutorial-group-toggle[aria-expanded="true"] .tutorial-group-icon {
-    transform: rotate(90deg);
-} */
-
-/* .tutorial-group-list {
-    display: none;
-    margin-top: 0.5rem;
-} */
-
-/* .tutorial-group-list.is-open {
-    display: block;
-} */
-
-
-/* ===============================================================================
-   5. FLOATING BUTTONS (Sidebar Toggle & Tutorial Nav Toggle)
-   =============================================================================== */
-
-/* Sidebar Toggle Button (Links) */
-.sidebar-toggle {
-    position: fixed;
-    bottom: 2rem;
-    /* = 32px */
-    left: 1rem;
-    /* = 16px */
-    width: 44px;
-    height: 44px;
-    background: var(--accent-blue);
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    color: white;
-    font-size: 1.25rem;
-    /* = 20px */
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(88, 166, 255, 0.3);
-    transition: all 150ms ease;
-    z-index: 90;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidebar-toggle:hover {
-    background: var(--accent-blue-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(88, 166, 255, 0.5);
-}
-
-@media (min-width: 1280px) {
-    .sidebar-toggle {
-        display: none;
-        /* Verstecken auf großen Screens */
-    }
-}
-
-/* Tutorial Nav Toggle Button (Rechts) */
-.tutorial-nav-toggle {
-    position: fixed;
-    bottom: 2rem;
-    /* = 32px */
-    right: 1rem;
-    /* = 16px */
-    width: 44px;
-    height: 44px;
-    background: var(--accent-blue);
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(88, 166, 255, 0.3);
-    transition: all 150ms ease;
-    z-index: 90;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.tutorial-nav-toggle:hover {
-    background: var(--accent-blue-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(88, 166, 255, 0.5);
-}
-
-@media (min-width: 1440px) {
-    .tutorial-nav-toggle {
-        display: none;
-        /* Verstecken auf sehr großen Screens */
-    }
-}
-
-/* Toggle Icons */
-.toggle-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.toggle-icon svg,
-.toggle-icon img {
-    width: 20px;
-    height: 20px;
-}
-
-/* Sidebar Overlay (für Mobile) */
-.sidebar-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 90;
-}
-
-.sidebar-overlay.is-active {
-    display: block;
-}
-
-/* Wenn beide Buttons vorhanden sind, verschiebe sie */
-@media (max-width: 768px) {
-    body:has(.tutorial-nav-toggle) .sidebar-toggle {
-        left: 1rem;
-        bottom: 6.5rem;
-        /* Über dem Tutorial-Nav-Button */
-    }
-}
-
-
-/* ===============================================================================
-   6. TUTORIAL-SPEZIFISCHE GRID BOXES
-   =============================================================================== */
-
-/* Grid Box ohne Hintergrund (nur für Tutorials) */
-.grid-box-plain {
-    padding: 1rem 0;
-    /* = 16px nur oben/unten */
-}
-
-.grid-box-plain h3,
-.grid-box-plain h4 {
-    margin-top: 0;
-    padding-top: 0;
-}
-
-/* Tutorial Grid - spezielle Variante für Tutorial-Übersichten */
-.tutorial-grid {
+/* Comparison Grid - für Side-by-Side Vergleiche (z.B. unsafe vs safe code) */
+.comparison-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    /* = 24px */
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.comparison-box {
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.unsafe-example {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--accent-red-light);
+}
+
+.safe-example {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--accent-green);
+}
+
+.example-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.example-label::before {
+    content: "✗";
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+.safe-example .example-label::before {
+    content: "✓";
+    color: #28a745;
+}
+
+.unsafe-example .example-label::before {
+    content: "✗";
+    color: #dc3545;
+}
+
+/* Responsive: Bei kleinen Bildschirmen untereinander statt nebeneinander */
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---- TAG GRID ---- */
+
+.tag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0;
+}
+
+.tag-grid h3 {
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--accent-blue);
+    padding: 0.5rem 0 0.5rem;
+}
+
+.tag-item {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    border-left: 4px solid var(--accent-blue);
+    transition: all 150ms ease;
+}
+
+.tag-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tag-item .inline {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+
+/* ----- Tag Color Variants ----- */
+.tag-item.tag-blue {
+    border-left-color: var(--accent-blue);
+}
+
+.tag-item.tag-blue .inline {
+    color: var(--accent-blue);
+}
+
+.tag-item.tag-green {
+    border-left-color: var(--accent-green);
+}
+
+.tag-item.tag-green .inline {
+    color: var(--accent-green);
+}
+
+.tag-item.tag-yellow {
+    border-left-color: var(--accent-yellow-light);
+}
+
+.tag-item.tag-yellow .inline {
+    color: var(--accent-yellow-light);
+}
+
+.tag-item.tag-orange {
+    border-left-color: var(--accent-orange);
+}
+
+.tag-item.tag-orange .inline {
+    color: var(--accent-orange);
+}
+
+.tag-item.tag-red {
+    border-left-color: var(--accent-red);
+}
+
+.tag-item.tag-red .inline {
+    color: var(--accent-red);
+}
+
+.tag-item.tag-cyan {
+    border-left-color: var(--accent-cyan);
+}
+
+.tag-item.tag-cyan .inline {
+    color: var(--accent-cyan);
+}
+
+.tag-item.tag-mint {
+    border-left-color: var(--accent-mint);
+}
+
+.tag-item.tag-mint .inline {
+    color: var(--accent-mint);
+}
+
+.tag-item.tag-purple {
+    border-left-color: var(--accent-purple);
+}
+
+.tag-item.tag-purple .inline {
+    color: var(--accent-purple);
+}
+
+.tag-item.tag-magenta {
+    border-left-color: var(--accent-magenta);
+}
+
+.tag-item.tag-magenta .inline {
+    color: var(--accent-magenta);
+}
+
+.tag-item.tag-gray {
+    border-left-color: var(--text-secondary);
+}
+
+.tag-item.tag-gray .inline {
+    color: var(--text-secondary);
+}
+
+/* ============================================================================
+4. TUTORIAL COPY CODE-BLOCKS
+=============================================================================== */
+
+/* ---- Code Block ---- */
+.code-block {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-lang {
+    font-family: var(--font-code);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.code-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.code-copy {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.code-copy:hover {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: white;
+}
+
+.code-copy:active {
+    transform: scale(0.95);
+}
+
+.code-copy.copied {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+    color: white;
+}
+
+.copy-icon {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.copy-icon img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) saturate(100%) invert(89%) sepia(2%) saturate(158%) hue-rotate(182deg) brightness(85%) contrast(87%);
+    transition: filter 150ms ease;
+}
+
+.code-copy:hover .copy-icon img,
+.code-copy.copied .copy-icon img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
+.code-input,
+.code-output {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--font-mono);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 1rem;
+    border: none;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.code-output {
+    border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 640px) {
+    .copy-text {
+        display: none;
+    }
+}
+
+/* ---- Code Block Inhalt ---- */
+.code-block pre {
+    margin: 0;
+    padding: 1.5rem;
+    overflow-x: auto;
+    background: transparent;
+}
+
+.code-block code {
+    font-family: var(--font-code);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    display: block;
+}
+
+/* ---- Scrollbar ---- */
+.code-block pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.code-block pre::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.code-block pre::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.code-block pre::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-blue);
+}
+
+/* ---- Prism.js Override ---- */
+.code-block pre[class*="language-"] {
+    background: var(--bg-tertiary);
+    border: none;
+    margin: 0;
+    padding: 1.5rem;
+}
+
+.code-block code[class*="language-"] {
+    background: transparent;
+    color: var(--text-primary);
+}
+
+/* ===============================================================================
+    5. TUTORIAL INFO BOXES
+   =============================================================================== */
+
+/* === Title === */
+strong.box-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem;
+    padding: 0.5rem 0 0.75rem 0;
+    /* position: relative; */
+    border-bottom: 2px solid var(--accent-blue-hover);
+}
+
+/* .box-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 70%;
+    border-bottom: 2px solid var(--accent-blue-hover);
+} */
+
+/* === Icons === */
+.icon-success {
+    color: var(--color-success);
+}
+
+.icon-warning {
+    color: var(--color-warning);
+}
+
+.icon-danger {
+    color: var(--color-error);
+}
+
+.icon-blue {
+    color: var(--accent-blue);
+}
+
+/* ---- Standard Blue ---- */
+
+.info-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 0 8px 8px 0;
+    padding: 1.5rem;
     margin: 2rem 0;
 }
 
-@media (min-width: 640px) {
-    .tutorial-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* .box-title {
+    margin-top: 0;
+    padding: 0.75rem 0;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--accent-blue-hover);
+} */
+
+.info-box p:last-child,
+.info-box ul:last-child {
+    margin-bottom: 0;
 }
 
-@media (min-width: 1024px) {
-    .tutorial-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.info-box.notice .icon-right {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.info-box.notice .box-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.info-box.notice svg {
+    flex-shrink: 0;
+}
+
+.info-box .arrow-list {
+    margin-top: 0;
+}
+
+/* ---- NOTICE GREEN ---- */
+
+.info-box.notice {
+    border-left: 4px solid var(--accent-green);
+    position: relative;
+}
+
+.box-title.notice {
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--accent-green);
+}
+
+.info-box.notice .icon-right {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.box-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-box svg {
+    flex-shrink: 0;
+}
+
+ul.info-box.notice li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: bold;
+}
+
+/* .box-title.notice {
+    color: var(--accent-green);
+} */
+
+.info-box.notice strong {
+    color: var(--text-secondary);
+}
+
+/* ---- DANGER RED ---- */
+
+.info-box.danger {
+    border-left: 4px solid var(--accent-red-light);
+    position: relative;
+}
+
+.box-title.danger {
+    border-bottom: 2px solid var(--accent-red-light);
+}
+
+.info-box.danger .icon-right {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.info-box.danger .box-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-box.danger svg {
+    flex-shrink: 0;
+}
+
+ul.info-box.danger li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-red-light);
+    font-weight: bold;
+}
+
+.info-box.danger strong {
+    color: var(--text-secondary);
+}
+
+/* ---- WARNING ORANGE ---- */
+
+.info-box.warning {
+    border-left: 4px solid var(--color-warning);
+    position: relative;
+    /* padding-right: 2rem; */
+    /* Platz für das Icon schaffen */
+}
+
+.box-title.warning {
+    border-bottom: 2px solid var(--color-warning);
+}
+
+.info-box.warning .icon-right {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.info-box.warning .box-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-box.warning svg {
+    flex-shrink: 0;
+}
+
+ul.info-box.warning li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-warning);
+    font-weight: bold;
+}
+
+.info-box.warning strong {
+    color: var(--text-secondary);
+}
+
+/* ---- Arrow List Info-Boxes ---- */
+.arrow-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.arrow-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+ul.arrow-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text-secondary);
+    font-weight: bold;
+}
+
+.grid-2col .info-box {
+    margin-bottom: 0;
 }
 
 
 /* ===============================================================================
-   7. TUTORIAL SECTION TITLES
+    6. REFERENCE TABLES
    =============================================================================== */
 
-/* Alternative Section Title Style */
-.section-title-alt {
-    font-size: 1.4rem;
-    /* = 22.4px */
-    color: var(--heading-primary);
-    margin: 2rem 0 1rem;
-    /* = 32px 0 16px */
-    padding: 0;
-    border: none;
-    position: relative;
+.ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.section-title-alt::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 3px;
-    background: var(--accent-blue);
-    margin-bottom: 0.5rem;
-    /* = 8px */
+.ref-table thead {
+    background: var(--bg-tertiary);
+    border-bottom: 2px solid var(--heading-primary);
 }
 
-/* Tutorial Step Counter */
-.tutorial-step {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    /* = 32px */
-    height: 2rem;
-    /* = 32px */
-    background: var(--accent-blue);
-    color: white;
-    border-radius: 50%;
-    font-weight: 600;
+.ref-table th {
+    padding: 1rem;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-weight: 500;
     font-size: 0.875rem;
-    /* = 14px */
-    margin-right: 0.75rem;
-    /* = 12px */
+    color: var(--heading-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ref-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+}
+
+.ref-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.ref-table tbody tr {
+    transition: background-color 150ms ease;
+}
+
+.ref-table tbody tr:hover {
+    background: var(--bg-tertiary);
+}
+
+.ref-table code {
+    font-family: var(--font-code);
+    font-size: 0.875rem;
+    background: var(--bg-tertiary);
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    /* color: var(--accent-blue); */
+    white-space: nowrap;
+}
+
+/* ---- Flexible Spalten-Breiten ---- */
+.ref-table th,
+.ref-table td {
+    width: auto;
+}
+
+/* Erste Spalte bekommt eine Mindestbreite */
+.ref-table thead th:first-child {
+    min-width: 100px;
+    white-space: nowrap;
+}
+
+/* Optional: Bestimmte Spalten sollen nicht umbrechen */
+.ref-table td:first-child {
+    white-space: nowrap;
+}
+
+/* Falls doch mal fixe Breiten, diese explizite Klasse */
+.ref-table.table-3col thead th:nth-child(1) {
+    width: 15%;
+    min-width: 100px;
+}
+
+.ref-table.table-3col thead th:nth-child(2) {
+    width: 45%;
+}
+
+.ref-table.table-3col thead th:nth-child(3) {
+    width: 40%;
+}
+
+/* ---- Responsive: Cards auf Mobile ---- */
+@media (max-width: 767px) {
+    .ref-table thead {
+        display: none;
+    }
+
+    .ref-table,
+    .ref-table tbody,
+    .ref-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .ref-table tr {
+        margin-bottom: 1rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+    }
+
+    .ref-table tr:hover {
+        background: var(--bg-tertiary);
+    }
+
+    .ref-table td {
+        display: block;
+        padding: 0.5rem 0;
+        border: none;
+        text-align: left;
+    }
+
+    .ref-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        color: var(--accent-blue);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+    }
+
+    .ref-table td:first-child {
+        font-size: 1.125rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .ref-table td:first-child::before {
+        display: none;
+    }
+}
+
+/* ---- Table Varianten ---- */
+.ref-table.table-striped tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.ref-table.table-compact td,
+.ref-table.table-compact th {
+    padding: 0.5rem 0.75rem;
+}
+
+.ref-table.table-bordered {
+    border: 1px solid var(--border-color);
+}
+
+/* ===============================================================================
+    7. LISTS
+   =============================================================================== */
+
+
+/* ---- Beschreibungslisten ---- */
+dl {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    /* background: var(--dark-light); */
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+}
+
+dt {
+    font-family: var(--font-heading);
+    color: var(--heading-secondary);
+    font-weight: 600;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.8rem 0 0
+}
+
+dd {
+    color: var(--text);
+}
+
+.list-demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 600px) {
+    .list-demo-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===============================================================================
+    8. TOGGLE MORE INFO
+   =============================================================================== */
+
+details {
+    margin-top: 1rem;
+}
+
+summary {
+    cursor: pointer;
+    user-select: none;
+    color: var(--accent-blue-light);
+    font-weight: 400;
+    padding: 0.5rem 0;
+    text-align: left;
+}
+
+summary:hover {
+    color: var(--accent-blue-hover);
+}
+
+.toggle-detail {
+    padding: 0.5rem 0 0.5rem 0;
+    margin-top: 10px;
+}
+
+
+/* ===============================================================================
+    9. TUTORIAL NAVIGATION (Prev/Next)
+   =============================================================================== */
+
+.tutorial-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 3rem 0 4rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.tutorial-nav-prev,
+.tutorial-nav-next {
+    flex: 1;
+    max-width: 48%;
+}
+
+.tutorial-nav a {
+    display: block;
+    padding: 1rem 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-weight: 600;
+    transition: all 150ms ease;
+    text-decoration: none;
+}
+
+.tutorial-nav a:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(88, 166, 255, 0.2);
+}
+
+.tutorial-nav-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: normal;
+    margin-bottom: 0.25rem;
+}
+
+.tutorial-nav-link {
+    display: block;
+    color: var(--heading-secondary);
+    font-weight: 400;
+}
+
+.tutorial-nav-prev {
+    text-align: left;
+}
+
+.tutorial-nav-next {
+    text-align: right;
+}
+
+@media (max-width: 640px) {
+
+    .tutorial-nav {
+        flex-direction: column;
+    }
+
+    .tutorial-nav-prev,
+    .tutorial-nav-next {
+        max-width: 100%;
+        text-align: center;
+    }
+}
+
+/* Unterkategorie-Hinweis in Prev/Next Navigation */
+.tutorial-nav-category {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-top: 0.25rem;
+    font-weight: 400;
+}
+
+/* Highlight wenn Kategorie wechselt */
+.tutorial-nav-category.is-new {
+    color: var(--accent-blue);
+    font-weight: 600;
 }
 
 

@@ -193,7 +193,7 @@ const TUTORIAL_ORDER = {
     'tutorials/bootstrap/bootstrap-extras': [
         // Platzhalter
     ],
-    'tutorials/javascript/basics': [
+    'tutorials/javascript/javascript-basics': [
         'js-basics.html',
         'js-security.html'
         // 'js-variables.html',
@@ -204,7 +204,7 @@ const TUTORIAL_ORDER = {
         // 'js-events.html',
         // 'js-scroll-to-top.html'
     ],
-    'tutorials/javascript/advanced': [
+    'tutorials/javascript/javascript-advanced': [
         // 'js-async-await.html',
         // 'js-dom.html',
         // 'js-fetch.html',
