@@ -887,7 +887,7 @@ hr {
     }
 }
 
-/* ===== NAVIGATION ===== */
+/* ===== NAVIGATION MOBILE ===== */
 /* HINWEIS: .main-nav wird für Mobile (display:none) und Desktop (display:block im Media Query) 
    definiert - das ist korrekt für Mobile-First CSS! */
 .main-nav {
@@ -999,7 +999,7 @@ hr {
     /* ----- Dropdown Menu ----- */
     .dropdown-toggle {
         border: none;
-        border-radius: 8px;
+        /* border-radius: 8px; */
         vertical-align: middle;
     }
 }
@@ -1053,6 +1053,7 @@ hr {
 .dropdown-menu a:hover {
     background-color: var(--bg-primary);
     color: var(--accent-blue);
+    border-radius: 0;
 }
 
 
@@ -1184,6 +1185,7 @@ hr {
 }
 
 .dropdown-submenu a:hover {
+    padding-left: 0.5;
     background-color: var(--bg-primary);
     color: var(--accent-blue);
 }
@@ -1395,18 +1397,11 @@ hr {
     /* = 64px Abstand nach unten */
 }
 
-.mt-xl {
-    padding-top: 4rem;
-}
-
-/* ===== RESPONSIVE GRID - MOBILE FIRST! ===== */
-
 /* ----- Responsive Grids ----- */
 .categories-grid {
     display: grid;
     gap: 1.5rem;
     grid-template-columns: 1fr;
-
 }
 
 /* Generisches 2-Spalten Grid */
@@ -1414,7 +1409,6 @@ hr {
     display: grid;
     gap: 1.5rem;
     grid-template-columns: 1fr;
-    /* 1 Spalte auf Mobile (< 640px) */
     align-items: stretch;
     margin: 0;
 }
@@ -1423,6 +1417,7 @@ hr {
     margin: auto 0 0 0;
 }
 
+/* Hintergrund-Styling für Grid-Items, falls benötigt (kein Layout!) */
 .grid-2col-bg {
     padding: 1.5rem;
     background-color: var(--bg-secondary);
@@ -1444,24 +1439,13 @@ hr {
     margin: 0;
 }
 
-.grid-1-2col {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: 0.5fr 2.5fr;
-    align-items: center;
-    /* start sorgt dafür, dass SVG und Codeblock oben bündig sind */
-}
-
-.grid-1-2col>.code-block {
-    margin: auto 0 0 0;
-}
-
+/* Grid mit 2:1 Verhältnis */
+/* start sorgt dafür, Spalten oben bündig sind */
 .grid-2-1col {
     display: grid;
     gap: 2rem;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
     align-items: center;
-    /* start sorgt dafür, dass SVG und Codeblock oben bündig sind */
 }
 
 /* 640px: 2 Spalten */
@@ -1475,6 +1459,15 @@ hr {
         grid-template-columns: repeat(2, 1fr);
         /* 2 gleich breite Spalten */
     }
+
+    .grid-2-1col {
+        grid-template-columns: 2fr 1fr;
+        /* Desktop: 2:1 Verhältnis */
+    }
+
+    /* .grid-1-2col {
+        grid-template-columns: 0.5fr 2.5fr;
+    } */
 }
 
 /* 1024px: 3 Spalten */
@@ -1486,12 +1479,25 @@ hr {
     }
 }
 
-@media (max-width: 640px) {
-    .grid-1-2col {
-        grid-template-columns: 1fr;
-        /* untereinander auf kleinen Screens */
+/*  align-items: start; = oben bündig */
+/* .grid-1-2col {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    align-items: center;
+    
+} */
+
+/* .grid-1-2col>.code-block {
+    margin: auto 0 0 0;
+} */
+
+
+/* untereinander auf kleinen Screens */
+/* .grid-1-2col {
+        grid-template-columns: 0.5fr 2.5fr;
     }
-}
+} */
 
 
 
@@ -1578,10 +1584,6 @@ kbd {
     font-size: 0.9em;
     box-shadow: 0 2px 0 var(--border-color);
 }
-
-
-
-
 
 /* ===================================
    FOOTER
