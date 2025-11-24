@@ -167,7 +167,8 @@ const TUTORIAL_ORDER = {
     'tutorials/css/css-basics': [
         'css-einbinden.html',
         'css-color-units.html',
-        'css-typografie.html'
+        'css-typografie.html',
+        'css-mobile-first.html'
     ],
     'tutorials/css/css-advanced': [
         // Platzhalter
