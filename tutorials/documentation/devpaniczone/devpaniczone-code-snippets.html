@@ -186,13 +186,19 @@
                     <li class="toc-level-1"><a href="#layout-parts">Layout Parts</a></li>
                     <li class="toc-level-2"><a href="#grid-boxes-mit-hintergrund">Grid Boxes mit Hintergrund</a></li>
                     <li class="toc-level-2"><a href="#grid-boxes-ohne-hintergrund">Grid Boxes ohne Hintergrund</a></li>
+                    <li class="toc-level-2"><a href="#tag-grid-kleine-infoboxen">Tag Grid - Kleine Infoboxen</a></li>
+                    <li class="toc-level-2"><a href="#tag-grid-mit-h3">Tag Grid mit &lt;h3&gt;</a></li>
+                    <li class="toc-level-2"><a href="#terminal-oeffnen">Tag Grid Cards Auto</a></li>
+                    <li class="toc-level-2"><a href="#mac">Mac</a></li>
+                    <li class="toc-level-2"><a href="#windows">Windows</a></li>
+                    <li class="toc-level-2"><a href="#vs-code">VS Code</a></li>
+                    <li class="toc-level-2"><a href="#tastenkombinationen">Shortcut Grid Cards</a></li>
                     <li class="toc-level-2"><a href="#comparsion-grid">Comparsion Grid</a></li>
                     <li class="toc-level-2"><a href="#code-block-html">Code-Block HTML</a></li>
                     <li class="toc-level-2"><a href="#code-block-css">Code-Block CSS</a></li>
                     <li class="toc-level-2"><a href="#code-block-2er-grid">Code-Block 2er Grid</a></li>
                     <li class="toc-level-2"><a href="#code-block-plain-text">Code-Block Plain Text</a></li>
                     <li class="toc-level-2"><a href="#info-box">Info Boxes</a></li>
-                    <li class="toc-level-2"><a href="#tag-grid-kleine-infoboxen">Tag Grid - Kleine Infoboxen</a></li>
                     <li class="toc-level-2"><a href="#table">Table</a></li>
                     <li class="toc-level-2"><a href="#cta-buttons-hero">CTA Buttons Hero</a></li>
                     <li class="toc-level-2"><a href="#cta-buttons-content">CTA Buttons Content</a></li>
@@ -455,7 +461,8 @@
                 <section class="tutorials-content">
                     <h2 id="layout-parts">Layout Parts</h2>
                     <p>Einzelnen Code-Snippets mit den entsprechenden Klassen.</p>
-                    <p>Diese Snippets werden innerhalb der einzelnen <code class="inline">&lt;section class="tutorials-content"&gt;...&lt;/section&gt;</code> eingefügt.
+                    <p>Diese Snippets werden innerhalb der einzelnen <code class="inline">&lt;section class="tutorials-content"&gt;...&lt;/section&gt;</code>
+                        eingefügt.
                     </p>
                     <p>Die einzelnen Sections liegen im Wrapper <code class="inline">&lt;div class="container"&gt;...&lt;/div&gt;</code></p>
                     <p>Eine schnelle Copy&amp;Paste-Lösung zum erstellen neuer Inhalte - auch nach längerer Zeit gut
@@ -529,26 +536,34 @@
                             <p>Hier dreht sich alles um Webentwicklung – von den Grundlagen mit HTML und CSS bis hin zu
                                 Frameworks wie Bootstrap, JavaScript für dynamische Funktionen und PHP für serverseitige
                                 Logik.</p>
+                            <ul class="arrow-list">
+                                <li><code>&lt;ul&gt;</code> Listen</li>
+                            </ul>
                         </div>
                         <div>
                             <strong class="box-title no-toc">Meine Cheatsheets</strong>
                             <p>Diese Seite wächst mit meinen Projekten und Experimenten: Du findest meine Sammlung an
                                 Code-Beispielen, Lernnotizen, kleine Tests und vielleicht auch den ein oder anderen
                                 Aha-Moment.</p>
+                            <ul class="arrow-list">
+                                <li><code>&lt;ul&gt;</code> Listen</li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
-                        </div>
-                        <pre><code class="language-html">&lt;h2&gt;2 Spalten ohne Hintergrund - Intro&lt;/h2&gt;
+                    <!-- Details HTML -->
+                    <details>
+                        <summary>Open HTML</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;h2&gt;2 Spalten ohne Hintergrund - Intro&lt;/h2&gt;
 &lt;div class="grid-2col"&gt;
     &lt;div&gt;
         &lt;strong class="no-toc"&gt;DevPanicZone!&lt;/strong&gt;
@@ -563,8 +578,784 @@
             Aha-Moment.&lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-                    </div>
+                        </div>
+                    </details>
+                    <!-- Details CSS -->
+                    <details>
+                        <summary>Open CSS</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Generisches 2-Spalten Grid */
+.grid-2col {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    /* 1 Spalte auf Mobile (&lt; 640px) */
+    align-items: stretch;
+    margin: 0;
+}
+
+.grid-2col&gt;.code-block {
+    margin: auto 0 0 0;
+}
+
+.grid-2col .arrow-list {
+    margin: 0;
+}
+
+/* 640px: 2 Spalten */
+@media (min-width: 640px) {
+
+    .grid-2col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</code></pre>
+                        </div>
+                    </details>
                 </section> <!-- 2 Spalten -->
+
+                <!-- Tag Grid 3er -->
+                <section class="tutorials-content">
+                    <h3 id="tag-grid-kleine-infoboxen">Tag Grid - Kleine Infoboxen</h3>
+                    <div class="tag-item tag-blue">
+                        <strong><code class="inline">&lt;html&gt;</code></strong> – Root-Element
+                    </div>
+                    <!-- Details HTML -->
+                    <details>
+                        <summary>Open HTML</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Blue Tags --&gt;
+&lt;div class="tag-item tag-blue"&gt;
+    &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;html&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Root-Element
+&lt;/div&gt;
+&lt;!-- &lt;div class="tag-item tag-green"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-yellow"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-purple"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-red"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-cyan"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-gray"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-orange"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-mint"&gt; --&gt;
+&lt;!-- &lt;div class="tag-item tag-magenta"&gt; --&gt;                   
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </details>
+                    <div class="tag-grid">
+                        <!-- Blue Tags -->
+                        <div class="tag-item tag-blue">
+                            <strong><code class="inline">&lt;html&gt;</code></strong> – Root-Element
+                        </div>
+
+                        <!-- Green Tags -->
+                        <div class="tag-item tag-green">
+                            <strong><code class="inline">&lt;h1&gt;-&lt;h6&gt;</code></strong> – Überschriften
+                        </div>
+
+                        <!-- Yellow Tags -->
+                        <div class="tag-item tag-yellow">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Purple Tags -->
+                        <div class="tag-item tag-purple">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Red Tags -->
+                        <div class="tag-item tag-red">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Cyan Tags -->
+                        <div class="tag-item tag-cyan">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Orange Tags -->
+                        <div class="tag-item tag-orange">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Mint Tags -->
+                        <div class="tag-item tag-mint">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+
+                        <!-- Magenta Tags -->
+                        <div class="tag-item tag-magenta">
+                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
+                        </div>
+                    </div>
+                    <!-- Details HTML -->
+                    <details>
+                        <summary>Open HTML</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="tag-grid"&gt;
+    &lt;!-- Blue Tags --&gt;
+    &lt;div class="tag-item tag-blue"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;html&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Root-Element
+    &lt;/div&gt;
+
+    &lt;!-- Green Tags --&gt;
+    &lt;div class="tag-item tag-green"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;h1&amp;gt;-&amp;lt;h6&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Überschriften
+    &lt;/div&gt;
+
+    &lt;!-- Yellow Tags --&gt;
+    &lt;div class="tag-item tag-yellow"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Purple Tags --&gt;
+    &lt;div class="tag-item tag-purple"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Red Tags --&gt;
+    &lt;div class="tag-item tag-red"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Cyan Tags --&gt;
+    &lt;div class="tag-item tag-cyan"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Orange Tags --&gt;
+    &lt;div class="tag-item tag-orange"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Mint Tags --&gt;
+    &lt;div class="tag-item tag-mint"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+
+    &lt;!-- Magenta Tags --&gt;
+    &lt;div class="tag-item tag-magenta"&gt;
+        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </details>
+                    <!-- Details CSS -->
+                    <details>
+                        <summary>Open CSS</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ---- TAG GRID ---- */
+.tag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0;
+}
+
+.tag-grid h3 {
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--accent-blue);
+    padding: 0.5rem 0 0.5rem;
+}
+
+.tag-item {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    border-left: 4px solid var(--accent-blue);
+    transition: all 150ms ease;
+}
+
+.tag-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tag-item .inline {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+/* ----- Tag Color Variants ----- */
+.tag-item.tag-blue {
+    border-left-color: var(--accent-blue);
+}
+
+.tag-item.tag-blue .inline {
+    color: var(--accent-blue);
+}
+
+.tag-item.tag-green {
+    border-left-color: var(--accent-green);
+}
+
+.tag-item.tag-green .inline {
+    color: var(--accent-green);
+}
+
+.tag-item.tag-yellow {
+    border-left-color: var(--accent-yellow-light);
+}
+
+.tag-item.tag-yellow .inline {
+    color: var(--accent-yellow-light);
+}
+
+.tag-item.tag-orange {
+    border-left-color: var(--accent-orange);
+}
+
+.tag-item.tag-orange .inline {
+    color: var(--accent-orange);
+}
+
+.tag-item.tag-red {
+    border-left-color: var(--accent-red);
+}
+
+.tag-item.tag-red .inline {
+    color: var(--accent-red);
+}
+
+.tag-item.tag-cyan {
+    border-left-color: var(--accent-cyan);
+}
+
+.tag-item.tag-cyan .inline {
+    color: var(--accent-cyan);
+}
+
+.tag-item.tag-mint {
+    border-left-color: var(--accent-mint);
+}
+
+.tag-item.tag-mint .inline {
+    color: var(--accent-mint);
+}
+
+.tag-item.tag-purple {
+    border-left-color: var(--accent-purple);
+}
+
+.tag-item.tag-purple .inline {
+    color: var(--accent-purple);
+}
+
+.tag-item.tag-magenta {
+    border-left-color: var(--accent-magenta);
+}
+
+.tag-item.tag-magenta .inline {
+    color: var(--accent-magenta);
+}
+
+.tag-item.tag-gray {
+    border-left-color: var(--text-secondary);
+}
+
+.tag-item.tag-gray .inline {
+    color: var(--text-secondary);
+}</code></pre>
+                        </div>
+                    </details>
+                </section> <!-- Tag Grid 3er -->
+
+                <section class="tutorials-content">
+                    <h3 id="tag-grid-mit-h3">Tag Grid mit &lt;h3&gt;</h3>
+                    <p>Das selbe Grid wirkt hier anders durch die &lt;h3&gt; und den Inhalt.</p>
+                    <div class="tag-grid">
+
+                        <div class="tag-item tag-blue">
+                            <h3 class="no-toc">Regelmäßig pushen</h3>
+                            <p>Mindestens am Ende jedes Arbeitstages. So hast du immer ein Backup.</p>
+                        </div>
+
+                        <div class="tag-item tag-blue">
+                            <h3 class="no-toc">Vor der Arbeit pullen</h3>
+                            <p>Wenn du von mehreren Geräten arbeitest: Immer erst <code class="inline">git pull</code>,
+                                dann arbeiten.
+                            </p>
+                        </div>
+
+                        <div class="tag-item tag-blue">
+                            <h3 class="no-toc">Sinnvolle .gitignore</h3>
+                            <p>Keine <code class="inline">node_modules</code>, keine <code class="inline">.env</code>-Dateien, keine
+                                IDE-Einstellungen.</p>
+                        </div>
+
+                        <div class="tag-item tag-blue">
+                            <h3 class="no-toc">Gute README</h3>
+                            <p>Dein Repository ist nur so gut wie seine Dokumentation. Erkläre, was das Projekt macht
+                                und wie man es benutzt.</p>
+                        </div>
+
+                        <div class="tag-item tag-blue">
+                            <h3 class="no-toc">Private für Unfertiges</h3>
+                            <p>Wenn du noch lernst oder experimentierst: Private Repository. Du kannst es später public
+                                machen.
+                            </p>
+                        </div>
+
+                        <div class="tag-item tag-blue">
+                            <h3 class="no-toc">Branches für Features</h3>
+                            <p>Auch wenn du alleine arbeitest: Feature-Branches halten main sauber.</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Details HTML -->
+                    <details>
+                        <summary>Open HTML</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="tag-grid"&gt;
+
+    &lt;div class="tag-item tag-blue"&gt;
+        &lt;h3 class="no-toc"&gt;Regelmäßig pushen&lt;/h3&gt;
+        &lt;p&gt;Mindestens am Ende jedes Arbeitstages. So hast du immer ein Backup.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="tag-item tag-blue"&gt;
+        &lt;h3 class="no-toc"&gt;Vor der Arbeit pullen&lt;/h3&gt;
+        &lt;p&gt;Wenn du von mehreren Geräten arbeitest: Immer erst &lt;code class="inline"&gt;git pull&lt;/code&gt;,
+            dann arbeiten.
+        &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="tag-item tag-blue"&gt;
+        &lt;h3 class="no-toc"&gt;Sinnvolle .gitignore&lt;/h3&gt;
+        &lt;p&gt;Keine &lt;code class="inline"&gt;node_modules&lt;/code&gt;, keine &lt;code
+                class="inline"&gt;.env&lt;/code&gt;-Dateien, keine
+            IDE-Einstellungen.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="tag-item tag-blue"&gt;
+        &lt;h3 class="no-toc"&gt;Gute README&lt;/h3&gt;
+        &lt;p&gt;Dein Repository ist nur so gut wie seine Dokumentation. Erkläre, was das Projekt macht
+            und wie man es benutzt.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="tag-item tag-blue"&gt;
+        &lt;h3 class="no-toc"&gt;Private für Unfertiges&lt;/h3&gt;
+        &lt;p&gt;Wenn du noch lernst oder experimentierst: Private Repository. Du kannst es später public
+            machen.
+        &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="tag-item tag-blue"&gt;
+        &lt;h3 class="no-toc"&gt;Branches für Features&lt;/h3&gt;
+        &lt;p&gt;Auch wenn du alleine arbeitest: Feature-Branches halten main sauber.&lt;/p&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </details>
+                    <!-- Details CSS -->
+                    <details>
+                        <summary>Open CSS</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ---- TAG GRID ---- */
+.tag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0;
+}
+
+.tag-grid h3 {
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--accent-blue);
+    padding: 0.5rem 0 0.5rem;
+}
+
+.tag-item {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    border-left: 4px solid var(--accent-blue);
+    transition: all 150ms ease;
+}
+
+.tag-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tag-item .inline {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+/* ----- Tag Color Variants ----- */
+.tag-item.tag-blue {
+    border-left-color: var(--accent-blue);
+}
+
+.tag-item.tag-blue .inline {
+    color: var(--accent-blue);
+}
+
+.tag-item.tag-green {
+    border-left-color: var(--accent-green);
+}
+
+.tag-item.tag-green .inline {
+    color: var(--accent-green);
+}
+
+.tag-item.tag-yellow {
+    border-left-color: var(--accent-yellow-light);
+}
+
+.tag-item.tag-yellow .inline {
+    color: var(--accent-yellow-light);
+}
+
+.tag-item.tag-orange {
+    border-left-color: var(--accent-orange);
+}
+
+.tag-item.tag-orange .inline {
+    color: var(--accent-orange);
+}
+
+.tag-item.tag-red {
+    border-left-color: var(--accent-red);
+}
+
+.tag-item.tag-red .inline {
+    color: var(--accent-red);
+}
+
+.tag-item.tag-cyan {
+    border-left-color: var(--accent-cyan);
+}
+
+.tag-item.tag-cyan .inline {
+    color: var(--accent-cyan);
+}
+
+.tag-item.tag-mint {
+    border-left-color: var(--accent-mint);
+}
+
+.tag-item.tag-mint .inline {
+    color: var(--accent-mint);
+}
+
+.tag-item.tag-purple {
+    border-left-color: var(--accent-purple);
+}
+
+.tag-item.tag-purple .inline {
+    color: var(--accent-purple);
+}
+
+.tag-item.tag-magenta {
+    border-left-color: var(--accent-magenta);
+}
+
+.tag-item.tag-magenta .inline {
+    color: var(--accent-magenta);
+}
+
+.tag-item.tag-gray {
+    border-left-color: var(--text-secondary);
+}
+
+.tag-item.tag-gray .inline {
+    color: var(--text-secondary);
+}</code></pre>
+                        </div>
+                    </details>
+                </section>
+
+
+                <!-- Tag Grid Auto .tutorial-grid -->
+                <section class="tutorials-content">
+                    <h3 id="terminal-oeffnen">Tag Grid Cards Auto</h3>
+                    <div class="tutorial-grid">
+                        <div class="tutorial-card">
+                            <h3 id="mac">Mac</h3>
+                            <p><kbd>Cmd + Space</kbd></p>
+                            <p>→ "Terminal" eingeben → Enter</p>
+                        </div>
+                        <div class="tutorial-card">
+                            <h3 id="windows">Windows</h3>
+                            <p><kbd>Win + R</kbd></p>
+                            <p>→ "cmd" oder "powershell" eingeben → Enter</p>
+                        </div>
+                        <div class="tutorial-card">
+                            <h3 id="vs-code">VS Code</h3>
+                            <p><kbd>Ctrl + `</kbd></p>
+                            <p>(Backtick) öffnet integriertes Terminal</p>
+                        </div>
+                    </div>
+
+                    <!-- Details HTML -->
+                    <details>
+                        <summary>Open HTML</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="tutorial-grid"&gt;
+    &lt;div class="tutorial-card"&gt;
+        &lt;h3 id="mac"&gt;Mac&lt;/h3&gt;
+        &lt;p&gt;&lt;kbd&gt;Cmd + Space&lt;/kbd&gt;&lt;/p&gt; &lt;p&gt;→ "Terminal" eingeben → Enter&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="tutorial-card"&gt;
+        &lt;h3 id="windows"&gt;Windows&lt;/h3&gt;
+        &lt;p&gt;&lt;kbd&gt;Win + R&lt;/kbd&gt;&lt;/p&gt; &lt;p&gt;→ "cmd" oder "powershell" eingeben → Enter&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="tutorial-card"&gt;
+        &lt;h3 id="vs-code"&gt;VS Code&lt;/h3&gt;
+        &lt;p&gt;&lt;kbd&gt;Ctrl + `&lt;/kbd&gt;&lt;/p&gt; &lt;p&gt;(Backtick) öffnet integriertes Terminal&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </details>
+                    <!-- Details CSS -->
+                    <details>
+                        <summary>Open CSS</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">.tutorial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.tutorial-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.tutorial-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    padding-top: 0;
+    color: var(--accent-blue);
+    font-size: 1.1rem;
+}
+
+.tutorial-card p {
+    margin: 1rem 0 0;
+}
+
+@media (max-width: 768px) {
+    .tutorial-grid {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+                        </div>
+                    </details>
+
+                </section>
+
+                <!-- Shortcut Grid Cards -->
+                <section class="tutorials-content">
+                    <h3 id="tastenkombinationen">Shortcut Grid Cards</h3>
+                    <div class="shortcut-grid">
+                        <div class="shortcut-card">
+                            <kbd>Ctrl + C</kbd>
+                            <p>Aktuellen Befehl abbrechen</p>
+                        </div>
+                        <div class="shortcut-card">
+                            <kbd>Ctrl + L</kbd>
+                            <p>Terminal leeren (clear)</p>
+                        </div>
+                        <div class="shortcut-card">
+                            <kbd>↑ ↓</kbd>
+                            <p>Durch Befehls-History navigieren</p>
+                        </div>
+                        <div class="shortcut-card">
+                            <kbd>Tab</kbd>
+                            <p>Auto-Vervollständigung</p>
+                        </div>
+                        <div class="shortcut-card">
+                            <kbd>Ctrl + A</kbd>
+                            <p>Zum Zeilenanfang</p>
+                        </div>
+                        <div class="shortcut-card">
+                            <kbd>Ctrl + E</kbd>
+                            <p>Zum Zeilenende</p>
+                        </div>
+                        <div class="shortcut-card">
+                            <kbd>Ctrl + U</kbd>
+                            <p>Zeile löschen</p>
+                        </div>
+                        <div class="shortcut-card">
+                            <kbd>Ctrl + R</kbd>
+                            <p>In History suchen</p>
+                        </div>
+                    </div>
+                    <details>
+                        <summary>Open HTML</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="shortcut-grid"&gt;
+    &lt;div class="shortcut-card"&gt;
+        &lt;kbd&gt;Ctrl + C&lt;/kbd&gt;
+        &lt;p&gt;Aktuellen Befehl abbrechen&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="shortcut-card"&gt;
+        &lt;kbd&gt;Ctrl + L&lt;/kbd&gt;
+        &lt;p&gt;Terminal leeren (clear)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="shortcut-card"&gt;
+        &lt;kbd&gt;↑ ↓&lt;/kbd&gt;
+        &lt;p&gt;Durch Befehls-History navigieren&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="shortcut-card"&gt;
+        &lt;kbd&gt;Tab&lt;/kbd&gt;
+        &lt;p&gt;Auto-Vervollständigung&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="shortcut-card"&gt;
+        &lt;kbd&gt;Ctrl + A&lt;/kbd&gt;
+        &lt;p&gt;Zum Zeilenanfang&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="shortcut-card"&gt;
+        &lt;kbd&gt;Ctrl + E&lt;/kbd&gt;
+        &lt;p&gt;Zum Zeilenende&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="shortcut-card"&gt;
+        &lt;kbd&gt;Ctrl + U&lt;/kbd&gt;
+        &lt;p&gt;Zeile löschen&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="shortcut-card"&gt;
+        &lt;kbd&gt;Ctrl + R&lt;/kbd&gt;
+        &lt;p&gt;In History suchen&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary>Open CSS</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">.shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.shortcut-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.shortcut-card kbd {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.shortcut-card p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+
+    .shortcut-grid {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+                        </div>
+                    </details>
+
+                </section>
 
                 <!-- Comparsion Grid -->
                 <section class="tutorials-content">
@@ -592,18 +1383,19 @@ element.textContent = userInput;</code></pre>
                         </div>
                     </div>
 
-                    <!-- Code Block language-html -->
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
-                        </div>
-                        <pre><code class="language-html">&lt;div class="comparison-grid"&gt;
+                    <details>
+                        <summary>Open HTML</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="comparison-grid"&gt;
     &lt;div class="comparison-box unsafe-example"&gt;
         &lt;div class="example-label"&gt;UNSICHER - innerHTML&lt;/div&gt;
         &lt;div class="code-block"&gt;
@@ -625,8 +1417,8 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
         &lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-                    </div>
-
+                        </div>
+                    </details>
                 </section>
 
                 <!-- Code-Block HTML -->
@@ -662,7 +1454,7 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
     &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;</code></pre>
                     </div>
-                    
+
                 </section> <!-- Code-Block HTML -->
 
                 <!-- Code-Block CSS -->
@@ -735,17 +1527,19 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
 
                     </div>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
-                        </div>
-                        <pre><code class="language-html">&lt;div class="grid-2col"&gt;
+                    <details>
+                        <summary>Open HTML</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="grid-2col"&gt;
 
 &lt;div class="code-block"&gt;
     &lt;div class="code-header"&gt;
@@ -776,7 +1570,8 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;</code></pre>
-                    </div>
+                        </div>
+                    </details>
                 </section> <!-- Code-Block 2er Grid -->
 
                 <!-- Code-Block Plain Text -->
@@ -806,17 +1601,19 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
                         </div>
                     </div>
                     <!-- Eine Spalte -->
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
-                        </div>
-                        <pre><code class="language-html">&lt;!-- Eine Spalte --&gt;
+                    <details>
+                        <summary>Open HTML 1 col</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Eine Spalte --&gt;
 &lt;div class="code-block"&gt;
     &lt;div class="code-header"&gt;
         &lt;div class="box-title"&gt;&lt;strong&gt;Eine Spalte - hier ist kein Copy-Button nötig&lt;/strong&gt;&lt;/div&gt;
@@ -825,19 +1622,24 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
 2. Inhalt
 3. Inhalt&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;</code></pre>
-                    </div>
-                    <!-- Zwei Spalten -->
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
                         </div>
-                        <pre><code class="language-html">&lt;!-- Zwei Spalten --&gt;
+                    </details>
+
+                    <!-- Zwei Spalten -->
+                    <details>
+                        <summary>Open HTML 2 col</summary>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Zwei Spalten --&gt;
 &lt;div class="code-block"&gt;
     &lt;div class="code-header"&gt;
         &lt;div class="box-title"&gt;&lt;strong&gt;Hier ist kein Copy-Button nötig&lt;/strong&gt;&lt;/div&gt;
@@ -855,10 +1657,8 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-                    </div>
-
-
-
+                        </div>
+                    </details>
                 </section> <!-- Code-Block Plain Text -->
 
                 <!-- Info-Box -->
@@ -1125,147 +1925,12 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
 
                 </section> <!-- Info-Box -->
 
-                <!-- Tag Grid 3er -->
-                <section class="tutorials-content">
-                    <h3 id="tag-grid-kleine-infoboxen">Tag Grid - Kleine Infoboxen</h3>
-                    <div class="tag-grid">
-                        <!-- Blue Tags -->
-                        <div class="tag-item tag-blue">
-                            <strong><code class="inline">&lt;html&gt;</code></strong> – Root-Element
-                        </div>
 
-                        <!-- Green Tags -->
-                        <div class="tag-item tag-green">
-                            <strong><code class="inline">&lt;h1&gt;-&lt;h6&gt;</code></strong> – Überschriften
-                        </div>
-
-                        <!-- Yellow Tags -->
-                        <div class="tag-item tag-yellow">
-                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
-                        </div>
-
-                        <!-- Purple Tags -->
-                        <div class="tag-item tag-purple">
-                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
-                        </div>
-
-                        <!-- Red Tags -->
-                        <div class="tag-item tag-red">
-                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
-                        </div>
-
-                        <!-- Cyan Tags -->
-                        <div class="tag-item tag-cyan">
-                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
-                        </div>
-
-                        <!-- Orange Tags -->
-                        <div class="tag-item tag-orange">
-                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
-                        </div>
-
-                        <!-- Mint Tags -->
-                        <div class="tag-item tag-mint">
-                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
-                        </div>
-
-                        <!-- Magenta Tags -->
-                        <div class="tag-item tag-magenta">
-                            <strong><code class="inline">&lt;div&gt;</code></strong> – Block-Container
-                        </div>
-                    </div>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
-                        </div>
-                        <pre><code class="language-html">&lt;!-- Blue Tags --&gt;
-&lt;div class="tag-item tag-blue"&gt;
-    &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;html&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Root-Element
-&lt;/div&gt;
-&lt;!-- &lt;div class="tag-item tag-green"&gt; --&gt;
-&lt;!-- &lt;div class="tag-item tag-yellow"&gt; --&gt;
-&lt;!-- &lt;div class="tag-item tag-purple"&gt; --&gt;
-&lt;!-- &lt;div class="tag-item tag-red"&gt; --&gt;
-&lt;!-- &lt;div class="tag-item tag-cyan"&gt; --&gt;
-&lt;!-- &lt;div class="tag-item tag-gray"&gt; --&gt;
-&lt;!-- &lt;div class="tag-item tag-orange"&gt; --&gt;
-&lt;!-- &lt;div class="tag-item tag-mint"&gt; --&gt;
-&lt;!-- &lt;div class="tag-item tag-magenta"&gt; --&gt;                   
-&lt;/div&gt;</code></pre>
-                    </div>
-
-                    <!-- Code Block language-html -->
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
-                        </div>
-                        <pre><code class="language-html">&lt;div class="tag-grid"&gt;
-    &lt;!-- Blue Tags --&gt;
-    &lt;div class="tag-item tag-blue"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;html&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Root-Element
-    &lt;/div&gt;
-
-    &lt;!-- Green Tags --&gt;
-    &lt;div class="tag-item tag-green"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;h1&amp;gt;-&amp;lt;h6&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Überschriften
-    &lt;/div&gt;
-
-    &lt;!-- Yellow Tags --&gt;
-    &lt;div class="tag-item tag-yellow"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
-    &lt;/div&gt;
-
-    &lt;!-- Purple Tags --&gt;
-    &lt;div class="tag-item tag-purple"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
-    &lt;/div&gt;
-
-    &lt;!-- Red Tags --&gt;
-    &lt;div class="tag-item tag-red"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
-    &lt;/div&gt;
-
-    &lt;!-- Cyan Tags --&gt;
-    &lt;div class="tag-item tag-cyan"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
-    &lt;/div&gt;
-
-    &lt;!-- Orange Tags --&gt;
-    &lt;div class="tag-item tag-orange"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
-    &lt;/div&gt;
-
-    &lt;!-- Mint Tags --&gt;
-    &lt;div class="tag-item tag-mint"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
-    &lt;/div&gt;
-
-    &lt;!-- Magenta Tags --&gt;
-    &lt;div class="tag-item tag-magenta"&gt;
-        &lt;strong&gt;&lt;code class="inline"&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&lt;/strong&gt; – Block-Container
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                    </div>
-
-                </section> <!-- Tag Grid 3er -->
 
                 <!-- Table -->
                 <section class="tutorials-content">
                     <h3 id="table">Table</h3>
-
+                    <hr>
                     <!-- Tabelle 3 Spalten -->
                     <div>
                         <h4 id="tabelle-3-spalten">Tabelle 3 Spalten</h4>
@@ -1416,7 +2081,7 @@ element.textContent = userInput;&lt;/code&gt;&lt;/pre&gt;
                     </div>
                     <details>
                         <summary>
-                            Toggle für CSS
+                            Open CSS
                         </summary>
                         <div class="code-block">
                             <div class="code-header">
@@ -1641,7 +2306,7 @@ aria-label="Warnung"&gt;</code></pre>
                             Die Logik dahinter
                         </summary>
                         <div>
-                            <ol>
+                            <ol class="pl-lg pt-sm">
                                 <li>xmlns → Definiert, dass es SVG ist (immer zuerst)</li>
                                 <li>viewBox → Legt Koordinatensystem fest (wichtig für Skalierung)</li>
                                 <li>width/height → Sichtbare Größe</li>
@@ -1653,16 +2318,12 @@ aria-label="Warnung"&gt;</code></pre>
                     </details>
 
                     <!-- Checkmark -->
-                    <div class="grid-1-2col mb-xl">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50" class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
-                                </path>
-                            </svg>
-                        </div>
+                    <div class="mb-xl">
                         <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
+                            <div class="code-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg><span class="code-lang">Checkmark | Richtig</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -1680,22 +2341,16 @@ aria-label="Warnung"&gt;</code></pre>
                         </div>
                     </div> <!-- Checkmark -->
 
-
                     <!-- Wrong -->
-                    <div class="grid-1-2col mb-xl">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
-                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                    <div class="mb-xl">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
                             20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
                             0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
-                                </path>
-                            </svg>
-                        </div>
-
-                        <div class="code-block">
-
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
+                                    </path>
+                                </svg><span class="code-lang">X | Falsch</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -1715,24 +2370,18 @@ aria-label="Warnung"&gt;</code></pre>
 
                     </div> <!-- Wrong -->
 
-
                     <!-- Warning -->
-                    <div class="grid-1-2col mb-xl">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50" class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                    <div class="mb-xl">
+                        <div class="code-block">
+                            <div class="code-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
                 1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
                 0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
                 25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
-                                </path>
-                            </svg>
-                        </div>
-
-                        <div class="code-block">
-
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
+                                    </path>
+                                </svg>
+                                <span class="code-lang">Vorsicht! Achtung!</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -1753,20 +2402,15 @@ aria-label="Warnung"&gt;</code></pre>
 
                     </div> <!-- Warning -->
 
-
                     <!-- Info -->
-                    <div class="grid-1-2col mb-xl">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50" class="icon-blue" fill="currentColor" aria-hidden="true">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                </path>
-                            </svg>
-                        </div>
-
+                    <div class="mb-xl">
                         <div class="code-block">
-
                             <div class="code-header">
-                                <span class="code-lang">HTML</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-blue" fill="currentColor" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                                <span class="code-lang">Info</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -1781,23 +2425,17 @@ aria-label="Warnung"&gt;</code></pre>
     &lt;/path&gt;
 &lt;/svg&gt;</code></pre>
                         </div>
-
                     </div> <!-- Info -->
 
-
                     <!-- Bulb -->
-                    <div class="grid-1-2col">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="50" height="50" fill="currentColor" aria-hidden="true">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
-                                </path>
-                            </svg>
-                        </div>
-
+                    <div>
                         <div class="code-block">
-
                             <div class="code-header">
-                                <span class="code-lang">HTML</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                    </path>
+                                </svg>
+                                <span class="code-lang">Tipp | Idee</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -1878,38 +2516,44 @@ aria-label="Warnung"&gt;</code></pre>
                     </div>
 
                     <details>
-                        <summary>
-                            Infos CSS &amp; typische Ergänzungen:
-                        </summary>
-                        <div class="toggle-detail">
-                            <!-- Code Block language-css -->
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-lang">HTML</span>
-                                    <button class="code-copy">
-                                        <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                        </span>
-                                        <span class="copy-text">Kopieren</span>
-                                    </button>
-                                </div>
-                                <pre><code class="language-css">summary {
+                        <summary>Open CSS</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">details {
+    margin-top: 1rem;
+}
+
+summary {
     cursor: pointer;
-    font-weight: bold;
     user-select: none;
+    font-family: var(--font-code);
     color: var(--accent-blue);
-    padding: 0.5rem 0;
+    font-weight: bold;
+    /* padding: 0.5rem 0; */
     text-align: left;
 }
 
+summary:hover {
+    color: var(--accent-blue-hover);
+}
+
+/* Falls mehr Abstand benötigt wird */
 .toggle-detail {
-    padding: 15px 0 1rem 0;
+    padding: 0.5rem 0 0.5rem 0;
     margin-top: 10px;
 }</code></pre>
-                            </div>
-
                         </div>
-                        <p>Typische Ergänzungen:</p>
+                    </details>
+                    <details>
+                        <summary>Typische Ergänzungen</summary>
                         <div class="toggle-detail">
                             <!-- Code Block language-css -->
                             <div class="code-block">
@@ -1943,12 +2587,8 @@ details[open] summary {
   color: var(--accent-blue);
 }</code></pre>
                             </div>
-
                         </div>
-
                     </details>
-
-
 
                 </section> <!-- Toggle -->
 
@@ -2061,6 +2701,8 @@ details[open] summary {
             });
         });
     </script>
+
+
 
 
 
