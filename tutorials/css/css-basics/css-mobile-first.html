@@ -12,149 +12,6 @@
     <link rel="stylesheet" href="/assets/css/tutorial-demos.css">
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
-    <style>
-        /* Demo Styles */
-        /* .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        @media (max-width: 768px) {
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .comparison-box {
-            background: #425268;
-            border: 2px solid #6b8e9f;
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        .comparison-box.wrong {
-            border-color: #dc3545;
-            background: #f8d7da;
-        }
-
-        .comparison-box.correct {
-            border-color: #28a745;
-            background: #d4edda;
-        }
-
-        .comparison-box h3 {
-            margin-top: 0;
-            color: #425268;
-        } */
-
-        .dark-list {
-            color: #425268;
-        }
-
-        /* Breakpoint Visualisierung */
-        .breakpoint-demo {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 20px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 20px 0;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .breakpoint-demo::before {
-            content: "📱 Mobile (< 768px)";
-        }
-
-        @media (min-width: 768px) {
-            .breakpoint-demo {
-                background: linear-gradient(135deg, #f093fb 0%, #4facfe 100%);
-            }
-
-            .breakpoint-demo::before {
-                content: "📱 Tablet (768px - 1023px)";
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .breakpoint-demo {
-                background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            }
-
-            .breakpoint-demo::before {
-                content: "💻 Desktop (1024px - 1439px)";
-            }
-        }
-
-        @media (min-width: 1440px) {
-            .breakpoint-demo {
-                background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-            }
-
-            .breakpoint-demo::before {
-                content: "🖥️ Large Desktop (≥ 1440px)";
-            }
-        }
-
-        /* Mobile First Grid Demo */
-        /* .grid-demo {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        @media (min-width: 768px) {
-            .grid-demo {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .grid-demo {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 1440px) {
-            .grid-demo {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        } */
-
-
-
-
-
-        /* IP Address Display */
-        .ip-display {
-            background: #2d3748;
-            color: #7a9ab8;
-            padding: 20px;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
-            margin: 20px 0;
-        }
-
-        .ip-display code {
-            color: #48bb78;
-            background: none;
-        }
-
-        .summary-div p,
-        ol {
-            padding-top: 0;
-            margin-top: 0;
-        }
-
-        details[open] summary {
-            margin-bottom: 0;
-            padding-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -329,9 +186,22 @@
                         <!-- Sidebar-Anchor-Start -->
                     <li class="toc-level-1"><a href="#was-ist-mobile-first">Was ist Mobile First?</a></li>
                     <li class="toc-level-1"><a href="#desktop-first-vs-mobile-first">Desktop First vs Mobile First</a></li>
+                    <li class="toc-level-1"><a href="#mobile-first-verstehen">Mobile First verstehen: Von Klein nach Groß</a></li>
+                    <li class="toc-level-2"><a href="#fr-einheiten-erklaert">FR-Einheiten erklärt</a></li>
+                    <li class="toc-level-2"><a href="#repeat-funktion">repeat() Funktion</a></li>
+                    <li class="toc-level-2"><a href="#min-width-vs-max-width">min-width vs max-width</a></li>
+                    <li class="toc-level-1"><a href="#css-kaskade">CSS Kaskade: Warum @media &quot;gewinnt&quot;</a></li>
+                    <li class="toc-level-2"><a href="#das-ueberschreibungs-prinzip">Das Überschreibungs-Prinzip</a></li>
+                    <li class="toc-level-2"><a href="#media-ueberschreibt-die-basis">@media überschreibt die Basis</a></li>
+                    <li class="toc-level-2"><a href="#warum-media-am-ende-steht">Warum @media am Ende steht</a></li>
                     <li class="toc-level-1"><a href="#breakpoints-in-aktion">Breakpoints in Aktion</a></li>
                     <li class="toc-level-1"><a href="#standard-breakpoints">Standard Breakpoints</a></li>
                     <li class="toc-level-1"><a href="#praktisches-beispiel-grid-layout">Praktisches Beispiel: Grid Layout</a></li>
+                    <li class="toc-level-1"><a href="#grid-auto-fit">Spezialfall: Selbst-responsive Grids mit auto-fit</a></li>
+                    <li class="toc-level-2"><a href="#was-macht-auto-fit-minmax">Was macht auto-fit + minmax()?</a></li>
+                    <li class="toc-level-2"><a href="#automatisches-umbrechen-beispiel">Automatisches Umbrechen (Beispiel)</a></li>
+                    <li class="toc-level-2"><a href="#ist-das-mobile-first-jain">Ist das Mobile-First? JAIN!</a></li>
+                    <li class="toc-level-2"><a href="#wann-auto-fit-nutzen">Wann auto-fit nutzen?</a></li>
                     <li class="toc-level-1"><a href="#lokales-testen-auf-echten-geraeten">Lokales Testen auf echten Geräten</a></li>
                     <li class="toc-level-1"><a href="#test-auf-verschiedenen-geraeten">Test auf verschiedenen Geräten</a></li>
                     <li class="toc-level-1"><a href="#devtools-vs-echte-geraete">DevTools vs Echte Geräte</a></li>
@@ -343,6 +213,7 @@
                     <li class="toc-level-1"><a href="#der-viewport-meta-tag">Der Viewport Meta Tag</a></li>
                     <li class="toc-level-1"><a href="#bilder-fuer-mobile-optimieren">Bilder für Mobile optimieren</a></li>
                     <li class="toc-level-1"><a href="#haeufige-mobile-first-fehler">Häufige Mobile First Fehler</a></li>
+                    <li class="toc-level-2"><a href="#max-width-bei-mobile-first-verwenden">max-width bei Mobile-First verwenden</a></li>
                     <li class="toc-level-1"><a href="#mobile-first-workflow">Mobile First Workflow</a></li>
                     <li class="toc-level-1"><a href="#mobile-first-checkliste">Mobile First Checkliste</a></li>
                     <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
@@ -384,7 +255,8 @@
                     <div class="info-box">
                         <strong class="box-title no-toc">Die Philosophie
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -400,7 +272,8 @@
                     <div class="info-box">
                         <strong class="box-title no-toc">Warum Mobile First?
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM16.487,25.86c-.423.429-.954.646-1.579.646-.606,0-1.124-.218-1.538-.647-.411-.427-.619-.949-.619-1.554,0-.595.209-1.11.62-1.533.413-.424.93-.639,1.537-.639.626,0,1.157.214,1.578.637.423.423.637.939.637,1.535,0,.606-.214,1.13-.636,1.556ZM21.768,12.014c-.409.688-.926,1.275-1.534,1.747-.589.458-1.181.903-1.775,1.338-.569.417-1.051.909-1.431,1.463-.369.536-.557,1.241-.557,2.097,0,.764-.622,1.386-1.387,1.386h-.51c-.764,0-1.386-.622-1.386-1.386v-.164c0-1.104.207-2.036.615-2.771.402-.726.912-1.353,1.514-1.863.584-.495,1.176-.962,1.759-1.387.562-.407,1.038-.854,1.417-1.328.362-.452.538-.999.538-1.671,0-.853-.33-1.493-1.01-1.958-.7-.479-1.589-.722-2.641-.722-.739,0-1.513.184-2.299.546-.581.267-1.134.663-1.643,1.178-.414.418-1.087.469-1.564.118l-.394-.288c-.291-.214-.472-.543-.495-.905-.023-.359.111-.706.369-.951.766-.731,1.598-1.303,2.475-1.697,1.183-.533,2.472-.804,3.83-.804,1.383,0,2.592.252,3.593.75,1.006.501,1.788,1.163,2.327,1.97.541.812.815,1.687.815,2.6,0,1.095-.211,2.005-.628,2.704Z"></path>
+                                <path d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM16.487,25.86c-.423.429-.954.646-1.579.646-.606,0-1.124-.218-1.538-.647-.411-.427-.619-.949-.619-1.554,0-.595.209-1.11.62-1.533.413-.424.93-.639,1.537-.639.626,0,1.157.214,1.578.637.423.423.637.939.637,1.535,0,.606-.214,1.13-.636,1.556ZM21.768,12.014c-.409.688-.926,1.275-1.534,1.747-.589.458-1.181.903-1.775,1.338-.569.417-1.051.909-1.431,1.463-.369.536-.557,1.241-.557,2.097,0,.764-.622,1.386-1.387,1.386h-.51c-.764,0-1.386-.622-1.386-1.386v-.164c0-1.104.207-2.036.615-2.771.402-.726.912-1.353,1.514-1.863.584-.495,1.176-.962,1.759-1.387.562-.407,1.038-.854,1.417-1.328.362-.452.538-.999.538-1.671,0-.853-.33-1.493-1.01-1.958-.7-.479-1.589-.722-2.641-.722-.739,0-1.513.184-2.299.546-.581.267-1.134.663-1.643,1.178-.414.418-1.087.469-1.564.118l-.394-.288c-.291-.214-.472-.543-.495-.905-.023-.359.111-.706.369-.951.766-.731,1.598-1.303,2.475-1.697,1.183-.533,2.472-.804,3.83-.804,1.383,0,2.592.252,3.593.75,1.006.501,1.788,1.163,2.327,1.97.541.812.815,1.687.815,2.6,0,1.095-.211,2.005-.628,2.704Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -465,13 +338,13 @@ padding: 20px;
 }
 }</code></pre>
                         </div>
-
                     </div>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Warum ist min-width besser?
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM16.487,25.86c-.423.429-.954.646-1.579.646-.606,0-1.124-.218-1.538-.647-.411-.427-.619-.949-.619-1.554,0-.595.209-1.11.62-1.533.413-.424.93-.639,1.537-.639.626,0,1.157.214,1.578.637.423.423.637.939.637,1.535,0,.606-.214,1.13-.636,1.556ZM21.768,12.014c-.409.688-.926,1.275-1.534,1.747-.589.458-1.181.903-1.775,1.338-.569.417-1.051.909-1.431,1.463-.369.536-.557,1.241-.557,2.097,0,.764-.622,1.386-1.387,1.386h-.51c-.764,0-1.386-.622-1.386-1.386v-.164c0-1.104.207-2.036.615-2.771.402-.726.912-1.353,1.514-1.863.584-.495,1.176-.962,1.759-1.387.562-.407,1.038-.854,1.417-1.328.362-.452.538-.999.538-1.671,0-.853-.33-1.493-1.01-1.958-.7-.479-1.589-.722-2.641-.722-.739,0-1.513.184-2.299.546-.581.267-1.134.663-1.643,1.178-.414.418-1.087.469-1.564.118l-.394-.288c-.291-.214-.472-.543-.495-.905-.023-.359.111-.706.369-.951.766-.731,1.598-1.303,2.475-1.697,1.183-.533,2.472-.804,3.83-.804,1.383,0,2.592.252,3.593.75,1.006.501,1.788,1.163,2.327,1.97.541.812.815,1.687.815,2.6,0,1.095-.211,2.005-.628,2.704Z"></path>
+                                <path d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM16.487,25.86c-.423.429-.954.646-1.579.646-.606,0-1.124-.218-1.538-.647-.411-.427-.619-.949-.619-1.554,0-.595.209-1.11.62-1.533.413-.424.93-.639,1.537-.639.626,0,1.157.214,1.578.637.423.423.637.939.637,1.535,0,.606-.214,1.13-.636,1.556ZM21.768,12.014c-.409.688-.926,1.275-1.534,1.747-.589.458-1.181.903-1.775,1.338-.569.417-1.051.909-1.431,1.463-.369.536-.557,1.241-.557,2.097,0,.764-.622,1.386-1.387,1.386h-.51c-.764,0-1.386-.622-1.386-1.386v-.164c0-1.104.207-2.036.615-2.771.402-.726.912-1.353,1.514-1.863.584-.495,1.176-.962,1.759-1.387.562-.407,1.038-.854,1.417-1.328.362-.452.538-.999.538-1.671,0-.853-.33-1.493-1.01-1.958-.7-.479-1.589-.722-2.641-.722-.739,0-1.513.184-2.299.546-.581.267-1.134.663-1.643,1.178-.414.418-1.087.469-1.564.118l-.394-.288c-.291-.214-.472-.543-.495-.905-.023-.359.111-.706.369-.951.766-.731,1.598-1.303,2.475-1.697,1.183-.533,2.472-.804,3.83-.804,1.383,0,2.592.252,3.593.75,1.006.501,1.788,1.163,2.327,1.97.541.812.815,1.687.815,2.6,0,1.095-.211,2.005-.628,2.704Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -483,6 +356,409 @@ padding: 20px;
                                 Größe mach das"</li>
                         </ul>
                     </div>
+                </section>
+
+                <!-- FR-Einheiten und Mobile-First Logik verstehen -->
+                <section class="tutorials-content">
+                    <h2 id="mobile-first-verstehen">Mobile First verstehen: Von Klein nach Groß</h2>
+
+                    <p><strong>Mobile-First</strong> bedeutet: Du schreibst deine <strong>Basis-Styles OHNE
+                            @media</strong> für Mobile, und erweiterst dann <strong>MIT @media</strong> für größere
+                        Screens.</p>
+
+                    <div class="grid-2col-cards mb-md">
+                        <div class="grid-2col-bg">
+                            <h4 class="no-toc">Mobile (ohne @media)</h4>
+                            <div class="code-block">
+                                <pre><code class="language-css">/* Basis = Mobile */
+.grid {
+    grid-template-columns: 1fr;
+    font-size: 16px;
+}</code></pre>
+                            </div>
+                            <p><strong>Was passiert:</strong></p> <p>Gilt für ALLE Bildschirmgrößen als Startpunkt (0-∞px)</p>
+                        </div>
+
+                        <div class="grid-2col-bg">
+                            <h4 class="no-toc">Desktop (mit @media)</h4>
+                            <div class="code-block">
+                                <pre><code class="language-css">/* Ab 768px: Erweitern */
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: 2fr 1fr;
+        font-size: 18px;
+    }
+}</code></pre>
+                            </div>
+                            <p><strong>Was passiert:</strong> <strong>Überschreibt</strong> die Basis ab 768px aufwärts
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 id="fr-einheiten-erklaert">FR-Einheiten erklärt</h3>
+                    <p><code>fr</code> = <strong>"fraction"</strong> = Bruchteil des verfügbaren Platzes. So rechnest du
+                        aus, wie viel Prozent jede Spalte bekommt:</p>
+
+                    <div class="code-block mb-md">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Beispiel: 2fr 1fr */
+grid-template-columns: 2fr 1fr;
+
+/* Rechnung:
+   Gesamt: 2 + 1 = 3 Teile
+   Spalte 1: 2/3 = 66.6%
+   Spalte 2: 1/3 = 33.3% */</code></pre>
+                    </div>
+
+                    <table class="ref-table mb-md">
+                        <thead>
+                            <tr>
+                                <th>Grid-Definition</th>
+                                <th>Bedeutung</th>
+                                <th>Visuelle Aufteilung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>1fr 1fr</code></td>
+                                <td>2 gleich große Spalten</td>
+                                <td>50% | 50%</td>
+                            </tr>
+                            <tr>
+                                <td><code>2fr 1fr</code></td>
+                                <td>2:1 Verhältnis</td>
+                                <td>66.6% | 33.3%</td>
+                            </tr>
+                            <tr>
+                                <td><code>1fr 2fr</code></td>
+                                <td>1:2 Verhältnis</td>
+                                <td>33.3% | 66.6%</td>
+                            </tr>
+                            <tr>
+                                <td><code>repeat(3, 1fr)</code></td>
+                                <td>3 gleich große Spalten</td>
+                                <td>33.3% | 33.3% | 33.3%</td>
+                            </tr>
+                            <tr>
+                                <td><code>repeat(4, 1fr)</code></td>
+                                <td>4 gleich große Spalten</td>
+                                <td>25% | 25% | 25% | 25%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="repeat-funktion"><code>repeat()</code> Funktion</h3>
+                    <p><code>repeat(Anzahl, Größe)</code> ist eine Abkürzung, um gleiche Werte nicht zu wiederholen:</p>
+
+                    <div class="grid-2col-cards pb-lg">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Umständlich</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-css">grid-template-columns: 
+    1fr 1fr 1fr;</code></pre>
+
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Besser mit repeat()</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-css">grid-template-columns: 
+    repeat(3, 1fr);</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 id="min-width-vs-max-width">min-width vs max-width</h3>
+
+                    <div class="grid-2col-cards pb-lg">
+
+                        <!-- min-width = "ab ... aufwärts -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">min-width = "ab ... aufwärts"</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <pre><code class="language-css">/* Gilt ab 640px bis ∞ */
+@media (min-width: 640px) {    
+}</code></pre>
+                                <div class="px-lg">
+                                    <hr>
+                                    <p><strong>Bedeutung:</strong> "Wenn Bildschirm <strong>mindestens</strong> 640px
+                                        breit
+                                        ist"
+                                    </p>
+                                    <p>0-639px: ignoriert
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-danger icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                            <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                                        </svg>
+                                    </p>
+                                    <p>640px+: aktiv
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="icon-va-y-2 ml-sm mr-sm" viewBox="0 0 15 15">
+                                            <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z" fill="var(--accent-green)"></path>
+                                        </svg>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+
+                                
+                            </div>
+
+                        </div> <!-- min-width = "ab ... aufwärts -->
+
+
+
+                        <!-- max-width = "bis ... abwärts" -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">MAX-WIDTH = "bis ... abwärts"</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <pre><code class="language-css">/* Gilt von 0px bis 639px */
+@media (max-width: 639px) {    
+}</code></pre>
+                                <div class="px-lg">
+                                    <hr>
+                                    <p><strong>Bedeutung:</strong> "Wenn Bildschirm <strong>mindestens</strong> 640px
+                                        breit
+                                        ist"
+                                    </p>
+                                    <p>0-639px: aktiv
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="icon-va-y-2 ml-sm mr-sm" viewBox="0 0 15 15">
+                                            <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z" fill="var(--accent-green)"></path>
+                                        </svg>
+
+
+
+                                    </p>
+                                    <p>640px+: ignoriert
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-danger icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                            <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                                        </svg>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div> <!-- max-width = "bis ... abwärts" -->
+
+                    </div>
+
+                    <!-- <div class="grid-2col">
+                    <div class="grid-2col-bg">
+                        <h4 class="no-toc pt-md"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5"
+                                width="30" height="30" class="icon-success icon-inline mr-md" fill="#20a66e"
+                                aria-hidden="true">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg><code class="inline">min-width</code> = "ab ... aufwärts"</h4>
+                        <div class="code-block">
+                            <pre><code class="language-css">@media (min-width: 640px) {
+    /* Gilt ab 640px bis ∞ */
+}</code></pre>
+                        </div>
+                        <p><strong>Bedeutung:</strong> "Wenn Bildschirm <strong>mindestens</strong> 640px breit ist"
+                        </p>
+                        <p>0-639px: ignoriert
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"
+                                class="icon-danger icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                <path
+                                    d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z" />
+                            </svg>
+                        <p>640px+: aktiv
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="icon-va-y-2 ml-sm mr-sm"
+                                viewBox="0 0 15 15">
+                                <path
+                                    d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z"
+                                    fill="var(--accent-green)" />
+                            </svg>
+                        </p>
+                    </div>
+
+                    <div class="grid-2col-bg">
+                        <h4 class="no-toc pt-md"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5"
+                                width="30" height="30" class="icon-danger icon-inline mr-md" fill="var(--accent-red)"
+                                aria-hidden="true">
+                                <path
+                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg><code>max-width</code> = "bis ... abwärts"</h4>
+                        <div class="code-block">
+                            <pre><code class="language-css">@media (max-width: 639px) {
+    /* Gilt von 0px bis 639px */
+}</code></pre>
+                        </div>
+                        <p><strong>Bedeutung:</strong> "Wenn Bildschirm <strong>maximal</strong> 639px breit ist"
+                        </p>
+                        <p>0-639px: aktiv
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="icon-va-y-2 ml-sm mr-sm"
+                                viewBox="0 0 15 15">
+                                <path
+                                    d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z"
+                                    fill="var(--accent-green)" />
+                            </svg>
+                        </p>
+                        <p>640px+: ignoriert
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"
+                                class="icon-danger icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                <path
+                                    d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z" />
+                            </svg>
+                        </p>
+                    </div></div> -->
+
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Faustregel
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p><strong>Mobile-First = immer <code>min-width</code> verwenden!</strong></p>
+                        <ul class="arrow-list">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="icon-va-y-2 mr-sm" viewBox="0 0 15 15">
+                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z" fill="var(--accent-green)"></path>
+                                </svg>
+                                <code>min-width</code> = Mobile-First - von klein nach groß
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="icon-va-y-2 mr-sm" viewBox="0 0 15 15">
+                                    <path d="M13.421,0H4.737c-.872,0-1.579.707-1.579,1.579s.707,1.579,1.579,1.579h4.873L.463,12.305c-.617.617-.617,1.616,0,2.233.308.308.712.463,1.116.463s.808-.154,1.116-.463L11.842,5.391v4.873c0,.872.707,1.579,1.579,1.579s1.579-.707,1.579-1.579V1.579c0-.872-.707-1.579-1.579-1.579Z" fill="currentColor"></path>
+                                </svg>
+                            </li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-danger icon-va-y-2 mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                                </svg> <code>max-width</code> = Desktop-First - von groß nach klein
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="icon-va-y-2 mr-sm" viewBox="0 0 15 15">
+                                    <path d="M15,13.421V4.737c0-.872-.707-1.579-1.579-1.579s-1.579.707-1.579,1.579v4.873L2.695.463C2.079-.154,1.079-.154.463.463c-.308.308-.463.712-.463,1.116s.154.808.463,1.116l9.147,9.147h-4.873c-.872,0-1.579.707-1.579,1.579s.707,1.579,1.579,1.579h8.684c.872,0,1.579-.707,1.579-1.579Z" fill="currentColor"></path>
+                                </svg>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- CSS Kaskade: Warum @media am Ende steht -->
+                <section class="tutorials-content">
+                    <h2 id="css-kaskade">CSS Kaskade: Warum @media "gewinnt"</h2>
+
+                    <p>Ein häufiger Irrtum: <em>"@media steht am Ende, also ist es unwichtig."</em> –
+                        <strong>Falsch!</strong> In CSS gilt: <strong>Später = Stärker!</strong>
+                    </p>
+
+                    <h3 id="das-ueberschreibungs-prinzip">Das Überschreibungs-Prinzip</h3>
+                    <p>CSS liest von oben nach unten. Wenn zwei Regeln dasselbe Element stylen, <strong>gewinnt die
+                            spätere</strong>:</p>
+
+                    <div class="code-block mb-md">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* ERSTE Regel */
+.box {
+    color: blue;
+}
+
+/* ZWEITE Regel - ÜBERSCHREIBT! */
+.box {
+    color: red;  /* ← Diese gewinnt! */
+}
+
+/* Ergebnis: Die Box ist ROT */</code></pre>
+                    </div>
+
+                    <h3 id="media-ueberschreibt-die-basis">@media überschreibt die Basis</h3>
+                    <p>Das gleiche Prinzip gilt für Media Queries:</p>
+
+                    <div class="grid-2col mb-md">
+                        <div class="grid-2col-bg">
+                            <h4 class="no-toc">📱 Auf Mobile (400px)</h4>
+                            <div class="code-block">
+                                <pre><code class="language-css">/* Basis-Regel greift */
+.grid {
+    grid-template-columns: 1fr;
+}
+
+/* @media ignoriert (Bedingung nicht erfüllt) */
+@media (min-width: 640px) {
+    /* Wird nicht gelesen */
+}</code></pre>
+                            </div>
+                            <p><strong>Ergebnis:</strong> 1 Spalte ✅</p>
+                        </div>
+
+                        <div class="grid-2col-bg">
+                            <h4 class="no-toc">💻 Auf Desktop (1000px)</h4>
+                            <div class="code-block">
+                                <pre><code class="language-css">/* Basis-Regel greift erstmal */
+.grid {
+    grid-template-columns: 1fr;
+}
+
+/* @media ÜBERSCHREIBT! */
+@media (min-width: 640px) {
+    .grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}</code></pre>
+                            </div>
+                            <p><strong>Ergebnis:</strong> 2 Spalten (2:1) ✅</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Merksatz
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p><strong>@media am Ende = nicht "ach übrigens optional", sondern "ICH ÜBERSCHREIBE ALLES!"
+                                💪</strong></p>
+                        <p>CSS ist wie ein Stapel Papier: Das oberste Blatt (am Ende des Codes) verdeckt alles darunter!
+                            📄📄📄</p>
+                    </div>
+
+                    <h3 id="warum-media-am-ende-steht">Warum @media am Ende steht</h3>
+                    <ul class="arrow-list">
+                        <li><strong>Reihenfolge = Macht:</strong> Spätere Regeln überschreiben frühere</li>
+                        <li><strong>Mobile-First Logik:</strong> Basis (klein) → Erweiterung (groß)</li>
+                        <li><strong>Lesbarkeit:</strong> Du siehst sofort "ah, das ändert sich ab 640px"</li>
+                    </ul>
                 </section>
 
                 <!-- Breakpoints in Aktion -->
@@ -630,7 +906,8 @@ padding: 20px;
                     <div class="info-box">
                         <strong class="box-title no-toc">Wichtig
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <p>Das sind <strong>Richtwerte</strong>. Deine Breakpoints sollten sich nach deinem
@@ -707,7 +984,151 @@ padding: 20px;
                         <div class="grid-item-2">2</div>
                         <div class="grid-item-2">3</div>
                     </div>
+                </section>
 
+                <!-- Spezialfall: auto-fit + minmax() -->
+                <section class="tutorials-content">
+                    <h2 id="grid-auto-fit">Spezialfall: Selbst-responsive Grids mit <code>auto-fit</code></h2>
+
+                    <p>Es gibt eine <strong>magische</strong> Grid-Technik, die <strong>ohne @media Queries</strong>
+                        automatisch responsiv ist! 🪄</p>
+
+                    <div class="code-block mb-md">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Selbst-responsives Grid - KEINE @media nötig! */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}</code></pre>
+                    </div>
+
+                    <h3 id="was-macht-auto-fit-minmax">Was macht <code>auto-fit</code> + <code>minmax()</code>?</h3>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Die Magie erklärt
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><code>minmax(250px, 1fr)</code> = Jede Spalte ist <strong>mindestens 250px</strong>
+                                breit</li>
+                            <li><code>auto-fit</code> = Das Grid entscheidet <strong>automatisch</strong>, wie viele
+                                Spalten passen</li>
+                            <li><strong>Automatisches Umbrechen:</strong> Wenn nicht genug Platz für 250px, springt die
+                                Spalte in die nächste Zeile</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="automatisches-umbrechen-beispiel">Automatisches Umbrechen (Beispiel)</h3>
+                    <p>Bei <code>minmax(250px, 1fr)</code> passt sich das Grid automatisch an:</p>
+
+                    <table class="ref-table mb-md">
+                        <thead>
+                            <tr>
+                                <th>Container-Breite</th>
+                                <th>Anzahl Spalten</th>
+                                <th>Rechnung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>300px (Mobile)</td>
+                                <td>1 Spalte</td>
+                                <td>300 ÷ 250 = 1.2 → 1 Spalte</td>
+                            </tr>
+                            <tr>
+                                <td>600px (Tablet)</td>
+                                <td>2 Spalten</td>
+                                <td>600 ÷ 250 = 2.4 → 2 Spalten</td>
+                            </tr>
+                            <tr>
+                                <td>1200px (Desktop)</td>
+                                <td>4 Spalten</td>
+                                <td>1200 ÷ 250 = 4.8 → 4 Spalten</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 id="ist-das-mobile-first-jain">Ist das Mobile-First? JAIN!</h3>
+
+                    <div class="grid-2col mb-md">
+                        <div class="grid-2col-bg pb-sm">
+                            <h4 class="no-toc pt-sm">❌ Technisch gesehen: NEIN</h4>
+                            <ul class="arrow-list">
+                                <li>Nutzt keine expliziten <code>min-width</code> Breakpoints</li>
+                                <li>Keine Media Queries vorhanden</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <h4 class="no-toc pt-sm">✅ Praktisch gesehen: JA!</h4>
+                            <ul class="arrow-list">
+                                <li><code>auto-fit</code> + <code>minmax()</code> ist von Natur aus responsiv</li>
+                                <li>Funktioniert auf allen Geräten perfekt</li>
+                                <li>Weniger Code als mit @media</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Best Practice
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p><strong>Spezialfall:</strong> <code>auto-fit</code> + <code>minmax()</code> ist von Natur aus
+                            responsiv und passt sich automatisch an – hier brauchst du oft gar keine @media Query! Das
+                            ist eine Ausnahme, wo das Grid selbst entscheidet, wie viele Spalten passen. ✨</p>
+                    </div>
+
+                    <h3 id="wann-auto-fit-nutzen">Wann <code>auto-fit</code> nutzen?</h3>
+                    <div class="grid-2col-cards">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Richtig</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
+                                <ul class="arrow-list">
+                                    <li>Für <strong>Card-Grids</strong> (z.B. Blog-Posts, Produkte)</li>
+                                    <li>Wenn <strong>flexible Spaltenzahl</strong> ok ist</li>
+                                    <li>Für <strong>gleich große Items</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Falsch</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red-light)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+    20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+    0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
+                                <ul class="arrow-list">
+                                    <li>Wenn du <strong>exakte Kontrolle</strong> über Breakpoints brauchst</li>
+                                    <li>Für <strong>komplexe Layouts</strong> mit unterschiedlichen Spaltenbreiten
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- Lokales Testen auf echten Geräten -->
@@ -852,7 +1273,8 @@ browser-sync start --server --files "*.html, css/*.css, js/*.js"
                     <div class="info-box">
                         <strong class="box-title no-toc">Test-Strategie
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -909,7 +1331,8 @@ browser-sync start --server --files "*.html, css/*.css, js/*.js"
                     <div class="info-box">
                         <strong class="box-title no-toc">Best Practice
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <p>Nutze DevTools für schnelle Iterationen während der Entwicklung, teste aber <strong>immer auf
@@ -1038,7 +1461,8 @@ p {
                     <div class="info-box">
                         <strong class="box-title no-toc">Mindestgröße für Touch-Targets
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1269,18 +1693,17 @@ img {
                 <!-- Häufige Mobile First Fehler -->
                 <section class="tutorials-content">
                     <h2 id="haeufige-mobile-first-fehler">Häufige Mobile First Fehler</h2>
-                    <div class="tutorial-grid">
 
-                        <div class="info-box danger">
-                            <strong class="box-title danger no-toc">Falsch
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
-                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc">Fehler
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
-                                    </path>
-                                </svg>
-                            </strong>
-                            <pre><code class="language-css">/* Fixed Width */
+                                </path>
+                            </svg>
+                        </strong>
+                        <pre><code class="language-css">/* Fixed Width */
 .container {
     width: 1200px;
 }
@@ -1294,16 +1717,15 @@ body {
 .menu:hover {
     display: block;
 }</code></pre>
-                        </div>
-
-                        <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Richtig
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
-                                    </path>
-                                </svg>
-                            </strong>
-                            <pre><code class="language-css">/* Flexible Width */
+                    </div>
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Lösung
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <pre><code class="language-css">/* Flexible Width */
 .container {
     width: 100%;
     max-width: 1200px;
@@ -1319,13 +1741,140 @@ body {
 .menu:focus {
     display: block;
 }</code></pre>
-                        </div>
+                    </div>
 
+
+                    <h3 id="max-width-bei-mobile-first-verwenden">max-width bei Mobile-First verwenden</h3>
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc">Fehler
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <pre><code class="language-css">/* Falsch: max-width ist Desktop-First! */
+@media (max-width: 768px) {
+    .element {
+        /* Mobile Styles */
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="info-box notice">
+                        <strong class="box-title notice no-toc">Lösung
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <pre><code class="language-css">/* Richtig: min-width für Mobile-First! */
+
+/* Mobile Styles (ohne @media) */
+.element {
+    /* Basis-Styles */
+}
+
+/* Desktop ab 768px */
+@media (min-width: 768px) {
+    .element {
+        /* Desktop Styles */
+    }
+}</code></pre>
+                    </div>
+
+                    <h4 class="no-toc">Ausnahmen: Wann <code>max-width</code> ok ist</h4>
+                    <p>Es gibt <strong>2 seltene Situationen</strong>, wo auch Mobile-First mal <code>max-width</code>
+                        nutzt:</p>
+
+                    <h5 class="no-toc">1. Nur auf Mobile zeigen</h5>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Hamburger-Menü nur auf Mobile */
+.mobile-menu-toggle {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none; /* Ab Desktop versteckt */
+    }
+}</code></pre>
+                    </div>
+
+                    <p><strong>Alternative mit max-width:</strong></p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Nur bis 767px sichtbar */
+@media (max-width: 767px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+}</code></pre>
+                    </div>
+
+                    <h5 class="no-toc">2. Zwischen zwei Breakpoints</h5>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* NUR auf Tablets (640px-1023px) */
+@media (min-width: 640px) 
+   and (max-width: 1023px) {
+    .tablet-only {
+        display: block;
+    }
+}</code></pre>
+                    </div>
+                    <p>Hier kombinierst du <code>min-width</code> UND <code>max-width</code>, um einen genauen
+                        Bereich zu treffen.</p>
+
+
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Regel
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p><strong>In 99% der Fälle:</strong> Mobile-First = <code>min-width</code> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="25" height="25" class="icon-success icon-inline" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg></p>
+                        <p><code>max-width</code> = veralteter Desktop-First Ansatz <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="25" height="25" class="icon-danger icon-inline" fill="var(--accent-red-light)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+    20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+    0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg></p>
                     </div>
 
                     <div class="info-box danger">
                         <strong class="box-title danger no-toc" id="falsch">Weitere No-Gos
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="var(--accent-red-light)">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -1390,7 +1939,8 @@ body {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
                 0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
-                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"></path>
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1406,7 +1956,8 @@ body {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
                 0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
-                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"></path>
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1424,7 +1975,8 @@ body {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
                 0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
-                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"></path>
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1443,7 +1995,8 @@ body {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
                 0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
-                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"></path>
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1462,19 +2015,24 @@ body {
                     <div class="info-box">
                         <strong class="box-title no-toc">Was wichtig ist
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
                             <li><strong>Mobile First Konzept:</strong> Von klein nach groß entwickeln</li>
-                            <li><strong>min-width Media Queries:</strong> Progressives Enhancement statt Desktop First
-                            </li>
+                            <li><strong><code>1fr</code>:</strong> 1 Teil des verfügbaren Platzes</li>
+                            <li><strong><code>2fr 1fr</code>:</strong> 2/3 + 1/3 Aufteilung (66.6% + 33.3%)</li>
+                            <li><strong><code>repeat(3, 1fr)</code>:</strong> 3 gleich große Spalten (je 33.3%)</li>
+                            <li><strong><code>min-width: 640px</code>:</strong> "ab 640px aufwärts"</li>
+                            <li><strong>Mobile-First:</strong> Ohne @media = Mobile, mit @media = Desktop</li>
+                            <li><strong>@media überschreibt:</strong> Späterer CSS-Code gewinnt über früheren</li>
+                            <li><strong><code>auto-fit</code> + <code>minmax()</code>:</strong> Selbst-responsive Grids
+                                ohne @media</li>
                             <li><strong>Lokales Testing:</strong> Deine Website auf echten Geräten im WLAN testen</li>
                             <li><strong>Touch-Optimierung:</strong> Mindestens 44x44px Touch-Targets</li>
-                            <li><strong>DevTools vs. Realität:</strong> Wann welches Testing wichtig ist</li>
                             <li><strong>Best Practices:</strong> Viewport Meta Tag, flexible Einheiten, responsive
                                 Bilder</li>
-                            <li><strong>Workflow:</strong> Schritt-für-Schritt von Mobile zu Desktop</li>
                         </ul>
                     </div>
 
@@ -1547,6 +2105,8 @@ body {
     <script src="/assets/js/scroll-spy.js"></script>
     <script src="/assets/js/search.js"></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 

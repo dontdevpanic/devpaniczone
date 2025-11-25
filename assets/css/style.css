@@ -22,6 +22,7 @@
       - Main Content................................ Zeile ~682  ---
       - Hero Sections............................... Zeile ~693  ---
       - Buttons..................................... Zeile ~799  ---
+      - Icons....................................... Zeile ~799
       - Categories & Grids.......................... Zeile ~905  ---
       - Code Blocks................................. Zeile ~1054 ---
       - Info Boxes.................................. Zeile ~1230 ---
@@ -911,7 +912,7 @@ hr {
     /* Wird von JS hinzugefügt */
 }
 
- /* -----------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
    MAIN NAVIGATION & DROPDOWN
    ----------------------------------------------------------------------------- */
 
@@ -1389,6 +1390,30 @@ hr {
 }
 
 /* ===================================
+   ICONS
+   =================================== */
+
+svg.icon-inline {
+    vertical-align: middle;
+    /* margin: 0 1em; */
+}
+
+/* Etwas nach unten (optischer Ausgleich, wenn middle nicht gut aussieht) */
+svg.icon-va-y-2 {
+    vertical-align: -2px;
+}
+
+/* An Baseline des Textes */
+svg.icon-va-tb {
+    vertical-align: text-bottom;
+}
+
+/* An Baseline der Kleinbuchstaben */
+svg.icon-va-tbase {
+    vertical-align: baseline;
+}
+
+/* ===================================
    CATEGORIES SECTION
    =================================== */
 
@@ -1508,12 +1533,45 @@ hr {
     align-items: center;
 }
 
+/* Grid für gleich hohe Cards/Code-Blocks */
+.grid-2col-cards {
+    display: grid;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    grid-template-columns: 1fr;
+    /* Mobile: untereinander */
+    align-items: stretch;
+    /* Gleiche Höhe erzwingen */
+}
+
+.grid-2col-cards h4 {
+    padding: 15px 0 10px;
+}
+
+/* Code-Blocks in diesem Grid zu Flex-Containern machen */
+.grid-2col-cards>.code-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Volle Grid-Höhe nutzen */
+}
+
+/* Content-Bereich soll wachsen und restlichen Platz füllen */
+.grid-2col-cards>.code-block>div:not(.code-header) {
+    flex: 1;
+    /* Nimmt verfügbaren Platz */
+}
+
 /* 640px: 2 Spalten */
 @media (min-width: 640px) {
 
     .grid-2col {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* .grid-2col-cards {
+        grid-template-columns: repeat(1, 1fr);
+    } */
 
     .categories-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1528,6 +1586,13 @@ hr {
     /* .grid-1-2col {
         grid-template-columns: 0.5fr 2.5fr;
     } */
+}
+
+@media (min-width: 1040px) {
+
+    .grid-2col-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* 1024px: 3 Spalten */
@@ -1614,8 +1679,6 @@ hr {
     gap: 0.5rem;
     /* = 8px - Pfeil bewegt sich nach rechts */
 }
-
-
 
 /* Inline Code */
 code.inline,
@@ -1801,6 +1864,10 @@ kbd {
 /* ---- Margin Left Utilities ---- */
 .ml-0 {
     margin-left: 0;
+}
+
+.ml-xs {
+    margin-left: 0.25rem;
 }
 
 .ml-sm {
@@ -2115,6 +2182,7 @@ kbd {
 .text-lg {
     font-size: 1.2rem;
 }
+
 /* ----- Screen Reader Only (Barrierefreiheit) ----- */
 
 .sr-only {
