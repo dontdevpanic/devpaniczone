@@ -43,8 +43,6 @@ if (!fs.existsSync(dataDir)) {
 
 const ROOT_FILES_EXCLUDE = [
     'search.html', // Wird automatisch generiert
-    'impressum.html',
-    'datenschutzerklaerung.html'
 ];
 // Root-Dateien die NICHT aktualisiert werden sollen
 // Blacklist: Diese Ordner werden ignoriert

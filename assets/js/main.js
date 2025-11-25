@@ -245,6 +245,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================
+    // CURRENT DATE FÜR DATENSCHUTZERKLÄRUNG
+    // ===================================
+
+    function setCurrentDate() {
+        const dateSpan = document.getElementById('currentDate');
+        if (dateSpan) {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            dateSpan.textContent = today.toLocaleDateString('de-DE', options);
+        }
+    }
+
+    setCurrentDate();
+
+    // ===================================
     // CURRENT YEAR IM FOOTER
     // ===================================
 
