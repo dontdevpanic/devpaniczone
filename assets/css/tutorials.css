@@ -266,12 +266,19 @@
 .shortcut-card kbd {
     display: inline-block;
     margin-bottom: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.8rem;
+}
+
+.shortcut-card code {
+    display: inline-block;
+    color: var(--text-primary);
+    margin-bottom: 1rem;    
 }
 
 .shortcut-card p {
     margin: 0;
     font-size: 0.85rem;
+    text-align: center;
     color: var(--text-muted);
 }
 
@@ -282,19 +289,28 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    /* margin: 2rem 0; */
-    /* padding: 2rem 0; */
-    /* background: var(--card-bg); */
-    /* border-radius: 8px; */
-    /* border: 1px solid var(--border-color); */
+}
+
+.cheatsheet-section {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 200ms ease;
+}
+
+.cheatsheet-section:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent-blue);
 }
 
 .cheatsheet-section h3 {
     color: var(--heading-secondary);
     font-size: 1.1rem;
     margin: 0 0 1rem;
-    padding: 1rem 0 0.5rem;
-    border-bottom: 2px solid var(--border-color);
+    padding: 0 0 0.5rem;
+    border-bottom: 2px solid var(--accent-blue);
 }
 
 .cheatsheet-section ul {
@@ -308,24 +324,135 @@
     font-size: 0.9rem;
 }
 
-/* .cheatsheet-section code {
-     color: var(--accent);
-    font-weight: 600; 
-}*/
+.cheatsheet-section code {
+    transition: color 150ms ease;
+}
+
+.cheatsheet-section:hover code {
+    color: var(--accent-blue-hover);
+}
 
 @media (max-width: 768px) {
-
-    .tutorial-grid,
-    .shortcut-grid {
-        grid-template-columns: 1fr;
-    }
-
     .cheatsheet-grid {
         grid-template-columns: 1fr;
         padding: 1rem;
     }
 }
 
+/* V2 Farbcodierte Kategorien */
+.cheatsheet-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.cheatsheet-section-2 {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+    border-left: 4px solid var(--accent-blue);
+    transition: all 200ms ease;
+}
+
+.cheatsheet-section-2:hover {
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Farbvarianten für verschiedene Kategorien */
+.cheatsheet-section-2:nth-child(1) { border-left-color: var(--accent-blue); }
+.cheatsheet-section-2:nth-child(2) { border-left-color: var(--accent-green); }
+.cheatsheet-section-2:nth-child(3) { border-left-color: var(--accent-purple); }
+.cheatsheet-section-2:nth-child(4) { border-left-color: var(--accent-orange); }
+.cheatsheet-section-2:nth-child(5) { border-left-color: var(--accent-cyan); }
+.cheatsheet-section-2:nth-child(6) { border-left-color: var(--accent-red); }
+.cheatsheet-section-2:nth-child(7) { border-left-color: var(--accent-mint); }
+
+.cheatsheet-section-2:nth-child(1) h3 { color: var(--accent-blue); }
+.cheatsheet-section-2:nth-child(2) h3 { color: var(--accent-green); }
+.cheatsheet-section-2:nth-child(3) h3 { color: var(--accent-purple); }
+.cheatsheet-section-2:nth-child(4) h3 { color: var(--accent-orange); }
+.cheatsheet-section-2:nth-child(5) h3 { color: var(--accent-cyan); }
+.cheatsheet-section-2:nth-child(6) h3 { color: var(--accent-red); }
+.cheatsheet-section-2:nth-child(7) h3 { color: var(--accent-mint); }
+
+.cheatsheet-section-2 h3 {
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    padding: 0 0 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.cheatsheet-section-2 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cheatsheet-section-2 li {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .cheatsheet-grid-2 {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+
+/* V3 Akzent */
+
+.cheatsheet-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.cheatsheet-section-3 {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+    border-left: 4px solid var(--accent-blue);
+    transition: all 200ms ease;
+}
+
+.cheatsheet-section-3:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-left-color: var(--accent-blue-hover);
+}
+
+.cheatsheet-section-3 h3 {
+    color: var(--accent-blue);
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    padding: 0 0 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.cheatsheet-section-3 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cheatsheet-section-3 li {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    transition: color 150ms ease;
+}
+
+.cheatsheet-section-3 li:hover {
+    color: var(--accent-blue);
+}
+
+@media (max-width: 768px) {
+    .cheatsheet-grid-3 {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
 /* ============================================================================
 4. TUTORIAL COPY CODE-BLOCKS
 =============================================================================== */
@@ -466,17 +593,31 @@
     margin: 0;
     padding: 1.5rem;
     overflow-x: auto;
+    white-space: pre;
     background: transparent;
 }
 
 .code-block code {
+    display: block;  /* Default für Code in <pre> */
+    width: auto;
     font-family: var(--font-code);
     font-size: 0.9rem;
     line-height: 1.6;
     background: transparent;
     padding: 0;
     border-radius: 0;
-    display: block;
+}
+
+/* Inline-Code in Listen, Header und Footer */
+.grid-2col-cards .code-block .arrow-list code,
+.grid-2col-cards .code-header code,
+.grid-2col-cards .code-footer code {
+    display: inline;
+    width: auto;
+    background-color: var(--bg-light);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
 }
 
 /* ---- Scrollbar ---- */
