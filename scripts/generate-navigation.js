@@ -42,7 +42,9 @@ if (!fs.existsSync(dataDir)) {
 
 
 const ROOT_FILES_EXCLUDE = [
-    'search.html' // Wird automatisch generiert
+    'search.html', // Wird automatisch generiert
+    'impressum.html',
+    'datenschutzerklaerung.html'
 ];
 // Root-Dateien die NICHT aktualisiert werden sollen
 // Blacklist: Diese Ordner werden ignoriert
@@ -136,7 +138,7 @@ const FOOTER_TEMPLATE = `<footer class="site-footer">
             <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
             <nav class="footer-nav">
                 <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutz.html">Datenschutz</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
             </nav>
         </div>
     </div>
