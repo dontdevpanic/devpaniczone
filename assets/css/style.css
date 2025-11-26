@@ -1751,25 +1751,97 @@ kbd {
     box-shadow: 0 2px 0 var(--border-color);
 }
 
+/* ===== Keyboard Keys ===== */
+
+/* ===== NUR .keyboard-nav spezifisch ===== */
 .keyboard-nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin: 3rem auto 2rem;
+    gap: 1.5rem;
+    justify-content: left;
+    margin: 3rem 0;
     max-width: 900px;
 }
 
+.key,
 .keyboard-nav kbd {
     display: inline-block;
     padding: 0.75rem 1.5rem;
+    margin: 1rem 0.5rem;
     background: var(--card-bg);
     border: 3px solid var(--border-color);
     border-radius: 6px;
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 400;
-    /* text-shadow: 0 0 8px var(--accent-blue); */
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 3px 0 rgba(0, 0, 0, 0.2),
+        0 0 20px var(--accent-blue),
+        0 0 40px rgba(0, 122, 204, 0.3);
+    text-decoration: none;
+    position: relative;
+}
+
+/* Hover - kombiniert für beide */
+a:hover .key,
+.keyboard-nav a:hover kbd {
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    box-shadow:
+        0 3px 0 rgba(0, 0, 0, 0.2),
+        0 0 20px var(--accent-blue),
+        0 0 40px rgba(0, 122, 204, 0.3);
+    transform: translateY(1px);
+}
+
+/* Click - kombiniert für beide */
+a:active .key,
+.keyboard-nav a:active kbd {
+    transform: translateY(2px);
+    box-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.2),
+        0 0 20px var(--accent-blue);
+}
+
+/* Key hervorgehoben */
+kbd.key.key-active-green,
+kbd.key-active-green {
+    color: var(--color-success);
+    border-color: var(--color-success, #2ecc71);
+    box-shadow:
+        0 3px 0 rgba(0, 0, 0, 0.2),
+        0 0 20px var(--color-success, #2ecc71),
+        0 0 40px rgba(46, 204, 113, 0.3);
+}
+
+a:hover kbd.key.key-active-green,
+a:hover kbd.key-active-green {
+    box-shadow:
+        0 3px 0 rgba(0, 0, 0, 0.2),
+        0 0 20px var(--color-success, #2ecc71),
+        0 0 40px rgba(46, 204, 113, 0.3);
+}
+
+a:active kbd.key.key-active-green,
+a:active kbd.key-active-green {
+    box-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.2),
+        0 0 20px var(--color-success, #2ecc71);
+}
+
+kbd.key-active {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin: 1rem 0.5rem;
+    background: var(--card-bg);
+    border: 3px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 400;
     color: var(--text-primary);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1782,18 +1854,18 @@ kbd {
 }
 
 /* Glow beim Hover - wie Tastatur-Beleuchtung */
-.keyboard-nav a:hover kbd {
+a:hover kbd.key-active {
     color: var(--accent-blue);
     border-color: var(--accent-blue);
     box-shadow:
         0 3px 0 rgba(0, 0, 0, 0.2),
         0 0 20px var(--accent-blue),
-        0 0 40px rgba(0, 122, 204, 0.3);
+        0 0 40px rgba(46, 109, 204, 0.3);
     transform: translateY(1px);
 }
 
 /* Click Animation - runterdrücken */
-.keyboard-nav a:active kbd {
+a:active kbd.key-active {
     transform: translateY(2px);
     box-shadow:
         0 1px 0 rgba(0, 0, 0, 0.2),
@@ -1801,36 +1873,39 @@ kbd {
 }
 
 /* Home Key hervorgehoben */
-.keyboard-nav .key-home kbd {
-    background: var(--color-success, #2ecc71);
-    color: var(--color-text-light);
-    border-color: var(--color-success, #2ecc71);
-}
-
-.keyboard-nav .key-home:hover kbd {
+kbd.key-active-blue {
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
     box-shadow:
         0 3px 0 rgba(0, 0, 0, 0.2),
-        0 0 20px var(--color-success, #2ecc71),
-        0 0 40px rgba(46, 204, 113, 0.3);
+        0 0 10px var(--accent-blue),
+        0 0 40px rgba(46, 130, 204, 0.3);
 }
 
-.keyboard-nav .key-home:active kbd {
+.key-active-blue:hover kbd {
+    box-shadow:
+        0 3px 0 rgba(0, 0, 0, 0.2),
+        0 0 20px var(--accent-blue),
+        0 0 40px rgba(46, 130, 204, 0.3);
+}
+
+.keyboard-nav .key-active-blue:active kbd {
     box-shadow:
         0 1px 0 rgba(0, 0, 0, 0.2),
-        0 0 20px var(--color-success, #2ecc71);
+        0 0 20px var(--accent-blue);
 }
 
+/* Responsive - ZUSAMMENGEFASST */
 @media (max-width: 768px) {
     .keyboard-nav {
         gap: 0.75rem;
     }
 
+    .key,
     .keyboard-nav kbd {
         padding: 0.65rem 1.25rem;
         font-size: 0.95rem;
     }
-
-
 }
 
 @media (max-width: 480px) {
@@ -1838,6 +1913,7 @@ kbd {
         gap: 0.5rem;
     }
 
+    .key,
     .keyboard-nav kbd {
         padding: 0.6rem 1rem;
         font-size: 0.85rem;
@@ -2299,6 +2375,11 @@ kbd {
 .items-start {
     align-items: flex-start;
 }
+
+.items-left {
+    align-items: left;
+}
+
 
 .items-center {
     align-items: center;

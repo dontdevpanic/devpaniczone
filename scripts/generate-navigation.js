@@ -72,7 +72,7 @@ const HEADER_TEMPLATE = `<header class="site-header">
                 <span class="hamburger"></span>
             </button>
 
-            <nav class="main-nav" id="mainNav">
+            <nav class="main-nav" id="mainNav" aria-label="Navigation">
                 <ul class="nav-list">
                     <li><a href="/" class="nav-link">Home</a></li>
                     <li class="nav-item-dropdown">
