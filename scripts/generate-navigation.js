@@ -218,10 +218,19 @@ const TUTORIAL_ORDER = {
         // 'js-modal.html'
     ],
     'tutorials/php/php-basics': [
-        // Platzhalter
+        'php-basics.html',
+        'php-security.html',
+        //'php-variables.html',
+        //'php-arrays-loops.html',
+        //'php-includes.html',
+        //'php-forms.html'
     ],
     'tutorials/php/php-advanced': [
-        // Platzhalter
+        //'php-OOP.html',
+        //'php-sessions.html',
+        //'php-validation.html',
+        //'php-mail.html',
+        //'php-pdo.html'
     ],
     'tutorials/misc/seo-optimization': [
         // Platzhalter

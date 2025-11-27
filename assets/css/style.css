@@ -368,7 +368,7 @@ abbr {
 /* ----- Inline Code ----- */
 /* overflow-wrap: normal; - verhindert Umbrüche an Trennstellen */
 /* word-break: normal; - falls nötig */
-code.inline {
+code.inline{
     font-family: var(--font-code);
     font-size: 0.9em;
     letter-spacing: 0.025rem;
@@ -377,7 +377,7 @@ code.inline {
     border-radius: 4px;
     white-space: nowrap;
     overflow-wrap: normal;
-    word-break: normal;
+    word-break: normal;    
 }
 
 pre {
@@ -1733,6 +1733,11 @@ code:not([class]) {
     border-radius: 4px;
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
+    /* Ligaturen deaktivieren - !important am Ende */
+    font-variant-ligatures: none !important;
+    font-feature-settings: "liga" 0, "calt" 0 !important;
+    -webkit-font-feature-settings: "liga" 0, "calt" 0;
+    -moz-font-feature-settings: "liga" 0, "calt" 0;
 }
 
 /* mark */
@@ -1753,7 +1758,6 @@ kbd {
 
 /* ===== Keyboard Keys ===== */
 
-/* ===== NUR .keyboard-nav spezifisch ===== */
 .keyboard-nav {
     display: flex;
     flex-wrap: wrap;
