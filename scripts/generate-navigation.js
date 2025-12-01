@@ -214,6 +214,7 @@ const TUTORIAL_ORDER = {
     ],
     'tutorials/javascript/javascript-projects': [
         'js-code-escaper.html',
+        'js-entity-encoder.html',
         'js-to-do-app.html'
         // 'js-modal.html'
     ],

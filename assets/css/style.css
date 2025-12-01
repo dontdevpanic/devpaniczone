@@ -374,7 +374,7 @@ abbr {
 /* ----- Inline Code ----- */
 /* overflow-wrap: normal; - verhindert Umbrüche an Trennstellen */
 /* word-break: normal; - falls nötig */
-code.inline{
+code.inline {
     font-family: var(--font-code);
     font-size: 0.9em;
     letter-spacing: 0.025rem;
@@ -383,7 +383,7 @@ code.inline{
     border-radius: 4px;
     white-space: nowrap;
     overflow-wrap: normal;
-    word-break: normal;    
+    word-break: normal;
 }
 
 pre {
@@ -1452,6 +1452,7 @@ svg.icon-small {
     width: 25;
     height: 25;
 }
+
 .icon-x {
     font-size: 1.8rem;
 }
@@ -1942,6 +1943,48 @@ kbd.key-active-blue {
     }
 }
 
+/* Tooltip Styles */
+.tooltip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dashed var(--heading-secondary);
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-style: normal;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    z-index: 100;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.tooltip .tooltiptext::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--bg-tertiary);
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
 /* ===================================
    FOOTER
    =================================== */
@@ -2394,7 +2437,7 @@ kbd.key-active-blue {
 }
 
 .text-lg {
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     color: var(--text-primary);
     font-weight: 600;
 }

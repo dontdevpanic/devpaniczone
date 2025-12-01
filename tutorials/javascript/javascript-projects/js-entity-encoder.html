@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="HTML Entity Encoder - Wandle Text in numerische HTML-Entities um. Perfekt für E-Mail-Spam-Schutz und Obfuskation. Mit Schritt-für-Schritt Code-Erklärung.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>JavaScript: HTML Entity Encoder | DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tutorials.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    <!-- <link rel="stylesheet" href="/assets/css/tutorial-js-code-escaper.css"> -->
+</head>
+
+<body>
+    <!-- Header-Start -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                    </span>
+                </button>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
+
+                <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/html/" class="nav-link">
+                                        HTML
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                        <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/css/" class="nav-link">
+                                        CSS
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/javascript/" class="nav-link">
+                                        JavaScript
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                        </li>
+                                        <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/php/" class="nav-link">
+                                        PHP
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/misc/" class="nav-link">
+                                        Verschiedenes
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                        <li><a href="/tutorials/misc/#projects">Projects</a></li>
+                                        <li><a href="/tutorials/misc/#web">Web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/documentation/" class="nav-link">
+                                        DevPanicZone!
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                        <!-- Search Toggle -->
+                        <li>
+                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Search Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown" hidden>
+                        <div class="search-input-group">
+                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path
+                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                            </svg>
+                            <input type="search" id="globalSearch" class="search-input"
+                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                        </div>
+
+                        <div class="search-results" id="searchResults" hidden>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                            <div class="search-results-footer">
+                                <button class="search-view-all" id="searchViewAll">
+                                    Alle Ergebnisse anzeigen →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                        class="breadcrumb-separator">›</span><a href="/tutorials/javascript/"
+                        class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span
+                        class="breadcrumb-current">HTML Entity Encoder</span></nav>
+                <h1 class="hero-title">HTML Entity Encoder</h1>
+                <p class="hero-subtitle">Text in numerische Codes umwandeln – für Spam-Schutz und mehr.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+            title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                        <li class="toc-level-1"><a href="#was-ist-ein-entity-encoder">Was ist ein Entity Encoder?</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#entity-encoder">Entity Encoder Tool</a></li>
+                        <li class="toc-level-1"><a href="#entity-decoder">Entity Decoder Tool</a></li>
+                        <li class="toc-level-1"><a href="#einsatz-szenarien">Wofür kann ich das nutzen?</a></li>
+                        <li class="toc-level-2"><a href="#spam-schutz">1. E-Mail-Adressen vor Spam-Bots schützen</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#telefonnummern">2. Telefonnummern verschleiern</a></li>
+                        <li class="toc-level-2"><a href="#datenschutz">3. Datenschutzerklärungen und Impressum</a></li>
+                        <li class="toc-level-2"><a href="#unicode-zeichen">4. Unicode- und Sonderzeichen sicher
+                                einbetten</a></li>
+                        <li class="toc-level-2"><a href="#lernzwecke">5. JavaScript-Grundlagen lernen</a></li>
+                        <li class="toc-level-1"><a href="#code-verstehen">Code verstehen</a></li>
+                        <li class="toc-level-2"><a href="#encoder-code">Der Encoder-Code</a></li>
+                        <li class="toc-level-2"><a href="#schritt-1">Schritt 1: Alle Encoder-Boxen finden</a></li>
+                        <li class="toc-level-2"><a href="#schritt-2">Schritt 2: Elemente innerhalb der Box finden</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#schritt-3">Schritt 3: Die Encode-Funktion</a></li>
+                        <li class="toc-level-2"><a href="#schritt-4">Schritt 4: Event Listener für den Button</a></li>
+                        <li class="toc-level-1"><a href="#decoder-verstehen">Der Decoder-Code</a></li>
+                        <li class="toc-level-2"><a href="#regex-erklaert">Der reguläre Ausdruck erklärt</a></li>
+                        <li class="toc-level-2"><a href="#replace-callback">Die replace-Callback-Funktion</a></li>
+                        <li class="toc-level-1"><a href="#unicode-verstehen">Bonus: Unicode verstehen</a></li>
+                        <li class="toc-level-1"><a href="#html-code">HTML für das Tool</a></li>
+                        <li class="toc-level-2"><a href="#html-struktur">HTML-Struktur</a></li>
+                        <li class="toc-level-2"><a href="#javascript-komplett">JavaScript (komplett)</a></li>
+                        <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                        <li class="sidebar-group-title">JavaScript Basics</li>
+                        <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
+                        <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a>
+                        </li>
+                        <li class="sidebar-group-title">JavaScript Projects</li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript:
+                                HTML-Code Escaper</a></li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html"
+                                class="active">HTML Entity Encoder</a></li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit
+                                JavaScript</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Intro -->
+                <section class="tutorials-content mt-xl">
+                    <h2 id="was-ist-ein-entity-encoder">Was ist ein Entity Encoder?</h2>
+                    <p>Ein Entity Encoder wandelt <strong>jeden einzelnen Buchstaben</strong> eines Textes in seinen
+                        numerischen HTML-Entity-Code um. Aus dem Buchstaben <code>A</code> wird zum Beispiel
+                        <code>&amp;#65;</code> – das ist der ASCII-Code für "A".
+                    </p>
+                    <p>Der Browser zeigt den Text ganz normal an, aber im Quellcode steht nur eine Zahlenfolge. Das
+                        macht es für einfache Bots und Crawler schwieriger, den eigentlichen Inhalt zu erkennen.</p>
+
+                    <div class="info-box warning">
+                        <strong class="box-title warning no-toc">Wichtig
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Das ist <span class="tooltip"><em>Obfuskation</em><span class="tooltiptext">Absichtliche
+                                    Verschleierung von Programmcode oder Daten</span></span>, keine echte
+                            Verschlüsselung! Der Text ist nicht "geheim" – jeder Browser wandelt die Codes automatisch
+                            zurück. Der Schutz funktioniert nur gegen simple Skripte, die den Quellcode nach bestimmten
+                            Mustern durchsuchen.</p>
+                    </div>
+                </section>
+
+                <!-- Entity Encoder Tool -->
+                <section class="tutorials-content">
+                    <h2 id="entity-encoder">Entity Encoder Tool</h2>
+                    <p>Probier es aus: Gib einen Text ein und klicke auf "Encode". Den Output kannst du direkt in dein
+                        HTML einfügen.</p>
+
+                    <div class="code-block entity-encoder">
+                        <div class="code-header">
+                            <span class="code-lang">Entity Encoder</span>
+                            <div class="code-actions">
+                                <button class="code-copy encode-btn">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/escape.svg" alt="Encode Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Encode</span>
+                                </button>
+                                <button class="code-copy copy-btn">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <textarea class="code-input" placeholder="Text eingeben, z.B. info@example.com"></textarea>
+                        <textarea class="code-output" placeholder="Hier erscheint der encoded Text..."
+                            readonly></textarea>
+                    </div>
+
+                </section>
+
+                <!-- Entity Decoder Tool -->
+                <section class="tutorials-content">
+                    <h2 id="entity-decoder">Entity Decoder Tool</h2>
+                    <p>Hier kannst du Entity-Codes wieder in lesbaren Text zurückverwandeln – praktisch zum Überprüfen
+                        oder wenn du fremden Code analysierst.</p>
+
+                    <div class="code-block entity-decoder">
+                        <div class="code-header">
+                            <span class="code-lang">Entity Decoder</span>
+                            <div class="code-actions">
+                                <button class="code-copy decode-btn">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/escape.svg" alt="Decode Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Decode</span>
+                                </button>
+                                <button class="code-copy copy-btn">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <textarea class="code-input"
+                            placeholder="Entity-Code einfügen, z.B. &amp;#72;&amp;#97;&amp;#108;&amp;#108;&amp;#111; (Hallo)"></textarea>
+                        <textarea class="code-output" placeholder="Hier erscheint der dekodierte Text..."
+                            readonly></textarea>
+                    </div>
+
+
+                </section>
+
+                <!-- Einsatz-Szenarien -->
+                <section class="tutorials-content">
+                    <h2 id="einsatz-szenarien">Wofür kann ich das nutzen?</h2>
+                    <p>Der Entity Encoder eignet sich für verschiedene Szenarien:</p>
+
+                    <h3 id="spam-schutz">1. E-Mail-Adressen vor Spam-Bots schützen</h3>
+                    <p>Das häufigste Einsatzgebiet: Spam-Bots durchsuchen Websites nach dem <code>@</code>-Zeichen oder
+                        <code>mailto:</code>-Links. Wenn du deine E-Mail-Adresse in Entities umwandelst, finden einfache
+                        Bots sie nicht mehr.
+                    </p>
+                    <!-- Code Block language-html -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Statt --&gt;
+&lt;a href="mailto:<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="244d4a424b64415c45495448410a474b49">[email&nbsp;protected]</a>"&gt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="99f0f7fff6d9fce1f8f4e9f5fcb7faf6f4">[email&nbsp;protected]</a>&lt;/a&gt;
+
+&lt;!-- Verwendest du --&gt;
+&lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#105;&amp;#110;&amp;#102;&amp;#111;&amp;#64;&amp;#101;&amp;#120;&amp;#97;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#46;&amp;#99;&amp;#111;&amp;#109;"&gt;
+    &amp;#105;&amp;#110;&amp;#102;&amp;#111;&amp;#64;&amp;#101;&amp;#120;&amp;#97;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#46;&amp;#99;&amp;#111;&amp;#109;
+&lt;/a&gt;</code></pre>
+                    </div>
+
+                    <h3 id="telefonnummern">2. Telefonnummern verschleiern</h3>
+                    <p>Auch Telefonnummern werden von Bots gesammelt. Der gleiche Trick funktioniert hier genauso gut.
+                    </p>
+
+                    <h3 id="datenschutz">3. Datenschutzerklärungen und Impressum</h3>
+                    <p>Pflichtangaben wie Name und Adresse müssen auf der Website stehen, aber das bedeutet nicht, dass
+                        sie für jeden Crawler lesbar sein müssen.</p>
+
+                    <h3 id="unicode-zeichen">4. Unicode- und Sonderzeichen sicher einbetten</h3>
+                    <p>Manche Zeichen machen in bestimmten Kontexten Probleme. Mit Entity-Kodierung stellst du sicher,
+                        dass sie überall korrekt dargestellt werden – unabhängig von der Zeichenkodierung der Datei.</p>
+
+                    <h3 id="lernzwecke">5. JavaScript-Grundlagen lernen</h3>
+                    <p>Der Encoder ist ein perfektes Mini-Projekt, um <code>charCodeAt()</code>, Schleifen und
+                        String-Manipulation zu üben.</p>
+
+                    <div class="info-box danger">
+                        <strong class="box-title danger no-toc" id="achtung">Nicht geeignet für:
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
+                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
+                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
+                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
+                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
+                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                            </svg>
+                        </strong>
+                        <p><strong>Echte Sicherheitsanforderungen!</strong> Wenn du sensible Daten wirklich schützen
+                            musst, brauchst du
+                            serverseitige Lösungen, Captchas oder Kontaktformulare.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Code verstehen -->
+                <section class="tutorials-content">
+                    <h2 id="code-verstehen">Code verstehen</h2>
+                    <p>Schauen wir uns an, wie Encoder und Decoder funktionieren. Das Script nutzt moderne
+                        JavaScript-Patterns wie <code>querySelectorAll</code> und <code>addEventListener</code>.</p>
+
+                    <h3 id="encoder-code">Der Encoder-Code</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">document.querySelectorAll('.entity-encoder').forEach(block =&gt; {
+    const input = block.querySelector('.code-input');
+    const output = block.querySelector('.code-output');
+    const encodeBtn = block.querySelector('.encode-btn');
+
+    // Encode-Funktion
+    function encodeText(str) {
+        let encoded = '';
+        for (let i = 0; i &lt; str.length; i++) {
+            encoded += '&amp;#' + str.charCodeAt(i) + ';';
+        }
+        return encoded;
+    }
+
+    // Encode Button
+    encodeBtn.addEventListener('click', () =&gt; {
+        output.value = encodeText(input.value);
+    });
+});</code></pre>
+                    </div>
+
+                    <h3 id="schritt-1">Schritt 1: Alle Encoder-Boxen finden</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">document.querySelectorAll('.entity-encoder').forEach(block =&gt; {</code></pre>
+                    </div>
+
+                    <p>Statt einer einzelnen ID suchen wir nach <strong>allen Elementen</strong> mit der Klasse
+                        <code>.entity-encoder</code>. Das hat einen großen Vorteil: Du könntest mehrere Encoder auf
+                        einer Seite haben, und jeder funktioniert unabhängig.
+                    </p>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><code>querySelectorAll('.entity-encoder')</code> – Findet alle Elemente mit dieser Klasse
+                        </li>
+                        <li><code>.forEach(block =&gt; { })</code> – Führt den Code für jedes gefundene Element aus</li>
+                        <li><code>block</code> – Ist die aktuelle Encoder-Box in der Schleife</li>
+                    </ul>
+
+                    <h3 id="schritt-2">Schritt 2: Elemente innerhalb der Box finden</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">const input = block.querySelector('.code-input');
+const output = block.querySelector('.code-output');
+const encodeBtn = block.querySelector('.encode-btn');</code></pre>
+                    </div>
+                    <p>Mit <code>block.querySelector()</code> suchen wir <strong>nur innerhalb dieser einen Box</strong>
+                        – nicht im gesamten Dokument. So bekommt jede Box ihre eigenen Referenzen.</p>
+
+                    <h3 id="schritt-3">Schritt 3: Die Encode-Funktion</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">function encodeText(str) {
+    let encoded = '';
+    for (let i = 0; i &lt; str.length; i++) {
+        encoded += '&amp;#' + str.charCodeAt(i) + ';';
+    }
+    return encoded;
+}</code></pre>
+                    </div>
+                    <p>Die eigentliche Umwandlung passiert hier:</p>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><code>for (let i = 0; i &lt; str.length; i++)</code> – Geht jeden Buchstaben durch</li>
+                        <li><code>str.charCodeAt(i)</code> – Holt den Unicode-Wert des Zeichens an Position
+                            <code>i</code>
+                        </li>
+                        <li><code>'&amp;#' + ... + ';'</code> – Baut daraus den Entity-Code (z.B. <code>&amp;#65;</code>
+                            für "A")</li>
+                        <li><code>encoded +=</code> – Hängt jeden Code an den Ergebnis-String an</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <p><strong>Beispiel:</strong> Der Buchstabe <code>A</code> hat den Unicode-Wert <code>65</code>.
+                            Also wird daraus <code>&amp;#65;</code>.</p>
+                    </div>
+
+                    <h3 id="schritt-4">Schritt 4: Event Listener für den Button</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">encodeBtn.addEventListener('click', () =&gt; {
+    output.value = encodeText(input.value);
+});</code></pre>
+                    </div>
+                    <p>Statt <code>onclick="..."</code> im HTML nutzen wir <code>addEventListener</code>. Das ist
+                        moderner und trennt HTML von JavaScript sauber.</p>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><code>addEventListener('click', ...)</code> – Reagiert auf Klicks</li>
+                        <li><code>() =&gt; { }</code> – Eine <span class="tooltip">Arrow Function<span
+                                    class="tooltiptext">Kurzschreibweise für anonyme Funktionen in
+                                    JavaScript</span></span>, die beim Klick ausgeführt wird</li>
+                        <li><code>input.value</code> – Holt den eingegebenen Text</li>
+                        <li><code>output.value = ...</code> – Schreibt das Ergebnis ins Output-Feld</li>
+                    </ul>
+                </section>
+
+                <!-- Decoder Code verstehen -->
+                <section class="tutorials-content">
+                    <h2 id="decoder-verstehen">Der Decoder-Code</h2>
+                    <p>Der Decoder macht das Gegenteil – er wandelt Entity-Codes zurück in lesbare Zeichen. Dafür nutzt
+                        er einen <span class="tooltip">regulären Ausdruck<span class="tooltiptext">Pattern zum Suchen
+                                und Ersetzen von Text (RegEx)</span></span>.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">function decodeEntities(str) {
+    return str.replace(/&amp;#(\d+);/g, (match, dec) =&gt; {
+        return String.fromCharCode(dec);
+    });
+}</code></pre>
+                    </div>
+
+                    <h3 id="regex-erklaert">Der reguläre Ausdruck erklärt</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">RegEx</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">/&amp;#(\d+);/g</code></pre>
+                    </div>
+                    <p>Dieser Ausdruck findet alle Entity-Codes im Text:</p>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><code>&amp;#</code> – Sucht nach dem Literal "&amp;#"</li>
+                        <li><code>(\d+)</code> – Fängt eine oder mehrere Ziffern ein (die Klammern "merken" sich den
+                            Wert)</li>
+                        <li><code>;</code> – Sucht nach dem abschließenden Semikolon</li>
+                        <li><code>g</code> – "Global" – findet alle Vorkommen, nicht nur das erste</li>
+                    </ul>
+
+                    <h3 id="replace-callback">Die replace-Callback-Funktion</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">str.replace(/&amp;#(\d+);/g, (match, dec) =&gt; {
+    return String.fromCharCode(dec);
+});</code></pre>
+                    </div>
+                    <p><code>replace()</code> kann statt einem Ersetzungstext auch eine Funktion bekommen:</p>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><code>match</code> – Der gesamte gefundene Text (z.B. <code>&amp;#65;</code>)</li>
+                        <li><code>dec</code> – Der Inhalt der Klammer, also nur die Zahl (z.B. <code>65</code>)</li>
+                        <li><code>String.fromCharCode(dec)</code> – Wandelt die Zahl zurück in ein Zeichen (z.B.
+                            <code>A</code>)
+                        </li>
+                    </ul>
+
+                    <div class="info-box">
+                        <p><strong>Das Gegenstück:</strong> <code>charCodeAt()</code> macht aus Zeichen Zahlen,
+                            <code>String.fromCharCode()</code> macht aus Zahlen wieder Zeichen.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Bonus: Unicode verstehen -->
+                <section class="tutorials-content">
+                    <h2 id="unicode-verstehen">Bonus: Unicode verstehen</h2>
+                    <p>Hinter <code>charCodeAt()</code> und <code>String.fromCharCode()</code> steckt das
+                        <strong>Unicode-System</strong> – ein internationaler Standard, der jedem Zeichen eine
+                        eindeutige Nummer zuweist.
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Einige Beispiele:
+'A'.charCodeAt(0)    // → 65
+'a'.charCodeAt(0)    // → 97
+'@'.charCodeAt(0)    // → 64
+'€'.charCodeAt(0)    // → 8364
+'😀'.charCodeAt(0)   // → 55357 (Emojis sind komplizierter!)</code></pre>
+                    </div>
+
+                    <p>Die ersten 128 Zeichen (0-127) sind der klassische <strong>ASCII-Zeichensatz</strong> –
+                        Buchstaben, Zahlen und Sonderzeichen. Alles darüber hinaus ist "erweitertes Unicode" für
+                        Umlaute, Sonderzeichen anderer Sprachen und Emojis.</p>
+
+                    <div class="info-box">
+                        <p><strong>Fun Fact:</strong> Großbuchstaben (65-90) und Kleinbuchstaben (97-122) liegen genau
+                            32 Positionen auseinander. Deshalb funktioniert <code>'A'.charCodeAt(0) + 32</code> →
+                            <code>97</code> → <code>'a'</code>!
+                        </p>
+                    </div>
+                </section>
+
+                <!-- HTML für das Tool -->
+                <section class="tutorials-content">
+                    <h2 id="html-code">HTML für das Tool</h2>
+                    <p>Falls du Encoder und Decoder auf deiner eigenen Seite einbauen möchtest, hier ist das
+                        vollständige HTML und JavaScript:</p>
+
+                    <h3 id="html-struktur">HTML-Struktur</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;!-- Entity Encoder --&gt;
+&lt;div class="code-block entity-encoder"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-lang"&gt;Entity Encoder&lt;/span&gt;
+        &lt;div class="code-actions"&gt;
+            &lt;button class="code-copy encode-btn"&gt;Encode&lt;/button&gt;
+            &lt;button class="code-copy copy-btn"&gt;Kopieren&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;textarea class="code-input" placeholder="Text eingeben..."&gt;&lt;/textarea&gt;
+    &lt;textarea class="code-output" placeholder="Encoded..." readonly&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;!-- Entity Decoder --&gt;
+&lt;div class="code-block entity-decoder"&gt;
+    &lt;div class="code-header"&gt;
+        &lt;span class="code-lang"&gt;Entity Decoder&lt;/span&gt;
+        &lt;div class="code-actions"&gt;
+            &lt;button class="code-copy decode-btn"&gt;Decode&lt;/button&gt;
+            &lt;button class="code-copy copy-btn"&gt;Kopieren&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;textarea class="code-input" placeholder="Entity-Code einfügen..."&gt;&lt;/textarea&gt;
+    &lt;textarea class="code-output" placeholder="Decoded..." readonly&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+
+                    <h3 id="javascript-komplett">JavaScript (komplett)</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Entity Encoder
+document.querySelectorAll('.entity-encoder').forEach(block =&gt; {
+    const input = block.querySelector('.code-input');
+    const output = block.querySelector('.code-output');
+    const encodeBtn = block.querySelector('.encode-btn');
+    const copyBtn = block.querySelector('.copy-btn');
+
+    function encodeText(str) {
+        let encoded = '';
+        for (let i = 0; i &lt; str.length; i++) {
+            encoded += '&amp;#' + str.charCodeAt(i) + ';';
+        }
+        return encoded;
+    }
+
+    encodeBtn.addEventListener('click', () =&gt; {
+        output.value = encodeText(input.value);
+        output.focus();
+        output.select();
+    });
+
+    copyBtn.addEventListener('click', () =&gt; {
+        output.select();
+        document.execCommand('copy');
+    });
+});
+
+// Entity Decoder
+document.querySelectorAll('.entity-decoder').forEach(block =&gt; {
+    const input = block.querySelector('.code-input');
+    const output = block.querySelector('.code-output');
+    const decodeBtn = block.querySelector('.decode-btn');
+    const copyBtn = block.querySelector('.copy-btn');
+
+    function decodeEntities(str) {
+        return str.replace(/&amp;#(\d+);/g, (match, dec) =&gt; {
+            return String.fromCharCode(dec);
+        });
+    }
+
+    decodeBtn.addEventListener('click', () =&gt; {
+        output.value = decodeEntities(input.value);
+        output.focus();
+        output.select();
+    });
+
+    copyBtn.addEventListener('click', () =&gt; {
+        output.select();
+        document.execCommand('copy');
+    });
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                <section class="tutorials-content">
+                    <nav class="tutorial-nav">
+                        <div class="tutorial-nav-prev">
+                            <a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">
+                                <span class="tutorial-nav-label">← Vorheriges</span>
+                                <span class="tutorial-nav-link">JavaScript: HTML-Code Escaper</span>
+                                <span class="tutorial-nav-category">JavaScript Projects</span>
+                            </a>
+                        </div>
+                        <div class="tutorial-nav-next">
+                            <a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">
+                                <span class="tutorial-nav-label">Nächstes →</span>
+                                <span class="tutorial-nav-link">ToDo-App mit JavaScript</span>
+                                <span class="tutorial-nav-category">JavaScript Projects</span>
+                            </a>
+                        </div>
+                    </nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/js-entity-encoder.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+</body>
+
+</html>
