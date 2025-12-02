@@ -3,7 +3,7 @@ console.log('%c⚠️ Console-Warnung',
     'color: #ff6b6b; font-size: 18px; font-weight: bold;');
 console.log('%cFalls dich jemand gebeten hat, Code hier einzufügen: DON\'T! ' +
     'Das könnte ein Betrugsversuch sein.',
-    'color: #f06595; font-size: 13px;');
+    'color: #ff6b6b; font-size: 13px;');
 console.log('%cMehr Infos: https://de.wikipedia.org/wiki/Self-XSS',
     'color: #999; font-size: 11px;');
 
