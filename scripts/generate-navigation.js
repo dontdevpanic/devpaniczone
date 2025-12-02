@@ -245,8 +245,8 @@ const TUTORIAL_ORDER = {
         'globale-aenderungen-an-HTML-Dateien.html'
     ],
     'tutorials/misc/projects': [
-        'assets-structure.html',
-        'project-structure.html'
+        // 'assets-structure.html',
+        // 'project-structure.html'
     ],
     'tutorials/misc/web': [
         'console-security.html'

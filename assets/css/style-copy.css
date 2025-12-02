@@ -3,45 +3,36 @@
    ===============================================================================
    
    TABLE OF CONTENTS:
-   
-   1. @font-face Declarations........................ Zeile ~41   ===
-   2. CSS Custom Properties (Variables).............. Zeile ~77   ===
-   3. Reset & Base Styles............................ Zeile ~156  ===
-   4. Typography..................................... Zeile ~187  ===
-      - Headings..................................... Zeile ~190  ---
-      - Paragraphs & Text............................ Zeile ~260  ---
-      - Links........................................ Zeile ~279  ---
-      - Lists........................................ Zeile ~290  ---
-      - Inline Code (siehe Category Cards)........... Zeile ~1525 ---
-   5. Layout (Container, Sections)................... Zeile ~389  ===
-   6. Components..................................... Zeile ~429  ===
-      - Search Toggle & Dropdown..................... Zeile ~433  ---
-      - Header & Navigation.......................... Zeile ~652  ---
-      - Logo/Brand................................... Zeile ~673  ---
-      - Breadcrumbs.................................. Zeile ~707  ---
-      - Theme Toggle................................. Zeile ~764  ---
-      - Mobile Menu Toggle........................... Zeile ~813  ---
-      - Main Navigation & Dropdown................... Zeile ~883  ---
-      - Nested Navigation............................ Zeile ~1017 ---
-      - Main Content................................. Zeile ~1074 ---
-      - Hero Section................................. Zeile ~1083 ---
-      - Buttons...................................... Zeile ~1141 ---
-      - Icons........................................ Zeile ~1245 ---
-      - Categories & Grids........................... Zeile ~1285 ---
-      - Category Cards............................... Zeile ~1479 ---
-      - Inline Code & kbd............................ Zeile ~1525 ---
-      - Keyboard Navigation.......................... Zeile ~1560 ---
-      - Tooltips..................................... Zeile ~1724 ---
-      - Footer....................................... Zeile ~1770 ---
-      - Scroll to Top Button......................... Zeile ~1819 ---
-   7. Utilities...................................... Zeile ~1866 ===
-      - Text Utilities............................... Zeile ~1869 ---
-      - Margin Utilities............................. Zeile ~1896 ---
-      - Padding Utilities............................ Zeile ~2066 ---
-      - Color Utilities.............................. Zeile ~2222 ---
-      - Alignment Utilities.......................... Zeile ~2256 ---
-      - Screen Reader Only........................... Zeile ~2317 ---
-   8. Quick Reference................................ Zeile ~2388 ===
+   1. @font-face Declarations....................... Zeile ~32   ===
+   2. CSS Custom Properties......................... Zeile ~61   ===
+   3. Reset & Base Styles........................... Zeile ~105  ===
+   4. Typography.................................... Zeile ~142  ===
+      - Headings.................................... Zeile ~150  ---
+      - Paragraphs & Text........................... Zeile ~200  ---
+      - Links....................................... Zeile ~230  --- 
+      - Lists (Basis ol, ul)........................ Zeile ~230  ---
+      - Inline Code................................. Zeile ~230  ---
+   5. Layout........................................ Zeile ~282  ===
+   6. Components                                                 ===
+      - Top Bar / Search Bar........................ Zeile
+      - Header & Navigation......................... Zeile ~349  ---
+      - Mobile Menu & Dropdown...................... Zeile ~472  ---
+      - Breadcrumbs................................. Zeile ~353  ---
+      - Theme Toggle................................ Zeile ~499  ---
+      - Main Content................................ Zeile ~682  ---
+      - Hero Sections............................... Zeile ~693  ---
+      - Buttons..................................... Zeile ~799  ---
+      - Icons....................................... Zeile ~799
+      - Categories & Grids.......................... Zeile ~905  ---
+      - Code Blocks................................. Zeile ~1054 ---
+      - Info Boxes.................................. Zeile ~1230 ---
+      - Lists (arrow-list, etc.).................... Zeile ~1300 --- 
+      - Tag Grid.................................... Zeile ~1367 ---
+      - Reference Tables............................ Zeile ~1478 ---
+      - Tutorial Navigation......................... Zeile ~1645 ---
+      - Footer...................................... Zeile ~1730 ---
+   7. Utilities..................................... Zeile ~1787 ===
+   8. Quick Reference............................... Zeile ~1912 ===
 
    =============================================================================== */
 
@@ -107,6 +98,7 @@
     --accent-blue-gray: #64748b;
     /* --accent-blue: #569cd6; */
     /* --accent-blue-hover: #4a8cc7; */
+    /* --accent-purple-dark: #9b59d6; */
 
 
     /* ===== DARK MODE (Standard) ===== */
@@ -126,9 +118,12 @@
     --border-color: #3e3e42;
 
     --color-success: #28a745;
-    /* --color-warning: #ffa407; */
-    --color-warning: #d29346;
+    --color-warning: #ffa407;
+    /* --color-warning: #daa667; */
     --color-error: #dc3545;
+
+
+
 
 
     /* ===== SCHRIFTEN ===== */
@@ -169,6 +164,7 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    /* Breite inkludiert padding & border */
     margin: 0;
     padding: 0;
 }
@@ -176,6 +172,7 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    /* Smooth Scrolling für Anker-Links */
     scroll-padding-top: 60px;
 }
 
@@ -186,9 +183,12 @@ body {
     color: var(--text-primary);
     background-color: var(--bg-primary);
     min-height: 100vh;
+    /* Mindestens volle Bildschirmhöhe */
     display: flex;
     flex-direction: column;
+    /* Header, Main, Footer untereinander */
     transition: background-color 250ms ease, color 250ms ease;
+    /* Sanfter Dark/Light Wechsel */
 }
 
 
@@ -228,6 +228,7 @@ h2 {
     text-align: left;
 }
 
+/* border-bottom: 2px solid var(--heading-primary) */
 h3 {
     font-size: 1.4rem;
     text-align: left;
@@ -256,6 +257,7 @@ h3 img {
     width: 45px;
 }
 
+/* Responsive Überschriften */
 @media (max-width: 767px) {
     h1 {
         font-size: 2rem;
@@ -335,6 +337,15 @@ ul ul>li:last-child {
     margin-bottom: 0;
 }
 
+/* Nur verschachtelte ULs */
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 ol.grid-2col-bg {
     padding: 2rem 2.5rem 1.5rem;
 }
@@ -371,8 +382,9 @@ abbr {
 }
 
 /* ----- Inline Code ----- */
-/* AUSKOMMENTIERT: Duplikat - vollständigere Version bei Category Cards (ca. Zeile 1525) */
-/* code.inline {
+/* overflow-wrap: normal; - verhindert Umbrüche an Trennstellen */
+/* word-break: normal; - falls nötig */
+code.inline {
     font-family: var(--font-code);
     font-size: 0.9em;
     letter-spacing: 0.025rem;
@@ -382,7 +394,7 @@ abbr {
     white-space: nowrap;
     overflow-wrap: normal;
     word-break: normal;
-} */
+}
 
 pre {
     font-family: var(--font-code);
@@ -406,6 +418,18 @@ pre {
     padding: 0 1rem;
 }
 
+/* .container-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.4rem 1rem;
+} */
+
+/* ----- Sections ----- */
+/* .tutorials-content {
+    padding: 1.5rem 0;
+} */
+
 /* ----- Horizontal Rules ----- */
 hr {
     border: 1px dashed var(--border-color);
@@ -424,10 +448,14 @@ hr {
     max-width: 900px;
     margin: 0 auto 2rem;
     text-align: center;
+    /* zentriert mit 16px Abstand nach unten */
 }
 
+
+/* Auf größeren Bildschirmen mehr Seitenabstand */
 @media (min-width: 768px) {
 
+    /* ----- Container ----- */
     .container {
         padding: 0 4rem;
     }
@@ -463,6 +491,7 @@ hr {
     fill: currentColor;
 }
 
+/* Search Dropdown Container */
 .search-dropdown {
     position: absolute;
     top: 100%;
@@ -478,6 +507,7 @@ hr {
     z-index: 1000;
 }
 
+/* Search Input im Dropdown */
 .search-dropdown .search-input-group {
     position: relative;
     display: flex;
@@ -530,10 +560,12 @@ hr {
     opacity: 0;
 }
 
+/* Search Results im Dropdown */
 .search-dropdown .search-results {
     margin-top: 0.5rem;
 }
 
+/* Mobile: Dropdown Vollbreite */
 @media (max-width: 768px) {
     .search-dropdown {
         width: calc(100vw - 2rem);
@@ -545,6 +577,8 @@ hr {
     }
 }
 
+
+/* Search Results Dropdown */
 .search-results {
     position: absolute;
     top: calc(100% + 0.5rem);
@@ -642,6 +676,7 @@ hr {
     margin-bottom: 0.5rem;
 }
 
+/* Mobile Anpassungen */
 @media (max-width: 768px) {
     .search-bar {
         padding: 0.5rem 0;
@@ -649,11 +684,13 @@ hr {
 
     .search-shortcut {
         display: none;
+        /* Shortcut nur auf Desktop */
     }
 
     .search-input {
         padding-right: 1rem;
         font-size: 16px;
+        /* Verhindert Zoom auf iOS */
     }
 }
 
@@ -665,8 +702,10 @@ hr {
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
+    /* Bleibt beim Scrollen oben kleben */
     top: 0px;
     z-index: 100;
+    /* Liegt über allem anderen */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -676,11 +715,13 @@ hr {
     justify-content: space-between;
     padding: 0;
     height: 60px;
+    /* Feste Header-Höhe */
     gap: 1rem;
 }
 
 /* ===== LOGO/BRAND ===== */
 
+/* ----- Brand/Logo ----- */
 .brand-link {
     display: flex;
     align-items: center;
@@ -704,8 +745,10 @@ hr {
 
 .brand-name {
     display: none;
+    /* Versteckt auf Mobile */
 }
 
+/* Zeige Brand-Name auf Tablet und größer */
 @media (min-width: 768px) {
     .brand-name {
         display: inline;
@@ -745,6 +788,15 @@ hr {
     color: var(--text-secondary);
 }
 
+/* .breadcrumbs a {
+    color: var(--text-secondary);
+    transition: color 150ms ease;
+} */
+
+/* .breadcrumbs a:hover {
+    color: var(--accent-blue);
+} */
+
 .breadcrumb-separator {
     color: var(--text-primary);
     user-select: none;
@@ -769,12 +821,15 @@ hr {
     font-weight: 500;
 }
 
+/* ===== THEME TOGGLE (Dark/Light Mode Button) ===== */
+
 /* ----- Theme Toggle Button ----- */
 .theme-toggle {
     background: transparent;
     border: 2px solid var(--border-color);
     border-radius: 8px;
     width: 44px;
+    /* Touch-friendly Größe */
     height: 44px;
     display: flex;
     align-items: center;
@@ -800,23 +855,25 @@ hr {
     height: 20px;
     display: block;
     transition: transform 150ms ease, filter 150ms ease;
-    filter: brightness(0) saturate(100%) invert(89%) sepia(2%) saturate(158%) hue-rotate(182deg) brightness(85%) contrast(87%);
 }
 
-/* AUSKOMMENTIERT: Duplikat - wurde mit obigem Block zusammengeführt */
-/* .theme-toggle .theme-icon img {
+/* Optional: Icon in Textfarbe einfärben */
+.theme-toggle .theme-icon img {
     filter: brightness(0) saturate(100%) invert(89%) sepia(2%) saturate(158%) hue-rotate(182deg) brightness(85%) contrast(87%);
-} */
+    /* Färbt das SVG in --text-primary */
+}
 
+/* Icon wird beim Hover in Accent-Farbe gefärbt */
 .theme-toggle:hover .theme-icon img {
     filter: brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(3283%) hue-rotate(192deg) brightness(95%) contrast(90%);
+    /* Färbt das Icon in --accent-blue (blau) */
     transform: scale(1.1);
 }
 
-/* AUSKOMMENTIERT: Redundant - transition bereits in .theme-toggle .theme-icon img definiert */
-/* .theme-icon img {
+/* Optional: Rotation beim Wechsel */
+.theme-icon img {
     transition: transform 300ms ease;
-} */
+}
 
 /* -----------------------------------------------------------------------------
    MOBILE MENU TOGGLE & OVERLAY
@@ -835,12 +892,14 @@ hr {
     cursor: pointer;
     transition: border-color 150ms ease;
     position: relative;
+    /* Für die Hamburger-Linien */
 }
 
 .mobile-menu-toggle:hover {
     border-color: var(--accent-blue);
 }
 
+/* Hamburger-Icon (3 Linien) */
 .hamburger,
 .hamburger::before,
 .hamburger::after {
@@ -858,24 +917,30 @@ hr {
 
 .hamburger::before {
     transform: translateY(-8px);
+    /* Obere Linie */
 }
 
 .hamburger::after {
     transform: translateY(8px);
+    /* Untere Linie */
 }
 
+/* Verstecke Hamburger auf Desktop */
 @media (min-width: 768px) {
     .mobile-menu-toggle {
         display: none;
     }
 }
 
-/* ----- NAVIGATION MOBILE ----- */
-
+/* ===== NAVIGATION MOBILE ===== */
+/* HINWEIS: .main-nav wird für Mobile (display:none) und Desktop (display:block im Media Query) 
+   definiert - das ist korrekt für Mobile-First CSS! */
 .main-nav {
     display: none;
+    /* Versteckt auf Mobile (wird per JS geöffnet) */
     position: absolute;
     top: 70px;
+    /* Direkt unter dem Header */
     left: 0;
     right: 0;
     background-color: var(--bg-secondary);
@@ -883,46 +948,55 @@ hr {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Wird von JS hinzugefügt */
 .main-nav.is-open {
     display: block;
+    /* Wird von JS hinzugefügt */
 }
 
 /* -----------------------------------------------------------------------------
    MAIN NAVIGATION & DROPDOWN
    ----------------------------------------------------------------------------- */
 
+/* Desktop Navigation - immer sichtbar */
 @media (min-width: 768px) {
 
     .main-nav {
         display: block;
         position: static;
+        /* Normale Position, nicht absolute */
         border: none;
         box-shadow: none;
         background: transparent;
     }
 }
 
+/* Navigation Liste */
 .nav-list {
     list-style: none;
     display: flex;
     flex-direction: column;
+    /* Untereinander auf Mobile */
     gap: 0;
 }
 
 @media (min-width: 768px) {
     .nav-list {
         flex-direction: row;
+        /* Nebeneinander auf Desktop */
         gap: 0.5rem;
+        /* = 8px */
     }
 }
 
+/* Navigation Links */
 .nav-link {
     display: block;
     padding: 1rem 1.5rem;
+    /* = 16px 24px */
     color: var(--text-primary);
     transition: all 150ms ease;
     border-bottom: 1px solid var(--border-color);
+    /* Nur auf Mobile */
 }
 
 @media (min-width: 768px) {
@@ -939,7 +1013,7 @@ hr {
     color: var(--accent-blue);
 }
 
-/* ----- Dropdown Menu ----- */
+/* ===== DROPDOWN MENU ===== */
 
 .nav-item-dropdown {
     position: relative;
@@ -947,6 +1021,8 @@ hr {
     align-items: center;
 }
 
+
+/* ----- Dropdown Menu ----- */
 .dropdown-toggle {
     width: 100%;
     background: transparent;
@@ -963,8 +1039,10 @@ hr {
 
 @media (min-width: 768px) {
 
+    /* ----- Dropdown Menu ----- */
     .dropdown-toggle {
         border: none;
+        /* border-radius: 8px; */
         vertical-align: middle;
     }
 }
@@ -972,6 +1050,7 @@ hr {
 .dropdown-toggle:hover {
     background-color: var(--bg-tertiary);
     color: var(--accent-blue);
+    /* border-bottom: 2px solid var(--accent-blue); */
 }
 
 .dropdown-icon {
@@ -979,6 +1058,7 @@ hr {
     transition: transform 150ms ease;
 }
 
+/* Dreht das Icon wenn Dropdown offen */
 .dropdown-toggle[aria-expanded="true"] .dropdown-icon {
     transform: rotate(180deg);
 }
@@ -991,6 +1071,7 @@ hr {
     margin: 0;
 }
 
+/* Reset für alle li im Dropdown */
 .dropdown-menu li {
     padding: 0;
     margin: 0;
@@ -1000,6 +1081,7 @@ hr {
     display: block;
 }
 
+/* Desktop Dropdown */
 @media (min-width: 768px) {
     .dropdown-menu {
         position: absolute;
@@ -1043,6 +1125,7 @@ hr {
     margin-left: 0.5rem;
 }
 
+/* Icon dreht sich wenn Submenu aktiv */
 .nav-item-nested.is-active > .nav-link .submenu-icon {
     transform: rotate(90deg);
 }
@@ -1056,15 +1139,18 @@ hr {
     margin: 0;
 }
 
+/* Submenu sichtbar wenn Parent aktiv */
 .nav-item-nested.is-active > .dropdown-submenu {
     display: block;
 }
 
+/* Submenu li */
 .dropdown-submenu li {
     padding: 0;
     margin: 0;
 }
 
+/* Submenu Links - gleiche padding wie Parent-Links für bündigen Hover */
 .dropdown-submenu a {
     display: block;
     padding: 0.5rem 1.5rem;
@@ -1079,13 +1165,90 @@ hr {
 }
 
 
+
+/* ----- Nested Navigation Items (im Tutorials-Dropdown rechts) ----- */
+/* .nav-item-nested {
+        position: relative;
+    } */
+
+/* .nav-item-nested>.nav-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    } */
+
+/* .submenu-icon {
+        font-size: 0.875em;
+        transition: transform 150ms ease;
+        margin-left: 0.5rem;
+    } */
+
+/* Icon dreht sich wenn Submenu aktiv */
+/* .nav-item-nested.is-active>.nav-link .submenu-icon {
+        transform: rotate(90deg);
+    } */
+
+/* ----- Nested Submenu ----- */
+/* .dropdown-submenu {
+        display: none;
+        list-style: none;
+        background-color: var(--bg-secondary);
+    } */
+
+/* Submenu sichtbar wenn Parent aktiv */
+/* .nav-item-nested.is-active>.dropdown-submenu {
+        display: block;
+    } */
+
+/* Desktop: Submenu erscheint rechts */
+/* @media (min-width: 768px) {
+        .dropdown-submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            min-width: 180px;
+            margin-left: 0.25rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+            background-color: var(--bg-tertiary);
+        }
+    } */
+
+/* Mobile: Submenu unter dem Link */
+/* @media (max-width: 767px) {
+        .dropdown-submenu {
+            padding-left: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .dropdown-submenu a {
+            font-size: 0.9rem;
+            padding: 0.5rem 1.25rem;
+        }
+    } */
+
+/* .dropdown-submenu a {
+        display: block;
+        padding: 0.5rem 1.5rem;
+        color: var(--text-primary);
+        transition: all 150ms ease;
+    }
+
+    .dropdown-submenu a:hover {
+        background-color: var(--bg-primary);
+        color: var(--accent-blue);
+    } */
+
+
 /* ===================================
    MAIN CONTENT
    =================================== */
 
 .site-main {
     flex: 1;
+    /* Nimmt den verfügbaren Platz zwischen Header und Footer */
     padding-bottom: 4rem;
+    /* = 64px Abstand zum Footer */
 }
 
 /* ===================================
@@ -1095,11 +1258,17 @@ hr {
 .hero {
     text-align: center;
     padding: 6rem 0 4rem;
+    /* = 80px oben/unten */
     margin-top: -32px;
     margin-bottom: 3rem;
+    /* Hintergrund 100% breit */
     width: 100vw;
+    /* 100% Viewport Width */
     margin-left: calc(-50vw + 50%);
+    /* Kompensiert das zentrierte Parent-Element */
     margin-right: calc(-50vw + 50%);
+
+    /* Hintergrund Styling */
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
     border-bottom: 2px solid var(--border-color);
     box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
@@ -1107,12 +1276,20 @@ hr {
 
 .hero h1::before {
     content: '// ';
+    /* color: var(--accent-purple-dark); */
 }
 
-/* ----- Hero Container ----- */
+
+
+/* ===============================================================================
+   5. LAYOUT (Container, Sections)
+   =============================================================================== */
+
+/* ----- Container ----- */
 .hero .container {
     max-width: 1200px;
     margin: 0 auto;
+    /* padding: 0 1rem; */
 }
 
 @media (min-width: 768px) {
@@ -1120,6 +1297,15 @@ hr {
         padding: 0 2rem;
     }
 }
+
+/* Hero Titel mit Gradient-Effekt */
+/* .hero-title {
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--color-success) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+} */
 
 .hero-subtitle {
     font-size: 1.25rem;
@@ -1141,6 +1327,7 @@ hr {
 @media (min-width: 640px) {
     .hero-cta {
         flex-direction: row;
+        /* Nebeneinander ab 640px */
         justify-content: center;
     }
 }
@@ -1259,6 +1446,7 @@ svg.icon-inline {
     /* margin: 0 1em; */
 }
 
+/* POptischer Ausgleich, wenn middle nicht gut aussieht */
 svg.icon-va-y-2 {
     vertical-align: -2px;
 }
@@ -1267,10 +1455,12 @@ svg.icon-va-y-6 {
     vertical-align: -6px;
 }
 
+/* An Baseline des Textes */
 svg.icon-va-tb {
     vertical-align: text-bottom;
 }
 
+/* An Baseline der Kleinbuchstaben */
 svg.icon-va-tbase {
     vertical-align: baseline;
 }
@@ -1284,12 +1474,6 @@ svg.icon-small {
     font-size: 1.8rem;
 }
 
-.library-icon {
-    height: 20px;
-    width: auto;
-    transition: all 0.3s ease;
-}
-
 /* ===================================
    CATEGORIES SECTION
    =================================== */
@@ -1297,6 +1481,7 @@ svg.icon-small {
 .categories {
     margin: 0;
     padding: 2rem 0;
+    /* = 64px Abstand nach unten */
 }
 
 /* ----- Responsive Grids ----- */
@@ -1383,6 +1568,7 @@ svg.icon-small {
     margin: auto 0 0 0;
 }
 
+/* Hintergrund-Styling für Grid-Items, falls benötigt (kein Layout!) */
 .grid-2col-bg {
     padding: 1.5rem;
     background-color: var(--bg-secondary);
@@ -1421,7 +1607,9 @@ svg.icon-small {
     gap: 1.5rem;
     margin: 1rem 0;
     grid-template-columns: 1fr;
+    /* Mobile: untereinander */
     align-items: stretch;
+    /* Gleiche Höhe erzwingen */
 }
 
 .grid-2col-cards h4 {
@@ -1433,11 +1621,13 @@ svg.icon-small {
     display: flex;
     flex-direction: column;
     height: 100%;
+    /* Volle Grid-Höhe nutzen */
 }
 
 /* Content-Bereich soll wachsen und restlichen Platz füllen */
 .grid-2col-cards>.code-block>div:not(.code-header) {
     flex: 1;
+    /* Nimmt verfügbaren Platz */
 }
 
 .grid-2col-cards>.grid-2col-bg {
@@ -1451,6 +1641,7 @@ svg.icon-small {
 .grid-2col-cards .code-block pre {
     min-width: 0;
     white-space: pre;
+    /* Verhindert Zeilenumbruch im Code */
 }
 
 /* 640px: 2 Spalten */
@@ -1460,6 +1651,10 @@ svg.icon-small {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* .grid-2col-cards {
+        grid-template-columns: repeat(1, 1fr);
+    } */
+
     .categories-grid {
         grid-template-columns: repeat(2, 1fr);
         /* 2 gleich breite Spalten */
@@ -1467,7 +1662,12 @@ svg.icon-small {
 
     .grid-2-1col {
         grid-template-columns: 2fr 1fr;
+        /* Desktop: 2:1 Verhältnis */
     }
+
+    /* .grid-1-2col {
+        grid-template-columns: 0.5fr 2.5fr;
+    } */
 }
 
 @media (min-width: 1040px) {
@@ -1482,8 +1682,31 @@ svg.icon-small {
 
     .categories-grid {
         grid-template-columns: repeat(3, 1fr);
+        /* 3 gleich breite Spalten */
     }
 }
+
+/*  align-items: start; = oben bündig */
+/* .grid-1-2col {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    align-items: center;
+    
+} */
+
+/* .grid-1-2col>.code-block {
+    margin: auto 0 0 0;
+} */
+
+
+/* untereinander auf kleinen Screens */
+/* .grid-1-2col {
+        grid-template-columns: 0.5fr 2.5fr;
+    }
+} */
+
+
 
 /* -----------------------------------------------------------------------------
    CATEGORY CARDS HOME
@@ -1499,6 +1722,7 @@ svg.icon-small {
     flex-direction: column;
 }
 
+/* Hebt sich beim Hover */
 .category-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
@@ -1519,6 +1743,7 @@ svg.icon-small {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
     flex: 1;
+    /* Nimmt verfügbaren Platz - drückt Link nach unten */
 }
 
 .card-link {
@@ -1527,11 +1752,13 @@ svg.icon-small {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
+    /* = 4px */
     transition: gap 150ms ease;
 }
 
 .card-link:hover {
     gap: 0.5rem;
+    /* = 8px - Pfeil bewegt sich nach rechts */
 }
 
 /* Inline Code */
@@ -1544,6 +1771,7 @@ code:not([class]) {
     border-radius: 4px;
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
+    /* Ligaturen deaktivieren - !important am Ende */
     font-variant-ligatures: none !important;
     font-feature-settings: "liga" 0, "calt" 0 !important;
     -webkit-font-feature-settings: "liga" 0, "calt" 0;
@@ -1709,6 +1937,7 @@ kbd.key-active-blue {
         0 0 20px var(--accent-blue);
 }
 
+/* Responsive - ZUSAMMENGEFASST */
 @media (max-width: 768px) {
     .keyboard-nav {
         gap: 0.75rem;
@@ -1783,14 +2012,18 @@ kbd.key-active-blue {
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
     padding: 2rem 0;
+    /* = 32px oben/unten */
     margin-top: auto;
+    /* Drückt Footer immer nach unten */
 }
 
 .footer-content {
     display: flex;
     flex-direction: column;
+    /* Untereinander auf Mobile */
     align-items: center;
     gap: 1rem;
+    /* = 16px */
     text-align: center;
     padding: 0 1rem;
 }
@@ -1798,6 +2031,7 @@ kbd.key-active-blue {
 @media (min-width: 768px) {
     .footer-content {
         flex-direction: row;
+        /* Nebeneinander auf Desktop */
         justify-content: space-between;
         text-align: left;
     }
@@ -1806,23 +2040,491 @@ kbd.key-active-blue {
 .footer-text {
     color: var(--text-secondary);
     font-size: 0.875rem;
+    /* = 14px */
     margin: 0;
 }
 
 .footer-nav {
     display: flex;
     gap: 1.5rem;
+    /* = 24px */
 }
 
 .footer-nav a {
     color: var(--text-secondary);
     font-size: 0.875rem;
+    /* = 14px */
     transition: color 150ms ease;
 }
 
 .footer-nav a:hover {
     color: var(--accent-blue);
 }
+
+/* ====================================
+   7. UTILITIES - UTILITY CLASSES (Hilfsklassen)
+   ==================================== */
+
+/* ----- Text ----- */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-lg {
+    font-size: larger;
+}
+
+/* ---- Spacing Utilities ---- */
+/* Größen-Definition:
+        sm = 0.5rem
+        md = 1rem
+        lg = 2rem
+        xl = 3rem
+    */
+
+/* ====================================
+   UTILITIES - MARGIN
+   ==================================== */
+
+.m-0 {
+    margin: 0;
+}
+
+.m-sm {
+    margin: 0.5rem;
+}
+
+.m-md {
+    margin: 1rem;
+}
+
+.m-lg {
+    margin: 1.5rem;
+}
+
+.m-xl {
+    margin: 2rem;
+}
+
+.m-xxl {
+    margin: 2.5rem;
+}
+
+/* ---- Margin Top Utilities ---- */
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.mt-sm {
+    margin-top: 0.5rem;
+}
+
+.mt-md {
+    margin-top: 1rem;
+}
+
+.mt-lg {
+    margin-top: 1.5rem;
+}
+
+.mt-xl {
+    margin-top: 2rem;
+}
+
+/* ---- Margin Bottom Utilities ---- */
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-sm {
+    margin-bottom: 0.5rem;
+}
+
+.mb-md {
+    margin-bottom: 1rem;
+}
+
+.mb-lg {
+    margin-bottom: 1.5rem;
+}
+
+.mb-xl {
+    margin-bottom: 2rem;
+}
+
+/* ---- Margin Left Utilities ---- */
+.ml-0 {
+    margin-left: 0;
+}
+
+.ml-xs {
+    margin-left: 0.25rem;
+}
+
+.ml-sm {
+    margin-left: 0.5rem;
+}
+
+.ml-md {
+    margin-left: 1rem;
+}
+
+.ml-lg {
+    margin-left: 1.5rem;
+}
+
+.ml-xl {
+    margin-left: 2rem;
+}
+
+/* ---- Margin Right Utilities ---- */
+.mr-0 {
+    margin-right: 0;
+}
+
+.mr-sm {
+    margin-right: 0.5rem;
+}
+
+.mr-md {
+    margin-right: 1rem;
+}
+
+.mr-lg {
+    margin-right: 1.5rem;
+}
+
+.mr-xl {
+    margin-right: 2rem;
+}
+
+/* ---- Margin Horizontal Utilities (left + right) ---- */
+.mx-0 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.mx-sm {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.mx-md {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.mx-lg {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.mx-xl {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+/* ---- Margin Vertical Utilities (top + bottom) ---- */
+.my-0 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.my-sm {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.my-md {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.my-lg {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.my-xl {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* ----- Padding Utilities ----- */
+
+.p-0 {
+    padding: 0;
+}
+
+.p-sm {
+    padding: 0.5rem;
+}
+
+.p-md {
+    padding: 1rem;
+}
+
+.p-lg {
+    padding: 1.5rem;
+}
+
+.p-xl {
+    padding: 2rem;
+}
+
+/* ---- Padding Top Utilities ---- */
+.pt-0 {
+    padding-top: 0;
+}
+
+.pt-sm {
+    padding-top: 0.5rem;
+}
+
+.pt-md {
+    padding-top: 1rem;
+}
+
+.pt-lg {
+    padding-top: 1.5rem;
+}
+
+.pt-xl {
+    padding-top: 2rem;
+}
+
+/* ---- Padding Bottom Utilities ---- */
+.pb-0 {
+    padding-bottom: 0;
+}
+
+.pb-sm {
+    padding-bottom: 0.5rem;
+}
+
+.pb-md {
+    padding-bottom: 1rem;
+}
+
+.pb-lg {
+    padding-bottom: 1.5rem;
+}
+
+.pb-xl {
+    padding-bottom: 2rem;
+}
+
+/* ---- Padding Left Utilities ---- */
+.pl-0 {
+    padding-left: 0;
+}
+
+.pl-sm {
+    padding-left: 0.5rem;
+}
+
+.pl-md {
+    padding-left: 1rem;
+}
+
+.pl-lg {
+    padding-left: 1.5rem;
+}
+
+.pl-xl {
+    padding-left: 2rem;
+}
+
+/* ---- Padding Right Utilities ---- */
+.pr-0 {
+    padding-right: 0;
+}
+
+.pr-sm {
+    padding-right: 0.5rem;
+}
+
+.pr-md {
+    padding-right: 1rem;
+}
+
+.pr-lg {
+    padding-right: 1.5rem;
+}
+
+.pr-xl {
+    padding-right: 2rem;
+}
+
+/* ---- Padding Horizontal Utilities (left + right) ---- */
+.px-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.px-sm {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.px-md {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.px-lg {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.px-xl {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* ---- Padding Vertical Utilities (top + bottom) ---- */
+.py-0 {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.py-sm {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.py-md {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-lg {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.py-xl {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* ---- Color Utilities ---- */
+.red {
+    color: var(--accent-red-light);
+}
+
+.blue {
+    color: var(--accent-blue);
+}
+
+.gray {
+    color: var(--text-secondary);
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.no-border {
+    border: none;
+}
+
+.bg-primary {
+    background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary);
+}
+
+.bg-tertiary {
+    background-color: var(--color-bg-tertiary);
+}
+/* ---- Alignment Utilities ---- */
+
+/* ---- text-align ---- */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-lg {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ---- align-items (Flexbox/Grid) ---- */
+.items-start {
+    align-items: flex-start;
+}
+
+.items-left {
+    align-items: left;
+}
+
+
+.items-center {
+    align-items: center;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.items-baseline {
+    align-items: baseline;
+}
+
+.items-stretch {
+    align-items: stretch;
+}
+
+/* ---- Size Utilities ---- */
+
+.text-lg {
+    font-size: 1.2rem;
+}
+
+.wc {
+    max-width: 900px;
+}
+/* ----- Screen Reader Only (Barrierefreiheit) ----- */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
 
 /* ===================================
    SCROLL TO TOP BUTTON
@@ -1860,77 +2562,29 @@ kbd.key-active-blue {
     background: var(--accent-blue-hover);
     transform: translateY(-4px);
     border: none;
+    /* box-shadow: 0 8px 20px rgba(88, 166, 255, 0.5); */
 }
 
 @media (max-width: 1220px) {
+
+    /* Wenn Sidebar-Buttons vorhanden sind */
     body:has(.sidebar-toggle) #scrollTopBtn,
     body:has(.tutorial-nav-toggle) #scrollTopBtn {
         right: 1rem;
         bottom: 5rem;
+        /* 3rem höher als vorher */
     }
 }
 
-
-
-
-
-/* AUSKOMMENTIERT: Verschoben - Scroll to Top jetzt nach Footer (ca. Zeile 1820) */
-/* ===================================
-   SCROLL TO TOP BUTTON
-   =================================== */
-
-/* #scrollTopBtn {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 44px;
-    height: 44px;
-    border: none;
-    border-radius: 8px;
-    background: var(--border-color);
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 300ms ease;
-    z-index: 80;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#scrollTopBtn.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-#scrollTopBtn:hover {
-    background: var(--accent-blue-hover);
-    transform: translateY(-4px);
-    border: none;
-}
-
-@media (max-width: 1220px) {
-    body:has(.sidebar-toggle) #scrollTopBtn,
-    body:has(.tutorial-nav-toggle) #scrollTopBtn {
-        right: 1rem;
-        bottom: 5rem;
-    }
-} */
-
-/* AUSKOMMENTIERT: Verschoben zu Icons (ca. Zeile 1280) */
-/* .library-icon {
+.library-icon {
     height: 20px;
     width: auto;
     transition: all 0.3s ease;
-} */
+}
 
 
 /* ===================================
-   8. QUICK REFERENCE - ZUM NACHSCHLAGEN
+   QUICK REFERENCE - ZUM NACHSCHLAGEN
    =================================== 
    
    REM zu PIXEL Umrechnung (bei font-size: 16px als Basis):
