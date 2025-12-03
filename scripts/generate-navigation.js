@@ -241,7 +241,7 @@ const TUTORIAL_ORDER = {
         // Platzhalter
     ],
     'tutorials/misc/tools': [
-        'browser-dev-tools.html',                           // ← HIER, ganz vorne!
+        'browser-dev-tools.html',
         'bash-terminal.html',
         'git-versionskontrolle.html',
         'github-remote.html',
@@ -270,6 +270,16 @@ const TUTORIAL_ORDER = {
         // 'header-test.html'
     ]
 };
+
+// ============================================
+// LATEST TUTORIALS (manuell gepflegt für Startseite)
+// ============================================
+const LATEST_TUTORIALS = [
+    'tutorials/css/css-specials/css-organization.html',
+    'tutorials/javascript/javascript-basics/js-security.html',
+    'tutorials/misc/web/console-security.html',
+    'tutorials/php/php-basics/php-security.html'
+];
 
 // Custom Titles (überschreibt H1 aus HTML)
 const CUSTOM_TITLES = {
@@ -366,15 +376,15 @@ function extractTitle(html) {
 function extractHeroExcerpt(html) {
     const dom = new JSDOM(html);
     const document = dom.window.document;
-    
+
     // Versuche verschiedene Selektoren
     const selectors = [
         '.hero-subtitle',
-        '.hero-text', 
+        '.hero-text',
         '.hero p',
         '.tutorial-hero p'
     ];
-    
+
     for (const selector of selectors) {
         const element = document.querySelector(selector);
         if (element) {
@@ -386,7 +396,7 @@ function extractHeroExcerpt(html) {
             return text;
         }
     }
-    
+
     return null;
 }
 
@@ -412,31 +422,31 @@ function getCategoryBadgeClass(category) {
  */
 function generateLatestTutorialsData() {
     const allTutorials = [];
-    
+
     // Iteriere durch alle Kategorien in TUTORIAL_ORDER
     Object.keys(TUTORIAL_ORDER).forEach(key => {
         const parts = key.split('/');
         const category = parts[1]; // z.B. "html"
         const subcategory = parts[2]; // z.B. "html-basics"
-        
+
         const order = TUTORIAL_ORDER[key];
         if (!order || order.length === 0) return;
-        
+
         // Entferne "tutorials/" Prefix für den Dateipfad
         const cleanSubcategory = key.replace(/^tutorials\//, '');
-        
+
         order.forEach((filename, index) => {
             const filePath = path.join(tutorialsDir, cleanSubcategory, filename);
-            
+
             if (!fs.existsSync(filePath)) {
                 return;
             }
-            
+
             const html = fs.readFileSync(filePath, 'utf8');
             const title = CUSTOM_TITLES[filename] || extractTitle(html);
             const excerpt = extractHeroExcerpt(html);
             const url = getRelativeUrl(filePath);
-            
+
             allTutorials.push({
                 title,
                 excerpt,
@@ -451,7 +461,7 @@ function generateLatestTutorialsData() {
             });
         });
     });
-    
+
     return allTutorials;
 }
 
@@ -462,25 +472,32 @@ function generateLatestTutorialsData() {
 function generateLatestTutorialsJSON() {
     console.log('\n📝 Generiere Tutorial-Metadaten JSON...');
     console.log('─────────────────────────────────');
-    
+
     const tutorials = generateLatestTutorialsData();
-    
+
     // Sortiere: Neueste zuerst (höchster orderIndex)
     // Da wir in TUTORIAL_ORDER neue Tutorials am Ende hinzufügen,
     // ist der höchste Index das neueste Tutorial
-    const sortedByNewest = [...tutorials].reverse();
-    
+    // const sortedByNewest = [...tutorials].reverse();
+
+    // Hole die manuell gepflegten "Latest" Tutorials
+    const latestTutorials = LATEST_TUTORIALS.map(tutorialPath => {
+        return tutorials.find(t => t.url === '/' + tutorialPath);
+    }).filter(t => t !== undefined);
+
     const data = {
         generated: new Date().toISOString(),
         total: tutorials.length,
         // Alle Tutorials (für Kategorie-Seiten)
         all: tutorials,
         // Die neuesten 4 (für Startseite)
-        latest: sortedByNewest.slice(0, 4),
+        // latest: sortedByNewest.slice(0, 4),
+        // Die neuesten 4 (manuell gepflegt)
+        latest: latestTutorials.slice(0, 4),
         // Gruppiert nach Kategorie (für Kategorie-Seiten)
         byCategory: {}
     };
-    
+
     // Gruppiere nach Kategorie
     tutorials.forEach(tutorial => {
         if (!data.byCategory[tutorial.category]) {
@@ -488,15 +505,16 @@ function generateLatestTutorialsJSON() {
         }
         data.byCategory[tutorial.category].push(tutorial);
     });
-    
+
     // Schreibe JSON-Datei
     const jsonPath = path.join(dataDir, 'tutorials.json');
     fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2), 'utf8');
-    
+
     console.log(`  ✓ ${tutorials.length} Tutorials gefunden`);
-    console.log(`  ✓ Neueste 4: ${sortedByNewest.slice(0, 4).map(t => t.title).join(', ')}`);
+    // console.log(`  ✓ Neueste 4: ${sortedByNewest.slice(0, 4).map(t => t.title).join(', ')}`);
+    console.log(`  ✓ Neueste 4: ${latestTutorials.slice(0, 4).map(t => t.title).join(', ')}`);
     console.log(`  ✓ JSON gespeichert: /assets/data/tutorials.json`);
-    
+
     return data;
 }
 
@@ -1248,6 +1266,6 @@ function generateAllNavigation() {
 }
 
 // 3. Tutorial-Metadaten JSON generieren (NEU v2.2)
-    generateLatestTutorialsJSON();
-    
+generateLatestTutorialsJSON();
+
 generateAllNavigation();
