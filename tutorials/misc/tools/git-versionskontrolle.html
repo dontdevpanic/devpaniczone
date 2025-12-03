@@ -1,7 +1,11 @@
-<!DOCTYPE html><html lang="de"><head>
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Git von Grund auf verstehen: Installation, Commits, Branches und alles was du für lokale Versionskontrolle brauchst. Schritt für Schritt erklärt.">
+    <meta name="description"
+        content="Git von Grund auf verstehen: Installation, Commits, Branches und alles was du für lokale Versionskontrolle brauchst. Schritt für Schritt erklärt.">
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
     <meta name="author" content="DevPanicZone">
     <title>Git - Lokale Versionskontrolle | DevPanicZone</title>
@@ -15,145 +19,148 @@
 
 <body>
     <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                </a>
-            </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                    </span>
+                </button>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
 
-            <nav class="main-nav" id="mainNav" aria-label="Navigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/documentation/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                    </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
+                <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
                             </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/html/" class="nav-link">
+                                        HTML
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                        <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/css/" class="nav-link">
+                                        CSS
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                        <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/javascript/" class="nav-link">
+                                        JavaScript
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                        </li>
+                                        <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/php/" class="nav-link">
+                                        PHP
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/misc/" class="nav-link">
+                                        Verschiedenes
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                        <li><a href="/tutorials/misc/#web">Web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/documentation/" class="nav-link">
+                                        DevPanicZone!
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                        <!-- Search Toggle -->
+                        <li>
+                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Search Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown" hidden>
+                        <div class="search-input-group">
+                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path
+                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                            </svg>
+                            <input type="search" id="globalSearch" class="search-input"
+                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                        </div>
+
+                        <div class="search-results" id="searchResults" hidden>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                            <div class="search-results-footer">
+                                <button class="search-view-all" id="searchViewAll">
+                                    Alle Ergebnisse anzeigen →
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </div>
-    </div>
-</header>
-<!-- Header-End -->
+    </header>
+    <!-- Header-End -->
 
     <main class="site-main">
 
         <!-- Hero -->
         <section class="hero tutorial-hero">
             <div class="container">
-                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Git - Lokale Versionskontrolle</span></nav>
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                        class="breadcrumb-separator">›</span><a href="/tutorials/misc/"
+                        class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span
+                        class="breadcrumb-current">Git - Lokale Versionskontrolle</span></nav>
                 <h1 class="hero-title">Git - Lokale Versionskontrolle</h1>
                 <p class="hero-subtitle">Nie wieder "final_v2_FINAL_wirklich_251007.html" - Git merkt sich alles für
                     dich.</p>
@@ -161,7 +168,8 @@
         </section>
 
         <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+            title="Auf dieser Seite">
             <span class="toggle-icon">☰</span>
         </button>
 
@@ -190,25 +198,31 @@
                 <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                     <ul class="toc-list">
                         <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#was-ist-git-eigentlich">Was ist Git eigentlich?</a></li>
-                    <li class="toc-level-1"><a href="#git-installieren">Git installieren</a></li>
-                    <li class="toc-level-1"><a href="#projekt-mit-git-verbinden">Projekt mit Git verbinden</a></li>
-                    <li class="toc-level-1"><a href="#gitignore---was-git-ignorieren-soll">.gitignore - Was Git ignorieren soll</a></li>
-                    <li class="toc-level-1"><a href="#die-drei-zustaende-verstehen">Die drei Zustände verstehen</a></li>
-                    <li class="toc-level-1"><a href="#status-checken">Status checken</a></li>
-                    <li class="toc-level-1"><a href="#aenderungen-stagen">Änderungen stagen</a></li>
-                    <li class="toc-level-1"><a href="#commits-machen">Commits machen</a></li>
-                    <li class="toc-level-1"><a href="#aenderungen-ansehen">Änderungen ansehen</a></li>
-                    <li class="toc-level-1"><a href="#historie-anschauen">Historie anschauen</a></li>
-                    <li class="toc-level-1"><a href="#aenderungen-rueckgaengig-machen">Änderungen rückgängig machen</a></li>
-                    <li class="toc-level-1"><a href="#branches---parallele-welten">Branches - Parallele Welten</a></li>
-                    <li class="toc-level-1"><a href="#stashing---aenderungen-parken">Stashing - Änderungen parken</a></li>
-                    <li class="toc-level-1"><a href="#tags---versionen-markieren">Tags - Versionen markieren</a></li>
-                    <li class="toc-level-1"><a href="#git-cheatsheet">Git Cheatsheet</a></li>
-                    <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
-                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
-                    <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                        <li class="toc-level-1"><a href="#was-ist-git-eigentlich">Was ist Git eigentlich?</a></li>
+                        <li class="toc-level-1"><a href="#git-installieren">Git installieren</a></li>
+                        <li class="toc-level-1"><a href="#projekt-mit-git-verbinden">Projekt mit Git verbinden</a></li>
+                        <li class="toc-level-1"><a href="#gitignore---was-git-ignorieren-soll">.gitignore - Was Git
+                                ignorieren soll</a></li>
+                        <li class="toc-level-1"><a href="#die-drei-zustaende-verstehen">Die drei Zustände verstehen</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#status-checken">Status checken</a></li>
+                        <li class="toc-level-1"><a href="#aenderungen-stagen">Änderungen stagen</a></li>
+                        <li class="toc-level-1"><a href="#commits-machen">Commits machen</a></li>
+                        <li class="toc-level-1"><a href="#aenderungen-ansehen">Änderungen ansehen</a></li>
+                        <li class="toc-level-1"><a href="#historie-anschauen">Historie anschauen</a></li>
+                        <li class="toc-level-1"><a href="#aenderungen-rueckgaengig-machen">Änderungen rückgängig
+                                machen</a></li>
+                        <li class="toc-level-1"><a href="#branches---parallele-welten">Branches - Parallele Welten</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#stashing---aenderungen-parken">Stashing - Änderungen
+                                parken</a></li>
+                        <li class="toc-level-1"><a href="#tags---versionen-markieren">Tags - Versionen markieren</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#git-cheatsheet">Git Cheatsheet</a></li>
+                        <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
+                        <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                        <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
+                        <!-- Sidebar-Anchor-End -->
                     </ul>
                 </nav>
             </aside>
@@ -224,16 +238,19 @@
 
                 <div class="sidebar-nav">
                     <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">Tools</li>
-                    <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
-                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
-                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html" class="active">Git - Lokale Versionskontrolle</a></li>
-                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
-                    <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla anhand des Beispiels All-Inkl</a></li>
-                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
-                    <li class="sidebar-group-title">Web</li>
-                    <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
-                </ul>
+                        <li class="sidebar-group-title">Tools</li>
+                        <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
+                        <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                        <li><a href="/tutorials/misc/tools/git-versionskontrolle.html" class="active">Git - Lokale
+                                Versionskontrolle</a></li>
+                        <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
+                        <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla anhand des Beispiels
+                                All-Inkl</a></li>
+                        <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen
+                                an HTML-Dateien</a></li>
+                        <li class="sidebar-group-title">Web</li>
+                        <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
+                    </ul>
                 </div>
             </aside>
 
@@ -286,7 +303,8 @@
                         Command Line Tools installieren willst. Einfach bestätigen und warten.</p>
 
                     <h3 class="no-toc">Windows</h3>
-                    <p>Lade Git von <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com</a> herunter. Der Installer fragt viel - die
+                    <p>Lade Git von <a href="https://git-scm.com/download/win" target="_blank"
+                            rel="noopener">git-scm.com</a> herunter. Der Installer fragt viel - die
                         Standardeinstellungen sind okay.</p>
 
                     <h3 class="no-toc">Linux</h3>
@@ -366,7 +384,7 @@ README/
 temp/</code></pre>
 
                     <h3 class="no-toc">Wie die Syntax funktioniert</h3>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li><code class="inline">datei.txt</code> - Diese eine Datei ignorieren</li>
                         <li><code class="inline">ordner/</code> - Kompletter Ordner (der Slash am Ende = "ist ein
                             Verzeichnis")</li>
@@ -420,7 +438,7 @@ git commit -m "Navigation überarbeitet"</code></pre>
                     <pre><code class="language-bash">git status</code></pre>
 
                     <h3 class="no-toc">Was du siehst</h3>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li><span style="color: #e2777a;">Rot</span> = Geändert, aber noch nicht staged</li>
                         <li><span style="color: #7ec699;">Grün</span> = Staged, bereit für Commit</li>
                         <li>"Untracked files" = Neue Dateien, die Git noch nie gesehen hat</li>
@@ -435,7 +453,8 @@ Changes not staged for commit:
 Untracked files:
   js/new-feature.js</code></pre>
 
-                    <p>Das heißt: Du hast <code class="inline">style.css</code> und <code class="inline">index.html</code> geändert (aber noch nicht
+                    <p>Das heißt: Du hast <code class="inline">style.css</code> und <code
+                            class="inline">index.html</code> geändert (aber noch nicht
                         staged), und <code class="inline">new-feature.js</code> ist komplett neu.</p>
                 </section>
 
@@ -494,7 +513,7 @@ git commit -m "Bugfix: Footer bleibt jetzt unten"
 git commit -m "SEO: Meta-Descriptions ergänzt"</code></pre>
 
                     <p>Stell dir vor, du schaust in 6 Monaten auf die Historie. "Update" hilft dir null. "Header: Mobile
-                        Navigation hinzugefügt" sagt dir sofort, worum es geht.</p>
+                        Navigation hinzugefügt" sagt dir sofort, worum es geht. Hier gibt es eine kleine Übersicht der <a href="#conventional-commits">Conventional Commits</a>.</p>
 
                     <h3 class="no-toc">Shortcut für Faule</h3>
                     <pre><code class="language-bash">git commit -am "Nachricht"</code></pre>
@@ -589,11 +608,13 @@ git reset HEAD~1
 # Hard: ALLES weg (GEFÄHRLICH!)
 git reset --hard HEAD~1</code></pre>
 
-                    <p><code class="inline">HEAD~1</code> bedeutet "ein Commit zurück". <code class="inline">HEAD~3</code> wäre drei zurück.</p>
+                    <p><code class="inline">HEAD~1</code> bedeutet "ein Commit zurück". <code
+                            class="inline">HEAD~3</code> wäre drei zurück.</p>
 
                     <div class="info-box danger">
                         <strong class="box-title danger no-toc" id="achtung">reset --hard ist destruktiv!
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -662,7 +683,8 @@ Die andere Version
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-suche</code></pre>
 
                     <p>Du musst manuell entscheiden, welche Version richtig ist. Lösch die Marker
-                        (<code class="inline">&lt;&lt;&lt;</code>, <code class="inline">===</code>, <code class="inline">&gt;&gt;&gt;</code>), behalte den Code den
+                        (<code class="inline">&lt;&lt;&lt;</code>, <code class="inline">===</code>, <code
+                            class="inline">&gt;&gt;&gt;</code>), behalte den Code den
                         du willst, dann:</p>
                     <pre><code class="language-bash">git add die-datei.html
 git commit -m "Merge-Konflikt gelöst"</code></pre>
@@ -768,7 +790,8 @@ git stash pop           # Wiederherstellen</code></pre>
                         richtigen Ordner wechseln.</p>
 
                     <h3 class="no-toc">"nothing to commit"</h3>
-                    <p>Du hast entweder nichts geändert, oder alles ist schon committet. <code class="inline">git status</code> zeigt
+                    <p>Du hast entweder nichts geändert, oder alles ist schon committet. <code
+                            class="inline">git status</code> zeigt
                         dir mehr.</p>
 
                     <h3 class="no-toc">Datei wird trotz .gitignore getrackt</h3>
@@ -812,6 +835,50 @@ git reset --hard abc123</code></pre>
                     <p><code class="inline">git status</code> ist dein Freund. Vor jedem Commit, nach jedem Commit,
                         zwischendurch. Es
                         zeigt dir immer, wo du stehst.</p>
+
+                    <h3 class="no-toc" id="conventional-commits">Conventional Commits</h3>
+                    <table class="ref-table table-2col">
+                        <thead>
+                            <tr>
+                                <th>Type-Prefix</th>
+                                <th>Funktion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code class="inline">git commit -m "Refactor:..."</code></td>
+                                <td>Code-Umstrukturierung</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline">git commit -m "Add:..."</code></td>
+                                <td>Neues Feature</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline">git commit -m "Style:..."</code></td>
+                                <td>Formatierung, keine Code-Änderung</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline">git commit -m "Fix:..."</code></td>
+                                <td>Bugfix</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline">git commit -m "Update:..."</code></td>
+                                <td>Änderungen</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline">git commit -m "Remove:..."</code></td>
+                                <td>Löschungen</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline">git commit -m "Docs:..."</code></td>
+                                <td>Dokumentation</td>
+                            </tr>
+                            <tr>
+                                <td><code class="inline">git commit -m "Chore:..."</code></td>
+                                <td>Aufräumen, Dependencies, Build</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </section>
 
                 <!-- Nächste Schritte -->
@@ -822,7 +889,7 @@ git reset --hard abc123</code></pre>
                         Rechner, ohne Internet, ohne Account, ohne alles.</p>
 
                     <p>Wenn du dein Projekt online stellen, mit anderen teilen oder ein Backup in der Cloud haben
-                        willst, schau dir das <a href="github.html">GitHub Tutorial</a> an. Aber das ist optional - Git
+                        willst, schau dir das <a href="github-remote.html" target="_blank">GitHub Tutorial</a> an. Aber das ist optional - Git
                         funktioniert auch prima ohne.</p>
 
                     <h3 class="no-toc">Zum Üben</h3>
@@ -835,7 +902,8 @@ git reset --hard abc123</code></pre>
                         <li>Erstell einen Branch und merge ihn</li>
                     </ol>
 
-                    <p>Nach ein paar Tagen wird <code class="inline">git add</code> + <code class="inline">git commit</code> so automatisch wie
+                    <p class="pt-md">Nach ein paar Tagen wird <code class="inline">git add</code> + <code
+                            class="inline">git commit</code> so automatisch wie
                         Speichern.</p>
                 </section>
 
@@ -843,19 +911,21 @@ git reset --hard abc123</code></pre>
                 <!-- Prev/Next Navigation -->
                 <section class="tutorials-content">
                     <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/misc/tools/bash-terminal.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Terminal & Bash Basics</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/misc/tools/github-remote.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">GitHub - Dein Code in der Cloud</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div></nav>
+                        <div class="tutorial-nav-prev">
+                            <a href="/tutorials/misc/tools/bash-terminal.html">
+                                <span class="tutorial-nav-label">← Vorheriges</span>
+                                <span class="tutorial-nav-link">Terminal & Bash Basics</span>
+                                <span class="tutorial-nav-category">Tools</span>
+                            </a>
+                        </div>
+                        <div class="tutorial-nav-next">
+                            <a href="/tutorials/misc/tools/github-remote.html">
+                                <span class="tutorial-nav-label">Nächstes →</span>
+                                <span class="tutorial-nav-link">GitHub - Dein Code in der Cloud</span>
+                                <span class="tutorial-nav-category">Tools</span>
+                            </a>
+                        </div>
+                    </nav>
                 </section>
 
             </div> <!-- Wrapper .container -->
@@ -865,18 +935,18 @@ git reset --hard abc123</code></pre>
     </main>
 
     <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                </nav>
+            </div>
         </div>
-    </div>
-</footer>
-<!-- Footer-End -->
+    </footer>
+    <!-- Footer-End -->
 
     <button id="scrollTopBtn" title="Nach oben">↑</button>
     <script src="/assets/js/main.js" defer></script>
@@ -890,4 +960,6 @@ git reset --hard abc123</code></pre>
 
 
 
-</body></html>
+</body>
+
+</html>
