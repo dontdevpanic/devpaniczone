@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Lerne verschiedene Methoden zur CSS-Organisation: Dateiaufteilung, BEM, ITCSS, Sass/SCSS, CSS-in-JS und Utility-First. Behalte den Überblick bei großen Projekten.">
+    <meta name="keywords"
+        content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials, CSS Organisation, BEM, ITCSS, Sass, SCSS, Tailwind, CSS-in-JS">
+    <meta name="author" content="DevPanicZone">
+
+    <title>CSS Organisation | DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- <link rel="stylesheet" href="/assets/css/utilities.css">
+    <link rel="stylesheet" href="/assets/css/graphics.css"> -->
+    <link rel="stylesheet" href="/assets/css/tutorials.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                    </span>
+                </button>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
+
+                <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/html/" class="nav-link">
+                                        HTML
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                        <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/css/" class="nav-link">
+                                        CSS
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                        <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/javascript/" class="nav-link">
+                                        JavaScript
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                        </li>
+                                        <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/php/" class="nav-link">
+                                        PHP
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/misc/" class="nav-link">
+                                        Verschiedenes
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                        <li><a href="/tutorials/misc/#web">Web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/documentation/" class="nav-link">
+                                        DevPanicZone!
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                        <!-- Search Toggle -->
+                        <li>
+                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Search Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown" hidden>
+                        <div class="search-input-group">
+                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path
+                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                            </svg>
+                            <input type="search" id="globalSearch" class="search-input"
+                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                        </div>
+
+                        <div class="search-results" id="searchResults" hidden>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                            <div class="search-results-footer">
+                                <button class="search-view-all" id="searchViewAll">
+                                    Alle Ergebnisse anzeigen →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                        class="breadcrumb-separator">›</span><a href="/tutorials/css/"
+                        class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span
+                        class="breadcrumb-current">CSS Organisation</span></nav>
+                <h1 class="hero-title">CSS Organisation</h1>
+                <p class="hero-subtitle">Wie du bei 2000+ Zeilen CSS nicht den Verstand verlierst.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+            title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                        <li class="toc-level-1"><a href="#das-problem-mit-wachsendem-css">Das Problem mit wachsendem
+                                CSS</a></li>
+                        <li class="toc-level-1"><a href="#methode-1-aufteilen-in-mehrere-dateien">Methode 1: Aufteilen
+                                in mehrere Dateien</a></li>
+                        <li class="toc-level-2"><a href="#typische-ordnerstruktur">Typische Ordnerstruktur</a></li>
+                        <li class="toc-level-2"><a href="#alles-zusammenfuehren">Alles zusammenführen</a></li>
+                        <li class="toc-level-2"><a href="#warum-die-reihenfolge-wichtig-ist-css-spezifitaet">Warum die
+                                Reihenfolge wichtig ist: CSS Spezifität</a></li>
+                        <li class="toc-level-2"><a href="#die-at-rules">Die At-Rules</a></li>
+                        <li class="toc-level-2"><a href="#vor--nachteile-dieser-methode">Vor- &amp; Nachteile dieser
+                                Methode</a></li>
+                        <li class="toc-level-1"><a href="#methode-2-bem-block-element-modifier">Methode 2: BEM – Block
+                                Element Modifier</a></li>
+                        <li class="toc-level-2"><a href="#die-drei-bausteine">Die drei Bausteine</a></li>
+                        <li class="toc-level-2"><a href="#die-syntax">Die Syntax</a></li>
+                        <li class="toc-level-2"><a href="#im-html">Im HTML</a></li>
+                        <li class="toc-level-2"><a href="#warum-das-funktioniert">Warum das funktioniert</a></li>
+                        <li class="toc-level-2"><a href="#vorteile-1">Vorteile</a></li>
+                        <li class="toc-level-2"><a href="#nachteile-1">Nachteile</a></li>
+                        <li class="toc-level-1"><a href="#methode-3-itcss-inverted-triangle-css">Methode 3: ITCSS –
+                                Inverted Triangle CSS</a></li>
+                        <li class="toc-level-2"><a href="#das-umgekehrte-dreieck">Das umgekehrte Dreieck</a></li>
+                        <li class="toc-level-2"><a href="#die-sieben-schichten-erklaert">Die sieben Schichten
+                                erklärt</a></li>
+                        <li class="toc-level-2"><a href="#vorteile-2">Vorteile</a></li>
+                        <li class="toc-level-2"><a href="#nachteile-2">Nachteile</a></li>
+                        <li class="toc-level-1"><a
+                                href="#methode-4-sassscss-der-klassiker-unter-den-preprocessors">Methode 4: Sass/SCSS –
+                                Der
+                                Klassiker unter den Preprocessors</a></li>
+                        <li class="toc-level-2"><a href="#verschachtelung-nesting">Verschachtelung (Nesting)</a></li>
+                        <li class="toc-level-2"><a href="#variablen">Variablen</a></li>
+                        <li class="toc-level-2"><a href="#mixins-wiederverwendbare-codebloecke">Mixins –
+                                Wiederverwendbare Codeblöcke</a></li>
+                        <li class="toc-level-2"><a href="#partials-und-import">Partials und Import</a></li>
+                        <li class="toc-level-2"><a href="#der-build-prozess">Der Build-Prozess</a></li>
+                        <li class="toc-level-2"><a href="#vorteile-3">Vorteile</a></li>
+                        <li class="toc-level-2"><a href="#nachteile-3">Nachteile</a></li>
+                        <li class="toc-level-1"><a href="#methode-5-css-in-js-und-scoped-css">Methode 5: CSS-in-JS und
+                                Scoped CSS</a></li>
+                        <li class="toc-level-2"><a href="#scoped-css-in-vue">Scoped CSS in Vue</a></li>
+                        <li class="toc-level-2"><a href="#css-in-js-mit-styled-components-react">CSS-in-JS mit
+                                styled-components (React)</a></li>
+                        <li class="toc-level-2"><a href="#css-modules">CSS Modules</a></li>
+                        <li class="toc-level-2"><a href="#vorteile-4">Vorteile</a></li>
+                        <li class="toc-level-2"><a href="#nachteile-4">Nachteile</a></li>
+                        <li class="toc-level-1"><a href="#methode-6-utility-first-mit-tailwind-css">Methode 6:
+                                Utility-First mit Tailwind CSS</a></li>
+                        <li class="toc-level-2"><a href="#traditionelles-css-vs-utility-first">Traditionelles CSS vs.
+                                Utility-First</a></li>
+                        <li class="toc-level-2"><a href="#das-tailwind-vokabular">Das Tailwind-Vokabular</a></li>
+                        <li class="toc-level-2"><a href="#responsive-design-mit-tailwind">Responsive Design mit
+                                Tailwind</a></li>
+                        <li class="toc-level-2"><a href="#komponenten-extrahieren">Komponenten extrahieren</a></li>
+                        <li class="toc-level-2"><a href="#vorteile-5">Vorteile</a></li>
+                        <li class="toc-level-2"><a href="#nachteile-5">Nachteile</a></li>
+                        <li class="toc-level-1"><a href="#vergleich-welche-methode-passt-zu-dir">Vergleich: Welche
+                                Methode passt zu dir?</a></li>
+                        <li class="toc-level-1"><a href="#empfehlung-fuer-dein-projekt">Empfehlung für dein Projekt</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#kurzfristig-dateiaufteilung-erweitern">Kurzfristig:
+                                Dateiaufteilung erweitern</a></li>
+                        <li class="toc-level-2"><a href="#mittelfristig-bem-fuer-neue-komponenten">Mittelfristig: BEM
+                                für neue Komponenten</a></li>
+                        <li class="toc-level-2"><a href="#langfristig-optional-sassscss">Langfristig: Optional
+                                Sass/SCSS</a></li>
+                        <li class="toc-level-1"><a href="#fazit">Fazit</a></li>
+                        <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                        <li class="sidebar-group-title">CSS Basics</li>
+                        <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
+                        <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
+                        <li><a href="/tutorials/css/css-basics/css-typografie.html">CSS Typografie</a></li>
+                        <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
+                        <li class="sidebar-group-title">CSS Specials</li>
+                        <li><a href="/tutorials/css/css-specials/css-organization.html" class="active">CSS
+                                Organisation</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Einleitung -->
+                <section class="tutorials-content mt-xl">
+                    <h2 id="das-problem-mit-wachsendem-css">Das Problem mit wachsendem CSS</h2>
+                    <p>Kennst du das? Du startest ein Projekt mit einer übersichtlichen <code>style.css</code>. Nach ein
+                        paar Wochen sind es 500 Zeilen. Nach ein paar Monaten 2000. Irgendwann scrollst du mehr als du
+                        codest, und <kbd>⌘ / Strg</kbd> + <kbd>F</kbd> wird dein bester Freund.</p>
+
+                    <p>Mir jedenfalls geht es so. Gerade bei diesem Projekt habe ich regelrecht mit Klassen um mich
+                        geworfen – hier ein Code-Snippet, da ein Beispiel gestyled... Ich habe mich schön im CSS
+                        ausgetobt, und irgendwann kommt der Moment, wo du sagst: „Moment mal, das hatte ich doch schon
+                        mal irgendwo?" Also habe ich einfach meinen digitalen Freund gefragt: „Wie zum ... behalten
+                        andere da noch den Überblick?!"</p>
+
+                    <p>Die gute Nachricht: Du bist nicht allein. Die schlechte: Es gibt keine magische Lösung. Aber es
+                        gibt bewährte Strategien, die das Chaos bändigen. Welche davon zu dir passt, hängt von deinem
+                        Projekt, deinem Team und deinen Vorlieben ab.</p>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Spoiler!
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p>Die meisten Entwickler kämpfen genauso – oder sie haben gelernt,
+                            das Problem zu vermeiden, bevor es entsteht.</p>
+                    </div>
+                </section>
+
+                <!-- Methode 1: Dateiaufteilung -->
+                <section class="tutorials-content">
+                    <h2 id="methode-1-aufteilen-in-mehrere-dateien">Methode 1: Aufteilen in mehrere Dateien</h2>
+                    <p>Der natürlichste erste Schritt: Statt alles in eine riesige Datei zu packen, verteilst du dein
+                        CSS auf mehrere kleinere Dateien. Das ist wie Schubladen in einem Schrank – du weißt sofort, wo
+                        du suchen musst.</p>
+                    <p>Das ist eigentlich schon der Weg, den ich gewählt habe, nur bei weitem nicht so "radikal".</p>
+
+                    <h3 id="typische-ordnerstruktur">Typische Ordnerstruktur</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="box-title"><strong>PLAINTEXT</strong></div>
+                        </div>
+                        <pre><code class="language-plaintext">css/
+├── base/
+│   ├── reset.css         /* Browser-Reset oder Normalize */
+│   ├── typography.css    /* Schriften, Überschriften, Text */
+│   └── variables.css     /* Custom Properties */
+├── components/
+│   ├── buttons.css       /* Alle Button-Styles */
+│   ├── cards.css         /* Karten-Komponenten */
+│   ├── navigation.css    /* Haupt- und Sub-Navigation */
+│   └── forms.css         /* Formulare und Inputs */
+├── layout/
+│   ├── header.css        /* Header-spezifische Styles */
+│   ├── footer.css        /* Footer-Styles */
+│   └── grid.css          /* Layout-Grid, Container */
+├── pages/
+│   ├── home.css          /* Nur für Startseite */
+│   └── contact.css       /* Nur für Kontaktseite */
+├── utilities/
+│   └── utilities.css     /* Helper-Klassen: .mt-xl, .text-center */
+└── main.css              /* Importiert alles */</code></pre>
+                    </div>
+
+                    <h3 id="alles-zusammenfuehren">Alles zusammenführen</h3>
+                    <p>In deiner <code>main.css</code> oder <code>style.css</code> importierst du dann alles - diesen
+                        Schritt habe ich aktuell noch vor mir.</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="box-title"><strong>PLAINTEXT</strong></div>
+                        </div>
+                        <pre><code class="language-css">/* main.css */
+@import 'base/variables.css';
+@import 'base/reset.css';
+@import 'base/typography.css';
+
+@import 'layout/grid.css';
+@import 'layout/header.css';
+@import 'layout/footer.css';
+
+@import 'components/buttons.css';
+@import 'components/cards.css';
+@import 'components/navigation.css';
+@import 'components/forms.css';
+
+@import 'pages/home.css';
+
+@import 'utilities/utilities.css';</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <p><strong>Wichtig:</strong> Die Reihenfolge der Imports ist entscheidend! CSS wird von oben
+                            nach unten gelesen. <code>variables.css</code> muss ganz oben stehen,
+                            <code>utilities.css</code> ganz unten (damit Utility-Klassen alles überschreiben können).
+                        </p>
+                    </div>
+
+                    <h3 id="warum-die-reihenfolge-wichtig-ist-css-spezifitaet">Warum die Reihenfolge wichtig ist: CSS
+                        Spezifität</h3>
+
+                    <p>Die Spezifität bestimmt, welche CSS-Regel gewinnt, wenn mehrere Regeln auf dasselbe Element
+                        zutreffen. Sie wird als Punktesystem berechnet:</p>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Spezifitäts-Hierarchie (von hoch nach niedrig)
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>Inline-Styles</strong> <code>style="..."</code> = 1-0-0-0 (Nicht sicher, bitte
+                                vermeiden!)</li>
+                            <li><strong>IDs</strong> <code>#header</code> = 0-1-0-0</li>
+                            <li><strong>Klassen, Pseudo-Klassen, Attribute</strong> <code>.nav</code>,
+                                <code>:hover</code>, <code>[type="text"]</code> = 0-0-1-0
+                            </li>
+                            <li><strong>Elemente, Pseudo-Elemente</strong> <code>div</code>, <code>::before</code> =
+                                0-0-0-1</li>
+                        </ul>
+                    </div>
+
+                    <h4>Beispiel-Vergleich</h4>
+
+                    <div class="grid-2col">
+
+                        <div class="grid-2col-bg">
+                            <strong class="box-title no-toc"><code>main ul:not(.arrow-list) li</code></strong>
+                            <p>Spezifität: <strong>0-1-3</strong></p>
+                            <ul class="arrow-list">
+                                <li>0 IDs</li>
+                                <li>1 Klasse (durch <code>:not(.arrow-list)</code>)</li>
+                                <li>3 Elemente (<code>main</code>, <code>ul</code>, <code>li</code>)</li>
+                            </ul>
+                        </div>
+
+                        <div class="grid-2col-bg">
+                            <strong
+                                class="box-title no-toc"><code>.cheatsheet-grid .cheatsheet-section ul li</code></strong>
+                            <p>Spezifität: <strong>0-2-2</strong></p>
+                            <ul class="arrow-list">
+                                <li>0 IDs</li>
+                                <li>2 Klassen (<code>.cheatsheet-grid</code>, <code>.cheatsheet-section</code>)</li>
+                                <li>2 Elemente (<code>ul</code>, <code>li</code>)</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <p class="mt-md"><strong>Ergebnis:</strong> Die zweite Regel gewinnt, weil Klassen (0-<em>2</em>-2)
+                        schwerer wiegen als Elemente (0-<em>1</em>-3).</p>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Und bei gleicher Spezifität?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <p>Dann gewinnt die Regel, die <strong>später</strong> im CSS steht – die sogenannte
+                            <em>Cascade</em>. Genau deshalb muss <code>utilities.css</code> als letztes importiert
+                            werden: Ihre Klassen sollen alles andere überschreiben können.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 id="die-at-rules">Die At-Rules</h3>
+                        <p>Das <code>@</code> leitet sogenannte At-Rules ein – spezielle Anweisungen an den Browser, die
+                            keine normalen Style-Regeln sind.</p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>At-Rule</th>
+                                    <th>Was sie tut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>@import</code></td>
+                                    <td>Lädt eine andere CSS-Datei</td>
+                                </tr>
+                                <tr>
+                                    <td><code>@font-face</code></td>
+                                    <td>Definiert eine eigene Schriftart</td>
+                                </tr>
+                                <tr>
+                                    <td><code>@media</code></td>
+                                    <td>Styles nur unter bestimmten Bedingungen (Responsive!)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>@keyframes</code></td>
+                                    <td>Definiert Animationsschritte</td>
+                                </tr>
+                                <tr>
+                                    <td><code>@supports</code></td>
+                                    <td>Styles nur wenn Browser ein Feature unterstützt</td>
+                                </tr>
+                                <tr>
+                                    <td><code>@layer</code></td>
+                                    <td>Gruppiert CSS in Ebenen (neu, sehr mächtig!)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4>Warum das <code>@</code> ?</h4>
+                        <p>Es signalisiert dem Browser: "Achtung, das ist keine normale Selektor-Regel, sondern eine
+                            Meta-Anweisung." Das <code>@</code> trennt sozusagen die "Verwaltung" vom eigentlichen
+                            Styling.
+                        </p>
+                        <p>Ist also keine Funktion im Programmier-Sinne, sondern eher wie ein Präfix für
+                            "Sonderbefehle". </p>
+                    </div>
+
+                    <h3 id="vor-nachteile-dieser-methode">Vor- &amp; Nachteile dieser Methode</h3>
+                    <div class="grid-2col-cards pb-lg">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Vorteile</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
+                                <ul class="arrow-list">
+                                    <li>Einfach umzusetzen – keine neuen Tools nötig</li>
+                                    <li>Klare Trennung nach Funktion</li>
+                                    <li>Einzelne Dateien bleiben überschaubar</li>
+                                    <li>Weniger <code>&lt;link&gt;</code> im <code>head</code></li>
+                                    <li>Funktioniert mit jedem Projekt</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Nachteile</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path
+                                        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
+                                <ul class="arrow-list">
+                                    <li>Mehr HTTP-Requests (ohne Build-Prozess)</li>
+                                    <li><code>@import</code> in CSS - Sequentielles Laden (langsamer)</li>
+                                    <li>Ohne Konventionen kann es trotzdem chaotisch werden</li>
+                                    <li>Namenskonflikte sind weiterhin möglich</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="info-box">
+                        <p><strong>Für DevPanicZone:</strong> Diese Methode nutze ich bereits teilweise! Ich habe
+                            schon <code>style.css</code>, <code>tutorials.css</code>, <code>sidebar.css</code> und
+                            <code>utilities.css</code>. Der nächste logische Schritt wäre, die <code>style.css</code>
+                            weiter aufzuteilen und die At-Rules einzuführen.
+                        </p>
+                    </div> -->
+                </section>
+
+                <!-- Methode 2: BEM -->
+                <section class="tutorials-content">
+                    <h2 id="methode-2-bem-block-element-modifier">Methode 2: BEM – Block Element Modifier</h2>
+                    <p>BEM ist eine Namenskonvention für CSS-Klassen. Die Idee: Der Klassenname selbst verrät dir, was
+                        das Element ist und wozu es gehört. Keine Rätselraten, keine tiefen Verschachtelungen.</p>
+
+                    <h3 id="die-drei-bausteine">Die drei Bausteine</h3>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><strong>Block:</strong> Ein eigenständiger Komponente <code>.card</code>,
+                            <code>.navigation</code>
+                        </li>
+                        <li><strong>Element:</strong> Ein Teil des Blocks, der ohne ihn keinen Sinn ergibt
+                            <code>.card__title</code>, <code>.card__image</code>
+                        </li>
+                        <li><strong>Modifier:</strong> Eine Variation des Blocks oder Elements
+                            <code>.card--featured</code>, <code>.button--large</code>
+                        </li>
+                    </ul>
+
+                    <h3 id="die-syntax">Die Syntax</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Block */
+.card { }
+
+/* Element (mit doppeltem Unterstrich) */
+.card__title { }
+.card__image { }
+.card__content { }
+.card__button { }
+
+/* Modifier (mit doppeltem Bindestrich) */
+.card--featured { }
+.card--dark { }
+.card__button--primary { }
+.card__button--disabled { }</code></pre>
+                    </div>
+
+                    <p>Zunächst wird die Basis <code>.card</code> gestyled. Die Elemente innerhalb der
+                        <code>.card</code> werden mit <code>__</code> erweitert, z. B. <code>.card__button</code>. Soll
+                        der Button mehrere Zustände haben können, werden die Elemente modifiziert und mit
+                        <code>--</code> erweitert, z. B. <code>.card__button--disabled</code>.
+                    </p>
+
+                    <p><strong>Häufiger Denkfehler:</strong> Man könnte meinen, dass beim Button
+                        <code>.card__button--disabled</code> allein reicht. Aber dann fehlen alle Basis-Styles! Der
+                        Modifier ist nur
+                        die Abweichung vom Standard. Im HTML brauchst du deshalb <strong>immer beide Klassen</strong>:
+                    </p>
+
+
+
+
+                    <!-- <p>Zunächst wird die Basis <code>.card</code> gestyled. Die Elemente innerhalb der
+                        <code>.card</code> werden mit <code>__</code> erweitert, z. B. <code>.card__button</code>. Soll
+                        der Button meherere Zustände erreichen können, werden die Elemente modifiziert und mit
+                        <code>--</code> erweitert, z. B. <code>.card__button--disabled { }</code>
+                    </p>
+
+                    <p><strong>Häufiger Denkfehler</strong>: Man könnte meinen, dass bei einem Button
+                        <code>--disabled</code> allein reicht. Aber dann fehlen alle Basis-Styles! Der Modifier ist nur
+                        die Abweichung vom Standard.
+                    </p> -->
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-html">&lt;article class="card card--featured"&gt;
+    &lt;img class="card__image" src="..." alt="..."&gt;
+    &lt;h3 class="card__title"&gt;Überschrift&lt;/h3&gt;
+    &lt;p class="card__content"&gt;Beschreibung...&lt;/p&gt;
+    &lt;button class="card__button card__button--primary"&gt;  /* beide Klassen*/
+        Mehr erfahren
+    &lt;/button&gt;
+&lt;/article&gt;</code></pre>
+                    </div>
+
+                    <h3 id="warum-das-funktioniert">Warum das funktioniert</h3>
+                    <p>BEM löst mehrere Probleme gleichzeitig:</p>
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><strong>Flache Spezifität:</strong> Keine verschachtelten Selektoren wie
+                            <code>.header .nav .nav-list .nav-item a</code>. Alles hat die gleiche Spezifität (eine
+                            Klasse).
+                        </li>
+                        <li><strong>Selbstdokumentierend:</strong> <code>.card__title</code> sagt dir sofort: "Das ist
+                            der Titel innerhalb einer Card."</li>
+                        <li><strong>Keine Namenskonflikte:</strong> <code>.card__title</code> und
+                            <code>.article__title</code> sind eindeutig unterschiedlich.
+                        </li>
+                        <li><strong>Einfach zu suchen:</strong> Du suchst nach <code>.card</code> und findest alles, was
+                            zur Card gehört.</li>
+                    </ul>
+
+                    <h3 id="vor--nachteile-bem">Vor- &amp; Nachteile dieser Methode</h3>
+                    <div class="grid-2col-cards pb-lg">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Vorteile</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
+                                <ul class="arrow-list">
+                                    <li>Extrem flache Spezifität – keine Spezifitäts-Kriege</li>
+                                    <li>Klassennamen sind selbsterklärend</li>
+                                    <li>Funktioniert mit jedem Tech-Stack</li>
+                                    <li>Weit verbreitet – viele Entwickler kennen es</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Nachteile</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-danger" fill="var(--accent-red-light)" aria-hidden="true">
+                                    <path
+                                        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
+                                <ul class="arrow-list">
+                                    <li>Lange Klassennamen im HTML</li>
+                                    <li>Anfangs ungewohnt zu schreiben</li>
+                                    <li>Kann bei sehr tiefen Verschachtelungen sperrig werden</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Praxis-Tipp
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z" />
+                            </svg>
+                        </strong>
+                        <p>Du musst nicht dogmatisch sein. Viele Teams nutzen BEM nur für
+                            Komponenten, nicht für Layout oder Utilities.</p>
+                    </div>
+                </section>
+
+                <!-- Methode 3: ITCSS -->
+                <section class="tutorials-content">
+                    <h2 id="methode-3-itcss-inverted-triangle-css">Methode 3: ITCSS – Inverted Triangle CSS</h2>
+                    <p>ITCSS ist eine Architektur-Methode von Harry Roberts. Die Idee: Du sortierst dein CSS nach
+                        <strong>Reichweite</strong> und <strong>Spezifität</strong> – von breit und generisch zu eng und
+                        spezifisch.
+                    </p>
+
+                    <h3 id="das-umgekehrte-dreieck">Das umgekehrte Dreieck</h3>
+                    <p>Stell dir ein auf den Kopf gestelltes Dreieck vor:</p>
+                    <!-- <div class="grid-2col-bg">
+                        <img src="/assets/graphics/ITCSS-Graphic.svg" alt="Grafik ITCSS" width="800">
+                    </div> -->
+
+                    <div class="grid-2col-bg">
+                        <div class="itcss-graphic" role="img" aria-label="ITCSS Dreieck-Grafik"></div>
+
+                    </div>
+                    <!-- <pre><code class="language-plaintext">        ▼ Breite Reichweite, niedrige Spezifität
+    ┌─────────────────────────────────────┐
+    │  1. Settings    (Variablen)         │
+    ├─────────────────────────────────────┤
+    │  2. Tools       (Mixins, Funktionen)│
+    ├─────────────────────────────────────┤
+    │  3. Generic     (Reset, Normalize)  │
+    ├─────────────────────────────────────┤
+    │  4. Elements    (HTML-Elemente)     │
+    ├─────────────────────────────────────┤
+    │  5. Objects     (Layout-Patterns)   │
+    ├─────────────────────────────────────┤
+    │  6. Components  (UI-Komponenten)    │
+    ├─────────────────────────────────────┤
+    │  7. Utilities   (Helper, Overrides) │
+    └─────────────────────────────────────┘
+        ▲ Enge Reichweite, hohe Spezifität</code></pre> -->
+
+                    <h3 id="die-sieben-schichten-erklaert">Die sieben Schichten erklärt</h3>
+
+                    <h4>1. Settings</h4>
+                    <p>Globale Variablen, die überall verwendet werden:</p>
+                    <pre><code class="language-css">/* _settings.css */
+:root {
+    --color-primary: #2a7ae2;
+    --color-text: #1a1a1a;
+    --font-base: 'Fira Code', monospace;
+    --spacing-unit: 8px;
+}</code></pre>
+
+                    <h4>2. Tools</h4>
+                    <p>Mixins und Funktionen (relevant bei Sass/SCSS):</p>
+                    <pre><code class="language-scss">/* _tools.scss (Sass) */
+@mixin respond-to($breakpoint) {
+    @media (min-width: $breakpoint) {
+        @content;
+    }
+}</code></pre>
+
+                    <h4>3. Generic</h4>
+                    <p>Reset, Normalize, Box-Sizing – Styles ohne Klassen:</p>
+                    <pre><code class="language-css">/* _generic.css */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}</code></pre>
+
+                    <h4>4. Elements</h4>
+                    <p>Basis-Styles für HTML-Elemente (keine Klassen):</p>
+                    <pre><code class="language-css">/* _elements.css */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+}
+
+a {
+    color: var(--color-primary);
+}</code></pre>
+
+                    <h4>5. Objects</h4>
+                    <p>Layout-Patterns, ungestylt (OOCSS-Prinzip):</p>
+                    <pre><code class="language-css">/* _objects.css */
+.o-container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+.o-grid {
+    display: grid;
+    gap: var(--spacing-unit);
+}</code></pre>
+
+                    <h4>6. Components</h4>
+                    <p>Die eigentlichen UI-Komponenten:</p>
+                    <pre><code class="language-css">/* _components.css */
+.c-button {
+    padding: 0.75em 1.5em;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 4px;
+}
+
+.c-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}</code></pre>
+
+                    <h4>7. Utilities</h4>
+                    <p>Helper-Klassen mit <code>!important</code> (ja, hier ist es erlaubt!):</p>
+                    <pre><code class="language-css">/* _utilities.css */
+.u-hidden {
+    display: none !important;
+}
+
+.u-text-center {
+    text-align: center !important;
+}
+
+.u-mt-xl {
+    margin-top: 3rem !important;
+}</code></pre>
+
+                    <h3 id="vorteile-2">Vorteile</h3>
+                    <ul class="arrow-list">
+                        <li>Spezifität steigt natürlich – weniger Konflikte</li>
+                        <li>Klare Struktur für große Teams</li>
+                        <li>Kombinierbar mit BEM für Komponenten</li>
+                        <li>Skaliert gut bei wachsenden Projekten</li>
+                    </ul>
+
+                    <h3 id="nachteile-2">Nachteile</h3>
+                    <ul class="arrow-list">
+                        <li>Lernkurve – man muss die Philosophie verstehen</li>
+                        <li>Kann für kleine Projekte übertrieben sein</li>
+                        <li>Namenskonventionen (o-, c-, u-) sind optional, aber hilfreich</li>
+                    </ul>
+                </section>
+
+                <!-- Methode 4: Sass/SCSS -->
+                <section class="tutorials-content">
+                    <h2 id="methode-4-sassscss-der-klassiker-unter-den-preprocessors">Methode 4: Sass/SCSS – Der
+                        Klassiker unter den Preprocessors</h2>
+                    <p>Sass (Syntactically Awesome Style Sheets) erweitert CSS um Features, die dir das Leben leichter
+                        machen: Variablen, Verschachtelung, Mixins, Funktionen und mehr.</p>
+
+                    <div class="info-box">
+                        <p><strong>Sass vs. SCSS:</strong> Sass hat zwei Syntaxen. Die ältere (<code>.sass</code>) nutzt
+                            Einrückungen statt Klammern. Die neuere (<code>.scss</code>) sieht aus wie normales CSS mit
+                            Extras. Die meisten nutzen heute SCSS.</p>
+                    </div>
+
+                    <h3 id="verschachtelung-nesting">Verschachtelung (Nesting)</h3>
+                    <p>Statt flacher CSS-Selektoren kannst du verschachteln:</p>
+                    <pre><code class="language-scss">/* _navigation.scss */
+.nav {
+    display: flex;
+    gap: 1rem;
+
+    &amp;__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &amp;__item {
+        position: relative;
+
+        &amp;:hover {
+            .nav__dropdown {
+                display: block;
+            }
+        }
+    }
+
+    &amp;__link {
+        color: var(--color-text);
+        text-decoration: none;
+
+        &amp;:hover {
+            color: var(--color-primary);
+        }
+
+        &amp;--active {
+            font-weight: bold;
+        }
+    }
+}</code></pre>
+
+                    <p>Das <code>&amp;</code> steht für den Parent-Selector. <code>&amp;__list</code> wird zu
+                        <code>.nav__list</code>.
+                    </p>
+
+                    <h3 id="variablen">Variablen</h3>
+                    <pre><code class="language-scss">/* _variables.scss */
+$color-primary: #2a7ae2;
+$color-secondary: #e74c3c;
+$font-stack: 'Fira Code', monospace;
+$breakpoint-md: 768px;
+
+/* Verwendung */
+.button {
+    background: $color-primary;
+    font-family: $font-stack;
+
+    @media (min-width: $breakpoint-md) {
+        padding: 1rem 2rem;
+    }
+}</code></pre>
+
+                    <div class="info-box">
+                        <p><strong>Sass-Variablen vs. CSS Custom Properties:</strong> Sass-Variablen werden beim
+                            Kompilieren ersetzt – sie existieren nicht im Browser. CSS Custom Properties
+                            (<code>--color-primary</code>) sind zur Laufzeit verfügbar und können z.B. für Dark Mode
+                            geändert werden. Beide haben ihre Berechtigung!</p>
+                    </div>
+
+                    <h3 id="mixins-wiederverwendbare-codebloecke">Mixins – Wiederverwendbare Codeblöcke</h3>
+                    <pre><code class="language-scss">/* _mixins.scss */
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin respond-to($breakpoint) {
+    @media (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+/* Verwendung */
+.hero {
+    @include flex-center;
+    min-height: 100vh;
+
+    @include respond-to(768px) {
+        padding: 4rem;
+    }
+}</code></pre>
+
+                    <h3 id="partials-und-import">Partials und Import</h3>
+                    <p>Dateien mit <code>_</code> am Anfang sind "Partials" – sie werden nicht einzeln kompiliert:</p>
+                    <pre><code class="language-plaintext">scss/
+├── abstracts/
+│   ├── _variables.scss
+│   ├── _mixins.scss
+│   └── _functions.scss
+├── base/
+│   ├── _reset.scss
+│   └── _typography.scss
+├── components/
+│   ├── _buttons.scss
+│   └── _cards.scss
+├── layout/
+│   ├── _header.scss
+│   └── _footer.scss
+└── main.scss</code></pre>
+
+                    <pre><code class="language-scss">/* main.scss */
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+
+@use 'base/reset';
+@use 'base/typography';
+
+@use 'components/buttons';
+@use 'components/cards';
+
+@use 'layout/header';
+@use 'layout/footer';</code></pre>
+
+                    <div class="warning-box">
+                        <p><strong>Hinweis:</strong> <code>@import</code> ist veraltet! Nutze stattdessen
+                            <code>@use</code> und <code>@forward</code>. Sie haben besseres Scoping und vermeiden
+                            Duplikate.
+                        </p>
+                    </div>
+
+                    <h3 id="der-build-prozess">Der Build-Prozess</h3>
+                    <p>SCSS muss zu CSS kompiliert werden. Optionen:</p>
+                    <ul class="arrow-list">
+                        <li><strong>VS Code Extension:</strong> "Live Sass Compiler" – kompiliert beim Speichern</li>
+                        <li><strong>npm:</strong> <code>npm install -g sass</code>, dann
+                            <code>sass --watch scss:css</code>
+                        </li>
+                        <li><strong>Build-Tools:</strong> Webpack, Vite, Gulp – für komplexere Projekte</li>
+                    </ul>
+
+                    <h3 id="vorteile-3">Vorteile</h3>
+                    <ul class="arrow-list">
+                        <li>Mächtiger als reines CSS</li>
+                        <li>Bessere Organisation durch Partials</li>
+                        <li>Mixins reduzieren Wiederholungen</li>
+                        <li>Verschachtelung macht BEM angenehmer</li>
+                        <li>Riesige Community und Dokumentation</li>
+                    </ul>
+
+                    <h3 id="nachteile-3">Nachteile</h3>
+                    <ul class="arrow-list">
+                        <li>Build-Schritt erforderlich</li>
+                        <li>Lernkurve für fortgeschrittene Features</li>
+                        <li>Zu tiefe Verschachtelung kann zu aufgeblähtem CSS führen</li>
+                        <li>Modernes CSS holt auf (Custom Properties, Nesting ist nativ in Arbeit)</li>
+                    </ul>
+                </section>
+
+                <!-- Methode 5: CSS-in-JS / Scoped CSS -->
+                <section class="tutorials-content">
+                    <h2 id="methode-5-css-in-js-und-scoped-css">Methode 5: CSS-in-JS und Scoped CSS</h2>
+                    <p>Bei JavaScript-Frameworks wie React, Vue oder Svelte gibt es einen anderen Ansatz: Das CSS lebt
+                        direkt bei der Komponente. Kein globales Stylesheet, keine Namenskonflikte.</p>
+
+                    <h3 id="scoped-css-in-vue">Scoped CSS in Vue</h3>
+                    <p>Vue macht es besonders einfach:</p>
+                    <pre><code class="language-html">&lt;template&gt;
+    &lt;div class="card"&gt;
+        &lt;h3 class="title"&gt;{{ title }}&lt;/h3&gt;
+        &lt;p class="content"&gt;{{ content }}&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.title {
+    /* Nur DIESE .title Klasse – nicht global! */
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.content {
+    color: #666;
+}
+&lt;/style&gt;</code></pre>
+
+                    <p>Das <code>scoped</code> Attribut sorgt dafür, dass Vue automatisch einzigartige Attribute
+                        generiert. Im Browser wird daraus:</p>
+                    <pre><code class="language-css">.card[data-v-7ba5bd90] { ... }
+.title[data-v-7ba5bd90] { ... }</code></pre>
+
+                    <h3 id="css-in-js-mit-styled-components-react">CSS-in-JS mit styled-components (React)</h3>
+                    <pre><code class="language-jsx">import styled from 'styled-components';
+
+const Card = styled.div`
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    
+    &amp;:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+`;
+
+const Title = styled.h3`
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: ${props =&gt; props.featured ? '#e74c3c' : '#1a1a1a'};
+`;
+
+// Verwendung
+function MyCard({ title, content, featured }) {
+    return (
+        &lt;Card&gt;
+            &lt;Title featured={featured}&gt;{title}&lt;/Title&gt;
+            &lt;p&gt;{content}&lt;/p&gt;
+        &lt;/Card&gt;
+    );
+}</code></pre>
+
+                    <h3 id="css-modules">CSS Modules</h3>
+                    <p>Ein Mittelweg – normale CSS-Dateien, aber mit automatischem Scoping:</p>
+                    <pre><code class="language-css">/* Card.module.css */
+.card {
+    background: white;
+    border-radius: 8px;
+}
+
+.title {
+    font-size: 1.25rem;
+}</code></pre>
+
+                    <pre><code class="language-jsx">// Card.jsx
+import styles from './Card.module.css';
+
+function Card({ title }) {
+    return (
+        &lt;div className={styles.card}&gt;
+            &lt;h3 className={styles.title}&gt;{title}&lt;/h3&gt;
+        &lt;/div&gt;
+    );
+}
+// Generiert: class="Card_card__x7Zk2"</code></pre>
+
+                    <h3 id="vorteile-4">Vorteile</h3>
+                    <ul class="arrow-list">
+                        <li>Keine Namenskonflikte – per Design unmöglich</li>
+                        <li>CSS lebt direkt bei der Komponente</li>
+                        <li>Beim Löschen einer Komponente verschwindet auch das CSS</li>
+                        <li>Dynamische Styles basierend auf Props</li>
+                    </ul>
+
+                    <h3 id="nachteile-4">Nachteile</h3>
+                    <ul class="arrow-list">
+                        <li>Nur mit JavaScript-Frameworks sinnvoll</li>
+                        <li>Build-Prozess erforderlich</li>
+                        <li>Globale Styles werden komplizierter</li>
+                        <li>Performance-Overhead bei CSS-in-JS (Runtime)</li>
+                        <li>Lernkurve für das jeweilige Tool</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <p><strong>Für statische Websites:</strong> CSS-in-JS ist Overkill. Es glänzt in komplexen
+                            Web-Apps mit vielen wiederverwendbaren Komponenten.</p>
+                    </div>
+                </section>
+
+                <!-- Methode 6: Utility-First (Tailwind) -->
+                <section class="tutorials-content">
+                    <h2 id="methode-6-utility-first-mit-tailwind-css">Methode 6: Utility-First mit Tailwind CSS</h2>
+                    <p>Der radikalste Ansatz: Du schreibst kaum noch eigenes CSS. Stattdessen nutzt du vordefinierte
+                        Utility-Klassen direkt im HTML.</p>
+
+                    <h3 id="traditionelles-css-vs-utility-first">Traditionelles CSS vs. Utility-First</h3>
+
+                    <h4>Traditionell:</h4>
+                    <pre><code class="language-html">&lt;div class="card"&gt;
+    &lt;h3 class="card-title"&gt;Titel&lt;/h3&gt;
+    &lt;p class="card-content"&gt;Inhalt...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                    <pre><code class="language-css">.card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #1a1a1a;
+    border-radius: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+}
+
+.card-content {
+    color: #a0a0a0;
+}</code></pre>
+
+                    <h4>Mit Tailwind:</h4>
+                    <pre><code class="language-html">&lt;div class="flex flex-col gap-4 p-6 bg-gray-900 rounded-lg"&gt;
+    &lt;h3 class="text-xl font-semibold text-white"&gt;Titel&lt;/h3&gt;
+    &lt;p class="text-gray-400"&gt;Inhalt...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+                    <p>Kein zusätzliches CSS nötig!</p>
+
+                    <h3 id="das-tailwind-vokabular">Das Tailwind-Vokabular</h3>
+                    <p>Einige häufige Klassen:</p>
+
+                    <div class="table-wrapper">
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Kategorie</th>
+                                    <th>Klassen</th>
+                                    <th>Bedeutung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Spacing</td>
+                                    <td><code>p-4</code>, <code>m-2</code>, <code>px-6</code>, <code>mt-8</code></td>
+                                    <td>Padding/Margin (4 = 1rem)</td>
+                                </tr>
+                                <tr>
+                                    <td>Flexbox</td>
+                                    <td><code>flex</code>, <code>items-center</code>, <code>justify-between</code></td>
+                                    <td>Layout</td>
+                                </tr>
+                                <tr>
+                                    <td>Grid</td>
+                                    <td><code>grid</code>, <code>grid-cols-3</code>, <code>gap-4</code></td>
+                                    <td>Grid-Layout</td>
+                                </tr>
+                                <tr>
+                                    <td>Farben</td>
+                                    <td><code>bg-blue-500</code>, <code>text-white</code>, <code>border-gray-300</code>
+                                    </td>
+                                    <td>Hintergrund, Text, Border</td>
+                                </tr>
+                                <tr>
+                                    <td>Typography</td>
+                                    <td><code>text-lg</code>, <code>font-bold</code>, <code>leading-relaxed</code></td>
+                                    <td>Schriftgröße, -gewicht, Zeilenhöhe</td>
+                                </tr>
+                                <tr>
+                                    <td>Responsive</td>
+                                    <td><code>md:flex</code>, <code>lg:grid-cols-4</code></td>
+                                    <td>Ab Breakpoint aktiv</td>
+                                </tr>
+                                <tr>
+                                    <td>States</td>
+                                    <td><code>hover:bg-blue-600</code>, <code>focus:ring-2</code></td>
+                                    <td>Pseudo-Klassen</td>
+                                </tr>
+                                <tr>
+                                    <td>Dark Mode</td>
+                                    <td><code>dark:bg-gray-800</code>, <code>dark:text-white</code></td>
+                                    <td>Nur im Dark Mode</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 id="responsive-design-mit-tailwind">Responsive Design mit Tailwind</h3>
+                    <pre><code class="language-html">&lt;div class="
+    grid 
+    grid-cols-1 
+    md:grid-cols-2 
+    lg:grid-cols-4 
+    gap-4 
+    p-4 
+    md:p-8
+"&gt;
+    &lt;!-- 1 Spalte mobil, 2 ab 768px, 4 ab 1024px --&gt;
+&lt;/div&gt;</code></pre>
+
+                    <h3 id="komponenten-extrahieren">Komponenten extrahieren</h3>
+                    <p>Wenn sich Patterns wiederholen, kannst du sie in CSS extrahieren:</p>
+                    <pre><code class="language-css">/* Mit @apply (in deiner CSS-Datei) */
+.btn-primary {
+    @apply px-6 py-3 bg-blue-600 text-white font-semibold 
+           rounded-lg hover:bg-blue-700 transition-colors;
+}</code></pre>
+
+                    <h3 id="vorteile-5">Vorteile</h3>
+                    <ul class="arrow-list">
+                        <li>Extrem schnelle Entwicklung</li>
+                        <li>Konsistentes Design-System eingebaut</li>
+                        <li>Keine CSS-Dateien die wachsen</li>
+                        <li>Unused CSS wird automatisch entfernt (PurgeCSS)</li>
+                        <li>Responsive Design ist trivial</li>
+                    </ul>
+
+                    <h3 id="nachteile-5">Nachteile</h3>
+                    <ul class="arrow-list">
+                        <li>HTML wird "hässlich" mit vielen Klassen</li>
+                        <li>Lernkurve – du musst die Klassen kennen</li>
+                        <li>Build-Prozess erforderlich</li>
+                        <li>Nicht für jeden – polarisierender Ansatz</li>
+                        <li>Komplexe Custom-Styles werden umständlich</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <p><strong>Ehrliche Meinung:</strong> Tailwind ist großartig für schnelles Prototyping und wenn
+                            du das Design-System akzeptierst. Für individuelle Designs wie DevPanicZone, wo du volle
+                            Kontrolle willst, kann es einschränkend sein.</p>
+                    </div>
+                </section>
+
+                <!-- Vergleichstabelle -->
+                <section class="tutorials-content">
+                    <h2 id="vergleich-welche-methode-passt-zu-dir">Vergleich: Welche Methode passt zu dir?</h2>
+
+                    <div class="table-wrapper">
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Methode</th>
+                                    <th>Lernkurve</th>
+                                    <th>Build-Tools</th>
+                                    <th>Projekt­größe</th>
+                                    <th>Ideal für</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Dateiaufteilung</strong></td>
+                                    <td>⭐</td>
+                                    <td>Nein</td>
+                                    <td>Klein–Mittel</td>
+                                    <td>Einsteiger, einfache Projekte</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>BEM</strong></td>
+                                    <td>⭐⭐</td>
+                                    <td>Nein</td>
+                                    <td>Alle</td>
+                                    <td>Teams, langlebige Projekte</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ITCSS</strong></td>
+                                    <td>⭐⭐⭐</td>
+                                    <td>Optional</td>
+                                    <td>Mittel–Groß</td>
+                                    <td>Enterprise, große Teams</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sass/SCSS</strong></td>
+                                    <td>⭐⭐</td>
+                                    <td>Ja</td>
+                                    <td>Mittel–Groß</td>
+                                    <td>Komplexe Styles, DRY-Code</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CSS-in-JS</strong></td>
+                                    <td>⭐⭐⭐</td>
+                                    <td>Ja</td>
+                                    <td>Mittel–Groß</td>
+                                    <td>React/Vue/Svelte Apps</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tailwind</strong></td>
+                                    <td>⭐⭐</td>
+                                    <td>Ja</td>
+                                    <td>Alle</td>
+                                    <td>Schnelles Prototyping, Teams</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Empfehlung für DevPanicZone -->
+                <section class="tutorials-content">
+                    <h2 id="empfehlung-fuer-dein-projekt">Empfehlung für dein Projekt</h2>
+                    <p>Basierend auf dem, was du bereits hast und wo du hinwillst, hier mein Vorschlag:</p>
+
+                    <h3 id="kurzfristig-dateiaufteilung-erweitern">Kurzfristig: Dateiaufteilung erweitern</h3>
+                    <p>Du hast schon eine gute Basis mit getrennten Dateien. Der nächste Schritt:</p>
+                    <pre><code class="language-plaintext">css/
+├── style.css         /* Nur noch: Reset, Typography, Base */
+├── layout.css        /* NEU: Header, Footer, Grid, Container */
+├── components.css    /* NEU: Buttons, Cards, Info-Boxes */
+├── tutorials.css     /* Bleibt: Tutorial-spezifische Styles */
+├── sidebar.css       /* Bleibt */
+└── utilities.css     /* Bleibt */</code></pre>
+
+                    <h3 id="mittelfristig-bem-fuer-neue-komponenten">Mittelfristig: BEM für neue Komponenten</h3>
+                    <p>Wenn du neue Komponenten baust, nutze BEM-Konventionen:</p>
+                    <pre><code class="language-css">/* Statt */
+.info-box { }
+.info-box p { }
+.info-box.warning { }
+
+/* BEM */
+.info-box { }
+.info-box__content { }
+.info-box--warning { }</code></pre>
+
+                    <h3 id="langfristig-optional-sassscss">Langfristig: Optional Sass/SCSS</h3>
+                    <p>Wenn du merkst, dass du viele Mixins oder komplexe Verschachtelungen brauchst, ist Sass der
+                        logische nächste Schritt. Aber: Modernes CSS kann mittlerweile sehr viel – natives Nesting
+                        kommt!</p>
+
+                    <div class="info-box">
+                        <p><strong>Wichtig:</strong> Du musst nicht alles auf einmal ändern! Refactoring im laufenden
+                            Betrieb – neue Komponenten nach neuen Regeln, alte nach und nach migrieren.</p>
+                    </div>
+                </section>
+
+                <!-- Fazit -->
+                <section class="tutorials-content">
+                    <h2 id="fazit">Fazit</h2>
+                    <p>Es gibt keine "beste" Methode – nur die richtige für dein Projekt. Die wichtigsten Takeaways:</p>
+
+                    <ul class="arrow-list">
+                        <li><strong>Dateiaufteilung</strong> ist der einfachste erste Schritt</li>
+                        <li><strong>BEM</strong> löst Namenskonflikte und Spezifitätsprobleme</li>
+                        <li><strong>ITCSS</strong> gibt dir eine Architektur für große Projekte</li>
+                        <li><strong>Sass/SCSS</strong> macht CSS mächtiger, braucht aber Build-Tools</li>
+                        <li><strong>CSS-in-JS</strong> ist perfekt für komponentenbasierte Frameworks</li>
+                        <li><strong>Tailwind</strong> eliminiert CSS fast komplett – wenn du das magst</li>
+                    </ul>
+
+                    <p>Und das Wichtigste: Jeder kämpft mit CSS-Organisation. Du bist in guter Gesellschaft! 🎯</p>
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                <section class="tutorials-content">
+                    <nav class="tutorial-nav">
+                        <div class="tutorial-nav-prev">
+                            <a href="/tutorials/css/css-basics/css-mobile-first.html">
+                                <span class="tutorial-nav-label">← Vorheriges</span>
+                                <span class="tutorial-nav-link">Mobile First Design</span>
+                                <span class="tutorial-nav-category is-new">CSS Basics</span>
+                            </a>
+                        </div>
+                        <div class="tutorial-nav-next"></div>
+                    </nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer-End -->
+
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/js/scroll-spy.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+
+
+</body>
+
+</html>

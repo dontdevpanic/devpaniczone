@@ -1083,6 +1083,195 @@ ul.cross-list li::before {
     border: 1px solid var(--border-color);
 }
 
+/* ============================================
+   MULTI-COLUMN TABLE STYLES
+   Erweiterung für Tabellen mit 4+ Spalten
+   ============================================ */
+
+/* ---- Wrapper für horizontales Scrollen ---- */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    /* Scrollbar-Hinweis auf Mobile */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Optionaler Scroll-Hinweis */
+.table-wrapper::after {
+    content: '';
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .table-wrapper {
+        /* Subtiler Schatten rechts als Scroll-Hinweis */
+        background: 
+            linear-gradient(to right, var(--bg-secondary), var(--bg-secondary)),
+            linear-gradient(to right, var(--bg-secondary), var(--bg-secondary)),
+            linear-gradient(to right, rgba(0,0,0,0.15), transparent),
+            linear-gradient(to left, rgba(0,0,0,0.15), transparent);
+        background-position: left center, right center, left center, right center;
+        background-repeat: no-repeat;
+        background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+        background-attachment: local, local, scroll, scroll;
+    }
+}
+
+/* ---- Styled Table (Multi-Column) ---- */
+.styled-table {
+    width: 100%;
+    min-width: 600px; /* Verhindert zu starkes Quetschen */
+    border-collapse: collapse;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.styled-table thead {
+    background: var(--bg-tertiary);
+    border-bottom: 2px solid var(--heading-primary);
+}
+
+.styled-table th {
+    padding: 0.875rem 0.75rem;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: var(--heading-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.styled-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+    font-size: 0.9375rem;
+}
+
+.styled-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.styled-table tbody tr {
+    transition: background-color 150ms ease;
+}
+
+.styled-table tbody tr:hover {
+    background: var(--bg-tertiary);
+}
+
+/* Code in Tabellen */
+.styled-table code {
+    font-family: var(--font-code);
+    font-size: 0.8125rem;
+    background: var(--bg-tertiary);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Erste Spalte hervorheben */
+.styled-table td:first-child {
+    font-weight: 500;
+    color: var(--heading-secondary);
+}
+
+/* ---- Kompakte Variante für viele Spalten ---- */
+.styled-table.table-compact th,
+.styled-table.table-compact td {
+    padding: 0.625rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.styled-table.table-compact code {
+    font-size: 0.75rem;
+    padding: 0.1em 0.3em;
+}
+
+/* ---- Zentrierte Spalten (für Sterne, Icons, kurze Werte) ---- */
+.styled-table th.text-center,
+.styled-table td.text-center {
+    text-align: center;
+}
+
+/* ---- Responsive: Horizontales Scrollen statt Cards ---- */
+/* Bei vielen Spalten ist Scrollen besser als Card-Layout */
+@media (max-width: 767px) {
+    .styled-table {
+        font-size: 0.875rem;
+    }
+    
+    .styled-table th {
+        font-size: 0.75rem;
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .styled-table td {
+        padding: 0.625rem 0.5rem;
+    }
+}
+
+/* ---- Alternative: Card-Layout für styled-table ---- */
+/* Nur aktivieren wenn gewünscht mit .table-cards-mobile */
+@media (max-width: 767px) {
+    .styled-table.table-cards-mobile {
+        min-width: unset;
+    }
+    
+    .styled-table.table-cards-mobile thead {
+        display: none;
+    }
+
+    .styled-table.table-cards-mobile,
+    .styled-table.table-cards-mobile tbody,
+    .styled-table.table-cards-mobile tr {
+        display: block;
+        width: 100%;
+    }
+
+    .styled-table.table-cards-mobile tr {
+        margin-bottom: 1rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+    }
+
+    .styled-table.table-cards-mobile td {
+        display: block;
+        padding: 0.5rem 0;
+        border: none;
+        text-align: left;
+    }
+
+    .styled-table.table-cards-mobile td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        color: var(--accent-blue);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+    }
+
+    .styled-table.table-cards-mobile td:first-child {
+        font-size: 1.125rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .styled-table.table-cards-mobile td:first-child::before {
+        display: none;
+    }
+}
+
 /* ===============================================================================
     7. LISTS
    =============================================================================== */

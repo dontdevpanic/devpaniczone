@@ -174,7 +174,7 @@ const TUTORIAL_ORDER = {
         // Platzhalter
     ],
     'tutorials/css/css-specials': [
-        // Platzhalter
+        'css-organization.html'
     ],
     'tutorials/bootstrap/bootstrap-basics': [
         // Platzhalter
