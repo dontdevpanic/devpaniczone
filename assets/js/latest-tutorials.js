@@ -25,11 +25,14 @@
         card.className = 'tutorial-card';
         
         card.innerHTML = `
+        <a href="${tutorial.url}">
             <span class="card-badge ${tutorial.badgeClass}">${tutorial.categoryDisplay}</span>
             <h3 class="card-title">${tutorial.title}</h3>
             <p class="card-description">${tutorial.excerpt || 'Tutorial entdecken...'}</p>
-            <a href="${tutorial.url}" class="card-link">Tutorial lesen →</a>
-        `;
+            <span class="card-link">Tutorial lesen →</span>
+        </a>
+    `;
+
         
         return card;
     }

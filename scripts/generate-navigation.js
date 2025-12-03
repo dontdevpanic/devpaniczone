@@ -808,6 +808,25 @@ ${buttonsHtml}
 }
 
 // ============================================
+// LATEST TUTORIALS SECTION FÜR TUTORIAL-SEITEN
+// ============================================
+
+function generateLatestTutorialsSection(category) {
+    const categoryDisplay = CATEGORY_NAMES[category] || category;
+    
+    return `
+                <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2>Mehr aus ${categoryDisplay}</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="${category}">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->`;
+}
+
+// ============================================
 // Navigation generieren
 // ============================================
 
@@ -1141,6 +1160,32 @@ function updateHtmlFile(filePath) {
         }
     }
 
+    // 5.5 Latest Tutorials Section (nicht für index.html)
+    if (basename !== 'index.html') {
+        const latestStartMarker = '<!-- Latest-Tutorials-Start -->';
+        const latestEndMarker = '<!-- Latest-Tutorials-End -->';
+        
+        // Prüfe ob Marker bereits existieren
+        if (html.includes(latestStartMarker) && html.includes(latestEndMarker)) {
+            // Aktualisiere bestehende Section
+            const latestSection = generateLatestTutorialsSection(category);
+            html = html.replace(
+                new RegExp(`${latestStartMarker}[\\s\\S]*?${latestEndMarker}`),
+                latestSection.trim()
+            );
+        } else {
+            // Füge neue Section vor tutorial-nav ein
+            const tutorialNavSection = html.match(/<section class="tutorials-content">\s*<nav class="tutorial-nav">/s);
+            if (tutorialNavSection) {
+                const latestSection = generateLatestTutorialsSection(category);
+                html = html.replace(
+                    tutorialNavSection[0],
+                    latestSection + '\n\n                ' + tutorialNavSection[0]
+                );
+            }
+        }
+    }
+    
     // 6. Prev/Next Navigation (nicht für index.html)
     if (basename !== 'index.html') {
         const tutorialNavTag = html.match(/<nav class="tutorial-nav">.*?<\/nav>/s);
