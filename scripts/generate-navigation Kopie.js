@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * DevPanicZone Navigation Generator v2.2
+ * DevPanicZone Navigation Generator v2.1
  * ======================================
  * 6. Root-Level Seiten (Header + Footer)
  * Erstellt automatisch:
@@ -19,10 +19,6 @@
  * - Bestehende IDs werden IMMER respektiert
  * - Besseres Debug-Logging
  * - Duplikat-Vermeidung mit Counter
- * 
- * NEU in v2.2:
- * - Tutorial-Metadaten JSON für "Latest Tutorials" Section
- * - extractHeroExcerpt() für Excerpts aus Hero-Bereich
  */
 
 
@@ -50,7 +46,7 @@ const ROOT_FILES_EXCLUDE = [
 ];
 // Root-Dateien die NICHT aktualisiert werden sollen
 // Blacklist: Diese Ordner werden ignoriert
-const BLACKLIST_FOLDERS = ['noupload', 'node_modules', '.git', 'assets', 'snippet-collection'];
+const BLACKLIST_FOLDERS = ['noupload', 'node_modules', '.git', 'assets'];
 
 // ============================================
 // HEADER TEMPLATE
@@ -357,147 +353,6 @@ function extractTitle(html) {
     const dom = new JSDOM(html);
     const h1 = dom.window.document.querySelector('h1');
     return h1 ? h1.textContent.trim() : 'Unbenanntes Tutorial';
-}
-
-/**
- * NEU v2.2: Extrahiert den Hero-Subtitle (Excerpt) aus einer Tutorial-Datei
- * Sucht nach: .hero-subtitle, .hero-text, oder p in .hero
- */
-function extractHeroExcerpt(html) {
-    const dom = new JSDOM(html);
-    const document = dom.window.document;
-    
-    // Versuche verschiedene Selektoren
-    const selectors = [
-        '.hero-subtitle',
-        '.hero-text', 
-        '.hero p',
-        '.tutorial-hero p'
-    ];
-    
-    for (const selector of selectors) {
-        const element = document.querySelector(selector);
-        if (element) {
-            let text = element.textContent.trim();
-            // Kürze auf max 160 Zeichen für Cards
-            if (text.length > 160) {
-                text = text.substring(0, 157) + '...';
-            }
-            return text;
-        }
-    }
-    
-    return null;
-}
-
-/**
- * NEU v2.2: Extrahiert die Kategorie-Badge Klasse aus dem Pfad
- */
-function getCategoryBadgeClass(category) {
-    const badgeMap = {
-        'html': 'card-badge-html',
-        'css': 'card-badge-css',
-        'bootstrap': 'card-badge-bootstrap',
-        'javascript': 'card-badge-javascript',
-        'php': 'card-badge-php',
-        'misc': 'card-badge-misc',
-        'documentation': 'card-badge-misc'
-    };
-    return badgeMap[category] || 'card-badge-misc';
-}
-
-/**
- * NEU v2.2: Sammelt Metadaten für ALLE Tutorials
- * Gibt ein Array zurück, sortiert nach Position in TUTORIAL_ORDER
- */
-function generateLatestTutorialsData() {
-    const allTutorials = [];
-    
-    // Iteriere durch alle Kategorien in TUTORIAL_ORDER
-    Object.keys(TUTORIAL_ORDER).forEach(key => {
-        const parts = key.split('/');
-        const category = parts[1]; // z.B. "html"
-        const subcategory = parts[2]; // z.B. "html-basics"
-        
-        const order = TUTORIAL_ORDER[key];
-        if (!order || order.length === 0) return;
-        
-        // Entferne "tutorials/" Prefix für den Dateipfad
-        const cleanSubcategory = key.replace(/^tutorials\//, '');
-        
-        order.forEach((filename, index) => {
-            const filePath = path.join(tutorialsDir, cleanSubcategory, filename);
-            
-            if (!fs.existsSync(filePath)) {
-                return;
-            }
-            
-            const html = fs.readFileSync(filePath, 'utf8');
-            const title = CUSTOM_TITLES[filename] || extractTitle(html);
-            const excerpt = extractHeroExcerpt(html);
-            const url = getRelativeUrl(filePath);
-            
-            allTutorials.push({
-                title,
-                excerpt,
-                url,
-                category,
-                categoryDisplay: CATEGORY_NAMES[category] || category,
-                subcategory,
-                subcategoryDisplay: capitalizeWithAcronyms(subcategory),
-                badgeClass: getCategoryBadgeClass(category),
-                // Für Sortierung: Position in der Reihenfolge (später = neuer)
-                orderIndex: allTutorials.length
-            });
-        });
-    });
-    
-    return allTutorials;
-}
-
-/**
- * NEU v2.2: Generiert die JSON-Datei mit Tutorial-Metadaten
- * Wird in /assets/data/tutorials.json gespeichert
- */
-function generateLatestTutorialsJSON() {
-    console.log('\n📝 Generiere Tutorial-Metadaten JSON...');
-    console.log('─────────────────────────────────');
-    
-    const tutorials = generateLatestTutorialsData();
-    
-    // Sortiere: Neueste zuerst (höchster orderIndex)
-    // Da wir in TUTORIAL_ORDER neue Tutorials am Ende hinzufügen,
-    // ist der höchste Index das neueste Tutorial
-    const sortedByNewest = [...tutorials].reverse();
-    
-    const data = {
-        generated: new Date().toISOString(),
-        total: tutorials.length,
-        // Alle Tutorials (für Kategorie-Seiten)
-        all: tutorials,
-        // Die neuesten 4 (für Startseite)
-        latest: sortedByNewest.slice(0, 4),
-        // Gruppiert nach Kategorie (für Kategorie-Seiten)
-        byCategory: {}
-    };
-    
-    // Gruppiere nach Kategorie
-    tutorials.forEach(tutorial => {
-        if (!data.byCategory[tutorial.category]) {
-            data.byCategory[tutorial.category] = [];
-        }
-        data.byCategory[tutorial.category].push(tutorial);
-    });
-    
-    // Schreibe JSON-Datei
-    const jsonPath = path.join(dataDir, 'tutorials.json');
-    fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2), 'utf8');
-    
-    console.log(`  ✓ ${tutorials.length} Tutorials gefunden`);
-    console.log(`  ✓ Neueste 4: ${sortedByNewest.slice(0, 4).map(t => t.title).join(', ')}`);
-    console.log(`  ✓ JSON gespeichert: /assets/data/tutorials.json`);
-    
-    return data;
 }
 
 function findHtmlFiles(dir, fileList = []) {
@@ -1247,7 +1102,4 @@ function generateAllNavigation() {
     console.log(`📊 Gesamt aktualisiert: ${tutorialFiles.length + rootFiles.length} Dateien\n`);
 }
 
-// 3. Tutorial-Metadaten JSON generieren (NEU v2.2)
-    generateLatestTutorialsJSON();
-    
 generateAllNavigation();

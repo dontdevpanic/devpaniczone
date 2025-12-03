@@ -12,6 +12,185 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
     <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
     <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Styles für Category Cards mit Badges -->
+    <style>
+        /* ===== CATEGORY CARD BADGES ===== */
+        .card-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Variante 1: Alle Badges gleich (auskommentiert) */
+        /*
+        .card-badge {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+        }
+        */
+
+        /* Variante 2: Farbcodierte Badges */
+        .card-badge-html {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+        }
+        .card-badge-css {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+        }
+        .card-badge-bootstrap {
+            background: var(--accent-purple);
+            color: var(--bg-primary);
+        }
+        .card-badge-javascript {
+            background: var(--accent-orange);
+            color: var(--bg-primary);
+        }
+        .card-badge-php {
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+        }
+        .card-badge-misc {
+            background: var(--accent-red);
+            color: var(--bg-primary);
+        }
+
+        /* Card Link Farbe passend zum Badge */
+        .category-card:nth-child(1) .card-link { color: var(--accent-blue); }
+        .category-card:nth-child(2) .card-link { color: var(--accent-green); }
+        .category-card:nth-child(3) .card-link { color: var(--accent-purple); }
+        .category-card:nth-child(4) .card-link { color: var(--accent-orange); }
+        .category-card:nth-child(5) .card-link { color: var(--accent-cyan); }
+        .category-card:nth-child(6) .card-link,
+        .category-card:nth-child(7) .card-link,
+        .category-card:nth-child(8) .card-link { color: var(--accent-red); }
+
+        /* Hover-Effekt auf Cards passend zum Badge */
+        .category-card:nth-child(1):hover { border-color: var(--accent-blue); }
+        .category-card:nth-child(2):hover { border-color: var(--accent-green); }
+        .category-card:nth-child(3):hover { border-color: var(--accent-purple); }
+        .category-card:nth-child(4):hover { border-color: var(--accent-orange); }
+        .category-card:nth-child(5):hover { border-color: var(--accent-cyan); }
+        .category-card:nth-child(6):hover,
+        .category-card:nth-child(7):hover,
+        .category-card:nth-child(8):hover { border-color: var(--accent-red); }
+
+        /* ===== LATEST TUTORIALS GRID ===== */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Tablet: 2 Spalten - ABER wir wollen 1 Spalte bis Desktop */
+        /* Desktop: 2 Spalten nebeneinander */
+        @media (min-width: 768px) {
+            .tutorials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tutorial Card (ähnlich wie category-card aber für dynamische Inhalte) */
+        .tutorial-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-blue);
+        }
+
+        .tutorial-card .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .tutorial-card .card-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-card .card-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .tutorial-card .card-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Farbige Links basierend auf Badge-Klasse */
+        .tutorial-card:has(.card-badge-html) .card-link { color: var(--accent-blue); }
+        .tutorial-card:has(.card-badge-css) .card-link { color: var(--accent-green); }
+        .tutorial-card:has(.card-badge-bootstrap) .card-link { color: var(--accent-purple); }
+        .tutorial-card:has(.card-badge-javascript) .card-link { color: var(--accent-orange); }
+        .tutorial-card:has(.card-badge-php) .card-link { color: var(--accent-cyan); }
+        .tutorial-card:has(.card-badge-misc) .card-link { color: var(--accent-red); }
+
+        /* Hover-Effekt passend zur Kategorie */
+        .tutorial-card:has(.card-badge-html):hover { border-color: var(--accent-blue); }
+        .tutorial-card:has(.card-badge-css):hover { border-color: var(--accent-green); }
+        .tutorial-card:has(.card-badge-bootstrap):hover { border-color: var(--accent-purple); }
+        .tutorial-card:has(.card-badge-javascript):hover { border-color: var(--accent-orange); }
+        .tutorial-card:has(.card-badge-php):hover { border-color: var(--accent-cyan); }
+        .tutorial-card:has(.card-badge-misc):hover { border-color: var(--accent-red); }
+
+        /* ===== DISCLAIMER TEASER ===== */
+        .disclaimer-teaser {
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--accent-orange);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .disclaimer-teaser .info-title {
+            color: var(--accent-orange);
+            margin-bottom: 0.75rem;
+        }
+
+        .disclaimer-teaser p {
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer-teaser p:last-child {
+            margin-bottom: 0;
+        }
+
+        .disclaimer-teaser a {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        .disclaimer-teaser a:hover {
+            color: var(--accent-blue-hover);
+        }
+
+        /* Fallback Text */
+        .text-muted {
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -149,17 +328,18 @@
     </div>
 </header>
 <!-- Header-End -->
-    <!-- Main Content -->
-    <main class="site-main">
 
+
+    <main>
         <!-- Hero Section -->
         <section class="hero">
-            <div class="container">
+            <div class="hero-content">
                 <h1 class="hero-title">Don't DevPanic. Cheat.</h1>
                 <p class="hero-subtitle">Du musst nicht alles wissen, du musst nur wissen, wo es steht.</p>
-                <p class="hero-text">Webentwicklung kann überwältigend sein. Deshalb sammle ich hier kompakte
-                    Cheatsheets statt endloser Dokumentation – schnell durchsuchbar, direkt einsetzbar.</p>
-                <div class="hero-cta">
+                <p class="hero-text">Willkommen in meinem digitalen Lernlabor für Webentwicklung.
+                    Hier dokumentiere ich Wissen, vertiefe Routinen und baue eine wachsende
+                    Sammlung praktischer Tutorials und Cheatsheets auf.</p>
+                <div class="hero-buttons">
                     <a href="/tutorials/html/" class="btn btn-primary">Tutorials starten</a>
                     <a href="/glossary.html" class="btn btn-secondary">Zum Glossar</a>
                 </div>
@@ -175,9 +355,9 @@
                 <div class="grid-2col">
 
                     <div class="grid-2col-bg">
-                        <p>Hier dreht sich alles um Webentwicklung – von den Grundlagen mit HTML und CSS bis hin zu
-                            Frameworks wie Bootstrap, JavaScript für dynamische Funktionen und PHP für serverseitige
-                            Logik.</p>
+                        <p>Von HTML und CSS über JavaScript bis PHP – hier dreht sich alles um
+                            Webentwicklung. Mit dabei: Frameworks wie Bootstrap und nützliche
+                            Tools für den Entwickler-Alltag.</p>
                     </div>
 
                     <div class="grid-2col-bg">
@@ -189,13 +369,13 @@
                 </div>
             </section>
 
-            <!-- <section class="categories"> -->
+            <!-- Category Cards Section -->
             <section class="categories">
                 <h2>Was dich hier erwartet</h2>
                 <div class="categories-grid">
                     <!-- HTML Card -->
                     <article class="category-card">
-                        <div class="card-icon">📄</div>
+                        <span class="card-badge card-badge-html">HTML</span>
                         <h3 class="card-title">HTML</h3>
                         <p class="card-description">Die Grundlagen von HTML und erstelle semantische, zugängliche
                             Webseiten</p>
@@ -204,7 +384,7 @@
 
                     <!-- CSS Card -->
                     <article class="category-card">
-                        <div class="card-icon">🎨</div>
+                        <span class="card-badge card-badge-css">CSS</span>
                         <h3 class="card-title">CSS</h3>
                         <p class="card-description">Gestalte deine Webseiten mit modernem CSS, Flexbox, Grid und
                             Animationen</p>
@@ -213,7 +393,7 @@
 
                     <!-- Bootstrap Card -->
                     <article class="category-card">
-                        <div class="card-icon">🅱️</div>
+                        <span class="card-badge card-badge-bootstrap">Bootstrap</span>
                         <h3 class="card-title">Bootstrap</h3>
                         <p class="card-description">Erstelle responsive Layouts schnell und effizient mit Bootstrap</p>
                         <a href="/tutorials/bootstrap/" class="card-link">Bootstrap Tutorials →</a>
@@ -221,7 +401,7 @@
 
                     <!-- JavaScript Card -->
                     <article class="category-card">
-                        <div class="card-icon">⚡</div>
+                        <span class="card-badge card-badge-javascript">JavaScript</span>
                         <h3 class="card-title">JavaScript</h3>
                         <p class="card-description">Mache deine Webseiten interaktiv mit JavaScript und modernen ES6+
                             Features</p>
@@ -230,7 +410,7 @@
 
                     <!-- PHP Card -->
                     <article class="category-card">
-                        <div class="card-icon">🐘</div>
+                        <span class="card-badge card-badge-php">PHP</span>
                         <h3 class="card-title">PHP</h3>
                         <p class="card-description">Entwickle dynamische Webanwendungen mit PHP und Datenbankanbindung
                         </p>
@@ -239,45 +419,47 @@
 
                     <!-- Misc Card -->
                     <article class="category-card">
-                        <div class="card-icon">🔧</div>
+                        <span class="card-badge card-badge-misc">Misc</span>
                         <h3 class="card-title">Verschiedenes</h3>
                         <p class="card-description">SEO, Tools, Best Practices und weitere nützliche Themen</p>
                         <a href="/tutorials/misc/" class="card-link">Weitere Tutorials →</a>
                     </article>
 
-                    <!-- Misc Card -->
+                    <!-- Misc Card 2 (Test) -->
                     <article class="category-card">
-                        <div class="card-icon">🔧</div>
+                        <span class="card-badge card-badge-misc">Misc</span>
                         <h3 class="card-title">Verschiedenes</h3>
                         <p class="card-description">SEO, Tools, Best Practices und weitere nützliche Themen</p>
                         <a href="/tutorials/misc/" class="card-link">Weitere Tutorials →</a>
                     </article>
 
-                    <!-- Misc Card -->
+                    <!-- Misc Card 3 (Test) -->
                     <article class="category-card">
-                        <div class="card-icon">🔧</div>
+                        <span class="card-badge card-badge-misc">Misc</span>
                         <h3 class="card-title">Verschiedenes</h3>
                         <p class="card-description">SEO, Tools, Best Practices und weitere nützliche Themen</p>
                         <a href="/tutorials/misc/" class="card-link">Weitere Tutorials →</a>
                     </article>
                 </div>
-            </section> <!-- <section class="categories"> -->
+            </section>
 
+            <!-- Latest Tutorials Section -->
             <section class="categories">
-                <div class="grid-2col-bg">
-                    <h3 class="info-title">Wichtiger Hinweis</h3>
-                    <p>Dieses Tutorial ist Teil meiner eigenen Lernreise und dokumentiert meinen Lernprozess. Ich
-                        vertiefe mein Wissen und lerne Neues. Alle Code-Beispiele wurden nach bestem Wissen und Gewissen
-                        erstellt, aber ich bin beispielsweise kein PHP-Sicherheitsexperte.</p>
-                    <p><strong>Für Produktiv-Umgebungen:</strong></p>
-                    <ul class="arrow-list">
-                        <li>Lass Code von erfahrenen Entwicklern reviewen</li>
-                        <li>Nutze etablierte Frameworks (Laravel, Symfony) statt selbst zu bauen</li>
-                        <li>Führe Security-Audits durch</li>
-                        <li>Halte dich an aktuelle OWASP-Richtlinien</li>
-                    </ul>
-                    <p>DevPanicZone ist eine Lernressource, kein Produktiv-Code-Repository. Nutze die Beispiele zum
-                        Lernen und Verstehen, nicht 1:1 in Live-Projekten ohne weitere Überprüfung.</p>
+                <h2>Zuletzt hinzugefügt</h2>
+                <div id="latestTutorials" class="tutorials-grid">
+                    <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                    <p class="text-muted">Tutorials werden geladen...</p>
+                </div>
+            </section>
+
+            <!-- Disclaimer Teaser Section -->
+            <section class="categories">
+                <div class="disclaimer-teaser">
+                    <h3 class="info-title">Lernressource, kein Produktiv-Code</h3>
+                    <p>DevPanicZone ist mein digitales Lernlabor: Hier vertiefe ich vorhandenes Wissen,
+                        optimiere Routinen und dokumentiere neue Themen, die ich mir erarbeite.</p>
+                    <p>Die Tutorials sind zum Lernen und Verstehen gedacht – für den Produktiveinsatz
+                        empfehle ich einen Code-Review und etablierte Frameworks.</p>
                 </div>
             </section>
 
@@ -303,6 +485,7 @@
 
     <script src="/assets/js/main.js" defer></script>
     <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/latest-tutorials.js" defer></script>
     <!-- <script src="/assets/vendor/prism/prism.js" defer></script> -->
 </body>
 
