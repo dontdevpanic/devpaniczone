@@ -285,12 +285,12 @@
                     <h2 id="wie-funktioniert-das-theme-system">Wie funktioniert das Theme-System?</h2>
                     <p>Das Theme-System basiert auf dem <code class="inline">data-theme</code> Attribut am <code class="inline">&lt;html&gt;</code> Element:</p>
                     <div class="grid-2col">
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li><strong>Dark Mode:</strong> <code class="inline">&lt;html data-theme="dark"&gt;</code></li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li><strong>Light Mode:</strong> <code class="inline">&lt;html data-theme="light"&gt;</code></li>
                             </ul>
@@ -329,18 +329,38 @@
                     <h2 id="icon-logik-warum-wechselt-das-icon">Icon-Logik: Warum wechselt das Icon?</h2>
                     <p>Das Icon zeigt immer das <strong>andere</strong> Theme an (nicht das aktuelle!):</p>
                     <div class="grid-2col">
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li><strong>Im Dark Mode:</strong> Zeige Light-Icon → "Klick mich für Light Mode"</li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li><strong>Im Light Mode:</strong> Zeige Dark-Icon → "Klick mich für Dark Mode"</li>
                             </ul>
                         </div>
                     </div>
                     <p>Das ist intuitiver als ein Icon, das den aktuellen Zustand zeigt.</p>
+                    <h3 class="no-toc">Wie funktioniert das technisch?</h3>
+                    <p>Die Magie passiert in der <code class="inline">updateThemeIcon()</code>-Funktion. Der
+                        entscheidende Trick ist diese Zeile:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Das "umgekehrte" Icon wählen:
+const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code></pre>
+                    </div>
+                    <p>Der <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Conditional_operator" target="_blank" rel="noopener">ternäre Operator</a> <code class="inline">? :</code> prüft:
+                        "Ist das aktuelle Theme <code class="inline">dark</code>? Dann nimm das <code class="inline">light</code>-Icon, sonst das <code class="inline">dark</code>-Icon."</p>
+                    <p>Die vollständige Funktion und wie sie mit dem Click-Event zusammenspielt, findest du weiter unten
+                        im <a href="#theme-speicherung-persistenz">vollständigen JavaScript-Code</a>.</p>
                 </section>
 
                 <!-- Icon-Pfade -->
@@ -358,8 +378,8 @@
                             </button>
                         </div>
                         <pre><code class="language-javascript">const THEME_ICONS = {
-    dark: '/assets/icons/dark-mode.svg',   // Mond-Icon (für Dark Mode)
-    light: '/assets/icons/light-mode.svg'  // Sonne-Icon (für Light Mode)
+    dark: '/assets/icons/light-mode.svg',   // Im Dark Mode: zeige Sonne → "Wechsel zu Light"
+    light: '/assets/icons/dark-mode.svg'    // Im Light Mode: zeige Mond → "Wechsel zu Dark"  
 };</code></pre>
                     </div>
                 </section>
@@ -402,9 +422,9 @@
 
                     <!-- Eigene Icons einbinden -->
                     <p>Um eigene Icons zu verwenden:</p>
-                    <ol class="pl-md">
+                    <ol class="grid-2col-bg pl-md">
                         <li>Platziere deine Icons in <code class="inline">/assets/icons/</code></li>
-                        <li>Benenne sie z.B. <code class="inline">mein-dark-icon.svg</code> und <code class="inline">mein-light-icon.svg</code></li>
+                        <li>Benenne sie z.B. <code class="inline">mond.svg</code> und <code class="inline">sonne.svg</code></li>
                         <li>Aktualisiere die Pfade im JavaScript:</li>
                     </ol>
                     <div class="code-block">
@@ -418,8 +438,8 @@
                             </button>
                         </div>
                         <pre><code class="language-javascript">const THEME_ICONS = {
-    dark: '/assets/icons/mein-dark-icon.svg',
-    light: '/assets/icons/mein-light-icon.svg'
+    dark: '/assets/icons/sonne.svg',   // Im Dark Mode: zeige Sonne
+    light: '/assets/icons/mond.svg'    // Im Light Mode: zeige Mond
 };</code></pre>
                     </div>
                 </section>
@@ -428,7 +448,7 @@
                 <section class="tutorials-content">
                     <h2 id="theme-speicherung-persistenz">Theme-Speicherung &amp; Persistenz</h2>
                     <p>Das gewählte Theme wird automatisch im <code class="inline">localStorage</code> gespeichert:</p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li><strong>Beim Laden:</strong> Das zuletzt gewählte Theme wird wiederhergestellt</li>
                         <li><strong>Standard:</strong> Wenn kein Theme gespeichert ist, wird Dark Mode verwendet</li>
                         <li><strong>Tab-Synchronisation:</strong> Theme-Wechsel in einem Tab werden in allen anderen
@@ -453,67 +473,53 @@
                                         <span class="copy-text">Kopieren</span>
                                     </button>
                                 </div>
-                                <pre><code class="language-javascript">// ============================================================================
+                                <pre><code class="language-javascript">// ===================================
 // THEME TOGGLE (Dark/Light Mode) mit Icon-Wechsel
-// ============================================================================
-
-// Icon-Pfade definieren
-const THEME_ICONS = {
-    dark: '/assets/icons/dark-mode.svg',
-    light: '/assets/icons/light-mode.svg'
-};
+// ===================================
 
 const themeToggle = document.getElementById('themeToggle');
 const currentTheme = localStorage.getItem('theme') || 'dark';
 
-// Setze initial Theme beim Laden der Seite
+// Setze initial Theme
 document.documentElement.setAttribute('data-theme', currentTheme);
 
-/**
- * Icon aktualisieren basierend auf aktuellem Theme
- * @param {string} theme - 'dark' oder 'light'
- */
+// Funktion: Icon aktualisieren basierend auf aktuellem Theme
 function updateThemeIcon(theme) {
     if (!themeToggle) return;
-    
+
     // Finde das img Element innerhalb des Buttons
     const img = themeToggle.querySelector('.theme-icon img');
     if (!img) return;
-    
-    // WICHTIG: Icon zeigt das ANDERE Theme
+
     // Dark Mode = zeige Light Icon (zum Wechseln zu Light)
     // Light Mode = zeige Dark Icon (zum Wechseln zu Dark)
     const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;
     img.src = iconSrc;
-    
+
     // Accessibility: Aria-Label aktualisieren
     const label = theme === 'dark' ? 'Zu Light Mode wechseln' : 'Zu Dark Mode wechseln';
     themeToggle.setAttribute('aria-label', label);
 }
 
-// Initial Icon setzen beim Laden
+// Initial Icon setzen
 updateThemeIcon(currentTheme);
 
-// Event Listener für Button-Klick
 if (themeToggle) {
     themeToggle.addEventListener('click', () =&gt; {
         const current = document.documentElement.getAttribute('data-theme');
         const newTheme = current === 'dark' ? 'light' : 'dark';
-        
-        // Theme wechseln
+
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        
+
         // Icon aktualisieren
         updateThemeIcon(newTheme);
-        
-        // Debug-Log (optional)
+
         console.log(`🌓 Theme gewechselt: ${current} → ${newTheme}`);
     });
 }
 
 // Theme synchronisieren bei Tab-Wechsel
-// Wenn User in anderem Tab das Theme ändert, wird es hier auch geändert
 window.addEventListener('storage', (e) =&gt; {
     if (e.key === 'theme') {
         const newTheme = e.newValue || 'dark';
@@ -606,7 +612,7 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                     </div>
 
                     <p><strong>Was passiert:</strong></p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li>Ein 40x20px Icon wird auf 20x20px gequetscht</li>
                         <li>Der Browser zeigt nur den linken Teil (erste 20px Breite)</li>
                         <li>Der Rest wird abgeschnitten → Nur eine Ecke sichtbar</li>
@@ -712,17 +718,23 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                     <h4 class="no-toc">Empfohlene Alternative zu Slider-Icons</h4>
                     <p>Statt Slider-Icons funktionieren diese Varianten besser:</p>
 
-                    <div class="grid-2col mb-md">
-                        <div class="grid-2col-bg">
-                            <p><strong>✅ Gut: Mond/Sonne Icons</strong></p>
+                    <div class="grid-2col">
+                        <div class="grid-2col-bg mb-sm">
+                            <p><strong>Gut: Mond/Sonne Icons</strong> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                    </path>
+                                </svg></p>
                             <ul class="arrow-list">
                                 <li>Quadratisch (z.B. 20x20px)</li>
                                 <li>Klare Symbole</li>
                                 <li>Universell verständlich</li>
                             </ul>
                         </div>
-                        <div class="grid-2col-bg">
-                            <p><strong>✅ Gut: Toggle-Kreis Icons</strong></p>
+                        <div class="grid-2col-bg mb-sm">
+                            <p><strong>Gut: Toggle-Kreis Icons</strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                    </path>
+                                </svg></p>
                             <ul class="arrow-list">
                                 <li>Rund (Durchmesser 20px)</li>
                                 <li>Ein/Aus Symbol</li>
@@ -733,7 +745,9 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
 
                     <div class="grid-2col" style="padding-top: 0.75rem">
                         <div class="grid-2col-bg">
-                            <p><strong>❌ Problematisch: Slider/Switch</strong></p>
+                            <p><strong>Problematisch: Slider/Switch</strong><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                                </svg></p>
                             <ul class="arrow-list">
                                 <li>Rechteckig (z.B. 40x20px)</li>
                                 <li>Benötigt mehr Platz</li>
@@ -741,7 +755,9 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                             </ul>
                         </div>
                         <div class="grid-2col-bg">
-                            <p><strong>❌ Problematisch: Text-Icons</strong></p>
+                            <p><strong>Problematisch: Text-Icons</strong><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                                </svg></p>
                             <ul class="arrow-list">
                                 <li>Zu groß/breit</li>
                                 <li>Nicht responsive-freundlich</li>
@@ -805,21 +821,9 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
 <script src="/assets/js/latest-tutorials.js" defer></script>
 <!-- Footer-End -->
 
-    <button id="scrollTopBtn" title="Nach oben">↑</button>
-    <script src="/assets/js/main.js" defer></script>
     <script src="/assets/js/code-copy.js" defer></script>
     <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/js/scroll-spy.js"></script>
-    <script src="/assets/js/search.js"></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
-
-
-
 
 
 

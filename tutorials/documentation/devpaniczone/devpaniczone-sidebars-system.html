@@ -762,7 +762,11 @@ new ScrollSpy();</code></pre>
                         </ol>
                     </div>
                     <div class="info-box">
-                        <h4 class="box-title no-toc">Warum 100px Offset?</h4>
+                        <strong class="box-title no-toc">Warum 100px Offset?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
                         <p>Der Header ist sticky und nimmt Platz ein. Mit 100px Offset wird eine Überschrift als "aktiv"
                             markiert, wenn sie ca. unter dem Header ist – nicht erst wenn sie ganz oben am Viewport
                             klebt.</p>
@@ -977,7 +981,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                     <p>Lass uns das Ganze nochmal von Anfang bis Ende durchgehen:</p>
 
                     <div class="grid-2col">
-                        <div>
+                        <div class="grid-2col-bg">
                             <h3 id="phase-1-build-zeit-npm-run-build">Phase 1: Build-Zeit (npm run build)</h3>
                             <ol class="pl-md">
                                 <li><code class="inline">generate-navigation.js</code> wird ausgeführt</li>
@@ -994,7 +998,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 <li>Ergebnis: HTML-Dateien mit fertigem Sidebar-HTML</li>
                             </ol>
                         </div>
-                        <div>
+                        <div class="grid-2col-bg">
                             <h3 id="phase-2-seite-laedt-im-browser">Phase 2: Seite lädt im Browser</h3>
                             <ol class="pl-md">
                                 <li>Browser lädt HTML-Datei</li>
@@ -1022,7 +1026,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                     <h3 id="phase-3-user-interaktion">Phase 3: User-Interaktion</h3>
 
                     <div class="tag-grid">
-                        <div>
+                        <div class="grid-2col-bg">
                             <h4 class="no-toc pt-0">User klickt auf Sidebar-Button</h4>
                             <ol class="pl-md">
                                 <li>Button-Click Event</li>
@@ -1033,7 +1037,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 <li>Overlay wird sichtbar</li>
                             </ol>
                         </div>
-                        <div>
+                        <div class="grid-2col-bg">
                             <h4 class="no-toc pt-0">User scrollt auf der Seite</h4>
                             <ol class="pl-md">
                                 <li>Scroll Event</li>
@@ -1043,7 +1047,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 <li>CSS hebt den Link hervor</li>
                             </ol>
                         </div>
-                        <div>
+                        <div class="grid-2col-bg">
                             <h4 class="no-toc pt-0">User klickt auf TOC-Link</h4>
                             <ol class="pl-md">
                                 <li>Link-Click Event</li>
@@ -1087,7 +1091,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                     </div>
 
                     <p><strong>Warum <code class="inline">transform</code> statt <code class="inline">left</code>?</strong></p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li><code class="inline">transform</code> nutzt GPU-Beschleunigung → butterweiche Animation</li>
                         <li><code class="inline">left</code> triggert Reflow → langsamer und ruckelig</li>
                     </ul>
@@ -1158,13 +1162,20 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 
                     <h3 id="1-ids-fuer-ueberschriften">1. IDs für Überschriften</h3>
                     <p>Wenn du IDs manuell vergibst (statt sie generieren zu lassen):</p>
-                    <ul class="arrow-list">
-                        <li>Nutze Kleinbuchstaben</li>
-                        <li>Nutze Bindestriche statt Leerzeichen</li>
-                        <li>Vermeide Sonderzeichen</li>
-                        <li>Beispiel: <code class="inline">id="was-ist-css"</code></li>
-                    </ul>
-
+                    <div class="grid-2col">
+                        <div class="grid-2col-bg">
+                            <ul class="arrow-list">
+                                <li>Nutze Kleinbuchstaben</li>
+                                <li>Nutze Bindestriche statt Leerzeichen</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <ul class="arrow-list">
+                                <li>Vermeide Sonderzeichen</li>
+                                <li>Beispiel: <code class="inline">id="was-ist-css"</code></li>
+                            </ul>
+                        </div>
+                    </div>
                     <h3 id="2-no-toc-klasse">2. no-toc Klasse</h3>
                     <p>Nutze <code class="inline">class="no-toc"</code> für Überschriften, die NICHT im
                         Inhaltsverzeichnis erscheinen
@@ -1184,7 +1195,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 
                     <h3 id="3-tutorial-reihenfolge">3. Tutorial-Reihenfolge</h3>
                     <p>Halte <code class="inline">TUTORIAL_ORDER</code> immer aktuell:</p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li>Neue Tutorials sofort eintragen</li>
                         <li>Reihenfolge logisch gestalten (Basics → Advanced)</li>
                         <li>Nach Änderungen <code class="inline">npm run build</code> ausführen</li>
@@ -1192,12 +1203,20 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 
                     <h3 id="4-performance">4. Performance</h3>
                     <p>Das System ist bereits optimiert:</p>
-                    <ul class="arrow-list">
-                        <li>HTML wird beim Build generiert (nicht im Browser!)</li>
-                        <li>ScrollSpy nutzt Throttling</li>
-                        <li>CSS Transforms für Animationen</li>
-                        <li><code class="inline">passive: true</code> für Scroll-Events</li>
-                    </ul>
+                    <div class="grid-2col">
+                        <div class="grid-2col-bg">
+                            <ul class="arrow-list">
+                                <li>HTML wird beim Build generiert (nicht im Browser!)</li>
+                                <li>ScrollSpy nutzt Throttling</li>
+                            </ul>
+                        </div>
+                        <div class="grid-2col-bg">
+                            <ul class="arrow-list">
+                                <li>CSS Transforms für Animationen</li>
+                                <li><code class="inline">passive: true</code> für Scroll-Events</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- Troubleshooting -->
@@ -1342,7 +1361,7 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                 </section>
 
                 <!-- Prev/Next Navigation -->
-                
+
                 <!-- Latest-Tutorials-Start -->
                 <section class="categories">
                     <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
@@ -1395,17 +1414,9 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 <script src="/assets/js/latest-tutorials.js" defer></script>
 <!-- Footer-End -->
 
-    <button id="scrollTopBtn" title="Nach oben">↑</button>
-    <script src="/assets/js/main.js" defer></script>
     <script src="/assets/js/code-copy.js" defer></script>
     <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/js/scroll-spy.js"></script>
-    <script src="/assets/js/search.js"></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
 
 
 

@@ -344,31 +344,31 @@ if (searchToggle && searchDropdown) {
  */
 function initContactProtection() {
     console.log('🔒 Contact Protection wird initialisiert...');
-    
+
     // E-Mail-Teile (verschleiert gespeichert)
     const part1 = 'hello';
     const part2 = 'devpaniczone';
     const part3 = 'de';
     const email = part1 + String.fromCharCode(64) + part2 + '.' + part3;
-    
+
     console.log('📧 E-Mail zusammengebaut:', email);
-    
+
     // Kontaktdaten (verschleiert gespeichert)
     // const name = 'Bianca Schlich';
     // const street = 'Im Birkenacker';
     // const number = '12';
     // const zip = '51061';
     // const city = 'Köln';
-    
+
     // === E-MAIL EINFÜGEN (NUR TEXT, NICHT KLICKBAR) ===
     const emailElements = [
         document.getElementById('contact-email'),
         document.getElementById('privacy-email'),
         document.getElementById('imprint-email')
     ];
-    
+
     console.log('📍 Gefundene E-Mail Elemente:', emailElements.filter(el => el !== null).length);
-    
+
     emailElements.forEach((element, index) => {
         if (element) {
             // Nur Text, kein Link
@@ -376,84 +376,84 @@ function initContactProtection() {
             console.log(`✅ E-Mail eingefügt in Element ${index + 1}`);
         }
     });
-    
+
     // === KOMPLETTER KONTAKT-BLOCK (SICHER MIT DOM-MANIPULATION) ===
     const contactElement = document.getElementById('contact-person');
     console.log('📍 contact-person Element gefunden:', contactElement !== null);
-    
+
     if (contactElement) {
         // Leeren
         contactElement.innerHTML = '';
-        
+
         // Name (fett)
         // const nameStrong = document.createElement('strong');
         // nameStrong.textContent = name;
         // contactElement.appendChild(nameStrong);
         // contactElement.appendChild(document.createElement('br'));
-        
+
         // Straße + Hausnummer
         // const streetText = document.createTextNode(street + ' ' + number);
         // contactElement.appendChild(streetText);
         // contactElement.appendChild(document.createElement('br'));
-        
+
         // PLZ + Stadt
         // const cityText = document.createTextNode(zip + ' ' + city);
         // contactElement.appendChild(cityText);
         // contactElement.appendChild(document.createElement('br'));
         // contactElement.appendChild(document.createElement('br'));
-        
+
         // E-Mail Label
         const emailLabel = document.createTextNode('E-Mail: ');
         contactElement.appendChild(emailLabel);
-        
+
         // E-Mail (nur Text)
         const emailText = document.createTextNode(email);
         contactElement.appendChild(emailText);
         contactElement.appendChild(document.createElement('br'));
-        
+
         // Website Label
         const websiteLabel = document.createTextNode('Website: ');
         contactElement.appendChild(websiteLabel);
-        
+
         // Website (nur Text)
         const websiteText = document.createTextNode('https://devpaniczone.de');
         contactElement.appendChild(websiteText);
-        
+
         console.log('✅ Kontakt-Block eingefügt (sicher mit DOM)');
     } else {
         console.log('❌ contact-person Element NICHT gefunden');
     }
-    
+
     // === FÜR IMPRESSUM (GLEICHE SICHERE METHODE) ===
     const imprintContact = document.getElementById('imprint-contact');
     if (imprintContact) {
         imprintContact.innerHTML = '';
-        
+
         const nameStrong = document.createElement('strong');
         nameStrong.textContent = name;
         imprintContact.appendChild(nameStrong);
         imprintContact.appendChild(document.createElement('br'));
-        
+
         const streetText = document.createTextNode(street + ' ' + number);
         imprintContact.appendChild(streetText);
         imprintContact.appendChild(document.createElement('br'));
-        
+
         const cityText = document.createTextNode(zip + ' ' + city);
         imprintContact.appendChild(cityText);
         imprintContact.appendChild(document.createElement('br'));
         imprintContact.appendChild(document.createElement('br'));
-        
+
         const emailLabel = document.createTextNode('E-Mail: ');
         imprintContact.appendChild(emailLabel);
         const emailText = document.createTextNode(email);
         imprintContact.appendChild(emailText);
         imprintContact.appendChild(document.createElement('br'));
-        
+
         const websiteLabel = document.createTextNode('Website: ');
         imprintContact.appendChild(websiteLabel);
         const websiteText = document.createTextNode('https://devpaniczone.de');
         imprintContact.appendChild(websiteText);
-        
+
         console.log('✅ Impressum-Kontakt eingefügt (sicher mit DOM)');
     }
 }
@@ -464,7 +464,7 @@ function initContactProtection() {
 function insertCurrentDate() {
     const dateElement = document.getElementById('currentDate');
     console.log('📅 Datum-Element gefunden:', dateElement !== null);
-    
+
     if (dateElement) {
         const today = new Date();
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -479,12 +479,12 @@ function insertCurrentDate() {
  */
 function initLegalPages() {
     console.log('⚖️ Legal Pages Init gestartet');
-    
+
     // Prüfen ob wir auf einer Legal-Page sind
     const isLegalPage = document.querySelector('.legal-date, #contact-email, #privacy-email, #imprint-email, #contact-person');
-    
+
     console.log('📄 Ist Legal-Page?', isLegalPage !== null);
-    
+
     if (isLegalPage) {
         initContactProtection();
         insertCurrentDate();
