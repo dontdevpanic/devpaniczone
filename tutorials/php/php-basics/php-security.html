@@ -1,7 +1,11 @@
-<!DOCTYPE html><html lang="de"><head>
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PHP Sicherheit: Wie du deine PHP-Anwendungen gegen die häufigsten Angriffe schützt – XSS, SQL Injection, CSRF, Session-Hijacking und mehr. Praktische Beispiele mit sicherem Code.">
+    <meta name="description"
+        content="PHP Sicherheit: Wie du deine PHP-Anwendungen gegen die häufigsten Angriffe schützt – XSS, SQL Injection, CSRF, Session-Hijacking und mehr. Praktische Beispiele mit sicherem Code.">
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
     <meta name="author" content="DevPanicZone">
     <title>PHP Sicherheit – Angriffe verstehen und abwehren | DevPanicZone</title>
@@ -15,145 +19,148 @@
 
 <body>
     <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                </a>
-            </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                    </span>
+                </button>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
 
-            <nav class="main-nav" id="mainNav" aria-label="Navigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/documentation/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                    </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
+                <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
                             </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/html/" class="nav-link">
+                                        HTML
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                        <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/css/" class="nav-link">
+                                        CSS
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                        <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/javascript/" class="nav-link">
+                                        JavaScript
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                        </li>
+                                        <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/php/" class="nav-link">
+                                        PHP
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/misc/" class="nav-link">
+                                        Verschiedenes
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                        <li><a href="/tutorials/misc/#web">Web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/documentation/" class="nav-link">
+                                        DevPanicZone!
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                        <!-- Search Toggle -->
+                        <li>
+                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Search Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown" hidden>
+                        <div class="search-input-group">
+                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path
+                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                            </svg>
+                            <input type="search" id="globalSearch" class="search-input"
+                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                        </div>
+
+                        <div class="search-results" id="searchResults" hidden>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                            <div class="search-results-footer">
+                                <button class="search-view-all" id="searchViewAll">
+                                    Alle Ergebnisse anzeigen →
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </div>
-    </div>
-</header>
-<!-- Header-End -->
+    </header>
+    <!-- Header-End -->
 
     <main class="site-main">
 
         <!-- Hero -->
         <section class="hero tutorial-hero">
             <div class="container">
-                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/php/" class="breadcrumb-link">PHP</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">PHP Sicherheit</span></nav>
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                        class="breadcrumb-separator">›</span><a href="/tutorials/php/"
+                        class="breadcrumb-link">PHP</a><span class="breadcrumb-separator">›</span><span
+                        class="breadcrumb-current">PHP Sicherheit</span></nav>
                 <h1 class="hero-title">PHP Sicherheit</h1>
                 <p class="hero-subtitle">Schütze deine Anwendungen vor den häufigsten Angriffen. Verstehen, erkennen,
                     abwehren.</p>
@@ -161,7 +168,8 @@
         </section>
 
         <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+            title="Auf dieser Seite">
             <span class="toggle-icon">☰</span>
         </button>
 
@@ -190,65 +198,90 @@
                 <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                     <ul class="toc-list">
                         <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#warum-ist-php-sicherheit-so-wichtig">Warum ist PHP-Sicherheit so wichtig?</a></li>
-                    <li class="toc-level-2"><a href="#die-owasp-top-10">Die OWASP Top 10</a></li>
-                    <li class="toc-level-1"><a href="#cross-site-scripting-xss">Cross-Site Scripting (XSS)</a></li>
-                    <li class="toc-level-2"><a href="#wie-funktioniert-xss">Wie funktioniert XSS?</a></li>
-                    <li class="toc-level-2"><a href="#schutz-vor-xss-htmlspecialchars">Schutz vor XSS: htmlspecialchars()</a></li>
-                    <li class="toc-level-2"><a href="#was-macht-htmlspecialchars">Was macht htmlspecialchars()?</a></li>
-                    <li class="toc-level-2"><a href="#helper-funktion-fuer-schnelleren-zugriff">Helper-Funktion für schnelleren Zugriff</a></li>
-                    <li class="toc-level-2"><a href="#xss-in-verschiedenen-kontexten">XSS in verschiedenen Kontexten</a></li>
-                    <li class="toc-level-2"><a href="#content-security-policy-csp">Content Security Policy (CSP)</a></li>
-                    <li class="toc-level-1"><a href="#sql-injection-der-klassiker">SQL Injection – Der Klassiker</a></li>
-                    <li class="toc-level-2"><a href="#wie-funktioniert-sql-injection">Wie funktioniert SQL Injection?</a></li>
-                    <li class="toc-level-2"><a href="#schutz-vor-sql-injection-prepared-statements">Schutz vor SQL Injection: Prepared Statements</a></li>
-                    <li class="toc-level-2"><a href="#verschiedene-bind-methoden">Verschiedene Bind-Methoden</a></li>
-                    <li class="toc-level-2"><a href="#was-du-nicht-mit-prepared-statements-machen-kannst">Was du NICHT mit Prepared Statements machen kannst</a></li>
-                    <li class="toc-level-2"><a href="#connection-setup-in-separater-datei">Connection-Setup in separater Datei</a></li>
-                    <li class="toc-level-1"><a href="#cross-site-request-forgery-csrf">Cross-Site Request Forgery (CSRF)</a></li>
-                    <li class="toc-level-2"><a href="#wie-funktioniert-csrf">Wie funktioniert CSRF?</a></li>
-                    <li class="toc-level-2"><a href="#schutz-vor-csrf-tokens">Schutz vor CSRF: Tokens</a></li>
-                    <li class="toc-level-2"><a href="#zusaetzlicher-schutz-samesite-cookie-attribut">Zusätzlicher Schutz: SameSite-Cookie-Attribut</a></li>
-                    <li class="toc-level-1"><a href="#session-sicherheit">Session-Sicherheit</a></li>
-                    <li class="toc-level-2"><a href="#session-hijacking">Session Hijacking</a></li>
-                    <li class="toc-level-2"><a href="#sichere-session-konfiguration">Sichere Session-Konfiguration</a></li>
-                    <li class="toc-level-2"><a href="#komplettes-login-system-mit-security">Komplettes Login-System mit Security</a></li>
-                    <li class="toc-level-2"><a href="#session-validieren-bei-jedem-request">Session validieren bei jedem Request</a></li>
-                    <li class="toc-level-2"><a href="#sicherer-logout">Sicherer Logout</a></li>
-                    <li class="toc-level-1"><a href="#passwort-sicherheit">Passwort-Sicherheit</a></li>
-                    <li class="toc-level-2"><a href="#passwoerter-niemals-im-klartext-speichern">Passwörter NIEMALS im Klartext speichern</a></li>
-                    <li class="toc-level-2"><a href="#passwoerter-richtig-hashen">Passwörter richtig hashen</a></li>
-                    <li class="toc-level-2"><a href="#passwort-verifikation">Passwort-Verifikation</a></li>
-                    <li class="toc-level-2"><a href="#passwort-anforderungen">Passwort-Anforderungen</a></li>
-                    <li class="toc-level-2"><a href="#brute-force-schutz-rate-limiting">Brute-Force-Schutz: Rate Limiting</a></li>
-                    <li class="toc-level-1"><a href="#file-upload-sicherheit">File Upload Sicherheit</a></li>
-                    <li class="toc-level-2"><a href="#die-gefahren">Die Gefahren</a></li>
-                    <li class="toc-level-2"><a href="#sicherer-file-upload">Sicherer File-Upload</a></li>
-                    <li class="toc-level-2"><a href="#upload-verzeichnis-schuetzen">Upload-Verzeichnis schützen</a></li>
-                    <li class="toc-level-2"><a href="#zusaetzliche-sicherheitsmassnahmen">Zusätzliche Sicherheitsmaßnahmen</a></li>
-                    <li class="toc-level-1"><a href="#error-handling-und-information-disclosure">Error Handling und Information Disclosure</a></li>
-                    <li class="toc-level-2"><a href="#was-du-nicht-tun-solltest">Was du NICHT tun solltest</a></li>
-                    <li class="toc-level-2"><a href="#richtige-fehlerbehandlung">Richtige Fehlerbehandlung</a></li>
-                    <li class="toc-level-2"><a href="#custom-error-handler">Custom Error Handler</a></li>
-                    <li class="toc-level-2"><a href="#login-fehler-richtig-machen">Login-Fehler richtig machen</a></li>
-                    <li class="toc-level-1"><a href="#security-headers">Security Headers</a></li>
-                    <li class="toc-level-2"><a href="#wichtige-security-headers">Wichtige Security Headers</a></li>
-                    <li class="toc-level-2"><a href="#header-bedeutungen-im-detail">Header-Bedeutungen im Detail</a></li>
-                    <li class="toc-level-1"><a href="#security-checkliste">Security-Checkliste</a></li>
-                    <li class="toc-level-2"><a href="#input-validierung-output-encoding">Input-Validierung &amp; Output-Encoding</a></li>
-                    <li class="toc-level-2"><a href="#authentication-sessions">Authentication &amp; Sessions</a></li>
-                    <li class="toc-level-2"><a href="#input-validierung-output-encoding-1">Input-Validierung &amp; Output-Encoding</a></li>
-                    <li class="toc-level-2"><a href="#authentication-sessions-1">Authentication &amp; Sessions</a></li>
-                    <li class="toc-level-2"><a href="#csrf-schutz">CSRF-Schutz</a></li>
-                    <li class="toc-level-2"><a href="#file-uploads">File Uploads</a></li>
-                    <li class="toc-level-2"><a href="#configuration">Configuration</a></li>
-                    <li class="toc-level-2"><a href="#database">Database</a></li>
-                    <li class="toc-level-2"><a href="#best-practices">Best Practices</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <li class="toc-level-2"><a href="#die-haeufigsten-fehler">Die häufigsten Fehler</a></li>
-                    <li class="toc-level-2"><a href="#das-security-mindset">Das Security-Mindset</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-php">Mehr aus PHP</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                        <li class="toc-level-1"><a href="#warum-ist-php-sicherheit-so-wichtig">Warum ist PHP-Sicherheit
+                                so wichtig?</a></li>
+                        <li class="toc-level-2"><a href="#die-owasp-top-10">Die OWASP Top 10</a></li>
+                        <li class="toc-level-1"><a href="#cross-site-scripting-xss">Cross-Site Scripting (XSS)</a></li>
+                        <li class="toc-level-2"><a href="#wie-funktioniert-xss">Wie funktioniert XSS?</a></li>
+                        <li class="toc-level-2"><a href="#schutz-vor-xss-htmlspecialchars">Schutz vor XSS:
+                                htmlspecialchars()</a></li>
+                        <li class="toc-level-2"><a href="#was-macht-htmlspecialchars">Was macht htmlspecialchars()?</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#helper-funktion-fuer-schnelleren-zugriff">Helper-Funktion für
+                                schnelleren Zugriff</a></li>
+                        <li class="toc-level-2"><a href="#xss-in-verschiedenen-kontexten">XSS in verschiedenen
+                                Kontexten</a></li>
+                        <li class="toc-level-2"><a href="#content-security-policy-csp">Content Security Policy (CSP)</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#sql-injection-der-klassiker">SQL Injection – Der Klassiker</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#wie-funktioniert-sql-injection">Wie funktioniert SQL
+                                Injection?</a></li>
+                        <li class="toc-level-2"><a href="#schutz-vor-sql-injection-prepared-statements">Schutz vor SQL
+                                Injection: Prepared Statements</a></li>
+                        <li class="toc-level-2"><a href="#verschiedene-bind-methoden">Verschiedene Bind-Methoden</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#was-du-nicht-mit-prepared-statements-machen-kannst">Was du
+                                NICHT mit Prepared Statements
+                                machen kannst</a></li>
+                        <li class="toc-level-2"><a href="#connection-setup-in-separater-datei">Connection-Setup in
+                                separater Datei</a></li>
+                        <li class="toc-level-1"><a href="#cross-site-request-forgery-csrf">Cross-Site Request Forgery
+                                (CSRF)</a></li>
+                        <li class="toc-level-2"><a href="#wie-funktioniert-csrf">Wie funktioniert CSRF?</a></li>
+                        <li class="toc-level-2"><a href="#schutz-vor-csrf-tokens">Schutz vor CSRF: Tokens</a></li>
+                        <li class="toc-level-2"><a href="#zusaetzlicher-schutz-samesite-cookie-attribut">Zusätzlicher
+                                Schutz: SameSite-Cookie-Attribut</a></li>
+                        <li class="toc-level-1"><a href="#session-sicherheit">Session-Sicherheit</a></li>
+                        <li class="toc-level-2"><a href="#session-hijacking">Session Hijacking</a></li>
+                        <li class="toc-level-2"><a href="#sichere-session-konfiguration">Sichere
+                                Session-Konfiguration</a></li>
+                        <li class="toc-level-2"><a href="#komplettes-login-system-mit-security">Komplettes Login-System
+                                mit Security</a></li>
+                        <li class="toc-level-2"><a href="#session-validieren-bei-jedem-request">Session validieren bei
+                                jedem Request</a></li>
+                        <li class="toc-level-2"><a href="#sicherer-logout">Sicherer Logout</a></li>
+                        <li class="toc-level-1"><a href="#passwort-sicherheit">Passwort-Sicherheit</a></li>
+                        <li class="toc-level-2"><a href="#passwoerter-niemals-im-klartext-speichern">Passwörter NIEMALS
+                                im Klartext speichern</a></li>
+                        <li class="toc-level-2"><a href="#passwoerter-richtig-hashen">Passwörter richtig hashen</a></li>
+                        <li class="toc-level-2"><a href="#passwort-verifikation">Passwort-Verifikation</a></li>
+                        <li class="toc-level-2"><a href="#passwort-anforderungen">Passwort-Anforderungen</a></li>
+                        <li class="toc-level-2"><a href="#brute-force-schutz-rate-limiting">Brute-Force-Schutz: Rate
+                                Limiting</a></li>
+                        <li class="toc-level-1"><a href="#file-upload-sicherheit">File Upload Sicherheit</a></li>
+                        <li class="toc-level-2"><a href="#die-gefahren">Die Gefahren</a></li>
+                        <li class="toc-level-2"><a href="#sicherer-file-upload">Sicherer File-Upload</a></li>
+                        <li class="toc-level-2"><a href="#upload-verzeichnis-schuetzen">Upload-Verzeichnis schützen</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#zusaetzliche-sicherheitsmassnahmen">Zusätzliche
+                                Sicherheitsmaßnahmen</a></li>
+                        <li class="toc-level-1"><a href="#error-handling-und-information-disclosure">Error Handling und
+                                Information Disclosure</a></li>
+                        <li class="toc-level-2"><a href="#was-du-nicht-tun-solltest">Was du NICHT tun solltest</a></li>
+                        <li class="toc-level-2"><a href="#richtige-fehlerbehandlung">Richtige Fehlerbehandlung</a></li>
+                        <li class="toc-level-2"><a href="#custom-error-handler">Custom Error Handler</a></li>
+                        <li class="toc-level-2"><a href="#login-fehler-richtig-machen">Login-Fehler richtig machen</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#security-headers">Security Headers</a></li>
+                        <li class="toc-level-2"><a href="#wichtige-security-headers">Wichtige Security Headers</a></li>
+                        <li class="toc-level-2"><a href="#header-bedeutungen-im-detail">Header-Bedeutungen im Detail</a>
+                        </li>
+                        <li class="toc-level-1"><a href="#security-checkliste">Security-Checkliste</a></li>
+                        <li class="toc-level-2"><a href="#input-validierung-output-encoding">Input-Validierung &amp;
+                                Output-Encoding</a></li>
+                        <li class="toc-level-2"><a href="#authentication-sessions">Authentication &amp; Sessions</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#csrf-schutz">CSRF-Schutz</a></li>
+                        <li class="toc-level-2"><a href="#file-uploads">File Uploads</a></li>
+                        <li class="toc-level-2"><a href="#configuration">Configuration</a></li>
+                        <li class="toc-level-2"><a href="#database">Database</a></li>
+                        <li class="toc-level-2"><a href="#best-practices">Best Practices</a></li>
+                        <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                        <li class="toc-level-2"><a href="#die-haeufigsten-fehler">Die häufigsten Fehler</a></li>
+                        <li class="toc-level-2"><a href="#das-security-mindset">Das Security-Mindset</a></li>
+                        <li class="toc-level-1"><a href="#mehr-aus-php">Mehr aus PHP</a></li>
+                        <!-- Sidebar-Anchor-End -->
                     </ul>
                 </nav>
             </aside>
@@ -264,10 +297,10 @@
 
                 <div class="sidebar-nav">
                     <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">PHP Basics</li>
-                    <li><a href="/tutorials/php/php-basics/php-basics.html">PHP Basics – Die Grundlagen</a></li>
-                    <li><a href="/tutorials/php/php-basics/php-security.html" class="active">PHP Sicherheit</a></li>
-                </ul>
+                        <li class="sidebar-group-title">PHP Basics</li>
+                        <li><a href="/tutorials/php/php-basics/php-basics.html">PHP Basics – Die Grundlagen</a></li>
+                        <li><a href="/tutorials/php/php-basics/php-security.html" class="active">PHP Sicherheit</a></li>
+                    </ul>
                 </div>
             </aside>
 
@@ -282,7 +315,8 @@
                         kennen.</p>
                     <div class="info-box warning">
                         <strong class="box-title warning no-toc">Die Realität
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -327,8 +361,11 @@
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Security-Mindset
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <p><strong>Vertraue niemals Nutzereingaben!</strong> Das ist die goldene Regel. Alles, was von
@@ -350,8 +387,10 @@
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">GEFÄHRLICH - NIEMALS SO!</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
-                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
+                                <path
+                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
     20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
     0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -369,8 +408,10 @@ echo "&lt;p&gt;" . $kommentar . "&lt;/p&gt;";
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Cookies stehlen und an Angreifer senden</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
     1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
     25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
                                 </path>
@@ -387,8 +428,10 @@ echo "&lt;p&gt;" . $kommentar . "&lt;/p&gt;";
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Gehackt</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-warning" fill="currentColor" role="img" aria-label="Achtung">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
     1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
     25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
                                 </path>
@@ -399,7 +442,8 @@ echo "&lt;p&gt;" . $kommentar . "&lt;/p&gt;";
 
                     <div class="info-box danger">
                         <strong class="box-title danger no-toc" id="wichtig">Was kann ein Angreifer mit XSS machen?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -460,8 +504,11 @@ echo htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Die drei Parameter im Detail
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -501,8 +548,10 @@ echo esc($name);
                     <div>
                         <div class="code-block">
                             <div class="code-header"><span class="code-lang">PHP</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                     </path>
                                 </svg>
                                 <!-- <button class="code-copy">
@@ -528,8 +577,10 @@ echo '&lt;div title="' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '"&gt;'
                         <div class="code-block mb-xl">
                             <div class="code-header">
                                 <span class="code-lang">GEFÄHRLICH</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path
+                                        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                     </path>
@@ -549,8 +600,10 @@ echo "&lt;script&gt;var user = '$username';&lt;/script&gt;";
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">BESSER: JSON-Encoding nutzen</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -566,7 +619,8 @@ echo '&lt;script&gt;var user = ' . json_encode($username, JSON_HEX_TAG | JSON_HE
                     <div class="info-box danger">
                         <strong class="box-title danger no-toc" id="achtung">Wichtig: htmlspecialchars() reicht nicht in
                             JavaScript!
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -626,8 +680,10 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self'");
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">EXTREM GEFÄHRLICH - NIEMALS SO!</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
-                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path
+                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -648,8 +704,10 @@ $result = mysqli_query($connection, $query);
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">EXTREM GEFÄHRLICH - NIEMALS SO!</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
-                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path
+                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -662,8 +720,10 @@ $result = mysqli_query($connection, $query);
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">EXTREM GEFÄHRLICH - NIEMALS SO!</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,
     1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
     25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
                                 </path>
@@ -676,7 +736,8 @@ $result = mysqli_query($connection, $query);
 
                     <div class="info-box danger">
                         <strong class="box-title danger no-toc" id="achtung">Noch schlimmer:
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -690,12 +751,17 @@ $result = mysqli_query($connection, $query);
                         <p>Das würde deine gesamte User-Tabelle löschen!</p>
                     </div>
 
-                    <h3 id="schutz-vor-sql-injection-prepared-statements">Schutz vor SQL Injection: Prepared Statements</h3>
-                    <p>Die Lösung: <strong>Prepared Statements mit PDO</strong> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2" aria-hidden="true">
-                                <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                    <h3 id="schutz-vor-sql-injection-prepared-statements">Schutz vor SQL Injection: Prepared Statements
+                    </h3>
+                    <p>Die Lösung: <strong>Prepared Statements mit PDO</strong> <span><svg
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15"
+                                fill="var(--accent-green)" class="icon-va-y-2" aria-hidden="true">
+                                <path
+                                    d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
                                 </path>
                             </svg></span>
-                    </p><p>Das ist der moderne, sichere Standard:</p>
+                    </p>
+                    <p>Das ist der moderne, sichere Standard:</p>
                     <p></p>
 
                     <div class="code-block">
@@ -752,8 +818,11 @@ try {
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Warum sind Prepared Statements sicher?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -803,17 +872,30 @@ $stmt-&gt;execute([$email, $age]);
 ?&gt;</code></pre>
                     </div>
 
-                    <h3 id="was-du-nicht-mit-prepared-statements-machen-kannst">Was du NICHT mit Prepared Statements machen kannst</h3>
+                    <h3 id="was-du-nicht-mit-prepared-statements-machen-kannst">Was du NICHT mit Prepared Statements
+                        machen kannst</h3>
                     <p>Prepared Statements funktionieren nur für <strong>Werte</strong>, nicht für:</p>
                     <ul class="arrow-list grid-2col-bg">
-                        <li>Tabellennamen <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
-                                <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                        <li>Tabellennamen <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)"
+                                aria-hidden="true">
+                                <path
+                                    d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z">
+                                </path>
                             </svg></li>
-                        <li>Spaltennamen <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
-                                <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                        <li>Spaltennamen <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)"
+                                aria-hidden="true">
+                                <path
+                                    d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z">
+                                </path>
                             </svg></li>
-                        <li>SQL-Keywords (ORDER BY, ASC/DESC, etc.) <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
-                                <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"></path>
+                        <li>SQL-Keywords (ORDER BY, ASC/DESC, etc.) <svg xmlns="http://www.w3.org/2000/svg" width="15"
+                                height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)"
+                                aria-hidden="true">
+                                <path
+                                    d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z">
+                                </path>
                             </svg></li>
                     </ul>
 
@@ -849,7 +931,8 @@ $stmt-&gt;execute();
 
                     <div class="info-box warning">
                         <strong class="box-title warning no-toc">Wichtig bei dynamischen Queries
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -860,16 +943,25 @@ $stmt-&gt;execute();
                         </strong>
                         <p>Wenn du Tabellen- oder Spaltennamen dynamisch nutzen musst:</p>
                         <ul class="arrow-list">
-                            <li>Nutze <strong>immer</strong> eine Whitelist erlaubter Werte <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
-                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                            <li>Nutze <strong>immer</strong> eine Whitelist erlaubter Werte <svg
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15"
+                                    fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                                    <path
+                                        d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
                                     </path>
                                 </svg></li>
-                            <li>Validiere die Eingabe streng <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
-                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                            <li>Validiere die Eingabe streng <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"
+                                    width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
                                     </path>
                                 </svg></li>
-                            <li>Niemals direkte Nutzereingaben in SQL-Struktur einfügen <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
-                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                            <li>Niemals direkte Nutzereingaben in SQL-Struktur einfügen <svg
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15"
+                                    fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                                    <path
+                                        d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
                                     </path>
                                 </svg></li>
                         </ul>
@@ -936,7 +1028,8 @@ function getDB(): PDO {
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">HTML</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="var(--accent-red-light)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="var(--accent-red-light)">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -951,7 +1044,8 @@ function getDB(): PDO {
                         aus, weil du ja eingeloggt bist!</p>
                     <div class="info-box danger">
                         <strong class="box-title danger no-toc">CSRF kann auch mit POST funktionieren
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="var(--accent-red-light)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="var(--accent-red-light)">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -972,10 +1066,12 @@ function getDB(): PDO {
 
                     <h3 id="schutz-vor-csrf-tokens">Schutz vor CSRF: Tokens</h3>
                     <p>Die Lösung: <strong>CSRF-Tokens</strong> – zufällige, einmalige Werte, die bei jedem Formular
-                        mitgeschickt werden. <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
-    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
-    </path>
-</svg></p>
+                        mitgeschickt werden. <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15"
+                            height="15" fill="currentColor" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                            <path
+                                d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                            </path>
+                        </svg></p>
 
                     <h4>CSRF-Token generieren und prüfen</h4>
                     <div class="code-block">
@@ -1085,8 +1181,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="info-box">
                         <strong class="box-title no-toc">Warum hash_equals()?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <p>Normales <code>===</code> ist anfällig für <strong>Timing-Attacks</strong> (ein Angreifer
@@ -1095,7 +1194,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </p>
                     </div>
 
-                    <h3 id="zusaetzlicher-schutz-samesite-cookie-attribut">Zusätzlicher Schutz: SameSite-Cookie-Attribut</h3>
+                    <h3 id="zusaetzlicher-schutz-samesite-cookie-attribut">Zusätzlicher Schutz: SameSite-Cookie-Attribut
+                    </h3>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">PHP</span>
@@ -1122,8 +1222,11 @@ session_start();
                     </div>
                     <div class="info-box">
                         <strong class="box-title no-toc">SameSite-Werte
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1357,7 +1460,8 @@ exit;
 
                     <div class="info-box warning">
                         <strong class="box-title warning no-toc">Häufiger Fehler
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -1382,8 +1486,10 @@ exit;
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">NIEMALS SO!</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
-                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path
+                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -1402,8 +1508,11 @@ $stmt-&gt;execute([
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Warum nicht?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1478,8 +1587,11 @@ if ($user &amp;&amp; password_verify($inputPassword, $user['password_hash'])) {
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Was macht password_hash()?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1547,7 +1659,8 @@ if (!empty($errors)) {
 
                     <div class="info-box warning">
                         <strong class="box-title warning no-toc">Zu strikte Regeln können kontraproduktiv sein!
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -1879,11 +1992,12 @@ function sanitizeFilename(string $filename): string {
     return substr($filename, 0, 255);
 }
 ?&gt;</code></pre>
-                    </div> 
+                    </div>
 
                     <div class="info-box warning">
                         <strong class="box-title warning no-toc">Kritische Punkte bei File-Uploads
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -1913,8 +2027,10 @@ function sanitizeFilename(string $filename): string {
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">NIEMALS SO!</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
-                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-danger" fill="var(--accent-red)" role="img" aria-label="Extrem gefährlich">
+                                <path
+                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -1934,8 +2050,11 @@ try {
                     <h3 id="richtige-fehlerbehandlung">Richtige Fehlerbehandlung</h3>
                     <div class="code-block">
                         <div class="code-header">
-                            <span class="code-lang"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="25" height="25" class="icon-success icon-va-y-6 icon-small" fill="#20a66e" aria-hidden="true">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <span class="code-lang"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5"
+                                    width="25" height="25" class="icon-success icon-va-y-6 icon-small" fill="#20a66e"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                     </path>
                                 </svg> PHP</span>
                             <button class="code-copy">
@@ -2014,8 +2133,11 @@ set_error_handler('customErrorHandler');
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Was verrät zu viel?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -2031,8 +2153,10 @@ set_error_handler('customErrorHandler');
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Gut</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                     </path>
                                 </svg>
                             </div>
@@ -2047,8 +2171,10 @@ if (!$userExists || !password_verify($password, $hash)) {
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Schlecht</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red-light)" aria-hidden="true">
-                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                class="icon-danger" fill="var(--accent-red-light)" aria-hidden="true">
+                                <path
+                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -2164,7 +2290,8 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                     </div>
                     <div class="info-box warning">
                         <strong class="box-title warning no-toc">HSTS Vorsicht!
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -2184,44 +2311,20 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                 <!-- Security-Checkliste -->
                 <section class="tutorials-content">
                     <h2 id="security-checkliste">Security-Checkliste</h2>
-
-                    <div class="grid-2col mb-lg">
-                        <div class="grid-2col-bg">
-                            <h3 id="input-validierung-output-encoding">Input-Validierung &amp; Output-Encoding</h3>
-                            <ul class="arrow-list">
-                                <li>Alle Nutzereingaben mit <code>htmlspecialchars()</code> ausgeben</li>
-                                <li>SQL-Queries nur mit Prepared Statements</li>
-                                <li>Formulardaten validieren (Typ, Länge, Format)</li>
-                                <li>Whitelists statt Blacklists verwenden</li>
-                            </ul>
-                        </div>
-                        <div class="grid-2col-bg">
-                            <h3 id="authentication-sessions">Authentication &amp; Sessions</h3>
-                            <ul class="check-list">
-                                <li>Passwörter mit <code>password_hash()</code> hashen</li>
-                                <li>Session-ID nach Login regenerieren</li>
-                                <li>Secure, HttpOnly, SameSite Cookie-Flags setzen</li>
-                                <li>Rate Limiting für Login-Versuche</li>
-                                <li>Session-Timeout implementieren</li>
-                            </ul>
-                        </div>
-                    </div>
-
                     <p>Hier ist deine Checkliste für sichere PHP-Anwendungen:</p>
-
-                    <div class="grid-2col mb-lg">
-                        <div class="grid-2col-bg">
-                            <h3 id="input-validierung-output-encoding-1">Input-Validierung &amp; Output-Encoding</h3>
-                            <ul class="check-list">
+                    <div class="grid-2col pb-lg">
+                        <div>
+                            <h3 id="input-validierung-output-encoding">Input-Validierung &amp; Output-Encoding</h3>
+                            <ul class="arrow-list grid-2col-bg">
                                 <li>Alle Nutzereingaben mit <code>htmlspecialchars()</code> ausgeben</li>
                                 <li>SQL-Queries nur mit Prepared Statements</li>
                                 <li>Formulardaten validieren (Typ, Länge, Format)</li>
                                 <li>Whitelists statt Blacklists verwenden</li>
                             </ul>
                         </div>
-                        <div class="grid-2col-bg">
-                            <h3 id="authentication-sessions-1">Authentication &amp; Sessions</h3>
-                            <ul class="check-list">
+                        <div>
+                            <h3 id="authentication-sessions">Authentication &amp; Sessions</h3>
+                            <ul class="check-list grid-2col-bg">
                                 <li>Passwörter mit <code>password_hash()</code> hashen</li>
                                 <li>Session-ID nach Login regenerieren</li>
                                 <li>Secure, HttpOnly, SameSite Cookie-Flags setzen</li>
@@ -2232,17 +2335,17 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                     </div>
 
                     <div class="grid-2col mb-lg">
-                        <div class="grid-2col-bg">
+                        <div>
                             <h3 id="csrf-schutz">CSRF-Schutz</h3>
-                            <ul class="check-list">
+                            <ul class="check-list grid-2col-bg">
                                 <li>CSRF-Tokens in allen Formularen</li>
                                 <li>Token-Validierung mit <code>hash_equals()</code></li>
                                 <li>SameSite-Cookie-Attribut nutzen</li>
                             </ul>
                         </div>
-                        <div class="grid-2col-bg">
+                        <div>
                             <h3 id="file-uploads">File Uploads</h3>
-                            <ul class="check-list">
+                            <ul class="check-list grid-2col-bg">
                                 <li>MIME-Type UND Extension prüfen</li>
                                 <li>Dateigröße limitieren</li>
                                 <li>Sichere Dateinamen generieren</li>
@@ -2252,10 +2355,10 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                         </div>
                     </div>
 
-                    <div class="grid-2col  mb-lg">
-                        <div class="grid-2col-bg">
+                    <div class="grid-2col mb-lg">
+                        <div>
                             <h3 id="configuration">Configuration</h3>
-                            <ul class="check-list">
+                            <ul class="check-list grid-2col-bg">
                                 <li><code>display_errors = Off</code> in Produktion</li>
                                 <li>Fehler in Log-Datei schreiben</li>
                                 <li>HTTPS verwenden (Let's Encrypt ist kostenlos!)</li>
@@ -2263,9 +2366,9 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                                 <li>PHP und Libraries aktuell halten</li>
                             </ul>
                         </div>
-                        <div class="grid-2col-bg">
+                        <div>
                             <h3 id="database">Database</h3>
-                            <ul class="check-list">
+                            <ul class="check-list grid-2col-bg">
                                 <li>Prepared Statements für alle Queries</li>
                                 <li>Separater DB-User mit minimalen Rechten</li>
                                 <li>Keine Root-Credentials in Code</li>
@@ -2273,26 +2376,32 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                             </ul>
                         </div>
                     </div>
-                    <div class="grid-2col-bg">
-                        <h3 id="best-practices">Best Practices</h3>
-                        <ul class="check-list">
-                            <li><code>declare(strict_types=1)</code> nutzen</li>
-                            <li>Nie Nutzereingaben vertrauen</li>
-                            <li>Principle of Least Privilege (minimale Rechte)</li>
-                            <li>Defense in Depth (mehrere Schutzebenen)</li>
-                            <li>Code-Reviews und Security-Audits</li>
-                        </ul>
-                    </div>
+
+                    <h3 id="best-practices">Best Practices</h3>
+                    <ul class="check-list grid-2col-bg">
+                        <li><code>declare(strict_types=1)</code> nutzen</li>
+                        <li>Nie Nutzereingaben vertrauen</li>
+                        <li>Principle of Least Privilege (minimale Rechte)</li>
+                        <li>Defense in Depth (mehrere Schutzebenen)</li>
+                        <li>Code-Reviews und Security-Audits</li>
+                    </ul>
+
                     <div class="info-box">
                         <strong class="box-title no-toc">Ressourcen für weitere Infos
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
-                            <li><strong>OWASP Top 10:</strong> <a href="owasp.org/www-project-top-ten/" target="_blank">owasp.org/www-project-top-ten/</a></li>
-                            <li><strong>PHP Security Guide:</strong> <a href="phptherightway.com/#security" target="_blank">phptherightway.com/#security</a></li>
-                            <li><strong>Security Headers:</strong> <a href="securityheaders.com" target="_blank">securityheaders.com</a> (zum Testen)</li>
+                            <li><strong>OWASP Top 10:</strong> <a href="owasp.org/www-project-top-ten/"
+                                    target="_blank">owasp.org/www-project-top-ten/</a></li>
+                            <li><strong>PHP Security Guide:</strong> <a href="phptherightway.com/#security"
+                                    target="_blank">phptherightway.com/#security</a></li>
+                            <li><strong>Security Headers:</strong> <a href="securityheaders.com"
+                                    target="_blank">securityheaders.com</a> (zum Testen)</li>
                             <li><strong>Have I Been Pwned:</strong> <a href="haveibeenpwned.com">haveibeenpwned.com</a>
                                 (Passwort-Leaks prüfen)</li>
                         </ul>
@@ -2308,7 +2417,8 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
 
                     <div class="info-box warning">
                         <strong class="box-title warning no-toc">Die goldene Regel
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
                                 <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
                 15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
                 0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
@@ -2322,36 +2432,67 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                             und überall.</p>
                     </div>
 
-                    <div class="grid-2col">
-                        <div class="grid-2col-bg">
-                            <h3 id="die-haeufigsten-fehler">Die häufigsten Fehler</h3>
-                            <ul class="arrow-list">
-                                <li>Direkte Ausgabe von <code>$_GET</code>, <code>$_POST</code> ohne Bereinigung</li>
-                                <li>SQL-Queries mit String-Concatenation statt Prepared Statements</li>
-                                <li>Fehlende CSRF-Tokens in Formularen</li>
-                                <li>Passwörter im Klartext oder mit veralteten Hashes (MD5, SHA1)</li>
-                                <li>Zu detaillierte Fehlermeldungen in Produktion</li>
-                                <li>Unsichere Session-Konfiguration</li>
-                                <li>File-Uploads ohne Validierung</li>
-                            </ul>
+
+                    <div class="grid-2col-cards pb-lg">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <h3 class="code-lang pt-xs mb-0 text-md" id="die-haeufigsten-fehler">Die häufigsten
+                                    Fehler</h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-danger" fill="var(--accent-red-light)" aria-hidden="true">
+                                    <path
+                                        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+
+
+                            <div class="pt-lg pb-0 mb-0 px-md">
+                                <ul class="cross-list">
+                                    <li>Direkte Ausgabe von <code>$_GET</code>, <code>$_POST</code> ohne Bereinigung
+                                    </li>
+                                    <li>SQL-Queries mit String-Concatenation statt Prepared Statements</li>
+                                    <li>Fehlende CSRF-Tokens in Formularen</li>
+                                    <li>Passwörter im Klartext oder mit veralteten Hashes (MD5, SHA1)</li>
+                                    <li>Zu detaillierte Fehlermeldungen in Produktion</li>
+                                    <li>Unsichere Session-Konfiguration</li>
+                                    <li>File-Uploads ohne Validierung</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="grid-2col-bg">
-                            <h3 id="das-security-mindset">Das Security-Mindset</h3>
-                            <p>Denke immer wie ein Angreifer:</p>
-                            <ul class="arrow-list">
-                                <li>Was passiert, wenn ich hier <code>&lt;script&gt;</code> eingebe?</li>
-                                <li>Kann ich mit manipulierten URLs auf fremde Daten zugreifen?</li>
-                                <li>Was passiert, wenn ich riesige Dateien hochlade?</li>
-                                <li>Kann ich SQL-Befehle in dieses Feld eingeben?</li>
-                                <li>Kann ich CSRF-Angriffe durchführen?</li>
-                            </ul>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <h3 class="code-lang pt-xs mb-0 text-md" id="das-security-mindset">Das Security-Mindset
+                                </h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
+                                <ul class="arrow-list">
+                                    <li>Was passiert, wenn ich hier <code>&lt;script&gt;</code> eingebe?</li>
+                                    <li>Kann ich mit manipulierten URLs auf fremde Daten zugreifen?</li>
+                                    <li>Was passiert, wenn ich riesige Dateien hochlade?</li>
+                                    <li>Kann ich SQL-Befehle in dieses Feld eingeben?</li>
+                                    <li>Kann ich CSRF-Angriffe durchführen?</li>
+                                </ul>
+                                <p class="pt-md"><strong class="text-md">Denke immer wie ein Angreifer!</strong></p>
+                            </div>
                         </div>
                     </div>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Nächste Schritte
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <p>Sicherheit ist ein weites Feld. Weitere wichtige Themen:</p>
@@ -2365,13 +2506,14 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                     </div>
 
                     <p>Sichere Programmierung ist keine Raketenwissenschaft, aber sie erfordert Aufmerksamkeit und
-                        Disziplin. Die hier vorgestellten Methoden decken die wichtigsten Angriffsvektoren ab. Nutze sie
+                        Disziplin. Die hier vorgestellten Methoden decken die wichtigsten Angriffsvektoren ab. Nutze
+                        sie
                         konsequent, und deine Anwendungen werden deutlich sicherer sein!</p>
                 </section>
 
 
                 <!-- Prev/Next Navigation -->
-                
+
                 <!-- Latest-Tutorials-Start -->
                 <section class="categories">
                     <h2 id="mehr-aus-php">Mehr aus PHP</h2>
@@ -2384,13 +2526,15 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
 
                 <section class="tutorials-content">
                     <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/php/php-basics/php-basics.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">PHP Basics – Die Grundlagen</span>
-                <span class="tutorial-nav-category">PHP Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next"></div></nav>
+                        <div class="tutorial-nav-prev">
+                            <a href="/tutorials/php/php-basics/php-basics.html">
+                                <span class="tutorial-nav-label">← Vorheriges</span>
+                                <span class="tutorial-nav-link">PHP Basics – Die Grundlagen</span>
+                                <span class="tutorial-nav-category">PHP Basics</span>
+                            </a>
+                        </div>
+                        <div class="tutorial-nav-next"></div>
+                    </nav>
                 </section>
 
             </div> <!-- Wrapper .container -->
@@ -2400,32 +2544,28 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
     </main>
 
     <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                </nav>
+            </div>
         </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
-
+    </footer>
     <button id="scrollTopBtn" title="Nach oben">↑</button>
     <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/search.js" defer></script>
+    <script src="/assets/js/scroll-spy.js" defer></script>
+    <script src="/assets/js/latest-tutorials.js" defer></script>
+    <!-- Footer-End -->
+
     <script src="/assets/js/code-copy.js" defer></script>
     <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/js/scroll-spy.js"></script>
-    <script src="/assets/js/search.js"></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
 
+</body>
 
-
-</body></html>
+</html>

@@ -272,7 +272,7 @@
 .shortcut-card code {
     display: inline-block;
     color: var(--text-primary);
-    margin-bottom: 1rem;    
+    margin-bottom: 1rem;
 }
 
 .shortcut-card p {
@@ -300,7 +300,7 @@
     transition: all 200ms ease;
 }
 
-.cheatsheet-section:hover, 
+.cheatsheet-section:hover,
 .grid-2col-bg:hover,
 .tutorial-card:hover,
 .shortcut-card:hover,
@@ -372,21 +372,61 @@
 }
 
 /* Farbvarianten für verschiedene Kategorien */
-.cheatsheet-section-2:nth-child(1) { border-left-color: var(--accent-blue); }
-.cheatsheet-section-2:nth-child(2) { border-left-color: var(--accent-green); }
-.cheatsheet-section-2:nth-child(3) { border-left-color: var(--accent-purple); }
-.cheatsheet-section-2:nth-child(4) { border-left-color: var(--accent-orange); }
-.cheatsheet-section-2:nth-child(5) { border-left-color: var(--accent-cyan); }
-.cheatsheet-section-2:nth-child(6) { border-left-color: var(--accent-red); }
-.cheatsheet-section-2:nth-child(7) { border-left-color: var(--accent-mint); }
+.cheatsheet-section-2:nth-child(1) {
+    border-left-color: var(--accent-blue);
+}
 
-.cheatsheet-section-2:nth-child(1) h3 { color: var(--accent-blue); }
-.cheatsheet-section-2:nth-child(2) h3 { color: var(--accent-green); }
-.cheatsheet-section-2:nth-child(3) h3 { color: var(--accent-purple); }
-.cheatsheet-section-2:nth-child(4) h3 { color: var(--accent-orange); }
-.cheatsheet-section-2:nth-child(5) h3 { color: var(--accent-cyan); }
-.cheatsheet-section-2:nth-child(6) h3 { color: var(--accent-red); }
-.cheatsheet-section-2:nth-child(7) h3 { color: var(--accent-mint); }
+.cheatsheet-section-2:nth-child(2) {
+    border-left-color: var(--accent-green);
+}
+
+.cheatsheet-section-2:nth-child(3) {
+    border-left-color: var(--accent-purple);
+}
+
+.cheatsheet-section-2:nth-child(4) {
+    border-left-color: var(--accent-orange);
+}
+
+.cheatsheet-section-2:nth-child(5) {
+    border-left-color: var(--accent-cyan);
+}
+
+.cheatsheet-section-2:nth-child(6) {
+    border-left-color: var(--accent-red);
+}
+
+.cheatsheet-section-2:nth-child(7) {
+    border-left-color: var(--accent-mint);
+}
+
+.cheatsheet-section-2:nth-child(1) h3 {
+    color: var(--accent-blue);
+}
+
+.cheatsheet-section-2:nth-child(2) h3 {
+    color: var(--accent-green);
+}
+
+.cheatsheet-section-2:nth-child(3) h3 {
+    color: var(--accent-purple);
+}
+
+.cheatsheet-section-2:nth-child(4) h3 {
+    color: var(--accent-orange);
+}
+
+.cheatsheet-section-2:nth-child(5) h3 {
+    color: var(--accent-cyan);
+}
+
+.cheatsheet-section-2:nth-child(6) h3 {
+    color: var(--accent-red);
+}
+
+.cheatsheet-section-2:nth-child(7) h3 {
+    color: var(--accent-mint);
+}
 
 .cheatsheet-section-2 h3 {
     font-size: 1.1rem;
@@ -465,6 +505,7 @@
         padding: 1rem;
     }
 }
+
 /* ============================================================================
 4. TUTORIAL COPY CODE-BLOCKS
 =============================================================================== */
@@ -573,7 +614,8 @@
     padding: 1rem 1.5rem;
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
-    border-radius: 0 0 8px 8px;  /* Untere Ecken abrunden */
+    border-radius: 0 0 8px 8px;
+    /* Untere Ecken abrunden */
     font-size: 0.9rem;
 }
 
@@ -610,7 +652,8 @@
 }
 
 .code-block code {
-    display: block;  /* Default für Code in <pre> */
+    display: block;
+    /* Default für Code in <pre> */
     width: auto;
     font-family: var(--font-code);
     font-size: 0.9rem;
@@ -622,6 +665,8 @@
 
 /* Inline-Code in Listen, Header und Footer */
 .grid-2col-cards .code-block .arrow-list code,
+.grid-2col-cards .code-block .check-list code,
+.grid-2col-cards .code-block .cross-list code,
 .grid-2col-cards .code-header code,
 .grid-2col-cards .code-footer code {
     display: inline;
@@ -674,6 +719,7 @@
 .code-comment {
     color: var(--text-secondary);
 }
+
 /* ===============================================================================
     5. TUTORIAL INFO BOXES
    =============================================================================== */
@@ -888,7 +934,7 @@ ul.info-box.warning li::before {
 /* ---- Check List ---- */
 .check-list {
     list-style: none;
-    padding-left: 0;
+    /* padding-left: 0; */
 }
 
 .check-list li {
@@ -903,6 +949,14 @@ ul.check-list li::before {
     left: 0;
     color: var(--text-secondary);
     font-weight: bold;
+}
+
+.grid-2col-bg .check-list {
+    padding-left: 0;
+}
+
+ul.grid-2col-bg .check-list {
+    padding-left: 1.5rem;
 }
 
 /* ---- Cross List ---- */
@@ -1107,11 +1161,11 @@ ul.cross-list li::before {
 @media (max-width: 767px) {
     .table-wrapper {
         /* Subtiler Schatten rechts als Scroll-Hinweis */
-        background: 
+        background:
             linear-gradient(to right, var(--bg-secondary), var(--bg-secondary)),
             linear-gradient(to right, var(--bg-secondary), var(--bg-secondary)),
-            linear-gradient(to right, rgba(0,0,0,0.15), transparent),
-            linear-gradient(to left, rgba(0,0,0,0.15), transparent);
+            linear-gradient(to right, rgba(0, 0, 0, 0.15), transparent),
+            linear-gradient(to left, rgba(0, 0, 0, 0.15), transparent);
         background-position: left center, right center, left center, right center;
         background-repeat: no-repeat;
         background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
@@ -1122,7 +1176,8 @@ ul.cross-list li::before {
 /* ---- Styled Table (Multi-Column) ---- */
 .styled-table {
     width: 100%;
-    min-width: 600px; /* Verhindert zu starkes Quetschen */
+    min-width: 600px;
+    /* Verhindert zu starkes Quetschen */
     border-collapse: collapse;
     background: var(--bg-secondary);
     border-radius: 8px;
@@ -1206,12 +1261,12 @@ ul.cross-list li::before {
     .styled-table {
         font-size: 0.875rem;
     }
-    
+
     .styled-table th {
         font-size: 0.75rem;
         padding: 0.75rem 0.5rem;
     }
-    
+
     .styled-table td {
         padding: 0.625rem 0.5rem;
     }
@@ -1223,7 +1278,7 @@ ul.cross-list li::before {
     .styled-table.table-cards-mobile {
         min-width: unset;
     }
-    
+
     .styled-table.table-cards-mobile thead {
         display: none;
     }
@@ -1271,6 +1326,7 @@ ul.cross-list li::before {
         display: none;
     }
 }
+
 /* ===============================================================================
     7. LISTS
    =============================================================================== */
@@ -1285,7 +1341,7 @@ dl {
     background: var(--bg-secondary);
     border-radius: 8px;
     overflow: hidden;
-    padding: 2rem;    
+    padding: 2rem;
 }
 
 dt {
