@@ -1,7 +1,11 @@
-<!DOCTYPE html><html lang="de"><head>
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Die wichtigsten JavaScript-Grundlagen: Variablen, Datentypen, Funktionen, Events und DOM-Manipulation. Praktische Beispiele und interaktive Demos für Anfänger.">
+    <meta name="description"
+        content="Die wichtigsten JavaScript-Grundlagen: Variablen, Datentypen, Funktionen, Events und DOM-Manipulation. Praktische Beispiele und interaktive Demos für Anfänger.">
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
     <meta name="author" content="DevPanicZone">
     <title>JavaScript Basics | DevPanicZone</title>
@@ -16,145 +20,148 @@
 
 <body>
     <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                </a>
-            </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                    </span>
+                </button>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
 
-            <nav class="main-nav" id="mainNav" aria-label="Navigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/documentation/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                    </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
+                <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
                             </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/html/" class="nav-link">
+                                        HTML
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                        <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/css/" class="nav-link">
+                                        CSS
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                        <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/javascript/" class="nav-link">
+                                        JavaScript
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                        </li>
+                                        <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/php/" class="nav-link">
+                                        PHP
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/misc/" class="nav-link">
+                                        Verschiedenes
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                        <li><a href="/tutorials/misc/#web">Web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/documentation/" class="nav-link">
+                                        DevPanicZone!
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                        <!-- Search Toggle -->
+                        <li>
+                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Search Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown" hidden>
+                        <div class="search-input-group">
+                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path
+                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                            </svg>
+                            <input type="search" id="globalSearch" class="search-input"
+                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                        </div>
+
+                        <div class="search-results" id="searchResults" hidden>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                            <div class="search-results-footer">
+                                <button class="search-view-all" id="searchViewAll">
+                                    Alle Ergebnisse anzeigen →
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </div>
-    </div>
-</header>
-<!-- Header-End -->
+    </header>
+    <!-- Header-End -->
 
     <main class="site-main">
 
         <!-- Hero -->
         <section class="hero tutorial-hero">
             <div class="container">
-                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">JavaScript Basics</span></nav>
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                        class="breadcrumb-separator">›</span><a href="/tutorials/javascript/"
+                        class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span
+                        class="breadcrumb-current">JavaScript Basics</span></nav>
                 <h1 class="hero-title">JavaScript Basics</h1>
                 <p class="hero-subtitle">Die wichtigsten Grundlagen, um mit JavaScript zu starten - von Variablen bis zu
                     Event-Handlern.</p>
@@ -162,7 +169,8 @@
         </section>
 
         <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+            title="Auf dieser Seite">
             <span class="toggle-icon">☰</span>
         </button>
 
@@ -191,47 +199,57 @@
                 <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                     <ul class="toc-list">
                         <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#javascript">JavaScript.</a></li>
-                    <li class="toc-level-1"><a href="#wo-kommt-javascript-hin">Wo kommt JavaScript hin?</a></li>
-                    <li class="toc-level-1"><a href="#variablen-und-datentypen">Variablen und Datentypen</a></li>
-                    <li class="toc-level-2"><a href="#let-const-und-var">let, const und var</a></li>
-                    <li class="toc-level-2"><a href="#datentypen">Datentypen</a></li>
-                    <li class="toc-level-2"><a href="#interaktives-beispiel-variablen">Interaktives Beispiel: Variablen</a></li>
-                    <li class="toc-level-1"><a href="#operatoren">Operatoren</a></li>
-                    <li class="toc-level-2"><a href="#arithmetische-operatoren">Arithmetische Operatoren</a></li>
-                    <li class="toc-level-2"><a href="#vergleichsoperatoren">Vergleichsoperatoren</a></li>
-                    <li class="toc-level-2"><a href="#logische-operatoren">Logische Operatoren</a></li>
-                    <li class="toc-level-1"><a href="#funktionen">Funktionen</a></li>
-                    <li class="toc-level-2"><a href="#function-declaration-klassisch">Function Declaration (klassisch)</a></li>
-                    <li class="toc-level-2"><a href="#arrow-function-modern">Arrow Function (modern)</a></li>
-                    <li class="toc-level-2"><a href="#parameter-und-return">Parameter und Return</a></li>
-                    <li class="toc-level-2"><a href="#interaktives-beispiel-funktionen">Interaktives Beispiel: Funktionen</a></li>
-                    <li class="toc-level-1"><a href="#ifelse---bedingungen">If/Else - Bedingungen</a></li>
-                    <li class="toc-level-2"><a href="#ternaerer-operator-kurzform">Ternärer Operator (Kurzform)</a></li>
-                    <li class="toc-level-2"><a href="#interaktives-beispiel-bedingungen">Interaktives Beispiel: Bedingungen</a></li>
-                    <li class="toc-level-1"><a href="#schleifen-loops">Schleifen (Loops)</a></li>
-                    <li class="toc-level-2"><a href="#for-schleife">For-Schleife</a></li>
-                    <li class="toc-level-2"><a href="#while-schleife">While-Schleife</a></li>
-                    <li class="toc-level-2"><a href="#foreach-fuer-arrays">forEach (für Arrays)</a></li>
-                    <li class="toc-level-2"><a href="#interaktives-beispiel-schleifen">Interaktives Beispiel: Schleifen</a></li>
-                    <li class="toc-level-1"><a href="#dom-manipulation">DOM-Manipulation</a></li>
-                    <li class="toc-level-2"><a href="#elemente-auswaehlen">Elemente auswählen</a></li>
-                    <li class="toc-level-2"><a href="#inhalt-aendern">Inhalt ändern</a></li>
-                    <li class="toc-level-2"><a href="#klassen-hinzufuegenentfernen">Klassen hinzufügen/entfernen</a></li>
-                    <li class="toc-level-2"><a href="#interaktives-beispiel-dom-manipulation">Interaktives Beispiel: DOM-Manipulation</a></li>
-                    <li class="toc-level-1"><a href="#events-ereignisse">Events (Ereignisse)</a></li>
-                    <li class="toc-level-2"><a href="#event-listener-hinzufuegen">Event Listener hinzufügen</a></li>
-                    <li class="toc-level-2"><a href="#wichtige-event-typen">Wichtige Event-Typen</a></li>
-                    <li class="toc-level-2"><a href="#event-objekt">Event-Objekt</a></li>
-                    <li class="toc-level-2"><a href="#interaktives-beispiel-events">Interaktives Beispiel: Events</a></li>
-                    <li class="toc-level-1"><a href="#wichtige-array-methoden">Wichtige Array-Methoden</a></li>
-                    <li class="toc-level-2"><a href="#interaktives-beispiel-array-methoden">Interaktives Beispiel: Array-Methoden</a></li>
-                    <li class="toc-level-1"><a href="#console-und-debugging">Console und Debugging</a></li>
-                    <li class="toc-level-2"><a href="#console-methoden">Console-Methoden</a></li>
-                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
-                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                        <li class="toc-level-1"><a href="#javascript">JavaScript.</a></li>
+                        <li class="toc-level-1"><a href="#wo-kommt-javascript-hin">Wo kommt JavaScript hin?</a></li>
+                        <li class="toc-level-1"><a href="#variablen-und-datentypen">Variablen und Datentypen</a></li>
+                        <li class="toc-level-2"><a href="#let-const-und-var">let, const und var</a></li>
+                        <li class="toc-level-2"><a href="#datentypen">Datentypen</a></li>
+                        <li class="toc-level-2"><a href="#interaktives-beispiel-variablen">Interaktives Beispiel:
+                                Variablen</a></li>
+                        <li class="toc-level-1"><a href="#operatoren">Operatoren</a></li>
+                        <li class="toc-level-2"><a href="#arithmetische-operatoren">Arithmetische Operatoren</a></li>
+                        <li class="toc-level-2"><a href="#vergleichsoperatoren">Vergleichsoperatoren</a></li>
+                        <li class="toc-level-2"><a href="#logische-operatoren">Logische Operatoren</a></li>
+                        <li class="toc-level-1"><a href="#funktionen">Funktionen</a></li>
+                        <li class="toc-level-2"><a href="#function-declaration-klassisch">Function Declaration
+                                (klassisch)</a></li>
+                        <li class="toc-level-2"><a href="#arrow-function-modern">Arrow Function (modern)</a></li>
+                        <li class="toc-level-2"><a href="#parameter-und-return">Parameter und Return</a></li>
+                        <li class="toc-level-2"><a href="#interaktives-beispiel-funktionen">Interaktives Beispiel:
+                                Funktionen</a></li>
+                        <li class="toc-level-1"><a href="#ifelse---bedingungen">If/Else - Bedingungen</a></li>
+                        <li class="toc-level-2"><a href="#ternaerer-operator-kurzform">Ternärer Operator (Kurzform)</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#interaktives-beispiel-bedingungen">Interaktives Beispiel:
+                                Bedingungen</a></li>
+                        <li class="toc-level-1"><a href="#schleifen-loops">Schleifen (Loops)</a></li>
+                        <li class="toc-level-2"><a href="#for-schleife">For-Schleife</a></li>
+                        <li class="toc-level-2"><a href="#while-schleife">While-Schleife</a></li>
+                        <li class="toc-level-2"><a href="#foreach-fuer-arrays">forEach (für Arrays)</a></li>
+                        <li class="toc-level-2"><a href="#interaktives-beispiel-schleifen">Interaktives Beispiel:
+                                Schleifen</a></li>
+                        <li class="toc-level-1"><a href="#dom-manipulation">DOM-Manipulation</a></li>
+                        <li class="toc-level-2"><a href="#elemente-auswaehlen">Elemente auswählen</a></li>
+                        <li class="toc-level-2"><a href="#inhalt-aendern">Inhalt ändern</a></li>
+                        <li class="toc-level-2"><a href="#klassen-hinzufuegenentfernen">Klassen hinzufügen/entfernen</a>
+                        </li>
+                        <li class="toc-level-2"><a href="#interaktives-beispiel-dom-manipulation">Interaktives Beispiel:
+                                DOM-Manipulation</a></li>
+                        <li class="toc-level-1"><a href="#events-ereignisse">Events (Ereignisse)</a></li>
+                        <li class="toc-level-2"><a href="#event-listener-hinzufuegen">Event Listener hinzufügen</a></li>
+                        <li class="toc-level-2"><a href="#wichtige-event-typen">Wichtige Event-Typen</a></li>
+                        <li class="toc-level-2"><a href="#event-objekt">Event-Objekt</a></li>
+                        <li class="toc-level-2"><a href="#interaktives-beispiel-events">Interaktives Beispiel:
+                                Events</a></li>
+                        <li class="toc-level-1"><a href="#wichtige-array-methoden">Wichtige Array-Methoden</a></li>
+                        <li class="toc-level-2"><a href="#interaktives-beispiel-array-methoden">Interaktives Beispiel:
+                                Array-Methoden</a></li>
+                        <li class="toc-level-1"><a href="#console-und-debugging">Console und Debugging</a></li>
+                        <li class="toc-level-2"><a href="#console-methoden">Console-Methoden</a></li>
+                        <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                        <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler</a></li>
+                        <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
+                        <!-- Sidebar-Anchor-End -->
                     </ul>
                 </nav>
             </aside>
@@ -247,14 +265,19 @@
 
                 <div class="sidebar-nav">
                     <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">JavaScript Basics</li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-basics.html" class="active">JavaScript Basics</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a></li>
-                    <li class="sidebar-group-title">JavaScript Projects</li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript: HTML-Code Escaper</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity Encoder</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit JavaScript</a></li>
-                </ul>
+                        <li class="sidebar-group-title">JavaScript Basics</li>
+                        <li><a href="/tutorials/javascript/javascript-basics/js-basics.html" class="active">JavaScript
+                                Basics</a></li>
+                        <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a>
+                        </li>
+                        <li class="sidebar-group-title">JavaScript Projects</li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript:
+                                HTML-Code Escaper</a></li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity
+                                Encoder</a></li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit
+                                JavaScript</a></li>
+                    </ul>
                 </div>
             </aside>
 
@@ -264,8 +287,11 @@
                 <!-- Wo kommt JavaScript hin? -->
                 <section class="tutorials-content mt-xl">
                     <h2 id="javascript">JavaScript.</h2>
-                    <p>Ein mächtiges Werkzeug. Nicht erschrecken, auf dieser Seite siehst du viel Code - wir stecken mal den großen Zeh ins kalte Wasser. Vielleicht geht´s dir besser, mein erster Eindruck war: Oh Gott. Aber die Seite ist ein Sneak-Peak auf die kommenden Tutorials, wir gehen auf die spärlich erklärten Codes natürlich noch genauer ein.</p>
-                    
+                    <p>Ein mächtiges Werkzeug. Nicht erschrecken, auf dieser Seite siehst du viel Code - wir stecken mal
+                        den großen Zeh ins kalte Wasser. Vielleicht geht´s dir besser, mein erster Eindruck war: Oh
+                        Gott. Aber die Seite ist ein Sneak-Peak auf die kommenden Tutorials, wir gehen auf die spärlich
+                        erklärten Codes natürlich noch genauer ein.</p>
+
                 </section>
 
                 <!-- Wo kommt JavaScript hin? -->
@@ -273,7 +299,8 @@
                     <h2 id="wo-kommt-javascript-hin">Wo kommt JavaScript hin?</h2>
                     <p>JavaScript kann an drei Stellen eingebunden werden:</p>
 
-                    <h3 class="no-toc" id="1-inline-javascript-direkt-im-html">1. Inline JavaScript (direkt im HTML)</h3>
+                    <h3 class="no-toc" id="1-inline-javascript-direkt-im-html">1. Inline JavaScript (direkt im HTML)
+                    </h3>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">javascript</span>
@@ -288,7 +315,8 @@
                     </div>
                     <p><strong>Funktioniert, aber nicht empfohlen</strong> - mischt Verhalten mit Struktur.</p>
 
-                    <h3 class="no-toc" id="2-internal-javascript-im-script-tag">2. Internal JavaScript (im &lt;script&gt;-Tag)</h3>
+                    <h3 class="no-toc" id="2-internal-javascript-im-script-tag">2. Internal JavaScript (im
+                        &lt;script&gt;-Tag)</h3>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">javascript</span>
@@ -306,7 +334,8 @@
                     </div>
                     <p>Gut für kleine Scripte oder zum Testen.</p>
 
-                    <h3 class="no-toc" id="3-external-javascript-separate-datei---best-practice">3. External JavaScript (separate Datei) - BEST PRACTICE</h3>
+                    <h3 class="no-toc" id="3-external-javascript-separate-datei---best-practice">3. External JavaScript
+                        (separate Datei) - BEST PRACTICE</h3>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">javascript</span>
@@ -323,8 +352,11 @@
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Tipp
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <p>Externe Dateien sind am übersichtlichsten und wie ich hier gelernt habe, auch am sichersten!
@@ -332,11 +364,14 @@
                             das HTML geladen wird, bevor JavaScript darauf zugreift.
                         </p>
                     </div>
+
                     <div class="cta-content">
-                        <a href="/tutorials/javascript/javascript-basics/js-security.html" target="_blank" class="btn tutorial-button">
-                            <span class="pr-md">→</span> Hier erfährst du mehr über die Sicherheit bei
+                        <a href="/tutorials/javascript/javascript-basics/js-security.html"
+                            class="btn btn-secondary"><span class="pr-md">→</span> Hier erfährst du mehr über die
+                            Sicherheit bei
                             JavaScript</a>
                     </div>
+
                 </section>
 
                 <!-- Variablen und Datentypen -->
@@ -368,8 +403,11 @@ var oldStyle = "nicht mehr modern";</code></pre>
                     </div>
                     <div class="info-box">
                         <strong class="box-title no-toc">Best Practice
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <p>Immer <code class="inline">const</code> verwenden, außer du weißt, dass sich der Wert ändern
@@ -515,8 +553,11 @@ console.log(x &lt;= 4);    // false (kleiner oder gleich)</code></pre>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Wichtig
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <p>Immer <code class="inline">===</code> statt <code class="inline">==</code> verwenden! Das
@@ -1291,8 +1332,11 @@ console.groupEnd();</code></pre>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Konsole öffnen
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                fill="currentColor">
+                                <path
+                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
                             </svg>
                         </strong>
                         <ul class="arrow-list">
@@ -1312,18 +1356,21 @@ console.groupEnd();</code></pre>
                         <ul class="arrow-list">
                             <li><strong>Verwende const und let, nie var</strong> - Moderne Variablen-Deklaration ist
                                 sicherer</li>
-                            <li><strong>Verwende <code class="inline">===</code> statt <code class="inline">==</code></strong> - Vergleicht auch den Datentyp, verhindert
+                            <li><strong>Verwende <code class="inline">===</code> statt <code
+                                        class="inline">==</code></strong> - Vergleicht auch den Datentyp, verhindert
                                 Bugs</li>
                             <li><strong>Benenne Variablen aussagekräftig</strong> - <code class="inline">userName</code>
                                 ist besser als <code class="inline">x</code></li>
                             <li><strong>Kommentiere deinen Code</strong> - Dein zukünftiges Ich wird es dir danken</li>
                             <li><strong>Eine Funktion = eine Aufgabe</strong> - Halte Funktionen klein und fokussiert
                             </li>
-                            <li><strong>Nutze die Konsole zum Testen</strong> - <code class="inline">console.log()</code> ist dein Freund</li>
+                            <li><strong>Nutze die Konsole zum Testen</strong> - <code
+                                    class="inline">console.log()</code> ist dein Freund</li>
                             <li><strong>Externe Scripts am Ende des &lt;body&gt;</strong> - Damit das HTML erst geladen
                                 ist</li>
                             <li><strong>Event Listener statt Inline-Events</strong> - Trennt JavaScript von HTML</li>
-                            <li><strong>Camel Case für Variablen</strong> - <code class="inline">meineLangeVariable</code></li>
+                            <li><strong>Camel Case für Variablen</strong> - <code
+                                    class="inline">meineLangeVariable</code></li>
                             <li><strong>Prüfe auf undefined/null</strong> - Bevor du mit Werten arbeitest</li>
                         </ul>
                     </div>
@@ -1380,37 +1427,37 @@ name = "Anna";  // OK!</code></pre>
                         </div>
                     </div>
 
-                    <div class="info-box">
-                        <h3 class="no-toc" id="3-statt-">3. == statt ===</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">javascript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">// Unerwartetes Verhalten
+                    <h3 class="no-toc" id="3-statt-">3. <code>==</code> statt <code>===</code></h3>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Unerwartetes Verhalten
 console.log(5 == "5");   // true (!)
 console.log(5 === "5");  // false (korrekt)</code></pre>
-                        </div>
                     </div>
 
-                    <div class="info-box">
-                        <h3 class="no-toc" id="4-event-listener-syntax">4. Event Listener Syntax</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">javascript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">// FALSCH - Funktion wird sofort ausgeführt
+
+
+                    <h3 class="no-toc" id="4-event-listener-syntax">4. Event Listener Syntax</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// FALSCH - Funktion wird sofort ausgeführt
 button.addEventListener("click", meineFunktion());
 
 // RICHTIG - Funktion wird als Referenz übergeben
@@ -1418,12 +1465,12 @@ button.addEventListener("click", meineFunktion);
 
 // ODER mit Arrow Function
 button.addEventListener("click", () =&gt; meineFunktion());</code></pre>
-                        </div>
                     </div>
+
                 </section>
 
                 <!-- Prev/Next Navigation -->
-                
+
                 <!-- Latest-Tutorials-Start -->
                 <section class="categories">
                     <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
@@ -1435,13 +1482,16 @@ button.addEventListener("click", () =&gt; meineFunktion());</code></pre>
                 <!-- Latest-Tutorials-End -->
 
                 <section class="tutorials-content">
-                    <nav class="tutorial-nav"><div class="tutorial-nav-prev"></div><div class="tutorial-nav-next">
-            <a href="/tutorials/javascript/javascript-basics/js-security.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">JavaScript Sicherheit</span>
-                <span class="tutorial-nav-category">JavaScript Basics</span>
-            </a>
-        </div></nav>
+                    <nav class="tutorial-nav">
+                        <div class="tutorial-nav-prev"></div>
+                        <div class="tutorial-nav-next">
+                            <a href="/tutorials/javascript/javascript-basics/js-security.html">
+                                <span class="tutorial-nav-label">Nächstes →</span>
+                                <span class="tutorial-nav-link">JavaScript Sicherheit</span>
+                                <span class="tutorial-nav-category">JavaScript Basics</span>
+                            </a>
+                        </div>
+                    </nav>
                 </section>
 
             </div> <!-- Wrapper .container -->
@@ -1451,33 +1501,31 @@ button.addEventListener("click", () =&gt; meineFunktion());</code></pre>
     </main>
 
     <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                </nav>
+            </div>
         </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
-
+    </footer>
     <button id="scrollTopBtn" title="Nach oben">↑</button>
     <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/search.js" defer></script>
+    <script src="/assets/js/scroll-spy.js" defer></script>
+    <script src="/assets/js/latest-tutorials.js" defer></script>
+    <!-- Footer-End -->
+
     <script src="/assets/js/code-copy.js" defer></script>
     <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/js/scroll-spy.js"></script>
-    <script src="/assets/js/search.js"></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
     <script src="/assets/js/javascript-basics-demos.js"></script>
 
 
 
-</body></html>
+</body>
+
+</html>
