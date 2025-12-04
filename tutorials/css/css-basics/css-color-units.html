@@ -1,19 +1,15 @@
 <!DOCTYPE html><html lang="de"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!------------------------------------------------ 
-    ============== DESCRIPTION ERSETZEN ==============
-    ------------------------------------------------->
-    <meta name="description" content="--------- DIESER TEXT WIRD ERSETZT ---------">
+    <meta name="description" content="Entdecke die verschiedenen CSS-Color-Units – von HEX, RGB und HSL bis zu modernen Funktionen wie lab() und lch(). Mit Beispielen und Tipps für präzise Farbgestaltung im Webdesign.">
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
-    <meta name="author" content="DevPanicZone">    
-    <!------------------------------------------ 
-    ============== TITLE ERSETZEN ==============
-    ------------------------------------------->
-    <title>HTML Basics | DevPanicZone</title>
+    <meta name="author" content="DevPanicZone">
+    <title>CSS Color Units | DevPanicZone</title>
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
     <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tutorials.css">
+    <link rel="stylesheet" href="/assets/css/color-swatches.css">
     <link rel="stylesheet" href="/assets/css/sidebar.css">
     <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
 </head>
@@ -159,13 +155,11 @@
         <section class="hero tutorial-hero">
             <div class="container">
                 <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/css/" class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">CSS Farben & Einheiten</span></nav>
-                <!----------------------------------------------- 
-            ================ HERO BEARBEITEN ================
-            ------------------------------------------------>
-                <h1 class="hero-title">HTML Basics</h1>
-                <p class="hero-subtitle">Bevor du mit komplexen Layouts, CSS oder JavaScript arbeitest, ist es wichtig,
-                    die
-                    Grundlagen von HTML zu verstehen.</p>
+                <h1 class="hero-title">CSS Color Units</h1>
+                <p class="hero-subtitle">Farben machen Websites lebendig – in CSS gibt es dafür viele Schreibweisen.
+                    Ob <strong>Hex-Codes</strong>, <strong>RGB</strong>, <strong>HSL</strong> oder
+                    <strong>vordefinierte Farbnamen</strong> – jede Einheit hat ihren Zweck.
+                </p>
             </div>
         </section>
 
@@ -190,7 +184,7 @@
             <!-- Linke Sidebar (Floating Panel) -->
             <aside class="tutorial-sidebar" id="tutorialSidebar">
                 <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc" id="auf-dieser-seite">Auf dieser Seite</h3>
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
                     <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
                         <span>×</span>
                     </button>
@@ -199,8 +193,13 @@
                 <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                     <ul class="toc-list">
                         <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#abschnittstitel">Abschnittstitel</a></li>
-                    <li class="toc-level-1"><a href="#weiterer-abschnitt">Weiterer Abschnitt</a></li>
+                    <li class="toc-level-1"><a href="#farbnamen">Farbnamen</a></li>
+                    <li class="toc-level-1"><a href="#hex-farben">HEX-Farben</a></li>
+                    <li class="toc-level-1"><a href="#rgb-rgba">RGB &amp; RGBA</a></li>
+                    <li class="toc-level-1"><a href="#hsl-hsla">HSL &amp; HSLA</a></li>
+                    <li class="toc-level-1"><a href="#aktuelle-css-color-funktionen-ab-css-color-module-4">Aktuelle CSS Color Funktionen (ab CSS Color Module 4)</a></li>
+                    <li class="toc-level-1"><a href="#farbtransparenzen-und-verlauf">Farbtransparenzen und Verlauf</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
                     <!-- Sidebar-Anchor-End -->
                     </ul>
                 </nav>
@@ -209,7 +208,7 @@
             <!-- Rechte Sidebar (Floating Panel) -->
             <aside class="tutorial-related">
                 <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc" id="tutorials">Tutorials</h3>
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
                     <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
                         <span>×</span>
                     </button>
@@ -231,23 +230,1015 @@
             <!-- Wrapper .container -->
             <div class="container">
 
-                <!-- Abschnitte in Sections -->
-                <section class="categories">
-                    <!----------------------------------------------- 
-                ================ INHALT HIER ==================
-                ------------------------------------------------>
-                    <h2 id="abschnittstitel">Abschnittstitel</h2>
-                    <p>Inhalt...</p>
+                <!-- Farbnamen -->
+                <section class="tutorials-content mt-xl">
+                    <h2 id="farbnamen">Farbnamen</h2>
+                    <p>Die einfachste Möglichkeit: vordefinierte Farbnamen wie <code class="inline">red</code>, <code class="inline">blue</code> oder
+                        <code class="inline">goldenrod</code>.
+                        Insgesamt unterstützt CSS über 140 benannte Farben, die von allen Browsern unterstützt werden.
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Beispiel: vordefinierte Farbnamen */
+
+.example1 {
+    color: darkslategray;
+    background-color: lightgoldenrodyellow;
+}</code></pre>
+                    </div>
+                    <!-- ========== GRUNDFARBEN ========== -->
+                    <div class="color-swatches-grid mt-xl">
+
+                        <div class="color-family-title">Auswahl an Grundfarben</div>
+
+                        <div class="color-swatch light-bg" style="--bg: black">
+                            <p>black</p>
+                            <p>#000000 </p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: silver">
+                            <p>silver</p>
+                            <p>#c0c0c0 </p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: gray">
+                            <p>gray</p>
+                            <p>#808080 </p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: white">
+                            <p>white</p>
+                            <p>#ffffff</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: maroon">
+                            <p>maroon</p>
+                            <p>#800000</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: red">
+                            <p>red</p>
+                            <p>#ff0000 </p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: purple">
+                            <p>purple</p>
+                            <p>#800080</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: fuchsia">
+                            <p>fuchsia</p>
+                            <p>#ff00ff</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: green">
+                            <p>green</p>
+                            <p>#008000</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: lime">
+                            <p>lime</p>
+                            <p>#00ff00</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: olive">
+                            <p>olive</p>
+                            <p>#808000</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: yellow">
+                            <p>yellow</p>
+                            <p>#ffff00</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: navy">
+                            <p>navy</p>
+                            <p>#000080</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: blue">
+                            <p>blue</p>
+                            <p>#0000ff</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: teal">
+                            <p>teal</p>
+                            <p>#008080</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: steelblue">
+                            <p>steelblue</p>
+                            <p>#4682b4</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: turquoise">
+                            <p>turquoise</p>
+                            <p>#40e0d0</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: slateblue">
+                            <p>slateblue</p>
+                            <p>#6a5acd</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: brown">
+                            <p>brown</p>
+                            <p>#a52a2a</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: darkcyan">
+                            <p>darkcyan</p>
+                            <p>#008b8b</p>
+                        </div>
+
+                        <div class="color-swatch light-bg" style="--bg: darkolivegreen">
+                            <p>darkolivegreen</p>
+                            <p>#556b2f</p>
+                        </div>
+
+                    </div>
+                    <details class="toggle-container">
+                        <summary>140+ CSS-Farbnamen anzeigen</summary>
+
+                        <div class="toggle-content">
+
+                            <div class="color-swatches-grid mt-xl">
+
+                                <!-- ========== PINK / ROSA ========== -->
+                                <div class="color-family-title">Pink / Rosa</div>
+
+                                <div class="color-swatch light-bg" style="--bg: pink">
+                                    <p>pink</p>
+                                    <p>#FFC0CB</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightpink">
+                                    <p>lightpink</p>
+                                    <p>#FFB6C1</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: hotpink">
+                                    <p>hotpink</p>
+                                    <p>#FF69B4</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: deeppink">
+                                    <p>deeppink</p>
+                                    <p>#FF1493</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumvioletred">
+                                    <p>mediumvioletred</p>
+                                    <p>#C71585</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: palevioletred">
+                                    <p>palevioletred</p>
+                                    <p>#DB7093</p>
+                                </div>
+
+                                <!-- ========== ROT ========== -->
+                                <div class="color-family-title">Rot</div>
+
+                                <div class="color-swatch light-bg" style="--bg: lightsalmon">
+                                    <p>lightsalmon</p>
+                                    <p>#FFA07A</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: salmon">
+                                    <p>salmon</p>
+                                    <p>#FA8072</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: darksalmon">
+                                    <p>darksalmon</p>
+                                    <p>#E9967A</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightcoral">
+                                    <p>lightcoral</p>
+                                    <p>#F08080</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: indianred">
+                                    <p>indianred</p>
+                                    <p>#CD5C5C</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: crimson">
+                                    <p>crimson</p>
+                                    <p>#DC143C</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: firebrick">
+                                    <p>firebrick</p>
+                                    <p>#B22222</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: red">
+                                    <p>red</p>
+                                    <p>#FF0000</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkred">
+                                    <p>darkred</p>
+                                    <p>#8B0000</p>
+                                </div>
+
+                                <!-- ========== ORANGE ========== -->
+                                <div class="color-family-title">Orange</div>
+
+                                <div class="color-swatch light-bg" style="--bg: coral">
+                                    <p>coral</p>
+                                    <p>#FF7F50</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: tomato">
+                                    <p>tomato</p>
+                                    <p>#FF6347</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: orangered">
+                                    <p>orangered</p>
+                                    <p>#FF4500</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: gold">
+                                    <p>gold</p>
+                                    <p>#FFD700</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: orange">
+                                    <p>orange</p>
+                                    <p>#FFA500</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: darkorange">
+                                    <p>darkorange</p>
+                                    <p>#FF8C00</p>
+                                </div>
+
+                                <!-- ========== GELB ========== -->
+                                <div class="color-family-title">Gelb</div>
+
+                                <div class="color-swatch light-bg" style="--bg: lightyellow">
+                                    <p>lightyellow</p>
+                                    <p>#FFFFE0</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lemonchiffon">
+                                    <p>lemonchiffon</p>
+                                    <p>#FFFACD</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightgoldenrodyellow">
+                                    <p>lightgoldenrod­yellow</p>
+                                    <p>#FAFAD2</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: papayawhip">
+                                    <p>papayawhip</p>
+                                    <p>#FFEFD5</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: moccasin">
+                                    <p>moccasin</p>
+                                    <p>#FFE4B5</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: peachpuff">
+                                    <p>peachpuff</p>
+                                    <p>#FFDAB9</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: palegoldenrod">
+                                    <p>palegoldenrod</p>
+                                    <p>#EEE8AA</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: khaki">
+                                    <p>khaki</p>
+                                    <p>#F0E68C</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: darkkhaki">
+                                    <p>darkkhaki</p>
+                                    <p>#BDB76B</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: yellow">
+                                    <p>yellow</p>
+                                    <p>#FFFF00</p>
+                                </div>
+
+                                <!-- ========== BRAUN ========== -->
+                                <div class="color-family-title">Braun</div>
+
+                                <div class="color-swatch light-bg" style="--bg: cornsilk">
+                                    <p>cornsilk</p>
+                                    <p>#FFF8DC</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: blanchedalmond">
+                                    <p>blanchedalmond</p>
+                                    <p>#FFEBCD</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: bisque">
+                                    <p>bisque</p>
+                                    <p>#FFE4C4</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: navajowhite">
+                                    <p>navajowhite</p>
+                                    <p>#FFDEAD</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: wheat">
+                                    <p>wheat</p>
+                                    <p>#F5DEB3</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: burlywood">
+                                    <p>burlywood</p>
+                                    <p>#DEB887</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: tan">
+                                    <p>tan</p>
+                                    <p>#D2B48C</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: rosybrown">
+                                    <p>rosybrown</p>
+                                    <p>#BC8F8F</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: sandybrown">
+                                    <p>sandybrown</p>
+                                    <p>#F4A460</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: goldenrod">
+                                    <p>goldenrod</p>
+                                    <p>#DAA520</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkgoldenrod">
+                                    <p>darkgoldenrod</p>
+                                    <p>#B8860B</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: peru">
+                                    <p>peru</p>
+                                    <p>#CD853F</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: chocolate">
+                                    <p>chocolate</p>
+                                    <p>#D2691E</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: saddlebrown">
+                                    <p>saddlebrown</p>
+                                    <p>#8B4513</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: sienna">
+                                    <p>sienna</p>
+                                    <p>#A0522D</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: brown">
+                                    <p>brown</p>
+                                    <p>#A52A2A</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: maroon">
+                                    <p>maroon</p>
+                                    <p>#800000</p>
+                                </div>
+
+                                <!-- ========== GRÜN ========== -->
+                                <div class="color-family-title">Grün</div>
+
+                                <div class="color-swatch light-bg" style="--bg: greenyellow">
+                                    <p>greenyellow</p>
+                                    <p>#ADFF2F</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: chartreuse">
+                                    <p>chartreuse</p>
+                                    <p>#7FFF00</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lawngreen">
+                                    <p>lawngreen</p>
+                                    <p>#7CFC00</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lime">
+                                    <p>lime</p>
+                                    <p>#00FF00</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: limegreen">
+                                    <p>limegreen</p>
+                                    <p>#32CD32</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: palegreen">
+                                    <p>palegreen</p>
+                                    <p>#98FB98</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightgreen">
+                                    <p>lightgreen</p>
+                                    <p>#90EE90</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumspringgreen">
+                                    <p>mediumspring­green</p>
+                                    <p>#00FA9A</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: springgreen">
+                                    <p>springgreen</p>
+                                    <p>#00FF7F</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumseagreen">
+                                    <p>mediumseagreen</p>
+                                    <p>#3CB371</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: seagreen">
+                                    <p>seagreen</p>
+                                    <p>#2E8B57</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: forestgreen">
+                                    <p>forestgreen</p>
+                                    <p>#228B22</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: green">
+                                    <p>green</p>
+                                    <p>#008000</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkgreen">
+                                    <p>darkgreen</p>
+                                    <p>#006400</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: yellowgreen">
+                                    <p>yellowgreen</p>
+                                    <p>#9ACD32</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: olivedrab">
+                                    <p>olivedrab</p>
+                                    <p>#6B8E23</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: olive">
+                                    <p>olive</p>
+                                    <p>#808000</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkolivegreen">
+                                    <p>darkolivegreen</p>
+                                    <p>#556B2F</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumaquamarine">
+                                    <p>mediumaqua­marine</p>
+                                    <p>#66CDAA</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkseagreen">
+                                    <p>darkseagreen</p>
+                                    <p>#8FBC8F</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightseagreen">
+                                    <p>lightseagreen</p>
+                                    <p>#20B2AA</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkcyan">
+                                    <p>darkcyan</p>
+                                    <p>#008B8B</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: teal">
+                                    <p>teal</p>
+                                    <p>#008080</p>
+                                </div>
+
+                                <!-- ========== CYAN / TÜRKIS ========== -->
+                                <div class="color-family-title">Cyan / Türkis</div>
+
+                                <div class="color-swatch light-bg" style="--bg: aqua">
+                                    <p>aqua</p>
+                                    <p>#00FFFF</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: cyan">
+                                    <p>cyan</p>
+                                    <p>#00FFFF</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightcyan">
+                                    <p>lightcyan</p>
+                                    <p>#E0FFFF</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: paleturquoise">
+                                    <p>paleturquoise</p>
+                                    <p>#AFEEEE</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: aquamarine">
+                                    <p>aquamarine</p>
+                                    <p>#7FFFD4</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: turquoise">
+                                    <p>turquoise</p>
+                                    <p>#40E0D0</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumturquoise">
+                                    <p>mediumturquoise</p>
+                                    <p>#48D1CC</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkturquoise">
+                                    <p>darkturquoise</p>
+                                    <p>#00CED1</p>
+                                </div>
+
+                                <!-- ========== BLAU ========== -->
+                                <div class="color-family-title">Blau</div>
+
+                                <div class="color-swatch dark-bg" style="--bg: cadetblue">
+                                    <p>cadetblue</p>
+                                    <p>#5F9EA0</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: steelblue">
+                                    <p>steelblue</p>
+                                    <p>#4682B4</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightsteelblue">
+                                    <p>lightsteelblue</p>
+                                    <p>#B0C4DE</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: powderblue">
+                                    <p>powderblue</p>
+                                    <p>#B0E0E6</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightblue">
+                                    <p>lightblue</p>
+                                    <p>#ADD8E6</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: skyblue">
+                                    <p>skyblue</p>
+                                    <p>#87CEEB</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightskyblue">
+                                    <p>lightskyblue</p>
+                                    <p>#87CEFA</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: deepskyblue">
+                                    <p>deepskyblue</p>
+                                    <p>#00BFFF</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: dodgerblue">
+                                    <p>dodgerblue</p>
+                                    <p>#1E90FF</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: cornflowerblue">
+                                    <p>cornflowerblue</p>
+                                    <p>#6495ED</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: royalblue">
+                                    <p>royalblue</p>
+                                    <p>#4169E1</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: blue">
+                                    <p>blue</p>
+                                    <p>#0000FF</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumblue">
+                                    <p>mediumblue</p>
+                                    <p>#0000CD</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkblue">
+                                    <p>darkblue</p>
+                                    <p>#00008B</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: navy">
+                                    <p>navy</p>
+                                    <p>#000080</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: midnightblue">
+                                    <p>midnightblue</p>
+                                    <p>#191970</p>
+                                </div>
+
+                                <!-- ========== LILA / VIOLETT ========== -->
+                                <div class="color-family-title">Lila / Violett</div>
+
+                                <div class="color-swatch light-bg" style="--bg: lavender">
+                                    <p>lavender</p>
+                                    <p>#E6E6FA</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: thistle">
+                                    <p>thistle</p>
+                                    <p>#D8BFD8</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: plum">
+                                    <p>plum</p>
+                                    <p>#DDA0DD</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: violet">
+                                    <p>violet</p>
+                                    <p>#EE82EE</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: orchid">
+                                    <p>orchid</p>
+                                    <p>#DA70D6</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: fuchsia">
+                                    <p>fuchsia</p>
+                                    <p>#FF00FF</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: magenta">
+                                    <p>magenta</p>
+                                    <p>#FF00FF</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumorchid">
+                                    <p>mediumorchid</p>
+                                    <p>#BA55D3</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumpurple">
+                                    <p>mediumpurple</p>
+                                    <p>#9370DB</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: rebeccapurple">
+                                    <p>rebeccapurple</p>
+                                    <p>#663399</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: blueviolet">
+                                    <p>blueviolet</p>
+                                    <p>#8A2BE2</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkviolet">
+                                    <p>darkviolet</p>
+                                    <p>#9400D3</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkorchid">
+                                    <p>darkorchid</p>
+                                    <p>#9932CC</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkmagenta">
+                                    <p>darkmagenta</p>
+                                    <p>#8B008B</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: purple">
+                                    <p>purple</p>
+                                    <p>#800080</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: indigo">
+                                    <p>indigo</p>
+                                    <p>#4B0082</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: slateblue">
+                                    <p>slateblue</p>
+                                    <p>#6A5ACD</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkslateblue">
+                                    <p>darkslateblue</p>
+                                    <p>#483D8B</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: mediumslateblue">
+                                    <p>mediumslateblue</p>
+                                    <p>#7B68EE</p>
+                                </div>
+
+                                <!-- ========== WEISS / CREME ========== -->
+                                <div class="color-family-title">Weiß / Creme</div>
+
+                                <div class="color-swatch light-bg" style="--bg: white">
+                                    <p>white</p>
+                                    <p>#FFFFFF</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: snow">
+                                    <p>snow</p>
+                                    <p>#FFFAFA</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: honeydew">
+                                    <p>honeydew</p>
+                                    <p>#F0FFF0</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: mintcream">
+                                    <p>mintcream</p>
+                                    <p>#F5FFFA</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: azure">
+                                    <p>azure</p>
+                                    <p>#F0FFFF</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: aliceblue">
+                                    <p>aliceblue</p>
+                                    <p>#F0F8FF</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: ghostwhite">
+                                    <p>ghostwhite</p>
+                                    <p>#F8F8FF</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: whitesmoke">
+                                    <p>whitesmoke</p>
+                                    <p>#F5F5F5</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: seashell">
+                                    <p>seashell</p>
+                                    <p>#FFF5EE</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: beige">
+                                    <p>beige</p>
+                                    <p>#F5F5DC</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: oldlace">
+                                    <p>oldlace</p>
+                                    <p>#FDF5E6</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: floralwhite">
+                                    <p>floralwhite</p>
+                                    <p>#FFFAF0</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: ivory">
+                                    <p>ivory</p>
+                                    <p>#FFFFF0</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: antiquewhite">
+                                    <p>antiquewhite</p>
+                                    <p>#FAEBD7</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: linen">
+                                    <p>linen</p>
+                                    <p>#FAF0E6</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lavenderblush">
+                                    <p>lavenderblush</p>
+                                    <p>#FFF0F5</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: mistyrose">
+                                    <p>mistyrose</p>
+                                    <p>#FFE4E1</p>
+                                </div>
+
+                                <!-- ========== GRAU / SCHWARZ ========== -->
+                                <div class="color-family-title">Grau / Schwarz</div>
+
+                                <div class="color-swatch light-bg" style="--bg: gainsboro">
+                                    <p>gainsboro</p>
+                                    <p>#DCDCDC</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightgray">
+                                    <p>lightgray</p>
+                                    <p>#D3D3D3</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: lightgrey">
+                                    <p>lightgrey</p>
+                                    <p>#D3D3D3</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: silver">
+                                    <p>silver</p>
+                                    <p>#C0C0C0</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: darkgray">
+                                    <p>darkgray</p>
+                                    <p>#A9A9A9</p>
+                                </div>
+                                <div class="color-swatch light-bg" style="--bg: darkgrey">
+                                    <p>darkgrey</p>
+                                    <p>#A9A9A9</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: gray">
+                                    <p>gray</p>
+                                    <p>#808080</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: grey">
+                                    <p>grey</p>
+                                    <p>#808080</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: dimgray">
+                                    <p>dimgray</p>
+                                    <p>#696969</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: dimgrey">
+                                    <p>dimgrey</p>
+                                    <p>#696969</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: lightslategray">
+                                    <p>lightslategray</p>
+                                    <p>#778899</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: lightslategrey">
+                                    <p>lightslategrey</p>
+                                    <p>#778899</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: slategray">
+                                    <p>slategray</p>
+                                    <p>#708090</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: slategrey">
+                                    <p>slategrey</p>
+                                    <p>#708090</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkslategray">
+                                    <p>darkslategray</p>
+                                    <p>#2F4F4F</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: darkslategrey">
+                                    <p>darkslategrey</p>
+                                    <p>#2F4F4F</p>
+                                </div>
+                                <div class="color-swatch dark-bg" style="--bg: black">
+                                    <p>black</p>
+                                    <p>#000000</p>
+                                </div>
+
+
+                            </div><!-- /.color-swatches-grid -->
+                        </div><!-- /.toggle-content -->
+                    </details><!-- /.toggle-container -->
+
+                </section>
+
+                <!-- HEX-Farben -->
+                <section class="tutorials-content">
+                    <h2 id="hex-farben">HEX-Farben</h2>
+                    <p>HEX-Werte (Hexadezimal) bestehen aus sechs Zeichen: je zwei für <strong>Rot</strong>,
+                        <strong>Grün</strong> und <strong>Blau</strong>.
+                        Kurzschreibweise mit drei Zeichen ist ebenfalls möglich: <code>#fff</code> entspricht
+                        <code>#ffffff</code>.
+                    </p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Beispiel: HEX-Farben */
+
+.example2 {
+    background-color: #ff6600;  /* Orange */
+    color: #fff;                /* Weiß */
+}</code></pre>
+                    </div>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Tipp
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>HEX-Werte sind kompakt und weit verbreitet – ideal für einheitliche Markenfarben.</p>
+                    </div>
+                </section>
+
+                <!-- RGB & RGBA -->
+                <section class="tutorials-content">
+                    <h2 id="rgb-rgba">RGB &amp; RGBA</h2>
+                    <p>RGB steht für <em>Red, Green, Blue</em>. Jeder Wert reicht von <code class="inline">0</code> bis
+                        <code class="inline">255</code>.
+                        Mit <strong>RGBA</strong> kann zusätzlich die Transparenz <code class="inline">Alpha</code>
+                        gesteuert werden – ein Wert zwischen <code>0</code> (transparent) und <code>1</code> (deckend).
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Beispiel: RGB und RGBA */
+
+.example3 {
+    background-color: rgb(255, 0, 0);  /* Rot */
+    color: rgba(255, 255, 255, 0.8);   /* Weiß mit Transparenz */
+}
+</code></pre>
+                    </div>
+                </section>
+
+                <!-- HSL & HSLA -->
+                <section class="tutorials-content">
+                    <h2 id="hsl-hsla">HSL &amp; HSLA</h2>
+                    <p>HSL steht für <em>Hue</em> (Farbton), <em>Saturation</em> (Sättigung) und <em>Lightness</em>
+                        (Helligkeit).
+                        Diese Schreibweise ist intuitiver: du kannst gezielt Farben aufhellen, abdunkeln oder sättigen.
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Beispiel: HSL und HSLA */
+
+.example4 {
+    background-color: hsl(120, 50%, 50%);   /* Grünton */
+    color: hsla(0, 0%, 100%, 0.9); /* Fast weiß */
+}</code></pre>
+                    </div>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Praxis-Tipp
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>HSL ist ideal, wenn du z. B. bei Hover-Effekten mit <code class="inline">filter: brightness()</code> oder dynamischen Farbabstufungen arbeitest.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Aktuelle CSS Color Funktionen -->
+                <section class="tutorials-content">
+                    <h2 id="aktuelle-css-color-funktionen-ab-css-color-module-4">Aktuelle CSS Color Funktionen (ab CSS Color Module 4)</h2>
+                    <p>Moderne Browser unterstützen neue Farbmodelle wie <code class="inline">lab()</code>, <code class="inline">lch()</code> oder <code class="inline">color()</code>.
+                        Damit lassen sich präzisere Farben darstellen – vor allem für Designer wichtig, die Farbräume
+                        besser kontrollieren wollen.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Beispiel: moderne CSS-Farbfunktionen */
+
+.example5 {
+    color: lab(50% 80 60);
+    background-color: lch(70% 90 45);
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- Farbtransparenzen und Verlauf -->
+                <section class="tutorials-content">
+                    <h2 id="farbtransparenzen-und-verlauf">Farbtransparenzen und Verlauf</h2>
+                    <p>Neben RGBA oder HSLA kannst du Farben auch mit <code class="inline">opacity</code> oder
+                        Farbverläufen kombinieren.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-css">/* Transparente und Verlauf-Beispiele */
+
+.example6 {
+    background: linear-gradient(45deg, rgba(255,0,0,0.8), rgba(255,255,0,0.5));
+    opacity: 0.95;
+}</code></pre>
+                    </div>
                 </section>
 
                 <!-- Weitere Sections nach Bedarf -->
-                <section class="categories">
-                    <h2 id="weiterer-abschnitt">Weiterer Abschnitt</h2>
-                    <p>Inhalt...</p>
+                <section class="tutorials-content">
+                    <h2 id="zusammenfassung">Zusammenfassung</h2>
+                    <p>
+                        CSS bietet vielfältige Möglichkeiten, Farben zu definieren – von einfachen Namen über HEX bis zu
+                        präzisen Farbmodellen.
+                        Welche Einheit du nutzt, hängt davon ab, ob du lieber kreativ arbeitest oder exakt steuern
+                        willst.
+                    </p>
+                    <table class="ref-table">
+                        <thead>
+                            <tr>
+                                <th>Notation</th>
+                                <th>Beispiel</th>
+                                <th>Besonderheit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Color Name</td>
+                                <td><code>red</code></td>
+                                <td>Einfach, aber eingeschränkte Auswahl</td>
+                            </tr>
+                            <tr>
+                                <td>HEX</td>
+                                <td><code>#ff6600</code></td>
+                                <td>Sehr verbreitet, unterstützt Alpha in <code>#RRGGBBAA</code></td>
+                            </tr>
+                            <tr>
+                                <td>RGB / RGBA</td>
+                                <td><code>rgb(255,0,0)</code> / <code>rgba(255,0,0,0.5)</code></td>
+                                <td>Numerische Kontrolle, Transparenz möglich</td>
+                            </tr>
+                            <tr>
+                                <td>HSL / HSLA</td>
+                                <td><code>hsl(200, 50%, 50%)</code></td>
+                                <td>Einfach zu variieren und zu verstehen</td>
+                            </tr>
+                            <tr>
+                                <td>LAB / LCH / color()</td>
+                                <td><code>lch(70% 90 45)</code></td>
+                                <td>Hohe Farbtreue, modern, noch eingeschränkt unterstützt</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Tipp
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Für UI-Design lohnt sich HSL oder LCH, weil man Farben logisch und
+                            systematisch verändern kann.</p>
+                    </div>
                 </section>
 
                 <!-- Prev/Next Navigation -->
+                
+                <!-- Latest-Tutorials-Start -->
                 <section class="categories">
+                    <h2 id="mehr-aus-css">Mehr aus CSS</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                <section class="tutorials-content">
                     <nav class="tutorial-nav">
         <div class="tutorial-nav-prev">
             <a href="/tutorials/css/css-basics/css-einbinden.html">
@@ -289,12 +1280,8 @@
 <script src="/assets/js/latest-tutorials.js" defer></script>
 <!-- Footer-End -->
 
-    <button id="scrollTopBtn" title="Nach oben">↑</button>
-    <script src="/assets/js/main.js" defer></script>
     <script src="/assets/js/code-copy.js" defer></script>
     <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/js/scroll-spy.js"></script>
-    <script src="/assets/js/search.js"></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
 
 
