@@ -144,7 +144,12 @@ const FOOTER_TEMPLATE = `<footer class="site-footer">
             </nav>
         </div>
     </div>
-</footer>`;
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>`;
 
 // ============================================
 // KONFIGURATION
@@ -815,10 +820,20 @@ ${buttonsHtml}
 function generateLatestTutorialsSection(category) {
     const categoryDisplay = CATEGORY_NAMES[category] || category;
     
+    // ID generieren wie in addIdsToHeadingsAndGenerateSidebar
+    const headingText = `Mehr aus ${categoryDisplay}`;
+    const id = headingText.toLowerCase()
+        .replace(/[äöüÄÖÜß]/g, match => {
+            const map = { 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'Ä': 'Ae', 'Ö': 'Oe', 'Ü': 'Ue', 'ß': 'ss' };
+            return map[match];
+        })
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+    
     return `
                 <!-- Latest-Tutorials-Start -->
                 <section class="categories">
-                    <h2>Mehr aus ${categoryDisplay}</h2>
+                    <h2 id="${id}">Mehr aus ${categoryDisplay}</h2>
                     <div id="categoryLatestTutorials" class="tutorials-grid" data-category="${category}">
                         <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
                         <p class="text-muted">Tutorials werden geladen...</p>

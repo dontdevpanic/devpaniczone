@@ -319,6 +319,7 @@
     &lt;link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg"&gt;
     &lt;link rel="icon" type="image/png" href="/assets/icons/favicon.png"&gt;
     &lt;link rel="stylesheet" href="/assets/css/style.css"&gt;
+    &lt;link rel="stylesheet" href="/assets/css/tutorials.css"&gt;
     &lt;link rel="stylesheet" href="/assets/css/sidebar.css"&gt;
     &lt;link rel="stylesheet" href="/assets/vendor/prism/prism.css"&gt;
 &lt;/head&gt;
@@ -421,6 +422,8 @@
                     &lt;p&gt;Inhalt...&lt;/p&gt;
                 &lt;/section&gt;
 
+                &lt;!-- DELETE: Latest Tutorials Section wird automatisch geladen, keine Placeholder --&gt;
+
                 &lt;!-- Prev/Next Navigation --&gt;
                 &lt;section class="tutorials-content"&gt;
                     &lt;nav class="tutorial-nav"&gt;&lt;/nav&gt;
@@ -431,19 +434,15 @@
         &lt;/div&gt; &lt;!-- Tutorial Layout --&gt;
 
     &lt;/main&gt;
-    
+
     &lt;!-- Footer-Start --&gt;
     &lt;footer class="site-footer"&gt;
         &lt;!-- Wird automatisch generiert --&gt;
     &lt;/footer&gt;
     &lt;!-- Footer-End --&gt;
-
-    &lt;button id="scrollTopBtn" title="Nach oben"&gt;↑&lt;/button&gt;
-    &lt;script src="/assets/js/main.js" defer&gt;&lt;/script&gt;
+    
     &lt;script src="/assets/js/code-copy.js" defer&gt;&lt;/script&gt;
     &lt;script src="/assets/js/sidebar.js" defer&gt;&lt;/script&gt;
-    &lt;script src="/assets/js/scroll-spy.js"&gt;&lt;/script&gt;
-    &lt;script src="/assets/js/search.js"&gt;&lt;/script&gt;
     &lt;script src="/assets/vendor/prism/prism.js" defer&gt;&lt;/script&gt;
 
 &lt;/body&gt;
@@ -452,7 +451,6 @@
                             </div>
                         </div>
                     </details>
-
                     <details>
                         <summary>
                             Grundgerüst Category
@@ -529,8 +527,7 @@
                         &lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
-            &lt;/section&gt;
-
+            &lt;/section&gt;            
 
             &lt;!-- Tutorial Links Section --&gt;
             &lt;section class="tutorials-content"&gt;
@@ -547,6 +544,14 @@
                 &lt;/div&gt;
             &lt;/section&gt;
 
+            &lt;!-- Latest Tutorials Section - IMPORTANT: data-category! --&gt;
+            &lt;section class="categories"&gt;
+                &lt;h2&gt;Zuletzt hinzugefügt&lt;/h2&gt;
+                &lt;div id="categoryLatestTutorials" class="tutorials-grid" data-category="documentation"&gt;
+                    &lt;!-- Wird per JavaScript aus /assets/data/tutorials.json geladen --&gt;
+                    &lt;p class="text-muted"&gt;Tutorials werden geladen...&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
 
 
         &lt;/div&gt; &lt;!-- Wrapper .container --&gt;
@@ -558,13 +563,6 @@
     &lt;/footer&gt;
     &lt;!-- Footer-End --&gt;
 
-
-    &lt;button id="scrollTopBtn" title="Nach oben"&gt;↑&lt;/button&gt;
-
-    &lt;script src="/assets/js/main.js" defer&gt;&lt;/script&gt;
-    &lt;script src="/assets/js/search.js" defer&gt;&lt;/script&gt;
-    &lt;!-- &lt;script src="/assets/js/code-copy.js" defer&gt;&lt;/script&gt; --&gt;
-    &lt;script src="/assets/vendor/prism/prism.js" defer&gt;&lt;/script&gt;
 &lt;/body&gt;
 
 &lt;/html&gt;</code></pre>
@@ -882,7 +880,8 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                                 <strong>leer</strong>
                                 sein
                                 –
-                                das Script füllt sie!</p>
+                                das Script füllt sie!
+                            </p>
                             <p><strong>Beispiel-Output:</strong> <code class="inline">Home › CSS › CSS Basics</code></p>
                         </div>
 
@@ -921,7 +920,8 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                             <p>Die <code class="inline">&lt;nav class="tutorial-nav"&gt;&lt;/nav&gt;</code> muss
                                 <strong>komplett
                                     leer</strong>
-                                sein – kein <code class="inline">&lt;div&gt;</code>, kein <code class="inline">&lt;a&gt;</code>, nichts!</p>
+                                sein – kein <code class="inline">&lt;div&gt;</code>, kein <code class="inline">&lt;a&gt;</code>, nichts!
+                            </p>
                         </div>
 
                         <div class="cta-content">
@@ -1773,10 +1773,10 @@ const DEBUG = true;  // Von false auf true ändern</code></pre>
 
 
                     <!-- Prev/Next Navigation -->
-                    
-                <!-- Latest-Tutorials-Start -->
+
+                    <!-- Latest-Tutorials-Start -->
                 <section class="categories">
-                    <h2>Mehr aus DevPanicZone!</h2>
+                    <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
                     <div id="categoryLatestTutorials" class="tutorials-grid" data-category="documentation">
                         <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
                         <p class="text-muted">Tutorials werden geladen...</p>
@@ -1784,7 +1784,7 @@ const DEBUG = true;  // Von false auf true ändern</code></pre>
                 </section>
                 <!-- Latest-Tutorials-End -->
 
-                <section class="tutorials-content">
+                    <section class="tutorials-content">
                         <nav class="tutorial-nav"><div class="tutorial-nav-prev"></div><div class="tutorial-nav-next">
             <a href="/tutorials/documentation/devpaniczone/devpaniczone-code-snippets.html">
                 <span class="tutorial-nav-label">Nächstes →</span>
@@ -1814,21 +1814,16 @@ const DEBUG = true;  // Von false auf true ändern</code></pre>
         </div>
     </div>
 </footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
 <!-- Footer-End -->
 
-    <button id="scrollTopBtn" title="Nach oben">↑</button>
-    <script src="/assets/js/main.js" defer></script>
     <script src="/assets/js/code-copy.js" defer></script>
     <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/js/scroll-spy.js"></script>
-    <script src="/assets/js/search.js"></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
-
 
 
 
