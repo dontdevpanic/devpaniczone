@@ -317,14 +317,14 @@ const BLACKLIST_FOLDERS = ['noupload', 'node_modules', '.git', 'assets'];</code>
                     <h4>Was passiert hier?</h4>
 
                     <div class="grid-2col">
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li><code class="inline">fs</code> → Zum Lesen und Schreiben von Dateien</li>
                                 <li><code class="inline">path</code> → Zum Arbeiten mit Dateipfaden</li>
                                 <li><code class="inline">JSDOM</code> → Zum Parsen und Manipulieren von HTML</li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li><code class="inline">tutorialsDir</code> → Zeigt auf den <code class="inline">/tutorials</code> Ordner</li>
                                 <li><code class="inline">BLACKLIST_FOLDERS</code> → Ordner, die das Script ignorieren
@@ -341,7 +341,7 @@ const BLACKLIST_FOLDERS = ['noupload', 'node_modules', '.git', 'assets'];</code>
                             </svg>
                         </strong>
                         <p>Das Script liegt in <code class="inline">/scripts/generate-navigation.js</code>. Um auf
-                            <code class="inline">/tutorials</code> zu kommen, muss es einen Ordner HOCH (<code class="inline">..</code>) und dann in
+                            <code class="inline">/tutorials</code> zu kommen, muss es einen Ordner HOCH <code class="inline">..</code> und dann in
                             den <code class="inline">tutorials</code> Ordner.
                         </p>
                     </div>
@@ -381,7 +381,7 @@ const CUSTOM_TITLES = {
                     </div>
 
                     <p><strong>Das bedeutet:</strong></p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li><code class="inline">CATEGORY_NAMES</code> → Welche Kategorien im Dropdown erscheinen</li>
                         <li><code class="inline">TUTORIAL_ORDER</code> → In welcher Reihenfolge Tutorials erscheinen
                             (wichtig für
@@ -460,7 +460,7 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     </div>
 
                     <h4>Was macht die Funktion?</h4>
-                    <ol class="ml-md">
+                    <ol class="grid-2col-bg">
                         <li>Liest alle Dateien in einem Ordner</li>
                         <li>Ist es ein Ordner? → Prüfe, ob er auf der Blacklist steht</li>
                         <li>Ist es keine Blacklist? → Gehe rekursiv in den Ordner (Funktion ruft sich selbst auf!)</li>
@@ -498,13 +498,13 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
 
                     <h4>Beispiel:</h4>
                     <div class="grid-2col">
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li>Pfad: <code class="inline">/tutorials/html/html-basics/html-basics.html</code></li>
                                 <li>Relative Pfad: <code class="inline">html/html-basics/html-basics.html</code></li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li>Aufteilen: <code class="inline">['html', 'html-basics', 'html-basics.html']</code>
                                 </li>
@@ -537,13 +537,13 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     <h4>Beispiel:</h4>
 
                     <div class="grid-2col">
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li>Pfad: <code class="inline">/tutorials/html/html-basics/html-basics.html</code></li>
                                 <li>Parts: <code class="inline">['html', 'html-basics', 'html-basics.html']</code></li>
                             </ul>
                         </div>
-                        <div>
+                        <div class="grid-2col-bg">
                             <ul class="arrow-list">
                                 <li>Erste 2 Ebenen: <code class="inline">['html', 'html-basics']</code></li>
                                 <li>Ergebnis: <code class="inline">tutorials/html/html-basics</code></li>
@@ -595,7 +595,7 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     </div>
 
                     <h4>Schritt für Schritt:</h4>
-                    <ol class="ml-md">
+                    <ol class="grid-2col-bg">
                         <li>Hole alle Kategorien aus <code class="inline">CATEGORY_NAMES</code></li>
                         <li>Für jede Kategorie: Prüfe, ob es Tutorials dafür gibt (in <code class="inline">TUTORIAL_ORDER</code>)</li>
                         <li>Wenn ja: Erstelle einen Link für das Dropdown</li>
@@ -635,7 +635,7 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     </div>
 
                     <p><strong>Unterschied:</strong></p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li><strong>Kategorieseite:</strong> <code class="inline">Home › CSS</code> (CSS ist nicht
                             klickbar)</li>
                         <li><strong>Tutorial-Seite:</strong> <code class="inline">Home › CSS › Flexbox</code> (CSS ist
@@ -695,7 +695,7 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     </div>
 
                     <h4>Logik:</h4>
-                    <ol class="ml-md">
+                    <ol class="grid-2col-bg">
                         <li>Finde die Unterkategorie (z.B. <code class="inline">tutorials/html/html-basics</code>)</li>
                         <li>Hole die Tutorial-Liste aus <code class="inline">TUTORIAL_ORDER</code></li>
                         <li>Finde die Position des aktuellen Tutorials in der Liste</li>
@@ -722,7 +722,7 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     <h3 id="addidstoheadingsandgeneratesidebar-sidebar-toc">addIdsToHeadingsAndGenerateSidebar() –
                         Sidebar TOC</h3>
                     <p>Diese Funktion macht mehrere Dinge auf einmal:</p>
-                    <ol class="ml-md">
+                    <ol class="grid-2col-bg">
                         <li>Findet alle <code class="inline">&lt;h2&gt;</code> und <code class="inline">&lt;h3&gt;</code> Überschriften</li>
                         <li>Fügt ihnen IDs hinzu (falls keine vorhanden)</li>
                         <li>Prüft ob Custom Titles in TOC_CUSTOM_TITLES definiert sind</li>
@@ -803,16 +803,16 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     </div>
 
                     <div class="grid-2col">
-                        <div>
-                            <h4>Beispiel Normal:</h4>
+                        <div class="grid-2col-bg">
+                            <h4 class="pt-sm">Beispiel Normal:</h4>
                             <ul class="arrow-list">
                                 <li>Überschrift: <code class="inline">&lt;h2&gt;Was ist CSS?&lt;/h2&gt;</code></li>
                                 <li>Wird zu: <code class="inline">&lt;h2 id="was-ist-css"&gt;Was ist CSS?&lt;/h2&gt;</code></li>
                                 <li>Sidebar-Link: <code class="inline">&lt;a href="#was-ist-css"&gt;Was ist CSS?&lt;/a&gt;</code></li>
                             </ul>
                         </div>
-                        <div>
-                            <h4>Beispiel mit Custom Title:</h4>
+                        <div class="grid-2col-bg">
+                            <h4 class="pt-sm">Beispiel mit Custom Title:</h4>
                             <ul class="arrow-list">
                                 <li>Überschrift:
                                     <code class="inline">&lt;h2 id="die-top-15-tags"&gt;HTML Cheat Sheet – Die Top 15 Tags&lt;/h2&gt;</code>
@@ -1007,7 +1007,7 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     </div>
 
                     <p><strong>Aufschlüsselung:</strong></p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li><code class="inline">/</code> → Start des Regex</li>
                         <li><code class="inline">&lt;!-- Main-Nav-Start --&gt;</code> → Findet den Start-Kommentar</li>
                         <li><code class="inline">.*?</code> → Findet ALLES dazwischen (aber so wenig wie möglich)</li>
@@ -1050,7 +1050,7 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                     </div>
 
                     <p><strong>Aufschlüsselung:</strong></p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li><code class="inline">&lt;nav class="breadcrumbs"&gt;</code> → Findet das öffnende Tag</li>
                         <li><code class="inline">.*?</code> → Findet den Inhalt</li>
                         <li><code class="inline">&lt;\/nav&gt;</code> → Findet das schließende Tag (<code class="inline">/</code> muss escaped
@@ -1097,7 +1097,7 @@ generateAllNavigation();</code></pre>
                     </div>
 
                     <p><strong>Ablauf:</strong></p>
-                    <ol class="ml-md">
+                    <ol class="grid-2col-bg">
                         <li>Finde alle HTML-Dateien im <code class="inline">/tutorials</code> Ordner</li>
                         <li>Für jede gefundene Datei: Rufe <code class="inline">updateHtmlFile()</code> auf</li>
                         <li>Zeige Fortschritt im Terminal</li>
@@ -1128,7 +1128,7 @@ generateAllNavigation();</code></pre>
 
                     <h3 class="no-toc">2. Teste nach Änderungen</h3>
                     <p>Nach größeren Änderungen am Script:</p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li>Führe <code class="inline">npm run build</code> aus</li>
                         <li>Öffne mehrere Tutorial-Seiten</li>
                         <li>Prüfe Prev/Next, Sidebar, Breadcrumbs</li>
@@ -1137,7 +1137,7 @@ generateAllNavigation();</code></pre>
 
                     <h3 class="no-toc">3. Backup vor Script-Änderungen</h3>
                     <p>Wenn du das Script änderst:</p>
-                    <ul class="arrow-list">
+                    <ul class="arrow-list grid-2col-bg">
                         <li>Erstelle eine Kopie: <code class="inline">generate-navigation-backup.js</code></li>
                         <li>Teste deine Änderungen auf einer Datei</li>
                         <li>Erst dann auf allen Dateien ausführen</li>

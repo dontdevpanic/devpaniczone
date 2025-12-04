@@ -56,3 +56,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// Hamburger Demo Script (falls demo-html-navigation.js es nicht abdeckt) 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const hamburgerBtn = document.getElementById('hamburgerDemoBtn');
+    const mobileMenu = document.getElementById('mobileMenuDemo');
+
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', function () {
+            // Button-Animation togglen
+            this.classList.toggle('active');
+
+            // Menü öffnen/schließen
+            mobileMenu.classList.toggle('open');
+
+            // Accessibility: aria-expanded aktualisieren
+            const isOpen = mobileMenu.classList.contains('open');
+            this.setAttribute('aria-expanded', isOpen);
+            this.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+        });
+    }
+});

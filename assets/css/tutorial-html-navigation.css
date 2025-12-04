@@ -43,6 +43,12 @@
     padding: 0;
 }
 
+/* Dropdown-Menü innerhalb von nav-demo: Gap überschreiben! */
+.nav-demo .dropdown-menu-demo {
+    gap: 0;
+    /* Kein Gap im Dropdown */
+}
+
 .nav-demo a {
     text-decoration: none;
     color: var(--text-primary);
@@ -85,11 +91,15 @@
     font-size: 0.95rem;
     transition: color 0.3s;
     display: block;
-    padding: 0.5rem 0;
+}
+
+/* Padding nur für Hauptmenü-Links (nicht für Dropdown-Links) */
+.menu-demo>li>a {
+    padding: 1rem 0.5rem;
 }
 
 .menu-demo a:hover {
-    color: var(--primary-light);
+    color: var(--accent-blue);
 }
 
 /* Animierte Unterstreichung für Hauptmenü-Links */
@@ -135,7 +145,7 @@
     top: 100%;
     /* Direkt unter dem Eltern-Element */
     left: 0;
-    background: var(--dark-light);
+    background: var(--bg-tertiary);
     /* Hintergrundfarbe */
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -144,6 +154,10 @@
     list-style: none;
     padding: 0.5rem 0;
     margin: 0;
+
+    /* WICHTIG: Vertikale Anordnung der Dropdown-Items! */
+    display: flex;
+    flex-direction: column;
 
     /* VERSTECKT */
     opacity: 0;
@@ -166,11 +180,22 @@
     /* Gleitet nach unten */
 }
 
+.dropdown-menu-demo ul {
+    padding: 1rem 0:
+}
+
 /* Links im Dropdown */
 .dropdown-menu-demo li a {
     padding: 0.5rem 1rem;
     /* Klickbereich vergrößern */
     display: block;
+    /* Keine Unterstreichung im Dropdown */
+    position: relative;
+}
+
+/* Keine animierte Unterstreichung im Dropdown */
+.dropdown-menu-demo li a::after {
+    display: none;
 }
 
 .dropdown-menu-demo li a:hover {
@@ -189,6 +214,22 @@
     /* Anker für das Sub-Menü */
 }
 
+/* Link im Sub-Dropdown mit Pfeil-Indikator */
+.dropdown-sub-demo>a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Pfeil für Sub-Menü (zeigt nach rechts) */
+.dropdown-sub-demo>a::after {
+    content: '►';
+    font-size: 0.6em;
+    margin-left: auto;
+    padding-left: 1rem;
+    opacity: 0.7;
+}
+
 /* Das Sub-Menü (drittes Level) */
 .dropdown-submenu-demo {
     position: absolute;
@@ -196,13 +237,17 @@
     /* Auf gleicher Höhe wie Eltern */
     left: 100%;
     /* Rechts neben dem Eltern-Element */
-    background: var(--dark-light);
+    background: var(--bg-tertiary);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     min-width: 200px;
     list-style: none;
     padding: 0.5rem 0;
     margin: 0;
+
+    /* WICHTIG: Vertikale Anordnung der Submenu-Items! */
+    display: flex;
+    flex-direction: column;
 
     /* Versteckt */
     opacity: 0;
@@ -228,6 +273,12 @@
 .dropdown-submenu-demo li a {
     padding: 0.5rem 1rem;
     display: block;
+    position: relative;
+}
+
+/* Keine animierte Unterstreichung im Submenu */
+.dropdown-submenu-demo li a::after {
+    display: none;
 }
 
 .dropdown-submenu-demo li a:hover {
@@ -269,7 +320,7 @@
 }
 
 .menu-click a:hover {
-    color: var(--primary-light);
+    color: var(--accent-blue);
 }
 
 /* Toggle-Button für Dropdown (klickbar) */
@@ -287,6 +338,8 @@
 /* Pfeil-Indikator für Dropdown */
 .dropdown-click>a::after {
     content: ' ▼';
+    margin-left: 0.5rem;
+    vertical-align: middle;
     font-size: 0.7em;
     transition: transform 0.3s;
     display: inline-block;
@@ -302,13 +355,17 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: var(--dark-light);
+    background: var(--bg-tertiary);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     min-width: 180px;
     list-style: none;
     padding: 0.5rem 0;
     margin: 0;
+
+    /* WICHTIG: Vertikale Anordnung der Dropdown-Items! */
+    display: flex;
+    flex-direction: column;
 
     /* Versteckt */
     opacity: 0;
@@ -337,6 +394,10 @@
     background: var(--bg-secondary);
 }
 
+/* Keine animierte Unterstreichung im Dropdown nötig - 
+   erbt von .menu-click a, ist aber hier eh nicht relevant 
+   weil kein ::after auf diesen Links definiert */
+
 /* --------------------------------------------
     SECTION: Multi-Level auf Klick
     Verwendet: .dropdown-sub-click, .dropdown-submenu-click
@@ -349,14 +410,19 @@
 .dropdown-sub-click>a {
     cursor: pointer;
     user-select: none;
+    /* Flexbox für Pfeil-Positionierung */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Pfeil für Sub-Menü (zeigt nach rechts) */
 .dropdown-sub-click>a::after {
-    content: ' ►';
+    content: '►';
     font-size: 0.6em;
-    float: right;
-    margin-left: 0.5rem;
+    /* float: right; - ENTFERNT, Flexbox übernimmt */
+    margin-left: auto;
+    padding-left: 1rem;
     transition: transform 0.3s;
 }
 
@@ -370,13 +436,17 @@
     position: absolute;
     top: 0;
     left: 100%;
-    background: var(--dark-light);
+    background: var(--bg-tertiary);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     min-width: 200px;
     list-style: none;
     padding: 0.5rem 0;
     margin: 0;
+
+    /* WICHTIG: Vertikale Anordnung der Submenu-Items! */
+    display: flex;
+    flex-direction: column;
 
     opacity: 0;
     visibility: hidden;
@@ -499,8 +569,22 @@
     padding: 0.5rem 0;
 }
 
-.hamburger-btn-demo {
+/* Logo-Bereich im Hamburger-Demo - auskommentiert, nicht mehr benötigt
+.hamburger-header-demo .logo-demo {
     display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hamburger-header-demo .logo-demo img {
+    width: 30px;
+    height: auto;
+}
+*/
+
+.hamburger-btn-demo {
+    display: flex !important;
+    /* !important um Site-weite display:none zu überschreiben */
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
@@ -515,7 +599,7 @@
     display: block;
     height: 3px;
     width: 100%;
-    background: var(--text);
+    background: var(--text-primary);
     border-radius: 3px;
     transition: all 0.3s;
 }
