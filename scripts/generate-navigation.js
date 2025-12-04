@@ -265,7 +265,8 @@ const TUTORIAL_ORDER = {
         'devpaniczone-prev-next.html',
         'devpaniczone-tutorial-buttons.html',
         'devpaniczone-toggle-night-mode.html',
-        'devpaniczone-current-year-footer.html'
+        'devpaniczone-current-year-footer.html',
+        'devpaniczone-latest-tutorials.html'
         // 'devpaniczone-tutorial-template.html',
         // 'header-test.html'
     ]
@@ -1185,7 +1186,7 @@ function updateHtmlFile(filePath) {
             }
         }
     }
-    
+
     // 6. Prev/Next Navigation (nicht für index.html)
     if (basename !== 'index.html') {
         const tutorialNavTag = html.match(/<nav class="tutorial-nav">.*?<\/nav>/s);
