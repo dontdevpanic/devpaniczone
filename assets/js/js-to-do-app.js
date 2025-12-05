@@ -10,15 +10,90 @@ const resetBtn = document.getElementById("resetTodos");
 const filterAll = document.getElementById("filterAll");
 const filterOpen = document.getElementById("filterOpen");
 const filterDone = document.getElementById("filterDone");
+// ===== NEUE DOM-Elemente =====
+const filterPriority = document.getElementById("filterPriority");
+const tagFilterContainer = document.getElementById("tagFilterContainer");
 
 // ===== State =====
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
-let currentFilter = "all"; // "all", "open", "done"
+let currentFilter = "open"; // "all", "open", "done" - GEÄNDERT: Standard ist jetzt "open"
 let searchQuery = "";
+// ===== NEUER State =====
+let currentPriorityFilter = "all"; // "all", "high", "medium", "low"
+let currentTagFilter = null; // null oder Tag-String (z.B. "arbeit")
 
 // ===== Prioritäts-Sortierung =====
 const priorityOrder = { high: 1, medium: 2, low: 3 };
 const priorityLabels = { high: "Dringend", medium: "Wichtig", low: "Normal" };
+
+// ===== Drag & Drop State =====
+let draggedItem = null;
+let draggedTodoId = null;
+
+// ===== Tags aus Text extrahieren =====
+function extractTags(text) {
+    const tagRegex = /#(\w+)/g;
+    const tags = [];
+    let match;
+    while ((match = tagRegex.exec(text)) !== null) {
+        tags.push(match[1].toLowerCase());
+    }
+    return [...new Set(tags)]; // Duplikate entfernen
+}
+
+// ===== Text ohne Tags (für Anzeige) =====
+function getTextWithoutTags(text) {
+    return text.replace(/#\w+/g, "").trim().replace(/\s+/g, " ");
+}
+
+// ===== Alle verwendeten Tags sammeln =====
+function getAllTags() {
+    const allTags = new Set();
+    todos.forEach(todo => {
+        const tags = extractTags(todo.text);
+        tags.forEach(tag => allTags.add(tag));
+    });
+    return [...allTags].sort();
+}
+
+// ===== Tag-Filter-Buttons rendern =====
+function renderTagFilters() {
+    if (!tagFilterContainer) return;
+    
+    tagFilterContainer.innerHTML = "";
+    const allTags = getAllTags();
+    
+    if (allTags.length === 0) {
+        tagFilterContainer.style.display = "none";
+        return;
+    }
+    
+    tagFilterContainer.style.display = "flex";
+    
+    // "Alle Tags" Button
+    const allBtn = document.createElement("button");
+    allBtn.className = "tag-filter-btn" + (currentTagFilter === null ? " active" : "");
+    allBtn.textContent = "Alle";
+    allBtn.onclick = () => {
+        currentTagFilter = null;
+        renderTagFilters();
+        renderTodos();
+    };
+    tagFilterContainer.appendChild(allBtn);
+    
+    // Button für jeden Tag
+    allTags.forEach(tag => {
+        const btn = document.createElement("button");
+        btn.className = "tag-filter-btn" + (currentTagFilter === tag ? " active" : "");
+        btn.textContent = "#" + tag;
+        btn.onclick = () => {
+            currentTagFilter = tag;
+            renderTagFilters();
+            renderTodos();
+        };
+        tagFilterContainer.appendChild(btn);
+    });
+}
 
 // ===== Aufgaben rendern =====
 function renderTodos() {
@@ -31,6 +106,21 @@ function renderTodos() {
         return true; // "all"
     });
 
+    // ===== NEU: Filtern nach Priorität =====
+    if (currentPriorityFilter !== "all") {
+        filteredTodos = filteredTodos.filter(todo => 
+            todo.priority === currentPriorityFilter
+        );
+    }
+
+    // ===== NEU: Filtern nach Tag =====
+    if (currentTagFilter) {
+        filteredTodos = filteredTodos.filter(todo => {
+            const tags = extractTags(todo.text);
+            return tags.includes(currentTagFilter);
+        });
+    }
+
     // Filtern nach Suchbegriff
     if (searchQuery) {
         filteredTodos = filteredTodos.filter(todo =>
@@ -38,11 +128,15 @@ function renderTodos() {
         );
     }
 
-    // Sortieren nach Priorität (hohe zuerst)
+    // Sortieren: Erst nach Priorität, dann nach manueller Reihenfolge (sortOrder)
     filteredTodos.sort((a, b) => {
         const prioA = priorityOrder[a.priority] || 2;
         const prioB = priorityOrder[b.priority] || 2;
-        return prioA - prioB;
+        if (prioA !== prioB) return prioA - prioB;
+        // Innerhalb gleicher Priorität: nach sortOrder sortieren
+        const orderA = a.sortOrder !== undefined ? a.sortOrder : Infinity;
+        const orderB = b.sortOrder !== undefined ? b.sortOrder : Infinity;
+        return orderA - orderB;
     });
 
     // Leere Liste anzeigen
@@ -51,6 +145,8 @@ function renderTodos() {
         emptyMsg.className = "no-results";
         if (searchQuery) {
             emptyMsg.textContent = `Keine Aufgaben gefunden für "${searchQuery}"`;
+        } else if (currentTagFilter) {
+            emptyMsg.textContent = `Keine Aufgaben mit #${currentTagFilter}`;
         } else {
             emptyMsg.textContent = currentFilter === "all"
                 ? "Keine Aufgaben vorhanden."
@@ -58,6 +154,7 @@ function renderTodos() {
         }
         todoList.appendChild(emptyMsg);
         updateStats();
+        renderTagFilters();
         return;
     }
 
@@ -67,19 +164,26 @@ function renderTodos() {
 
         const li = document.createElement("li");
         li.className = `priority-${todo.priority || "medium"}`;
+        
+        // ===== NEU: Drag & Drop Attribute =====
+        li.draggable = true;
+        li.dataset.todoId = todo.id; // ID wird durch Migration garantiert
+        li.dataset.priority = todo.priority || "medium";
 
         // Content-Bereich (Text + Meta-Infos)
         const content = document.createElement("div");
         content.className = "todo-content";
 
-        // Aufgabentext
+        // Aufgabentext (ohne Tags)
         const span = document.createElement("span");
         span.className = "todo-text" + (todo.done ? " done" : "");
+        
+        const displayText = getTextWithoutTags(todo.text);
 
         // Suchbegriff hervorheben (sicher!)
-        if (searchQuery && todo.text.toLowerCase().includes(searchQuery.toLowerCase())) {
+        if (searchQuery && displayText.toLowerCase().includes(searchQuery.toLowerCase())) {
             const regex = new RegExp(`(${escapeRegex(searchQuery)})`, "gi");
-            const parts = todo.text.split(regex);
+            const parts = displayText.split(regex);
             parts.forEach(part => {
                 if (part.toLowerCase() === searchQuery.toLowerCase()) {
                     const mark = document.createElement("mark");
@@ -91,11 +195,31 @@ function renderTodos() {
                 }
             });
         } else {
-            span.textContent = todo.text;
+            span.textContent = displayText;
         }
 
         span.onclick = () => toggleDone(originalIndex);
         content.appendChild(span);
+
+        // ===== NEU: Tags als Badges anzeigen =====
+        const tags = extractTags(todo.text);
+        if (tags.length > 0) {
+            const tagsContainer = document.createElement("div");
+            tagsContainer.className = "todo-tags";
+            tags.forEach(tag => {
+                const tagBadge = document.createElement("span");
+                tagBadge.className = "todo-tag-badge" + (currentTagFilter === tag ? " active" : "");
+                tagBadge.textContent = "#" + tag;
+                tagBadge.onclick = (e) => {
+                    e.stopPropagation();
+                    currentTagFilter = currentTagFilter === tag ? null : tag;
+                    renderTagFilters();
+                    renderTodos();
+                };
+                tagsContainer.appendChild(tagBadge);
+            });
+            content.appendChild(tagsContainer);
+        }
 
         // Meta-Infos (Datum + Priorität)
         const meta = document.createElement("div");
@@ -120,6 +244,20 @@ function renderTodos() {
         const actions = document.createElement("div");
         actions.className = "todo-actions";
 
+        // ===== NEU: Drag-Handle =====
+        const dragHandle = document.createElement("span");
+        dragHandle.className = "todo-drag-handle";
+        dragHandle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="15" viewBox="0 0 12 15" fill="currentColor" aria-hidden="true">
+            <circle cx="2.5" cy="2" r="1.5"/>
+            <circle cx="9.5" cy="2" r="1.5"/>
+            <circle cx="2.5" cy="7.5" r="1.5"/>
+            <circle cx="9.5" cy="7.5" r="1.5"/>
+            <circle cx="2.5" cy="13" r="1.5"/>
+            <circle cx="9.5" cy="13" r="1.5"/>
+        </svg>`;
+        dragHandle.title = "Ziehen zum Sortieren";
+        actions.appendChild(dragHandle);
+
         // Bearbeiten-Button
         const editBtn = document.createElement("button");
         editBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="var(--text-primary)" aria-hidden="true"><path d="M9.32,2.814c-.046-.045-.119-.045-.165,0L1.52,10.449c-.076.076-.076.2,0,.276l2.824,2.824c.076.076.2.076.276,0l7.635-7.635c.045-.046.045-.119,0-.165l-2.935-2.936Z" />
@@ -139,11 +277,100 @@ function renderTodos() {
         actions.appendChild(delBtn);
 
         li.appendChild(actions);
+        
+        // ===== NEU: Drag & Drop Event Listeners =====
+        li.addEventListener("dragstart", handleDragStart);
+        li.addEventListener("dragend", handleDragEnd);
+        li.addEventListener("dragover", handleDragOver);
+        li.addEventListener("drop", handleDrop);
+        li.addEventListener("dragenter", handleDragEnter);
+        li.addEventListener("dragleave", handleDragLeave);
+        
         todoList.appendChild(li);
     });
 
-    // Statistik aktualisieren
+    // Statistik und Tag-Filter aktualisieren
     updateStats();
+    renderTagFilters();
+}
+
+// ===== Drag & Drop Handlers =====
+function handleDragStart(e) {
+    draggedItem = this;
+    draggedTodoId = this.dataset.todoId;
+    this.classList.add("dragging");
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", draggedTodoId);
+}
+
+function handleDragEnd(e) {
+    this.classList.remove("dragging");
+    // Alle drag-over Klassen entfernen
+    document.querySelectorAll(".drag-over").forEach(el => {
+        el.classList.remove("drag-over");
+    });
+    draggedItem = null;
+    draggedTodoId = null;
+}
+
+function handleDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+}
+
+function handleDragEnter(e) {
+    e.preventDefault();
+    // Nur markieren wenn gleiche Priorität
+    if (this !== draggedItem && this.dataset.priority === draggedItem?.dataset.priority) {
+        this.classList.add("drag-over");
+    }
+}
+
+function handleDragLeave(e) {
+    this.classList.remove("drag-over");
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    this.classList.remove("drag-over");
+    
+    if (!draggedItem || this === draggedItem) return;
+    
+    // Nur innerhalb gleicher Priorität verschieben
+    if (this.dataset.priority !== draggedItem.dataset.priority) {
+        return;
+    }
+    
+    const draggedId = parseInt(draggedTodoId);
+    const targetId = parseInt(this.dataset.todoId);
+    
+    // Finde die Todos über ihre ID (nicht Index!)
+    const draggedTodo = todos.find(t => t.id === draggedId);
+    const targetTodo = todos.find(t => t.id === targetId);
+    
+    if (!draggedTodo || !targetTodo) return;
+    
+    // Alle Todos der gleichen Priorität holen (sortiert nach aktuellem sortOrder)
+    const samePrioTodos = todos
+        .filter(t => t.priority === draggedTodo.priority)
+        .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+    
+    // Aktuelle Positionen in dieser Gruppe ermitteln
+    const draggedPos = samePrioTodos.findIndex(t => t.id === draggedId);
+    const targetPos = samePrioTodos.findIndex(t => t.id === targetId);
+    
+    if (draggedPos === -1 || targetPos === -1) return;
+    
+    // Element aus der Liste entfernen und an neuer Position einfügen
+    samePrioTodos.splice(draggedPos, 1);
+    samePrioTodos.splice(targetPos, 0, draggedTodo);
+    
+    // Neue sortOrder für alle Todos dieser Priorität vergeben
+    samePrioTodos.forEach((todo, idx) => {
+        todo.sortOrder = idx;
+    });
+    
+    saveTodos();
 }
 
 // ===== Regex-Zeichen escapen (für sichere Suche) =====
@@ -163,7 +390,7 @@ function updateStats() {
     } else {
         let statsText = `${done} von ${total} erledigt (${open} offen)`;
         if (highPrio > 0) {
-            statsText += ` • ${highPrio} mit hoher Priorität`;
+            statsText += ` • ${highPrio} dringend`;
         }
         todoStats.textContent = statsText;
     }
@@ -174,11 +401,19 @@ function addNewTodo() {
     const text = todoInput.value.trim();
     if (text === "") return;
 
+    // Höchste sortOrder für diese Priorität finden
+    const priority = todoPriority.value;
+    const samePrioTodos = todos.filter(t => t.priority === priority);
+    const maxSortOrder = samePrioTodos.reduce((max, t) => 
+        Math.max(max, t.sortOrder !== undefined ? t.sortOrder : -1), -1);
+
     todos.push({
+        id: Date.now(), // Eindeutige ID für Drag & Drop
         text: text,
         done: false,
-        priority: todoPriority.value,
-        createdAt: new Date().toLocaleDateString("de-DE")
+        priority: priority,
+        createdAt: new Date().toLocaleDateString("de-DE"),
+        sortOrder: maxSortOrder + 1
     });
 
     todoInput.value = "";
@@ -204,24 +439,25 @@ function editTodo(index) {
     modal.className = "todo-modal";
 
     modal.innerHTML = `
-                                        <h4>Aufgabe bearbeiten</h4>
-                                        <div class="todo-modal-field">
-                                            <label for="editText">Aufgabe:</label>
-                                            <input type="text" id="editText" value="">
-                                        </div>
-                                        <div class="todo-modal-field">
-                                            <label for="editPriority">Priorität:</label>
-                                            <select id="editPriority">
-                                                <option value="low">🟢 Normal</option>
-                                                <option value="medium">🟡 Wichtig</option>
-                                                <option value="high">🔴 Dringend</option>
-                                            </select>
-                                        </div>
-                                        <div class="todo-modal-buttons">
-                                            <button type="button" class="todo-modal-cancel">Abbrechen</button>
-                                            <button type="button" class="todo-modal-save">Speichern</button>
-                                        </div>
-                                    `;
+        <h4>Aufgabe bearbeiten</h4>
+        <div class="todo-modal-field">
+            <label for="editText">Aufgabe:</label>
+            <input type="text" id="editText" value="">
+        </div>
+        <div class="todo-modal-field">
+            <label for="editPriority">Priorität:</label>
+            <select id="editPriority">
+                <option value="low">🟢 Normal</option>
+                <option value="medium">🟡 Wichtig</option>
+                <option value="high">🔴 Dringend</option>
+            </select>
+        </div>
+        <p class="todo-modal-hint">Tipp: Füge Tags mit # hinzu, z.B. #arbeit #privat</p>
+        <div class="todo-modal-buttons">
+            <button type="button" class="todo-modal-cancel">Abbrechen</button>
+            <button type="button" class="todo-modal-save">Speichern</button>
+        </div>
+    `;
 
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
@@ -244,8 +480,18 @@ function editTodo(index) {
     const saveChanges = () => {
         const newText = editText.value.trim();
         if (newText !== "") {
+            const oldPriority = todos[index].priority;
             todos[index].text = newText;
             todos[index].priority = editPriority.value;
+            
+            // Wenn Priorität geändert, sortOrder neu berechnen
+            if (oldPriority !== editPriority.value) {
+                const samePrioTodos = todos.filter(t => t.priority === editPriority.value);
+                const maxSortOrder = samePrioTodos.reduce((max, t) => 
+                    Math.max(max, t.sortOrder !== undefined ? t.sortOrder : -1), -1);
+                todos[index].sortOrder = maxSortOrder + 1;
+            }
+            
             saveTodos();
         }
         closeModal();
@@ -277,6 +523,7 @@ function clearAllTodos() {
     if (confirm("Wirklich alle Aufgaben löschen?")) {
         localStorage.removeItem("todos");
         todos = [];
+        currentTagFilter = null;
         renderTodos();
     }
 }
@@ -290,6 +537,12 @@ function setFilter(filter) {
     filterOpen.classList.toggle("active", filter === "open");
     filterDone.classList.toggle("active", filter === "done");
 
+    renderTodos();
+}
+
+// ===== NEU: Prioritäts-Filter setzen =====
+function setPriorityFilter(priority) {
+    currentPriorityFilter = priority;
     renderTodos();
 }
 
@@ -308,6 +561,13 @@ resetBtn.addEventListener("click", clearAllTodos);
 filterAll.addEventListener("click", () => setFilter("all"));
 filterOpen.addEventListener("click", () => setFilter("open"));
 filterDone.addEventListener("click", () => setFilter("done"));
+
+// ===== NEU: Prioritäts-Filter Event Listener =====
+if (filterPriority) {
+    filterPriority.addEventListener("change", e => {
+        setPriorityFilter(e.target.value);
+    });
+}
 
 // Suche mit Debounce (wartet 300ms nach Tippen)
 let searchTimeout;
@@ -331,5 +591,24 @@ searchClear.addEventListener("click", () => {
     todoSearch.focus();
 });
 
+// ===== Migration: Bestehende Todos um ID und sortOrder erweitern =====
+function migrateTodos() {
+    let needsSave = false;
+    todos.forEach((todo, index) => {
+        if (!todo.id) {
+            todo.id = Date.now() + index;
+            needsSave = true;
+        }
+        if (todo.sortOrder === undefined) {
+            todo.sortOrder = index;
+            needsSave = true;
+        }
+    });
+    if (needsSave) {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }
+}
+
 // ===== Initialisierung =====
+migrateTodos();
 renderTodos();

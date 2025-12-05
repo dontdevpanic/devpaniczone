@@ -1,7 +1,11 @@
-<!DOCTYPE html><html lang="de"><head>
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Baue eine einfache ToDo-App mit JavaScript – lerne, wie du Aufgaben im Browser speicherst und bearbeitest.">
+    <meta name="description"
+        content="Baue eine einfache ToDo-App mit JavaScript – lerne, wie du Aufgaben im Browser speicherst und bearbeitest.">
     <meta name="keywords" content="JavaScript ToDo App, Projekt, JavaScript lernen, LocalStorage, DOM">
     <meta name="author" content="DevPanicZone">
     <title>ToDo-App mit JavaScript – DevPanicZone</title>
@@ -16,145 +20,148 @@
 
 <body>
     <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                </a>
-            </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <a href="/" class="brand-link">
+                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                    </a>
+                </div>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                    </span>
+                </button>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                    <span class="hamburger"></span>
+                </button>
 
-            <nav class="main-nav" id="mainNav" aria-label="Navigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/documentation/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                    </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
+                <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item-dropdown">
+                            <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                Tutorials
+                                <span class="dropdown-icon">▾</span>
                             </button>
+                            <ul class="dropdown-menu">
+                                <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/html/" class="nav-link">
+                                        HTML
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                        <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/css/" class="nav-link">
+                                        CSS
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                        <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/javascript/" class="nav-link">
+                                        JavaScript
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                        </li>
+                                        <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/php/" class="nav-link">
+                                        PHP
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/misc/" class="nav-link">
+                                        Verschiedenes
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                        <li><a href="/tutorials/misc/#web">Web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item-nested">
+                                    <a href="/tutorials/documentation/" class="nav-link">
+                                        DevPanicZone!
+                                        <span class="submenu-icon">▸</span>
+                                    </a>
+                                    <ul class="dropdown-submenu">
+                                        <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Main-Nav-End -->
+                            </ul>
+                        </li>
+                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                        <!-- Search Toggle -->
+                        <li>
+                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Search Dropdown -->
+                    <div class="search-dropdown" id="searchDropdown" hidden>
+                        <div class="search-input-group">
+                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path
+                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                            </svg>
+                            <input type="search" id="globalSearch" class="search-input"
+                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                        </div>
+
+                        <div class="search-results" id="searchResults" hidden>
+                            <div class="search-results-list" id="searchResultsList"></div>
+                            <div class="search-results-footer">
+                                <button class="search-view-all" id="searchViewAll">
+                                    Alle Ergebnisse anzeigen →
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </div>
-    </div>
-</header>
-<!-- Header-End -->
+    </header>
+    <!-- Header-End -->
 
     <main class="site-main">
 
         <!-- Hero -->
         <section class="hero tutorial-hero">
             <div class="container">
-                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">ToDo-App mit JavaScript</span></nav>
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                        class="breadcrumb-separator">›</span><a href="/tutorials/javascript/"
+                        class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span
+                        class="breadcrumb-current">ToDo-App mit JavaScript</span></nav>
                 <h1 class="hero-title">ToDo-App mit JavaScript</h1>
                 <p class="hero-subtitle">Ein kleines Projekt, das komplett im Browser läuft – ohne Frameworks oder
                     Backend!</p>
@@ -162,7 +169,8 @@
         </section>
 
         <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+            title="Auf dieser Seite">
             <span class="toggle-icon">☰</span>
         </button>
 
@@ -191,28 +199,29 @@
                 <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                     <ul class="toc-list">
                         <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#projektüberblick">Projektüberblick</a></li>
-                    <li class="toc-level-1"><a href="#app-ausprobieren">App ausprobieren</a></li>
-                    <li class="toc-level-2"><a href="#meine-aufgaben">Meine Aufgaben</a></li>
-                    <li class="toc-level-1"><a href="#code-verstehen">Code verstehen</a></li>
-                    <li class="toc-level-2"><a href="#was-ist-localstorage">Was ist localStorage?</a></li>
-                    <li class="toc-level-2"><a href="#render-todos">renderTodos() – Das Herzstück der App</a></li>
-                    <li class="toc-level-2"><a href="#daten-speichern-laden">Daten speichern und laden</a></li>
-                    <li class="toc-level-2"><a href="#aufgabe-hinzufuegen">Aufgabe hinzufügen</a></li>
-                    <li class="toc-level-2"><a href="#prioritaeten">Prioritäten und Sortierung</a></li>
-                    <li class="toc-level-2"><a href="#filter-funktion">Filter-Funktion</a></li>
-                    <li class="toc-level-2"><a href="#aufgabe-bearbeiten">Aufgabe bearbeiten (Modal)</a></li>
-                    <li class="toc-level-2"><a href="#alle-loeschen">Alle Aufgaben löschen (Reset)</a></li>
-                    <li class="toc-level-2"><a href="#statistik">Statistik berechnen</a></li>
-                    <li class="toc-level-2"><a href="#sicherheit-textcontent">Sicherheit: textContent vs innerHTML</a></li>
-                    <li class="toc-level-2"><a href="#css-wortumbruch">CSS: Lange Wörter umbrechen</a></li>
-                    <li class="toc-level-2"><a href="#originaler-index">Problem: Filter und Original-Index</a></li>
-                    <li class="toc-level-2"><a href="#suche-funktion">Suche mit Debounce</a></li>
-                    <li class="toc-level-2"><a href="#suche-hervorheben">Suchbegriff hervorheben (sicher!)</a></li>
-                    <li class="toc-level-2"><a href="#regex-escapen">Regex-Sonderzeichen escapen</a></li>
-                    <li class="toc-level-2"><a href="#weitere-hilfsfunktionen">Weitere Hilfsfunktionen</a></li>
-                    <li class="toc-level-1"><a href="#vollstaendiger-code">Vollständiger Code</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                        <li class="toc-level-1"><a href="#projektüberblick">Projektüberblick</a></li>
+                        <li class="toc-level-1"><a href="#app-ausprobieren">App ausprobieren</a></li>
+                        <li class="toc-level-2"><a href="#meine-aufgaben">Meine Aufgaben</a></li>
+                        <li class="toc-level-1"><a href="#code-verstehen">Code verstehen</a></li>
+                        <li class="toc-level-2"><a href="#was-ist-localstorage">Was ist localStorage?</a></li>
+                        <li class="toc-level-2"><a href="#render-todos">renderTodos() – Das Herzstück der App</a></li>
+                        <li class="toc-level-2"><a href="#daten-speichern-laden">Daten speichern und laden</a></li>
+                        <li class="toc-level-2"><a href="#aufgabe-hinzufuegen">Aufgabe hinzufügen</a></li>
+                        <li class="toc-level-2"><a href="#prioritaeten">Prioritäten und Sortierung</a></li>
+                        <li class="toc-level-2"><a href="#filter-funktion">Filter-Funktion</a></li>
+                        <li class="toc-level-2"><a href="#aufgabe-bearbeiten">Aufgabe bearbeiten (Modal)</a></li>
+                        <li class="toc-level-2"><a href="#alle-loeschen">Alle Aufgaben löschen (Reset)</a></li>
+                        <li class="toc-level-2"><a href="#statistik">Statistik berechnen</a></li>
+                        <li class="toc-level-2"><a href="#sicherheit-textcontent">Sicherheit: textContent vs
+                                innerHTML</a></li>
+                        <li class="toc-level-2"><a href="#css-wortumbruch">CSS: Lange Wörter umbrechen</a></li>
+                        <li class="toc-level-2"><a href="#originaler-index">Problem: Filter und Original-Index</a></li>
+                        <li class="toc-level-2"><a href="#suche-funktion">Suche mit Debounce</a></li>
+                        <li class="toc-level-2"><a href="#suche-hervorheben">Suchbegriff hervorheben (sicher!)</a></li>
+                        <li class="toc-level-2"><a href="#regex-escapen">Regex-Sonderzeichen escapen</a></li>
+                        <li class="toc-level-2"><a href="#weitere-hilfsfunktionen">Weitere Hilfsfunktionen</a></li>
+                        <li class="toc-level-1"><a href="#vollstaendiger-code">Vollständiger Code</a></li>
+                        <!-- Sidebar-Anchor-End -->
                     </ul>
                 </nav>
             </aside>
@@ -228,14 +237,18 @@
 
                 <div class="sidebar-nav">
                     <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">JavaScript Basics</li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a></li>
-                    <li class="sidebar-group-title">JavaScript Projects</li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript: HTML-Code Escaper</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity Encoder</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html" class="active">ToDo-App mit JavaScript</a></li>
-                </ul>
+                        <li class="sidebar-group-title">JavaScript Basics</li>
+                        <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
+                        <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a>
+                        </li>
+                        <li class="sidebar-group-title">JavaScript Projects</li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript:
+                                HTML-Code Escaper</a></li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity
+                                Encoder</a></li>
+                        <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html"
+                                class="active">ToDo-App mit JavaScript</a></li>
+                    </ul>
                 </div>
             </aside>
 
@@ -246,7 +259,8 @@
                         <h2 id="projektüberblick">Projektüberblick</h2>
                         <p>In diesem Tutorial erstellst du eine kleine <strong>ToDo-App</strong> mit HTML, CSS und
                             JavaScript.
-                            Sie läuft komplett im Browser und speichert deine Aufgaben im <code class="inline">localStorage</code>.
+                            Sie läuft komplett im Browser und speichert deine Aufgaben im <code
+                                class="inline">localStorage</code>.
                         </p>
                     </section>
 
@@ -259,11 +273,14 @@
 
                             <!-- Eingabefeld mit Priorität -->
                             <div class="todo-input">
-                                <svg class="todo-search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="currentColor" aria-hidden="true">
-                                    <path d="M13.449,5.949l-4.097.018c-.166,0-.301-.134-.301-.3V1.619c0-.717-.456-1.393-1.151-1.568-1.027-.258-1.951.515-1.951,1.501l.018,4.097c0,.166-.134.301-.3.301H1.619c-.717,0-1.393.456-1.568,1.151-.258,1.027.515,1.951,1.501,1.951l4.097-.019c.166,0,.301.134.301.3v4.05c0,.717.456,1.393,1.151,1.568,1.027.258,1.951-.515,1.951-1.501l-.019-4.097c0-.166.134-.301.3-.301h4.05c.717,0,1.393-.456,1.568-1.151.258-1.027-.515-1.951-1.501-1.951Z">
+                                <svg class="todo-search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                    viewBox="0 0 15 15" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M13.449,5.949l-4.097.018c-.166,0-.301-.134-.301-.3V1.619c0-.717-.456-1.393-1.151-1.568-1.027-.258-1.951.515-1.951,1.501l.018,4.097c0,.166-.134.301-.3.301H1.619c-.717,0-1.393.456-1.568,1.151-.258,1.027.515,1.951,1.501,1.951l4.097-.019c.166,0,.301.134.301.3v4.05c0,.717.456,1.393,1.151,1.568,1.027.258,1.951-.515,1.951-1.501l-.019-4.097c0-.166.134-.301.3-.301h4.05c.717,0,1.393-.456,1.568-1.151.258-1.027-.515-1.951-1.501-1.951Z">
                                     </path>
                                 </svg>
-                                <input type="text" id="todoInput" placeholder="Neue Aufgabe hinzufügen...">
+                                <input type="text" id="todoInput"
+                                    placeholder="Neue Aufgabe hinzufügen... (#tag für Tags)">
                                 <select id="todoPriority" title="Priorität wählen">
                                     <option value="low" selected>🟢 Normal</option>
                                     <option value="medium">🟡 Wichtig</option>
@@ -274,20 +291,39 @@
 
                             <!-- Suchfeld -->
                             <div class="todo-search">
-                                <svg class="todo-search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="currentColor" aria-hidden="true">
-                                    <path d="M14.633,12.86l-3.179-3.182c-.081-.082-.093-.206-.033-.304.778-1.27,1.072-2.779.81-4.302C11.778,2.443,9.569.364,6.921.046,2.916-.436-.457,2.952.051,6.96c.335,2.639,2.418,4.83,5.041,5.271,1.519.255,3.021-.038,4.284-.812.098-.06.223-.048.305.033l3.178,3.18c.236.237.551.368.887.368s.651-.131.887-.367c.237-.236.368-.551.368-.888,0-.334-.131-.649-.367-.886ZM9.817,6.16c0,2.015-1.64,3.654-3.655,3.654s-3.654-1.639-3.654-3.654,1.639-3.653,3.654-3.653,3.655,1.639,3.655,3.653Z">
+                                <svg class="todo-search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                    viewBox="0 0 15 15" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M14.633,12.86l-3.179-3.182c-.081-.082-.093-.206-.033-.304.778-1.27,1.072-2.779.81-4.302C11.778,2.443,9.569.364,6.921.046,2.916-.436-.457,2.952.051,6.96c.335,2.639,2.418,4.83,5.041,5.271,1.519.255,3.021-.038,4.284-.812.098-.06.223-.048.305.033l3.178,3.18c.236.237.551.368.887.368s.651-.131.887-.367c.237-.236.368-.551.368-.888,0-.334-.131-.649-.367-.886ZM9.817,6.16c0,2.015-1.64,3.654-3.655,3.654s-3.654-1.639-3.654-3.654,1.639-3.653,3.654-3.653,3.655,1.639,3.655,3.653Z">
                                     </path>
                                 </svg>
                                 <input type="text" id="todoSearch" placeholder="Aufgaben durchsuchen...">
-                                <button type="button" class="todo-search-clear" id="searchClear" title="Suche leeren">✕</button>
+                                <button type="button" class="todo-search-clear" id="searchClear"
+                                    title="Suche leeren">✕</button>
                             </div>
 
-                            <!-- Filter-Buttons -->
-                            <div class="todo-filter-buttons">
-                                <button id="filterAll">Alle</button>
-                                <button id="filterOpen" class="active">Offen</button>
-                                <button id="filterDone">Erledigt</button>
+                            <!-- Filter-Bereich -->
+                            <div class="todo-filters">
+                                <!-- Status-Filter (Buttons) -->
+                                <div class="todo-filter-buttons">
+                                    <button id="filterAll">Alle</button>
+                                    <button id="filterOpen" class="active">Offen</button>
+                                    <button id="filterDone">Erledigt</button>
+                                </div>
+
+                                <!-- NEU: Prioritäts-Filter (Dropdown) -->
+                                <div class="todo-priority-filter">
+                                    <select id="filterPriority" title="Nach Priorität filtern">
+                                        <option value="all">Alle Prioritäten</option>
+                                        <option value="high">🔴 Dringend</option>
+                                        <option value="medium">🟡 Wichtig</option>
+                                        <option value="low">🟢 Normal</option>
+                                    </select>
+                                </div>
                             </div>
+
+                            <!-- NEU: Tag-Filter (dynamisch generiert) -->
+                            <div class="todo-tag-filters" id="tagFilterContainer"></div>
 
                             <!-- Aufgabenliste -->
                             <ul class="pt-md" id="todoList"></ul>
@@ -297,14 +333,905 @@
 
                             <!-- Reset-Bereich -->
                             <div class="todo-reset-section">
-                                <button id="resetTodos"><svg xmlns="http://www.w3.org/2000/svg" width="11.46" height="15" viewBox="0 0 11.46 15" fill="#fff" class="icon-va-y-2 mr-sm" aria-hidden="true">
-                                        <path d="M10.856,3.38H.604c-.124,0-.221.106-.21.229l.897,10.425c.046.546.503.966,1.051.966h6.775c.548,0,1.005-.42,1.051-.966l.897-10.425c.01-.123-.087-.229-.21-.229ZM6.687,9.226l1.554,1.554c.231.231.231.606,0,.837-.231.231-.606.231-.837,0l-1.554-1.554c-.066-.066-.173-.066-.24,0l-1.554,1.554c-.231.231-.606.231-.837,0h0c-.231-.231-.231-.606,0-.837l1.554-1.554c.066-.066.066-.173,0-.24l-1.554-1.554c-.231-.231-.231-.606,0-.837h0c.231-.231.606-.231.837,0l1.554,1.554c.066.066.174.066.24,0l1.554-1.554c.231-.231.606-.231.837,0,.231.231.231.606,0,.837l-1.554,1.554c-.066.066-.066.173,0,.24Z">
+                                <button id="resetTodos"><svg xmlns="http://www.w3.org/2000/svg" width="11.46"
+                                        height="15" viewBox="0 0 11.46 15" fill="#fff" class="icon-va-y-2 mr-sm"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M10.856,3.38H.604c-.124,0-.221.106-.21.229l.897,10.425c.046.546.503.966,1.051.966h6.775c.548,0,1.005-.42,1.051-.966l.897-10.425c.01-.123-.087-.229-.21-.229ZM6.687,9.226l1.554,1.554c.231.231.231.606,0,.837-.231.231-.606.231-.837,0l-1.554-1.554c-.066-.066-.173-.066-.24,0l-1.554,1.554c-.231.231-.606.231-.837,0h0c-.231-.231-.231-.606,0-.837l1.554-1.554c.066-.066.066-.173,0-.24l-1.554-1.554c-.231-.231-.231-.606,0-.837h0c.231-.231.606-.231.837,0l1.554,1.554c.066.066.174.066.24,0l1.554-1.554c.231-.231.606-.231.837,0,.231.231.231.606,0,.837l-1.554,1.554c-.066.066-.066.173,0,.24Z">
                                         </path>
-                                        <path d="M10.562,1.33h-2.715v-.141c0-.656-.534-1.19-1.189-1.19h-1.8c-.656,0-1.189.534-1.189,1.19v.141H.899c-.497,0-.899.402-.899.899v.323c0,.117.094.211.211.211h11.038c.116,0,.211-.094.211-.211v-.323c0-.496-.402-.899-.899-.899ZM7.284,1.33h-3.054v-.141c0-.346.281-.627.627-.627h1.8c.346,0,.627.281.627.627v.141Z">
+                                        <path
+                                            d="M10.562,1.33h-2.715v-.141c0-.656-.534-1.19-1.189-1.19h-1.8c-.656,0-1.189.534-1.189,1.19v.141H.899c-.497,0-.899.402-.899.899v.323c0,.117.094.211.211.211h11.038c.116,0,.211-.094.211-.211v-.323c0-.496-.402-.899-.899-.899ZM7.284,1.33h-3.054v-.141c0-.346.281-.627.627-.627h1.8c.346,0,.627.281.627.627v.141Z">
                                         </path>
                                     </svg> Alle Aufgaben löschen</button>
                             </div>
                         </div>
+
+                        <details class="mt-lg">
+                            <summary>Open ToDo App V1</summary>
+                            <div class="todo-app-demo grid-2col-bg mt-xl">
+                                <h3 id="meine-aufgaben">Meine Aufgaben</h3>
+
+                                <!-- Eingabefeld mit Priorität -->
+                                <div class="todo-input">
+                                    <svg class="todo-search-icon" xmlns="http://www.w3.org/2000/svg" width="15"
+                                        height="15" viewBox="0 0 15 15" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M13.449,5.949l-4.097.018c-.166,0-.301-.134-.301-.3V1.619c0-.717-.456-1.393-1.151-1.568-1.027-.258-1.951.515-1.951,1.501l.018,4.097c0,.166-.134.301-.3.301H1.619c-.717,0-1.393.456-1.568,1.151-.258,1.027.515,1.951,1.501,1.951l4.097-.019c.166,0,.301.134.301.3v4.05c0,.717.456,1.393,1.151,1.568,1.027.258,1.951-.515,1.951-1.501l-.019-4.097c0-.166.134-.301.3-.301h4.05c.717,0,1.393-.456,1.568-1.151.258-1.027-.515-1.951-1.501-1.951Z">
+                                        </path>
+                                    </svg>
+                                    <input type="text" id="todoInput" placeholder="Neue Aufgabe hinzufügen...">
+                                    <select id="todoPriority" title="Priorität wählen">
+                                        <option value="low" selected>🟢 Normal</option>
+                                        <option value="medium">🟡 Wichtig</option>
+                                        <option value="high">🔴 Dringend</option>
+                                    </select>
+                                    <button id="addTodo" class="btn-add">Hinzufügen</button>
+                                </div>
+
+                                <!-- Suchfeld -->
+                                <div class="todo-search">
+                                    <svg class="todo-search-icon" xmlns="http://www.w3.org/2000/svg" width="15"
+                                        height="15" viewBox="0 0 15 15" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M14.633,12.86l-3.179-3.182c-.081-.082-.093-.206-.033-.304.778-1.27,1.072-2.779.81-4.302C11.778,2.443,9.569.364,6.921.046,2.916-.436-.457,2.952.051,6.96c.335,2.639,2.418,4.83,5.041,5.271,1.519.255,3.021-.038,4.284-.812.098-.06.223-.048.305.033l3.178,3.18c.236.237.551.368.887.368s.651-.131.887-.367c.237-.236.368-.551.368-.888,0-.334-.131-.649-.367-.886ZM9.817,6.16c0,2.015-1.64,3.654-3.655,3.654s-3.654-1.639-3.654-3.654,1.639-3.653,3.654-3.653,3.655,1.639,3.655,3.653Z">
+                                        </path>
+                                    </svg>
+                                    <input type="text" id="todoSearch" placeholder="Aufgaben durchsuchen...">
+                                    <button type="button" class="todo-search-clear" id="searchClear"
+                                        title="Suche leeren">✕</button>
+                                </div>
+
+                                <!-- Filter-Buttons -->
+                                <div class="todo-filter-buttons">
+                                    <button id="filterAll">Alle</button>
+                                    <button id="filterOpen" class="active">Offen</button>
+                                    <button id="filterDone">Erledigt</button>
+                                </div>
+
+                                <!-- Aufgabenliste -->
+                                <ul class="pt-md" id="todoList"></ul>
+
+                                <!-- Statistik -->
+                                <div class="todo-stats" id="todoStats"></div>
+
+                                <!-- Reset-Bereich -->
+                                <div class="todo-reset-section">
+                                    <button id="resetTodos"><svg xmlns="http://www.w3.org/2000/svg" width="11.46"
+                                            height="15" viewBox="0 0 11.46 15" fill="#fff" class="icon-va-y-2 mr-sm"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M10.856,3.38H.604c-.124,0-.221.106-.21.229l.897,10.425c.046.546.503.966,1.051.966h6.775c.548,0,1.005-.42,1.051-.966l.897-10.425c.01-.123-.087-.229-.21-.229ZM6.687,9.226l1.554,1.554c.231.231.231.606,0,.837-.231.231-.606.231-.837,0l-1.554-1.554c-.066-.066-.173-.066-.24,0l-1.554,1.554c-.231.231-.606.231-.837,0h0c-.231-.231-.231-.606,0-.837l1.554-1.554c.066-.066.066-.173,0-.24l-1.554-1.554c-.231-.231-.231-.606,0-.837h0c.231-.231.606-.231.837,0l1.554,1.554c.066.066.174.066.24,0l1.554-1.554c.231-.231.606-.231.837,0,.231.231.231.606,0,.837l-1.554,1.554c-.066.066-.066.173,0,.24Z">
+                                            </path>
+                                            <path
+                                                d="M10.562,1.33h-2.715v-.141c0-.656-.534-1.19-1.189-1.19h-1.8c-.656,0-1.189.534-1.189,1.19v.141H.899c-.497,0-.899.402-.899.899v.323c0,.117.094.211.211.211h11.038c.116,0,.211-.094.211-.211v-.323c0-.496-.402-.899-.899-.899ZM7.284,1.33h-3.054v-.141c0-.346.281-.627.627-.627h1.8c.346,0,.627.281.627.627v.141Z">
+                                            </path>
+                                        </svg> Alle Aufgaben löschen</button>
+                                </div>
+                            </div>
+
+                            <!-- JS ToDo App V1 -->
+                            <details>
+                                <summary>Open JS ToDo App V1</summary>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-lang">javascript</span>
+                                        <button class="code-copy">
+                                            <span class="copy-icon">
+                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                    height="16">
+                                            </span>
+                                            <span class="copy-text">Kopieren</span>
+                                        </button>
+                                    </div>
+                                    <pre><code class="language-javascript">// ===== DOM-Elemente =====
+const todoInput = document.getElementById("todoInput");
+const todoPriority = document.getElementById("todoPriority");
+const todoSearch = document.getElementById("todoSearch");
+const searchClear = document.getElementById("searchClear");
+const addTodoBtn = document.getElementById("addTodo");
+const todoList = document.getElementById("todoList");
+const todoStats = document.getElementById("todoStats");
+const resetBtn = document.getElementById("resetTodos");
+const filterAll = document.getElementById("filterAll");
+const filterOpen = document.getElementById("filterOpen");
+const filterDone = document.getElementById("filterDone");
+
+// ===== State =====
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
+let currentFilter = "all"; // "all", "open", "done"
+let searchQuery = "";
+
+// ===== Prioritäts-Sortierung =====
+const priorityOrder = { high: 1, medium: 2, low: 3 };
+const priorityLabels = { high: "Dringend", medium: "Wichtig", low: "Normal" };
+
+// ===== Aufgaben rendern =====
+function renderTodos() {
+    todoList.innerHTML = "";
+
+    // Filtern nach Status
+    let filteredTodos = todos.filter(todo => {
+        if (currentFilter === "done") return todo.done;
+        if (currentFilter === "open") return !todo.done;
+        return true; // "all"
+    });
+
+    // Filtern nach Suchbegriff
+    if (searchQuery) {
+        filteredTodos = filteredTodos.filter(todo =>
+            todo.text.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }
+
+    // Sortieren nach Priorität (hohe zuerst)
+    filteredTodos.sort((a, b) => {
+        const prioA = priorityOrder[a.priority] || 2;
+        const prioB = priorityOrder[b.priority] || 2;
+        return prioA - prioB;
+    });
+
+    // Leere Liste anzeigen
+    if (filteredTodos.length === 0) {
+        const emptyMsg = document.createElement("li");
+        emptyMsg.className = "no-results";
+        if (searchQuery) {
+            emptyMsg.textContent = `Keine Aufgaben gefunden für "${searchQuery}"`;
+        } else {
+            emptyMsg.textContent = currentFilter === "all"
+                ? "Keine Aufgaben vorhanden."
+                : `Keine ${currentFilter === "done" ? "erledigten" : "offenen"} Aufgaben.`;
+        }
+        todoList.appendChild(emptyMsg);
+        updateStats();
+        return;
+    }
+
+    // Aufgaben durchgehen (mit Original-Index für Aktionen)
+    filteredTodos.forEach(todo => {
+        const originalIndex = todos.indexOf(todo);
+
+        const li = document.createElement("li");
+        li.className = `priority-${todo.priority || "medium"}`;
+
+        // Content-Bereich (Text + Meta-Infos)
+        const content = document.createElement("div");
+        content.className = "todo-content";
+
+        // Aufgabentext
+        const span = document.createElement("span");
+        span.className = "todo-text" + (todo.done ? " done" : "");
+
+        // Suchbegriff hervorheben (sicher!)
+        if (searchQuery && todo.text.toLowerCase().includes(searchQuery.toLowerCase())) {
+            const regex = new RegExp(`(${escapeRegex(searchQuery)})`, "gi");
+            const parts = todo.text.split(regex);
+            parts.forEach(part => {
+                if (part.toLowerCase() === searchQuery.toLowerCase()) {
+                    const mark = document.createElement("mark");
+                    mark.className = "search-highlight";
+                    mark.textContent = part;
+                    span.appendChild(mark);
+                } else {
+                    span.appendChild(document.createTextNode(part));
+                }
+            });
+        } else {
+            span.textContent = todo.text;
+        }
+
+        span.onclick = () => toggleDone(originalIndex);
+        content.appendChild(span);
+
+        // Meta-Infos (Datum + Priorität)
+        const meta = document.createElement("div");
+        meta.className = "todo-meta";
+
+        if (todo.createdAt) {
+            const dateSpan = document.createElement("span");
+            dateSpan.textContent = "Erstellt: " + todo.createdAt;
+            meta.appendChild(dateSpan);
+        }
+
+        // Prioritäts-Badge
+        const prioBadge = document.createElement("span");
+        prioBadge.className = `todo-priority-badge ${todo.priority || "medium"}`;
+        prioBadge.textContent = priorityLabels[todo.priority] || "Wichtig";
+        meta.appendChild(prioBadge);
+
+        content.appendChild(meta);
+        li.appendChild(content);
+
+        // Aktions-Buttons
+        const actions = document.createElement("div");
+        actions.className = "todo-actions";
+
+        // Bearbeiten-Button
+        const editBtn = document.createElement("button");
+        editBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="var(--text-primary)" aria-hidden="true"><path d="M9.32,2.814c-.046-.045-.119-.045-.165,0L1.52,10.449c-.076.076-.076.2,0,.276l2.824,2.824c.076.076.2.076.276,0l7.635-7.635c.045-.046.045-.119,0-.165l-2.935-2.936Z" />
+      <path d="M14.83,2.184l-1.945-1.945c-.319-.319-.836-.319-1.155,0l-1.671,1.671c-.115.114-.115.3,0,.415l2.686,2.686c.115.115.3.115.415,0l1.67-1.67c.319-.319.319-.836,0-1.155Z" />
+      <path d="M1.023,11.39c-.102-.102-.276-.062-.323.075L.007,14.694c-.049.228.154.43.382.38l3.216-.705c.137-.047.177-.221.075-.323l-2.657-2.657Z" /> </svg>`;
+        // editBtn.textContent = "✏️";
+        editBtn.title = "Bearbeiten";
+        editBtn.onclick = () => editTodo(originalIndex);
+        actions.appendChild(editBtn);
+
+        // Löschen-Button
+        const delBtn = document.createElement("button");
+        delBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="var(--color-error)" aria-hidden="true"><path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646-.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z"/></svg>`;
+        // delBtn.textContent = "❌";
+        delBtn.title = "Löschen";
+        delBtn.onclick = () => deleteTodo(originalIndex);
+        actions.appendChild(delBtn);
+
+        li.appendChild(actions);
+        todoList.appendChild(li);
+    });
+
+    // Statistik aktualisieren
+    updateStats();
+}
+
+// ===== Regex-Zeichen escapen (für sichere Suche) =====
+function escapeRegex(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// ===== Statistik aktualisieren =====
+function updateStats() {
+    const total = todos.length;
+    const done = todos.filter(t => t.done).length;
+    const open = total - done;
+    const highPrio = todos.filter(t => t.priority === "high" && !t.done).length;
+
+    if (total === 0) {
+        todoStats.textContent = "Füge deine erste Aufgabe hinzu!";
+    } else {
+        let statsText = `${done} von ${total} erledigt (${open} offen)`;
+        if (highPrio > 0) {
+            statsText += ` • ${highPrio} mit hoher Priorität`;
+        }
+        todoStats.textContent = statsText;
+    }
+}
+
+// ===== Neue Aufgabe hinzufügen =====
+function addNewTodo() {
+    const text = todoInput.value.trim();
+    if (text === "") return;
+
+    todos.push({
+        text: text,
+        done: false,
+        priority: todoPriority.value,
+        createdAt: new Date().toLocaleDateString("de-DE")
+    });
+
+    todoInput.value = "";
+    todoPriority.value = "low"; // Zurücksetzen auf Standard
+    saveTodos();
+}
+
+// ===== Aufgabe als erledigt markieren =====
+function toggleDone(index) {
+    todos[index].done = !todos[index].done;
+    saveTodos();
+}
+
+// ===== Aufgabe bearbeiten (Modal) =====
+function editTodo(index) {
+    const todo = todos[index];
+
+    // Modal erstellen
+    const overlay = document.createElement("div");
+    overlay.className = "todo-modal-overlay";
+
+    const modal = document.createElement("div");
+    modal.className = "todo-modal";
+
+    modal.innerHTML = `
+                                        <h4>Aufgabe bearbeiten</h4>
+                                        <div class="todo-modal-field">
+                                            <label for="editText">Aufgabe:</label>
+                                            <input type="text" id="editText" value="">
+                                        </div>
+                                        <div class="todo-modal-field">
+                                            <label for="editPriority">Priorität:</label>
+                                            <select id="editPriority">
+                                                <option value="low">🟢 Normal</option>
+                                                <option value="medium">🟡 Wichtig</option>
+                                                <option value="high">🔴 Dringend</option>
+                                            </select>
+                                        </div>
+                                        <div class="todo-modal-buttons">
+                                            <button type="button" class="todo-modal-cancel">Abbrechen</button>
+                                            <button type="button" class="todo-modal-save">Speichern</button>
+                                        </div>
+                                    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Werte setzen (sicher via DOM, nicht innerHTML!)
+    const editText = modal.querySelector("#editText");
+    const editPriority = modal.querySelector("#editPriority");
+    editText.value = todo.text;
+    editPriority.value = todo.priority || "medium";
+
+    // Fokus auf Textfeld
+    editText.focus();
+    editText.select();
+
+    // Event Handlers
+    const closeModal = () => {
+        document.body.removeChild(overlay);
+    };
+
+    const saveChanges = () => {
+        const newText = editText.value.trim();
+        if (newText !== "") {
+            todos[index].text = newText;
+            todos[index].priority = editPriority.value;
+            saveTodos();
+        }
+        closeModal();
+    };
+
+    modal.querySelector(".todo-modal-cancel").onclick = closeModal;
+    modal.querySelector(".todo-modal-save").onclick = saveChanges;
+
+    // Enter zum Speichern, Escape zum Schließen
+    editText.addEventListener("keydown", e => {
+        if (e.key === "Enter") saveChanges();
+        if (e.key === "Escape") closeModal();
+    });
+
+    // Klick auf Overlay schließt Modal
+    overlay.addEventListener("click", e => {
+        if (e.target === overlay) closeModal();
+    });
+}
+
+// ===== Aufgabe löschen =====
+function deleteTodo(index) {
+    todos.splice(index, 1);
+    saveTodos();
+}
+
+// ===== Alle Aufgaben löschen =====
+function clearAllTodos() {
+    if (confirm("Wirklich alle Aufgaben löschen?")) {
+        localStorage.removeItem("todos");
+        todos = [];
+        renderTodos();
+    }
+}
+
+// ===== Filter setzen =====
+function setFilter(filter) {
+    currentFilter = filter;
+
+    // Button-Styles aktualisieren
+    filterAll.classList.toggle("active", filter === "all");
+    filterOpen.classList.toggle("active", filter === "open");
+    filterDone.classList.toggle("active", filter === "done");
+
+    renderTodos();
+}
+
+// ===== Speichern =====
+function saveTodos() {
+    localStorage.setItem("todos", JSON.stringify(todos));
+    renderTodos();
+}
+
+// ===== Event Listeners =====
+addTodoBtn.addEventListener("click", addNewTodo);
+todoInput.addEventListener("keypress", e => {
+    if (e.key === "Enter") addNewTodo();
+});
+resetBtn.addEventListener("click", clearAllTodos);
+filterAll.addEventListener("click", () => setFilter("all"));
+filterOpen.addEventListener("click", () => setFilter("open"));
+filterDone.addEventListener("click", () => setFilter("done"));
+
+// Suche mit Debounce (wartet 300ms nach Tippen)
+let searchTimeout;
+todoSearch.addEventListener("input", e => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+        searchQuery = e.target.value.trim();
+        renderTodos();
+    }, 300);
+
+    // X-Button ein-/ausblenden
+    searchClear.classList.toggle("visible", e.target.value.length > 0);
+});
+
+// Suche leeren
+searchClear.addEventListener("click", () => {
+    todoSearch.value = "";
+    searchQuery = "";
+    searchClear.classList.remove("visible");
+    renderTodos();
+    todoSearch.focus();
+});
+
+// ===== Initialisierung =====
+renderTodos();</code></pre>
+                                </div>
+                            </details>
+
+                            <!-- HTML ToDo App V1 -->
+                            <details>
+                                <summary>HTML ToDo App V1</summary>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-lang">HTML</span>
+                                        <button class="code-copy">
+                                            <span class="copy-icon">
+                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                    height="16">
+                                            </span>
+                                            <span class="copy-text">Kopieren</span>
+                                        </button>
+                                    </div>
+                                    <pre><code class="language-html">&lt;div class=&quot;todo-app-demo grid-2col-bg&quot;&gt;
+    &lt;h3 id=&quot;meine-aufgaben&quot;&gt;Meine Aufgaben&lt;/h3&gt;
+
+    &lt;!-- Eingabefeld mit Priorität --&gt;
+    &lt;div class=&quot;todo-input&quot;&gt;
+        &lt;svg class=&quot;todo-search-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot;
+            height=&quot;15&quot; viewBox=&quot;0 0 15 15&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;path
+                d=&quot;M13.449,5.949l-4.097.018c-.166,0-.301-.134-.301-.3V1.619c0-.717-.456-1.393-1.151-1.568-1.027-.258-1.951.515-1.951,1.501l.018,4.097c0,.166-.134.301-.3.301H1.619c-.717,0-1.393.456-1.568,1.151-.258,1.027.515,1.951,1.501,1.951l4.097-.019c.166,0,.301.134.301.3v4.05c0,.717.456,1.393,1.151,1.568,1.027.258,1.951-.515,1.951-1.501l-.019-4.097c0-.166.134-.301.3-.301h4.05c.717,0,1.393-.456,1.568-1.151.258-1.027-.515-1.951-1.501-1.951Z&quot;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;input type=&quot;text&quot; id=&quot;todoInput&quot; placeholder=&quot;Neue Aufgabe hinzufügen...&quot;&gt;
+        &lt;select id=&quot;todoPriority&quot; title=&quot;Priorität wählen&quot;&gt;
+            &lt;option value=&quot;low&quot; selected&gt;🟢 Normal&lt;/option&gt;
+            &lt;option value=&quot;medium&quot;&gt;🟡 Wichtig&lt;/option&gt;
+            &lt;option value=&quot;high&quot;&gt;🔴 Dringend&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;button id=&quot;addTodo&quot; class=&quot;btn-add&quot;&gt;Hinzufügen&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Suchfeld --&gt;
+    &lt;div class=&quot;todo-search&quot;&gt;
+        &lt;svg class=&quot;todo-search-icon&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot;
+            height=&quot;15&quot; viewBox=&quot;0 0 15 15&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;path
+                d=&quot;M14.633,12.86l-3.179-3.182c-.081-.082-.093-.206-.033-.304.778-1.27,1.072-2.779.81-4.302C11.778,2.443,9.569.364,6.921.046,2.916-.436-.457,2.952.051,6.96c.335,2.639,2.418,4.83,5.041,5.271,1.519.255,3.021-.038,4.284-.812.098-.06.223-.048.305.033l3.178,3.18c.236.237.551.368.887.368s.651-.131.887-.367c.237-.236.368-.551.368-.888,0-.334-.131-.649-.367-.886ZM9.817,6.16c0,2.015-1.64,3.654-3.655,3.654s-3.654-1.639-3.654-3.654,1.639-3.653,3.654-3.653,3.655,1.639,3.655,3.653Z&quot;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+        &lt;input type=&quot;text&quot; id=&quot;todoSearch&quot; placeholder=&quot;Aufgaben durchsuchen...&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;todo-search-clear&quot; id=&quot;searchClear&quot;
+            title=&quot;Suche leeren&quot;&gt;✕&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Filter-Buttons --&gt;
+    &lt;div class=&quot;todo-filter-buttons&quot;&gt;
+        &lt;button id=&quot;filterAll&quot;&gt;Alle&lt;/button&gt;
+        &lt;button id=&quot;filterOpen&quot; class=&quot;active&quot;&gt;Offen&lt;/button&gt;
+        &lt;button id=&quot;filterDone&quot;&gt;Erledigt&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Aufgabenliste --&gt;
+    &lt;ul class=&quot;pt-md&quot; id=&quot;todoList&quot;&gt;&lt;/ul&gt;
+
+    &lt;!-- Statistik --&gt;
+    &lt;div class=&quot;todo-stats&quot; id=&quot;todoStats&quot;&gt;&lt;/div&gt;
+
+    &lt;!-- Reset-Bereich --&gt;
+    &lt;div class=&quot;todo-reset-section&quot;&gt;
+        &lt;button id=&quot;resetTodos&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;11.46&quot;
+                height=&quot;15&quot; viewBox=&quot;0 0 11.46 15&quot; fill=&quot;#fff&quot; class=&quot;icon-va-y-2 mr-sm&quot;
+                aria-hidden=&quot;true&quot;&gt;
+                &lt;path
+                    d=&quot;M10.856,3.38H.604c-.124,0-.221.106-.21.229l.897,10.425c.046.546.503.966,1.051.966h6.775c.548,0,1.005-.42,1.051-.966l.897-10.425c.01-.123-.087-.229-.21-.229ZM6.687,9.226l1.554,1.554c.231.231.231.606,0,.837-.231.231-.606.231-.837,0l-1.554-1.554c-.066-.066-.173-.066-.24,0l-1.554,1.554c-.231.231-.606.231-.837,0h0c-.231-.231-.231-.606,0-.837l1.554-1.554c.066-.066.066-.173,0-.24l-1.554-1.554c-.231-.231-.231-.606,0-.837h0c.231-.231.606-.231.837,0l1.554,1.554c.066.066.174.066.24,0l1.554-1.554c.231-.231.606-.231.837,0,.231.231.231.606,0,.837l-1.554,1.554c-.066.066-.066.173,0,.24Z&quot;&gt;
+                &lt;/path&gt;
+                &lt;path
+                    d=&quot;M10.562,1.33h-2.715v-.141c0-.656-.534-1.19-1.189-1.19h-1.8c-.656,0-1.189.534-1.189,1.19v.141H.899c-.497,0-.899.402-.899.899v.323c0,.117.094.211.211.211h11.038c.116,0,.211-.094.211-.211v-.323c0-.496-.402-.899-.899-.899ZM7.284,1.33h-3.054v-.141c0-.346.281-.627.627-.627h1.8c.346,0,.627.281.627.627v.141Z&quot;&gt;
+                &lt;/path&gt;
+            &lt;/svg&gt; Alle Aufgaben löschen&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                </div>
+                            </details>
+
+                            <!-- CSS ToDo App V1 -->
+                            <details>
+                                <summary>Open CSS ToDo App V1</summary>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-lang">CSS</span>
+                                        <button class="code-copy">
+                                            <span class="copy-icon">
+                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                    height="16">
+                                            </span>
+                                            <span class="copy-text">Kopieren</span>
+                                        </button>
+                                    </div>
+                                    <pre><code class="language-css">.todo-app-demo {
+    max-width: 100%;
+}
+
+.todo-input {
+    position: relative;
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.todo-input input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0 0 0 2rem ;
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+}
+
+.todo-input select {
+    padding: 0.5em;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-add {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: white;
+    background-color: var(--accent-blue);
+    border: 2px solid var(--accent-blue);
+    border-radius: 8px;
+    transition: all 300ms ease;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.btn-add:hover {
+    background-color: var(--accent-blue-hover);
+    border: 2px solid var(--accent-blue-hover);
+}
+
+.todo-search {
+    margin-top: 1em;
+    position: relative;
+}
+
+.todo-search input {
+    width: 100%;
+    padding: 0.5em 2.5em;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-tertiary);
+    box-sizing: border-box;
+}
+
+.todo-search-icon {
+    position: absolute;
+    left: 0.75em;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Klicks gehen durch zum Input */
+    opacity: 0.5;
+}
+
+.todo-search-clear {
+    position: absolute;
+    right: 0.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--text-muted);
+    padding: 0.25em;
+    line-height: 1;
+    display: none;
+}
+
+.todo-search-clear:hover {
+    color: var(--accent-red-dark);
+}
+
+.todo-search-clear.visible {
+    display: block;
+}
+
+.todo-filter-buttons {
+    display: flex;
+    gap: 0.5em;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.todo-filter-buttons button {
+    padding: 0.4em 0.8em;
+    color: var(--text-primary);
+    border: 2px solid var(--accent-blue);
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.todo-filter-buttons button:hover {
+    background: var(--bg-tertiary);
+}
+
+.todo-filter-buttons button.active {
+    background: var(--accent-blue);
+    color: var(--text-primary);
+    border-radius: 4px;
+    border: 2px solid var(--accent-blue);
+}
+
+.todo-filter-buttons button.active:hover {
+    background: var(--accent-blue-hover);
+    border: 2px solid var(--accent-blue-hover);
+}
+
+#todoList {
+    list-style: none;
+    padding: 0;
+}
+
+#todoList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 0.75em;
+    background: var(--bg-secondary);
+    border-radius: 0 8px 8px 0;
+    border: 1px solid var(--border-color);
+    border-left: 4px solid transparent;
+}
+
+/* Prioritäts-Farben */
+#todoList li.priority-high {
+    border-left-color: var(--color-error);
+    /* background: rgba(220, 53, 69, 0.05); */
+    background: var(--bg-tertiary);
+}
+
+#todoList li.priority-medium {
+    border-left-color: var(--color-warning);
+    /* background: rgba(255, 193, 7, 0.05); */
+    background: var(--bg-tertiary);
+}
+
+#todoList li.priority-low {
+    border-left-color: var(--color-success);
+    /* background: rgba(40, 167, 69, 0.05); */
+    background: var(--bg-tertiary);
+}
+
+#todoList li.priority-high:hover {
+    background: rgba(220, 53, 69, 0.05);
+}
+
+#todoList li.priority-medium:hover {
+    background: rgba(255, 193, 7, 0.05);
+}
+
+#todoList li.priority-low:hover {
+    background: rgba(40, 167, 69, 0.05);
+}
+
+#todoList li .todo-content {
+    flex: 1;
+    min-width: 0;
+    /* Wichtig für Flexbox-Umbruch */
+}
+
+#todoList li .todo-text {
+    cursor: pointer;
+    word-break: break-word;
+    /* Erzwingt Umbruch bei langen Wörtern */
+    overflow-wrap: break-word;
+    /* Fallback für ältere Browser */
+    hyphens: auto;
+    /* Automatische Silbentrennung */
+}
+
+#todoList li .todo-text.done {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+#todoList li .todo-meta {
+    font-size: 0.75em;
+    color: var(--text-muted);
+    margin-top: 0.25em;
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+#todoList li .todo-priority-badge {
+    font-size: 0.7em;
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.todo-priority-badge.high {
+    background: var(--color-error);
+    color: white;
+}
+
+.todo-priority-badge.medium {
+    background: var(--color-warning);
+    color: #333;
+}
+
+.todo-priority-badge.low {
+    background: var(--color-success);
+    color: white;
+}
+
+#todoList li .todo-actions {
+    display: flex;
+    gap: 0.25em;
+    flex-shrink: 0;
+}
+
+#todoList li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25em;
+    font-size: 1em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+#todoList li button:hover {
+    opacity: 1;
+}
+
+.todo-stats {
+    margin-top: 1em;
+    padding: 0.5em;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.todo-reset-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#resetTodos {
+    background: var(--color-error);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#resetTodos:hover {
+    background: var(--danger-hover, #c82333);
+}
+
+.search-highlight {
+    background: yellow;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+.no-results {
+    font-style: italic;
+    opacity: 0.6;
+    text-align: center;
+    padding: 1em;
+}
+
+/* Modal für Bearbeitung */
+.todo-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.todo-modal {
+    background: var(--bg-primary, white);
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+    max-width: 90%;
+}
+
+.todo-modal h4 {
+    margin: 0 0 1em 0;
+    font-size: 1.1em;
+}
+
+.todo-modal-field {
+    margin-bottom: 1em;
+}
+
+.todo-modal-field label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.todo-modal-field input,
+.todo-modal-field select {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid var(--border-color, #ccc);
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.todo-modal-buttons {
+    display: flex;
+    gap: 0.5em;
+    justify-content: flex-end;
+    margin-top: 1.5em;
+}
+
+.todo-modal-buttons button {
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.todo-modal-cancel {
+    background: var(--bg-secondary, #f5f5f5);
+    border: 1px solid var(--border-color, #ccc);
+    color: var(--text-primary, #333);
+}
+
+.todo-modal-cancel:hover {
+    background: var(--bg-tertiary, #e0e0e0);
+}
+
+.todo-modal-save {
+    background: var(--accent-color, #007bff);
+    border: none;
+    color: white;
+}
+
+.todo-modal-save:hover {
+    background: var(--accent-hover, #0056b3);
+}</code></pre>
+                                </div>
+                            </details>
+
+                        </details>
+
                     </section>
 
                     <section class="tutorials-content">
@@ -319,8 +1246,10 @@
 
                         <div class="info-box">
                             <strong class="box-title no-toc">Wichtig
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                     </path>
                                 </svg>
                             </strong>
@@ -333,10 +1262,13 @@
 
                         <div class="info-box">
                             <strong class="box-title no-toc">Sind meine Daten sicher?
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.249,7.567c-1.381,0-2.505,1.124-2.505,2.505v.803c.73-.019,1.562-.03,2.504-.03s1.775.011,2.506.03v-.803c0-1.381-1.124-2.505-2.505-2.505Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.249,7.567c-1.381,0-2.505,1.124-2.505,2.505v.803c.73-.019,1.562-.03,2.504-.03s1.775.011,2.506.03v-.803c0-1.381-1.124-2.505-2.505-2.505Z">
                                     </path>
-                                    <path d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM22.454,13.916v7.407c0,.303-.164.583-.431.727-1.773.956-4.166,1.542-6.775,1.542s-4.984-.585-6.755-1.542c-.266-.144-.43-.422-.431-.724l-.021-7.409.019-2.076c.002-.234.145-.445.363-.529.102-.039.23-.081.395-.124.325-.083.968-.164,1.948-.227v-.888c0-2.47,2.01-4.481,4.482-4.481s4.481,2.011,4.481,4.481v.888c.979.063,1.622.144,1.947.227.171.044.305.088.41.128.222.086.367.299.367.536v2.065Z">
+                                    <path
+                                        d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM22.454,13.916v7.407c0,.303-.164.583-.431.727-1.773.956-4.166,1.542-6.775,1.542s-4.984-.585-6.755-1.542c-.266-.144-.43-.422-.431-.724l-.021-7.409.019-2.076c.002-.234.145-.445.363-.529.102-.039.23-.081.395-.124.325-.083.968-.164,1.948-.227v-.888c0-2.47,2.01-4.481,4.482-4.481s4.481,2.011,4.481,4.481v.888c.979.063,1.622.144,1.947.227.171.044.305.088.41.128.222.086.367.299.367.536v2.065Z">
                                     </path>
                                 </svg>
                             </strong>
@@ -445,7 +1377,8 @@ let todos = JSON.parse(localStorage.getItem("todos")) || [];
                         </div>
 
                         <h3 id="prioritaeten">Prioritäten und Sortierung</h3>
-                        <p>Jede Aufgabe bekommt eine Priorität (hoch/mittel/niedrig). Mit <code class="inline">Array.sort()</code>
+                        <p>Jede Aufgabe bekommt eine Priorität (hoch/mittel/niedrig). Mit <code
+                                class="inline">Array.sort()</code>
                             sortieren wir die Aufgaben so, dass hohe Prioritäten oben erscheinen:</p>
                         <div class="code-block">
                             <div class="code-header">
@@ -560,8 +1493,10 @@ const filteredTodos = todos.filter(todo =&gt; {
 
                         <div class="info-box">
                             <strong class="box-title no-toc">Warum ist das sicher?
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                     </path>
                                 </svg>
                             </strong>
@@ -618,8 +1553,10 @@ const filteredTodos = todos.filter(todo =&gt; {
 
                         <div class="info-box">
                             <strong class="box-title no-toc">Warum nicht innerHTML?
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                     </path>
                                 </svg>
                             </strong>
@@ -634,10 +1571,13 @@ const filteredTodos = todos.filter(todo =&gt; {
 
                         <div class="info-box notice">
                             <strong class="box-title notice no-toc">Wann ist innerHTML trotzdem sicher?
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.249,7.567c-1.381,0-2.505,1.124-2.505,2.505v.803c.73-.019,1.562-.03,2.504-.03s1.775.011,2.506.03v-.803c0-1.381-1.124-2.505-2.505-2.505Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.249,7.567c-1.381,0-2.505,1.124-2.505,2.505v.803c.73-.019,1.562-.03,2.504-.03s1.775.011,2.506.03v-.803c0-1.381-1.124-2.505-2.505-2.505Z">
                                     </path>
-                                    <path d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM22.454,13.916v7.407c0,.303-.164.583-.431.727-1.773.956-4.166,1.542-6.775,1.542s-4.984-.585-6.755-1.542c-.266-.144-.43-.422-.431-.724l-.021-7.409.019-2.076c.002-.234.145-.445.363-.529.102-.039.23-.081.395-.124.325-.083.968-.164,1.948-.227v-.888c0-2.47,2.01-4.481,4.482-4.481s4.481,2.011,4.481,4.481v.888c.979.063,1.622.144,1.947.227.171.044.305.088.41.128.222.086.367.299.367.536v2.065Z">
+                                    <path
+                                        d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM22.454,13.916v7.407c0,.303-.164.583-.431.727-1.773.956-4.166,1.542-6.775,1.542s-4.984-.585-6.755-1.542c-.266-.144-.43-.422-.431-.724l-.021-7.409.019-2.076c.002-.234.145-.445.363-.529.102-.039.23-.081.395-.124.325-.083.968-.164,1.948-.227v-.888c0-2.47,2.01-4.481,4.482-4.481s4.481,2.011,4.481,4.481v.888c.979.063,1.622.144,1.947.227.171.044.305.088.41.128.222.086.367.299.367.536v2.065Z">
                                     </path>
                                 </svg>
                             </strong>
@@ -648,18 +1588,29 @@ const filteredTodos = todos.filter(todo =&gt; {
                                 es kein Problem:
                             </p>
                             <ul class="arrow-list">
-                                <li><code class="inline">todoList.innerHTML = "";</code> → <strong>Sicher <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2" aria-hidden="true">
-                                            <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                <li><code class="inline">todoList.innerHTML = "";</code> → <strong>Sicher <svg
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15"
+                                            height="15" fill="var(--accent-green)" class="icon-va-y-2"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
                                             </path>
                                         </svg> </strong> nur ein leerer String</li>
                                 <li><code class="inline">btn.innerHTML = '&lt;svg&gt;...&lt;/svg&gt;';</code> →
-                                    <strong>Sicher<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
-                                            <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                    <strong>Sicher<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15"
+                                            height="15" fill="var(--accent-green)" class="icon-va-y-2 ml-sm mr-sm"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
                                             </path>
                                         </svg></strong>dein eigener SVG-Code
                                 </li>
-                                <li><code class="inline">div.innerHTML = todo.text;</code> → <strong>Gefährlich<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
-                                            <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z">
+                                <li><code class="inline">div.innerHTML = todo.text;</code> → <strong>Gefährlich<svg
+                                            xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z">
                                             </path>
                                         </svg></strong>User-Input!</li>
                             </ul>
@@ -861,7 +1812,8 @@ searchClear.addEventListener("click", () =&gt; {
                                     <span class="code-lang">HTML</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -936,7 +1888,8 @@ searchClear.addEventListener("click", () =&gt; {
                                     <span class="code-lang">JavaScript</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1283,7 +2236,8 @@ renderTodos();</code></pre>
                                     <span class="code-lang">CSS</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1679,13 +2633,15 @@ renderTodos();</code></pre>
                     </section> -->
 
                     <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">HTML Entity Encoder</span>
-                <span class="tutorial-nav-category">JavaScript Projects</span>
-            </a>
-        </div><div class="tutorial-nav-next"></div></nav>
+                        <div class="tutorial-nav-prev">
+                            <a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">
+                                <span class="tutorial-nav-label">← Vorheriges</span>
+                                <span class="tutorial-nav-link">HTML Entity Encoder</span>
+                                <span class="tutorial-nav-category">JavaScript Projects</span>
+                            </a>
+                        </div>
+                        <div class="tutorial-nav-next"></div>
+                    </nav>
 
                 </div>
             </div>
@@ -1695,23 +2651,23 @@ renderTodos();</code></pre>
     </main>
 
     <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+                <nav class="footer-nav">
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                </nav>
+            </div>
         </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+    </footer>
+    <button id="scrollTopBtn" title="Nach oben">↑</button>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/search.js" defer></script>
+    <script src="/assets/js/scroll-spy.js" defer></script>
+    <script src="/assets/js/latest-tutorials.js" defer></script>
+    <!-- Footer-End -->
 
     <script src="/assets/js/code-copy.js" defer></script>
     <script src="/assets/js/sidebar.js" defer></script>
@@ -1720,4 +2676,6 @@ renderTodos();</code></pre>
 
 
 
-</body></html>
+</body>
+
+</html>
