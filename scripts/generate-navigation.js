@@ -174,6 +174,7 @@ const TUTORIAL_ORDER = {
         'html-audio-video.html'
     ],
     'tutorials/css/css-basics': [
+        'grundlagen-der-css-struktur.html',
         'css-einbinden.html',
         'css-color-units.html',
         'css-typografie.html',

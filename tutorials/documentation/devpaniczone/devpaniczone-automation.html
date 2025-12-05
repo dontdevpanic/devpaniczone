@@ -202,8 +202,9 @@
                     <li class="toc-level-2"><a href="#5-prevnext">5. Prev/Next Navigation (nur Tutorial-Seiten)</a></li>
                     <li class="toc-level-2"><a href="#6-footer">6. Footer (ALLE Seiten)</a></li>
                     <li class="toc-level-2"><a href="#7-tutorial-buttons">7. Tutorial-Buttons (nur Kategorieseiten)</a></li>
-                    <li class="toc-level-2"><a href="#8-scripts">8. Scripts</a></li>
-                    <li class="toc-level-1"><a href="#reihenfolge-festlegen">Reihenfolge festlegen (orderConfig)</a></li>
+                    <li class="toc-level-2"><a href="#latest-tutorials-system">8. Latest Tutorials System</a></li>
+                    <li class="toc-level-2"><a href="#9-scripts">9. Scripts</a></li>
+                    <li class="toc-level-1"><a href="#reihenfolge-festlegen">Reihenfolge festlegen (TUTORIAL_ORDER)</a></li>
                     <li class="toc-level-2"><a href="#neue-seite-hinzufuegen">Neue Seite hinzufügen</a></li>
                     <li class="toc-level-1"><a href="#custom-titles">Custom Titles (customTitles)</a></li>
                     <li class="toc-level-1"><a href="#script-ausfuehren">Script ausführen</a></li>
@@ -261,8 +262,7 @@
                 <!-- Automation -->
                 <section class="tutorials-content mt-xl">
                     <h2 id="navigationen-automatisch-generieren">Navigationen automatisch
-                        generieren
-                    </h2>
+                        generieren</h2>
                     <p>Alle Navigationen werden automatisch durch das Script <code class="inline">generate-navigation.js</code> erstellt. Du brauchst nur minimale Platzhalter
                         im
                         HTML zu platzieren – das Script füllt den Rest!</p>
@@ -299,23 +299,10 @@
     &lt;meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials"&gt;
     &lt;meta name="author" content="DevPanicZone"&gt;
 
-    &lt;!------------------------------------------------ 
-    ============== OPEN GRAPH (Optional) ==============
-    Benötigt: /assets/images/og-preview.jpg (1200x630px)
-    Nur aktivieren, wenn Bild existiert!
-    -------------------------------------------------&gt;
-    &lt;!--
-    &lt;meta property="og:type" content="website"&gt;
-    &lt;meta property="og:title" content="DevPanicZone – Webentwicklung lernen mit Spaß"&gt;
-    &lt;meta property="og:description" content="Deine Ressource für Webentwicklung, Tutorials und kreative Projekte."&gt;
-    &lt;meta property="og:image" content="https://devpaniczone.de/assets/images/og-preview.jpg"&gt;
-    &lt;meta property="og:url" content="https://devpaniczone.de"&gt;
-    --&gt;
-
     &lt;!------------------------------------------ 
     ============== TITLE ERSETZEN ==============
     -------------------------------------------&gt;
-    &lt;title&gt;HTML Basics | DevPanicZone&lt;/title&gt;
+    &lt;title&gt;Tutorial-Titel | DevPanicZone&lt;/title&gt;
     &lt;link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg"&gt;
     &lt;link rel="icon" type="image/png" href="/assets/icons/favicon.png"&gt;
     &lt;link rel="stylesheet" href="/assets/css/style.css"&gt;
@@ -327,8 +314,7 @@
 &lt;body&gt;
     &lt;!-- Header-Start --&gt;
     &lt;header class="site-header"&gt;
-        &lt;!-- Main-Nav-Start --&gt;
-        &lt;!-- Main-Nav-End --&gt;
+        &lt;!-- Wird automatisch generiert --&gt;
     &lt;/header&gt;
     &lt;!-- Header-End --&gt;
 
@@ -340,9 +326,11 @@
                 &lt;nav class="breadcrumbs"&gt;&lt;/nav&gt;
                 &lt;!----------------------------------------------- 
                 ================ HERO BEARBEITEN ================
+                Der hero-subtitle Text wird als Excerpt für die
+                Tutorial-Cards verwendet (max. 160 Zeichen)
                 ------------------------------------------------&gt;
                 &lt;h1 class="hero-title"&gt;HERO Title&lt;/h1&gt;
-                &lt;p class="hero-subtitle"&gt;HERO Subtitle.&lt;/p&gt;
+                &lt;p class="hero-subtitle"&gt;HERO Subtitle - Dieser Text erscheint auf den Tutorial-Cards!&lt;/p&gt;
             &lt;/div&gt;
         &lt;/section&gt;
 
@@ -410,19 +398,11 @@
                     &lt;p&gt;Inhalt...&lt;/p&gt;
                 &lt;/section&gt;
 
-                &lt;!-- Weitere Sections nach Bedarf --&gt;
-                &lt;section class="tutorials-content"&gt;
-                    &lt;h3&gt;Weiterer Abschnitt&lt;/h3&gt;
-                    &lt;p&gt;Inhalt...&lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;!-- Weitere Sections nach Bedarf --&gt;
-                &lt;section class="tutorials-content"&gt;
-                    &lt;h4&gt;Weiterer Abschnitt&lt;/h4&gt;
-                    &lt;p&gt;Inhalt...&lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;!-- DELETE: Latest Tutorials Section wird automatisch geladen, keine Placeholder --&gt;
+                &lt;!-- 
+                HINWEIS: Die "Mehr aus [Kategorie]" Section wird 
+                AUTOMATISCH durch npm run build eingefügt!
+                Du brauchst keinen Platzhalter.
+                --&gt;
 
                 &lt;!-- Prev/Next Navigation --&gt;
                 &lt;section class="tutorials-content"&gt;
@@ -437,10 +417,11 @@
 
     &lt;!-- Footer-Start --&gt;
     &lt;footer class="site-footer"&gt;
-        &lt;!-- Wird automatisch generiert --&gt;
+        &lt;!-- Wird automatisch generiert (inkl. Scripts) --&gt;
     &lt;/footer&gt;
     &lt;!-- Footer-End --&gt;
     
+    &lt;!-- Zusätzliche Scripts für Tutorial-Seiten (MANUELL) --&gt;
     &lt;script src="/assets/js/code-copy.js" defer&gt;&lt;/script&gt;
     &lt;script src="/assets/js/sidebar.js" defer&gt;&lt;/script&gt;
     &lt;script src="/assets/vendor/prism/prism.js" defer&gt;&lt;/script&gt;
@@ -587,7 +568,7 @@
                                 eintragen.
                             </li>
                             <li><strong>Schritt 3:</strong> Optional: Custom-Titel in <code class="inline">customTitles</code> definieren.</li>
-                            <li><strong>Schritt 4:</strong> <code class="inline">npm run generate</code> ausführen.</li>
+                            <li><strong>Schritt 4:</strong> <code class="inline">npm run build</code> ausführen.</li>
                             <li><strong>Schritt 5:</strong> Änderungen prüfen und committen.</li>
                             <li><strong>Optional:</strong> <code class="inline">const CUSTOM_TITLES</code> überschreibt
                                 H1 aus HTML für
@@ -612,16 +593,21 @@
                         </strong>
                         <ul class="arrow-list">
                             <li><strong>Header:</strong> Kompletter Header mit Logo, Main-Nav-Dropdown, Theme Toggle,
-                                Burger
-                                Menu</li>
-                            <li><strong>Footer:</strong> Kompletter Footer mit Copyright, Links zu Impressum/Datenschutz
-                            </li>
+                                Burger Menu, Search</li>
+                            <li><strong>Footer:</strong> Kompletter Footer mit Copyright, Links, Scroll-to-Top Button
+                                und Scripts</li>
                             <li><strong>Breadcrumbs:</strong> Navigationspfad (Home › Kategorie › Aktuelles Tutorial)
                             </li>
-                            <li><strong>Prev/Next Navigation:</strong> "Vorheriges" und "Nächstes" Tutorial-Links</li>
-                            <li><strong>Sidebar Links (TOC):</strong> Inhaltsverzeichnis aus h2-h4 Überschriften</li>
-                            <li><strong>Sidebar Rechts:</strong> Liste aller Tutorials der aktuellen Kategorie</li>
+                            <li><strong>Prev/Next Navigation:</strong> "Vorheriges" und "Nächstes" Tutorial-Links mit
+                                Kategorie-Anzeige</li>
+                            <li><strong>Sidebar Links (TOC):</strong> Inhaltsverzeichnis aus h2/h3 Überschriften</li>
+                            <li><strong>Sidebar Rechts:</strong> Liste aller Tutorials der aktuellen Kategorie,
+                                gruppiert nach Unterkategorie</li>
                             <li><strong>Tutorial-Buttons:</strong> Button-Übersicht auf Kategorieseiten</li>
+                            <li><strong>"Mehr aus [Kategorie]":</strong> Latest Tutorials Section auf Tutorial-Seiten
+                            </li>
+                            <li><strong>tutorials.json:</strong> JSON-Datei mit allen Tutorial-Metadaten für die Cards
+                            </li>
                         </ul>
                     </div>
 
@@ -645,7 +631,7 @@
                                 </button>
                             </div>
                             <pre><code class="language-javascript">// Blacklist: Diese Ordner werden ignoriert
-const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code></pre>
+const BLACKLIST_FOLDERS = ['noupload', 'node_modules', '.git', 'assets', 'snippet-collection'];</code></pre>
                         </div>
 
                         <div>
@@ -706,7 +692,7 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                             <li><code class="inline">&lt;!-- Tutorial-Buttons-Start --&gt; </code> /
                                 <code class="inline">&lt;!-- Tutorial-Buttons-End --&gt;</code> - <a href="#7-tutorial-buttons">Buttons</a> (nur für Kategorieseiten).
                             </li>
-                            <li>Benötigte <a href="#8-scripts">Scripts</a></li>
+                            <li>Benötigte Scripts: <a href="#8-scripts">s. Grundgerüst</a></li>
 
                         </ul>
                     </div>
@@ -750,7 +736,7 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                     <!-- 2 Sidebar Links (TOC) -->
                     <div>
                         <h3 id="2-sidebar-links-toc">2. Sidebar Links (TOC) – nur Tutorial-Seiten</h3>
-                        <p>Die linke Sidebar zeigt ein <strong>Inhaltsverzeichnis</strong> aus allen h2-h4 Überschriften
+                        <p>Die linke Sidebar zeigt ein <strong>Inhaltsverzeichnis</strong> aus allen <code>h2</code> - <code>h3</code> Überschriften
                             der
                             Seite.</p>
 
@@ -933,12 +919,12 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                     <!-- 6 Footer Platzhalter -->
                     <div>
                         <h3 id="6-footer">6. Footer (ALLE Seiten)</h3>
-                        <p>Der Footer wird ebenfalls <strong>komplett automatisch generiert</strong>. </p>
-                        <p>Das Snippet wird vor dem To-Top-Button <code class="inline">&lt;button id="scrollTopBtn" title="Nach oben"&gt;↑&lt;/button&gt;</code>
-                            eigefügt. Wenn es keinen gibt, vor den eingebundenen Scripten <code class="inline">&lt;script&gt;</code></p>
+                        <p>Der Footer wird <strong>komplett automatisch generiert</strong> – inklusive Copyright,
+                            Navigation, Scroll-to-Top Button und allen benötigten Scripts.</p>
+
                         <div class="code-block">
                             <div class="code-header">
-                                <span class="code-lang">HTML</span>
+                                <span class="code-lang">HTML (Platzhalter)</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -953,11 +939,55 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
 &lt;!-- Footer-End --&gt;</code></pre>
                         </div>
 
-                        <div class="info-box">
-                            <p><strong>Wichtig:</strong> Der Scroll-Top-Button
-                                <code class="inline">&lt;button id="scrollTopBtn"&gt;</code>
-                                muss außerhalb des Footers bleiben!
-                            </p>
+                        <p>Nach <code class="inline">npm run build</code> wird daraus:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML (generierter Output)</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Footer-Start --&gt;
+&lt;footer class="site-footer"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="footer-content"&gt;
+            &lt;p class="footer-text"&gt;© &lt;span id="currentYear"&gt;2025&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;
+            &lt;nav class="footer-nav"&gt;
+                &lt;a href="/impressum.html"&gt;Impressum&lt;/a&gt;
+                &lt;a href="/datenschutzerklaerung.html"&gt;Datenschutz&lt;/a&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+&lt;button id="scrollTopBtn" title="Nach oben"&gt;↑&lt;/button&gt;
+&lt;script src="/assets/js/main.js" defer&gt;&lt;/script&gt;
+&lt;script src="/assets/js/search.js" defer&gt;&lt;/script&gt;
+&lt;script src="/assets/js/scroll-spy.js" defer&gt;&lt;/script&gt;
+&lt;script src="/assets/js/latest-tutorials.js" defer&gt;&lt;/script&gt;
+&lt;!-- Footer-End --&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Im Footer automatisch enthalten:
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Copyright</strong> mit dynamischem Jahr <code class="inline">#currentYear</code></li>
+                                <li><strong>Footer-Navigation</strong> zu Impressum und Datenschutz</li>
+                                <li><strong>Scroll-to-Top Button</strong></li>
+                                <li><strong>main.js</strong> – Theme Toggle, Dropdown, Mobile Menu, Smooth Scroll</li>
+                                <li><strong>search.js</strong> – Globale Suche</li>
+                                <li><strong>scroll-spy.js</strong> – Aktive Sidebar-Links beim Scrollen</li>
+                                <li><strong>latest-tutorials.js</strong> – Lädt Tutorial-Cards aus JSON</li>
+                            </ul>
+
                         </div>
                     </div> <!-- Footer Platzhalter -->
 
@@ -1014,33 +1044,113 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                         </div>
                     </div>
 
-                    <!-- Scripts -->
+                    <!-- 8 Latest Tutorials System -->
                     <div>
-                        <h3 id="8-scripts">8. Scripts</h3>
-                        <p>Je nachdem, ob die Seite Sidebars hat oder nicht, brauchst du unterschiedliche
-                            Script-Kombinationen.
-                        </p>
+                        <h3 id="latest-tutorials-system">8. Latest Tutorials System</h3>
+                        <p>Das Latest Tutorials System zeigt die neuesten Tutorials auf der Startseite und
+                            kategoriebasierte
+                            Empfehlungen auf Kategorie- und Tutorial-Seiten. Es besteht aus zwei Teilen: Der
+                            automatischen
+                            JSON-Generierung und dem clientseitigen Rendering.</p>
 
-                        <h4 class="no-toc">Tutorial-Seiten mit Sidebars:</h4>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;script src="/assets/js/main.js" defer&gt;&lt;/script&gt;
-&lt;script src="/assets/js/code-copy.js" defer&gt;&lt;/script&gt;
-&lt;script src="/assets/js/sidebar.js" defer&gt;&lt;/script&gt;
-&lt;script src="/assets/js/scroll-spy.js"&gt;&lt;/script&gt;
-&lt;script src="/assets/js/search.js"&gt;&lt;/script&gt;
-&lt;script src="/assets/vendor/prism/prism.js" defer&gt;&lt;/script&gt;</code></pre>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Wie funktioniert es?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>npm run build</strong> erstellt <code class="inline">/assets/data/tutorials.json</code> mit allen Tutorial-Metadaten
+                                </li>
+                                <li><strong>latest-tutorials.js</strong> lädt diese JSON zur Laufzeit im Browser und
+                                    rendert die Cards</li>
+                                <li>Das HTML-Grundgerüst muss <strong>manuell</strong> eingefügt werden (außer auf
+                                    Tutorial-Seiten)</li>
+                            </ul>
                         </div>
 
-                        <h4 class="no-toc">Andere Seiten ohne Sidebars:</h4>
+                        <h4 id="was-generiert-wird-json">Was wird durch npm run build erstellt?</h4>
+                        <p>Das Script <code class="inline">generate-navigation.js</code> erstellt die Datei
+                            <code class="inline">/assets/data/tutorials.json</code> mit allen Tutorial-Metadaten:
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JSON (Beispiel-Auszug)</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-json">{
+  "generated": "2025-06-05T12:00:00.000Z",
+  "total": 42,
+  "latest": [
+    {
+      "title": "CSS Organization",
+      "excerpt": "Strukturiere dein CSS wie ein Profi...",
+      "url": "/tutorials/css/css-specials/css-organization.html",
+      "category": "css",
+      "categoryDisplay": "CSS",
+      "badgeClass": "card-badge-css"
+    }
+  ],
+  "all": [...],
+  "byCategory": {
+    "html": [...],
+    "css": [...],
+    "javascript": [...]
+  }
+}</code></pre>
+                        </div>
+
+                        <h4 id="latest-tutorials-konfiguration">Welche Tutorials sind "Latest"?</h4>
+                        <p>Die neuesten Tutorials für die <strong>Startseite</strong> werden <strong>manuell</strong> in
+                            <code class="inline">generate-navigation.js</code> gepflegt:
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// In generate-navigation.js
+const LATEST_TUTORIALS = [
+    'tutorials/css/css-specials/css-organization.html',
+    'tutorials/javascript/javascript-basics/js-security.html',
+    'tutorials/misc/web/console-security.html',
+    'tutorials/php/php-basics/php-security.html'
+];</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Workflow: Neues Tutorial als "Latest" markieren
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ol class="ml-md">
+                                <li>Öffne <code class="inline">generate-navigation.js</code></li>
+                                <li>Finde das Array <code class="inline">LATEST_TUTORIALS</code></li>
+                                <li>Füge den Pfad zum neuen Tutorial am <strong>Anfang</strong> hinzu</li>
+                                <li>Entferne das letzte Tutorial (Array sollte max. 4 Einträge haben)</li>
+                                <li>Führe <code class="inline">npm run build</code> aus</li>
+                            </ol>
+                        </div>
+
+
+                        <h4 id="html-platzhalter-latest">HTML-Platzhalter für Latest Tutorials</h4>
+                        <p>Je nach Seitentyp gibt es unterschiedliche Platzhalter:</p>
+
+                        <p class="pt-xl"><strong>Startseite (index.html im Root):</strong></p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
@@ -1051,18 +1161,209 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
+                            <pre><code class="language-html">&lt;!-- Latest Tutorials Section --&gt;
+&lt;section class="categories"&gt;
+    &lt;h2&gt;Zuletzt hinzugefügt&lt;/h2&gt;
+    &lt;div id="latestTutorials" class="tutorials-grid"&gt;
+        &lt;!-- Wird per JavaScript aus /assets/data/tutorials.json geladen --&gt;
+        &lt;p class="text-muted"&gt;Tutorials werden geladen...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+
+                        <p class="pt-xl"><strong>Kategorieseiten (z.B. tutorials/html/index.html):</strong></p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Latest Tutorials Section - WICHTIG: data-category! --&gt;
+&lt;section class="categories"&gt;
+    &lt;h2&gt;Zuletzt hinzugefügt&lt;/h2&gt;
+    &lt;div id="categoryLatestTutorials" class="tutorials-grid" data-category="html"&gt;
+        &lt;!-- Wird per JavaScript aus /assets/data/tutorials.json geladen --&gt;
+        &lt;p class="text-muted"&gt;Tutorials werden geladen...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+
+                        <p class="pt-xl"><strong>Tutorial-Seiten (wird automatisch generiert!):</strong></p>
+                        <p>Auf Tutorial-Seiten wird die "Mehr aus [Kategorie]" Section <strong>automatisch</strong>
+                            durch
+                            <code class="inline">npm run build</code> eingefügt. Es muss <strong>kein</strong>
+                            Platzhalter gesetzt werden!
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML (automatisch generiert)</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Latest-Tutorials-Start --&gt;
+&lt;section class="categories"&gt;
+    &lt;h2 id="mehr-aus-css"&gt;Mehr aus CSS&lt;/h2&gt;
+    &lt;div id="categoryLatestTutorials" class="tutorials-grid" data-category="css"&gt;
+        &lt;!-- Wird per JavaScript aus /assets/data/tutorials.json geladen --&gt;
+        &lt;p class="text-muted"&gt;Tutorials werden geladen...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+&lt;!-- Latest-Tutorials-End --&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box info-box warning">
+                            <strong class="box-title warning no-toc">Wichtig: Unterschiedliche IDs beachten!
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><code class="inline">id="latestTutorials"</code> → Nur Startseite (zeigt die 4
+                                    manuell gepflegten aus LATEST_TUTORIALS)</li>
+                                <li><code class="inline">id="categoryLatestTutorials"</code> → Kategorie- und
+                                    Tutorial-Seiten (zeigt die letzten 4 dieser Kategorie)</li>
+                            </ul>
+                            <p class="mt-sm">Das <code class="inline">data-category</code> Attribut muss dem
+                                <strong>Ordnernamen</strong> entsprechen!
+                            </p>
+                        </div>
+
+
+                        <h4 id="excerpt-aus-hero">Woher kommt der Excerpt-Text?</h4>
+                        <p>Der Beschreibungstext auf den Tutorial-Cards wird automatisch aus dem
+                            <strong>Hero-Bereich</strong>
+                            der Tutorial-Datei extrahiert:
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Der Text aus .hero-subtitle wird als Excerpt verwendet --&gt;
+&lt;section class="hero tutorial-hero"&gt;
+    &lt;div class="container"&gt;
+        &lt;h1 class="hero-title"&gt;Mein Tutorial-Titel&lt;/h1&gt;
+        &lt;p class="hero-subtitle"&gt;Dieser Text erscheint auf der Card!&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+
+                        <p>Das Script sucht nach diesen Selektoren (in dieser Reihenfolge):</p>
+                        <ol class="grid-2col-bg">
+                            <li><code class="inline">.hero-subtitle</code></li>
+                            <li><code class="inline">.hero-text</code></li>
+                            <li><code class="inline">.hero p</code></li>
+                            <li><code class="inline">.tutorial-hero p</code></li>
+                        </ol>
+                        <p>Der Text wird auf maximal <strong>160 Zeichen</strong> gekürzt.</p>
+
+                        <div class="cta-content">
+                            <a href="/tutorials/documentation/devpaniczone/devpaniczone-latest-tutorials.html" class="btn btn-secondary" target="blank">Detailliertes Tutorial zum Latest Tutorials
+                                System</a>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                    <!-- 9 Scripts -->
+                    <div>
+                        <h3 id="9-scripts">9. Scripts</h3>
+                        <p>Die meisten Scripts werden <strong>automatisch im Footer</strong> eingebunden.
+                            Je nach Seitentyp brauchst du zusätzliche Scripts.</p>
+
+                        <h4 class="no-toc">Automatisch im Footer (alle Seiten):</h4>
+                        <p>Diese Scripts werden durch <code class="inline">npm run build</code> automatisch
+                            eingefügt:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML (automatisch generiert)</span>
+                            </div>
                             <pre><code class="language-html">&lt;script src="/assets/js/main.js" defer&gt;&lt;/script&gt;
-&lt;script src="/assets/js/search.js"&gt;&lt;/script&gt;
-&lt;script src="/assets/vendor/prism/prism.js" defer&gt;&lt;/script&gt;</code></pre>
+&lt;script src="/assets/js/search.js" defer&gt;&lt;/script&gt;
+&lt;script src="/assets/js/scroll-spy.js" defer&gt;&lt;/script&gt;
+&lt;script src="/assets/js/latest-tutorials.js" defer&gt;&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <h4 class="no-toc">Tutorial-Seiten mit Sidebars (manuell hinzufügen):</h4>
+                        <p>Diese Scripts musst du <strong>nach</strong> dem Footer-End-Marker und vor <code class="inline">&lt;/body&gt;</code> manuell einfügen:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML (manuell einfügen)</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Footer-End --&gt;
+
+&lt;script src="/assets/js/code-copy.js" defer&gt;&lt;/script&gt;
+&lt;script src="/assets/js/sidebar.js" defer&gt;&lt;/script&gt;
+&lt;script src="/assets/vendor/prism/prism.js" defer&gt;&lt;/script&gt;
+
+&lt;/body&gt;</code></pre>
+                        </div>
+
+                        <h4 class="no-toc">Andere Seiten ohne Sidebars und Code-Blöcke:</h4>
+                        <p>Nur die automatisch generierten Footer-Scripts werden benötigt – keine zusätzlichen Scripts
+                            nötig!</p>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Script-Übersicht
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <div class="grid-2col">
+                                <div>
+                                    <p><strong>Automatisch (Footer):</strong></p>
+                                    <ul class="arrow-list">
+                                        <li><code class="inline">main.js</code> – Core-Funktionen</li>
+                                        <li><code class="inline">search.js</code> – Suche</li>
+                                        <li><code class="inline">scroll-spy.js</code> – TOC Highlighting</li>
+                                        <li><code class="inline">latest-tutorials.js</code> – Cards laden</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p><strong>Manuell (Tutorial-Seiten):</strong></p>
+                                    <ul class="arrow-list">
+                                        <li><code class="inline">code-copy.js</code> – Copy-Button für Code</li>
+                                        <li><code class="inline">sidebar.js</code> – Sidebar Toggle</li>
+                                        <li><code class="inline">prism.js</code> – Syntax Highlighting</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section> <!-- Minimale Platzhalter -->
 
                 <!-- Reihenfolge festlegen -->
                 <section class="tutorials-content">
-                    <h2 id="reihenfolge-festlegen">Reihenfolge festlegen (orderConfig)</h2>
+                    <h2 id="reihenfolge-festlegen">Reihenfolge festlegen (TUTORIAL_ORDER)</h2>
                     <p>Die Reihenfolge der Tutorials in Prev/Next-Navigation, Sidebar und Tutorial-Buttons wird in der
-                        <code class="inline">orderConfig</code> definiert.
+                        <code class="inline">TUTORIAL_ORDER</code> definiert.
                     </p>
 
                     <div class="code-block">
@@ -1076,7 +1377,7 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                             </button>
                         </div>
                         <pre><code class="language-javascript">// Manuelle Sortierung für Tutorial-Reihenfolge
-const orderConfig = {
+const TUTORIAL_ORDER = {
     'tutorials/html/html-basics': [
         'html-basics.html',
         'html-grundgeruest.html',
@@ -1092,10 +1393,10 @@ const orderConfig = {
                     </div>
 
                     <h3 id="neue-seite-hinzufuegen">Neue Seite hinzufügen</h3>
-                    <ol class="ml-md">
+                    <ol class="grid-2col-bg">
                         <li>Erstelle deine neue HTML-Datei (z.B. <code class="inline">css-flexbox.html</code>)</li>
                         <li>Öffne <code class="inline">generate-navigation.js</code></li>
-                        <li>Finde die passende Kategorie in <code class="inline">orderConfig</code></li>
+                        <li>Finde die passende Kategorie in <code class="inline">TUTORIAL_ORDER</code></li>
                         <li>Füge den Dateinamen an der gewünschten Position ein:</li>
                     </ol>
 
@@ -1117,9 +1418,12 @@ const orderConfig = {
 ]</code></pre>
                     </div>
 
-                    <ol class="ml-md" start="5">
-                        <li>Führe <code class="inline">npm run generate</code> aus</li>
-                        <li>Fertig! Die neue Seite erscheint in allen Navigationen ✅</li>
+                    <ol class="grid-2col-bg" start="5">
+                        <li>Führe <code class="inline">npm run build</code> aus</li>
+                        <li>Fertig! Die neue Seite erscheint in allen Navigationen <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+                                <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                </path>
+                            </svg></li>
                     </ol>
 
                     <div class="info-box info-box warning">
@@ -1156,17 +1460,18 @@ const orderConfig = {
                             </button>
                         </div>
                         <pre><code class="language-javascript">// Custom Titles für Tutorial-Links
-const customTitles = {
-    'tutorials/html/html-basics/html-basics.html': 'Was ist HTML?',
-    'tutorials/css/css-basics/css-einbinden.html': 'CSS einbinden',
-    'tutorials/misc/projects/devpaniczone-tutorial-template.html': 'Tutorial Template'
+const CUSTOM_TITLES = {
+    'html-basics.html': 'HTML Basics',
+    'html-grundgeruest.html': 'HTML Grundgerüst',
+    'css-einbinden.html': 'CSS einbinden',
+    'js-code-escaper.html': 'HTML-Code Escaper'
 };</code></pre>
                     </div>
 
                     <h3 class="no-toc" id="custom-title-verwenden">Custom Title verwenden</h3>
                     <ol class="grid-2col-bg">
                         <li>Öffne <code class="inline">generate-navigation.js</code></li>
-                        <li>Finde das <code class="inline">customTitles</code> Objekt</li>
+                        <li>Finde das <code class="inline">CUSTOM_TITLES</code> Objekt</li>
                         <li>Füge einen Eintrag hinzu mit dem kompletten Pfad als Key:</li>
                     </ol>
 
@@ -1180,14 +1485,17 @@ const customTitles = {
                                 <span class="copy-text">Kopieren</span>
                             </button>
                         </div>
-                        <pre><code class="language-javascript">const customTitles = {
-    'tutorials/css/css-basics/css-flexbox.html': 'Flexbox Layout'  // ← NEU
+                        <pre><code class="language-javascript">const CUSTOM_TITLES = {
+    'css-flexbox.html': 'Flexbox Layout'  // ← NEU
 };</code></pre>
                     </div>
 
                     <ol class="grid-2col-bg" start="4">
-                        <li>Führe <code class="inline">npm run generate</code> aus</li>
-                        <li>Der Custom Title wird in Prev/Next, Sidebar und Tutorial-Buttons verwendet ✅</li>
+                        <li>Führe <code class="inline">npm run build</code> aus</li>
+                        <li>Der Custom Title wird in Prev/Next, Sidebar und Tutorial-Buttons verwendet <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
+    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+    </path>
+</svg></li>
                     </ol>
 
                     <div class="info-box info-box warning">
@@ -1198,10 +1506,9 @@ const customTitles = {
                             </svg>
                         </strong>
                         <ul class="arrow-list">
-                            <li>Der Pfad muss <strong>exakt</strong> mit dem Dateipfad übereinstimmen</li>
-                            <li>Pfad startet immer mit <code class="inline">tutorials/</code></li>
-                            <li>Kein führendes <code class="inline">/</code> verwenden</li>
-                            <li>Bei Tippfehlern wird der Dateiname stattdessen verwendet</li>
+                            <li>Nur der <strong>Dateiname</strong> wird als Key verwendet (nicht der volle Pfad)</li>
+                            <li>Der Dateiname muss <strong>exakt</strong> übereinstimmen (inkl. .html)</li>
+                            <li>Bei Tippfehlern wird die H1 aus dem HTML-Dokument verwendet</li>
                         </ul>
                     </div>
                 </section> <!-- Custom Titles -->
@@ -1221,7 +1528,7 @@ const customTitles = {
                                 <span class="copy-text">Kopieren</span>
                             </button>
                         </div>
-                        <pre><code class="language-bash">npm run generate</code></pre>
+                        <pre><code class="language-bash">npm run build</code></pre>
                     </div>
 
                     <!-- Workflow -->
@@ -1251,26 +1558,25 @@ const customTitles = {
                                     </li>
                                 </ul>
                             </li>
-                            <li><strong>npm run generate ausführen:</strong> Alle Navigationen werden aktualisiert</li>
+                            <li><strong>npm run build ausführen:</strong> Alle Navigationen werden aktualisiert</li>
                             <li><strong>Prüfen:</strong> Tutorial im Browser öffnen und alle Navigationen testen</li>
                             <li><strong>Committen:</strong> Änderungen in Git speichern</li>
                         </ol>
                     </div>
 
                     <!-- Wann muss ich es ausführen? -->
-                    <h3 class="no-toc">Wann muss ich <code class="inline">npm run generate</code> ausführen?</h3>
+                    <h3 class="no-toc">Wann muss <code class="inline">npm run build</code> ausgeführt werden?</h3>
 
-                    <div class="grid-2col">
-                        <div>
-                            <div class="info-box notice">
-                                <strong class="box-title notice no-toc">JA - Script ausführen bei:
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                        <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
-                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
-                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
-                                        </path>
-                                    </svg>
-                                </strong>
+                    <div class="grid-2col-cards pb-lg">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JA - Script ausführen bei:</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
                                 <ul class="arrow-list">
                                     <li>Neues Tutorial erstellt</li>
                                     <li>Tutorial umbenannt oder verschoben</li>
@@ -1285,18 +1591,18 @@ const customTitles = {
                                     <li>Neue Tutorial-Gruppe erstellt</li>
                                 </ul>
                             </div>
-
                         </div>
-                        <div>
-                            <div class="info-box danger">
-                                <strong class="box-title danger no-toc" id="achtung">NEIN - Script NICHT nötig bei:
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="currentColor" role="img" aria-label="Falsch">
-                                        <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">NEIN - Script NICHT nötig bei:</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red-light)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
-                                        </path>
-                                    </svg>
-                                </strong>
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="pt-lg pb-0 mb-0 px-md">
                                 <ul class="arrow-list">
                                     <li>Änderungen am Tutorial-Content (Text, Code-Beispiele)</li>
                                     <li>CSS-Änderungen</li>
@@ -1305,13 +1611,12 @@ const customTitles = {
                                     <li>Änderungen an Footer, Header (außer Navigation)</li>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
 
                     <!-- Output -->
                     <h3 class="no-toc">Terminal-Output verstehen</h3>
-                    <p>Beim Ausführen siehst du genau, was aktualisiert wurde:</p>
+                    <p>Beim Ausführen sehe ich genau, was aktualisiert wurde:</p>
 
                     <div class="code-block">
                         <div class="code-header">
@@ -1349,7 +1654,7 @@ const customTitles = {
 
                     <!-- package.json -->
                     <h3 class="no-toc">Script-Definition in package.json</h3>
-                    <p>Der Befehl <code class="inline">npm run generate</code> ist in der <code class="inline">package.json</code> definiert:</p>
+                    <p>Der Befehl <code class="inline">npm run build</code> ist in der <code class="inline">package.json</code> definiert:</p>
 
                     <div class="code-block">
                         <div class="code-header">
@@ -1362,18 +1667,63 @@ const customTitles = {
                             </button>
                         </div>
                         <pre><code class="language-javascript">{
-  "name": "devpaniczone",
+  "name": "devpaniczone-navigation-generator",
   "version": "1.0.0",
+  "description": "Automatische Navigation-Generierung für DevPanicZone",
   "scripts": {
-    "generate": "node generate-navigation.js"
+    "generate-nav": "node scripts/generate-navigation.js",
+    "generate-search": "node scripts/generate-search-index.js",
+    "build": "npm run generate-nav &amp;&amp; npm run generate-search",
+    "watch": "nodemon scripts/generate-navigation.js"
   },
+  "keywords": [
+    "navigation",
+    "html",
+    "generator"
+  ],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "jsdom": "^24.0.0"
+    "jsdom": "^23.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
   }
 }</code></pre>
                     </div>
 
-                    <p>Alternativ kannst du auch direkt ausführen:</p>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Verfügbare Befehle
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><code class="inline">npm run build</code> – <strong>Empfohlen!</strong> Führt Navigation
+                                + Suchindex aus</li>
+                            <li><code class="inline">npm run generate-nav</code> – Nur Navigationen generieren</li>
+                            <li><code class="inline">npm run generate-search</code> – Nur Suchindex generieren</li>
+                            <li><code class="inline">npm run watch</code> – Automatisch neu generieren bei
+                                Dateiänderungen (für Entwicklung)</li>
+                        </ul>
+                    </div>
+
+                    <p>Im Normalfall verwende ich immer:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Terminal</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-bash">npm run build</code></pre>
+                    </div>
+
+                    <p class="pt-md">Alternativ kann ich auch direkt ausführen:</p>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Terminal</span>
@@ -1400,7 +1750,7 @@ const customTitles = {
                             </button>
                         </div>
                         <pre><code class="language-bash"># 1. Neues Tutorial erstellt und manualOrder aktualisiert
-npm run generate
+npm run build
 
 # 2. Alle Änderungen prüfen
 git status
@@ -1429,7 +1779,7 @@ git push</code></pre>
                         </ul>
                         <p class="mt-md">Das Script ist <strong>idempotent</strong> – es kann mehrfach
                             ausgeführt werden ohne Probleme
-                            zu verursachen!</p>
+                            zu verursachen! Das Ergebnis ist immer das gleiche.</p>
                     </div>
                 </section>
 
@@ -1478,6 +1828,40 @@ git push</code></pre>
                         </div>
                     </div>
 
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Zusätzlich generiert durch npm run build:
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>tutorials.json:</strong> <code class="inline">/assets/data/tutorials.json</code>
+                                mit allen Tutorial-Metadaten (Titel, Excerpt, URL, Kategorie)</li>
+                            <li><strong>"Mehr aus [Kategorie]" Section:</strong> Wird automatisch in Tutorial-Seiten
+                                eingefügt (zwischen <code class="inline">&lt;!-- Latest-Tutorials-Start/End --&gt;</code>)</li>
+                            <li><strong>Footer-Scripts:</strong> main.js, search.js, scroll-spy.js, latest-tutorials.js
+                                werden automatisch eingebunden</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box info-box warning">
+                        <strong class="box-title warning no-toc">Nicht automatisch generiert:
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                </path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>Startseite Latest Section:</strong> <code class="inline">&lt;div id="latestTutorials"&gt;</code> muss manuell eingefügt werden
+                            </li>
+                            <li><strong>Kategorieseite Latest Section:</strong> <code class="inline">&lt;div id="categoryLatestTutorials"&gt;</code> muss manuell
+                                eingefügt werden</li>
+                            <li><strong>Tutorial-spezifische Scripts:</strong> code-copy.js, sidebar.js, prism.js müssen
+                                manuell eingebunden werden</li>
+                        </ul>
+                    </div>
+
                     <div class="info-box info-box notice">
                         <strong class="box-title notice no-toc">Theme Toggle bleibt!
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
@@ -1488,6 +1872,8 @@ git push</code></pre>
                         <p>Der Theme Toggle Button ist Teil des generierten Headers und funktioniert automatisch! Es
                             muss nichts extra generiert werden. Das currentYear im Footer ebenfalls.</p>
                     </div>
+
+
                 </section> <!-- Zusammenfassung -->
 
                 <!-- Troubleshooting -->
@@ -1534,7 +1920,7 @@ ls   # Sollte generate-navigation.js und tutorials/ zeigen</code></pre>
                     </ol>
                     <div class="code-block">
                         <pre><code class="language-bash">cd /pfad/zu/deinem/projekt
-npm run generate</code></pre>
+npm run build</code></pre>
                     </div>
 
                     <!-- Problem 2: Kommentar-Marker nicht gefunden -->
@@ -1598,7 +1984,7 @@ npm run generate</code></pre>
                         <li>Ersetze <code class="inline">generate-navigation.js</code> mit der neuen Version (v2.0+)
                         </li>
                         <li>Die neue Version respektiert bestehende IDs und ändert sie nicht mehr</li>
-                        <li>Führe <code class="inline">npm run generate</code> aus – ab jetzt bleiben IDs stabil!
+                        <li>Führe <code class="inline">npm run build</code> aus – ab jetzt bleiben IDs stabil!
                         </li>
                     </ol>
 
@@ -1624,7 +2010,7 @@ npm run generate</code></pre>
                     </div>
                     <ol class="grid-2col-bg" start="4">
                         <li>Sortiere die Dateien in der gewünschten Reihenfolge</li>
-                        <li>Führe <code class="inline">npm run generate</code> aus</li>
+                        <li>Führe <code class="inline">npm run build</code> aus</li>
                     </ol>
 
                     <!-- Problem 5: Breadcrumbs Link geht ins Leere -->
@@ -1815,6 +2201,8 @@ const DEBUG = true;  // Von false auf true ändern</code></pre>
     <script src="/assets/js/code-copy.js" defer></script>
     <script src="/assets/js/sidebar.js" defer></script>
     <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 

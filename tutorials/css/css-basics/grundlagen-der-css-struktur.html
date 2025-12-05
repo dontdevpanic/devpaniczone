@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Grundlagen der CSS Struktur - Formatierungsregeln, Vererbung, Kaskade, CSS-Eigenschaften">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>Grundlagen der CSS Struktur | DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tutorials.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/css/" class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Grundlagen der CSS Struktur</span></nav>
+                <h1 class="hero-title">Grundlagen der CSS Struktur</h1>
+                <p class="hero-subtitle">Ein erster Überblick über die Grundlagen der CSS Struktur -
+                    Formatierungsregeln, Vererbung, Kaskade, CSS-Eigenschaften.</p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#formatierungsregeln">Formatierungsregeln</a></li>
+                    <li class="toc-level-2"><a href="#klassen-selektor-klasse">Klassen-Selektor .klasse</a></li>
+                    <li class="toc-level-2"><a href="#id-selektor-id">ID-Selektor #id</a></li>
+                    <li class="toc-level-2"><a href="#pseudoklassen-z-b-hover-focus-first-child">Pseudoklassen z. B. :hover, :focus, :first-child</a></li>
+                    <li class="toc-level-2"><a href="#pseudoelemente-before-after">Pseudoelemente ::before, ::after</a></li>
+                    <li class="toc-level-1"><a href="#weiterer-abschnitt">Weiterer Abschnitt</a></li>
+                    <li class="toc-level-2"><a href="#weiterer-abschnitt-1">Weiterer Abschnitt</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">CSS Basics</li>
+                    <li><a href="/tutorials/css/css-basics/grundlagen-der-css-struktur.html" class="active">Grundlagen der CSS Struktur</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-typografie.html">CSS Typografie</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
+                    <li class="sidebar-group-title">CSS Specials</li>
+                    <li><a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Formatierungsregeln -->
+                <section class="tutorials-content mt-xl">
+                    <h2 id="formatierungsregeln">Formatierungsregeln</h2>
+                    <p>Ein CSS-Stylesheet enthält alle Regeln, die bestimmen, wie eine Webseite und ihre einzelnen
+                        Elemente dargestellt werden.
+                        Jede Regel besteht aus zwei Teilen: Selektor und Deklarationsblock.</p>
+                    <p>Der Selektor legt fest, auf welche Elemente sich die Formatierung bezieht.
+                        Der Deklarationsblock steht in geschweiften Klammern und enthält ein oder mehrere
+                        Eigenschaft-Wert-Paare, die das Aussehen dieser Elemente definieren.</p>
+                    <p>Ein Selektor kann zum Beispiel einfach der Name eines HTML-Elements sein – dann wirkt die Regel
+                        auf alle Elemente dieses Typs.</p>
+                    <p class="pt-md"><strong>Beispiel für eine CSS-Regel für eine h1-Überschrift</strong></p>
+                    <pre><code class="language-css">h1 {
+    color: teal;
+    margin-bottom: 20px;
+}</code></pre>
+                    <div class="info-box">
+                        <strong class="box-title no-toc">CSS-Syntax auf einen Blick
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ol class="ml-md mb-xl">
+                            <li>Eine Regel beginnt mit dem Selektor, z. B. <code>h1</code> (einzelner Selektor oder eine Kombination <code>h1, h2, h3</code>
+                                ).</li>
+                            <li>Danach folgen geschweifte Klammern <code>{ }</code></li>
+                            <li>Im Inneren stehen die Eigenschaft-Wert-Paare, jeweils im Format <code>eigenschaft: wert;</code> / <code>property: value;</code>
+– getrennt durch Doppelpunkte und abgeschlossen mit einem Semikolon.</li>
+                        </ol>
+                        <div class="css-regel" role="img" aria-label="Grafik CSS Regel"></div>
+                    </div>
+                    
+
+
+                    <h3 id="klassen-selektor-klasse">Klassen-Selektor <code>.klasse</code></h3>
+                    <p>Eine Klasse kannst du beliebig vielen Elementen zuweisen. Ideal für wiederkehrende Stile.</p>
+                    <pre><code class="language-html">&lt;p class="highlight"&gt;Wichtiger Hinweis&lt;/p&gt;</code></pre>
+                    <pre><code class="language-css">.highlight {
+    background-color: yellow;
+    padding: 0.5rem;
+}</code></pre>
+                    
+                    <h3 id="id-selektor-id">ID-Selektor <code>#id</code></h3>
+                    <p>Eine ID sollte nur einmal pro Seite auf deiner Website vorkommen. Gut für eindeutig identifizierbare Bereiche.</p>
+                    <pre><code class="language-html">&lt;section id="hero"&gt;
+    Willkommen auf meiner Seite
+&lt;/section&gt;</code></pre>
+                    <pre><code class="language-css">#hero {
+    text-align: center;
+    padding: 2rem;
+}</code></pre>
+                    
+                    <h3 id="pseudoklassen-z-b-hover-focus-first-child">Pseudoklassen z. B. <code>:hover</code>, <code>:focus</code>, <code>:first-child</code></h3>
+                    <p>Pseudoklassen greifen auf dynamische Zustände oder spezielle Positionen zu.</p>
+                    <pre><code class="language-css">button:hover {
+    opacity: 0.8;
+}
+
+input:focus {
+    border-color: dodgerblue;
+}
+
+ul li:first-child {
+    font-weight: bold;
+}</code></pre>
+                    
+                    <h3 id="pseudoelemente-before-after">Pseudoelemente <code>::before</code>, <code>::after</code></h3>
+                    <p>Damit kannst du virtuelle Elemente erzeugen, z. B. für Icons, Schmuckelemente oder Marker.</p>
+                    <pre><code class="language-css">h2::before {
+    content: "◆ ";
+    color: orange;
+}
+
+p::after {
+    content: " ↩";
+    opacity: 0.6;
+}</code></pre>
+                    
+                    
+                </section>
+
+                <!-- Weitere Sections nach Bedarf -->
+                <section class="tutorials-content">
+                    <h2 id="weiterer-abschnitt">Weiterer Abschnitt</h2>
+                    <p>Inhalt...</p>
+                </section>
+
+                <!-- Weitere Sections nach Bedarf -->
+                <section class="tutorials-content">
+                    <h3 id="weiterer-abschnitt-1">Weiterer Abschnitt</h3>
+                    <p>Inhalt...</p>
+                </section>
+
+                <!-- Weitere Sections nach Bedarf -->
+                <section class="tutorials-content">
+                    <h4>Weiterer Abschnitt</h4>
+                    <p>Inhalt...</p>
+                </section>
+
+                <!-- DELETE: Latest Tutorials Section wird automatisch geladen, keine Placeholder -->
+
+                <!-- Prev/Next Navigation -->
+                
+                <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2 id="mehr-aus-css">Mehr aus CSS</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                <section class="tutorials-content">
+                    <nav class="tutorial-nav"><div class="tutorial-nav-prev"></div><div class="tutorial-nav-next">
+            <a href="/tutorials/css/css-basics/css-einbinden.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">CSS einbinden</span>
+                <span class="tutorial-nav-category">CSS Basics</span>
+            </a>
+        </div></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
+
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+</body></html>
