@@ -1,32 +1,16 @@
 /* ===============================================================================
    COMPONENTS.CSS
    UI-Bausteine und wiederverwendbare Komponenten
-   
-   INHALTSVERZEICHNIS:
-   1. Buttons.......................... Zeile ~20
-      - Base Button Styles
-      - Button Variants (Primary, Secondary, Tertiary)
-      - CTA Content
-   2. Theme Toggle Button.............. Zeile ~95
-   3. Scroll to Top Button............. Zeile ~130
-   4. Tutorial Buttons (Kategorieseiten) Zeile ~175
-   5. Cards............................ Zeile ~230
-      - Category Cards (Home)
-      - Tutorial Cards
-      - Card Badges
-      - Disclaimer Teaser
-   6. KBD / Keyboard Keys.............. Zeile ~480
-   7. Tooltips......................... Zeile ~600
-   8. Utilities (text-muted)........... Zeile ~650
+   1. Buttons
+   2. Cards
+   3. KBD
 
    =============================================================================== */
-
 
 /* ===================================
    1. BUTTONS
    =================================== */
 
-/* ---- Base Button ---- */
 .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -40,7 +24,6 @@
     min-width: 150px;
 }
 
-/* ---- Primary Button ---- */
 .btn-primary {
     background-color: var(--accent-blue);
     color: white;
@@ -55,7 +38,6 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* ---- Secondary Button ---- */
 .btn-secondary {
     background-color: transparent;
     color: var(--accent-blue);
@@ -69,7 +51,51 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* ---- Tertiary Button ---- */
+.tutorial-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.tutorial-group-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    /* background: linear-gradient(135deg, var(--accent-blue) 0%, var(--color-success) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; */
+}
+
+.tutorial-group-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.tutorial-button {
+    display: block;
+    padding: 1rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.tutorial-button:hover {
+    background: var(--accent-blue-hover);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cta-content {
+    margin: 1.5rem 0;
+}
+
 .btn-tertiary {
     color: var(--text-primary);
     font-weight: 400;
@@ -85,14 +111,8 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* ---- CTA Content Wrapper ---- */
-.cta-content {
-    margin: 1.5rem 0;
-}
-
-
 /* ===================================
-   2. THEME TOGGLE BUTTON
+   THEME TOGGLE BUTTON
    =================================== */
 
 .theme-toggle {
@@ -133,9 +153,8 @@
     transform: scale(1.1);
 }
 
-
 /* ===================================
-   3. SCROLL TO TOP BUTTON
+   SCROLL TO TOP BUTTON
    =================================== */
 
 #scrollTopBtn {
@@ -172,7 +191,6 @@
     border: none;
 }
 
-/* Scroll Button Position bei Sidebars */
 @media (max-width: 1220px) {
 
     body:has(.sidebar-toggle) #scrollTopBtn,
@@ -182,54 +200,12 @@
     }
 }
 
-
 /* ===================================
-   4. TUTORIAL BUTTONS (Kategorieseiten)
+   2. CARDS
    =================================== */
 
-.tutorial-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+/* ---- CATEGORY CARDS HOME ---- */
 
-.tutorial-group-title {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
-}
-
-.tutorial-group-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-.tutorial-button {
-    display: block;
-    padding: 1rem 1.5rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.tutorial-button:hover {
-    background: var(--accent-blue-hover);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-
-/* ===================================
-   5. CARDS
-   =================================== */
-
-/* ---- Category Cards (Home) ---- */
 .category-card {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -251,12 +227,10 @@
     margin-bottom: 1rem;
 }
 
-.card-title {
-    font-size: 1.2rem;
-    padding-top: 1.5rem;
+/* .card-title {
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-}
+} */
 
 .card-description {
     color: var(--text-secondary);
@@ -278,7 +252,8 @@
 }
 
 
-/* ---- Card Badges ---- */
+
+/* ===== CATEGORY CARD BADGES ===== */
 .card-badge {
     display: inline-block;
     padding: 0.35rem 0.75rem;
@@ -290,6 +265,16 @@
     margin-bottom: 0.75rem;
 }
 
+
+/* Variante 1: Alle Badges gleich */
+/*
+        .card-badge {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+        }
+        */
+
+/* Variante 2: Farbcodierte Badges */
 .card-badge-html {
     background: var(--accent-blue);
     color: var(--bg-primary);
@@ -325,8 +310,15 @@
     color: var(--bg-primary);
 }
 
+/* .card-link {
+    transition: all 0.2s ease;
+}
 
-/* ---- Category Card Link Colors (by position) ---- */
+.card-link:hover {
+    transform: translateX(6px);
+} */
+
+/* Card Link Farbe passend zum Badge */
 .category-card:nth-child(1) .card-link {
     color: var(--accent-blue);
 }
@@ -356,9 +348,10 @@
     color: var(--accent-red);
 }
 
-/* ---- Category Card Hover Border Colors (by position) ---- */
+/* Hover-Effekt auf Cards passend zum Badge */
 .category-card:nth-child(1):hover {
     border-color: var(--accent-blue);
+
 }
 
 .category-card:nth-child(2):hover {
@@ -387,7 +380,8 @@
 }
 
 
-/* ---- Tutorial Cards ---- */
+
+/* Tutorial Card (ähnlich wie category-card aber für dynamische Inhalte) */
 .tutorial-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -404,6 +398,20 @@
     border-color: var(--accent-blue);
 }
 
+.card-title {
+    font-size: 1.2rem;
+    padding-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+/* .tutorial-card .card-title h3 {
+    font-size: 1.1rem;
+    padding-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+} */
+
 .tutorial-card .card-description {
     font-size: 0.9rem;
     color: var(--text-secondary);
@@ -411,6 +419,7 @@
     flex-grow: 1;
     margin-bottom: 1rem;
 }
+
 
 .tutorial-card .card-link {
     color: var(--accent-blue);
@@ -423,7 +432,7 @@
     text-decoration: underline;
 }
 
-/* ---- Tutorial Card Link Colors (by badge) ---- */
+/* Farbige Links basierend auf Badge-Klasse */
 .tutorial-card:has(.card-badge-html) .card-link {
     color: var(--accent-blue);
 }
@@ -448,7 +457,7 @@
     color: var(--accent-cyan);
 }
 
-/* ---- Tutorial Card Hover Border Colors (by badge) ---- */
+/* Hover-Effekt passend zur Kategorie */
 .tutorial-card:has(.card-badge-html):hover {
     border-color: var(--accent-blue);
 }
@@ -473,8 +482,7 @@
     border-color: var(--accent-cyan);
 }
 
-
-/* ---- Disclaimer Teaser ---- */
+/* ===== DISCLAIMER TEASER ===== */
 .disclaimer-teaser {
     background: var(--bg-tertiary);
     border-left: 4px solid var(--accent-orange);
@@ -504,12 +512,18 @@
     color: var(--accent-blue-hover);
 }
 
+/* Fallback Text */
+.text-muted {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 2rem;
+}
 
 /* ===================================
-   6. KBD / KEYBOARD KEYS
+   3. KBD / KBD BUTTONS
    =================================== */
 
-kbd {
+   kbd {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -519,7 +533,6 @@ kbd {
     box-shadow: 0 2px 0 var(--border-color);
 }
 
-/* ---- Keyboard Navigation (Decorative Keys) ---- */
 .keyboard-nav {
     display: flex;
     flex-wrap: wrap;
@@ -551,7 +564,7 @@ kbd {
     position: relative;
 }
 
-/* Hover */
+/* Hover - kombiniert für beide */
 a:hover .key,
 .keyboard-nav a:hover kbd {
     color: var(--accent-blue);
@@ -563,7 +576,7 @@ a:hover .key,
     transform: translateY(1px);
 }
 
-/* Click */
+/* Click - kombiniert für beide */
 a:active .key,
 .keyboard-nav a:active kbd {
     transform: translateY(2px);
@@ -572,9 +585,7 @@ a:active .key,
         0 0 20px var(--accent-blue);
 }
 
-/* ---- Key Variants ---- */
-
-/* Green Active Key */
+/* Key hervorgehoben */
 kbd.key.key-active-green,
 kbd.key-active-green {
     color: var(--color-success);
@@ -600,7 +611,6 @@ a:active kbd.key-active-green {
         0 0 20px var(--color-success, #2ecc71);
 }
 
-/* Blue Active Key */
 kbd.key-active {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -622,6 +632,7 @@ kbd.key-active {
     position: relative;
 }
 
+/* Glow beim Hover - wie Tastatur-Beleuchtung */
 a:hover kbd.key-active {
     color: var(--accent-blue);
     border-color: var(--accent-blue);
@@ -632,6 +643,7 @@ a:hover kbd.key-active {
     transform: translateY(1px);
 }
 
+/* Click Animation - runterdrücken */
 a:active kbd.key-active {
     transform: translateY(2px);
     box-shadow:
@@ -639,7 +651,7 @@ a:active kbd.key-active {
         0 0 20px var(--accent-blue);
 }
 
-/* Blue Highlighted Key */
+/* Home Key hervorgehoben */
 kbd.key-active-blue {
     color: var(--accent-blue);
     border-color: var(--accent-blue);
@@ -662,7 +674,6 @@ kbd.key-active-blue {
         0 0 20px var(--accent-blue);
 }
 
-/* ---- Keyboard Responsive ---- */
 @media (max-width: 768px) {
     .keyboard-nav {
         gap: 0.75rem;
@@ -685,50 +696,4 @@ kbd.key-active-blue {
         padding: 0.6rem 1rem;
         font-size: 0.85rem;
     }
-}
-
-
-/* ===================================
-   7. TOOLTIPS
-   =================================== */
-
-.tooltip {
-    position: relative;
-    cursor: help;
-    border-bottom: 1px dashed var(--heading-secondary);
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-style: normal;
-    white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border-color);
-    z-index: 100;
-    transition: opacity 0.2s, visibility 0.2s;
-}
-
-.tooltip .tooltiptext::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: var(--bg-tertiary);
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
 }

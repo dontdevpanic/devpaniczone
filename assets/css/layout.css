@@ -1,0 +1,283 @@
+/* ===================================
+   Table of Contents
+   1. Main Content
+   2. Header
+   3. Footer
+   4. Layout
+      Container
+      Caregories
+      Grid
+
+   =================================== */
+
+/* ===================================
+   1. MAIN CONTENT
+   =================================== */
+
+.site-main {
+    flex: 1;
+    padding-bottom: 4rem;
+}
+
+/* ===================================
+   2. HEADER
+   =================================== */
+
+.site-header {
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    height: 60px;
+    gap: 1rem;
+}
+
+
+/* ===================================
+   3. FOOTER
+   =================================== */
+
+.site-footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+.footer-text {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-nav a {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    transition: color 150ms ease;
+}
+
+.footer-nav a:hover {
+    color: var(--accent-blue);
+}
+
+/* ===================================
+   4. LAYOUT (Container, Sections)
+   =================================== */
+
+/* ----- Container ----- */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+
+    .container {
+        padding: 0 4rem;
+    }
+}
+
+/* ----- Categories Section ----- */
+
+.categories {
+    margin: 0;
+    padding: 2rem 0;
+}
+
+/* ----- Grid ----- */
+
+.categories-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+
+/* Basis: Mobile = 1 Spalte */
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+/* Tablet: Mindestens 2 Spalten (ab ~350px pro Item) */
+@media (min-width: 768px) {
+    .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+/* Desktop: Spalten passen sich an (3-4 Spalten je nach Breite) */
+@media (min-width: 1024px) {
+    .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+.grid-item {
+    padding: 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+}
+
+
+/* Basis: Mobile = 1 Spalte */
+.grid-4 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.grid-3 h4,
+.grid-4 h4 {
+    padding-top: 0.5rem;
+}
+
+/* Tablet: 2 Spalten */
+@media (min-width: 768px) {
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop: 3 Spalten */
+@media (min-width: 1024px) {
+    .grid-4 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Large Desktop: 4 Spalten */
+@media (min-width: 1440px) {
+    .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+
+/* Generisches 2-Spalten Grid */
+.grid-2col {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    margin: 0;
+}
+
+.grid-2col>.code-block {
+    margin: auto 0 0 0;
+}
+
+
+.grid-2col-bg h3 {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    padding: 0.5rem 0 0;
+}
+
+/* .grid-2col .arrow-list,
+.grid-2col-bg .arrow-list, */
+.grid-2col .check-list,
+.grid-2col-bg .check-list,
+.grid-2col .cross-list,
+.grid-2col-bg .cross-list {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.grid-2col ol,
+.grid-2col-bg ol {
+    margin: 0;
+}
+
+/* Grid mit 2:1 Verhältnis */
+/* start sorgt dafür, Spalten oben bündig sind */
+.grid-2-1col {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+/* 640px: 2 Spalten */
+@media (min-width: 640px) {
+
+    .grid-2col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 gleich breite Spalten */
+    }
+
+    .grid-2-1col {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+@media (min-width: 1040px) {
+
+    .grid-2col-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 1024px: 3 Spalten */
+@media (min-width: 1024px) {
+
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* ===== LATEST TUTORIALS GRID ===== */
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Tablet: 2 Spalten - ABER wir wollen 1 Spalte bis Desktop */
+/* Desktop: 2 Spalten nebeneinander */
+@media (min-width: 768px) {
+    .tutorials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
