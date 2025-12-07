@@ -245,6 +245,7 @@ const TUTORIAL_ORDER = {
     ],
     'tutorials/misc/seo-optimization': [
         // Platzhalter
+        'duplicate-content.html'
     ],
     'tutorials/misc/tools': [
         'browser-dev-tools.html',
