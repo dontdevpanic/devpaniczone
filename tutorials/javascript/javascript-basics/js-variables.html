@@ -1,1 +1,1438 @@
-<html><head></head><body></body></html>
+<!DOCTYPE html><html lang="de"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScript Variablen: var, let und const verstehen. Die Unterschiede, Scope-Regeln und Best Practices für die Variablen-Deklaration in JavaScript.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+    <meta name="author" content="DevPanicZone">
+    <title>JavaScript Variables | DevPanicZone</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/tutorials.css">
+    <link rel="stylesheet" href="/assets/css/js-variables-demo.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+</head>
+
+<body>
+    <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+    <main class="site-main">
+
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">JavaScript Variables</span></nav>
+                <h1 class="hero-title">JavaScript Variables</h1>
+                <p class="hero-subtitle">In JavaScript gibt es drei Wege, Variablen zu deklarieren: <code>var</code>,
+                    <code>let</code> und <code>const</code>. Jede hat ihre eigenen Regeln für Scope, Hoisting und
+                    Reassignment.
+                </p>
+            </div>
+        </section>
+
+        <!-- Floating Button Links (Sidebar) -->
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Floating Button Rechts (Tutorial Navigation) -->
+        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+            <span class="toggle-icon">
+                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+            </span>
+        </button>
+
+        <!-- Sidebar Overlay für Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Tutorial Layout -->
+        <div class="tutorial-layout">
+
+            <!-- Linke Sidebar (Floating Panel) -->
+            <aside class="tutorial-sidebar" id="tutorialSidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                    <ul class="toc-list">
+                        <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#grundlagen">Grundlagen</a></li>
+                    <li class="toc-level-2"><a href="#was-sind-variablen">Was sind Variablen?</a></li>
+                    <li class="toc-level-2"><a href="#die-grundlegende-syntax">Die grundlegende Syntax</a></li>
+                    <li class="toc-level-2"><a href="#wofuer-brauche-ich-variablen">Wofür brauche ich Variablen?</a></li>
+                    <li class="toc-level-2"><a href="#die-wichtigsten-datentypen-fuer-anfaenger">Die wichtigsten Datentypen (für Anfänger)</a></li>
+                    <li class="toc-level-2"><a href="#die-drei-arten-der-variablen-deklaration">Die drei Arten der Variablen-Deklaration</a></li>
+                    <li class="toc-level-1"><a href="#var-let-und-const-im-detail">var, let und const im Detail</a></li>
+                    <li class="toc-level-2"><a href="#const-konstante-werte">const – Konstante Werte</a></li>
+                    <li class="toc-level-2"><a href="#let-variable-werte">let – Variable Werte</a></li>
+                    <li class="toc-level-2"><a href="#var-die-alte-methode-nicht-empfohlen">var – Die alte Methode (nicht empfohlen)</a></li>
+                    <li class="toc-level-1"><a href="#scope-gueltigkeitsbereich">Scope (Gültigkeitsbereich)</a></li>
+                    <li class="toc-level-2"><a href="#global-scope">Global Scope</a></li>
+                    <li class="toc-level-2"><a href="#function-scope">Function Scope</a></li>
+                    <li class="toc-level-2"><a href="#block-scope">Block Scope</a></li>
+                    <li class="toc-level-1"><a href="#hoisting">Hoisting</a></li>
+                    <li class="toc-level-2"><a href="#hoisting-mit-var">Hoisting mit var</a></li>
+                    <li class="toc-level-2"><a href="#hoisting-mit-let-und-const">Hoisting mit let und const</a></li>
+                    <li class="toc-level-1"><a href="#naming-conventions">Naming Conventions</a></li>
+                    <li class="toc-level-2"><a href="#konstanten-in-upper_case">Konstanten in UPPER_CASE</a></li>
+                    <li class="toc-level-2"><a href="#beschreibende-namen">Beschreibende Namen</a></li>
+                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                    <li class="toc-level-2"><a href="#1-const-als-standard-let-wenn-noetig">1. const als Standard, let wenn nötig</a></li>
+                    <li class="toc-level-2"><a href="#2-deklariere-variablen-am-anfang">2. Deklariere Variablen am Anfang</a></li>
+                    <li class="toc-level-2"><a href="#3-vermeide-var-komplett">3. Vermeide var komplett</a></li>
+                    <li class="toc-level-2"><a href="#4-ein-konzept-eine-variable">4. Ein Konzept, eine Variable</a></li>
+                    <li class="toc-level-2"><a href="#5-vermeide-globale-variablen">5. Vermeide globale Variablen</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler</a></li>
+                    <li class="toc-level-2"><a href="#1-variable-nicht-deklariert">1. Variable nicht deklariert</a></li>
+                    <li class="toc-level-2"><a href="#2-const-mit-einem-objekt-verwechseln">2. const mit einem Objekt verwechseln</a></li>
+                    <li class="toc-level-2"><a href="#3-scope-verwirrung-mit-var">3. Scope-Verwirrung mit var</a></li>
+                    <li class="toc-level-2"><a href="#4-variable-nicht-initialisiert">4. Variable nicht initialisiert</a></li>
+                    <li class="toc-level-1"><a href="#interaktive-demos">Interaktive Demos</a></li>
+                    <li class="toc-level-2"><a href="#demo-1-const-vs-let">Demo 1: const vs let</a></li>
+                    <li class="toc-level-2"><a href="#demo-2-block-scope">Demo 2: Block Scope</a></li>
+                    <li class="toc-level-2"><a href="#demo-3-variable-counter">Demo 3: Variable Counter</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Rechte Sidebar (Floating Panel) -->
+            <aside class="tutorial-related">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title no-toc">Tutorials</h3>
+                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                        <span>×</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-nav">
+                    <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">JavaScript Basics</li>
+                    <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
+                    <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a></li>
+                    <li><a href="/tutorials/javascript/javascript-basics/js-variables.html" class="active">JavaScript Variables</a></li>
+                    <li class="sidebar-group-title">JavaScript Projects</li>
+                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript: HTML-Code Escaper</a></li>
+                    <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity Encoder</a></li>
+                    <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit JavaScript</a></li>
+                </ul>
+                </div>
+            </aside>
+
+            <!-- Wrapper .container -->
+            <div class="container">
+
+                <!-- Grundlagen -->
+                <section class="tutorials-content mt-xl">
+                    <h2 id="grundlagen">Grundlagen</h2>
+                    <h3 id="was-sind-variablen">Was sind Variablen?</h3>
+                    <p>Variablen sind wie beschriftete Container, in denen du Werte speichern kannst. Du kannst dir das
+                        wie Schubladen vorstellen, auf die du einen Namen schreibst und in die du dann etwas
+                        hineinlegst.
+                    </p>
+
+                    <ul class="arrow-list grid-2col-bg mb-lg">
+                        <li>Die Schublade ist die Variable</li>
+                        <li>Der Name auf der Schublade ist der Variablenname</li>
+                        <li>Das Ding, das du hineinlegst, ist der Wert</li>
+                    </ul>
+
+                    <p><strong>Du sagst also:</strong> Ich lege etwas in diese Schublade und gebe der Schublade einen
+                        Namen.</p>
+
+                    <h3 id="die-grundlegende-syntax">Die grundlegende Syntax</h3>
+                    <p>Damit JavaScript weiß, dass du eine neue Schublade (= Variable) anlegst, musst du ein Keyword
+                        schreiben.</p>
+
+                    <ul class="arrow-list grid-2col-bg mb-lg">
+                        <li><code>let</code> → flexible Variable</li>
+                        <li><code>const</code> → fester Wert, der nicht neu zugewiesen werden darf</li>
+                    </ul>
+
+                    <pre><code class="language-javascript">let name = "Anna-Maria";     // Schublade 'name' anlegen → darin steckt "Anna"
+const age = 25;        // Schublade 'age' anlegen → darin steckt 25</code></pre>
+
+                    <p>Zerlegen wir das:</p>
+
+                    <ul class="arrow-list grid-2col-bg mb-lg">
+                        <li><code>let userName = "Anna-Maria";</code></li>
+                        <li><code>let</code> → Ich möchte eine neue Variable anlegen</li>
+                        <li><code>userName</code> → So heißt die Schublade (sprechend)</li>
+                        <li><code>=</code> → Der Wertzuweisungs-Operator („Lege diesen Wert hinein“)</li>
+                        <li><code>"Anna-Maria"</code> Der Wert</li>
+                        <li><code>;</code> → Satzende</li>
+                    </ul>
+
+                    <pre><code class="language-javascript">// Eine Variable deklarieren und einen Wert zuweisen
+let userName = "Anna-Maria"; 
+let userAge = 25;
+let isLoggedIn = true;
+
+// Den Wert der Variable verwenden
+console.log(userName); // Gibt "Anna-Maria" aus</code></pre>
+
+
+                    <h3 id="wofuer-brauche-ich-variablen">Wofür brauche ich Variablen?</h3>
+
+                    <ul class="arrow-list grid-2col-bg mb-lg">
+                        <li>Informationen speichern</li>
+                        <li>Dinge berechnen</li>
+                        <li>später wieder abrufen</li>
+                        <li>Werte ändern <code>let</code></li>
+                        <li>Zwischenstände in Programmen halten</li>
+                    </ul>
+
+                    <pre><code class="language-javascript">let score = 0;
+
+score = score + 1;  // Spieler hat einen Punkt bekommen
+console.log(score); // Ausgabe: 1</code></pre>
+
+                    <h3 id="die-wichtigsten-datentypen-fuer-anfaenger">Die wichtigsten Datentypen (für Anfänger)</h3>
+                    <p>Variablen können verschiedene Arten von Werten enthalten</p>
+                    <pre><code class="language-javascript">let text = "Hallo";                  // String
+let zahl = 42;                       // Number
+let wahr = true;                     // Boolean
+let liste = [1, 2];                  // Array
+let person = { name: "Anna-Maria" }; // Objekt</code></pre>
+                    <p>Du musst sie NICHT vorher als „Typ“ markieren — JavaScript erkennt es selbst.</p>
+
+
+
+                    <h3 id="die-drei-arten-der-variablen-deklaration">Die drei Arten der Variablen-Deklaration</h3>
+                    <p>JavaScript bietet dir drei Keywords zur Variablen-Deklaration:</p>
+
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><strong>var</strong> – Die alte Methode (ES5), die heute nicht mehr empfohlen wird</li>
+                        <li><strong>let</strong> – Moderne Variablen-Deklaration für Werte, die sich ändern können (ES6)
+                        </li>
+                        <li><strong>const</strong> – Für konstante Werte, die nach der Zuweisung nicht mehr geändert
+                            werden sollen (ES6)</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Hinweis
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Seit ES6 (2015) solltest du <code>var</code> vermeiden und
+                            stattdessen <code>let</code> und <code>const</code> verwenden. Diese bieten besseren Scope
+                            und verhindern viele häufige Fehler.</p>
+                    </div>
+
+                </section>
+
+                <!-- var, let und const im Detail -->
+                <section class="tutorials-content">
+                    <h2 id="var-let-und-const-im-detail">var, let und const im Detail</h2>
+
+                    <h3 id="const-konstante-werte">const – Konstante Werte</h3>
+                    <p><code>const</code> verwendest du für Werte, die sich nicht ändern sollen. Einmal zugewiesen,
+                        kannst du den Wert nicht mehr neu zuweisen.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Konstante deklarieren
+const PI = 3.14159;
+const siteName = "DevPanicZone";
+
+// Das funktioniert NICHT:
+PI = 3.14; // TypeError: Assignment to constant variable</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Wichtig
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Bei Objekten und Arrays kannst du mit <code>const</code> zwar keine
+                            neue Referenz zuweisen, aber die Inhalte ändern:</p>
+                        <pre><code class="language-javascript">const user = { name: "Anna" };
+user.name = "Leo"; // Das funktioniert!
+user = {}; // Das funktioniert NICHT</code></pre>
+                    </div>
+
+                    <h3 id="let-variable-werte">let – Variable Werte</h3>
+                    <p><code>let</code> verwendest du für Werte, die sich im Laufe des Programms ändern können.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Variable deklarieren
+let counter = 0;
+
+// Wert ändern - das funktioniert!
+counter = 1;
+counter = counter + 1;
+counter++;
+
+console.log(counter); // 3</code></pre>
+                    </div>
+
+                    <h3 id="var-die-alte-methode-nicht-empfohlen">var – Die alte Methode (nicht empfohlen)</h3>
+                    <p><code>var</code> war die ursprüngliche Art, Variablen zu deklarieren. Es hat aber einige
+                        Probleme, die zu unerwartetem Verhalten führen können.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Funktioniert, aber nicht empfohlen
+var oldStyle = "nicht mehr nutzen";
+
+// Probleme mit var:
+var x = 1;
+var x = 2; // Erlaubt! Kann zu Bugs führen
+
+// Mit let wäre das ein Fehler:
+let y = 1;
+let y = 2; // SyntaxError: Identifier 'y' has already been declared</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Best Practice
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Verwende immer <code>const</code> als Standard. Nur wenn du
+                            weißt, dass sich der Wert ändern muss, verwende <code>let</code>. Vermeide <code>var</code>
+                            komplett.</p>
+                    </div>
+
+                </section>
+
+                <!-- Scope -->
+                <section class="tutorials-content">
+                    <h2 id="scope-gueltigkeitsbereich">Scope (Gültigkeitsbereich)</h2>
+
+                    <p>Der Scope bestimmt, wo eine Variable zugänglich ist. JavaScript kennt verschiedene Arten von
+                        Scope:</p>
+
+                    <h3 id="global-scope">Global Scope</h3>
+                    <p>Variablen, die außerhalb aller Funktionen und Blöcke deklariert werden, sind global zugänglich.
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Global Scope
+const globalVar = "Überall verfügbar";
+
+function showGlobal() {
+    console.log(globalVar); // Funktioniert!
+}
+
+showGlobal();</code></pre>
+                    </div>
+
+                    <h3 id="function-scope">Function Scope</h3>
+                    <p>Alle drei Keywords <code>var</code>, <code>let</code> &amp; <code>const</code> haben Function
+                        Scope
+                        – sie sind nur innerhalb der Funktion zugänglich, in der sie deklariert wurden.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">function testFunctionScope() {
+    const functionVar = "Nur in der Funktion";
+    console.log(functionVar); // Funktioniert!
+}
+
+console.log(functionVar); // ReferenceError: functionVar is not defined</code></pre>
+                    </div>
+
+                    <h3 id="block-scope">Block Scope</h3>
+                    <p><code>let</code> und <code>const</code> haben Block Scope – sie sind nur innerhalb des Blocks
+                        <code>{...}</code> zugänglich. <code>var</code> hat KEINEN Block Scope!
+                    </p>
+
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// let und const mit Block Scope
+if (true) {
+    let blockLet = "Nur im Block";
+    const blockConst = "Auch nur im Block";
+    var blockVar = "Außerhalb auch verfügbar!";
+    
+    console.log(blockLet); // Funktioniert
+}
+
+console.log(blockLet); // ReferenceError
+console.log(blockConst); // ReferenceError
+console.log(blockVar); // "Außerhalb auch verfügbar!" - Achtung!</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Warum ist Block Scope wichtig?
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Es verhindert, dass Variablen ungewollt
+                            überschrieben werden und macht deinen Code vorhersehbarer. Das ist einer der Hauptgründe,
+                            warum <code>let</code> und <code>const</code> besser sind als <code>var</code>.</p>
+                    </div>
+
+                </section>
+
+                <!-- Hoisting -->
+                <section class="tutorials-content">
+                    <h2 id="hoisting">Hoisting</h2>
+                    <p>Hoisting ist ein JavaScript-Mechanismus, bei dem Variablen-Deklarationen an den Anfang ihres
+                        Scopes "gehoben" werden. Das Verhalten unterscheidet sich zwischen <code>var</code>,
+                        <code>let</code> und <code>const</code>.
+                    </p>
+
+                    <h3 id="hoisting-mit-var">Hoisting mit var</h3>
+                    <p>Bei <code>var</code> wird die Deklaration nach oben gehoben und mit <code>undefined</code>
+                        initialisiert.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Was du schreibst:
+console.log(myVar); // undefined (kein Fehler!)
+var myVar = "Hallo";
+
+// Was JavaScript daraus macht:
+var myVar; // Deklaration wird nach oben gehoben
+console.log(myVar); // undefined
+myVar = "Hallo"; // Zuweisung bleibt hier</code></pre>
+                    </div>
+
+                    <h3 id="hoisting-mit-let-und-const">Hoisting mit let und const</h3>
+                    <p>Bei <code>let</code> und <code>const</code> werden die Variablen auch gehoben, aber sie befinden
+                        sich in der "Temporal Dead Zone" und können nicht verwendet werden, bevor sie deklariert wurden.
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">// Das verursacht einen Fehler:
+console.log(myLet); // ReferenceError: Cannot access 'myLet' before initialization
+let myLet = "Hallo";
+
+console.log(myConst); // ReferenceError: Cannot access 'myConst' before initialization
+const myConst = "Hallo";</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Best Practice
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Deklariere deine Variablen immer am Anfang ihres Scopes. So
+                            vermeidest du Verwirrung durch Hoisting und machst deinen Code lesbarer.</p>
+                    </div>
+
+                </section>
+
+                <!-- Naming Conventions -->
+                <section class="tutorials-content">
+                    <h2 id="naming-conventions">Naming Conventions</h2>
+                    <p>Gute Variablennamen machen deinen Code lesbarer und wartbarer. Hier sind die wichtigsten Regeln:
+                    </p>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Grundregeln
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li>Verwende <strong>camelCase</strong> für Variablennamen: <code>userName</code>,
+                                <code>userAge</code>, <code>isLoggedIn</code>
+                            </li>
+                            <li>Beginne mit einem Buchstaben, <code>$</code> oder <code>_</code> – nicht mit einer Zahl
+                            </li>
+                            <li>Verwende nur Buchstaben, Zahlen, <code>$</code> und <code>_</code></li>
+                            <li>Vermeide reservierte Keywords wie <code>class</code>, <code>function</code>,
+                                <code>return</code>
+                            </li>
+                            <li>JavaScript ist case-sensitive: <code>userName</code> und <code>username</code> sind
+                                verschiedene Variablen</li>
+                        </ul>
+                    </div>
+
+
+                    <div class="grid-2col-cards">
+                        <!-- block 1 -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Gute Variablennamen</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-javascript">let userName = "Anna-Maria";
+let userAge = 25;
+let isLoggedIn = true;
+let _privateVar = "internal";
+let $element = document.querySelector(".test");</code></pre>
+
+                        </div> <!-- block 1 -->
+
+                        <!-- block 2 -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Schlechte Variablennamen</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-javascript">// Nicht aussagekräftig
+let x = "Anna-Maria"; 
+
+// Syntaxfehler: beginnt mit Zahl
+let 1user = "Anna-Maria"; 
+
+// Syntaxfehler: enthält Bindestrich
+let user-name = "Anna-Maria"; </code></pre>
+                        </div> <!-- block 2 -->
+
+                    </div> <!-- <div class="grid-2col-cards pb-lg"> -->
+
+                    <h3 id="konstanten-in-upper_case">Konstanten in UPPER_CASE</h3>
+                    <p>Konstanten, die sich wirklich nie ändern (z.B. Konfigurationswerte), schreibst du oft in
+                        UPPER_CASE mit Unterstrichen:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">javascript</span>
+                            <button class="code-copy">
+                                <span class="copy-icon">
+                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                </span>
+                                <span class="copy-text">Kopieren</span>
+                            </button>
+                        </div>
+                        <pre><code class="language-javascript">const MAX_USERS = 100;
+const API_KEY = "abc123xyz";
+const DEFAULT_COLOR = "#333333";
+
+// Aber normale const-Variablen bleiben in camelCase:
+const userName = "Anna-Maria";
+const currentDate = new Date();</code></pre>
+                    </div>
+
+                    <h3 id="beschreibende-namen">Beschreibende Namen</h3>
+                    <p>Wähle Namen, die beschreiben, was die Variable enthält. Andere Entwickler (und dein zukünftiges
+                        Ich) werden es dir danken!</p>
+
+                    <div class="grid-2col-cards">
+                        <!-- block 1 -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Nicht gut</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-javascript">let d = new Date();
+let temp = users.filter(u =&gt; u.age &gt; 18);</code></pre>
+                        </div> <!-- block 1 -->
+
+                        <!-- block 2 -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Viel besser</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-javascript">let currentDate = new Date();
+let adultUsers = users.filter(user =&gt; user.age &gt; 18);</code></pre>
+
+                        </div> <!-- block 2 -->
+
+                    </div> <!-- <div class="grid-2col-cards pb-lg"> -->
+
+                </section>
+
+                <!-- Best Practices -->
+                <section class="tutorials-content">
+                    <h2 id="best-practices">Best Practices</h2>
+                    <h3 id="1-const-als-standard-let-wenn-noetig">1. const als Standard, let wenn nötig</h3>
+                    <p>Verwende standardmäßig <code>const</code>. Nur wenn du weißt, dass sich der Wert ändern muss,
+                        verwende <code>let</code>. Das verhindert versehentliche Neuzuweisungen.</p>
+
+
+                    <div class="grid-2col-cards">
+                        <!-- block 1 -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Gut</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-javascript">// Gut: const für Werte, die sich nicht ändern
+const siteName = "DevPanicZone";
+const MAX_ATTEMPTS = 3;
+
+// Gut: let für Werte, die sich ändern
+let currentAttempt = 0;
+currentAttempt++;</code></pre>
+                            <!-- <div class="code-footer">
+        <p><strong>Verwendung:</strong> Klasse auf &lt;code&gt;-Tag anwenden</p>
+        <p>HTML/CSS/JS: Syntax-Highlighting aktiv
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                class="icon-va-y-2 ml-sm mr-sm" viewBox="0 0 15 15">
+                <path
+                    d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z"
+                    fill="var(--accent-green)"></path>
+            </svg>
+        </p>
+        <p>plaintext: Keine Farbcodierung
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"
+                class="icon-danger icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)"
+                aria-hidden="true">
+                <path
+                    d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z">
+                </path>
+            </svg>
+        </p>
+    </div> -->
+                        </div> <!-- block 1 -->
+
+                        <!-- block 2 -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Nicht optimal</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-javascript">// Nicht optimal: let obwohl const reichen würde
+let userName = "Anna-Maria"; 
+// Wenn sich das nie ändert, nutze const</code></pre>
+                            <!-- <div class="code-footer">
+        <p><strong>stretch:</strong> Alle Grid-Items in einer Reihe werden auf die Höhe des
+            höchsten Elements gestreckt.
+        </p>
+        <p>optisch saubere, gleichmäßige Card-Darstellung
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                class="icon-va-y-2 ml-sm mr-sm" viewBox="0 0 15 15">
+                <path
+                    d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z"
+                    fill="var(--accent-green)"></path>
+            </svg>
+        </p>                            
+    </div> -->
+                        </div> <!-- block 2 -->
+
+                    </div> <!-- <div class="grid-2col-cards pb-lg"> -->
+
+                    <h3 id="2-deklariere-variablen-am-anfang">2. Deklariere Variablen am Anfang</h3>
+                    <p>Deklariere alle Variablen am Anfang ihres Scopes. Das macht den Code übersichtlicher und
+                        vermeidet Hoisting-Probleme.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Alle Variablen am Anfang</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">function processUser() {
+    // Alle Variablen am Anfang
+    const userName = "Anna-Maria";
+    let userAge = 25;
+    let isValid = false;
+    
+    // Dann die Logik
+    if (userAge &gt;= 18) {
+        isValid = true;
+    }
+    
+    return isValid;
+}</code></pre>
+                    </div>
+
+                    <h3 id="3-vermeide-var-komplett">3. Vermeide var komplett</h3>
+                    <p>Es gibt keinen Grund mehr, <code>var</code> zu verwenden. <code>let</code> und <code>const</code>
+                        sind in jeder Hinsicht besser.</p>
+
+                    <div class="grid-2col-cards">
+                        <!-- block 1 -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Alt und problematisch</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-javascript">var count = 0;</code></pre>
+                        </div> <!-- block 1 -->
+
+                        <!-- block 2 -->
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Modern und sicher</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <pre><code class="language-javascript">let count = 0;</code></pre>
+                        </div> <!-- block 2 -->
+
+
+
+                    </div> <!-- <div class="grid-2col-cards pb-lg"> -->
+
+
+                    <h3 id="4-ein-konzept-eine-variable">4. Ein Konzept, eine Variable</h3>
+                    <p>Verwende nicht dieselbe Variable für verschiedene Zwecke. Erstelle lieber neue Variablen mit
+                        aussagekräftigen Namen.</p>
+
+                    <!-- block cross -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Verwirrend</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// Verwirrend: Variable wird für verschiedene Dinge benutzt
+let data = fetchUsers();
+data = data.filter(u =&gt; u.active);
+data = data.map(u =&gt; u.name);</code></pre>
+                    </div>
+                    <!-- block cross -->
+                    <div class="mt-lg"></div>
+                    <!-- block check -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Klar</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// Klar: Jede Variable hat einen eigenen Zweck
+const allUsers = fetchUsers();
+const activeUsers = allUsers.filter(user =&gt; user.active);
+const userNames = activeUsers.map(user =&gt; user.name);</code></pre>
+                    </div> <!-- block check -->
+
+                    <h3 id="5-vermeide-globale-variablen">5. Vermeide globale Variablen</h3>
+                    <p>Globale Variablen können von überall im Code geändert werden, was zu schwer zu findenden Bugs
+                        führt. Halte deinen Scope so klein wie möglich.</p>
+
+                    <!-- block cross -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Globale Variable</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// Globale Variable - kann überall geändert werden
+let counter = 0;
+
+function increment() {
+    counter++;
+}</code></pre>
+                    </div>
+                    <!-- block cross -->
+                    <div class="mt-lg"></div>
+                    <!-- block check -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Gekapselt</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// Gekapselt - kontrollierter Zugriff
+function createCounter() {
+    let counter = 0;
+    
+    return {
+        increment() {
+            counter++;
+            return counter;
+        }
+    };
+}</code></pre>
+                    </div> <!-- block check -->
+
+                </section>
+
+                <!-- Häufige Fehler -->
+                <section id="haeufige-fehler" class="tutorials-content">
+                    <h2 id="haeufige-fehler">Häufige Fehler</h2>
+                    <h3 id="1-variable-nicht-deklariert">1. Variable nicht deklariert</h3>
+                    <p>Wenn du eine Variable verwendest, ohne sie zu deklarieren, wird sie automatisch global – das kann
+                        zu schwer zu findenden Bugs führen.</p>
+
+                    <!-- block check -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Immer deklarieren</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// Immer deklarieren
+function goodExample() {
+    const userName = "Anna-Maria";
+}</code></pre>
+                    </div> <!-- block check -->
+                    <div class="mt-lg"></div>
+                    <!-- block cross -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Keine Deklaration</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">function badExample() {
+    // Keine Deklaration - wird global!
+    userName = "Anna-Maria"; // Im strict mode ein Fehler
+}</code></pre>
+                    </div> <!-- block cross -->
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Tipp
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Verwende immer <code>"use strict";</code> am Anfang deiner Skripte. Das verhindert viele
+                            häufige Fehler, wie das versehentliche Erstellen globaler Variablen.</p>
+                    </div>
+
+                    <h3 id="2-const-mit-einem-objekt-verwechseln">2. const mit einem Objekt verwechseln</h3>
+                    <p>Ein häufiger Anfängerfehler: <code>const</code> macht die Referenz konstant, nicht den Inhalt!
+                    </p>
+                    <!-- block check -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Das funktioniert</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">const user = { name: "Anna-Maria" };
+
+// Eigenschaft ändern
+user.name = "Anna";
+user.age = 25;</code></pre>
+                    </div> <!-- block check -->
+                    <div class="mt-lg"></div>
+                    <!-- block cross -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Das funktioniert NICHT</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// Das funktioniert NICHT - neue Referenz zuweisen
+user = { name: "Anna" }; // TypeError
+
+// Gleiches gilt für Arrays:
+const numbers = [1, 2, 3];
+numbers.push(4); // Funktioniert
+numbers = [5, 6]; // TypeError</code></pre>
+                    </div> <!-- block cross -->
+
+
+                    <h3 id="3-scope-verwirrung-mit-var">3. Scope-Verwirrung mit var</h3>
+                    <p>Ein klassisches Problem mit <code>var</code> in Schleifen:</p>
+                    <!-- block cross -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Problem mit var</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">for (var i = 0; i &lt; 3; i++) {
+    setTimeout(function() {
+        console.log(i); // Gibt dreimal "3" aus - nicht 0, 1, 2!
+    }, 100);
+}</code></pre>
+                    </div> <!-- block cross -->
+                    <div class="mt-lg"></div>
+                    <!-- block check -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Lösung mit let</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// Lösung: Block Scope
+for (let i = 0; i &lt; 3; i++) {
+    setTimeout(function() {
+        console.log(i); // Gibt 0, 1, 2 aus - wie erwartet!
+    }, 100);
+}</code></pre>
+                    </div> <!-- block check -->
+
+                    <h3 id="4-variable-nicht-initialisiert">4. Variable nicht initialisiert</h3>
+                    <p>Wenn du <code>let</code> ohne Wert deklarierst, ist die Variable <code>undefined</code>. Bei
+                        <code>const</code> MUSST du sofort einen Wert zuweisen.
+                    </p>
+
+                    <!-- block check -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">let ohne Wert</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// ist undefined
+let userName;
+console.log(userName); // undefined
+userName = "Anna-Maria"; // Später zuweisen ist OK</code></pre>
+                    </div>
+                    <!-- block check -->
+                    <div class="mt-lg"></div>
+                    <!-- block cross -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">const MUSS sofort einen Wert haben</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// SyntaxError: Missing initializer in const declaration
+const siteName;</code></pre>
+                    </div> <!-- block cross -->
+                    <div class="mt-lg"></div>
+                    <!-- block check -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">const immer mit Wert</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <pre><code class="language-javascript">// Der Wert MUSS sofort zugewiesen werden
+const siteName = "DevPanicZone";</code></pre>
+                    </div>
+                    <!-- block check -->
+
+                </section>
+
+                <!-- Interaktive Demos -->
+                <section class="tutorials-content">
+                    <h2 id="interaktive-demos">Interaktive Demos</h2>
+                    <h3 id="demo-1-const-vs-let">Demo 1: const vs let</h3>
+                    <p>Teste selbst den Unterschied zwischen <code>const</code> und <code>let</code>:</p>
+
+                    <div class="demo-container">
+                        <div class="demo-controls">
+                            <button id="demoConstBtn" class="demo-button">const ändern (Fehler!)</button>
+                            <button id="demoLetBtn" class="demo-button">let ändern (OK!)</button>
+                            <button id="demoResetBtn" class="demo-button">Reset</button>
+                        </div>
+                        <div id="demoOutput1" class="demo-output">
+                            <p>Klicke auf die Buttons, um zu sehen, was passiert...</p>
+                        </div>
+                    </div>
+
+                    <details>
+                        <summary>Open JavaScript Demo 1</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Demo 1: const vs let
+document.getElementById('demoConstBtn').addEventListener('click', function() {
+    const output = document.getElementById('demoOutput1');
+    try {
+        const CONSTANT_VALUE = "Ich bin konstant!";
+        CONSTANT_VALUE = "Versuch mich zu ändern!"; // Das gibt einen Fehler
+    } catch(error) {
+        output.innerHTML = `
+            &lt;p class="error-message"&gt;&lt;strong&gt;❌ Fehler mit const:&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;${error.message}&lt;/p&gt;
+            &lt;p&gt;const-Variablen können nicht neu zugewiesen werden!&lt;/p&gt;
+        `;
+    }
+});
+
+document.getElementById('demoLetBtn').addEventListener('click', function() {
+    const output = document.getElementById('demoOutput1');
+    let mutableValue = "Ich bin veränderbar!";
+    mutableValue = "Ich wurde geändert!";
+    output.innerHTML = `
+        &lt;p class="success-message"&gt;&lt;strong&gt;✅ Erfolg mit let:&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;Alter Wert: "Ich bin veränderbar!"&lt;/p&gt;
+        &lt;p&gt;Neuer Wert: "${mutableValue}"&lt;/p&gt;
+        &lt;p&gt;let-Variablen können neu zugewiesen werden!&lt;/p&gt;
+    `;
+});
+
+document.getElementById('demoResetBtn').addEventListener('click', function() {
+    document.getElementById('demoOutput1').innerHTML = '&lt;p&gt;Klicke auf die Buttons, um zu sehen, was passiert...&lt;/p&gt;';
+});</code></pre>
+                        </div>
+                    </details>
+
+                    <h3 id="demo-2-block-scope">Demo 2: Block Scope</h3>
+                    <p>Sieh dir an, wie Block Scope mit <code>let</code> und <code>const</code> funktioniert:</p>
+
+                    <div class="demo-container">
+                        <div class="demo-controls">
+                            <button id="scopeTestBtn" class="demo-button">Block Scope testen</button>
+                        </div>
+                        <div id="demoOutput2" class="demo-output">
+                            <p>Klicke auf den Button, um den Scope zu testen...</p>
+                        </div>
+                    </div>
+                    <details>
+                        <summary>Open JavaScript Demo 2</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Demo 2: Block Scope
+document.getElementById('scopeTestBtn').addEventListener('click', function() {
+    const output = document.getElementById('demoOutput2');
+    let results = [];
+    
+    // Globale Variable
+    const globalVar = "Ich bin global";
+    
+    // Block Scope Test
+    if (true) {
+        const blockVar = "Ich bin im Block";
+        let blockLet = "Ich auch!";
+        results.push(`Innerhalb des Blocks:&lt;br&gt;globalVar = "${globalVar}"&lt;br&gt;blockVar = "${blockVar}"&lt;br&gt;blockLet = "${blockLet}"`);
+    }
+    
+    // Außerhalb des Blocks
+    results.push(`Außerhalb des Blocks:&lt;br&gt;globalVar = "${globalVar}"`);
+    
+    try {
+        console.log(blockVar); // Das gibt einen Fehler
+    } catch(error) {
+        results.push(`&lt;span class="error-message"&gt;blockVar ist außerhalb nicht verfügbar! (ReferenceError)&lt;/span&gt;`);
+    }
+    
+    output.innerHTML = results.join('&lt;br&gt;&lt;br&gt;');
+});</code></pre>
+                        </div>
+                    </details>
+
+                    <h3 id="demo-3-variable-counter">Demo 3: Variable Counter</h3>
+                    <p>Ein einfacher Counter mit <code>let</code>:</p>
+
+                    <div class="demo-container">
+                        <div class="demo-controls">
+                            <button id="incrementBtn" class="demo-button">+1</button>
+                            <button id="decrementBtn" class="demo-button">-1</button>
+                            <button id="resetCounterBtn" class="demo-button">Reset auf 0</button>
+                        </div>
+                        <div id="counterOutput" class="demo-output">
+                            <p>Counter: <strong id="counterValue">0</strong></p>
+                        </div>
+                    </div>
+                    <details>
+                        <summary>Open JavaScript Demo 3</summary>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Demo 3: Counter
+let counter = 0;
+
+document.getElementById('incrementBtn').addEventListener('click', function() {
+    counter++;
+    document.getElementById('counterValue').textContent = counter;
+});
+
+document.getElementById('decrementBtn').addEventListener('click', function() {
+    counter--;
+    document.getElementById('counterValue').textContent = counter;
+});
+
+document.getElementById('resetCounterBtn').addEventListener('click', function() {
+    counter = 0;
+    document.getElementById('counterValue').textContent = counter;
+});</code></pre>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- Interaktive Demos -->
+                <section class="tutorials-content">
+                    <h2 id="zusammenfassung">Zusammenfassung</h2>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Die wichtigsten Punkte
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <ul class="arrow-list">
+                            <li><strong>const</strong> für Werte, die sich nicht ändern sollen – verwende dies als
+                                Standard</li>
+                            <li><strong>let</strong> für Werte, die sich ändern können – nur wenn wirklich nötig</li>
+                            <li><strong>var</strong> vermeiden – es gibt keinen Grund mehr, var zu verwenden</li>
+                            <li><strong>Block Scope:</strong> let und const respektieren Block Scope, var nicht</li>
+                            <li><strong>Hoisting:</strong> Deklarationen werden nach oben gehoben, aber let/const sind
+                                vor der Deklaration nicht nutzbar</li>
+                            <li><strong>Naming:</strong> Verwende camelCase und beschreibende Namen</li>
+                            <li><strong>const mit Objekten:</strong> Die Referenz ist konstant, nicht der Inhalt</li>
+                        </ul>
+                    </div>
+
+                </section>
+
+                <!-- Interaktive Demos -->
+                <section class="tutorials-content">
+                    <h2 id="naechste-schritte">Nächste Schritte</h2>
+
+                    <p>Jetzt, wo du Variablen verstehst, kannst du weitermachen mit:</p>
+
+                    <ul class="arrow-list grid-2col-bg">
+                        <li><strong>Data Types</strong> – Welche Datentypen gibt es in JavaScript?</li>
+                        <li><strong>Operators</strong> – Wie du mit Werten rechnest und vergleichst</li>
+                        <li><strong>Functions</strong> – Wie du wiederverwendbaren Code schreibst</li>
+                        <li><strong>Control Flow</strong> – if/else, switch, und Entscheidungen treffen</li>
+                    </ul>
+
+                    <div class="info-box">
+                        <strong class="box-title no-toc">Tipp zum Üben
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                            </svg>
+                        </strong>
+                        <p>Öffne die Browser-Konsole <kbd>Cmd + Opt + I</kbd> / <kbd>F12</kbd> und teste verschiedene
+                            Variablen-Deklarationen. Spiele mit
+                            const und let herum, probiere aus, was funktioniert und was nicht. Experimentieren ist der
+                            beste Weg zu lernen!</p>
+                    </div>
+
+                </section>
+
+                <!-- Prev/Next Navigation -->
+                
+                <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="javascript">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                <section class="tutorials-content">
+                    <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/javascript/javascript-basics/js-security.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">JavaScript Sicherheit</span>
+                <span class="tutorial-nav-category">JavaScript Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">JavaScript: HTML-Code Escaper</span>
+                <span class="tutorial-nav-category is-new">JavaScript Projects</span>
+            </a>
+        </div></nav>
+                </section>
+
+            </div> <!-- Wrapper .container -->
+
+        </div> <!-- Tutorial Layout -->
+
+    </main>
+
+    <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
+
+    <script src="/assets/js/js-variables-demo.js" defer></script>
+    <script src="/assets/js/code-copy.js" defer></script>
+    <script src="/assets/js/sidebar.js" defer></script>
+    <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+</body></html>

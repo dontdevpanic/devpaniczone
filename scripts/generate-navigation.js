@@ -206,8 +206,8 @@ const TUTORIAL_ORDER = {
     ],
     'tutorials/javascript/javascript-basics': [
         'js-basics.html',
-        'js-security.html'
-        // 'js-variables.html',
+        'js-security.html',
+        'js-variables.html'
         // 'js-functions.html',
         // 'js-conditions.html',
         // 'js-loops.html',

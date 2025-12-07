@@ -251,12 +251,6 @@
     }
 }
 
-@media (min-width: 1040px) {
-
-    .grid-2col-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
 /* 1024px: 3 Spalten */
 @media (min-width: 1024px) {
@@ -266,6 +260,86 @@
     }
 }
 
+
+/* Grid für gleich hohe Cards/Code-Blocks */
+.grid-2col-cards {
+    display: grid;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+}
+
+.grid-2col-cards h4 {
+    padding: 15px 0 10px;
+}
+
+/* Code-Blocks in diesem Grid zu Flex-Containern machen */
+.grid-2col-cards>.code-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Content-Bereich soll wachsen und restlichen Platz füllen */
+.grid-2col-cards>.code-block>div:not(.code-header) {
+    flex: 1;
+}
+
+.grid-2col-cards>.grid-2col-bg {
+    min-width: 0;
+}
+
+.grid-2col-cards .code-block {
+    min-width: 0;
+}
+
+.grid-2col-cards .code-block pre {
+    min-width: 0;
+    white-space: pre;
+}
+
+
+@media (min-width: 1040px) {
+
+    .grid-2col-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-footer {
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    border-radius: 0 0 8px 8px;  /* Untere Ecken abrunden */
+    font-size: 0.9rem;
+}
+
+.code-footer p {
+    margin: 0.5rem 0;
+}
+
+.code-footer p:first-child {
+    margin-top: 0;
+}
+
+.code-footer p:last-child {
+    margin-bottom: 0;
+}
+
+.code-footer {
+    color: var(--text-secondary);
+}
 
 /* ===== LATEST TUTORIALS GRID ===== */
 .tutorials-grid {
