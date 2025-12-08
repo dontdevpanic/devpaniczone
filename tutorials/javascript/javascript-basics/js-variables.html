@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="de">
-
-<head>
+<!DOCTYPE html><html lang="de"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="JavaScript Variablen: var, let und const verstehen. Die Unterschiede, Scope-Regeln und Best Practices für die Variablen-Deklaration in JavaScript.">
+    <meta name="description" content="JavaScript Variablen: var, let und const verstehen. Die Unterschiede, Scope-Regeln und Best Practices für die Variablen-Deklaration in JavaScript.">
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
     <meta name="author" content="DevPanicZone">
     <title>JavaScript Variables | DevPanicZone</title>
@@ -20,149 +16,146 @@
 
 <body>
     <!-- Header-Start -->
-    <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <div class="brand">
-                    <a href="/" class="brand-link">
-                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                    </a>
-                </div>
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
 
-                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                    <span class="theme-icon">
-                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                    </span>
-                </button>
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
 
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                    <span class="hamburger"></span>
-                </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
 
-                <nav class="main-nav" id="mainNav" aria-label="Navigation">
-                    <ul class="nav-list">
-                        <li><a href="/" class="nav-link">Home</a></li>
-                        <li class="nav-item-dropdown">
-                            <button class="nav-link dropdown-toggle" aria-expanded="false">
-                                Tutorials
-                                <span class="dropdown-icon">▾</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <!-- Main-Nav-Start -->
+            <nav class="main-nav" id="mainNav" aria-label="Navigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
                                 <li class="nav-item-nested">
-                                    <a href="/tutorials/html/" class="nav-link">
-                                        HTML
-                                        <span class="submenu-icon">▸</span>
-                                    </a>
-                                    <ul class="dropdown-submenu">
-                                        <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                                        <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                                    </ul>
-                                </li>
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
                                 <li class="nav-item-nested">
-                                    <a href="/tutorials/css/" class="nav-link">
-                                        CSS
-                                        <span class="submenu-icon">▸</span>
-                                    </a>
-                                    <ul class="dropdown-submenu">
-                                        <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                                        <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                                    </ul>
-                                </li>
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
                                 <li class="nav-item-nested">
-                                    <a href="/tutorials/javascript/" class="nav-link">
-                                        JavaScript
-                                        <span class="submenu-icon">▸</span>
-                                    </a>
-                                    <ul class="dropdown-submenu">
-                                        <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
-                                        </li>
-                                        <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
                                 <li class="nav-item-nested">
-                                    <a href="/tutorials/php/" class="nav-link">
-                                        PHP
-                                        <span class="submenu-icon">▸</span>
-                                    </a>
-                                    <ul class="dropdown-submenu">
-                                        <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                                    </ul>
-                                </li>
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
                                 <li class="nav-item-nested">
-                                    <a href="/tutorials/misc/" class="nav-link">
-                                        Verschiedenes
-                                        <span class="submenu-icon">▸</span>
-                                    </a>
-                                    <ul class="dropdown-submenu">
-                                        <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                                        <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                                        <li><a href="/tutorials/misc/#web">Web</a></li>
-                                    </ul>
-                                </li>
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
                                 <li class="nav-item-nested">
-                                    <a href="/tutorials/documentation/" class="nav-link">
-                                        DevPanicZone!
-                                        <span class="submenu-icon">▸</span>
-                                    </a>
-                                    <ul class="dropdown-submenu">
-                                        <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
-                                    </ul>
-                                </li>
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
                                 <!-- Main-Nav-End -->
-                            </ul>
-                        </li>
-                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-
-                        <!-- Search Toggle -->
-                        <li>
-                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                    <path
-                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
-                                </svg>
-                            </button>
-                        </li>
-                    </ul>
-
-                    <!-- Search Dropdown -->
-                    <div class="search-dropdown" id="searchDropdown" hidden>
-                        <div class="search-input-group">
-                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path
-                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
                             </svg>
-                            <input type="search" id="globalSearch" class="search-input"
-                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
-                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                        </div>
-
-                        <div class="search-results" id="searchResults" hidden>
-                            <div class="search-results-list" id="searchResultsList"></div>
-                            <div class="search-results-footer">
-                                <button class="search-view-all" id="searchViewAll">
-                                    Alle Ergebnisse anzeigen →
-                                </button>
-                            </div>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
                         </div>
                     </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </div>
-    </header>
-    <!-- Header-End -->
+    </div>
+</header>
+<!-- Header-End -->
 
     <main class="site-main">
 
         <!-- Hero -->
         <section class="hero tutorial-hero">
             <div class="container">
-                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
-                        class="breadcrumb-separator">›</span><a href="/tutorials/javascript/"
-                        class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span
-                        class="breadcrumb-current">JavaScript Variables</span></nav>
+                <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">JavaScript Variables</span></nav>
                 <h1 class="hero-title">JavaScript Variables</h1>
                 <p class="hero-subtitle">In JavaScript gibt es drei Wege, Variablen zu deklarieren: <code>var</code>,
                     <code>let</code> und <code>const</code>. Jede hat ihre eigenen Regeln für Scope, Hoisting und
@@ -172,8 +165,7 @@
         </section>
 
         <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
-            title="Auf dieser Seite">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
             <span class="toggle-icon">☰</span>
         </button>
 
@@ -202,58 +194,45 @@
                 <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                     <ul class="toc-list">
                         <!-- Sidebar-Anchor-Start -->
-                        <li class="toc-level-1"><a href="#grundlagen">Grundlagen</a></li>
-                        <li class="toc-level-2"><a href="#was-sind-variablen">Was sind Variablen?</a></li>
-                        <li class="toc-level-2"><a href="#die-grundlegende-syntax">Die grundlegende Syntax</a></li>
-                        <li class="toc-level-2"><a href="#wofuer-brauche-ich-variablen">Wofür brauche ich Variablen?</a>
-                        </li>
-                        <li class="toc-level-2"><a href="#die-wichtigsten-datentypen-fuer-anfaenger">Die wichtigsten
-                                Datentypen (für Anfänger)</a></li>
-                        <li class="toc-level-2"><a href="#die-drei-arten-der-variablen-deklaration">Die drei Arten der
-                                Variablen-Deklaration</a></li>
-                        <li class="toc-level-1"><a href="#var-let-und-const-im-detail">var, let und const im Detail</a>
-                        </li>
-                        <li class="toc-level-2"><a href="#const-konstante-werte">const – Konstante Werte</a></li>
-                        <li class="toc-level-2"><a href="#let-variable-werte">let – Variable Werte</a></li>
-                        <li class="toc-level-2"><a href="#var-die-alte-methode-nicht-empfohlen">var – Die alte Methode
-                                (nicht empfohlen)</a></li>
-                        <li class="toc-level-1"><a href="#scope-gueltigkeitsbereich">Scope (Gültigkeitsbereich)</a></li>
-                        <li class="toc-level-2"><a href="#global-scope">Global Scope</a></li>
-                        <li class="toc-level-2"><a href="#function-scope">Function Scope</a></li>
-                        <li class="toc-level-2"><a href="#block-scope">Block Scope</a></li>
-                        <li class="toc-level-1"><a href="#hoisting">Hoisting</a></li>
-                        <li class="toc-level-2"><a href="#hoisting-mit-var">Hoisting mit var</a></li>
-                        <li class="toc-level-2"><a href="#hoisting-mit-let-und-const">Hoisting mit let und const</a>
-                        </li>
-                        <li class="toc-level-1"><a href="#naming-conventions">Naming Conventions</a></li>
-                        <li class="toc-level-2"><a href="#konstanten-in-upper_case">Konstanten in UPPER_CASE</a></li>
-                        <li class="toc-level-2"><a href="#beschreibende-namen">Beschreibende Namen</a></li>
-                        <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
-                        <li class="toc-level-2"><a href="#1-const-als-standard-let-wenn-noetig">1. const als Standard,
-                                let wenn nötig</a></li>
-                        <li class="toc-level-2"><a href="#2-deklariere-variablen-am-anfang">2. Deklariere Variablen am
-                                Anfang</a></li>
-                        <li class="toc-level-2"><a href="#3-vermeide-var-komplett">3. Vermeide var komplett</a></li>
-                        <li class="toc-level-2"><a href="#4-ein-konzept-eine-variable">4. Ein Konzept, eine Variable</a>
-                        </li>
-                        <li class="toc-level-2"><a href="#5-vermeide-globale-variablen">5. Vermeide globale
-                                Variablen</a></li>
-                        <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler</a></li>
-                        <li class="toc-level-2"><a href="#1-variable-nicht-deklariert">1. Variable nicht deklariert</a>
-                        </li>
-                        <li class="toc-level-2"><a href="#2-const-mit-einem-objekt-verwechseln">2. const mit einem
-                                Objekt verwechseln</a></li>
-                        <li class="toc-level-2"><a href="#3-scope-verwirrung-mit-var">3. Scope-Verwirrung mit var</a>
-                        </li>
-                        <li class="toc-level-2"><a href="#4-variable-nicht-initialisiert">4. Variable nicht
-                                initialisiert</a></li>
-                        <li class="toc-level-1"><a href="#interaktive-demos">Interaktive Demos</a></li>
-                        <li class="toc-level-2"><a href="#demo-1-const-vs-let">Demo 1: const vs let</a></li>
-                        <li class="toc-level-2"><a href="#demo-2-block-scope">Demo 2: Block Scope</a></li>
-                        <li class="toc-level-2"><a href="#demo-3-variable-counter">Demo 3: Variable Counter</a></li>
-                        <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                        <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
-                        <!-- Sidebar-Anchor-End -->
+                    <li class="toc-level-1"><a href="#grundlagen">Grundlagen</a></li>
+                    <li class="toc-level-2"><a href="#was-sind-variablen">Was sind Variablen?</a></li>
+                    <li class="toc-level-2"><a href="#die-grundlegende-syntax">Die grundlegende Syntax</a></li>
+                    <li class="toc-level-2"><a href="#wofuer-brauche-ich-variablen">Wofür brauche ich Variablen?</a></li>
+                    <li class="toc-level-2"><a href="#die-wichtigsten-datentypen-fuer-anfaenger">Die wichtigsten Datentypen (für Anfänger)</a></li>
+                    <li class="toc-level-2"><a href="#die-drei-arten-der-variablen-deklaration">Die drei Arten der Variablen-Deklaration</a></li>
+                    <li class="toc-level-1"><a href="#var-let-und-const-im-detail">var, let und const im Detail</a></li>
+                    <li class="toc-level-2"><a href="#const-konstante-werte">const – Konstante Werte</a></li>
+                    <li class="toc-level-2"><a href="#let-variable-werte">let – Variable Werte</a></li>
+                    <li class="toc-level-2"><a href="#var-die-alte-methode-nicht-empfohlen">var – Die alte Methode (nicht empfohlen)</a></li>
+                    <li class="toc-level-1"><a href="#scope-gueltigkeitsbereich">Scope (Gültigkeitsbereich)</a></li>
+                    <li class="toc-level-2"><a href="#global-scope">Global Scope</a></li>
+                    <li class="toc-level-2"><a href="#function-scope">Function Scope</a></li>
+                    <li class="toc-level-2"><a href="#block-scope">Block Scope</a></li>
+                    <li class="toc-level-1"><a href="#hoisting">Hoisting</a></li>
+                    <li class="toc-level-2"><a href="#hoisting-mit-var">Hoisting mit var</a></li>
+                    <li class="toc-level-2"><a href="#hoisting-mit-let-und-const">Hoisting mit let und const</a></li>
+                    <li class="toc-level-1"><a href="#naming-conventions">Naming Conventions</a></li>
+                    <li class="toc-level-2"><a href="#konstanten-in-upper_case">Konstanten in UPPER_CASE</a></li>
+                    <li class="toc-level-2"><a href="#beschreibende-namen">Beschreibende Namen</a></li>
+                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                    <li class="toc-level-2"><a href="#1-const-als-standard-let-wenn-noetig">1. const als Standard, let wenn nötig</a></li>
+                    <li class="toc-level-2"><a href="#2-deklariere-variablen-am-anfang">2. Deklariere Variablen am Anfang</a></li>
+                    <li class="toc-level-2"><a href="#3-vermeide-var-komplett">3. Vermeide var komplett</a></li>
+                    <li class="toc-level-2"><a href="#4-ein-konzept-eine-variable">4. Ein Konzept, eine Variable</a></li>
+                    <li class="toc-level-2"><a href="#5-vermeide-globale-variablen">5. Vermeide globale Variablen</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler</a></li>
+                    <li class="toc-level-2"><a href="#1-variable-nicht-deklariert">1. Variable nicht deklariert</a></li>
+                    <li class="toc-level-2"><a href="#2-const-mit-einem-objekt-verwechseln">2. const mit einem Objekt verwechseln</a></li>
+                    <li class="toc-level-2"><a href="#3-scope-verwirrung-mit-var">3. Scope-Verwirrung mit var</a></li>
+                    <li class="toc-level-2"><a href="#4-variable-nicht-initialisiert">4. Variable nicht initialisiert</a></li>
+                    <li class="toc-level-1"><a href="#interaktive-demos">Interaktive Demos</a></li>
+                    <li class="toc-level-2"><a href="#demo-1-const-vs-let">Demo 1: const vs let</a></li>
+                    <li class="toc-level-2"><a href="#demo-2-block-scope">Demo 2: Block Scope</a></li>
+                    <li class="toc-level-2"><a href="#demo-3-variable-counter">Demo 3: Variable Counter</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
+                    <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
+                    <!-- Sidebar-Anchor-End -->
                     </ul>
                 </nav>
             </aside>
@@ -269,20 +248,16 @@
 
                 <div class="sidebar-nav">
                     <ul class="sidebar-nav-list">
-                        <li class="sidebar-group-title">JavaScript Basics</li>
-                        <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
-                        <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a>
-                        </li>
-                        <li><a href="/tutorials/javascript/javascript-basics/js-variables.html"
-                                class="active">JavaScript Variables</a></li>
-                        <li class="sidebar-group-title">JavaScript Projects</li>
-                        <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript:
-                                HTML-Code Escaper</a></li>
-                        <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity
-                                Encoder</a></li>
-                        <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit
-                                JavaScript</a></li>
-                    </ul>
+                    <li class="sidebar-group-title">JavaScript Basics</li>
+                    <li><a href="/tutorials/javascript/javascript-basics/was-ist-javascript.html">Was ist JavaScript eigentlich?</a></li>
+                    <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
+                    <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a></li>
+                    <li><a href="/tutorials/javascript/javascript-basics/js-variables.html" class="active">JavaScript Variables</a></li>
+                    <li class="sidebar-group-title">JavaScript Projects</li>
+                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript: HTML-Code Escaper</a></li>
+                    <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity Encoder</a></li>
+                    <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit JavaScript</a></li>
+                </ul>
                 </div>
             </aside>
 
@@ -378,16 +353,13 @@ let person = { name: "Anna-Maria" }; // Objekt</code></pre>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Hinweis
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
                         <p>Seit ES6 (2015) solltest du <code>var</code> vermeiden und
-                            stattdessen <code>let</code> und <code>const</code> verwenden. Diese bieten besseren <span
-                                class="tooltip"><em>Scope</em><span class="tooltiptext">Gültigkeitsbereich</span></span>
+                            stattdessen <code>let</code> und <code>const</code> verwenden. Diese bieten besseren <span class="tooltip"><em>Scope</em><span class="tooltiptext">Gültigkeitsbereich</span></span>
                             und verhindern viele häufige Fehler.</p>
                     </div>
 
@@ -440,10 +412,8 @@ user = { name: "Anna"}; // geht nicht</code></pre>
 
                     <div class="info-box">
                         <strong class="box-title no-toc"><code>const</code>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
@@ -517,10 +487,8 @@ let y = 2; // SyntaxError: Identifier 'y' has already been declared</code></pre>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Best Practice
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
@@ -617,10 +585,8 @@ console.log(blockVar); // "Außerhalb auch verfügbar!" - Achtung!</code></pre>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Warum ist Block Scope wichtig?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
@@ -688,10 +654,8 @@ const myConst = "Hallo";</code></pre>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Best Practice
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
@@ -709,10 +673,8 @@ const myConst = "Hallo";</code></pre>
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Grundregeln
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
@@ -737,10 +699,8 @@ const myConst = "Hallo";</code></pre>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Gute Variablennamen</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-success" fill="#20a66e" aria-hidden="true">
-                                    <path
-                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                     </path>
                                 </svg>
                             </div>
@@ -756,10 +716,8 @@ let $element = document.querySelector(".test");</code></pre>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Schlechte Variablennamen</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                    <path
-                                        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                     </path>
@@ -809,10 +767,8 @@ const currentDate = new Date();</code></pre>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Nicht gut</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                    <path
-                                        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                     </path>
@@ -826,10 +782,8 @@ let temp = users.filter(u =&gt; u.age &gt; 18);</code></pre>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Viel besser</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-success" fill="#20a66e" aria-hidden="true">
-                                    <path
-                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                     </path>
                                 </svg>
                             </div>
@@ -855,10 +809,8 @@ let adultUsers = users.filter(user =&gt; user.age &gt; 18);</code></pre>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Gut</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-success" fill="#20a66e" aria-hidden="true">
-                                    <path
-                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                     </path>
                                 </svg>
                             </div>
@@ -895,10 +847,8 @@ currentAttempt++;</code></pre>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Nicht optimal</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                    <path
-                                        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                     </path>
@@ -931,10 +881,8 @@ let userName = "Anna-Maria";
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Alle Variablen am Anfang</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -962,10 +910,8 @@ let userName = "Anna-Maria";
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Alt und problematisch</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                    <path
-                                        d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                     </path>
@@ -978,10 +924,8 @@ let userName = "Anna-Maria";
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Modern und sicher</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-success" fill="#20a66e" aria-hidden="true">
-                                    <path
-                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                     </path>
                                 </svg>
                             </div>
@@ -1001,10 +945,8 @@ let userName = "Anna-Maria";
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Verwirrend</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                <path
-                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -1021,10 +963,8 @@ data = data.map(u =&gt; u.name);</code></pre>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Klar</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -1042,10 +982,8 @@ const userNames = activeUsers.map(user =&gt; user.name);</code></pre>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Globale Variable</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                <path
-                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -1064,10 +1002,8 @@ function increment() {
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Gekapselt</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -1097,10 +1033,8 @@ function createCounter() {
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Immer deklarieren</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -1114,10 +1048,8 @@ function goodExample() {
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Keine Deklaration</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                <path
-                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -1131,10 +1063,8 @@ function goodExample() {
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Tipp
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
@@ -1149,10 +1079,8 @@ function goodExample() {
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Das funktioniert</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -1167,10 +1095,8 @@ user.age = 25;</code></pre>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Das funktioniert NICHT</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                <path
-                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -1192,10 +1118,8 @@ numbers = [5, 6]; // TypeError</code></pre>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Problem mit var</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                <path
-                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -1212,10 +1136,8 @@ numbers = [5, 6]; // TypeError</code></pre>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">Lösung mit let</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -1236,10 +1158,8 @@ for (let i = 0; i &lt; 3; i++) {
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">let ohne Wert</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -1254,10 +1174,8 @@ userName = "Anna-Maria"; // Später zuweisen ist OK</code></pre>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">const MUSS sofort einen Wert haben</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
-                                <path
-                                    d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red)" aria-hidden="true">
+                                <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
 20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
 0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
                                 </path>
@@ -1271,10 +1189,8 @@ const siteName;</code></pre>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang">const immer mit Wert</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                class="icon-success" fill="#20a66e" aria-hidden="true">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" aria-hidden="true">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
                                 </path>
                             </svg>
                         </div>
@@ -1451,10 +1367,8 @@ document.getElementById('resetCounterBtn').addEventListener('click', function() 
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Die wichtigsten Punkte
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
@@ -1488,10 +1402,8 @@ document.getElementById('resetCounterBtn').addEventListener('click', function() 
 
                     <div class="info-box">
                         <strong class="box-title no-toc">Tipp zum Üben
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                fill="currentColor">
-                                <path
-                                    d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
                                 </path>
                             </svg>
                         </strong>
@@ -1517,21 +1429,19 @@ document.getElementById('resetCounterBtn').addEventListener('click', function() 
 
                 <section class="tutorials-content">
                     <nav class="tutorial-nav">
-                        <div class="tutorial-nav-prev">
-                            <a href="/tutorials/javascript/javascript-basics/js-security.html">
-                                <span class="tutorial-nav-label">← Vorheriges</span>
-                                <span class="tutorial-nav-link">JavaScript Sicherheit</span>
-                                <span class="tutorial-nav-category">JavaScript Basics</span>
-                            </a>
-                        </div>
-                        <div class="tutorial-nav-next">
-                            <a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">
-                                <span class="tutorial-nav-label">Nächstes →</span>
-                                <span class="tutorial-nav-link">JavaScript: HTML-Code Escaper</span>
-                                <span class="tutorial-nav-category is-new">JavaScript Projects</span>
-                            </a>
-                        </div>
-                    </nav>
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/javascript/javascript-basics/js-security.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">JavaScript Sicherheit</span>
+                <span class="tutorial-nav-category">JavaScript Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">JavaScript: HTML-Code Escaper</span>
+                <span class="tutorial-nav-category is-new">JavaScript Projects</span>
+            </a>
+        </div></nav>
                 </section>
 
             </div> <!-- Wrapper .container -->
@@ -1541,23 +1451,23 @@ document.getElementById('resetCounterBtn').addEventListener('click', function() 
     </main>
 
     <!-- Footer-Start -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-                <nav class="footer-nav">
-                    <a href="/impressum.html">Impressum</a>
-                    <a href="/datenschutzerklaerung.html">Datenschutz</a>
-                </nav>
-            </div>
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
         </div>
-    </footer>
-    <button id="scrollTopBtn" title="Nach oben">↑</button>
-    <script src="/assets/js/main.js" defer></script>
-    <script src="/assets/js/search.js" defer></script>
-    <script src="/assets/js/scroll-spy.js" defer></script>
-    <script src="/assets/js/latest-tutorials.js" defer></script>
-    <!-- Footer-End -->
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
 
     <script src="/assets/js/js-variables-demo.js" defer></script>
     <script src="/assets/js/code-copy.js" defer></script>
@@ -1566,6 +1476,6 @@ document.getElementById('resetCounterBtn').addEventListener('click', function() 
 
 
 
-</body>
 
-</html>
+
+</body></html>

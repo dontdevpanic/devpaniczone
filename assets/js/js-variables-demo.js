@@ -73,3 +73,4 @@ document.getElementById('resetCounterBtn').addEventListener('click', function ()
     counter = 0;
     document.getElementById('counterValue').textContent = counter;
 });
+
