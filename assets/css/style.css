@@ -1,47 +1,19 @@
 /* ===============================================================================
-   DEVPANICZONE - MAIN STYLESHEET
+   DEVPANICZONE - MAIN STYLESHEET (style.css)
    ===============================================================================
-   
-   TABLE OF CONTENTS:
-   
-   1. @font-face Declarations........................ Zeile ~41   ===
-   2. CSS Custom Properties (Variables).............. Zeile ~77   ===
-   3. Reset & Base Styles............................ Zeile ~156  ===
-   4. Typography..................................... Zeile ~187  ===
-      - Headings..................................... Zeile ~190  ---
-      - Paragraphs & Text............................ Zeile ~260  ---
-      - Links........................................ Zeile ~279  ---
-      - Lists........................................ Zeile ~290  ---
-      - Inline Code (siehe Category Cards)........... Zeile ~1525 ---
-   5. Layout (Container, Sections)................... Zeile ~389  ===
-   6. Components..................................... Zeile ~429  ===
-      - Search Toggle & Dropdown..................... Zeile ~433  ---
-      - Header & Navigation.......................... Zeile ~652  ---
-      - Logo/Brand................................... Zeile ~673  ---
-      - Breadcrumbs.................................. Zeile ~707  ---
-      - Theme Toggle................................. Zeile ~764  ---
-      - Mobile Menu Toggle........................... Zeile ~813  ---
-      - Main Navigation & Dropdown................... Zeile ~883  ---
-      - Nested Navigation............................ Zeile ~1017 ---
-      - Main Content................................. Zeile ~1074 ---
-      - Hero Section................................. Zeile ~1083 ---
-      - Buttons...................................... Zeile ~1141 ---
-      - Icons........................................ Zeile ~1245 ---
-      - Categories & Grids........................... Zeile ~1285 ---
-      - Category Cards............................... Zeile ~1479 ---
-      - Inline Code & kbd............................ Zeile ~1525 ---
-      - Keyboard Navigation.......................... Zeile ~1560 ---
-      - Tooltips..................................... Zeile ~1724 ---
-      - Footer....................................... Zeile ~1770 ---
-      - Scroll to Top Button......................... Zeile ~1819 ---
-   7. Utilities...................................... Zeile ~1866 ===
-      - Text Utilities............................... Zeile ~1869 ---
-      - Margin Utilities............................. Zeile ~1896 ---
-      - Padding Utilities............................ Zeile ~2066 ---
-      - Color Utilities.............................. Zeile ~2222 ---
-      - Alignment Utilities.......................... Zeile ~2256 ---
-      - Screen Reader Only........................... Zeile ~2317 ---
-   8. Quick Reference................................ Zeile ~2388 ===
+   Base Styles: Reset, Fonts, Typography
+   TABLE OF CONTENTS
+   -----------------    
+   1. IMPORTS ........................... ~20
+   2. @FONT-FACE DECLARATIONS ........... ~30
+   3. RESET & BASE ...................... ~75
+   4. TYPOGRAPHY ........................ ~100
+      4.1 Headings (h1-h6) .............. ~105
+      4.2 Paragraphs & Text ............. ~175
+      4.3 Links ......................... ~200
+      4.4 Lists ......................... ~215
+      4.5 Misc (abbr, pre) .............. ~280
+   5. QUICK REFERENCE ................... ~300
 
    =============================================================================== */
 
@@ -51,14 +23,6 @@
 @import 'components.css';
 @import 'graphics.css';
 @import 'utilities.css';
-
-/* css/
-├── style.css         Nur noch: Reset, Typography, Base 
-├── layout.css        Header, Footer, Grid, Container 
-├── components.css    Buttons, Cards, Info-Boxes 
-├── tutorials.css     Bleibt - Tutorial-spezifische Styles 
-├── sidebar.css       Bleibt 
-└── utilities.css     Bleibt */
 
 /* ===============================================================================
    1. @FONT-FACE DECLARATIONS
@@ -104,94 +68,9 @@
     font-display: swap;
 }
 
-/* ==========================================
-   2. CSS CUSTOM PROPERTIES (VARIABLES)
-   ========================================== */
-
-:root {
-    /* ===== ACCENT COLORS ===== */
-    --accent-blue: #518fc9;
-    --accent-blue-hover: #4c789e;
-    --accent-blue-light: #6c9bd1;
-    --accent-cyan: #4fc1e9;
-    --accent-purple: #9b59d6;
-    --accent-purple-dark: #6d1db4;
-    --accent-magenta: #a151a6;
-    --accent-mint: #4ec9b0;
-    --accent-green: #20a66e;
-    --accent-yellow: #cbd35c;
-    --accent-yellow-light: #e5d691;
-    --accent-yellow-normal: ffc107;
-    --accent-orange: #e4884a;
-    --accent-red: #e94e4e;
-    --accent-red-dark: #d62e3f;
-    --accent-red-light: #f48771;
-    --accent-blue-gray: #64748b;
-    /* --accent-blue: #569cd6; */
-    /* --accent-blue-hover: #4a8cc7; */
-
-
-    /* ===== DARK MODE (Standard) ===== */
-    --bg-primary: #212121;
-    --bg-secondary: #2a2a2a;
-    --bg-tertiary: #333333;
-    --bg-light: #555555;
-    --bg-body: #202020;
-    --card-bg: #2a2a2a;
-
-    --heading-primary: #5b7c99;
-    --heading-secondary: #7a9ab8;
-    --heading-dark: #425268;
-
-    --text-primary: #d4d4d4;
-    --text-secondary: #969696;
-    --text-tertiary: #b6b6b6;
-    --text-muted: #7e7e7e;
-
-    --border-color: #3e3e42;
-
-    --color-success: #28a745;
-    /* --color-warning: #ffa407; */
-    --color-warning: #d29346;
-    --color-error: #dc3545;
-
-
-    /* ===== SCHRIFTEN ===== */
-    --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-heading: 'Fira Code', 'Courier New', monospace;
-    --font-code: 'Fira Code', 'Courier New', monospace;
-}
-
-/* ===== FARBEN - LIGHT MODE (wenn Toggle aktiviert) ===== */
-[data-theme="light"] {
-
-    --bg-primary: #c8c8c8;
-    --bg-secondary: #bebebe;
-    --bg-tertiary: #e2e2e2;
-    --bg-body: #d1d1d1;
-    --card-bg: #e2e2e2;
-
-    --text-primary: #494949;
-    --text-secondary: #666;
-
-    --border-color: #d4d4d4;
-
-    /* --bg-primary: #ffffff;
-    --bg-secondary: #f5f5f5;
-    --bg-tertiary: #e8e8e8;
-
-    --text-primary: #1e1e1e;
-    --text-secondary: #666666;
-
-    --color-accent: #0066cc;
-    --accent-blue-hover: #0052a3;
-    --border-color: #d4d4d4; */
-}
-
 /* ===================================
    3. RESET & BASIS
    =================================== */
-
 *,
 *::before,
 *::after {
@@ -218,7 +97,6 @@ body {
     transition: background-color 250ms ease, color 250ms ease;
 }
 
-
 /* ===============================================================================
    4. TYPOGRAPHY
    =============================================================================== */
@@ -237,7 +115,6 @@ h6 {
     color: var(--heading-secondary);
 }
 
-/* -------------------- */
 h1 {
     font-size: 2.6rem;
     margin-bottom: 1rem;
@@ -330,7 +207,6 @@ strong {
     font-weight: 500;
 }
 
-
 /* ----- Links ----- */
 a {
     color: var(--accent-blue);
@@ -343,6 +219,26 @@ a:hover {
 }
 
 /* ----- Lists ----- */
+
+/* ---- Arrow List ---- */
+.arrow-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.arrow-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+ul.arrow-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text-secondary);
+    font-weight: bold;
+}
 
 main ol>li,
 main ul:not(.arrow-list):not(.check-list):not(.cross-list)>li,
@@ -385,50 +281,12 @@ ol.grid-2col-bg {
     padding: 2rem 2.5rem 1.5rem;
 }
 
-/* ---- Arrow List Info-Boxes ---- */
-.arrow-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.arrow-list li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-ul.arrow-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--text-secondary);
-    font-weight: bold;
-}
-
-.grid-2col .info-box {
-    margin-bottom: 0;
-}
-
 /* Verschiebt die Linie nach unten */
 abbr {
     text-decoration: underline dashed var(--text-muted);
     text-underline-offset: 0.3rem;
     cursor: help;
 }
-
-/* ----- Inline Code ----- */
-/* AUSKOMMENTIERT: Duplikat - vollständigere Version bei Category Cards (ca. Zeile 1525) */
-/* code.inline {
-    font-family: var(--font-code);
-    font-size: 0.9em;
-    letter-spacing: 0.025rem;
-    background-color: var(--bg-tertiary);
-    padding: 0.2em 0.4em;
-    border-radius: 4px;
-    white-space: nowrap;
-    overflow-wrap: normal;
-    word-break: normal;
-} */
 
 pre {
     font-family: var(--font-code);
@@ -439,819 +297,8 @@ pre {
     border-radius: 8px;
 }
 
-
 /* ===================================
-   5. LAYOUT (Container, Sections)
-   =================================== */
-
-/* ----- Container ----- */
-/* .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-} */
-
-/* ----- Horizontal Rules ----- */
-hr {
-    border: 1px dashed var(--border-color);
-    margin: 0 0 2rem;
-}
-
-.hr-clear {
-    border: 1px solid var(--accent-blue);
-    margin: 0.75rem 0 0;
-    padding: 0;
-}
-
-
-/* ----- Hero Text ----- */
-.hero-text {
-    max-width: 900px;
-    margin: 0 auto 2rem;
-    text-align: center;
-}
-
-/* @media (min-width: 768px) {
-
-    .container {
-        padding: 0 4rem;
-    }
-} */
-
-
-/* ===================================
-   6. COMPONENTS
-   =================================== */
-
-/* ============================================
-   SEARCH TOGGLE IN NAVIGATION
-   ============================================ */
-
-.search-toggle {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-}
-
-.search-toggle:hover {
-    transform: scale(1.1);
-}
-
-.search-icon-nav {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
-
-.search-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 500px;
-    max-width: calc(100vw - 2rem);
-    margin-top: 0.5rem;
-    background: var(--bg-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    z-index: 1000;
-}
-
-.search-dropdown .search-input-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.search-dropdown .search-icon {
-    position: absolute;
-    left: 1rem;
-    width: 18px;
-    height: 18px;
-    fill: var(--border-color, #64748b);
-    pointer-events: none;
-}
-
-.search-dropdown .search-input {
-    width: 100%;
-    padding: 0.75rem 3rem 0.75rem 3rem;
-    background: var(--color-bg-tertiary, #323232);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: var(--color-text-primary, #e2e8f0);
-    font-size: 0.95rem;
-    font-family: inherit;
-    transition: all 0.2s ease;
-}
-
-.search-dropdown .search-input:focus {
-    outline: none;
-    border-color: var(--accent-blue-gray);
-    background: var(--bg-tertiary, #333b4f);
-    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
-}
-
-.search-dropdown .search-shortcut {
-    position: absolute;
-    right: 1rem;
-    padding: 0.25rem 0.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    color: var(--accent-blue-gray, #64748b);
-    font-size: 0.75rem;
-    font-family: 'Fira Code', monospace;
-    pointer-events: none;
-}
-
-.search-dropdown .search-input:focus+.search-shortcut {
-    opacity: 0;
-}
-
-.search-dropdown .search-results {
-    margin-top: 0.5rem;
-}
-
-@media (max-width: 768px) {
-    .search-dropdown {
-        width: calc(100vw - 2rem);
-        right: 1rem;
-    }
-
-    .search-shortcut {
-        display: none;
-    }
-}
-
-.search-results {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    right: 0;
-    background: var(--bg-tertiary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    max-height: 400px;
-    overflow: hidden;
-    z-index: 100;
-}
-
-.search-results-list {
-    max-height: 350px;
-    overflow-y: auto;
-    padding: 0.5rem;
-}
-
-.search-result-item {
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.15s ease;
-    text-decoration: none;
-    display: block;
-    color: inherit;
-}
-
-.search-result-item:hover,
-.search-result-item:focus {
-    background: rgba(96, 165, 250, 0.1);
-    outline: none;
-}
-
-.search-result-category {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: var(--border-color);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
-}
-
-.search-result-title {
-    color: #e2e8f0;
-    font-size: 0.95rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
-
-.search-result-excerpt {
-    color: #94a3b8;
-    font-size: 0.85rem;
-    line-height: 1.4;
-}
-
-.search-results-footer {
-    padding: 0.75rem 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.2);
-}
-
-.search-view-all {
-    width: 100%;
-    padding: 0.5rem;
-    background: transparent;
-    border: none;
-    color: var(--accent-blue-hover);
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background 0.15s ease;
-}
-
-.search-view-all:hover {
-    background: rgba(96, 165, 250, 0.1);
-}
-
-.search-no-results {
-    padding: 2rem 1rem;
-    text-align: center;
-    color: #64748b;
-}
-
-.search-suggestions ul {
-    list-style: none;
-    padding: 0;
-}
-
-.search-suggestions li {
-    margin-bottom: 0.5rem;
-}
-
-@media (max-width: 768px) {
-    .search-bar {
-        padding: 0.5rem 0;
-    }
-
-    .search-shortcut {
-        display: none;
-    }
-
-    .search-input {
-        padding-right: 1rem;
-        font-size: 16px;
-    }
-}
-
-/* ===================================
-   HEADER & NAVIGATION
-   =================================== */
-
-/* .site-header {
-    background-color: var(--bg-primary);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0px;
-    z-index: 100;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0;
-    height: 60px;
-    gap: 1rem;
-} */
-
-/* ---- LOGO/BRAND ---- */
-
-.brand-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--heading-secondary);
-}
-
-.brand-icon {
-    color: var(--accent-blue);
-    font-size: 1.5rem;
-}
-
-.logo-icon {
-    height: 36px;
-    width: auto;
-    transition: all 0.3s ease;
-}
-
-.brand-name {
-    display: none;
-}
-
-@media (min-width: 768px) {
-    .brand-name {
-        display: inline;
-    }
-}
-
-/* ===================================
-   BREADCRUMBS
-   =================================== */
-
-.breadcrumbs {
-    margin: 0 0 1rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-}
-
-.breadcrumbs ol {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-}
-
-.breadcrumbs li {
-    display: flex;
-    align-items: center;
-}
-
-.breadcrumbs li:not(:last-child)::after {
-    content: '›';
-    margin-left: 0.5rem;
-    color: var(--text-secondary);
-}
-
-.breadcrumb-separator {
-    color: var(--text-primary);
-    user-select: none;
-}
-
-.breadcrumb-link {
-    color: var(--accent-blue);
-    transition: color 150ms ease;
-}
-
-.breadcrumb-link:hover {
-    color: var(--accent-blue-hover);
-}
-
-.breadcrumbs li:last-child {
-    color: var(--text-primary);
-    font-weight: 600;
-}
-
-.breadcrumb-current {
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
-
-/* ---- MOBILE MENU TOGGLE & OVERLAY ---- */
-
-.mobile-menu-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 44px;
-    height: 44px;
-    background: transparent;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: border-color 150ms ease;
-    position: relative;
-}
-
-.mobile-menu-toggle:hover {
-    border-color: var(--accent-blue);
-}
-
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-    width: 24px;
-    height: 2px;
-    background-color: var(--text-primary);
-    transition: all 150ms ease;
-}
-
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    position: absolute;
-}
-
-.hamburger::before {
-    transform: translateY(-8px);
-}
-
-.hamburger::after {
-    transform: translateY(8px);
-}
-
-@media (min-width: 768px) {
-    .mobile-menu-toggle {
-        display: none;
-    }
-}
-
-.main-nav {
-    display: none;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* Wird von JS hinzugefügt */
-.main-nav.is-open {
-    display: block;
-}
-
-@media (min-width: 768px) {
-
-    .main-nav {
-        display: block;
-        position: static;
-        border: none;
-        box-shadow: none;
-        background: transparent;
-    }
-}
-
-.nav-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-@media (min-width: 768px) {
-    .nav-list {
-        flex-direction: row;
-        gap: 0.5rem;
-    }
-}
-
-.nav-link {
-    display: block;
-    padding: 1rem 1.5rem;
-    color: var(--text-primary);
-    transition: all 150ms ease;
-    border-bottom: 1px solid var(--border-color);
-}
-
-@media (min-width: 768px) {
-    .nav-link {
-        border: none;
-        border-radius: 8px;
-    }
-}
-
-.nav-link:hover,
-.nav-link.active {
-    background-color: var(--bg-tertiary);
-    /* border-bottom: 2px solid var(--accent-blue); */
-    color: var(--accent-blue);
-}
-
-/* ----- Dropdown Menu ----- */
-
-.nav-item-dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.dropdown-toggle {
-    width: 100%;
-    background: transparent;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    display: block;
-    padding: 1rem 1.5rem;
-    transition: all 150ms ease;
-}
-
-@media (min-width: 768px) {
-
-    .dropdown-toggle {
-        border: none;
-        vertical-align: middle;
-    }
-}
-
-.dropdown-toggle:hover {
-    background-color: var(--bg-tertiary);
-    color: var(--accent-blue);
-}
-
-.dropdown-icon {
-    font-size: 1em;
-    transition: transform 150ms ease;
-}
-
-.dropdown-toggle[aria-expanded="true"] .dropdown-icon {
-    transform: rotate(180deg);
-}
-
-.dropdown-menu {
-    display: none;
-    list-style: none;
-    background-color: var(--bg-tertiary);
-    padding: 0;
-    margin: 0;
-}
-
-.dropdown-menu li {
-    padding: 0;
-    margin: 0;
-}
-
-.dropdown-menu.is-open {
-    display: block;
-}
-
-@media (min-width: 768px) {
-    .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        min-width: 200px;
-        margin-top: 0.25rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
-    }
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 0.5rem 1.5rem;
-    color: var(--text-primary);
-    transition: all 150ms ease;
-}
-
-.dropdown-menu a:hover {
-    background-color: var(--bg-primary);
-    color: var(--accent-blue);
-    border-radius: 0;
-}
-
-/* ----- Nested Navigation Items (im Tutorials-Dropdown) ----- */
-.nav-item-nested {
-    position: relative;
-}
-
-.nav-item-nested>.nav-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1.5rem;
-}
-
-.submenu-icon {
-    font-size: 0.875em;
-    transition: transform 150ms ease;
-    margin-left: 0.5rem;
-}
-
-.nav-item-nested.is-active>.nav-link .submenu-icon {
-    transform: rotate(90deg);
-}
-
-/* ----- Nested Submenu ----- */
-.dropdown-submenu {
-    display: none;
-    list-style: none;
-    background-color: var(--bg-tertiary);
-    padding: 0;
-    margin: 0;
-}
-
-.nav-item-nested.is-active>.dropdown-submenu {
-    display: block;
-}
-
-.dropdown-submenu li {
-    padding: 0;
-    margin: 0;
-}
-
-.dropdown-submenu a {
-    display: block;
-    padding: 0.5rem 1.5rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    transition: all 150ms ease;
-}
-
-.dropdown-submenu a:hover {
-    background-color: var(--bg-primary);
-    color: var(--accent-blue);
-}
-
-
-
-
-/* ===================================
-   HERO SECTION - FULL WIDTH BACKGROUND
-   =================================== */
-
-.hero {
-    text-align: center;
-    padding: 6rem 0 4rem;
-    margin-top: -32px;
-    margin-bottom: 1rem;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-    border-bottom: 2px solid var(--border-color);
-    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.hero h1::before {
-    content: '// ';
-}
-
-/* ----- Hero Container ----- */
-.hero .container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-    .hero .container {
-        padding: 0 2rem;
-    }
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.hero-cta {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-}
-
-@media (min-width: 640px) {
-    .hero-cta {
-        flex-direction: row;
-        justify-content: center;
-    }
-}
-
-/* ===================================
-   ICONS
-   =================================== */
-
-svg.icon-inline {
-    vertical-align: middle;
-    /* margin: 0 1em; */
-}
-
-svg.icon-va-y-2 {
-    vertical-align: -2px;
-}
-
-svg.icon-va-y-6 {
-    vertical-align: -6px;
-}
-
-svg.icon-va-tb {
-    vertical-align: text-bottom;
-}
-
-svg.icon-va-tbase {
-    vertical-align: baseline;
-}
-
-svg.icon-small {
-    width: 25;
-    height: 25;
-}
-
-.icon-x {
-    font-size: 1.8rem;
-}
-
-.library-icon {
-    height: 20px;
-    width: auto;
-    transition: all 0.3s ease;
-}
-
-
-.grid-2col-bg {
-    padding: 1.5rem;
-    background-color: var(--bg-secondary);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-
-
-
-
-
-/* ---- Inline Code ---- */
-code.inline,
-code:not([class]) {
-    font-family: var(--font-code);
-    font-size: 0.85rem;
-    background: var(--bg-tertiary);
-    padding: 0.25em 0.5em 0.15rem;
-    border-radius: 4px;
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    font-variant-ligatures: none !important;
-    font-feature-settings: "liga" 0, "calt" 0 !important;
-    -webkit-font-feature-settings: "liga" 0, "calt" 0;
-    -moz-font-feature-settings: "liga" 0, "calt" 0;
-}
-
-/* ---- mark ---- */
-mark {
-    background-color: var(--color-warning);
-}
-
-/* ---- Keyboard Keys ---- */
-
-
-/* ---- Tooltip Styles ---- */
-/* .tooltip {
-    position: relative;
-    cursor: help;
-    border-bottom: 1px dashed var(--heading-secondary);
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-style: normal;
-    white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border-color);
-    z-index: 100;
-    transition: opacity 0.2s, visibility 0.2s;
-}
-
-.tooltip .tooltiptext::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: var(--bg-tertiary);
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-} */
-
-
-
-
-/* ===================================
-   8. QUICK REFERENCE - ZUM NACHSCHLAGEN
+   5. QUICK REFERENCE - ZUM NACHSCHLAGEN
    =================================== 
    
    REM zu PIXEL Umrechnung (bei font-size: 16px als Basis):
@@ -1273,4 +320,97 @@ mark {
    768px  = Desktop (Navigation, mehr Padding)
    1024px = Große Screens (3 Spalten)
    
+   =================================== */
+
+/* ===================================
+   LAYOUT.CSS - DevPanicZone
+   ===================================
+   Table of Contents
+   -----------------
+   1. MAIN CONTENT ..................... ~25
+   2. HEADER ........................... ~35
+   3. FOOTER ........................... ~55
+   4. CONTAINER ........................ ~95
+   5. SECTIONS (Categories) ............ ~115
+   6. GRID SYSTEMS ..................... ~125
+      6.1 Categories Grid .............. ~130
+      6.2 Grid-3 (Auto-fit) ............ ~150
+      6.3 Grid-4 (1-4 Spalten) ......... ~180
+      6.4 Grid-2col .................... ~215
+      6.5 Grid-2-1col (2:1 Ratio) ...... ~282
+      6.6 Grid-2col-cards .............. ~300
+      6.7 Code-Block Header/Footer ..... ~346
+      6.8 Tutorials Grid ............... ~379
+      6.9 Responsive icon-grid-res ..... ~394
+      6.10 Mobile First icon-grid ...... ~422
+   =================================== */
+
+/* ===============================================================================
+   VARIABLES.CSS - DevPanicZone
+   ===============================================================================
+   CSS Custom Properties / Variables (Design Tokens)
+   Table of Contents
+   -----------------
+   1. ACCENT COLORS ..................... ~25
+   2. DARK MODE (Standard) .............. ~50
+      2.1 Backgrounds
+      2.2 Headings
+      2.3 Text Colors
+      2.4 Borders
+      2.5 Status Colors
+   3. FONTS ............................. ~80
+   4. LIGHT MODE ........................ ~90
+
+   =============================================================================== */
+
+/* ===================================
+   COMPONENTS.CSS - DevPanicZone
+   ===================================
+   UI-Bausteine und wiederverwendbare Komponenten
+   Table of Contents
+   -----------------
+   1. BUTTONS ............................ ~30
+      1.1 Base Button Styles
+      1.2 Button Variants (Primary, Secondary, Tertiary)
+      1.3 CTA Content
+   2. THEME TOGGLE BUTTON ................ ~130
+   3. SCROLL TO TOP BUTTON ............... ~171
+   4. TUTORIAL BUTTONS (Kategorieseiten) . ~219
+   5. CARDS .............................. ~261
+      5.1 Category Cards (Home)
+      5.2 Tutorial Cards
+      5.3 Card Badges
+      5.4 Disclaimer Teaser
+   6. HERO SECTION ....................... ~556
+      6.1 Hero Base
+      6.2 Hero Container
+      6.3 Hero Text/Subtitle
+      6.4 Hero CTA
+   7. SEARCH ............................. ~618
+      7.1 Search Toggle
+      7.2 Search Dropdown
+      7.3 Search Input
+      7.4 Search Results
+   8. NAVIGATION ......................... ~837
+      8.1 Main Nav
+      8.2 Nav List & Links
+      8.3 Dropdown Menu
+      8.4 Nested Navigation (Submenus)
+      8.5 Mobile Menu Toggle   
+   9. LOGO / BRAND ...................... ~1095 
+   10. BREADCRUMBS ...................... ~1129 
+   11. INLINE CODE & MARK ............... ~1185
+       (Alternative: typography.css)   
+   12. KBD / KEYBOARD KEYS .............. ~1209  
+   13. TOOLTIPS ......................... ~1391  
+   14. HORIZONTAL RULES ................. ~1436
+       (hr, .hr-clear)   
+   =================================== */
+
+
+/* ===================================
+   GRAPHICS.CSS - DevPanicZone
+   ===================================
+   1. ICONS
+   2. GRAPHICS
    =================================== */

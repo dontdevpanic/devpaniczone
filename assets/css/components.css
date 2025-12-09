@@ -1,26 +1,60 @@
 /* ===============================================================================
-   COMPONENTS.CSS
+   COMPONENTS.CSS - DevPanicZone
+   ===============================================================================
    UI-Bausteine und wiederverwendbare Komponenten
+   Table of Contents
+   -----------------
+   1. BUTTONS ............................ ~30
+      1.1 Base Button Styles
+      1.2 Button Variants (Primary, Secondary, Tertiary)
+      1.3 CTA Content
    
-   INHALTSVERZEICHNIS:
-   1. Buttons.......................... Zeile ~20
-      - Base Button Styles
-      - Button Variants (Primary, Secondary, Tertiary)
-      - CTA Content
-   2. Theme Toggle Button.............. Zeile ~95
-   3. Scroll to Top Button............. Zeile ~130
-   4. Tutorial Buttons (Kategorieseiten) Zeile ~175
-   5. Cards............................ Zeile ~230
-      - Category Cards (Home)
-      - Tutorial Cards
-      - Card Badges
-      - Disclaimer Teaser
-   6. KBD / Keyboard Keys.............. Zeile ~480
-   7. Tooltips......................... Zeile ~600
-   8. Utilities (text-muted)........... Zeile ~650
+   2. THEME TOGGLE BUTTON ................ ~130
+   
+   3. SCROLL TO TOP BUTTON ............... ~171
+   
+   4. TUTORIAL BUTTONS (Kategorieseiten) . ~219
+   
+   5. CARDS .............................. ~261
+      5.1 Category Cards (Home)
+      5.2 Tutorial Cards
+      5.3 Card Badges
+      5.4 Disclaimer Teaser
+   
+   6. HERO SECTION ....................... ~556
+      6.1 Hero Base
+      6.2 Hero Container
+      6.3 Hero Text/Subtitle
+      6.4 Hero CTA
+   
+   7. SEARCH ............................. ~618
+      7.1 Search Toggle
+      7.2 Search Dropdown
+      7.3 Search Input
+      7.4 Search Results
 
+   8. NAVIGATION ......................... ~837
+      8.1 Main Nav
+      8.2 Nav List & Links
+      8.3 Dropdown Menu
+      8.4 Nested Navigation (Submenus)
+      8.5 Mobile Menu Toggle   
+
+   9. LOGO / BRAND ...................... ~1095 
+
+   10. BREADCRUMBS ...................... ~1129 
+
+   11. INLINE CODE & MARK ............... ~1185
+       (Alternative: typography.css)   
+
+   12. KBD / KEYBOARD KEYS .............. ~1209  
+
+   13. TOOLTIPS ......................... ~1391  
+
+   14. HORIZONTAL RULES ................. ~1436
+       (hr, .hr-clear)
+   
    =============================================================================== */
-
 
 /* ===================================
    1. BUTTONS
@@ -133,7 +167,6 @@
     transform: scale(1.1);
 }
 
-
 /* ===================================
    3. SCROLL TO TOP BUTTON
    =================================== */
@@ -182,7 +215,6 @@
     }
 }
 
-
 /* ===================================
    4. TUTORIAL BUTTONS (Kategorieseiten)
    =================================== */
@@ -224,7 +256,6 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
 
 /* ===================================
    5. CARDS
@@ -278,115 +309,13 @@
     gap: 0.5rem;
 }
 
-
-/* ---- Card Badges ---- */
-.card-badge {
-    display: inline-block;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: 4px;
-    margin-bottom: 0.75rem;
+/* ---- Tutorial Grid ---- */
+.tutorial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
-
-.card-badge-html {
-    background: var(--accent-blue);
-    color: var(--bg-primary);
-}
-
-.card-badge-css {
-    background: var(--accent-green);
-    color: var(--bg-primary);
-}
-
-/* .card-badge-bootstrap {
-    background: var(--accent-purple);
-    color: var(--bg-primary);
-} */
-
-.card-badge-javascript {
-    background: var(--accent-orange);
-    color: var(--bg-primary);
-}
-
-.card-badge-php {
-    background: var(--accent-red);
-    color: var(--bg-primary);
-}
-
-.card-badge-misc {
-    background: var(--accent-cyan);
-    color: var(--bg-primary);
-}
-
-.card-badge-dpz {
-    background: var(--accent-purple);
-    color: var(--bg-primary);
-}
-
-
-/* ---- Category Card Link Colors (by position) ---- */
-.category-card:nth-child(1) .card-link {
-    color: var(--accent-blue);
-}
-
-.category-card:nth-child(2) .card-link {
-    color: var(--accent-green);
-}
-
-.category-card:nth-child(3) .card-link {
-    color: var(--accent-orange);
-}
-
-.category-card:nth-child(4) .card-link {
-    color: var(--accent-red);
-}
-
-.category-card:nth-child(5) .card-link {
-    color: var(--accent-cyan);
-}
-
-.category-card:nth-child(6) .card-link {
-    color: var(--accent-purple);
-}
-
-.category-card:nth-child(7) .card-link,
-.category-card:nth-child(8) .card-link {
-    color: var(--accent-red);
-}
-
-/* ---- Category Card Hover Border Colors (by position) ---- */
-.category-card:nth-child(1):hover {
-    border-color: var(--accent-blue);
-}
-
-.category-card:nth-child(2):hover {
-    border-color: var(--accent-green);
-}
-
-.category-card:nth-child(3):hover {
-    border-color: var(--accent-orange);
-}
-
-.category-card:nth-child(4):hover {
-    border-color: var(--accent-red);
-}
-
-.category-card:nth-child(5):hover {
-    border-color: var(--accent-cyan);
-}
-
-.category-card:nth-child(6):hover {
-    border-color: var(--accent-purple);
-}
-
-.category-card:nth-child(7):hover,
-.category-card:nth-child(8):hover {
-    border-color: var(--accent-red);
-}
-
 
 /* ---- Tutorial Cards ---- */
 .tutorial-card {
@@ -403,6 +332,18 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-color: var(--accent-blue);
+}
+
+.tutorial-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    padding-top: 0;
+    color: var(--accent-blue);
+    font-size: 1.1rem;
+}
+
+.tutorial-card p {
+    margin: 1rem 0 0;
 }
 
 .tutorial-card .card-description {
@@ -474,6 +415,112 @@
     border-color: var(--accent-cyan);
 }
 
+/* ---- Card Badges ---- */
+.card-badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+}
+
+.card-badge-html {
+    background: var(--accent-blue);
+    color: var(--bg-primary);
+}
+
+.card-badge-css {
+    background: var(--accent-green);
+    color: var(--bg-primary);
+}
+
+/* .card-badge-bootstrap {
+    background: var(--accent-purple);
+    color: var(--bg-primary);
+} */
+
+.card-badge-javascript {
+    background: var(--accent-orange);
+    color: var(--bg-primary);
+}
+
+.card-badge-php {
+    background: var(--accent-red);
+    color: var(--bg-primary);
+}
+
+.card-badge-misc {
+    background: var(--accent-cyan);
+    color: var(--bg-primary);
+}
+
+.card-badge-dpz {
+    background: var(--accent-purple);
+    color: var(--bg-primary);
+}
+
+/* ---- Category Card Link Colors (by position) ---- */
+.category-card:nth-child(1) .card-link {
+    color: var(--accent-blue);
+}
+
+.category-card:nth-child(2) .card-link {
+    color: var(--accent-green);
+}
+
+.category-card:nth-child(3) .card-link {
+    color: var(--accent-orange);
+}
+
+.category-card:nth-child(4) .card-link {
+    color: var(--accent-red);
+}
+
+.category-card:nth-child(5) .card-link {
+    color: var(--accent-cyan);
+}
+
+.category-card:nth-child(6) .card-link {
+    color: var(--accent-purple);
+}
+
+.category-card:nth-child(7) .card-link,
+.category-card:nth-child(8) .card-link {
+    color: var(--accent-red);
+}
+
+/* ---- Category Card Hover Border Colors (by position) ---- */
+.category-card:nth-child(1):hover {
+    border-color: var(--accent-blue);
+}
+
+.category-card:nth-child(2):hover {
+    border-color: var(--accent-green);
+}
+
+.category-card:nth-child(3):hover {
+    border-color: var(--accent-orange);
+}
+
+.category-card:nth-child(4):hover {
+    border-color: var(--accent-red);
+}
+
+.category-card:nth-child(5):hover {
+    border-color: var(--accent-cyan);
+}
+
+.category-card:nth-child(6):hover {
+    border-color: var(--accent-purple);
+}
+
+.category-card:nth-child(7):hover,
+.category-card:nth-child(8):hover {
+    border-color: var(--accent-red);
+}
 
 /* ---- Disclaimer Teaser ---- */
 .disclaimer-teaser {
@@ -505,9 +552,670 @@
     color: var(--accent-blue-hover);
 }
 
+/* ===================================
+   6. HERO SECTION - FULL WIDTH BACKGROUND
+   =================================== */
+.hero {
+    text-align: center;
+    padding: 6rem 0 4rem;
+    margin-top: -32px;
+    margin-bottom: 1rem;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.hero h1::before {
+    content: '// ';
+}
+
+/* ----- Hero Container ----- */
+.hero .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .hero .container {
+        padding: 0 2rem;
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.hero-text {
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+@media (min-width: 640px) {
+    .hero-cta {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   7. SEARCH TOGGLE IN NAVIGATION
+   ============================================ */
+
+.search-toggle {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.search-toggle:hover {
+    transform: scale(1.1);
+}
+
+.search-icon-nav {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 500px;
+    max-width: calc(100vw - 2rem);
+    margin-top: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.search-dropdown .search-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    background: var(--text-secondary);
+    mask-image: url("/assets/icons/cross.svg");
+    /* Custom X-Icon */
+    cursor: pointer;
+}
+
+.search-dropdown .search-icon {
+    position: absolute;
+    left: 1rem;
+    width: 18px;
+    height: 18px;
+    fill: var(--border-color);
+    pointer-events: none;
+}
+
+.search-dropdown .search-input {
+    width: 100%;
+    padding: 0.75rem 3rem 0.75rem 3rem;
+    background: var(--bg-tertiary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.search-dropdown .search-input:focus {
+    outline: none;
+    border-color: var(--accent-blue-gray);
+    background: var(--bg-tertiary);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+.search-dropdown .search-shortcut {
+    position: absolute;
+    right: 1rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--accent-blue-gray);
+    font-size: 0.75rem;
+    font-family: 'Fira Code', monospace;
+    pointer-events: none;
+}
+
+.search-dropdown .search-input:focus+.search-shortcut {
+    opacity: 0;
+}
+
+.search-dropdown .search-results {
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .search-dropdown {
+        width: calc(100vw - 2rem);
+        right: 1rem;
+    }
+
+    .search-shortcut {
+        display: none;
+    }
+}
+
+.search-results {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background: var(--bg-tertiary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-height: 400px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.search-results-list {
+    max-height: 350px;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.search-result-item {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.search-result-item:hover,
+.search-result-item:focus {
+    background: rgba(96, 165, 250, 0.1);
+    outline: none;
+}
+
+.search-result-category {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--heading-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.search-result-title {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.search-result-excerpt {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.search-results-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.search-view-all {
+    width: 100%;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--accent-blue-hover);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+}
+
+.search-view-all:hover {
+    background: rgba(96, 165, 250, 0.1);
+}
+
+.search-no-results {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.search-suggestions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.search-suggestions li {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .search-bar {
+        padding: 0.5rem 0;
+    }
+
+    .search-shortcut {
+        display: none;
+    }
+
+    .search-input {
+        padding-right: 1rem;
+        font-size: 16px;
+    }
+}
+
+/* ============================================
+   8. MAIN NAVIGATION
+   ============================================ */
+
+/* ---- 8.1 Main Nav ---- */
+.main-nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Wird von JS hinzugefügt */
+.main-nav.is-open {
+    display: block;
+}
+
+@media (min-width: 768px) {
+
+    .main-nav {
+        display: block;
+        position: static;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+    }
+}
+
+/* ---- 8.2 Nav List & Links ---- */
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+@media (min-width: 768px) {
+    .nav-list {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+}
+
+.nav-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--text-primary);
+    transition: all 150ms ease;
+    border-bottom: 1px solid var(--border-color);
+}
+
+@media (min-width: 768px) {
+    .nav-link {
+        border: none;
+        border-radius: 8px;
+    }
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--bg-tertiary);
+    /* border-bottom: 2px solid var(--accent-blue); */
+    color: var(--accent-blue);
+}
+
+/* ---- 8.3 Dropdown Menu ---- */
+.nav-item-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    display: block;
+    padding: 1rem 1.5rem;
+    transition: all 150ms ease;
+}
+
+@media (min-width: 768px) {
+
+    .dropdown-toggle {
+        border: none;
+        vertical-align: middle;
+    }
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--accent-blue);
+}
+
+.dropdown-icon {
+    font-size: 1em;
+    transition: transform 150ms ease;
+}
+
+.dropdown-toggle[aria-expanded="true"] .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: none;
+    list-style: none;
+    background-color: var(--bg-tertiary);
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu.is-open {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        margin-top: 0.25rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    color: var(--text-primary);
+    transition: all 150ms ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--bg-primary);
+    color: var(--accent-blue);
+    border-radius: 0;
+}
+
+/* ---- 8.4 Nested Navigation (Submenus) ---- */
+.nav-item-nested {
+    position: relative;
+}
+
+.nav-item-nested>.nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+}
+
+.submenu-icon {
+    font-size: 0.875em;
+    transition: transform 150ms ease;
+    margin-left: 0.5rem;
+}
+
+.nav-item-nested.is-active>.nav-link .submenu-icon {
+    transform: rotate(90deg);
+}
+
+/* ----- Nested Submenu ----- */
+.dropdown-submenu {
+    display: none;
+    list-style: none;
+    background-color: var(--bg-tertiary);
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item-nested.is-active>.dropdown-submenu {
+    display: block;
+}
+
+.dropdown-submenu li {
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-submenu a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: all 150ms ease;
+}
+
+.dropdown-submenu a:hover {
+    background-color: var(--bg-primary);
+    color: var(--accent-blue);
+}
+
+/* ---- 8.5 Mobile Menu Toggle & Overlay ---- */
+
+.mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 150ms ease;
+    position: relative;
+}
+
+.mobile-menu-toggle:hover {
+    border-color: var(--accent-blue);
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: all 150ms ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+}
+
+.hamburger::before {
+    transform: translateY(-8px);
+}
+
+.hamburger::after {
+    transform: translateY(8px);
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+}
+
+/* ============================================
+   9. LOGO / BRAND
+   ============================================ */
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--heading-secondary);
+}
+
+.brand-icon {
+    color: var(--accent-blue);
+    font-size: 1.5rem;
+}
+
+.logo-icon {
+    height: 36px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.brand-name {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .brand-name {
+        display: inline;
+    }
+}
+
+/* ============================================
+   10. BREADCRUMBS
+   ============================================ */
+.breadcrumbs {
+    margin: 0 0 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumbs li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+    content: '›';
+    margin-left: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb-separator {
+    color: var(--text-primary);
+    user-select: none;
+}
+
+.breadcrumb-link {
+    color: var(--accent-blue);
+    transition: color 150ms ease;
+}
+
+.breadcrumb-link:hover {
+    color: var(--accent-blue-hover);
+}
+
+.breadcrumbs li:last-child {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.breadcrumb-current {
+    color: var(--text-primary);
+    font-weight: 500;
+}
 
 /* ===================================
-   6. KBD / KEYBOARD KEYS
+   11. INLINE CODE & MARK
+   =================================== */
+/* ---- Inline Code ---- */
+code.inline,
+code:not([class]) {
+    font-family: var(--font-code);
+    font-size: 0.85rem;
+    background: var(--bg-tertiary);
+    padding: 0.25em 0.5em 0.15rem;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    font-variant-ligatures: none !important;
+    font-feature-settings: "liga" 0, "calt" 0 !important;
+    -webkit-font-feature-settings: "liga" 0, "calt" 0;
+    -moz-font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* ---- mark ---- */
+mark {
+    background-color: var(--color-warning);
+}
+
+/* ===================================
+   12. KBD / KEYBOARD KEYS
    =================================== */
 
 kbd {
@@ -688,9 +1396,8 @@ kbd.key-active-blue {
     }
 }
 
-
 /* ===================================
-   7. TOOLTIPS
+   13. TOOLTIPS
    =================================== */
 
 .tooltip {
@@ -732,4 +1439,19 @@ kbd.key-active-blue {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+/* ===================================
+   14. HORIZONTAL RULES
+   =================================== */
+
+hr {
+    border: 1px dashed var(--border-color);
+    margin: 0 0 2rem;
+}
+
+.hr-clear {
+    border: 1px solid var(--accent-blue);
+    margin: 0.75rem 0 0;
+    padding: 0;
 }

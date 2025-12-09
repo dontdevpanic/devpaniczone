@@ -1,14 +1,27 @@
 /* ===================================
+   LAYOUT.CSS - DevPanicZone
+   ===================================   
    Table of Contents
-   1. Main Content
-   2. Header
-   3. Footer
-   4. Layout
-      Container
-      Caregories
-      Grid
+   -----------------
+   1. MAIN CONTENT ..................... ~25
+   2. HEADER ........................... ~35
+   3. FOOTER ........................... ~55
+   4. CONTAINER ........................ ~95
+   5. SECTIONS (Categories) ............ ~115
+   6. GRID SYSTEMS ..................... ~125
+      6.1 Categories Grid .............. ~130
+      6.2 Grid-3 (Auto-fit) ............ ~150
+      6.3 Grid-4 (1-4 Spalten) ......... ~180
+      6.4 Grid-2col .................... ~215
+      6.5 Grid-2-1col (2:1 Ratio) ...... ~282
+      6.6 Grid-2col-cards .............. ~300
+      6.7 Code-Block Header/Footer ..... ~346
+      6.8 Tutorials Grid ............... ~379
+      6.9 Responsive icon-grid-res ..... ~397
+      6.10 Mobile First icon-grid ...... ~425
 
    =================================== */
+
 
 /* ===================================
    1. MAIN CONTENT
@@ -16,8 +29,8 @@
 
 .site-main {
     flex: 1;
-    padding-bottom: 4rem;
 }
+
 
 /* ===================================
    2. HEADER
@@ -91,11 +104,11 @@
     color: var(--accent-blue);
 }
 
+
 /* ===================================
-   4. LAYOUT (Container, Sections)
+   4. CONTAINER
    =================================== */
 
-/* ----- Container ----- */
 .container {
     width: 100%;
     max-width: 1200px;
@@ -104,20 +117,27 @@
 }
 
 @media (min-width: 768px) {
-
     .container {
         padding: 0 4rem;
     }
 }
 
-/* ----- Categories Section ----- */
+
+/* ===================================
+   5. SECTIONS (Categories)
+   =================================== */
 
 .categories {
     margin: 0;
     padding: 2rem 0;
 }
 
-/* ----- Grid ----- */
+
+/* ===================================
+   6. GRID SYSTEMS
+   =================================== */
+
+/* ----- 6.1 Categories Grid ----- */
 
 .categories-grid {
     display: grid;
@@ -125,6 +145,22 @@
     grid-template-columns: 1fr;
 }
 
+/* 640px: 2 Spalten */
+@media (min-width: 640px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 1024px: 3 Spalten */
+@media (min-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* ----- 6.2 Grid-3 (Auto-fit) ----- */
 
 /* Basis: Mobile = 1 Spalte */
 .grid-3 {
@@ -154,6 +190,8 @@
     background-color: var(--card-bg);
 }
 
+
+/* ----- 6.3 Grid-4 (1-4 Spalten) ----- */
 
 /* Basis: Mobile = 1 Spalte */
 .grid-4 {
@@ -188,7 +226,7 @@
     }
 }
 
-
+/* ----- 6.4 Grid-2col ----- */
 
 /* Generisches 2-Spalten Grid */
 .grid-2col {
@@ -199,10 +237,13 @@
     margin: 0;
 }
 
+.grid-2col .info-box {
+    margin-bottom: 0;
+}
+
 .grid-2col>.code-block {
     margin: auto 0 0 0;
 }
-
 
 .grid-2col-bg h3 {
     font-size: 1.2rem;
@@ -225,8 +266,24 @@
     margin: 0;
 }
 
-/* Grid mit 2:1 Verhältnis */
-/* start sorgt dafür, Spalten oben bündig sind */
+/* 640px: 2 Spalten */
+@media (min-width: 640px) {
+    .grid-2col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ---- Background Styling Grid ---- */
+.grid-2col-bg {
+    padding: 1.5rem;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* ----- 6.5 Grid-2-1col (2:1 Verhältnis) ----- */
+/* Linke Spalte 2x so breit wie rechte */
+
 .grid-2-1col {
     display: grid;
     gap: 2rem;
@@ -234,34 +291,17 @@
     align-items: center;
 }
 
-/* 640px: 2 Spalten */
+/* 640px: 2:1 Verhältnis */
 @media (min-width: 640px) {
-
-    .grid-2col {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .categories-grid {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 gleich breite Spalten */
-    }
-
     .grid-2-1col {
         grid-template-columns: 2fr 1fr;
     }
 }
 
 
-/* 1024px: 3 Spalten */
-@media (min-width: 1024px) {
-
-    .categories-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
+/* ----- 6.6 Grid-2col-cards ----- */
 /* Grid für gleich hohe Cards/Code-Blocks */
+
 .grid-2col-cards {
     display: grid;
     gap: 1.5rem;
@@ -299,14 +339,13 @@
     white-space: pre;
 }
 
-
 @media (min-width: 1040px) {
-
     .grid-2col-cards {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* ----- 6.7 Code-Block Header/Footer ----- */
 
 .code-header {
     display: flex;
@@ -321,8 +360,10 @@
     padding: 1rem 1.5rem;
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
-    border-radius: 0 0 8px 8px;  /* Untere Ecken abrunden */
+    border-radius: 0 0 8px 8px;
     font-size: 0.9rem;
+    color: var(--text-secondary);
+    /* MERGED: war vorher separate Regel */
 }
 
 .code-footer p {
@@ -337,21 +378,95 @@
     margin-bottom: 0;
 }
 
-.code-footer {
-    color: var(--text-secondary);
-}
+/* ----- 6.8 Tutorials Grid (Latest Tutorials) ----- */
 
-/* ===== LATEST TUTORIALS GRID ===== */
 .tutorials-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
 }
 
-/* Tablet: 2 Spalten - ABER wir wollen 1 Spalte bis Desktop */
 /* Desktop: 2 Spalten nebeneinander */
 @media (min-width: 768px) {
     .tutorials-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ----- 6.9 Responsive icon-grid-res ----- */
+.icon-grid-res {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.icon-grid-res .group-res h4 {
+    margin: 0;
+    padding: 0 0 0.5rem;
+    font-size: 1rem;
+    color: var(--heading-secondary);
+}
+
+.icon-grid-res .group-res p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1.15rem;
+}
+
+.group-res {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+/* 6.10 Mobile First icon-grid */
+.icon-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* auf Handy: alles untereinander */
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.group {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.icon-grid .group h4 {
+    margin: 0 0 0.4rem;
+    padding: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.icon-grid .group p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1.15rem;
+}
+
+/* TABLET */
+@media (min-width: 600px) {
+    .icon-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 900px) {
+    .icon-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* BREITE DESKTOPS */
+@media (min-width: 1200px) {
+    .icon-grid {
+        grid-template-columns: repeat(6, 1fr);
     }
 }
