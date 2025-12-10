@@ -249,6 +249,7 @@ const TUTORIAL_ORDER = {
         'duplicate-content.html'
     ],
     'tutorials/misc/tools': [
+        'vs-code.html',
         'browser-dev-tools.html',
         'bash-terminal.html',
         'git-versionskontrolle.html',
@@ -822,7 +823,7 @@ ${buttonsHtml}
 
 function generateLatestTutorialsSection(category) {
     const categoryDisplay = CATEGORY_NAMES[category] || category;
-    
+
     // ID generieren wie in addIdsToHeadingsAndGenerateSidebar
     const headingText = `Mehr aus ${categoryDisplay}`;
     const id = headingText.toLowerCase()
@@ -832,7 +833,7 @@ function generateLatestTutorialsSection(category) {
         })
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '-');
-    
+
     return `
                 <!-- Latest-Tutorials-Start -->
                 <section class="categories">
@@ -1183,7 +1184,7 @@ function updateHtmlFile(filePath) {
     if (basename !== 'index.html') {
         const latestStartMarker = '<!-- Latest-Tutorials-Start -->';
         const latestEndMarker = '<!-- Latest-Tutorials-End -->';
-        
+
         // Prüfe ob Marker bereits existieren
         if (html.includes(latestStartMarker) && html.includes(latestEndMarker)) {
             // Aktualisiere bestehende Section
