@@ -158,7 +158,7 @@ const FOOTER_TEMPLATE = `<footer class="site-footer">
 // Manuelle Reihenfolge der Tutorials pro Kategorie
 const TUTORIAL_ORDER = {
     'tutorials/html/html-basics': [
-        'html-basics.html',
+        'html-grundlagen.html',
         'html-grundgeruest.html',
         'html-typografie.html',
         'html-navigation.html',
