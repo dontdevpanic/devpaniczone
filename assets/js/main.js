@@ -116,33 +116,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
+    // Hilfsfunktion: Dropdown togglen
+    function toggleDropdown(toggle) {
+        const menu = toggle.nextElementSibling;
+
+        if (!menu || !menu.classList.contains('dropdown-menu')) return;
+
+        const isOpen = menu.classList.contains('is-open');
+
+        // Schließe ALLE Dropdowns
+        document.querySelectorAll('.dropdown-menu').forEach((m) => {
+            m.classList.remove('is-open');
+        });
+
+        // Setze alle aria-expanded auf false
+        document.querySelectorAll('.dropdown-toggle').forEach((t) => {
+            t.setAttribute('aria-expanded', 'false');
+        });
+
+        // Toggle das aktuelle Dropdown
+        if (!isOpen) {
+            menu.classList.add('is-open');
+            toggle.setAttribute('aria-expanded', 'true');
+        }
+    }
+
     dropdownToggles.forEach((toggle) => {
+        // Klick-Event
         toggle.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
+            toggleDropdown(toggle);
+        });
 
-            // Finde das zugehörige Dropdown-Menu (nächstes Sibling)
-            const menu = toggle.nextElementSibling;
-
-            if (!menu || !menu.classList.contains('dropdown-menu')) return;
-
-            // Prüfe ob dieses Menu offen ist
-            const isOpen = menu.classList.contains('is-open');
-
-            // Schließe ALLE Dropdowns
-            document.querySelectorAll('.dropdown-menu').forEach((m) => {
-                m.classList.remove('is-open');
-            });
-
-            // Setze alle aria-expanded auf false
-            document.querySelectorAll('.dropdown-toggle').forEach((t) => {
-                t.setAttribute('aria-expanded', 'false');
-            });
-
-            // Toggle das aktuelle Dropdown
-            if (!isOpen) {
-                menu.classList.add('is-open');
-                toggle.setAttribute('aria-expanded', 'true');
+        // Keyboard-Event (Enter und Space)
+        toggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleDropdown(toggle);
             }
         });
     });
@@ -177,39 +189,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nestedItems = document.querySelectorAll('.nav-item-nested > .nav-link');
 
+    // Hilfsfunktion: Submenu togglen
+    function toggleSubmenu(link) {
+        const parentLi = link.closest('.nav-item-nested');
+
+        // Schließe alle anderen Submenus im gleichen Dropdown
+        const dropdown = link.closest('.dropdown-menu');
+        if (dropdown) {
+            dropdown.querySelectorAll('.nav-item-nested').forEach(item => {
+                if (item !== parentLi) {
+                    item.classList.remove('is-active');
+                }
+            });
+        }
+
+        // Toggle das aktuelle Submenu
+        parentLi.classList.toggle('is-active');
+    }
+
     nestedItems.forEach(link => {
+        // Klick-Event
         link.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
+            toggleSubmenu(this);
+        });
 
-            const parentLi = this.closest('.nav-item-nested');
-            const isActive = parentLi.classList.contains('is-active');
-
-            // Schließe alle anderen Submenus im gleichen Dropdown
-            const dropdown = this.closest('.dropdown-menu');
-            if (dropdown) {
-                dropdown.querySelectorAll('.nav-item-nested').forEach(item => {
-                    if (item !== parentLi) {
-                        item.classList.remove('is-active');
-                    }
-                });
+        // Keyboard-Event (Enter und Space)
+        link.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleSubmenu(this);
             }
-
-            // Toggle das aktuelle Submenu
-            parentLi.classList.toggle('is-active');
         });
     });
 
-    // Schließe Submenus wenn außerhalb geklickt wird
-    document.addEventListener('click', function (e) {
-        if (!e.target.closest('.nav-item-nested') && !e.target.closest('.dropdown-menu')) {
-            document.querySelectorAll('.nav-item-nested').forEach(item => {
-                item.classList.remove('is-active');
-            });
-        }
-    });
-
-    // Schließe Submenus wenn außerhalb geklickt wird
+    // Schließe Submenus wenn außerhalb geklickt wird (NUR EINMAL!)
     document.addEventListener('click', function (e) {
         if (!e.target.closest('.nav-item-nested') && !e.target.closest('.dropdown-menu')) {
             document.querySelectorAll('.nav-item-nested').forEach(item => {

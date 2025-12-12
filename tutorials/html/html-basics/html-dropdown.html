@@ -1,0 +1,1220 @@
+<!DOCTYPE html><html lang="de"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="wie du Dropdown-Menüs mit HTML und CSS erstellst. Hover- und Klick-Varianten mit JavaScript, Accessibility-Tipps und funktionierende Demos.">
+        <meta name="keywords" content="HTML Dropdown, Dropdown-Menü, CSS Dropdown, JavaScript Dropdown, Navigation Untermenü, Klick Dropdown, Hover Dropdown, aria-expanded">
+        <meta name="author" content="DevPanicZone">
+        <title>HTML Dropdown-Menüs erstellen | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <!-- <link rel="stylesheet" href="/assets/css/html-naviagation-dropdown-demo.css"> -->
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+
+        <style>
+            /* ============================================
+       GEMEINSAME STYLES FÜR ALLE DEMOS
+       ============================================ */
+
+            .demo-header {
+                margin-top: 1rem;
+                padding: 1rem 2rem;
+                background: var(--bg-secondary);
+                border-radius: 0 8px 8px 0;
+                border-left: 4px solid var(--accent-blue);
+            }
+
+            .nav-demo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav-demo .logo img {
+                width: 35px;
+                height: auto;
+            }
+
+            /* ============================================
+       BASIS-MENÜ (für beide Varianten)
+       ============================================ */
+
+            .menu-demo,
+            .menu-click {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+            }
+
+            .menu-demo>li,
+            .menu-click>li {
+                position: relative;
+            }
+
+            .menu-demo a,
+            .menu-click a {
+                color: var(--text-primary);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: color 0.3s;
+                display: block;
+                padding: 0.5rem 0;
+            }
+
+            .menu-demo a:hover,
+            .menu-click a:hover {
+                color: var(--accent-blue);
+            }
+
+            /* ============================================
+       HOVER-DROPDOWN (.dropdown-demo)
+       ============================================ */
+
+            .dropdown-demo {
+                position: relative;
+            }
+
+            .dropdown-menu-demo {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--bg-tertiary);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                min-width: 180px;
+                list-style: none;
+                padding: 0.5rem 0;
+                margin: 0;
+
+                display: flex;
+                flex-direction: column;
+
+                /* Versteckt */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                z-index: 100;
+            }
+
+            /* HOVER: Dropdown sichtbar */
+            .dropdown-demo:hover .dropdown-menu-demo,
+            .dropdown-demo:focus-within .dropdown-menu-demo {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .dropdown-menu-demo li a {
+                padding: 0.5rem 1rem;
+                display: block;
+            }
+
+            .dropdown-menu-demo li a:hover {
+                background: var(--bg-secondary);
+            }
+
+            /* ============================================
+       KLICK-DROPDOWN (.dropdown-click)
+       ============================================ */
+
+            .dropdown-click {
+                position: relative;
+            }
+
+            .dropdown-click>a {
+                cursor: pointer;
+                user-select: none;
+            }
+
+            /* Pfeil-Indikator */
+            .dropdown-click>a::after {
+                content: ' ▼';
+                font-size: 0.7em;
+                margin-left: 0.3rem;
+                transition: transform 0.3s;
+                display: inline-block;
+            }
+
+            /* Pfeil dreht sich wenn offen */
+            .dropdown-click.open>a::after {
+                transform: rotate(180deg);
+            }
+
+            .dropdown-menu-click {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--bg-tertiary);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                min-width: 180px;
+                list-style: none;
+                padding: 0.5rem 0;
+                margin: 0;
+
+                display: flex;
+                flex-direction: column;
+
+                /* Versteckt */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                z-index: 100;
+            }
+
+            /* KLICK: Sichtbar via .open Klasse */
+            .dropdown-click.open>.dropdown-menu-click {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .dropdown-menu-click li a {
+                padding: 0.5rem 1rem;
+                display: block;
+            }
+
+            .dropdown-menu-click li a:hover {
+                background: var(--bg-secondary);
+            }
+
+            /* NUR FÜR DEMO_SITE */
+
+
+            .menu-demo li,
+            .menu-click li,
+            .dropdown-menu-demo li,
+            .dropdown-menu-click li {
+                margin-bottom: 0 !important;
+                padding-left: 0 !important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Dropdown-Menüs</span></nav>
+                    <h1 class="hero-title">HTML Dropdown-Menüs</h1>
+                    <p class="hero-subtitle">Dropdown-Navigation mit CSS (Hover) und JavaScript (Klick) – mit
+                        funktionierenden Demos zum Ausprobieren.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                </span>
+            </button>
+
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#was-ist-ein-dropdown">Was ist ein Dropdown-Menü?</a></li>
+                    <li class="toc-level-1"><a href="#hover-dropdown">Hover-Dropdown (nur CSS)</a></li>
+                    <li class="toc-level-2"><a href="#html-struktur-hover">HTML-Struktur</a></li>
+                    <li class="toc-level-1"><a href="#klick-dropdown">Klick-Dropdown (mit JavaScript)</a></li>
+                    <li class="toc-level-2"><a href="#html-struktur-klick">HTML-Struktur</a></li>
+                    <li class="toc-level-1"><a href="#dropdown-auf-klick">Dropdown auf Klick (Click-Variante)</a></li>
+                    <li class="toc-level-1"><a href="#accessibility">Accessibility (Barrierefreiheit)</a></li>
+                    <li class="toc-level-2"><a href="#aria-attribute">ARIA-Attribute</a></li>
+                    <li class="toc-level-2"><a href="#keyboard-navigation">Keyboard-Navigation</a></li>
+                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                    <li class="toc-level-2"><a href="#hover-und-klick-kombinieren">Hover und Klick kombinieren</a></li>
+                    <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">HTML Basics</li>
+                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-dropdown.html" class="active">HTML Dropdown-Menüs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                    <li class="sidebar-group-title">HTML Advanced</li>
+                    <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a></li>
+                </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper .container -->
+                <div class="container">
+
+                    <!-- Was ist ein Dropdown-Menü? -->
+                    <section class="tutorials-content mt-xl">
+                        <h2 id="was-ist-ein-dropdown">Was ist ein Dropdown-Menü?</h2>
+                        <p>Ein Dropdown-Menü zeigt Unterpunkte erst an, wenn der Nutzer mit dem Hauptpunkt interagiert.
+                            Das spart Platz und hält die Navigation übersichtlich.</p>
+
+                        <p>Es gibt zwei Varianten:</p>
+
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Hover-Dropdown</h3>
+                                <ul class="arrow-list">
+                                    <li>Öffnet beim Überfahren mit der Maus</li>
+                                    <li>Nur CSS nötig</li>
+                                    <li>Schneller Zugriff auf Desktop</li>
+                                    <li>Problematisch auf Touch-Geräten</li>
+                                </ul>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Klick-Dropdown</h3>
+                                <ul class="arrow-list">
+                                    <li>Öffnet erst bei Klick/Tap</li>
+                                    <li>Braucht JavaScript</li>
+                                    <li>Funktioniert auf allen Geräten</li>
+                                    <li>Bessere Kontrolle für den Nutzer</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Welche Variante wählen?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p><strong>Empfehlung:</strong> Für moderne Websites ist die <strong>Klick-Variante</strong>
+                                meist die bessere Wahl. Sie funktioniert auf Smartphones, Tablets und Desktop
+                                gleichermaßen und gibt dem Nutzer mehr Kontrolle.</p>
+                            <p>Hover-Dropdowns sind okay für reine Desktop-Anwendungen oder als zusätzliche
+                                Komfort-Funktion (Hover + Klick kombiniert).</p>
+                        </div>
+                    </section>
+
+                    <section class="tutorials-content">
+                        <h2 id="hover-dropdown">Hover-Dropdown (nur CSS)</h2>
+                        <p>Die einfachste Variante: Das Dropdown öffnet sich, wenn der Nutzer mit der Maus über den
+                            Menüpunkt fährt. Dafür reicht CSS – kein JavaScript nötig.</p>
+
+                        <h3 id="html-struktur-hover">HTML-Struktur</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav aria-label="Hauptnavigation"&gt;
+    &lt;ul class="menu-demo"&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        
+        &lt;li class="dropdown-demo"&gt;
+            &lt;a href="/tutorials/"&gt;Tutorials&lt;/a&gt;
+            &lt;ul class="dropdown-menu-demo"&gt;
+                &lt;li&gt;&lt;a href="/tutorials/html/"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/tutorials/css/"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/tutorials/js/"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        
+        &lt;li&gt;&lt;a href="/kontakt/"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Demo -->
+                        <p class="mt-md"><strong>Demo:</strong> Fahre mit der Maus über "Tutorials"</p>
+                        <div class="demo-header">
+                            <nav class="nav-demo" aria-label="Demo Navigation">
+                                <a href="#hover-dropdown" class="logo">
+                                    <img src="/assets/icons/logo.svg" alt="Logo">
+                                </a>
+                                <ul class="menu-demo">
+                                    <li><a href="#hover-dropdown">Home</a></li>
+                                    <li class="dropdown-demo">
+                                        <a href="#hover-dropdown">Tutorials</a>
+                                        <ul class="dropdown-menu-demo">
+                                            <li><a href="#hover-dropdown">HTML</a></li>
+                                            <li><a href="#hover-dropdown">CSS</a></li>
+                                            <li><a href="#hover-dropdown">JavaScript</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#hover-dropdown">Kontakt</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <details class="mt-md">
+                            <summary>CSS anzeigen</summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">/* Hauptmenü */
+.menu-demo {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-demo &gt; li {
+    position: relative;              /* Anker für absolutes Dropdown */
+}
+
+.menu-demo a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    display: block;
+}
+
+/* Dropdown-Container */
+.dropdown-demo {
+    position: relative;
+}
+
+/* Dropdown-Menü (versteckt) */
+.dropdown-menu-demo {
+    position: absolute;
+    top: 100%;                       /* Direkt unter dem Trigger */
+    left: 0;
+    min-width: 180px;
+    
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    
+    /* Animation */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    
+    z-index: 100;
+}
+
+/* HOVER: Dropdown einblenden */
+.dropdown-demo:hover .dropdown-menu-demo {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Links im Dropdown */
+.dropdown-menu-demo a {
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-menu-demo a:hover {
+    background: var(--bg-secondary);
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <div class="info-box warning mt-md">
+                            <strong class="box-title warning no-toc">Achtung: Touch-Geräte!
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Hover funktioniert nicht auf Smartphones und Tablets! Der erste Tap öffnet das Dropdown,
+                                der zweite folgt dem Link – das ist verwirrend für Nutzer.</p>
+                            <p><strong>Lösung:</strong> Verwende die Klick-Variante oder kombiniere beide Ansätze.</p>
+                        </div>
+                    </section>
+
+                    <section class="tutorials-content">
+                        <h2 id="klick-dropdown">Klick-Dropdown (mit JavaScript)</h2>
+                        <p>Die robustere Variante: Das Dropdown öffnet sich erst bei Klick oder Tap. Das funktioniert
+                            auf allen Geräten und gibt dem Nutzer mehr Kontrolle.</p>
+
+                        <h3 id="html-struktur-klick">HTML-Struktur</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav aria-label="Hauptnavigation"&gt;
+    &lt;ul class="menu-click"&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        
+        &lt;li class="dropdown-click"&gt;
+            &lt;a href="#" 
+               aria-expanded="false" 
+               aria-haspopup="true"&gt;Tutorials&lt;/a&gt;
+            &lt;ul class="dropdown-menu-click"&gt;
+                &lt;li&gt;&lt;a href="/tutorials/html/"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/tutorials/css/"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/tutorials/js/"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        
+        &lt;li&gt;&lt;a href="/kontakt/"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Demo -->
+                        <p class="mt-md"><strong>Demo:</strong> Klicke auf "Tutorials"</p>
+                        <div class="demo-header">
+                            <nav aria-label="Demo Navigation Klick">
+                                <ul class="menu-click">
+                                    <li><a href="#klick-dropdown">Home</a></li>
+                                    <li class="dropdown-click">
+                                        <a href="#klick-dropdown" aria-expanded="false" aria-haspopup="true">Tutorials</a>
+                                        <ul class="dropdown-menu-click">
+                                            <li><a href="#klick-dropdown">HTML</a></li>
+                                            <li><a href="#klick-dropdown">CSS</a></li>
+                                            <li><a href="#klick-dropdown">JavaScript</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#klick-dropdown">Kontakt</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <details class="mt-md">
+                            <summary>CSS anzeigen</summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">/* Hauptmenü (identisch zur Hover-Variante) */
+.menu-click {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-click &gt; li {
+    position: relative;
+}
+
+/* Dropdown-Trigger */
+.dropdown-click &gt; a {
+    cursor: pointer;
+    user-select: none;           /* Verhindert Textauswahl */
+}
+
+/* Pfeil-Indikator */
+.dropdown-click &gt; a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    margin-left: 0.3rem;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+/* Pfeil dreht sich wenn offen */
+.dropdown-click.open &gt; a::after {
+    transform: rotate(180deg);
+}
+
+/* Dropdown-Menü (versteckt) */
+.dropdown-menu-click {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    
+    z-index: 100;
+}
+
+/* OFFEN: via JavaScript-Klasse */
+.dropdown-click.open &gt; .dropdown-menu-click {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>JavaScript anzeigen</summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">document.addEventListener('DOMContentLoaded', function () {
+
+    // Alle Dropdown-Trigger finden
+    const dropdownTriggers = document.querySelectorAll('.dropdown-click &gt; a');
+
+    // Hilfsfunktion: Dropdown öffnen/schließen
+    function toggleDropdown(trigger) {
+        const dropdown = trigger.parentElement;
+        const isOpen = dropdown.classList.contains('open');
+
+        // Alle anderen Dropdowns schließen
+        document.querySelectorAll('.dropdown-click.open').forEach(open =&gt; {
+            if (open !== dropdown) {
+                open.classList.remove('open');
+                const openTrigger = open.querySelector('a[aria-expanded]');
+                if (openTrigger) openTrigger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Dieses Dropdown togglen
+        dropdown.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', !isOpen);
+    }
+
+    // Hilfsfunktion: Alle Dropdowns schließen
+    function closeAllDropdowns() {
+        document.querySelectorAll('.dropdown-click.open').forEach(open =&gt; {
+            open.classList.remove('open');
+            const trigger = open.querySelector('a[aria-expanded]');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        });
+    }
+
+    dropdownTriggers.forEach(trigger =&gt; {
+        // Klick-Event
+        trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            toggleDropdown(this);
+        });
+
+        // Keyboard-Event (Enter und Space)
+        trigger.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleDropdown(this);
+            }
+        });
+    });
+
+    // Klick außerhalb schließt alle Dropdowns
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.dropdown-click')) {
+            closeAllDropdowns();
+        }
+    });
+
+    // ESC-Taste schließt Dropdowns
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeAllDropdowns();
+        }
+    });
+});</code></pre>
+                            </div>
+                        </details>
+                    </section>
+
+                    <!-- Dropdown auf Klick (Click-Variante) -->
+                    <section class="tutorials-content">
+                        <h2 id="dropdown-auf-klick">Dropdown auf Klick (Click-Variante)</h2>
+                        <p>Bei Touch-Geräten oder wenn der User mehr Kontrolle haben soll, ist es oft besser, Dropdowns
+                            erst bei Klick zu öffnen statt bei Hover. Das braucht ein bisschen JavaScript.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav&gt;
+    &lt;ul class="menu-click"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="dropdown-click"&gt;
+            &lt;a href="#"&gt;Themen&lt;/a&gt;
+            &lt;ul class="dropdown-menu-click"&gt;
+                &lt;li&gt;&lt;a href="#"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Click-Dropdown Demo -->
+                        <div class="demo-header">
+                            <nav>
+                                <ul class="menu-click" id="dropdown-auf-klick-demo">
+                                    <li><i><small>Klick auf "Themen" →</small></i>
+                                    </li>
+                                    <li><a href="#dropdown-auf-klick-demo">Home</a></li>
+                                    <li class="dropdown-click">
+                                        <a href="#dropdown-auf-klick-demo">Themen</a>
+                                        <ul class="dropdown-menu-click">
+                                            <li><a href="#dropdown-auf-klick-demo">HTML</a></li>
+                                            <li><a href="#dropdown-auf-klick-demo">CSS</a></li>
+                                            <li><a href="#dropdown-auf-klick-demo">JavaScript</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <details>
+                            <summary>
+                                Details zum CSS
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">/* Hauptmenü */
+.menu-click {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-click &gt; li {
+    position: relative;
+}
+
+/* Toggle-Element */
+.dropdown-click {
+    position: relative;
+}
+
+.dropdown-click &gt; a {
+    cursor: pointer;                    /* Zeigt Klickbarkeit */
+    user-select: none;                  /* Verhindert Textauswahl */
+}
+
+/* Pfeil-Indikator */
+.dropdown-click &gt; a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    transition: transform 0.3s;
+    display: inline-block;
+}
+
+/* Pfeil dreht sich wenn offen */
+.dropdown-click.open &gt; a::after {
+    transform: rotate(180deg);
+}
+
+/* Dropdown-Menü (versteckt) */
+.dropdown-menu-click {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--dark-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 180px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+/* KLICK: Sichtbar via .open Klasse */
+.dropdown-click.open &gt; .dropdown-menu-click {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>
+                                Details zum JavaScript
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">// Alle Dropdown-Trigger finden
+document.querySelectorAll('.dropdown-click &gt; a').forEach(trigger =&gt; {
+    trigger.addEventListener('click', function(e) {
+        e.preventDefault();                     // Link-Verhalten verhindern
+        
+        const dropdown = this.parentElement;    // Das li.dropdown-click
+        
+        // Alle anderen Dropdowns schließen
+        document.querySelectorAll('.dropdown-click.open').forEach(open =&gt; {
+            if (open !== dropdown) {
+                open.classList.remove('open');
+            }
+        });
+        
+        // Dieses Dropdown togglen
+        dropdown.classList.toggle('open');
+    });
+});
+
+// Klick außerhalb schließt alle Dropdowns
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown-click')) {
+        document.querySelectorAll('.dropdown-click.open').forEach(open =&gt; {
+            open.classList.remove('open');
+        });
+    }
+});</code></pre>
+                            </div>
+                        </details>
+
+                    </section>
+
+                    <!-- Accessibility -->
+                    <section class="tutorials-content">
+                        <h2 id="accessibility">Accessibility (Barrierefreiheit)</h2>
+                        <p>Damit Dropdowns für alle Nutzer zugänglich sind – auch für Menschen, die Screenreader oder
+                            nur die Tastatur verwenden:</p>
+
+                        <h3 id="aria-attribute">ARIA-Attribute</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;li class="dropdown-click"&gt;
+    &lt;a href="#" 
+       aria-expanded="false"
+       aria-haspopup="true"&gt;
+        Tutorials
+    &lt;/a&gt;
+    &lt;ul class="dropdown-menu-click" role="menu"&gt;
+        &lt;li role="menuitem"&gt;&lt;a href="#"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+        &lt;li role="menuitem"&gt;&lt;a href="#"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/li&gt;</code></pre>
+                        </div>
+
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><code class="inline">aria-expanded</code> – Zeigt an, ob das Dropdown offen <code class="inline">true</code> oder geschlossen <code class="inline">false</code> ist
+                            </li>
+                            <li><code class="inline">aria-haspopup="true"</code> – Signalisiert, dass ein Untermenü
+                                existiert</li>
+                            <li><code class="inline">role="menu"</code> – Kennzeichnet die Liste als Menü</li>
+                            <li><code class="inline">role="menuitem"</code> – Kennzeichnet jeden Eintrag als Menüpunkt
+                            </li>
+                        </ul>
+
+                        <h3 id="keyboard-navigation">Keyboard-Navigation</h3>
+                        <p>Ein gutes Dropdown sollte auch mit der Tastatur bedienbar sein:</p>
+
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><strong>Enter / Space:</strong> Dropdown öffnen/schließen</li>
+                            <li><strong>Escape:</strong> Dropdown schließen</li>
+                            <li><strong>Tab:</strong> Zum nächsten Element springen</li>
+                            <li><strong>Pfeiltasten:</strong> (optional) Zwischen Menüpunkten navigieren</li>
+                        </ul>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Tipp
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Das JavaScript im Klick-Dropdown oben enthält bereits die ESC-Taste und aktualisiert
+                                <code class="inline">aria-expanded</code> automatisch!
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="tutorials-content">
+                        <h2 id="best-practices">Best Practices</h2>
+
+                        <div class="grid-2col">
+
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Do
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                        <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                        </path>
+                                    </svg>
+                                </strong>
+                                <ul class="check-list">
+                                    <li>Visuellen Indikator (Pfeil ▼) verwenden</li>
+                                    <li>Genug Klickfläche bieten (min. 44×44px)</li>
+                                    <li>Außerhalb-Klick zum Schließen</li>
+                                    <li>ESC-Taste zum Schließen</li>
+                                    <li>Hover + Klick kombinieren</li>
+                                    <li>ARIA-Attribute verwenden</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box danger">
+                                <strong class="box-title danger no-toc">Don't
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red-light)" role="img" aria-label="Falsch">
+                                        <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                        </path>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Zu viele Verschachtelungen (max. 2 Ebenen)</li>
+                                    <li>Dropdown ohne visuellen Hinweis</li>
+                                    <li>Nur Hover auf Touch-Geräten</li>
+                                    <li>Zu kleine Klickflächen</li>
+                                    <li>Dropdown überlappt wichtige Inhalte</li>
+                                    <li>Animation zu langsam (max. 300ms)</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <h3 id="hover-und-klick-kombinieren">Hover und Klick kombinieren</h3>
+                        <p>Die beste UX bietet oft eine Kombination: Auf Desktop öffnet Hover das Menü, auf
+                            Touch-Geräten der Klick.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Hover für Desktop */
+@media (hover: hover) {
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Klick funktioniert immer (via JavaScript) */
+.dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}</code></pre>
+                        </div>
+
+                        <p>Die Media Query <code class="inline">@media (hover: hover)</code> erkennt, ob das Gerät Hover
+                            unterstützt – Smartphones geben hier <code class="inline">false</code> zurück.</p>
+                    </section>
+
+                    <!-- Prev/Next Navigation -->
+                    
+                <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/html/html-basics/html-breadcrumbs.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">HTML Breadcrumbs</span>
+                <span class="tutorial-nav-category">HTML Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/html/html-basics/html-multi-level-navigation.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">HTML Multi-Level Navigation</span>
+                <span class="tutorial-nav-category">HTML Basics</span>
+            </a>
+        </div></nav>
+                    </section>
+
+                </div> <!-- Wrapper .container -->
+
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav" aria-label="Footer-Navigation">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
+
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+        <script src="/assets/js/tutorial-html-dropdown-demo.js" defer></script>
+    
+
+</body></html>

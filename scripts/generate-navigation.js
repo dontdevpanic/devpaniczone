@@ -163,6 +163,8 @@ const TUTORIAL_ORDER = {
         'html-typografie.html',
         'html-navigation.html',
         'html-breadcrumbs.html',
+        'html-dropdown.html',
+        'html-multi-level-navigation.html',
         'html-listen.html',
         'html-links.html',
         'html-bilder.html',

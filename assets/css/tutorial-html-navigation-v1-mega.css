@@ -1,0 +1,688 @@
+/* ============================================
+    TUTORIAL DEMO STYLES
+    ============================================ */
+
+/* --------------------------------------------
+    ALLGEMEIN: Demo-Container
+    -------------------------------------------- */
+.demo-header {
+    margin-top: 1rem;
+    padding: 1rem 2rem 0.5rem;
+    background: var(--bg-secondary);
+    border-radius: 0 8px 8px 0;
+    border-left: 4px solid var(--accent-blue);
+}
+
+/* --------------------------------------------
+    SECTION: Einfache Navigation
+    Verwendet: .nav-demo
+    -------------------------------------------- */
+.nav-demo {
+    display: flex;
+    /* Logo und Menü nebeneinander */
+    align-items: center;
+    /* Vertikal zentriert */
+    justify-content: space-between;
+    /* Logo links, Menü rechts */
+}
+
+.nav-demo .logo img {
+    width: 35px;
+    /* Logo-Größe (px fehlte!) */
+    height: auto;
+}
+
+.nav-demo ul {
+    list-style: none;
+    /* Keine Aufzählungspunkte */
+    display: flex;
+    /* Menüpunkte nebeneinander */
+    gap: 1.5rem;
+    /* Abstand zwischen Links */
+    margin: 0;
+    padding: 0;
+}
+
+/* Dropdown-Menü innerhalb von nav-demo: Gap überschreiben! */
+.nav-demo .dropdown-menu-demo {
+    gap: 0;
+    /* Kein Gap im Dropdown */
+}
+
+.nav-demo a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+.nav-demo a:hover {
+    color: var(--accent-blue);
+}
+
+/* --------------------------------------------
+    SECTION: Navigation mit Dropdown
+    Verwendet: .menu-demo, .dropdown-demo, .dropdown-menu-demo
+    -------------------------------------------- */
+
+/* Hauptmenü (horizontal) */
+.menu-demo {
+    display: flex;
+    /* Horizontale Anordnung */
+    gap: 2rem;
+    /* Abstand zwischen Menüpunkten */
+    list-style: none;
+    /* Keine Aufzählungspunkte */
+    align-items: center;
+    /* Vertikal zentriert */
+    margin: 0;
+    padding: 0;
+}
+
+/* Jedes Menü-Item braucht position: relative für absolute Positionierung des Dropdowns */
+.menu-demo>li {
+    position: relative;
+}
+
+/* Links im Menü */
+.menu-demo a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    display: block;
+}
+
+/* Padding nur für Hauptmenü-Links (nicht für Dropdown-Links) */
+.menu-demo>li>a {
+    padding: 1rem 0.5rem;
+}
+
+.menu-demo a:hover {
+    color: var(--accent-blue);
+}
+
+/* Animierte Unterstreichung für Hauptmenü-Links */
+.menu-demo>li>a {
+    position: relative;
+}
+
+.menu-demo>li>a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+}
+
+.menu-demo>li>a:hover::after {
+    width: 100%;
+}
+
+/* Active State */
+.menu-demo>li>a.active {
+    color: var(--primary-light);
+}
+
+.menu-demo>li>a.active::after {
+    width: 100%;
+    background: var(--primary-light);
+}
+
+/* DAS DROPDOWN-ELEMENT (enthält das Untermenü) */
+.dropdown-demo {
+    position: relative;
+    /* Anker für das absolute Dropdown */
+}
+
+/* DAS DROPDOWN-MENÜ (standardmäßig versteckt!) */
+.dropdown-menu-demo {
+    position: absolute;
+    /* Schwebt unter dem Hauptpunkt */
+    top: 100%;
+    /* Direkt unter dem Eltern-Element */
+    left: 0;
+    background: var(--bg-tertiary);
+    /* Hintergrundfarbe */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 180px;
+    /* Mindestbreite für Lesbarkeit */
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+
+    /* WICHTIG: Vertikale Anordnung der Dropdown-Items! */
+    display: flex;
+    flex-direction: column;
+
+    /* VERSTECKT */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    /* Startet leicht nach oben versetzt */
+    transition: all 0.3s ease;
+    /* Sanfte Animation */
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    /* Über anderen Elementen */
+}
+
+/* HOVER: Dropdown sichtbar machen */
+.dropdown-demo:hover .dropdown-menu-demo {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    /* Gleitet nach unten */
+}
+
+.dropdown-menu-demo ul {
+    padding: 1rem 0;
+}
+
+/* Links im Dropdown */
+.dropdown-menu-demo li a {
+    padding: 0.5rem 1rem;
+    /* Klickbereich vergrößern */
+    display: block;
+    /* Keine Unterstreichung im Dropdown */
+    position: relative;
+}
+
+/* Keine animierte Unterstreichung im Dropdown */
+.dropdown-menu-demo li a::after {
+    display: none;
+}
+
+.dropdown-menu-demo li a:hover {
+    background: var(--bg-secondary);
+    /* Hover-Hintergrund */
+}
+
+/* --------------------------------------------
+    SECTION: Mehrstufige Navigation (Multi-Level)
+    Verwendet: .dropdown-sub-demo, .dropdown-submenu-demo
+    -------------------------------------------- */
+
+/* Das Sub-Dropdown-Element (hat selbst ein Untermenü) */
+.dropdown-sub-demo {
+    position: relative;
+    /* Anker für das Sub-Menü */
+}
+
+/* Link im Sub-Dropdown mit Pfeil-Indikator */
+.dropdown-sub-demo>a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Pfeil für Sub-Menü (zeigt nach rechts) */
+.dropdown-sub-demo>a::after {
+    content: '►';
+    font-size: 0.6em;
+    margin-left: auto;
+    padding-left: 1rem;
+    opacity: 0.7;
+}
+
+/* Das Sub-Menü (drittes Level) */
+.dropdown-submenu-demo {
+    position: absolute;
+    top: 0;
+    /* Auf gleicher Höhe wie Eltern */
+    left: 100%;
+    /* Rechts neben dem Eltern-Element */
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 200px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+
+    /* WICHTIG: Vertikale Anordnung der Submenu-Items! */
+    display: flex;
+    flex-direction: column;
+
+    /* Versteckt */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    /* Startet leicht nach links versetzt */
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 101;
+    /* Über dem ersten Dropdown */
+}
+
+/* HOVER: Sub-Menü sichtbar machen */
+.dropdown-sub-demo:hover .dropdown-submenu-demo {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    /* Gleitet nach rechts */
+}
+
+/* Links im Sub-Menü */
+.dropdown-submenu-demo li a {
+    padding: 0.5rem 1rem;
+    display: block;
+    position: relative;
+}
+
+/* Keine animierte Unterstreichung im Submenu */
+.dropdown-submenu-demo li a::after {
+    display: none;
+}
+
+.dropdown-submenu-demo li a:hover {
+    background: var(--bg-secondary);
+}
+
+/* ============================================
+    CLICK-VARIANTEN (öffnen auf Klick statt Hover)
+    Verwendet JavaScript für Toggle-Verhalten
+    ============================================ */
+
+/* --------------------------------------------
+    SECTION: Dropdown auf Klick
+    Verwendet: .dropdown-click, .dropdown-menu-click
+    -------------------------------------------- */
+
+/* Hauptmenü (identisch zur Hover-Variante) */
+.menu-click {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-click>li {
+    position: relative;
+}
+
+.menu-click a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.menu-click a:hover {
+    color: var(--accent-blue);
+}
+
+/* Toggle-Button für Dropdown (klickbar) */
+.dropdown-click {
+    position: relative;
+}
+
+.dropdown-click>a {
+    cursor: pointer;
+    /* Zeigt an, dass es klickbar ist */
+    user-select: none;
+    /* Verhindert Textauswahl beim Klicken */
+}
+
+/* Pfeil-Indikator für Dropdown */
+.dropdown-click>a::after {
+    content: ' ▼';
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    font-size: 0.7em;
+    transition: transform 0.3s;
+    display: inline-block;
+}
+
+/* Pfeil dreht sich wenn offen */
+.dropdown-click.open>a::after {
+    transform: rotate(180deg);
+}
+
+/* Das Dropdown-Menü (versteckt) */
+.dropdown-menu-click {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 180px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+
+    /* WICHTIG: Vertikale Anordnung der Dropdown-Items! */
+    display: flex;
+    flex-direction: column;
+
+    /* Versteckt */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+/* KLICK: Dropdown sichtbar machen (via .open Klasse) */
+.dropdown-click.open>.dropdown-menu-click {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Links im Dropdown */
+.dropdown-menu-click li a {
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-menu-click li a:hover {
+    background: var(--bg-secondary);
+}
+
+/* Keine animierte Unterstreichung im Dropdown nötig - 
+   erbt von .menu-click a, ist aber hier eh nicht relevant 
+   weil kein ::after auf diesen Links definiert */
+
+/* --------------------------------------------
+    SECTION: Multi-Level auf Klick
+    Verwendet: .dropdown-sub-click, .dropdown-submenu-click
+    -------------------------------------------- */
+
+.dropdown-sub-click {
+    position: relative;
+}
+
+.dropdown-sub-click>a {
+    cursor: pointer;
+    user-select: none;
+    /* Flexbox für Pfeil-Positionierung */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Pfeil für Sub-Menü (zeigt nach rechts) */
+.dropdown-sub-click>a::after {
+    content: '►';
+    font-size: 0.6em;
+    /* float: right; - ENTFERNT, Flexbox übernimmt */
+    margin-left: auto;
+    padding-left: 1rem;
+    transition: transform 0.3s;
+}
+
+/* Pfeil dreht sich wenn offen */
+.dropdown-sub-click.open>a::after {
+    transform: rotate(90deg);
+}
+
+/* Das Sub-Menü */
+.dropdown-submenu-click {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 200px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+
+    /* WICHTIG: Vertikale Anordnung der Submenu-Items! */
+    display: flex;
+    flex-direction: column;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 101;
+}
+
+/* KLICK: Sub-Menü sichtbar machen */
+.dropdown-sub-click.open>.dropdown-submenu-click {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Links im Sub-Menü */
+.dropdown-submenu-click li a {
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-submenu-click li a:hover {
+    background: var(--bg-secondary);
+}
+
+/* ============================================
+    ZUSÄTZLICHE NAVIGATION-DEMOS
+    ============================================ */
+
+/* --------------------------------------------
+    SECTION: Breadcrumb Navigation
+    -------------------------------------------- */
+.breadcrumb-demo {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.breadcrumb-demo li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-demo li+li::before {
+    content: '/';
+    padding: 0 0.5rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb-demo a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.breadcrumb-demo a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-demo [aria-current="page"] {
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+/* --------------------------------------------
+    SECTION: Skip-Link
+    -------------------------------------------- */
+.skip-link-demo {
+    position: absolute;
+    top: -100px;
+    /* Versteckt außerhalb */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-blue);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.skip-link-demo:focus {
+    top: 0;
+    /* Wird sichtbar bei Focus */
+}
+
+/* Demo-Container für Skip-Link */
+.skip-link-container {
+    position: relative;
+    height: 80px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --------------------------------------------
+    SECTION: Mobile/Hamburger Navigation
+    -------------------------------------------- */
+.hamburger-demo-container {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+}
+
+.hamburger-header-demo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+/* Logo-Bereich im Hamburger-Demo - auskommentiert, nicht mehr benötigt
+.hamburger-header-demo .logo-demo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hamburger-header-demo .logo-demo img {
+    width: 30px;
+    height: auto;
+}
+*/
+
+.hamburger-btn-demo {
+    display: flex !important;
+    /* !important um Site-weite display:none zu überschreiben */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger-btn-demo span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+/* Hamburger zu X Animation */
+.hamburger-btn-demo.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-btn-demo.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn-demo.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-menu-demo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.mobile-menu-demo.open {
+    max-height: 300px;
+}
+
+.mobile-menu-demo ul {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.mobile-menu-demo li {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu-demo li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu-demo a {
+    display: block;
+    padding: 0.75rem 0;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.mobile-menu-demo a:hover {
+    color: var(--primary-light);
+}
+
+/* --------------------------------------------
+    SECTION: Active State
+    -------------------------------------------- */
+.menu-active-demo {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.menu-active-demo a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.menu-active-demo a:hover {
+    background: var(--dark-light);
+}
+
+.menu-active-demo a.active {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.menu-active-demo a[aria-current="page"] {
+    background: var(--accent-blue);
+    color: white;
+}
