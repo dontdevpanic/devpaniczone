@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description"
+            content="HTML-Navi-Cheatsheet: einfache Struktur, klare Beispiele und kleine Hinweise für semantisch saubere Navigationselemente – als schnelles DevPanicZone-Nachschlagewerk.">
+        <meta name="keywords" content="">
+        <meta name="author" content="DevPanicZone">
+        <title>Navigation in HTML anlegen | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/tutorial-html-navigation.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                        </a>
+                    </div>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/documentation/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                        <path
+                                            d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- Header-End -->
+
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs"><a href="/" class="breadcrumb-link">Home</a><span
+                            class="breadcrumb-separator">›</span><a href="/tutorials/html/"
+                            class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span
+                            class="breadcrumb-current">Die Navigation</span></nav>
+                    <h1 class="hero-title">Die Navigation</h1>
+                    <p class="hero-subtitle">Die Navigation ist das Rückgrat jeder Website – sie führt Besucher durch
+                        deine
+                        Inhalte und hilft, Struktur und Orientierung zu schaffen. Eine klare, semantische Navigation ist
+                        nicht nur für Benutzer, sondern auch für Suchmaschinen wichtig.</p>
+                    <p></p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                </span>
+            </button>
+
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                            <li class="toc-level-1"><a href="#was-ist-eine-navigation">Was ist eine Navigation?</a></li>
+                            <li class="toc-level-1"><a href="#html-grundstruktur-einer-navigation">HTML-Grundstruktur
+                                    einer Navigation</a></li>
+                            <li class="toc-level-1"><a href="#navigation-im-header">Navigation im Header</a></li>
+                            <li class="toc-level-1"><a href="#navigation-mit-unterpunkten-dropdown">Navigation mit
+                                    Unterpunkten (Dropdown)</a></li>
+                            <li class="toc-level-1"><a href="#mehrstufige-navigation-multi-level">Mehrstufige Navigation
+                                    (Multi-Level)</a></li>
+                            <li class="toc-level-1"><a href="#dropdown-auf-klick">Dropdown auf Klick
+                                    (Click-Variante)</a></li>
+                            <li class="toc-level-1"><a href="#multi-level-auf-klick">Multi-Level auf Klick</a></li>
+                            <li class="toc-level-1"><a href="#skip-link">Skip-Link (Sprungnavigation)</a></li>
+                            <li class="toc-level-1"><a href="#breadcrumb-navigation">Breadcrumb-Navigation</a></li>
+                            <li class="toc-level-1"><a href="#mobile-hamburger-navigation">Mobile Navigation
+                                    (Hamburger-Menü)</a></li>
+                            <li class="toc-level-1"><a href="#active-state">Active State (Aktuelle Seite markieren)</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#accessibility-best-practices">Accessibility Best
+                                    Practices</a></li>
+                            <li class="toc-level-2"><a href="#aria-attribute-fuer-dropdowns">ARIA-Attribute für
+                                    Dropdowns</a></li>
+                            <li class="toc-level-2"><a href="#wichtige-aria-attribute-erklaert">Wichtige ARIA-Attribute
+                                    erklärt</a></li>
+                            <li class="toc-level-2"><a href="#keyboard-navigation">Keyboard-Navigation</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                            <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                            <li class="sidebar-group-title">HTML Basics</li>
+                            <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                            <li class="sidebar-group-title">HTML Advanced</li>
+                            <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                            <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                            <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper .container -->
+                <div class="container">
+
+                    <!-- Was ist eine Navigation? -->
+                    <section class="tutorials-content mt-xl">
+                        <h2 id="was-ist-eine-navigation">Was ist eine Navigation?</h2>
+                        <p>Eine <strong>Navigation</strong> ist eine strukturierte Liste von Links, die zu den
+                            wichtigsten
+                            Bereichen einer Webseite führen. Sie wird typischerweise im <code
+                                class="inline">&lt;header&gt;</code> platziert.</p>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum eine Liste?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>HTML-Navigationen werden als Liste geschrieben, weil sie eine geordnete, zugängliche
+                                Struktur
+                                schaffen. Screenreader und Suchmaschinen können so besser verstehen, wie sich die Seiten
+                                untereinander verknüpfen.</p>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Merke
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
+                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Navigation hilft den Nutzern, die Struktur deiner Webseite zu verstehen und Inhalte
+                                schnell
+                                zu finden. Suchmaschinen erkennen ebenfalls die Linkstruktur.</p>
+                        </div>
+
+                    </section>
+
+                    <!-- HTML-Grundstruktur einer Navigation navbar-demo -->
+                    <section class="tutorials-content">
+                        <div>
+                            <h2 id="html-grundstruktur-einer-navigation">HTML-Grundstruktur einer Navigation</h2>
+                            <p>Eine Navigation besteht aus einer ungeordneten Liste <code
+                                    class="inline">&lt;ul&gt;</code>,
+                                in
+                                der
+                                jeder Menüpunkt als <code class="inline">&lt;li&gt;</code> steht. Die eigentlichen Links
+                                werden
+                                mit
+                                <code class="inline">&lt;a&gt;</code> – Ankern – umgesetzt.
+                            </p>
+                        </div>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Tag</th>
+                                    <th>Bedeutung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">&lt;nav&gt;</code></td>
+                                    <td>Semantisches Element für Navigation. Enthält alle Links der Hauptnavigation.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;ul&gt;</code></td>
+                                    <td>Ungeordnete Liste, die die einzelnen Navigationspunkte enthält.</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;li&gt;</code></td>
+                                    <td>Listenelement für einen einzelnen Navigationspunkt.</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;a href="..."&gt;</code></td>
+                                    <td>Link zu einer anderen Seite oder einem Abschnitt der Seite.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block" id="navbar-demo">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav class="navbar-demo"&gt;
+    &lt;ul class="menu"&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="about.html"&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contact.html"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <div>
+                            <nav class="navbar-demo grid-2col-bg">
+                                <ul class="menu pl-md">
+                                    <li><a href="#navbar-demo">Home</a></li>
+                                    <li><a href="#navbar-demo">Über uns</a></li>
+                                    <li><a href="#navbar-demo">Kontakt</a></li>
+                                    <li><i><small>(Demo: .navbar-demo
+                                                .menu)</small></i></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Später mit CSS oder JS erweitern
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Per CSS kannst du mit Hilfe der zugewiesenen Klassen wie hier <code
+                                    class="inline">.navbar-demo</code> oder <code class="inline">.menu</code> geziehlt
+                                gestalten.
+                                Beispielsweise ein Dropdown selbst ist zunächst unsichtbar. Mit <code
+                                    class="inline">:hover</code> oder kleinen JavaScript-Funktionen kannst du es ein-
+                                und
+                                ausblenden. Wichtig ist: Der HTML-Aufbau steht schon jetzt korrekt.</p>
+
+                            <details>
+                                <summary>
+                                    CSS ansehen
+                                </summary>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-lang">CSS</span>
+                                        <button class="code-copy">
+                                            <span class="copy-icon">
+                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                    height="16">
+                                            </span>
+                                            <span class="copy-text">Kopieren</span>
+                                        </button>
+                                    </div>
+                                    <pre><code class="language-css">.navbar-demo {
+    padding-left: 30px;                    /* Abstand von links, um den Inhalt etwas einzurücken */
+    background: var(--dark-light);         /* Hintergrundfarbe aus deiner Farbpalette */
+    border-radius: 0 8px 8px 0;            /* Abgerundete rechte Ecken für weiches Design */
+    border-left: 4px solid var(--accent);  /* Farbakzent am linken Rand (z. B. Kiwi-Grün oder Orange) */
+}
+
+.menu {
+    display: flex;                         /* Aktiviert Flexbox für horizontale Anordnung */
+    gap: 2rem;                             /* Abstand zwischen den einzelnen Menü-Links */
+    list-style: none;                      /* Entfernt Aufzählungspunkte */
+    align-items: center;                   /* Vertikale Zentrierung der Listenelemente */
+}</code></pre>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+
+                    <!-- Navigation im Header -->
+                    <section class="tutorials-content">
+                        <h2 id="navigation-im-header">Navigation im Header</h2>
+                        <h3 class="no-toc">Der richtige Platz für deine Navigation</h3>
+                        <p>In den meisten Fällen befindet sich die Navigation im <code
+                                class="inline">&lt;header&gt;</code>
+                            – dem Kopfbereich der Website. So bleibt sie auf jeder Unterseite sichtbar und sorgt für ein
+                            konsistentes Nutzererlebnis. Eine Navigation kann aber auch an anderen Stellen platziert
+                            werden,
+                            wie du anhand der Demos siehst.</p>
+                        <p>Ein einfaches Beispiel für einen Header mit Navigation:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;header&gt;
+    &lt;div class="demo-header"&gt;
+        &lt;nav class="nav-demo"&gt;
+            &lt;a href="#" class="logo"&gt;
+                &lt;img src="/assets/icons/logo.svg" alt="Logo"&gt;
+            &lt;/a&gt;
+
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+                        </div>
+
+                        <!-- Demo einfache Navigation -->
+                        <div class="demo-header" id="demo-header-simple">
+                            <nav class="nav-demo">
+                                <a href="#demo-header-simple" class="logo"><img src="/assets/icons/logo.svg" alt="Logo"
+                                        width="35" height="35"></a>
+                                <ul>
+                                    <li><i><small>(.demo-header .nav-demo
+                                                .logo)</small></i></li>
+                                    <li><a href="#demo-header-simple">Home</a></li>
+                                    <li><a href="#demo-header-simple">Über uns</a></li>
+                                    <li><a href="#demo-header-simple">Kontakt</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <details class="toggle-detail">
+                            <summary>
+                                CSS ansehen
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">.demo-header {
+    margin-top: 1rem;                           /* Abstand nach oben für optische Trennung */
+    padding:  1rem 2rem 0.5rem;                 /* Innenabstand für Luft um den Inhalt */
+    background: var(--bg-secondary);            /* Hintergrundfarbe aus der Farbpalette */
+    border-radius: 0 8px 8px 0;                 /* Abgerundete Ecken rechts für sanften Look */
+    border-left: 4px solid var(--accent-blue);  /* Linker Farbakzent, z. B. Kiwi-Grün */
+}
+
+.nav-demo {
+    display: flex;                              /* Flexbox-Layout aktivieren */
+    align-items: center;                        /* Vertikal zentrieren */
+    justify-content: space-between;             /* Logo links, Menü rechts */
+}
+
+.nav-demo .logo img {
+    width: 35px;                                /* Einheitliche Logogröße */
+    height: auto;                               /* Proportionen beibehalten */
+}
+
+.nav-demo ul {
+    list-style: none;                           /* Keine Punkte oder Nummern anzeigen */
+    display: flex;                              /* Elemente nebeneinander platzieren */
+    gap: 1.5rem;                                /* Abstand zwischen Menüpunkten */
+    margin: 0;                                  /* Standardabstände entfernen */
+    padding: 0;                                 /* Innenabstände entfernen */
+}
+
+.nav-demo a {
+    text-decoration: none;                      /* Unterstreichung entfernen */
+    color: var(---text-primary);                /* Standardtextfarbe */
+    font-weight: 400;                           /* Mittlere Schriftstärke */
+}
+
+.nav-demo a:hover {
+    color: var(--accent-blue);                  /* Farbwechsel bei Hover */
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <div class="grid-2-1col">
+                            <div>
+                                <p class="mt-sm">Auch wenn es zu CSS ein eigenes Kapitel gibt, findest du hier schon
+                                    passende Stylings, das die Demo-Navigationen im Tutorial „zurechtschubst“.
+                                    Es sorgt dafür, dass das Menü und das Logo so angezeigt werden, wie sie im Header
+                                    gedacht sind.</p>
+
+                                <p>Ohne die Klassen und deren Styling im CSS sieht die Navigation nämlich so aus -
+                                    hier farbig etwas "vorgestyled" durch mein globales CSS:</p>
+                            </div>
+                            <div class="grid-2col-bg" id="unstyled">
+                                <nav class="ml-lg">
+                                    <a href="#unstyled"><img src="/assets/icons/logo.svg" alt="Logo" width="30"
+                                            height="30"></a>
+                                    <ul class="">
+                                        <li><a href="#unstyled">Home</a></li>
+                                        <li><a href="#unstyled">Über uns</a></li>
+                                        <li><a href="#unstyled">Kontakt</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Tipp
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Verwende sprechende Linktexte. Statt „Hier klicken“ lieber „Kontakt aufnehmen“ – das
+                                hilft
+                                Besuchern und verbessert die Barrierefreiheit.</p>
+                        </div>
+
+                    </section>
+
+                    <!-- Navigation mit Unterpunkten (Dropdown) -->
+                    <section class="tutorials-content">
+                        <h2 id="navigation-mit-unterpunkten-dropdown">Navigation mit Unterpunkten (Dropdown)</h2>
+                        <p>Wenn deine Website viele Themenbereiche hat, kannst du Unterpunkte anlegen. Diese Struktur
+                            nennt
+                            man <strong>Dropdown-Menü</strong>. Es wird meist mit CSS oder JavaScript sichtbar gemacht.
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="demo-header"&gt;
+    &lt;nav class="nav-demo"&gt;
+        &lt;a href="#" class="logo"&gt;
+            &lt;img src="/assets/icons/logo.svg" alt="Logo"&gt;
+        &lt;/a&gt;
+
+        &lt;ul class="menu"&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li class="dropdown-demo"&gt;
+                &lt;a href="#"&gt;Themen&lt;/a&gt;
+                &lt;ul class="dropdown-menu-demo"&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <!-- Navigation mit Dropdown Demo -->
+                        <div class="demo-header" id="nav-demo-dropdown">
+                            <nav class="nav-demo">
+                                <a href="#nav-demo-dropdown" class="logo">
+                                    <img src="/assets/icons/logo.svg" alt="Logo">
+                                </a>
+
+                                <ul class="menu-demo">
+                                    <li><i><small>(.demo-header .menu-demo
+                                                .dropdown-menu)</small></i></li>
+                                    <li><a href="#nav-demo-dropdown">Home</a></li>
+                                    <li class="dropdown-demo">
+                                        <a href="#nav-demo-dropdown">Themen</a>
+                                        <ul class="dropdown-menu-demo">
+                                            <li><a href="#nav-demo-dropdown">HTML</a></li>
+                                            <li><a href="#nav-demo-dropdown">CSS</a></li>
+                                            <li><a href="#nav-demo-dropdown">JavaScript</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Häufiges Problem: Dropdown-Text sitzt versetzt
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Fällt dir auf, dass "Themen" (mit Dropdown) höher sitzt als "Home"? Das liegt daran, dass
+                                das
+                                <code class="inline">&lt;li&gt;</code> mit Dropdown ein zusätzliches Kind-Element hat –
+                                die
+                                verschachtelte <code class="inline">&lt;ul&gt;</code>. Auch wenn diese mit
+                                <code class="inline">position: absolute</code> aus dem Fluss genommen wird, kann sie die
+                                Baseline des Eltern-Elements beeinflussen.
+                            </p>
+
+                            <p><strong>Die Lösung:</strong> Setze auf alle <code
+                                    class="inline">&lt;li&gt;</code>-Elemente
+                                im Hauptmenü ein einheitliches <code class="inline">vertical-align</code>:</p>
+
+                            <pre><code class="language-css">.menu-demo &gt; li {
+    position: relative;
+    vertical-align: middle;    /* Alle li auf gleicher Höhe */
+}</code></pre>
+
+                            <p>Alternativ kannst du auch <code class="inline">vertical-align: top</code> verwenden.
+                                Das Wichtige ist, dass alle Menüpunkte denselben Wert haben.</p>
+                        </div>
+
+                        <details>
+                            <summary>
+                                Details zum CSS
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">.demo-header {
+    margin-top: 1rem;                       /* Etwas Abstand nach oben zur optischen Trennung */
+    padding: 1rem;                          /* Innenabstand, damit der Inhalt nicht am Rand klebt */
+    background: var(--dark-light);          /* Dezente Hintergrundfarbe für den Navigationsbereich */
+    border-radius: 0 8px 8px 0;             /* Abgerundete rechte Ecken für ein weicheres Design */
+    border-left: 4px solid var(--accent);   /* Akzentlinie links */
+}
+
+.nav-demo {
+    display: flex;                          /* Aktiviert Flexbox für horizontale Anordnung */
+    align-items: center;                    /* Vertikale Zentrierung von Logo und Menü */
+    justify-content: space-between;         /* Logo links, Menü rechts */
+}
+
+.nav-demo .logo img {
+    width: 40px;                            /* Logo-Breite für ein ausgewogenes Verhältnis */
+    height: auto;                           /* Proportionale Skalierung */
+}
+
+.nav-demo ul {
+    list-style: none;                       /* Entfernt Aufzählungspunkte */
+    display: flex;                          /* Menüeinträge nebeneinander anordnen */
+    gap: 1.5rem;                            /* Abstand zwischen den Menülinks */
+    margin: 0;                              /* Kein äußerer Abstand nötig */
+    padding: 0;                             /* Kein zusätzlicher Innenabstand */
+}
+
+.nav-demo a {
+    text-decoration: none;                  /* Entfernt Unterstreichungen der Links */
+    color: var(--text);                     /* Textfarbe aus deiner Farbpalette */
+    font-weight: 500;                       /* Etwas kräftiger für gute Lesbarkeit */
+}
+
+.nav-demo a:hover {
+    color: var(--primary-light);            /* Farbwechsel beim Hover-Effekt */
+}
+
+.menu {
+    display: flex;                          /* Aktiviert Flexbox für das Hauptmenü */
+    gap: 2rem;                              /* Abstand zwischen den Hauptpunkten */
+    list-style: none;                       /* Keine Aufzählungspunkte */
+    align-items: center;                    /* Vertikale Zentrierung */
+}
+
+.dropdown-menu {
+    display: none;                          /* Untermenü ist standardmäßig unsichtbar */
+    position: absolute;                     /* Positioniert das Dropdown relativ zum Eltern-Element */
+    background: var(--dark);                /* Hintergrundfarbe für das Untermenü */
+    border-radius: 8px;                     /* Abgerundete Ecken für modernes Design */
+    padding: 0.5rem 1rem;                   /* Etwas Innenabstand für die Links */
+    margin-top: 0.5rem;                     /* Leichter Abstand zum Hauptlink */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;                         /* Zeigt das Untermenü beim Hover über den Hauptpunkt */
+}</code></pre>
+                            </div>
+                        </details>
+
+                    </section>
+
+                    <!-- Mehrstufige Navigation (Multi-Level) -->
+                    <section class="tutorials-content">
+                        <h2 id="mehrstufige-navigation-multi-level">Mehrstufige Navigation (Multi-Level)</h2>
+                        <p>Manchmal braucht man Untermenüs, die selbst noch Unterpunkte enthalten – etwa bei größeren
+                            Projekten.
+                            Hier teste ich, wie man das mit verschachtelten <code
+                                class="inline">&lt;ul&gt;</code>-Listen
+                            anlegt.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav&gt;
+    &lt;ul class="menu"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="dropdown"&gt;
+            &lt;a href="#"&gt;Themen&lt;/a&gt;
+            &lt;ul class="dropdown-menu"&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Thema 1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Thema 2&lt;/a&gt;&lt;/li&gt;
+                &lt;li class="dropdown-sub"&gt;
+                    &lt;a href="#"&gt;Thema 3 mit Sub-Menu&lt;/a&gt;
+                    &lt;ul class="dropdown-submenu"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Unterthema 1&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Unterthema 2&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Unterthema 3&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Multi-Level Demo -->
+                        <div class="demo-header" id="mehrstufige-navigation-demo">
+                            <nav>
+                                <ul class="menu-demo">
+                                    <li><a href="#mehrstufige-navigation-demo">Home</a></li>
+                                    <li class="dropdown-demo">
+                                        <a href="#mehrstufige-navigation-demo">Themen</a>
+                                        <ul class="dropdown-menu-demo">
+                                            <li><a href="#mehrstufige-navigation-demo">Thema 1</a></li>
+                                            <li><a href="#mehrstufige-navigation-demo">Thema 2</a></li>
+                                            <li class="dropdown-sub-demo">
+                                                <a href="#mehrstufige-navigation-demo">Thema 3 mit Sub-Menu</a>
+                                                <ul class="dropdown-submenu-demo">
+                                                    <li><a href="#mehrstufige-navigation-demo">Unterthema 1</a></li>
+                                                    <li><a href="#mehrstufige-navigation-demo">Unterthema 2</a></li>
+                                                    <li><a href="#mehrstufige-navigation-demo">Unterthema 3</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </section>
+
+                    <!-- Dropdown auf Klick (Click-Variante) -->
+                    <section class="tutorials-content">
+                        <h2 id="dropdown-auf-klick">Dropdown auf Klick (Click-Variante)</h2>
+                        <p>Bei Touch-Geräten oder wenn der User mehr Kontrolle haben soll, ist es oft besser, Dropdowns
+                            erst bei Klick zu öffnen statt bei Hover. Das braucht ein bisschen JavaScript.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav&gt;
+    &lt;ul class="menu-click"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="dropdown-click"&gt;
+            &lt;a href="#"&gt;Themen&lt;/a&gt;
+            &lt;ul class="dropdown-menu-click"&gt;
+                &lt;li&gt;&lt;a href="#"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Click-Dropdown Demo -->
+                        <div class="demo-header">
+                            <nav>
+                                <ul class="menu-click" id="dropdown-auf-klick-demo">
+                                    <li><i><small>Klick auf "Themen" →</small></i>
+                                    </li>
+                                    <li><a href="#dropdown-auf-klick-demo">Home</a></li>
+                                    <li class="dropdown-click">
+                                        <a href="#dropdown-auf-klick-demo">Themen</a>
+                                        <ul class="dropdown-menu-click">
+                                            <li><a href="#dropdown-auf-klick-demo">HTML</a></li>
+                                            <li><a href="#dropdown-auf-klick-demo">CSS</a></li>
+                                            <li><a href="#dropdown-auf-klick-demo">JavaScript</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <details>
+                            <summary>
+                                Details zum CSS
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">/* Hauptmenü */
+.menu-click {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-click &gt; li {
+    position: relative;
+}
+
+/* Toggle-Element */
+.dropdown-click {
+    position: relative;
+}
+
+.dropdown-click &gt; a {
+    cursor: pointer;                    /* Zeigt Klickbarkeit */
+    user-select: none;                  /* Verhindert Textauswahl */
+}
+
+/* Pfeil-Indikator */
+.dropdown-click &gt; a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    transition: transform 0.3s;
+    display: inline-block;
+}
+
+/* Pfeil dreht sich wenn offen */
+.dropdown-click.open &gt; a::after {
+    transform: rotate(180deg);
+}
+
+/* Dropdown-Menü (versteckt) */
+.dropdown-menu-click {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--dark-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 180px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+/* KLICK: Sichtbar via .open Klasse */
+.dropdown-click.open &gt; .dropdown-menu-click {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>
+                                Details zum JavaScript
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">// Alle Dropdown-Trigger finden
+document.querySelectorAll('.dropdown-click &gt; a').forEach(trigger =&gt; {
+    trigger.addEventListener('click', function(e) {
+        e.preventDefault();                     // Link-Verhalten verhindern
+        
+        const dropdown = this.parentElement;    // Das li.dropdown-click
+        
+        // Alle anderen Dropdowns schließen
+        document.querySelectorAll('.dropdown-click.open').forEach(open =&gt; {
+            if (open !== dropdown) {
+                open.classList.remove('open');
+            }
+        });
+        
+        // Dieses Dropdown togglen
+        dropdown.classList.toggle('open');
+    });
+});
+
+// Klick außerhalb schließt alle Dropdowns
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown-click')) {
+        document.querySelectorAll('.dropdown-click.open').forEach(open =&gt; {
+            open.classList.remove('open');
+        });
+    }
+});</code></pre>
+                            </div>
+                        </details>
+
+                    </section>
+
+                    <!-- Multi-Level auf Klick -->
+                    <section class="tutorials-content">
+                        <h2 id="multi-level-auf-klick">Multi-Level auf Klick</h2>
+                        <p>Auch mehrstufige Navigationen können auf Klick reagieren. Hier wird jede Ebene einzeln
+                            geöffnet – besonders praktisch für komplexe Menüstrukturen auf Mobilgeräten.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav&gt;
+    &lt;ul class="menu-click"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="dropdown-click"&gt;
+            &lt;a href="#"&gt;Themen&lt;/a&gt;
+            &lt;ul class="dropdown-menu-click"&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Thema 1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Thema 2&lt;/a&gt;&lt;/li&gt;
+                &lt;li class="dropdown-sub-click"&gt;
+                    &lt;a href="#"&gt;Thema 3 mit Sub-Menu&lt;/a&gt;
+                    &lt;ul class="dropdown-submenu-click"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Unterthema 1&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Unterthema 2&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Unterthema 3&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Multi-Level Click Demo -->
+                        <div class="demo-header" id="multi-level-auf-klick-demo">
+                            <nav>
+                                <ul class="menu-click">
+
+                                    <li><a href="#multi-level-auf-klick-demo">Home</a></li>
+                                    <li class="dropdown-click">
+                                        <a href="#multi-level-auf-klick-demo">Themen</a>
+                                        <ul class="dropdown-menu-click">
+                                            <li><a href="#multi-level-auf-klick-demo">Thema 1</a></li>
+                                            <li><a href="#multi-level-auf-klick-demo">Thema 2</a></li>
+                                            <li class="dropdown-sub-click">
+                                                <a href="#multi-level-auf-klick-demo">Thema 3 mit Sub-Menu</a>
+                                                <ul class="dropdown-submenu-click">
+                                                    <li><a href="#multi-level-auf-klick-demo">Unterthema 1</a></li>
+                                                    <li><a href="#multi-level-auf-klick-demo">Unterthema 2</a></li>
+                                                    <li><a href="#multi-level-auf-klick-demo">Unterthema 3</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><i><small class="gray">(.menu-click .dropdown-click .dropdown-menu-click
+                                                .dropdown-submenu-click)</small></i></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <details>
+                            <summary>
+                                Details zum JavaScript (erweitert für Sub-Menüs)
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">// Haupt-Dropdowns
+document.querySelectorAll('.dropdown-click &gt; a').forEach(trigger =&gt; {
+    trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.parentElement;
+        
+        // Andere Haupt-Dropdowns schließen
+        document.querySelectorAll('.dropdown-click.open').forEach(open =&gt; {
+            if (open !== dropdown) {
+                open.classList.remove('open');
+                // Sub-Menüs auch schließen
+                open.querySelectorAll('.dropdown-sub-click.open').forEach(sub =&gt; {
+                    sub.classList.remove('open');
+                });
+            }
+        });
+        
+        dropdown.classList.toggle('open');
+    });
+});
+
+// Sub-Dropdowns
+document.querySelectorAll('.dropdown-sub-click &gt; a').forEach(trigger =&gt; {
+    trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();                    // Verhindert Schließen des Haupt-Dropdowns
+        
+        const subDropdown = this.parentElement;
+        
+        // Andere Sub-Dropdowns auf gleicher Ebene schließen
+        const siblings = subDropdown.parentElement.querySelectorAll('.dropdown-sub-click.open');
+        siblings.forEach(open =&gt; {
+            if (open !== subDropdown) {
+                open.classList.remove('open');
+            }
+        });
+        
+        subDropdown.classList.toggle('open');
+    });
+});
+
+// Klick außerhalb schließt alles
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown-click') &amp;&amp; !e.target.closest('.dropdown-sub-click')) {
+        document.querySelectorAll('.dropdown-click.open, .dropdown-sub-click.open').forEach(open =&gt; {
+            open.classList.remove('open');
+        });
+    }
+});</code></pre>
+                            </div>
+                        </details>
+
+                    </section>
+
+
+
+
+
+
+                    <!-- Skip-Link -->
+                    <section class="tutorials-content">
+                        <h2 id="skip-link">Skip-Link (Sprungnavigation)</h2>
+                        <p>Ein Skip-Link ermöglicht es Tastatur- und Screenreader-Nutzern, direkt zum Hauptinhalt
+                            zu springen – ohne sich durch die gesamte Navigation zu arbeiten. Er ist normalerweise
+                            unsichtbar und erscheint erst bei Fokus.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Ganz am Anfang des body --&gt;
+&lt;a href="#main-content" class="skip-link"&gt;Zum Inhalt springen&lt;/a&gt;
+
+&lt;header&gt;
+    &lt;!-- Navigation hier --&gt;
+&lt;/header&gt;
+
+&lt;main id="main-content"&gt;
+    &lt;!-- Hauptinhalt --&gt;
+&lt;/main&gt;</code></pre>
+                        </div>
+
+                        <!-- Skip-Link Demo -->
+                        <p><strong>Demo:</strong> Klicke in die Box und drücke <kbd>Tab</kbd>, um den Skip-Link zu
+                            sehen:
+                        </p>
+                        <div class="skip-link-container" tabindex="-1">
+                            <a href="#skip-link" class="skip-link-demo">Zum Inhalt springen</a>
+                            <span class="gray">← Tab drücken für Skip-Link</span>
+                        </div>
+
+                        <details>
+                            <summary>
+                                Details zum CSS
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">.skip-link {
+    position: absolute;
+    top: -100px;                        /* Versteckt außerhalb des Viewports */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-blue);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;                             /* Wird sichtbar bei Tastatur-Focus */
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum ist das wichtig?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Stell dir vor, du müsstest bei jeder Seite erst 20 Navigationslinks durchdrücken,
+                                bevor du zum eigentlichen Inhalt kommst. Für Tastaturnutzer ist das Alltag –
+                                ein Skip-Link macht den Unterschied zwischen frustrierend und nutzbar.</p>
+                        </div>
+
+                    </section>
+
+                    <!-- Breadcrumb Navigation -->
+                    <section class="tutorials-content">
+                        <h2 id="breadcrumb-navigation">Breadcrumb-Navigation</h2>
+                        <p>Breadcrumbs (Brotkrümel) zeigen dem Nutzer, wo er sich in der Seitenhierarchie befindet.
+                            Sie sind besonders wichtig für SEO und die Orientierung auf größeren Websites.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav aria-label="Breadcrumb"&gt;
+    &lt;ol class="breadcrumb"&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/tutorials/"&gt;Tutorials&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/tutorials/html/"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" aria-current="page"&gt;Navigation&lt;/a&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Breadcrumb Demo -->
+                        <nav aria-label="Breadcrumb Demo">
+                            <ol class="breadcrumb-demo">
+                                <li><a href="#breadcrumb-navigation">Home</a></li>
+                                <li><a href="#breadcrumb-navigation">Tutorials</a></li>
+                                <li><a href="#breadcrumb-navigation">HTML</a></li>
+                                <li><a href="#breadcrumb-navigation" aria-current="page">Navigation</a></li>
+                            </ol>
+                        </nav>
+
+                        <details>
+                            <summary>
+                                Details zum CSS
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">.breadcrumb {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;                    /* Umbruch bei wenig Platz */
+    padding: 0.75rem 1rem;
+    margin: 0;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+/* Trennzeichen zwischen den Elementen */
+.breadcrumb li + li::before {
+    content: '/';                       /* Oder '›' oder '→' */
+    padding: 0 0.5rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Aktuelle Seite (nicht klickbar) */
+.breadcrumb [aria-current="page"] {
+    color: var(--text-secondary);
+    pointer-events: none;
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum &lt;ol&gt; statt &lt;ul&gt;?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Breadcrumbs haben eine klare Reihenfolge (Home → Kategorie → Unterkategorie → Seite),
+                                daher ist eine geordnete Liste (<code class="inline">&lt;ol&gt;</code>) semantisch
+                                korrekter. Screenreader geben dann auch "Element 1 von 4" aus.</p>
+                        </div>
+
+                    </section>
+
+                    <!-- Mobile/Hamburger Navigation -->
+                    <section class="tutorials-content">
+                        <h2 id="mobile-hamburger-navigation">Mobile Navigation (Hamburger-Menü)</h2>
+                        <p>Auf kleinen Bildschirmen wird die Navigation oft hinter einem Hamburger-Button (☰) versteckt.
+                            Hier ein einfaches Beispiel ohne externe Libraries.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;header&gt;
+    &lt;div class="header-content"&gt;
+        &lt;a href="/" class="logo"&gt;Logo&lt;/a&gt;
+        
+        &lt;button class="hamburger-btn" aria-label="Menü öffnen" aria-expanded="false"&gt;
+            &lt;span&gt;&lt;/span&gt;
+            &lt;span&gt;&lt;/span&gt;
+            &lt;span&gt;&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;nav class="mobile-menu" id="mobileMenu"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Leistungen&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+                        </div>
+                        <!-- Hamburger Demo -->
+                        <div class="hamburger-demo-container">
+                            <div class="hamburger-header-demo">
+                                <span class="gray"><small>Klick auf Hamburger →</small></span>
+                                <button class="hamburger-btn-demo" aria-label="Menü öffnen" aria-expanded="false"
+                                    id="hamburgerDemoBtn">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                            <nav class="mobile-menu-demo" id="mobileMenuDemo">
+                                <ul>
+                                    <li><a href="#mobile-hamburger-navigation">Home</a></li>
+                                    <li><a href="#mobile-hamburger-navigation">Über uns</a></li>
+                                    <li><a href="#mobile-hamburger-navigation">Leistungen</a></li>
+                                    <li><a href="#mobile-hamburger-navigation">Kontakt</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <details>
+                            <summary>
+                                Details zum CSS
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">.hamburger-demo-container {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+}
+
+.hamburger-header-demo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.hamburger-btn-demo {
+    display: flex !important;
+    /* !important um Site-weite display:none zu überschreiben */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger-btn-demo span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+/* Hamburger zu X Animation */
+.hamburger-btn-demo.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-btn-demo.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn-demo.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-menu-demo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.mobile-menu-demo.open {
+    max-height: 300px;
+}
+
+.mobile-menu-demo ul {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.mobile-menu-demo li {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu-demo li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu-demo a {
+    display: block;
+    padding: 0.75rem 0;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.mobile-menu-demo a:hover {
+    color: var(--primary-light);
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>
+                                Details zum JavaScript
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">document.addEventListener('DOMContentLoaded', function () {
+    const hamburgerBtn = document.getElementById('hamburgerDemoBtn');
+    const mobileMenu = document.getElementById('mobileMenuDemo');
+
+    if (hamburgerBtn &amp;&amp; mobileMenu) {
+        hamburgerBtn.addEventListener('click', function () {
+            // Button-Animation togglen
+            this.classList.toggle('active');
+
+            // Menü öffnen/schließen
+            mobileMenu.classList.toggle('open');
+
+            // Accessibility: aria-expanded aktualisieren
+            const isOpen = mobileMenu.classList.contains('open');
+            this.setAttribute('aria-expanded', isOpen);
+            this.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+        });
+    }
+});</code></pre>
+                            </div>
+                        </details>
+
+                    </section>
+
+                    <!-- Active State -->
+                    <section class="tutorials-content">
+                        <h2 id="active-state">Active State (Aktuelle Seite markieren)</h2>
+                        <p>Der aktuelle Menüpunkt sollte visuell hervorgehoben werden, damit Nutzer wissen, wo sie sich
+                            befinden. Hier sind verschiedene Methoden, das umzusetzen.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Methode 1: Klasse --&gt;
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/about/" class="active"&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contact/"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- Methode 2: ARIA (besser für Accessibility) --&gt;
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/about/" aria-current="page"&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contact/"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Active State Demo -->
+                        <ul class="menu-active-demo">
+                            <li><a href="#active-state">Home</a></li>
+                            <li><a href="#active-state" aria-current="page">Tutorials</a></li>
+                            <li><a href="#active-state">Kontakt</a></li>
+                        </ul>
+
+                        <details>
+                            <summary>
+                                Details zum CSS
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">/* Für Klassen-Methode */
+.nav a.active {
+    background: var(--accent-blue);
+    color: white;
+}
+
+/* Für ARIA-Methode (empfohlen) */
+.nav a[aria-current="page"] {
+    background: var(--accent-blue);
+    color: white;
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>
+                                JavaScript: Automatisch setzen basierend auf URL
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">// Aktuelle URL ermitteln
+const currentPath = window.location.pathname;
+
+// Alle Nav-Links durchgehen
+document.querySelectorAll('nav a').forEach(link =&gt; {
+    // Prüfen ob Link-Pfad zur aktuellen URL passt
+    if (link.getAttribute('href') === currentPath) {
+        link.setAttribute('aria-current', 'page');
+        // Oder: link.classList.add('active');
+    }
+});</code></pre>
+                            </div>
+                        </details>
+
+                        <details>
+                            <summary>
+                                PHP: Serverseitig setzen
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">PHP</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
+                                                height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-php">&lt;?php
+$currentPage = $_SERVER['REQUEST_URI'];
+
+function isActive($path) {
+    global $currentPage;
+    return strpos($currentPage, $path) !== false ? 'aria-current="page"' : '';
+}
+?&gt;
+
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/" &lt;?= $currentPage === '/' ? 'aria-current="page"' : '' ?&gt;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/about/" &lt;?= isActive('/about/') ?&gt;&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contact/" &lt;?= isActive('/contact/') ?&gt;&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                            </div>
+                        </details>
+
+                    </section>
+
+                    <!-- Accessibility Best Practices -->
+                    <section class="tutorials-content">
+                        <h2 id="accessibility-best-practices">Accessibility Best Practices</h2>
+                        <p>Eine barrierefreie Navigation ist nicht nur nett, sondern in vielen Ländern gesetzlich
+                            vorgeschrieben. Hier die wichtigsten Punkte zusammengefasst:</p>
+
+                        <h3 id="aria-attribute-fuer-dropdowns">ARIA-Attribute für Dropdowns</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav aria-label="Hauptnavigation"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;
+            &lt;!-- Button für Dropdown (nicht Link!) --&gt;
+            &lt;button 
+                aria-expanded="false" 
+                aria-haspopup="true"
+                aria-controls="dropdown-menu"&gt;
+                Themen
+            &lt;/button&gt;
+            &lt;ul id="dropdown-menu"&gt;
+                &lt;li&gt;&lt;a href="/html/"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/css/"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <h3 id="wichtige-aria-attribute-erklaert">Wichtige ARIA-Attribute erklärt</h3>
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Attribut</th>
+                                    <th>Bedeutung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">aria-label</code></td>
+                                    <td>Benennt die Navigation (z.B. "Hauptnavigation", "Footer-Links")</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-expanded</code></td>
+                                    <td>Zeigt an, ob ein Dropdown offen (true) oder geschlossen (false) ist</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-haspopup</code></td>
+                                    <td>Signalisiert, dass ein Element ein Popup/Dropdown öffnet</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-controls</code></td>
+                                    <td>Verknüpft Button mit dem gesteuerten Element (per ID)</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-current</code></td>
+                                    <td>Markiert die aktuelle Seite ("page") oder Position</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 id="keyboard-navigation">Keyboard-Navigation</h3>
+                        <p>Nutzer müssen die Navigation komplett mit der Tastatur bedienen können:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Keyboard-Support für Dropdowns
+document.querySelectorAll('.dropdown button').forEach(button =&gt; {
+    button.addEventListener('keydown', function(e) {
+        const dropdown = this.nextElementSibling;
+        
+        switch(e.key) {
+            case 'Enter':
+            case ' ':                           // Leertaste
+                e.preventDefault();
+                toggleDropdown(this, dropdown);
+                break;
+                
+            case 'Escape':
+                closeDropdown(this, dropdown);
+                this.focus();                   // Focus zurück auf Button
+                break;
+                
+            case 'ArrowDown':
+                e.preventDefault();
+                if (dropdown.classList.contains('open')) {
+                    // Zum ersten Link im Dropdown
+                    dropdown.querySelector('a').focus();
+                } else {
+                    toggleDropdown(this, dropdown);
+                }
+                break;
+        }
+    });
+});
+
+// In Dropdown-Links navigieren
+document.querySelectorAll('.dropdown-menu a').forEach(link =&gt; {
+    link.addEventListener('keydown', function(e) {
+        const items = [...this.closest('ul').querySelectorAll('a')];
+        const index = items.indexOf(this);
+        
+        switch(e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                items[index + 1]?.focus();
+                break;
+                
+            case 'ArrowUp':
+                e.preventDefault();
+                items[index - 1]?.focus();
+                break;
+                
+            case 'Escape':
+                // Dropdown schließen, Focus auf Button
+                const button = this.closest('.dropdown').querySelector('button');
+                closeDropdown(button, this.closest('ul'));
+                button.focus();
+                break;
+        }
+    });
+});</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Checkliste für barrierefreie Navigation
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path
+                                        d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>☐ Skip-Link vorhanden</li>
+                                <li>☐ <code class="inline">&lt;nav&gt;</code> mit <code class="inline">aria-label</code>
+                                </li>
+                                <li>☐ Alle Links per Tab erreichbar</li>
+                                <li>☐ Sichtbarer Focus-Indikator - nie <code class="inline">outline: none</code>!</li>
+                                <li>☐ Dropdowns mit Enter/Space öffnen</li>
+                                <li>☐ Escape schließt Dropdowns</li>
+                                <li>☐ Pfeiltasten für Navigation in Dropdowns</li>
+                                <li>☐ <code class="inline">aria-expanded</code> wird aktualisiert</li>
+                                <li>☐ Aktuelle Seite mit <code class="inline">aria-current="page"</code></li>
+                                <li>☐ Kontrastverhältnis mindestens 4.5:1</li>
+                            </ul>
+                        </div>
+
+                    </section>
+
+                    <!-- Prev/Next Navigation -->
+
+                    <!-- Latest-Tutorials-Start -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
+
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav"></nav>
+                    </section>
+
+                </div> <!-- Wrapper .container -->
+
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
+
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/demo-html-navigation.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+
+
+
+
+    </body>
+
+</html>

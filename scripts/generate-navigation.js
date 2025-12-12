@@ -76,7 +76,7 @@ const HEADER_TEMPLATE = `<header class="site-header">
                 <span class="hamburger"></span>
             </button>
 
-            <nav class="main-nav" id="mainNav" aria-label="Navigation">
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
                 <ul class="nav-list">
                     <li><a href="/" class="nav-link">Home</a></li>
                     <li class="nav-item-dropdown">
@@ -138,7 +138,7 @@ const FOOTER_TEMPLATE = `<footer class="site-footer">
     <div class="container">
         <div class="footer-content">
             <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav">
+            <nav class="footer-nav" aria-label="Footer-Navigation">
                 <a href="/impressum.html">Impressum</a>
                 <a href="/datenschutzerklaerung.html">Datenschutz</a>
             </nav>
@@ -166,7 +166,8 @@ const TUTORIAL_ORDER = {
         'html-links.html',
         'html-bilder.html',
         'html-tabellen.html',
-        'html-meta-tags.html'
+        'html-meta-tags.html',
+        'html-breadcrumb-navigation.html'
     ],
     'tutorials/html/html-advanced': [
         'html-semantik.html',
