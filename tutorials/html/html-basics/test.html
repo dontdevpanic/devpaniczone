@@ -10,11 +10,301 @@
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
         <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <!-- <link rel="stylesheet" href="/assets/css/html-naviagation-dropdown-demo.css">
-        <link rel="stylesheet" href="/assets/css/tutorial-html-multi-level-navigation.css"> -->
-        <link rel="stylesheet" href="/assets/css/tutorials-html-navigation-demos.css">
+        <link rel="stylesheet" href="/assets/css/html-naviagation-dropdown-demo.css">
         <link rel="stylesheet" href="/assets/css/sidebar.css">
         <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+
+        <style>
+            /* ============================================
+           DEMO-CONTAINER STYLING
+           ============================================ */
+            .demo-header {
+                margin-top: 1rem;
+                padding: 1rem 2rem 0.5rem;
+                background: var(--bg-secondary);
+                border-radius: 0 8px 8px 0;
+                border-left: 4px solid var(--accent-blue);
+            }
+
+            /* Realistische Header-Demo mit Logo */
+            .demo-realistic-header {
+                margin-top: 1rem;
+                padding: 0;
+                background: var(--bg-tertiary);
+                border-radius: 8px;
+                border: 1px solid var(--border-color);
+                overflow: visible;
+            }
+
+            .demo-realistic-header .header-inner {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 2rem;
+                max-width: 100%;
+            }
+
+            .demo-realistic-header .logo {
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: var(--accent-blue);
+                text-decoration: none;
+            }
+
+            .demo-realistic-header .logo:hover {
+                color: var(--accent-cyan);
+            }
+
+            /* ============================================
+           SECTION: Mehrstufige Navigation (Hover)
+           Klassen: .dropdown-sub-demo, .dropdown-submenu-demo
+           ============================================ */
+
+            /* Das Sub-Dropdown-Element (hat selbst ein Untermenü) */
+            .dropdown-sub-demo {
+                position: relative;
+            }
+
+            /* Link im Sub-Dropdown mit Pfeil-Indikator */
+            .dropdown-sub-demo>a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            /* Pfeil für Sub-Menü (zeigt nach rechts) */
+            .dropdown-sub-demo>a::after {
+                content: '►';
+                font-size: 0.6em;
+                margin-left: auto;
+                padding-left: 1rem;
+                opacity: 0.7;
+            }
+
+            /* Das Sub-Menü (drittes Level) */
+            .dropdown-submenu-demo {
+                position: absolute;
+                top: 0;
+                left: 100%;
+                background: var(--bg-tertiary);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                min-width: 200px;
+                list-style: none;
+                padding: 0.5rem 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+
+                /* Versteckt */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                z-index: 101;
+            }
+
+            /* HOVER: Sub-Menü sichtbar machen */
+            .dropdown-sub-demo:hover .dropdown-submenu-demo {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0);
+            }
+
+            /* Links im Sub-Menü */
+            .dropdown-submenu-demo li a {
+                padding: 0.5rem 1rem;
+                display: block;
+                position: relative;
+            }
+
+            /* Keine animierte Unterstreichung im Submenu */
+            .dropdown-submenu-demo li a::after {
+                display: none;
+            }
+
+            .dropdown-submenu-demo li a:hover {
+                background: var(--bg-secondary);
+            }
+
+            /* ============================================
+           SECTION: Multi-Level auf Klick
+           Klassen: .menu-click, .dropdown-click, 
+                    .dropdown-sub-click, .dropdown-submenu-click
+           ============================================ */
+
+            /* Hauptmenü */
+            .menu-click {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+            }
+
+            .menu-click>li {
+                position: relative;
+            }
+
+            .menu-click a {
+                color: var(--text);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: color 0.3s;
+                display: block;
+                padding: 0.5rem 0;
+            }
+
+            .menu-click a:hover {
+                color: var(--accent-blue);
+            }
+
+            /* Toggle-Button für Dropdown (klickbar) */
+            .dropdown-click {
+                position: relative;
+            }
+
+            .dropdown-click>a {
+                cursor: pointer;
+                user-select: none;
+            }
+
+            /* Pfeil-Indikator für Dropdown */
+            .dropdown-click>a::after {
+                content: ' ▼';
+                margin-left: 0.5rem;
+                vertical-align: middle;
+                font-size: 0.7em;
+                transition: transform 0.3s;
+                display: inline-block;
+            }
+
+            /* Pfeil dreht sich wenn offen */
+            .dropdown-click.open>a::after {
+                transform: rotate(180deg);
+            }
+
+            /* Das Dropdown-Menü (versteckt) */
+            .dropdown-menu-click {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--bg-tertiary);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                min-width: 180px;
+                list-style: none;
+                padding: 0.5rem 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+
+                /* Versteckt */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                z-index: 100;
+            }
+
+            /* KLICK: Dropdown sichtbar machen (via .open Klasse) */
+            .dropdown-click.open>.dropdown-menu-click {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            /* Links im Dropdown */
+            .dropdown-menu-click li a {
+                padding: 0.5rem 1rem;
+                display: block;
+            }
+
+            .dropdown-menu-click li a:hover {
+                background: var(--bg-secondary);
+            }
+
+            /* Sub-Dropdown auf Klick */
+            .dropdown-sub-click {
+                position: relative;
+            }
+
+            .dropdown-sub-click>a {
+                cursor: pointer;
+                user-select: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            /* Pfeil für Sub-Menü (zeigt nach rechts) */
+            .dropdown-sub-click>a::after {
+                content: '►';
+                font-size: 0.6em;
+                margin-left: auto;
+                padding-left: 1rem;
+                transition: transform 0.3s;
+            }
+
+            /* Pfeil dreht sich wenn offen */
+            .dropdown-sub-click.open>a::after {
+                transform: rotate(90deg);
+            }
+
+            /* Das Sub-Menü */
+            .dropdown-submenu-click {
+                position: absolute;
+                top: 0;
+                left: 100%;
+                background: var(--bg-tertiary);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                min-width: 200px;
+                list-style: none;
+                padding: 0.5rem 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+
+                opacity: 0;
+                visibility: hidden;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                z-index: 101;
+            }
+
+            /* KLICK: Sub-Menü sichtbar machen */
+            .dropdown-sub-click.open>.dropdown-submenu-click {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0);
+            }
+
+            /* Links im Sub-Menü */
+            .dropdown-submenu-click li a {
+                padding: 0.5rem 1rem;
+                display: block;
+            }
+
+            .dropdown-submenu-click li a:hover {
+                background: var(--bg-secondary);
+            }
+
+            /* ============================================
+           HELFER-KLASSEN
+           ============================================ */
+            .gray {
+                color: var(--text-muted);
+            }
+        </style>
     </head>
 
     <body>
@@ -229,7 +519,7 @@
                     <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
                     <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
                     <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html" class="active">HTML Multi-Level Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
                     <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
                     <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
                     <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
@@ -849,20 +1139,7 @@ document.addEventListener('click', function(e) {
                 <!-- Latest-Tutorials-End -->
 
                 <section class="tutorials-content">
-                        <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/html/html-basics/html-dropdown.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">HTML Dropdown-Menüs</span>
-                <span class="tutorial-nav-category">HTML Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/html/html-basics/html-listen.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">HTML Listen</span>
-                <span class="tutorial-nav-category">HTML Basics</span>
-            </a>
-        </div></nav>
+                        <nav class="tutorial-nav"></nav>
                     </section>
 
                 </div> <!-- Wrapper .container -->
@@ -893,9 +1170,58 @@ document.addEventListener('click', function(e) {
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-        <script src="/assets/js/tutorial-html-multi-level-navigation.js" defer></script>
-        <!-- <script src="/assets/js/tutorials-html-navigation.js" defer></script> -->
 
+        <script>
+            // Haupt-Dropdowns
+            document.querySelectorAll('.dropdown-click > a').forEach(trigger => {
+                trigger.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const dropdown = this.parentElement;
+
+                    // Andere Haupt-Dropdowns schließen
+                    document.querySelectorAll('.dropdown-click.open').forEach(open => {
+                        if (open !== dropdown) {
+                            open.classList.remove('open');
+                            // Sub-Menüs auch schließen
+                            open.querySelectorAll('.dropdown-sub-click.open').forEach(sub => {
+                                sub.classList.remove('open');
+                            });
+                        }
+                    });
+
+                    dropdown.classList.toggle('open');
+                });
+            });
+
+            // Sub-Dropdowns
+            document.querySelectorAll('.dropdown-sub-click > a').forEach(trigger => {
+                trigger.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const subDropdown = this.parentElement;
+
+                    // Andere Sub-Dropdowns auf gleicher Ebene schließen
+                    const siblings = subDropdown.parentElement.querySelectorAll('.dropdown-sub-click.open');
+                    siblings.forEach(open => {
+                        if (open !== subDropdown) {
+                            open.classList.remove('open');
+                        }
+                    });
+
+                    subDropdown.classList.toggle('open');
+                });
+            });
+
+            // Klick außerhalb schließt alles
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.dropdown-click') && !e.target.closest('.dropdown-sub-click')) {
+                    document.querySelectorAll('.dropdown-click.open, .dropdown-sub-click.open').forEach(open => {
+                        open.classList.remove('open');
+                    });
+                }
+            });
+        </script>
     
 
 </body></html>

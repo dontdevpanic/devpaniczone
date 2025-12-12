@@ -1,0 +1,916 @@
+/* Einfache Demo-Navigation */
+.nav-demo-simple {
+    background: var(--bg-tertiary);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem;
+    border-left: 4px solid var(--accent-blue);
+}
+
+.nav-demo-simple ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-demo-simple a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.nav-demo-simple a:hover {
+    background: var(--accent-blue-hover);
+    /* color: var(--text-secondary); */
+}
+
+/* Header Demo */
+.header-demo {
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.header-demo .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--accent-blue);
+}
+
+.header-demo nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-demo nav a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+}
+
+.header-demo nav a:hover,
+.header-demo nav a.active {
+    background: var(--accent-blue);
+    /* color: var(--dark); */
+}
+
+/* Vertikale Navigation Demo */
+.nav-demo-vertical {
+    background: var(--bg-tertiary);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem;
+    max-width: 200px;
+    border-left: 4px solid var(--accent-blue);
+}
+
+.nav-demo-vertical ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-demo-vertical li {
+    margin-bottom: 0.5rem;
+}
+
+.nav-demo-vertical a {
+    display: block;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.nav-demo-vertical a:hover {
+    background: var(--accent-blue);
+    /* color: var(--dark); */
+}
+
+
+/* ============================================
+DEMO-CONTAINER STYLING
+============================================ */
+.demo-header {
+    margin-top: 1rem;
+    padding: 1rem 2rem 0.5rem;
+    background: var(--bg-secondary);
+    border-radius: 0 8px 8px 0;
+    border-left: 4px solid var(--accent-blue);
+}
+
+/* Realistische Header-Demo mit Logo */
+.demo-realistic-header {
+    margin-top: 1rem;
+    padding: 0;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow: visible;
+}
+
+.demo-realistic-header .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 100%;
+}
+
+.demo-realistic-header .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.demo-realistic-header .logo:hover {
+    color: var(--accent-cyan);
+}
+
+
+
+
+
+
+
+
+/* ============================================
+       GEMEINSAME STYLES FÜR ALLE DEMOS
+       ============================================ */
+
+.demo-header {
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    background: var(--bg-secondary);
+    border-radius: 0 8px 8px 0;
+    border-left: 4px solid var(--accent-blue);
+}
+
+.nav-demo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-demo .logo img {
+    width: 35px;
+    height: auto;
+}
+
+/* ============================================
+       BASIS-MENÜ (für beide Varianten)
+       ============================================ */
+
+.menu-demo,
+.menu-click {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-demo>li,
+.menu-click>li {
+    position: relative;
+}
+
+.menu-demo a,
+.menu-click a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.menu-demo a:hover,
+.menu-click a:hover {
+    color: var(--accent-blue);
+}
+
+/* ============================================
+       HOVER-DROPDOWN (.dropdown-demo)
+       ============================================ */
+
+.dropdown-demo {
+    position: relative;
+}
+
+.dropdown-menu-demo {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 180px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    /* Versteckt */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+/* HOVER: Dropdown sichtbar */
+.dropdown-demo:hover .dropdown-menu-demo,
+.dropdown-demo:focus-within .dropdown-menu-demo {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu-demo li a {
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-menu-demo li a:hover {
+    background: var(--bg-secondary);
+}
+
+/* ============================================
+       KLICK-DROPDOWN (.dropdown-click)
+       ============================================ */
+
+.dropdown-click {
+    position: relative;
+}
+
+.dropdown-click>a {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Pfeil-Indikator */
+.dropdown-click>a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    margin-left: 0.3rem;
+    transition: transform 0.3s;
+    display: inline-block;
+}
+
+/* Pfeil dreht sich wenn offen */
+.dropdown-click.open>a::after {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu-click {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 180px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    /* Versteckt */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+/* KLICK: Sichtbar via .open Klasse */
+.dropdown-click.open>.dropdown-menu-click {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu-click li a {
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-menu-click li a:hover {
+    background: var(--bg-secondary);
+}
+
+
+
+
+/* ============================================
+       DEMO-CONTAINER STYLING
+       ============================================ */
+.demo-mobile-container {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.demo-mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+}
+
+.demo-mobile-header .logo {
+    font-weight: 700;
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+
+/* ============================================
+HAMBURGER BUTTON
+============================================ */
+
+.hamburger-btn-demo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    /* Wichtig für absolute Positionierung der Spans */
+}
+
+.hamburger-btn-demo span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 0;
+}
+
+/* Positionierung der drei Linien */
+.hamburger-btn-demo span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger-btn-demo span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger-btn-demo span:nth-child(3) {
+    bottom: 0;
+}
+
+/* Hamburger → X Animation */
+.hamburger-btn-demo.active span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.hamburger-btn-demo.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+}
+
+.hamburger-btn-demo.active span:nth-child(3) {
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+
+
+/* .hamburger-btn-demo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger-btn-demo span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+} */
+
+/* Hamburger → X Animation */
+/* .hamburger-btn-demo.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-btn-demo.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger-btn-demo.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+} */
+
+/* ============================================
+       MOBILE MENU (Slide-Down)
+       ============================================ */
+.mobile-menu-demo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.mobile-menu-demo.open {
+    max-height: 300px;
+}
+
+.mobile-menu-demo ul {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.mobile-menu-demo li {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu-demo li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu-demo a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.mobile-menu-demo a:hover {
+    background: var(--bg-tertiary);
+    color: var(--accent-blue);
+}
+
+/* ============================================
+       SLIDE-IN VARIANTE (von links)
+       ============================================ */
+.demo-slide-container {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+    border: 1px solid var(--border-color);
+    min-height: 250px;
+    overflow: hidden;
+}
+
+.slide-menu-demo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: var(--bg-tertiary);
+    border-right: 1px solid var(--border-color);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+
+.slide-menu-demo.open {
+    transform: translateX(0);
+}
+
+.slide-menu-demo ul {
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+}
+
+.slide-menu-demo li {
+    margin-bottom: 0.5rem;
+}
+
+.slide-menu-demo a {
+    display: block;
+    padding: 0.5rem;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.slide-menu-demo a:hover {
+    background: var(--bg-secondary);
+    color: var(--accent-blue);
+}
+
+/* Overlay für Slide-Menu */
+.slide-overlay-demo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.slide-overlay-demo.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+
+
+/* ============================================
+SECTION: Mehrstufige Navigation (Hover)
+Klassen: .dropdown-sub-demo, .dropdown-submenu-demo
+============================================ */
+
+/* Das Sub-Dropdown-Element (hat selbst ein Untermenü) */
+.dropdown-sub-demo {
+    position: relative;
+}
+
+/* Link im Sub-Dropdown mit Pfeil-Indikator */
+.dropdown-sub-demo>a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Pfeil für Sub-Menü (zeigt nach rechts) */
+.dropdown-sub-demo>a::after {
+    content: '►';
+    font-size: 0.6em;
+    margin-left: auto;
+    padding-left: 1rem;
+    opacity: 0.7;
+}
+
+/* Das Sub-Menü (drittes Level) */
+.dropdown-submenu-demo {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 200px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+    /* Versteckt */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 101;
+}
+
+/* HOVER: Sub-Menü sichtbar machen */
+.dropdown-sub-demo:hover .dropdown-submenu-demo {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Links im Sub-Menü */
+.dropdown-submenu-demo li a {
+    padding: 0.5rem 1rem;
+    display: block;
+    position: relative;
+}
+
+/* Keine animierte Unterstreichung im Submenu */
+.dropdown-submenu-demo li a::after {
+    display: none;
+}
+
+.dropdown-submenu-demo li a:hover {
+    background: var(--bg-secondary);
+}
+
+
+
+
+/* ============================================
+Multi-Level auf Klick
+Klassen: .menu-click, .dropdown-click, 
+        .dropdown-sub-click, .dropdown-submenu-click
+============================================ */
+
+/* Hauptmenü */
+.menu-click {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-click>li {
+    position: relative;
+}
+
+.menu-click a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.menu-click a:hover {
+    color: var(--accent-blue);
+}
+
+/* Toggle-Button für Dropdown (klickbar) */
+.dropdown-click {
+    position: relative;
+}
+
+.dropdown-click>a {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Pfeil-Indikator für Dropdown */
+.dropdown-click>a::after {
+    content: ' ▼';
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    font-size: 0.7em;
+    transition: transform 0.3s;
+    display: inline-block;
+}
+
+/* Pfeil dreht sich wenn offen */
+.dropdown-click.open>a::after {
+    transform: rotate(180deg);
+}
+
+/* Das Dropdown-Menü (versteckt) */
+.dropdown-menu-click {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 180px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+    /* Versteckt */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+/* KLICK: Dropdown sichtbar machen (via .open Klasse) */
+.dropdown-click.open>.dropdown-menu-click {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Links im Dropdown */
+.dropdown-menu-click li a {
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-menu-click li a:hover {
+    background: var(--bg-secondary);
+}
+
+/* Sub-Dropdown auf Klick */
+.dropdown-sub-click {
+    position: relative;
+}
+
+.dropdown-sub-click>a {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Pfeil für Sub-Menü (zeigt nach rechts) */
+.dropdown-sub-click>a::after {
+    content: '►';
+    font-size: 0.6em;
+    margin-left: auto;
+    padding-left: 1rem;
+    transition: transform 0.3s;
+}
+
+/* Pfeil dreht sich wenn offen */
+.dropdown-sub-click.open>a::after {
+    transform: rotate(90deg);
+}
+
+/* Das Sub-Menü */
+.dropdown-submenu-click {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-width: 200px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 101;
+}
+
+/* KLICK: Sub-Menü sichtbar machen */
+.dropdown-sub-click.open>.dropdown-submenu-click {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Links im Sub-Menü */
+.dropdown-submenu-click li a {
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-submenu-click li a:hover {
+    background: var(--bg-secondary);
+}
+
+
+
+
+
+
+/* --------------------------------------------
+    SECTION: Mobile/Hamburger Navigation
+    -------------------------------------------- */
+.hamburger-demo-container {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+}
+
+.hamburger-header-demo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+/* Logo-Bereich im Hamburger-Demo - auskommentiert, nicht mehr benötigt
+.hamburger-header-demo .logo-demo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hamburger-header-demo .logo-demo img {
+    width: 30px;
+    height: auto;
+}
+*/
+
+.hamburger-btn-demo {
+    display: flex !important;
+    /* !important um Site-weite display:none zu überschreiben */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger-btn-demo span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+/* Hamburger zu X Animation */
+.hamburger-btn-demo.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-btn-demo.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn-demo.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-menu-demo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.mobile-menu-demo.open {
+    max-height: 300px;
+}
+
+.mobile-menu-demo ul {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.mobile-menu-demo li {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu-demo li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu-demo a {
+    display: block;
+    padding: 0.75rem 0;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.mobile-menu-demo a:hover {
+    color: var(--primary-light);
+}

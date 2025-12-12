@@ -165,6 +165,7 @@ const TUTORIAL_ORDER = {
         'html-breadcrumbs.html',
         'html-dropdown.html',
         'html-multi-level-navigation.html',
+        'html-mobile-navigation.html',
         'html-listen.html',
         'html-links.html',
         'html-bilder.html',

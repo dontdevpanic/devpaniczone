@@ -1,0 +1,778 @@
+<!DOCTYPE html><html lang="de"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="Wie du eine responsive Mobile Navigation mit Hamburger-Menü erstellst. Mit CSS-Animation, JavaScript-Toggle und Accessibility-Best-Practices.">
+        <meta name="keywords" content="HTML Mobile Navigation, Hamburger Menü, responsive Navigation, Mobile Menu Toggle, Navigation responsive erstellen">
+        <meta name="author" content="DevPanicZone">
+        <title>HTML mobile Navigation | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/tutorials-html-navigation-demos.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Mobile Navigation</span></nav>
+                    <h1 class="hero-title">Mobile Navigation</h1>
+                    <p class="hero-subtitle">Responsive Hamburger-Menü für kleine Bildschirme – mit CSS-Animation und
+                        JavaScript.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                </span>
+            </button>
+
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#warum-mobile-navigation">Warum Mobile Navigation?</a></li>
+                    <li class="toc-level-1"><a href="#der-hamburger-button">Der Hamburger-Button</a></li>
+                    <li class="toc-level-2"><a href="#die-html-struktur">Die HTML-Struktur</a></li>
+                    <li class="toc-level-2"><a href="#das-css-fuer-den-hamburger">Das CSS für den Hamburger</a></li>
+                    <li class="toc-level-1"><a href="#variante-1-slide-down-menue">Variante 1: Slide-Down Menü</a></li>
+                    <li class="toc-level-2"><a href="#die-html-struktur-1">Die HTML-Struktur</a></li>
+                    <li class="toc-level-2"><a href="#das-css-fuer-slide-down">Das CSS für Slide-Down</a></li>
+                    <li class="toc-level-2"><a href="#das-javascript">Das JavaScript</a></li>
+                    <li class="toc-level-1"><a href="#variante-2-slide-in-von-der-seite">Variante 2: Slide-In von der Seite</a></li>
+                    <li class="toc-level-2"><a href="#das-css-fuer-slide-in">Das CSS für Slide-In</a></li>
+                    <li class="toc-level-1"><a href="#responsive-mobile-vs-desktop">Responsive: Mobile vs. Desktop</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">HTML Basics</li>
+                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                    <li class="sidebar-group-title">HTML Advanced</li>
+                    <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a></li>
+                </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper .container -->
+                <div class="container">
+
+                    <!-- Einleitung -->
+                    <section class="tutorials-content mt-xl">
+                        <h2 id="warum-mobile-navigation">Warum Mobile Navigation?</h2>
+                        <p>Auf kleinen Bildschirmen (Smartphones, Tablets) passt die normale horizontale Navigation oft
+                            nicht.
+                            Die Lösung: Ein <strong>Hamburger-Menü</strong> (☰), das die Navigation versteckt und bei
+                            Klick
+                            einblendet.</p>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Mobile First denken
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Moderne Websites werden oft <strong>Mobile First</strong> entwickelt: Zuerst das
+                                mobile Layout, dann per Media Query die Desktop-Version. Der Hamburger ist auf Mobile
+                                sichtbar, auf Desktop versteckt.</p>
+                        </div>
+
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Desktop (ab ~768px)</h3>
+                                <ul class="arrow-list">
+                                    <li>Horizontale Navigation sichtbar</li>
+                                    <li>Hamburger-Button versteckt</li>
+                                    <li>Dropdowns bei Hover/Klick</li>
+                                </ul>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Mobile (unter ~768px)</h3>
+                                <ul class="arrow-list">
+                                    <li>Navigation versteckt</li>
+                                    <li>Hamburger-Button sichtbar</li>
+                                    <li>Menü öffnet bei Klick</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- Hamburger Button erstellen -->
+                    <section class="tutorials-content">
+                        <h2 id="der-hamburger-button">Der Hamburger-Button</h2>
+                        <p>Der klassische Hamburger besteht aus <strong>drei horizontalen Linien</strong>, die mit
+                            <code class="inline">&lt;span&gt;</code>-Elementen erstellt werden. Bei Klick animieren sie
+                            zu
+                            einem "X".
+                        </p>
+
+                        <h3 id="die-html-struktur">Die HTML-Struktur</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;button class="hamburger-btn" 
+        id="hamburgerBtn"
+        aria-label="Menü öffnen" 
+        aria-expanded="false"&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Accessibility ist wichtig!
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><code class="inline">aria-label</code> beschreibt den Button für Screenreader</li>
+                                <li><code class="inline">aria-expanded</code> zeigt an, ob das Menü offen ist</li>
+                                <li>Beide Attribute werden per JavaScript aktualisiert!</li>
+                            </ul>
+                        </div>
+
+                        <h3 id="das-css-fuer-den-hamburger">Das CSS für den Hamburger</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Der Hamburger-Button */
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Die drei Linien */
+.hamburger-btn span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Animation: Hamburger → X */
+.hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}</code></pre>
+                        </div>
+
+                        <p>Die Animation funktioniert so: Die mittlere Linie verschwindet (<code class="inline">opacity: 0</code>),
+                            die obere und untere rotieren und verschieben sich zu einem "X".</p>
+                    </section>
+
+
+                    <!-- Slide-Down Menu -->
+                    <section class="tutorials-content">
+                        <h2 id="variante-1-slide-down-menue">Variante 1: Slide-Down Menü</h2>
+                        <p>Das Menü klappt <strong>unterhalb des Headers</strong> auf – klassisch und einfach
+                            umzusetzen.</p>
+
+                        <h3 id="die-html-struktur-1">Die HTML-Struktur</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;header&gt;
+    &lt;div class="header-content"&gt;
+        &lt;a href="/" class="logo"&gt;MeineLogo&lt;/a&gt;
+        
+        &lt;button class="hamburger-btn" id="hamburgerBtn" 
+                aria-label="Menü öffnen" aria-expanded="false"&gt;
+            &lt;span&gt;&lt;/span&gt;
+            &lt;span&gt;&lt;/span&gt;
+            &lt;span&gt;&lt;/span&gt;
+        &lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;nav class="mobile-menu" id="mobileMenu"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Leistungen&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+                        </div>
+
+                        <!-- Slide-Down Demo -->
+                        <div class="demo-mobile-container" id="slide-down-demo">
+                            <div class="demo-mobile-header">
+                                <a href="#slide-down-demo" class="logo">MeinSite</a>
+                                <button class="hamburger-btn-demo" id="hamburgerDemoBtn" aria-label="Menü öffnen" aria-expanded="false">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                            <nav class="mobile-menu-demo" id="mobileMenuDemo">
+                                <ul>
+                                    <li><a href="#slide-down-demo">Home</a></li>
+                                    <li><a href="#slide-down-demo">Über uns</a></li>
+                                    <li><a href="#slide-down-demo">Leistungen</a></li>
+                                    <li><a href="#slide-down-demo">Kontakt</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <h3 id="das-css-fuer-slide-down">Das CSS für Slide-Down</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Mobile Menu - versteckt */
+.mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+/* Mobile Menu - offen */
+.mobile-menu.open {
+    max-height: 300px;  /* Groß genug für den Inhalt */
+}
+
+/* Menü-Liste */
+.mobile-menu ul {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.mobile-menu li {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.mobile-menu a:hover {
+    background: var(--bg-secondary);
+    color: var(--accent-blue);
+}</code></pre>
+                        </div>
+
+                        <h3 id="das-javascript">Das JavaScript</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburgerBtn.addEventListener('click', function() {
+    // Button-Animation togglen
+    this.classList.toggle('active');
+    
+    // Menü öffnen/schließen
+    mobileMenu.classList.toggle('open');
+    
+    // Accessibility: aria-Attribute aktualisieren
+    const isOpen = mobileMenu.classList.contains('open');
+    this.setAttribute('aria-expanded', isOpen);
+    this.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+});</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Slide-In von der Seite -->
+                    <section class="tutorials-content">
+                        <h2 id="variante-2-slide-in-von-der-seite">Variante 2: Slide-In von der Seite</h2>
+                        <p>Das Menü schiebt sich <strong>von links (oder rechts)</strong> ins Bild – oft mit einem
+                            halbtransparenten Overlay dahinter. Das ist bei Apps und modernen Websites sehr beliebt.</p>
+
+                        <!-- Slide-In Demo -->
+                        <div class="demo-slide-container" id="slide-in-demo">
+                            <div class="slide-overlay-demo" id="slideOverlayDemo"></div>
+                            <nav class="slide-menu-demo" id="slideMenuDemo">
+                                <ul>
+                                    <li><a href="#slide-in-demo">Home</a></li>
+                                    <li><a href="#slide-in-demo">Über uns</a></li>
+                                    <li><a href="#slide-in-demo">Leistungen</a></li>
+                                    <li><a href="#slide-in-demo">Portfolio</a></li>
+                                    <li><a href="#slide-in-demo">Kontakt</a></li>
+                                </ul>
+                            </nav>
+                            <div class="demo-mobile-header">
+                                <button class="hamburger-btn-demo" id="hamburgerSlideBtn" aria-label="Menü öffnen" aria-expanded="false">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                                <a href="#slide-in-demo" class="logo">MeineApp</a>
+                            </div>
+                            <p class="mt-md gray"><small>Klicke auf den Hamburger, um das Slide-In Menü zu
+                                    öffnen.</small></p>
+                        </div>
+
+                        <h3 id="das-css-fuer-slide-in">Das CSS für Slide-In</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Slide-In Menu (von links) */
+.slide-menu {
+    position: fixed;        /* Oder absolute im Container */
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: var(--bg-tertiary);
+    border-right: 1px solid var(--border-color);
+    transform: translateX(-100%);  /* Versteckt links */
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+/* Menu offen */
+.slide-menu.open {
+    transform: translateX(0);  /* Eingeblendet */
+}
+
+/* Overlay (halbtransparent) */
+.slide-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.slide-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Von rechts statt links?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Ändere einfach <code class="inline">left: 0</code> zu <code class="inline">right: 0</code>
+                                und <code class="inline">translateX(-100%)</code> zu
+                                <code class="inline">translateX(100%)</code>!
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Responsive: Wann Mobile, wann Desktop? -->
+                    <section class="tutorials-content">
+                        <h2 id="responsive-mobile-vs-desktop">Responsive: Mobile vs. Desktop</h2>
+                        <p>Mit <strong>Media Queries</strong> bestimmst du, wann der Hamburger sichtbar ist und wann die
+                            normale Navigation:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Mobile First: Hamburger sichtbar, Nav versteckt */
+.hamburger-btn {
+    display: flex;
+}
+
+.desktop-nav {
+    display: none;
+}
+
+.mobile-menu {
+    /* Slide-Down oder Slide-In Styles */
+}
+
+/* Ab 768px: Desktop-Ansicht */
+@media (min-width: 768px) {
+    /* Hamburger verstecken */
+    .hamburger-btn {
+        display: none;
+    }
+    
+    /* Mobile Menu nie anzeigen */
+    .mobile-menu {
+        display: none !important;
+    }
+    
+    /* Desktop Navigation anzeigen */
+    .desktop-nav {
+        display: flex;
+        gap: 2rem;
+    }
+}</code></pre>
+                        </div>
+
+                        <div class="info-box warning">
+                            <strong class="box-title warning no-toc">Breakpoint-Tipp
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>768px ist ein guter Standard-Breakpoint, aber teste immer mit deinem echten Inhalt!
+                                Manchmal
+                                braucht man 900px oder 1024px, je nachdem wie viele Menüpunkte es gibt.</p>
+                        </div>
+                    </section>
+
+                    <!-- Zusammenfassung -->
+                    <section class="tutorials-content">
+                        <h2 id="zusammenfassung">Zusammenfassung</h2>
+
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Slide-Down</h3>
+                                <ul class="arrow-list">
+                                    <li>Menü klappt unter dem Header auf</li>
+                                    <li>Einfach zu implementieren</li>
+                                    <li>Gut für wenige Menüpunkte</li>
+                                    <li>Schiebt den Content nach unten</li>
+                                </ul>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Slide-In</h3>
+                                <ul class="arrow-list">
+                                    <li>Menü schiebt von der Seite rein</li>
+                                    <li>Overlay verdunkelt die Seite</li>
+                                    <li>Gut für viele Menüpunkte</li>
+                                    <li>Content bleibt an Ort und Stelle</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-box notice mt-md">
+                            <strong class="box-title notice no-toc">Checkliste für Mobile Navigation
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="check-list">
+                                <li><code class="inline">aria-label</code> und
+                                    <code class="inline">aria-expanded</code> für Accessibility
+                                </li>
+                                <li>Hamburger-Button groß genug für Touch (min. 44×44px Tappable Area)</li>
+                                <li>Menü schließt bei Klick auf einen Link</li>
+                                <li>ESC-Taste schließt das Menü (optional aber nice)</li>
+                                <li>Focus-Trap im offenen Menü (für Keyboard-Navigation)</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Prev/Next Navigation -->
+
+                    <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav"></nav>
+                    </section>
+
+                </div> <!-- Wrapper .container -->
+
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav" aria-label="Footer-Navigation">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
+
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/js/tutorials-html-navigation.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+
+    
+
+</body></html>
