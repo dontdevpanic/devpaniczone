@@ -1,0 +1,823 @@
+<!DOCTYPE html><html lang="de"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name=" description" content="Wie du Breadcrumb-Navigationen mit HTML erstellst. Mit Accessibility-Tipps, Schema.org Markup für SEO und Best Practices.">
+        <meta name="keywords" content="HTML Breadcrumbs, Breadcrumb Navigation, Schema.org BreadcrumbList, aria-current, Brotkrümel-Navigation, SEO Navigation">
+        <meta name="author" content="DevPanicZone">
+        <title>HTML Breadcrumbs – Navigation erstellen | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+
+        <style>
+            .breadcrumb-demo {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                /* Umbruch bei wenig Platz */
+                padding: 0.75rem 1rem;
+                margin: 0;
+                background: var(--bg-secondary);
+                border-radius: 8px;
+            }
+
+            /* Trennzeichen zwischen den Elementen */
+            .breadcrumb-demo li+li::before {
+                content: '›';
+                /* oder '»' oder '→' oder '/' */
+                padding: 0 0.5rem;
+                color: var(--text-secondary);
+            }
+
+            .breadcrumb-demo a {
+                color: var(--accent-blue);
+                text-decoration: none;
+            }
+
+            .breadcrumb-demo a:hover {
+                text-decoration: underline;
+            }
+
+            /* Aktuelle Seite (nicht klickbar) */
+            .breadcrumb-demo [aria-current="page"] {
+                color: var(--text-secondary);
+                pointer-events: none;
+                display: inline-flex;
+                align-items: center;
+                line-height: 1.4;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Breadcrumbs</span></nav>
+                    <h1 class="hero-title">HTML Breadcrumbs</h1>
+                    <p class="hero-subtitle">Breadcrumb-Navigation für bessere Orientierung und SEO – mit semantischem
+                        HTML und Schema.org Markup.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                </span>
+            </button>
+
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#was-sind-breadcrumbs">Was sind Breadcrumbs?</a></li>
+                    <li class="toc-level-1"><a href="#wann-breadcrumbs-verwenden">Wann Breadcrumbs verwenden?</a></li>
+                    <li class="toc-level-1"><a href="#trennzeichen-varianten">Trennzeichen-Varianten</a></li>
+                    <li class="toc-level-1"><a href="#schema-org-markup">Schema.org Markup für SEO</a></li>
+                    <li class="toc-level-2"><a href="#json-ld-variante">JSON-LD (empfohlen)</a></li>
+                    <li class="toc-level-2"><a href="#microdata-variante">Microdata (Alternative)</a></li>
+                    <li class="toc-level-1"><a href="#accessibility">Accessibility (Barrierefreiheit)</a></li>
+                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                    <li class="toc-level-2"><a href="#mobile-verhalten">Mobile: Kürzen bei wenig Platz</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">HTML Basics</li>
+                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html" class="active">HTML Breadcrumbs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                    <li class="sidebar-group-title">HTML Advanced</li>
+                    <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a></li>
+                </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper .container -->
+                <div class="container">
+
+                    <!-- Was sind Breadcrumbs? -->
+                    <section class="tutorials-content">
+                        <h2 id="was-sind-breadcrumbs">Was sind Breadcrumbs?</h2>
+                        <p>Breadcrumbs (Brotkrümel) zeigen dem Nutzer, wo er sich in der Seitenhierarchie befindet. Der
+                            Name stammt aus dem Märchen "Hänsel und Gretel" – wie die Brotkrümel im Wald helfen sie, den
+                            Weg zurückzufinden.</p>
+
+                        <div class="grid-2col-bg mb-xl">
+                            <p class="pb-sm"><strong>Sie sind besonders wichtig für:</strong></p>
+                            <ul class="arrow-list">
+                                <li><strong>Orientierung:</strong> Nutzer sehen sofort, wo sie sich befinden</li>
+                                <li><strong>Navigation:</strong> Schneller Sprung zu übergeordneten Ebenen</li>
+                                <li><strong>SEO:</strong> Google zeigt Breadcrumbs in den Suchergebnissen an</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav aria-label="Breadcrumb"&gt;
+    &lt;ol class="breadcrumb-demo"&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/tutorials/"&gt;Tutorials&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/tutorials/html/"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" aria-current="page"&gt;Breadcrumb Navigation&lt;/a&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- Breadcrumb Demo -->
+                        <nav aria-label="Breadcrumb Demo">
+                            <ol class="breadcrumb-demo pl-lg">
+                                <li><a href="#breadcrumb-navigation">Home</a></li>
+                                <li><a href="#breadcrumb-navigation">Tutorials</a></li>
+                                <li><a href="#breadcrumb-navigation">HTML</a></li>
+                                <li><a href="#breadcrumb-navigation" aria-current="page">Breadcrumb Navigation</a></li>
+                            </ol>
+                        </nav>
+
+                        <details>
+                            <summary>
+                                Details zum CSS
+                            </summary>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">.breadcrumb-demo {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    /* Umbruch bei wenig Platz */
+    padding: 0.75rem 1rem;
+    margin: 0;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+/* Trennzeichen zwischen den Elementen */
+.breadcrumb-demo li+li::before {
+    content: '›';
+    /* oder '»' oder '→' oder '/' */
+    padding: 0 0.5rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb-demo a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.breadcrumb-demo a:hover {
+    text-decoration: underline;
+}
+
+/* Aktuelle Seite (nicht klickbar) */
+.breadcrumb-demo [aria-current="page"] {
+    color: var(--text-secondary);
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.4;
+}</code></pre>
+                            </div>
+                        </details>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum &lt;ol&gt; statt &lt;ul&gt;?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM17.73,22.73c-.04.34-.23.59-.56.74-.09.04-.18.15-.21.25-.28,1.04-.33,1.09-1.4,1.09-.35,0-.71,0-1.06,0-.47,0-.72-.21-.84-.66-.03-.1-.06-.2-.07-.3-.03-.22-.13-.34-.34-.44-.39-.18-.49-.57-.52-.96-.02-.3-.02-.6,0-.89.02-.42.3-.68.72-.69.6,0,1.21,0,1.81,0,.6,0,1.19,0,1.79,0,.43,0,.72.24.74.66.02.4,0,.8-.05,1.19ZM19.8,16.29c-.84.9-1.36,1.94-1.56,3.15-.09.55-.49.87-1.05.88-.64,0-1.28,0-1.93,0-.65,0-1.3,0-1.96,0-.55,0-.93-.33-1.03-.87-.21-1.22-.74-2.26-1.58-3.17-3.27-3.5-1.73-9.12,2.89-10.4,3.66-1.02,7.17,1.35,7.84,4.83.41,2.13-.15,4-1.62,5.58Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Breadcrumbs haben eine klare Reihenfolge
+                                <code>Home → Kategorie → Unterkategorie → Seite</code>,
+                                daher ist eine geordnete Liste <code class="inline">&lt;ol&gt;</code> semantisch
+                                korrekter. Screenreader geben dann auch "Element 1 von 4" aus.
+                            </p>
+                        </div>
+
+                    </section>
+
+                    <!-- Wann Breadcrumbs verwenden? -->
+                    <section class="tutorials-content">
+                        <h2 id="wann-breadcrumbs-verwenden">Wann Breadcrumbs verwenden?</h2>
+                        <p>Nicht jede Website braucht Breadcrumbs. Sie sind sinnvoll bei:</p>
+
+                        <div class="grid-2col">
+
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Breadcrumbs empfohlen
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                        <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                        </path>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Websites mit mehr als 2 Hierarchie-Ebenen</li>
+                                    <li>Online-Shops mit Kategorien</li>
+                                    <li>Dokumentationen und Tutorials</li>
+                                    <li>News-Portale mit Rubriken</li>
+                                    <li>Große Unternehmenswebsites</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box danger">
+                                <strong class="box-title danger no-toc">Breadcrumbs unnötig
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red-light)" role="img" aria-label="Falsch">
+                                        <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                        </path>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Einfache One-Pager</li>
+                                    <li>Websites mit flacher Struktur</li>
+                                    <li>Landing Pages</li>
+                                    <li>Persönliche Portfolios</li>
+                                    <li>Seiten ohne klare Hierarchie</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Trennzeichen-Varianten -->
+                    <section class="tutorials-content">
+                        <h2 id="trennzeichen-varianten">Trennzeichen-Varianten</h2>
+                        <p>Das Trennzeichen zwischen den Ebenen ist reine Geschmackssache. Hier die gängigsten Optionen:
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Schrägstrich (Standard) */
+.breadcrumb li + li::before {
+    content: '/';
+}
+
+/* Pfeil nach rechts */
+.breadcrumb li + li::before {
+    content: '→';
+}
+
+/* Chevron / Größer-Zeichen */
+.breadcrumb li + li::before {
+    content: '›';      /* oder '&gt;' */
+}
+
+/* Doppel-Chevron */
+.breadcrumb li + li::before {
+    content: '»';
+}</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Tipp
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                </svg>
+                            </strong>
+                            <p> Verwende CSS <code class="inline">::before</code> statt
+                                echte Zeichen im HTML. So bleiben die Trennzeichen für Screenreader unsichtbar und
+                                stören nicht beim Vorlesen.</p>
+                        </div>
+
+                    </section>
+
+                    <!-- Schema.org Markup für SEOs -->
+                    <section class="tutorials-content">
+                        <h2 id="schema-org-markup">Schema.org Markup für SEO</h2>
+                        <p>Mit strukturierten Daten versteht Google deine Breadcrumbs besser und zeigt sie in den
+                            Suchergebnissen an. Es gibt zwei Varianten:</p>
+
+                        <h3 id="json-ld-variante">JSON-LD (empfohlen)</h3>
+                        <p>Google empfiehlt JSON-LD. Das Script kommt in den <code class="inline">&lt;head&gt;</code>
+                            oder vor <code class="inline">&lt;/body&gt;</code>:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;script type="application/ld+json"&gt;
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://example.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tutorials",
+            "item": "https://example.com/tutorials/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "HTML",
+            "item": "https://example.com/tutorials/html/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Breadcrumbs"
+        }
+    ]
+}
+&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Wichtig
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor" aria-hidden="true">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Das letzte Element (aktuelle Seite) hat keine <code class="inline">"item"</code>-URL –
+                                das ist korrekt so! Google weiß, dass es die aktuelle Seite ist.</p>
+                        </div>
+
+                        <h3 id="microdata-variante">Microdata (Alternative)</h3>
+                        <p>Bei Microdata werden die Attribute direkt ins HTML eingefügt:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav aria-label="Breadcrumb"&gt;
+    &lt;ol itemscope itemtype="https://schema.org/BreadcrumbList"&gt;
+        &lt;li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"&gt;
+            &lt;a itemprop="item" href="/"&gt;
+                &lt;span itemprop="name"&gt;Home&lt;/span&gt;
+            &lt;/a&gt;
+            &lt;meta itemprop="position" content="1"&gt;
+        &lt;/li&gt;
+        &lt;li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"&gt;
+            &lt;a itemprop="item" href="/tutorials/"&gt;
+                &lt;span itemprop="name"&gt;Tutorials&lt;/span&gt;
+            &lt;/a&gt;
+            &lt;meta itemprop="position" content="2"&gt;
+        &lt;/li&gt;
+        &lt;li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"&gt;
+            &lt;span itemprop="name"&gt;Breadcrumbs&lt;/span&gt;
+            &lt;meta itemprop="position" content="3"&gt;
+        &lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <p><strong>JSON-LD vs. Microdata:</strong> JSON-LD ist einfacher zu pflegen, da es vom HTML
+                            getrennt ist. Microdata ist kompakter, aber schwerer lesbar.</p>
+                    </section>
+
+                    <!-- Accessibility -->
+                    <section class="tutorials-content">
+                        <h2 id="accessibility">Accessibility (Barrierefreiheit)</h2>
+                        <p>Damit Breadcrumbs für alle Nutzer zugänglich sind:</p>
+
+                        <h3 id="aria-label" class="no-toc">1. Navigation kennzeichnen</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Screenreader liest: "Breadcrumb Navigation" --&gt;
+&lt;nav aria-label="Breadcrumb"&gt;
+    ...
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <h3 id="aria-current" class="no-toc">2. Aktuelle Seite markieren</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- aria-current="page" signalisiert: "Du bist hier" --&gt;
+&lt;li&gt;
+    &lt;span aria-current="page"&gt;Breadcrumbs&lt;/span&gt;
+&lt;/li&gt;</code></pre>
+                        </div>
+
+                        <h3 id="trennzeichen-verstecken" class="no-toc">3. Trennzeichen für Screenreader verstecken</h3>
+                        <p>CSS-generierte Inhalte (<code class="inline">::before</code>) werden von modernen
+                            Screenreadern meist ignoriert. Falls du Trennzeichen im HTML verwendest:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- aria-hidden versteckt das Zeichen vor Screenreadern --&gt;
+&lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+&lt;span aria-hidden="true"&gt;/&lt;/span&gt;
+&lt;li&gt;&lt;a href="/tutorials/"&gt;Tutorials&lt;/a&gt;&lt;/li&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Best Practices -->
+                    <section class="tutorials-content">
+                        <h2 id="best-practices">Best Practices</h2>
+
+                        <div class="grid-2col">
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Do
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-success" fill="#20a66e" role="img" aria-label="Richtig">
+                                        <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                        </path>
+                                    </svg>
+                                </strong>
+                                <ul class="check-list pl-0">
+                                    <li>Mit "Home" oder einem Haus-Icon starten</li>
+                                    <li>Aktuelle Seite als letztes Element (nicht klickbar)</li>
+                                    <li>Kurze, prägnante Bezeichnungen</li>
+                                    <li>Konsistente Platzierung (meist unter dem Header)</li>
+                                    <li>Geordnete Liste <code class="inline">&lt;ol&gt;</code> verwenden</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-box danger">
+                                <strong class="box-title danger no-toc">Don't
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red-light)" role="img" aria-label="Falsch">
+                                        <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                        </path>
+                                    </svg>
+                                </strong>
+                                <ul class="cross-list pl-0">
+                                    <li>Mehr als 4-5 Ebenen anzeigen</li>
+                                    <li>Aktuelle Seite als klickbaren Link</li>
+                                    <li>Breadcrumbs als einzige Navigation</li>
+                                    <li>Lange Seitentitel verwenden</li>
+                                    <li>Breadcrumbs auf der Startseite</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3 id="mobile-verhalten">Mobile: Kürzen bei wenig Platz</h3>
+                        <p>Auf kleinen Bildschirmen können Breadcrumbs umbrechen oder gekürzt werden:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Nur die letzten 2 Ebenen auf Mobile zeigen */
+@media (max-width: 600px) {
+    .breadcrumb li:not(:nth-last-child(-n+2)) {
+        display: none;
+    }
+    
+    /* Ellipsis vor dem ersten sichtbaren Element */
+    .breadcrumb li:nth-last-child(2)::before {
+        content: '... / ';
+    }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Zusammenfassung -->
+                    <section class="tutorials-content">
+                        <h2 id="zusammenfassung">Zusammenfassung</h2>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Minimales Breadcrumb-Template --&gt;
+&lt;nav aria-label="Breadcrumb"&gt;
+    &lt;ol class="breadcrumb"&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/kategorie/"&gt;Kategorie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span aria-current="page"&gt;Aktuelle Seite&lt;/span&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Merke
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,
+                0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,
+                0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z"></path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><code class="inline">&lt;nav aria-label="Breadcrumb"&gt;</code> – Kennzeichnet die
+                                    Navigation</li>
+                                <li><code class="inline">&lt;ol&gt;</code> – Geordnete Liste für die Hierarchie</li>
+                                <li><code class="inline">aria-current="page"</code> – Markiert die aktuelle Seite</li>
+                                <li><strong>Schema.org</strong> – Optional für bessere SEO</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Prev/Next Navigation -->
+                    
+                <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/html/html-basics/html-navigation.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">HTML Navigation</span>
+                <span class="tutorial-nav-category">HTML Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/html/html-basics/html-listen.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">HTML Listen</span>
+                <span class="tutorial-nav-category">HTML Basics</span>
+            </a>
+        </div></nav>
+                    </section>
+
+                </div> <!-- Wrapper .container -->
+
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav" aria-label="Footer-Navigation">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
+
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+
+    
+
+</body></html>

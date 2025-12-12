@@ -162,12 +162,12 @@ const TUTORIAL_ORDER = {
         'html-grundgeruest.html',
         'html-typografie.html',
         'html-navigation.html',
+        'html-breadcrumbs.html',
         'html-listen.html',
         'html-links.html',
         'html-bilder.html',
         'html-tabellen.html',
-        'html-meta-tags.html',
-        'html-breadcrumb-navigation.html'
+        'html-meta-tags.html'
     ],
     'tutorials/html/html-advanced': [
         'html-semantik.html',
@@ -1176,7 +1176,7 @@ function updateHtmlFile(filePath) {
     if (isInTutorials) {
         const breadcrumbsNav = html.match(/<nav class="breadcrumbs">.*?<\/nav>/s);
         if (breadcrumbsNav) {
-            const newBreadcrumbs = `<nav class="breadcrumbs">${generateBreadcrumbs(filePath, currentTitle)}</nav>`;
+            const newBreadcrumbs = `<nav class="breadcrumbs" aria-label="Breadcrumb">${generateBreadcrumbs(filePath, currentTitle)}</nav>`;
             html = html.replace(breadcrumbsNav[0], newBreadcrumbs);
         }
     }
