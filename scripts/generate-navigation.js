@@ -166,6 +166,7 @@ const TUTORIAL_ORDER = {
         'html-dropdown.html',
         'html-multi-level-navigation.html',
         'html-mobile-navigation.html',
+        'html-navigation-accessibility.html',
         'html-listen.html',
         'html-links.html',
         'html-bilder.html',
@@ -182,7 +183,8 @@ const TUTORIAL_ORDER = {
         'css-einbinden.html',
         'css-color-units.html',
         'css-typografie.html',
-        'css-mobile-first.html'
+        'css-mobile-first.html',
+        'css-navigation-states.html'
     ],
     'tutorials/css/css-advanced': [
         // Platzhalter

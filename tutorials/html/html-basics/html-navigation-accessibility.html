@@ -1,0 +1,952 @@
+<!DOCTYPE html><html lang="de"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="Wie du barrierefreie Navigationen erstellst: Skip-Links für Tastatur-Nutzer, ARIA-Attribute für Screenreader und Keyboard-Navigation für Dropdowns.">
+        <meta name="keywords" content="HTML Skip-Link, barrierefreie Navigation, ARIA Navigation, Keyboard Navigation, Accessibility Webdesign, aria-expanded, aria-label">
+        <meta name="author" content="DevPanicZone">
+        <title>HTML Navigation Accessibility – Skip-Link, ARIA &amp; Keyboard | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/tutorial-navigation-accessibility.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Navigation Accessibility</span></nav>
+                    <h1 class="hero-title">HTML Navigation Accessibility</h1>
+                    <p class="hero-subtitle">Skip-Links, ARIA-Attribute und Keyboard-Navigation – für eine barrierefreie
+                        Website.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                </span>
+            </button>
+
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#warum-accessibility-fuer-navigation">Warum Accessibility für Navigation?</a></li>
+                    <li class="toc-level-1"><a href="#skip-link-sprungnavigation">Skip-Link (Sprungnavigation)</a></li>
+                    <li class="toc-level-2"><a href="#die-html-struktur">Die HTML-Struktur</a></li>
+                    <li class="toc-level-2"><a href="#das-css-fuer-den-skip-link">Das CSS für den Skip-Link</a></li>
+                    <li class="toc-level-1"><a href="#sichtbare-focus-states">Sichtbare Focus-States</a></li>
+                    <li class="toc-level-2"><a href="#guter-vs-schlechter-focus">Guter vs. schlechter Focus</a></li>
+                    <li class="toc-level-2"><a href="#eigenen-focus-style-gestalten">Eigenen Focus-Style gestalten</a></li>
+                    <li class="toc-level-1"><a href="#aria-attribute-fuer-screenreader">ARIA-Attribute für Screenreader</a></li>
+                    <li class="toc-level-2"><a href="#navigation-benennen">Navigation benennen</a></li>
+                    <li class="toc-level-2"><a href="#aktuelle-seite-markieren">Aktuelle Seite markieren</a></li>
+                    <li class="toc-level-2"><a href="#dropdowns-mit-aria">Dropdowns mit ARIA</a></li>
+                    <li class="toc-level-2"><a href="#wichtige-aria-attribute-erklaert">Wichtige ARIA-Attribute erklärt</a></li>
+                    <li class="toc-level-1"><a href="#keyboard-navigation-fuer-dropdowns">Keyboard-Navigation für Dropdowns</a></li>
+                    <li class="toc-level-2"><a href="#erwartetes-verhalten">Erwartetes Verhalten</a></li>
+                    <li class="toc-level-2"><a href="#das-javascript">Das JavaScript</a></li>
+                    <li class="toc-level-1"><a href="#accessibility-checkliste">Accessibility-Checkliste</a></li>
+                    <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">HTML Basics</li>
+                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-navigation-accessibility.html" class="active">HTML Navigation Accessibility</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                    <li class="sidebar-group-title">HTML Advanced</li>
+                    <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a></li>
+                </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper .container -->
+                <div class="container">
+
+                    <!-- Intro -->
+                    <section class="tutorials-content mt-xl">
+                        <h2 id="warum-accessibility-fuer-navigation">Warum Accessibility für Navigation?</h2>
+                        <p>Nicht jeder nutzt eine Maus. Viele Menschen navigieren mit der <strong>Tastatur</strong>,
+                            nutzen <strong>Screenreader</strong> oder haben andere Einschränkungen. Eine barrierefreie
+                            Navigation ist nicht nur nett – in vielen Ländern ist sie <strong>gesetzlich
+                                vorgeschrieben</strong>
+                            (z.B. WCAG, BITV in Deutschland).</p>
+
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Wer profitiert?</h3>
+                                <ul class="arrow-list">
+                                    <li>Blinde/sehbehinderte Nutzer (Screenreader)</li>
+                                    <li>Motorisch eingeschränkte Nutzer (Tastatur)</li>
+                                    <li>Nutzer mit temporären Einschränkungen</li>
+                                    <li>Power-User die Tastatur bevorzugen</li>
+                                </ul>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Was behandeln wir?</h3>
+                                <ul class="arrow-list">
+                                    <li>Skip-Links zum Überspringen der Navigation</li>
+                                    <li>ARIA-Attribute für Screenreader</li>
+                                    <li>Keyboard-Navigation für Dropdowns</li>
+                                    <li>Sichtbare Focus-States</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Skip-Link -->
+                    <section class="tutorials-content">
+                        <h2 id="skip-link-sprungnavigation">Skip-Link (Sprungnavigation)</h2>
+                        <p>Ein Skip-Link ermöglicht es Tastatur- und Screenreader-Nutzern, <strong>direkt zum
+                                Hauptinhalt zu springen</strong> – ohne sich durch die gesamte Navigation zu tabben.
+                            Er ist normalerweise unsichtbar und erscheint erst bei Fokus.</p>
+
+                        <h3 id="die-html-struktur">Die HTML-Struktur</h3>
+                        <p>Der Skip-Link kommt <strong>ganz an den Anfang</strong> des <code class="inline">&lt;body&gt;</code>
+                            – noch vor dem Header!</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;body&gt;
+    &lt;!-- Skip-Link: Ganz am Anfang! --&gt;
+    &lt;a href="#main-content" class="skip-link"&gt;Zum Inhalt springen&lt;/a&gt;
+
+    &lt;header&gt;
+        &lt;nav&gt;
+            &lt;!-- Hier ist die lange Navigation... --&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main id="main-content"&gt;
+        &lt;!-- Hauptinhalt - hier springt der Link hin --&gt;
+    &lt;/main&gt;
+&lt;/body&gt;</code></pre>
+                        </div>
+
+                        <!-- Skip-Link Demo -->
+                        <p class="mt-md"><strong>Demo:</strong> Klicke in die Box und drücke <kbd>Tab ⇥</kbd>, um den
+                            Skip-Link zu sehen:</p>
+                        <div class="skip-link-container" tabindex="-1">
+                            <a href="#skip-link" class="skip-link-demo">Zum Inhalt springen</a>
+                            <span class="gray">← Hier klicken, dann Tab drücken</span>
+                        </div>
+
+                        <h3 id="das-css-fuer-den-skip-link">Das CSS für den Skip-Link</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Skip-Link: Versteckt, bis fokussiert */
+.skip-link {
+    position: absolute;
+    top: -100px;              /* Außerhalb des Viewports */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-blue);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 9999;            /* Über allem anderen */
+    transition: top 0.3s ease;
+}
+
+/* Bei Fokus (Tab-Taste): Sichtbar machen */
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+}</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum ist das wichtig?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Stell dir vor, du müsstest bei <strong>jeder Seite</strong> erst 20+ Navigationslinks
+                                durchtabben, bevor du zum Inhalt kommst. Für Tastaturnutzer ist das Alltag – ein
+                                Skip-Link macht den Unterschied zwischen frustrierend und nutzbar.</p>
+                        </div>
+                    </section>
+
+                    <!-- Focus States -->
+                    <section class="tutorials-content">
+                        <h2 id="sichtbare-focus-states">Sichtbare Focus-States</h2>
+                        <p>Wenn Nutzer mit <kbd>Tab</kbd> durch die Seite navigieren, müssen sie <strong>sehen können,
+                                wo sie gerade sind</strong>. Der Browser zeigt standardmäßig einen Fokus-Ring – aber
+                            viele Designer entfernen ihn. Das ist ein <strong>großer Fehler!</strong></p>
+
+                        <div class="info-box danger">
+                            <strong class="box-title danger no-toc">Niemals tun!
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" class="icon-danger" fill="var(--accent-red-light)" role="img" aria-label="Falsch">
+                                    <path d="M15.2,0C6.8,0,0,6.8,0,15.2s6.8,15.2,15.2,15.2,15.2-6.8,15.2-15.2S23.7,0,15.2,0ZM23.2,
+    20.7c.4.4.4,1,0,1.4l-1.1,1.1c-.4.4-1,.4-1.4,0l-5.5-5.5-5.5,5.5c-.4.4-1,.4-1.4,0l-1.1-1.1c-.4-.4-.4-1,
+    0-1.4l5.5-5.5-5.5-5.5c-.4-.4-.4-1,0-1.4l1.1-1.1c.4-.4,1-.4,1.4,0l5.5,5.5,5.5-5.5c.4-.4,1-.4,1.4,0l1.1,1.1c.4.4.4,1,0,1.4l-5.5,5.5,5.5,5.5Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <div class="code-block">
+                                <pre><code class="language-css">/* ❌ NIEMALS SO! */
+*:focus {
+    outline: none;
+}
+
+a:focus {
+    outline: 0;
+}</code></pre>
+                            </div>
+                            <p>Das entfernt den Fokus-Indikator komplett – Tastaturnutzer sind dann blind!</p>
+                        </div>
+
+                        <h3 id="guter-vs-schlechter-focus">Guter vs. schlechter Focus</h3>
+                        <p><strong>Demo:</strong> Tabbe durch beide Navigationen <kbd>Tab ⇥</kbd> und sieh den
+                            Unterschied:</p>
+
+                        <div class="focus-demo-container mb-lg">
+                            <p class="mb-sm"><strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2" aria-hidden="true">
+                                        <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
+                                        </path>
+                                    </svg> Guter Focus:</strong></p>
+                            <nav class="focus-demo-nav" aria-label="Demo guter Focus">
+                                <a href="#focus-states">Home</a>
+                                <a href="#focus-states">Über uns</a>
+                                <a href="#focus-states">Leistungen</a>
+                                <a href="#focus-states">Kontakt</a>
+                            </nav>
+                        </div>
+
+                        <div class="focus-demo-container">
+                            <p class="mb-sm"><strong><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2" fill="var(--accent-red)" aria-hidden="true">
+                                        <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z">
+                                        </path>
+                                    </svg> Schlechter Focus (outline: none):</strong></p>
+                            <nav class="focus-demo-nav bad-focus" aria-label="Demo schlechter Focus">
+                                <a href="#focus-states">Home</a>
+                                <a href="#focus-states">Über uns</a>
+                                <a href="#focus-states">Leistungen</a>
+                                <a href="#focus-states">Kontakt</a>
+                            </nav>
+                        </div>
+
+                        <h3 id="eigenen-focus-style-gestalten">Eigenen Focus-Style gestalten</h3>
+                        <p>Wenn dir der Standard-Fokusring nicht gefällt, <strong>ersetze</strong> ihn – aber entferne
+                            ihn nicht!</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ✅ Eigener Focus-Style */
+a:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* Oder mit box-shadow für rundere Ecken */
+button:focus {
+    outline: none;  /* Nur OK wenn Ersatz vorhanden! */
+    box-shadow: 0 0 0 3px var(--accent-blue);
+}
+
+/* Focus nur bei Tastatur, nicht bei Mausklick */
+a:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">:focus vs :focus-visible
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><code class="inline">:focus</code> – Wird bei JEDEM Fokus aktiv (Maus + Tastatur)
+                                </li>
+                                <li><code class="inline">:focus-visible</code> – Nur bei Tastatur-Fokus (moderner,
+                                    aber check Browser-Support)</li>
+                            </ul>
+                        </div>
+
+                        <h4>Mehr zu Focus-Styling</h4>
+                        <p>Hier geht es um die Accessibility-Pflicht für Focus-States. Wenn du wissen willst, wie du
+                            sie <strong>schön gestaltest</strong> (Animationen, verschiedene Varianten), schau ins
+                            <a href="/tutorials/css/css-basics/css-navigation-states.html">CSS Navigation States</a>
+                            Tutorial.
+                        </p>
+                        <div class="cta-content">
+                            <a href="/tutorials/css/css-basics/css-navigation-states.html" class="btn btn--small btn-secondary" target="_blank">Zum Tutorial CSS Navigation
+                                States</a>
+                        </div>
+
+                    </section>
+
+                    <!-- ARIA-Attribute -->
+                    <section class="tutorials-content">
+                        <h2 id="aria-attribute-fuer-screenreader">ARIA-Attribute für Screenreader</h2>
+                        <p>ARIA (Accessible Rich Internet Applications) sind Attribute, die <strong>zusätzliche
+                                Informationen für Screenreader</strong> bereitstellen. Für Navigationen besonders
+                            wichtig:</p>
+
+                        <h3 id="navigation-benennen">Navigation benennen</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Hauptnavigation --&gt;
+&lt;nav aria-label="Hauptnavigation"&gt;
+    &lt;ul&gt;...&lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- Footer-Navigation --&gt;
+&lt;nav aria-label="Footer-Links"&gt;
+    &lt;ul&gt;...&lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- Breadcrumbs --&gt;
+&lt;nav aria-label="Breadcrumb"&gt;
+    &lt;ol&gt;...&lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <h3 id="aktuelle-seite-markieren">Aktuelle Seite markieren</h3>
+                        <p>Mit <code class="inline">aria-current="page"</code> sagst du Screenreadern, welcher Link die
+                            aktuelle Seite ist:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav aria-label="Hauptnavigation"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/about/" aria-current="page"&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contact/"&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <!-- ARIA Demo -->
+                        <p class="mt-md"><strong>Demo:</strong> "Über uns" ist als aktuelle Seite markiert:</p>
+                        <div class="aria-demo-container">
+                            <nav class="aria-demo-nav" aria-label="Demo Navigation">
+                                <a href="#aria-attribute">Home</a>
+                                <a href="#aria-attribute" aria-current="page">Über uns</a>
+                                <a href="#aria-attribute">Kontakt</a>
+                            </nav>
+                        </div>
+
+                        <p class="mt-md">Das Attribut kannst du auch für CSS-Styling nutzen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Aktuelle Seite hervorheben */
+nav a[aria-current="page"] {
+    background: var(--accent-blue);
+    color: white;
+    font-weight: 600;
+}</code></pre>
+                        </div>
+
+                        <h3 id="dropdowns-mit-aria">Dropdowns mit ARIA</h3>
+                        <p>Für Dropdowns brauchst du mehrere ARIA-Attribute, damit Screenreader verstehen, was passiert:
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;li class="dropdown"&gt;
+    &lt;!-- Button statt Link für Dropdown-Trigger! --&gt;
+    &lt;button 
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-controls="dropdown-themen"&gt;
+        Themen ▼
+    &lt;/button&gt;
+    
+    &lt;ul id="dropdown-themen" role="menu"&gt;
+        &lt;li role="menuitem"&gt;&lt;a href="/html/"&gt;HTML&lt;/a&gt;&lt;/li&gt;
+        &lt;li role="menuitem"&gt;&lt;a href="/css/"&gt;CSS&lt;/a&gt;&lt;/li&gt;
+        &lt;li role="menuitem"&gt;&lt;a href="/js/"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/li&gt;</code></pre>
+                        </div>
+
+                        <h3 id="wichtige-aria-attribute-erklaert">Wichtige ARIA-Attribute erklärt</h3>
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Attribut</th>
+                                    <th>Bedeutung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">aria-label</code></td>
+                                    <td>Benennt die Navigation (z.B. "Hauptnavigation", "Footer-Links")</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-current</code></td>
+                                    <td>Markiert die aktuelle Seite (<code class="inline">"page"</code>) oder
+                                        Position</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-expanded</code></td>
+                                    <td>Zeigt an, ob ein Dropdown offen (<code class="inline">true</code>) oder
+                                        geschlossen (<code class="inline">false</code>) ist</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-haspopup</code></td>
+                                    <td>Signalisiert, dass ein Element ein Popup/Dropdown öffnet</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-controls</code></td>
+                                    <td>Verknüpft Button mit dem gesteuerten Element (per ID)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="info-box warning">
+                            <strong class="box-title warning no-toc">Button statt Link!
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Für Dropdown-Trigger solltest du einen <code class="inline">&lt;button&gt;</code>
+                                verwenden, keinen <code class="inline">&lt;a&gt;</code>-Link! Links sind für Navigation
+                                zu anderen Seiten, Buttons für Aktionen auf der aktuellen Seite.</p>
+                        </div>
+                    </section>
+
+
+                    <!-- Keyboard Navigation -->
+                    <section class="tutorials-content">
+                        <h2 id="keyboard-navigation-fuer-dropdowns">Keyboard-Navigation für Dropdowns</h2>
+                        <p>Nutzer müssen Dropdowns <strong>komplett mit der Tastatur</strong> bedienen können.
+                            Das bedeutet: Öffnen, Navigieren und Schließen ohne Maus.</p>
+
+                        <h3 id="erwartetes-verhalten">Erwartetes Verhalten</h3>
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Taste</th>
+                                    <th>Aktion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><kbd>Tab</kbd></td>
+                                    <td>Zum nächsten fokussierbaren Element</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Enter</kbd> / <kbd>Space</kbd></td>
+                                    <td>Dropdown öffnen/schließen</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>↓</kbd> Pfeil runter</td>
+                                    <td>Zum nächsten Item im Dropdown</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>↑</kbd> Pfeil hoch</td>
+                                    <td>Zum vorherigen Item im Dropdown</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Escape</kbd></td>
+                                    <td>Dropdown schließen, Focus zurück auf Button</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>Home</kbd></td>
+                                    <td>Zum ersten Item (optional)</td>
+                                </tr>
+                                <tr>
+                                    <td><kbd>End</kbd></td>
+                                    <td>Zum letzten Item (optional)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 id="das-javascript">Das JavaScript</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Keyboard-Support für Dropdown-Buttons
+document.querySelectorAll('.dropdown button').forEach(button =&gt; {
+    button.addEventListener('keydown', function(e) {
+        const dropdown = this.nextElementSibling;
+        const isOpen = dropdown.classList.contains('open');
+        
+        switch(e.key) {
+            case 'Enter':
+            case ' ':  // Leertaste
+                e.preventDefault();
+                toggleDropdown(this, dropdown);
+                break;
+                
+            case 'Escape':
+                if (isOpen) {
+                    closeDropdown(this, dropdown);
+                    this.focus();  // Focus zurück auf Button
+                }
+                break;
+                
+            case 'ArrowDown':
+                e.preventDefault();
+                if (isOpen) {
+                    // Zum ersten Link im Dropdown
+                    dropdown.querySelector('a')?.focus();
+                } else {
+                    openDropdown(this, dropdown);
+                }
+                break;
+        }
+    });
+});
+
+// Navigation innerhalb des Dropdowns
+document.querySelectorAll('.dropdown-menu a').forEach(link =&gt; {
+    link.addEventListener('keydown', function(e) {
+        const items = [...this.closest('ul').querySelectorAll('a')];
+        const index = items.indexOf(this);
+        const button = this.closest('.dropdown').querySelector('button');
+        const dropdown = this.closest('ul');
+        
+        switch(e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                // Zum nächsten Item (oder zurück zum ersten)
+                const nextIndex = (index + 1) % items.length;
+                items[nextIndex].focus();
+                break;
+                
+            case 'ArrowUp':
+                e.preventDefault();
+                // Zum vorherigen Item (oder zum letzten)
+                const prevIndex = (index - 1 + items.length) % items.length;
+                items[prevIndex].focus();
+                break;
+                
+            case 'Escape':
+                closeDropdown(button, dropdown);
+                button.focus();
+                break;
+                
+            case 'Tab':
+                // Bei Tab: Dropdown schließen
+                closeDropdown(button, dropdown);
+                break;
+        }
+    });
+});
+
+// Hilfsfunktionen
+function openDropdown(button, menu) {
+    menu.classList.add('open');
+    button.setAttribute('aria-expanded', 'true');
+}
+
+function closeDropdown(button, menu) {
+    menu.classList.remove('open');
+    button.setAttribute('aria-expanded', 'false');
+}
+
+function toggleDropdown(button, menu) {
+    const isOpen = menu.classList.contains('open');
+    if (isOpen) {
+        closeDropdown(button, menu);
+    } else {
+        openDropdown(button, menu);
+    }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Checkliste -->
+                    <section class="tutorials-content">
+                        <h2 id="accessibility-checkliste">Accessibility-Checkliste</h2>
+                        <p>Nutze diese Checkliste, um deine Navigation auf Barrierefreiheit zu prüfen:</p>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Checkliste für barrierefreie Navigation
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16-1.19-.49l-5.13-5.13c-.66-.66-.66-1.73,0-2.39.66-.66,1.73-.66,2.39,0l3.94,3.94,9.76-9.76c.66-.66,1.73-.66,2.39,0,.66.66.66,1.73,0,2.39Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <div class="grid-2col">
+                                <div>
+                                    <ul class="check-list">
+                                        <li><strong>Skip-Link</strong> vorhanden und funktioniert</li>
+                                        <li><code class="inline">&lt;nav&gt;</code> mit
+                                            <code class="inline">aria-label</code> beschriftet
+                                        </li>
+                                        <li>Alle Links per <kbd>Tab</kbd> erreichbar</li>
+                                        <li><strong>Sichtbarer Focus-Indikator</strong> – nie
+                                            <code class="inline">outline: none</code>!
+                                        </li>
+                                        <li>Dropdowns öffnen mit <kbd>Enter</kbd> / <kbd>Space</kbd></li>
+                                        <li><kbd>Escape</kbd> schließt Dropdowns</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="check-list">
+                                        <li><kbd>↑</kbd> <kbd>↓</kbd> Pfeiltasten navigieren im Dropdown</li>
+                                        <li><code class="inline">aria-expanded</code> wird bei Toggle aktualisiert</li>
+                                        <li>Aktuelle Seite mit <code class="inline">aria-current="page"</code> markiert
+                                        </li>
+                                        <li>Kontrastverhältnis mindestens <strong>4.5:1</strong></li>
+                                        <li>Touch-Targets mindestens <strong>44×44px</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Tools zum Testen
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Tastatur-Test:</strong> Navigiere nur mit Tab, Enter, Pfeiltasten, Escape
+                                </li>
+                                <li><strong>Screenreader:</strong> VoiceOver (Mac), NVDA (Windows, kostenlos)</li>
+                                <li><strong>Browser-Extensions:</strong> axe DevTools, WAVE, Lighthouse</li>
+                                <li><strong>Kontrast-Check:</strong> WebAIM Contrast Checker</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Weiterführend: Schöne States gestalten
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
+                                </svg>
+                            </strong>
+                            <p>Jetzt weißt du, was für Accessibility wichtig ist. Im Tutorial
+                                <a href="/tutorials/css/css-basics/css-navigation-states.html" target="_blank">CSS
+                                    Navigation States</a>
+                                lernst du, wie du Hover, Focus und Active States auch optisch ansprechend gestaltest –
+                                mit Animationen, verschiedenen Varianten und Best Practices fürs Design.
+                            </p>
+
+                        </div>
+                        <div class="cta-content">
+                            <a href="/tutorials/css/css-basics/css-navigation-states.html" class="btn btn--small btn-secondary" target="_blank">Zum Tutorial CSS Navigation
+                                States</a>
+                        </div>
+                    </section>
+
+                    <!-- Prev/Next Navigation -->
+
+                    <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/html/html-basics/html-mobile-navigation.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">Mobile Navigation</span>
+                <span class="tutorial-nav-category">HTML Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/html/html-basics/html-listen.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">HTML Listen</span>
+                <span class="tutorial-nav-category">HTML Basics</span>
+            </a>
+        </div></nav>
+                    </section>
+
+                </div> <!-- Wrapper .container -->
+
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav" aria-label="Footer-Navigation">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
+
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+    
+
+</body></html>
