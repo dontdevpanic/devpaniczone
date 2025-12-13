@@ -221,6 +221,7 @@
                     <li class="toc-level-2"><a href="#cta-buttons-hero">CTA Buttons Hero</a></li>
                     <li class="toc-level-2"><a href="#cta-buttons-content">CTA Buttons Content</a></li>
                     <li class="toc-level-2"><a href="#toggle-more-info">Toggle more Info</a></li>
+                    <li class="toc-level-2"><a href="#benutzerdefinierter-tooltip">Benutzerdefinierter Tooltip</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
                     <!-- Sidebar-Anchor-End -->
                         </ul>
@@ -5479,6 +5480,82 @@ details[open] summary {
 
                     </section> <!-- Toggle -->
 
+                    <!-- Benutzerdefinierter Tooltip -->
+                    <section class="tutorials-content">
+                        <h3 id="benutzerdefinierter-tooltip">Benutzerdefinierter Tooltip</h3>
+                        <p>Das ist das zu erklärende
+                            <span class="tooltip">Wort<span class="tooltiptext">Das ist die
+                                    Erklärung</span></span>
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;p&gt;Das ist das zu erklärende
+    &lt;span class="tooltip"&gt;Wort&lt;span class="tooltiptext"&gt;Das ist die
+            Erklärung&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">.tooltip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dashed var(--heading-secondary);
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-style: normal;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    z-index: 100;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.tooltip .tooltiptext::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--bg-tertiary);
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}</code></pre>
+                        </div>
+                    </section>
 
 
                     <!-- Überschriften -->
@@ -5553,6 +5630,8 @@ details[open] summary {
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/js/code-escaper.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 
