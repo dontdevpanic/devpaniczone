@@ -32,6 +32,29 @@ const THEME_ICONS = {
     light: '/assets/icons/dark-mode.svg'
 };
 
+
+// ===================================
+// LUCIDE ICON SPRITE LADEN
+// ===================================
+
+fetch('/assets/icons/lucide-sprite.svg')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Sprite nicht gefunden');
+        }
+        return response.text();
+    })
+    .then(svg => {
+        document.body.insertAdjacentHTML('afterbegin', svg);
+        console.log('✅ Lucide Sprite geladen');
+    })
+    .catch(error => {
+        console.warn('⚠️ Lucide Sprite konnte nicht geladen werden:', error);
+    });
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('✅ main.js geladen');
 
