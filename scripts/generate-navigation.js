@@ -182,7 +182,7 @@ const TUTORIAL_ORDER = {
         'grundlagen-der-css-struktur.html',
         'css-einbinden.html',
         'css-color-units.html',
-        'css-typografie.html',
+        // 'css-typografie.html',
         'css-mobile-first.html',
         'css-navigation-states.html'
     ],
