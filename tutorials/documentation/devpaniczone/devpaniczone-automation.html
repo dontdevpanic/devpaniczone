@@ -193,7 +193,6 @@
                             <!-- Sidebar-Anchor-Start -->
                     <li class="toc-level-1"><a href="#navigationen-automatisch-generieren">Navigationen automatisch
                             generieren</a></li>
-                    <li class="toc-level-2"><a href="#grundgeruest">Grundgerüst</a></li>
                     <li class="toc-level-1"><a href="#minimale-platzhalter-das-musst-du-im-html-haben">Minimale Platzhalter
                             – Das musst du im HTML haben</a></li>
                     <li class="toc-level-2"><a href="#1-header-alle-seiten">1. Header (ALLE Seiten)</a></li>
@@ -265,14 +264,7 @@
                         <h2 id="navigationen-automatisch-generieren">Navigationen automatisch
                             generieren</h2>
                         <p>Alle Navigationen werden automatisch durch das Script <code class="inline">generate-navigation.js</code> erstellt. Du brauchst nur minimale
-                            Platzhalter
-                            im
-                            HTML zu platzieren – das Script füllt den Rest!</p>
-
-                        <h3 id="grundgeruest">Grundgerüst</h3>
-                        <p>Das Grundgerüst als Copy &amp; Paste für ein leeres Tutorial-Dokument - für meinen
-                            vereinfachten
-                            Workflow.</p>
+                            Platzhalter im HTML zu platzieren – das Script füllt den Rest!</p>
 
                         <details>
                             <summary>
@@ -295,18 +287,31 @@
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;meta name="robots" content="index, follow&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
     &lt;!------------------------------------------------ 
-    ========== DESCRIPTION &amp; KEYWORDS ERSETZEN ==========
+    ======== DESCRIPTION &amp; KEYWORDS ERSETZEN ========
     -------------------------------------------------&gt;
-    &lt;meta name="description" content="-------------- DIESER TEXT WIRD ERSETZT --------------"&gt;
+    &lt;meta name="description" content="----------- DIESER TEXT WIRD ERSETZT --------------"&gt;
     &lt;meta name="keywords" content="-------------- DIESER TEXT WIRD ERSETZT --------------"&gt;
     &lt;meta name="author" content="DevPanicZone"&gt;
+
+    &lt;!------------------------------------------------ 
+    ============== OPEN GRAPH (Optional) ==============
+    Benötigt: /assets/images/og-preview.jpg (1200x630px)
+    Nur aktivieren, wenn Bild existiert!
+    -------------------------------------------------&gt;
+    &lt;!--
+    &lt;meta property="og:type" content="website"&gt;
+    &lt;meta property="og:title" content="DevPanicZone – Webentwicklung lernen mit Spaß"&gt;
+    &lt;meta property="og:description" content="Deine Ressource für Webentwicklung, Tutorials und kreative Projekte."&gt;
+    &lt;meta property="og:image" content="https://devpaniczone.de/assets/images/og-preview.jpg"&gt;
+    &lt;meta property="og:url" content="https://devpaniczone.de"&gt;
+    --&gt;
 
     &lt;!------------------------------------------ 
     ============== TITLE ERSETZEN ==============
     -------------------------------------------&gt;
-    &lt;title&gt;Tutorial-Titel | DevPanicZone&lt;/title&gt;
+    &lt;title&gt;HTML Basics | DevPanicZone&lt;/title&gt;
     &lt;link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg"&gt;
     &lt;link rel="icon" type="image/png" href="/assets/icons/favicon.png"&gt;
     &lt;link rel="stylesheet" href="/assets/css/style.css"&gt;
@@ -318,7 +323,8 @@
 &lt;body&gt;
     &lt;!-- Header-Start --&gt;
     &lt;header class="site-header"&gt;
-        &lt;!-- Wird automatisch generiert --&gt;
+        &lt;!-- Main-Nav-Start --&gt;
+        &lt;!-- Main-Nav-End --&gt;
     &lt;/header&gt;
     &lt;!-- Header-End --&gt;
 
@@ -330,11 +336,9 @@
                 &lt;nav class="breadcrumbs"&gt;&lt;/nav&gt;
                 &lt;!----------------------------------------------- 
                 ================ HERO BEARBEITEN ================
-                Der hero-subtitle Text wird als Excerpt für die
-                Tutorial-Cards verwendet (max. 160 Zeichen)
                 ------------------------------------------------&gt;
                 &lt;h1 class="hero-title"&gt;HERO Title&lt;/h1&gt;
-                &lt;p class="hero-subtitle"&gt;HERO Subtitle - Dieser Text erscheint auf den Tutorial-Cards!&lt;/p&gt;
+                &lt;p class="hero-subtitle"&gt;HERO Subtitle.&lt;/p&gt;
             &lt;/div&gt;
         &lt;/section&gt;
 
@@ -391,7 +395,7 @@
             &lt;div class="container"&gt;
 
                 &lt;!-- Abschnitte in Sections --&gt;
-                &lt;section class="tutorials-content mt-xl"&gt;
+                &lt;section class="tutorials-content"&gt;
                     &lt;h2&gt;Abschnittstitel&lt;/h2&gt;
                     &lt;p&gt;Inhalt...&lt;/p&gt;
                 &lt;/section&gt;
@@ -402,11 +406,19 @@
                     &lt;p&gt;Inhalt...&lt;/p&gt;
                 &lt;/section&gt;
 
-                &lt;!-- 
-                HINWEIS: Die "Mehr aus [Kategorie]" Section wird 
-                AUTOMATISCH durch npm run build eingefügt!
-                Du brauchst keinen Platzhalter.
-                --&gt;
+                &lt;!-- Weitere Sections nach Bedarf --&gt;
+                &lt;section class="tutorials-content"&gt;
+                    &lt;h3&gt;Weiterer Abschnitt&lt;/h3&gt;
+                    &lt;p&gt;Inhalt...&lt;/p&gt;
+                &lt;/section&gt;
+
+                &lt;!-- Weitere Sections nach Bedarf --&gt;
+                &lt;section class="tutorials-content"&gt;
+                    &lt;h4&gt;Weiterer Abschnitt&lt;/h4&gt;
+                    &lt;p&gt;Inhalt...&lt;/p&gt;
+                &lt;/section&gt;
+
+                &lt;!-- DELETE: Latest Tutorials Section wird automatisch geladen, keine Placeholder --&gt;
 
                 &lt;!-- Prev/Next Navigation --&gt;
                 &lt;section class="tutorials-content"&gt;
@@ -421,11 +433,10 @@
 
     &lt;!-- Footer-Start --&gt;
     &lt;footer class="site-footer"&gt;
-        &lt;!-- Wird automatisch generiert (inkl. Scripts) --&gt;
+        &lt;!-- Wird automatisch generiert --&gt;
     &lt;/footer&gt;
     &lt;!-- Footer-End --&gt;
     
-    &lt;!-- Zusätzliche Scripts für Tutorial-Seiten (MANUELL) --&gt;
     &lt;script src="/assets/js/code-copy.js" defer&gt;&lt;/script&gt;
     &lt;script src="/assets/js/sidebar.js" defer&gt;&lt;/script&gt;
     &lt;script src="/assets/vendor/prism/prism.js" defer&gt;&lt;/script&gt;
@@ -457,7 +468,7 @@
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;meta name="robots" content="index, follow&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
     &lt;!------------------------------------------------ 
     ========== DESCRIPTION &amp; KEYWORDS ERSETZEN ==========
     -------------------------------------------------&gt;
@@ -2241,6 +2252,8 @@ const DEBUG = true;  // Von false auf true ändern</code></pre>
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 

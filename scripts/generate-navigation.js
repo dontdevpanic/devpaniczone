@@ -256,6 +256,7 @@ const TUTORIAL_ORDER = {
     ],
     'tutorials/misc/tools': [
         'vs-code.html',
+        'vs-code-dateien-vergleichen.html',
         'browser-dev-tools.html',
         'bash-terminal.html',
         'git-versionskontrolle.html',
