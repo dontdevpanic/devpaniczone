@@ -176,7 +176,8 @@ const TUTORIAL_ORDER = {
     'tutorials/html/html-advanced': [
         'html-semantik.html',
         'html-formulare.html',
-        'html-audio-video.html'
+        'html-audio-video.html',
+        'html-svg-sprites.html'
     ],
     'tutorials/css/css-basics': [
         'grundlagen-der-css-struktur.html',
@@ -191,7 +192,7 @@ const TUTORIAL_ORDER = {
     ],
     'tutorials/css/css-specials': [
         'css-organization.html',
-        'css-lucide-icons.html'
+        // 'css-lucide-icons.html'
     ],
     'tutorials/bootstrap/bootstrap-basics': [
         // Platzhalter

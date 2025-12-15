@@ -37,7 +37,7 @@ const THEME_ICONS = {
 // LUCIDE ICON SPRITE LADEN
 // ===================================
 
-fetch('/assets/icons/lucide-sprite.svg')
+fetch('/assets/icons/sprite.svg')
     .then(response => {
         if (!response.ok) {
             throw new Error('Sprite nicht gefunden');
@@ -46,10 +46,10 @@ fetch('/assets/icons/lucide-sprite.svg')
     })
     .then(svg => {
         document.body.insertAdjacentHTML('afterbegin', svg);
-        console.log('✅ Lucide Sprite geladen');
+        console.log('✅ Sprite geladen');
     })
     .catch(error => {
-        console.warn('⚠️ Lucide Sprite konnte nicht geladen werden:', error);
+        console.warn('⚠️ Sprite konnte nicht geladen werden:', error);
     });
 
 

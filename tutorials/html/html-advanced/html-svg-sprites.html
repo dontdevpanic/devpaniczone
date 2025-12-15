@@ -1,0 +1,1333 @@
+<!DOCTYPE html><html lang="de"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="SVG Sprites verstehen und einsetzen – wie du eigene Icons effizient in einer Datei bündelst, per CSS stylst und DSGVO-konform ohne externe Abhängigkeiten nutzt.">
+        <meta name="keywords" content="SVG Sprite, SVG Icons, eigene Icons erstellen, use href, Symbol SVG, Icons einbinden, DSGVO konform, self-hosted icons, Icon Sprite Tutorial, Lucide Icons">
+        <meta name="author" content="DevPanicZone">
+        <title>SVG Sprites – Eigene Icons effizient einbinden | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">SVG Sprites – Eigene Icons effizient einbinden</span></nav>
+                    <h1 class="hero-title">SVG Sprites – Eigene Icons effizient einbinden</h1>
+                    <p class="hero-subtitle">Eine Datei, viele Icons – wie du SVG Sprites erstellst, einbindest und mit
+                        CSS stylst.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                </span>
+            </button>
+
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#warum-svg-sprites">Warum SVG Sprites?</a></li>
+                    <li class="toc-level-2"><a href="#vorteile-svg-sprites">Vorteile von SVG Sprites</a></li>
+                    <li class="toc-level-2"><a href="#vorher-nachher">Vorher vs. Nachher</a></li>
+                    <li class="toc-level-1"><a href="#was-ist-ein-svg-sprite">Was ist ein SVG Sprite?</a></li>
+                    <li class="toc-level-2"><a href="#aufbau-eines-sprites">Aufbau eines Sprites</a></li>
+                    <li class="toc-level-2"><a href="#icons-abrufen">Icons aus dem Sprite abrufen</a></li>
+                    <li class="toc-level-1"><a href="#sprite-datei-erstellen">Die Sprite-Datei erstellen</a></li>
+                    <li class="toc-level-2"><a href="#grundstruktur">Grundstruktur</a></li>
+                    <li class="toc-level-2"><a href="#eigene-icons-hinzufuegen">Eigene Icons hinzufügen</a></li>
+                    <li class="toc-level-2"><a href="#namenskonvention">Namenskonvention</a></li>
+                    <li class="toc-level-1"><a href="#sprite-einbinden">Sprite einbinden</a></li>
+                    <li class="toc-level-2"><a href="#methode-javascript">Methode 1: Per JavaScript laden (empfohlen)</a></li>
+                    <li class="toc-level-2"><a href="#methode-inline">Methode 2: Direkt im HTML</a></li>
+                    <li class="toc-level-2"><a href="#methode-php">Methode 3: PHP Include</a></li>
+                    <li class="toc-level-1"><a href="#icons-verwenden">Icons verwenden</a></li>
+                    <li class="toc-level-2"><a href="#basis-syntax">Basis-Syntax</a></li>
+                    <li class="toc-level-2"><a href="#farben-aendern">Farben ändern</a></li>
+                    <li class="toc-level-2"><a href="#groesse-aendern">Größe ändern</a></li>
+                    <li class="toc-level-2"><a href="#icon-klassen">Praktische Icon-Klassen</a></li>
+                    <li class="toc-level-2"><a href="#verwendungsbeispiele">Verwendungsbeispiele</a></li>
+                    <li class="toc-level-1"><a href="#barrierefreiheit">Barrierefreiheit (Accessibility)</a></li>
+                    <li class="toc-level-2"><a href="#dekorative-icons">Dekorative Icons</a></li>
+                    <li class="toc-level-2"><a href="#bedeutungstragende-icons">Bedeutungstragende Icons</a></li>
+                    <li class="toc-level-1"><a href="#praxisbeispiel">Praxisbeispiel: Info-Boxen</a></li>
+                    <li class="toc-level-1"><a href="#icon-bibliotheken">Bonus: Icon-Bibliotheken als Sprite</a></li>
+                    <li class="toc-level-2"><a href="#lucide-icons">Lucide Icons (empfohlen)</a></li>
+                    <li class="toc-level-2"><a href="#weitere-bibliotheken">Weitere sprite-freundliche Bibliotheken</a></li>
+                    <li class="toc-level-2"><a href="#bootstrap-fontawesome">Warum Bootstrap Icons / Font Awesome nicht ideal sind</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">HTML Basics</li>
+                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-navigation-accessibility.html">HTML Navigation Accessibility</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                    <li class="sidebar-group-title">HTML Advanced</li>
+                    <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a></li>
+                    <li><a href="/tutorials/html/html-advanced/html-svg-sprites.html" class="active">SVG Sprites – Eigene Icons effizient einbinden</a></li>
+                </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper .container -->
+                <div class="container">
+
+                    <!-- Warum SVG Sprites? -->
+                    <section class="tutorials-content">
+                        <h2 id="warum-svg-sprites">Warum SVG Sprites?</h2>
+
+                        <p>Icons gehören zu jeder Website. Aber wie bindet man sie am besten ein? Es gibt mehrere
+                            Ansätze – und jeder hat seine Tücken:</p>
+
+                        <div class="grid-2col-cards">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Einzelne Dateien</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-md px-md">
+                                    <p>10 Icons = 10 HTTP-Requests</p>
+                                    <p class="text-muted">Langsam, viele Verbindungen</p>
+                                </div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Inline SVG</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-md px-md">
+                                    <p>Aufgeblähtes HTML</p>
+                                    <p class="text-muted">Schwer wartbar, unübersichtlich</p>
+                                </div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Icon-Fonts</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-md px-md">
+                                    <p>Große Dateien (~200-400 KB)</p>
+                                    <p class="text-muted">Font-Loading-Probleme</p>
+                                </div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">SVG Sprite</span>
+                                    <svg class="icon-ui icon-green">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-md px-md">
+                                    <p>1 Datei, alle Icons</p>
+                                    <p class="text-muted">Schnell, sauber, stylebar</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 id="vorteile-svg-sprites">Vorteile von SVG Sprites</h3>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Das bekommst du mit SVG Sprites
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Ein Request:</strong> Alle Icons in einer Datei – wird einmal geladen und
+                                    gecached</li>
+                                <li><strong>Sauberes HTML:</strong> Statt 20 Zeilen Pfade nur <code class="inline">&lt;use href="#icon-id"/&gt;</code></li>
+                                <li><strong>CSS-Styling:</strong> Farbe und Größe per CSS steuerbar</li>
+                                <li><strong>Wartbar:</strong> Icon ändern = nur Sprite-Datei anpassen</li>
+                                <li><strong>DSGVO-konform:</strong> Alles lokal, keine externen Requests</li>
+                                <li><strong>Winzig:</strong> 10-20 eigene Icons ≈ 2-5 KB</li>
+                            </ul>
+                        </div>
+
+                        <h3 id="vorher-nachher">Vorher vs. Nachher</h3>
+
+                        <p>So sieht der Unterschied im Code aus:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">❌ Vorher: Inline SVG</span>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="info-box notice"&gt;
+    &lt;strong class="box-title notice"&gt;
+        Hinweis
+        &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" 
+             width="30" height="30" fill="currentColor"&gt;
+            &lt;path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,
+                15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM24.85,
+                10.96l-10.96,10.96c-.33.33-.76.49-1.19.49s-.86-.16..."&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/strong&gt;
+    &lt;p&gt;Das ist ein Hinweis.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">✅ Nachher: SVG Sprite</span>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="info-box notice"&gt;
+    &lt;strong class="box-title notice"&gt;
+        Hinweis
+        &lt;svg class="icon-ui"&gt;
+            &lt;use href="#dpz-check-circle"/&gt;
+        &lt;/svg&gt;
+    &lt;/strong&gt;
+    &lt;p&gt;Das ist ein Hinweis.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <p><strong>Ergebnis:</strong> Sauberes, lesbares HTML – und die Icons laden trotzdem
+                            blitzschnell.</p>
+                    </section>
+
+                    <!-- Was ist ein SVG Sprite? -->
+                    <section class="tutorials-content">
+                        <h2 id="was-ist-ein-svg-sprite">Was ist ein SVG Sprite?</h2>
+
+                        <p>Ein SVG Sprite ist eine einzelne Datei, die <strong>mehrere Icons als Symbole</strong>
+                            enthält. Statt 10 einzelne Dateien zu laden, lädst du eine – und rufst die Icons per ID ab.
+                        </p>
+
+                        <h3 id="aufbau-eines-sprites">Aufbau eines Sprites</h3>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">SVG</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-xml">&lt;svg xmlns="http://www.w3.org/2000/svg" style="display:none"&gt;
+    
+    &lt;!-- Symbol 1: Check-Icon --&gt;
+    &lt;symbol id="icon-check" viewBox="0 0 24 24"&gt;
+        &lt;path d="M20 6 9 17l-5-5"/&gt;
+    &lt;/symbol&gt;
+    
+    &lt;!-- Symbol 2: Info-Icon --&gt;
+    &lt;symbol id="icon-info" viewBox="0 0 32 32"&gt;
+        &lt;path d="M16,1C7.72,1,1,7.72,1,16s6.72..."/&gt;
+    &lt;/symbol&gt;
+    
+    &lt;!-- Weitere Symbole... --&gt;
+    
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">So funktioniert's
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><code class="inline">style="display:none"</code> – Das Sprite selbst ist unsichtbar
+                                </li>
+                                <li><code class="inline">&lt;symbol id="..."&gt;</code> – Jedes Icon bekommt eine
+                                    eindeutige ID</li>
+                                <li><code class="inline">viewBox</code> – Definiert das Koordinatensystem des Icons</li>
+                                <li>Die Pfade <code class="inline">&lt;path&gt;</code>, <code class="inline">&lt;circle&gt;</code>, etc. definieren die Form</li>
+                            </ul>
+                        </div>
+
+                        <h3 id="icons-abrufen">Icons aus dem Sprite abrufen</h3>
+
+                        <p>Mit <code class="inline">&lt;use href="#id"&gt;</code> rufst du ein Symbol ab:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Check-Icon anzeigen --&gt;
+&lt;svg class="icon"&gt;
+    &lt;use href="#icon-check"/&gt;
+&lt;/svg&gt;
+
+&lt;!-- Info-Icon anzeigen --&gt;
+&lt;svg class="icon"&gt;
+    &lt;use href="#icon-info"/&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Wichtig: Das Sprite muss im DOM sein!
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Die <code class="inline">&lt;use href="#..."&gt;</code>-Referenz funktioniert nur, wenn
+                                das Sprite <strong>im selben HTML-Dokument</strong> eingebunden ist – entweder inline
+                                oder per JavaScript injiziert.</p>
+                        </div>
+                    </section>
+
+                    <!-- Die Sprite-Datei erstellen -->
+                    <section class="tutorials-content">
+                        <h2 id="sprite-datei-erstellen">Die Sprite-Datei erstellen</h2>
+
+                        <p>Erstelle die Datei <code class="inline">/assets/icons/sprite.svg</code> mit deinen Icons:</p>
+
+                        <h3 id="grundstruktur">Grundstruktur</h3>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">sprite.svg</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-xml">&lt;svg xmlns="http://www.w3.org/2000/svg" style="display:none"&gt;
+    
+    &lt;!-- ===== CHECK CIRCLE ===== --&gt;
+    &lt;symbol id="icon-check-circle" viewBox="0 0 32 32" fill="currentColor"&gt;
+        &lt;path d="M16,1C7.72,1,1,7.72,1,16s6.72,15,15,15..."/&gt;
+    &lt;/symbol&gt;
+    
+    &lt;!-- ===== INFO CIRCLE ===== --&gt;
+    &lt;symbol id="icon-info" viewBox="0 0 32 32" fill="currentColor"&gt;
+        &lt;path d="M15,0C6.72,0,0,6.72,0,15s6.72,15,15,15..."/&gt;
+    &lt;/symbol&gt;
+    
+    &lt;!-- ===== WARNING CIRCLE ===== --&gt;
+    &lt;symbol id="icon-warning" viewBox="0 0 32 32" fill="currentColor"&gt;
+        &lt;path d="M16,1C7.72,1,1,7.72,1,16s6.72,15,15,15..."/&gt;
+    &lt;/symbol&gt;
+    
+    &lt;!-- Weitere Icons hier einfügen --&gt;
+    
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                        <h3 id="eigene-icons-hinzufuegen">Eigene Icons hinzufügen</h3>
+
+                        <p>Du hast ein Icon in Illustrator, Figma oder einem anderen Tool erstellt? So fügst du es zum
+                            Sprite hinzu:</p>
+
+                        <h4 class="no-toc">Schritt 1: SVG exportieren</h4>
+                        <p>Exportiere dein Icon als SVG. Du erhältst so etwas:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Exportiertes SVG</span>
+                            </div>
+                            <pre><code class="language-xml">&lt;svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" 
+     viewBox="0 0 32 32"&gt;
+    &lt;path fill="#000" d="M16,1C7.72,1,1,7.72,1,16..."/&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                        <h4 class="no-toc">Schritt 2: Zu Symbol umwandeln</h4>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Als Symbol im Sprite</span>
+                            </div>
+                            <pre><code class="language-xml">&lt;symbol id="icon-mein-icon" viewBox="0 0 32 32" fill="currentColor"&gt;
+    &lt;path d="M16,1C7.72,1,1,7.72,1,16..."/&gt;
+&lt;/symbol&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Umwandlungs-Checkliste
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><code class="inline">&lt;svg&gt;</code> → <code class="inline">&lt;symbol&gt;</code>
+                                </li>
+                                <li><code class="inline">xmlns</code>, <code class="inline">width</code>, <code class="inline">height</code> entfernen</li>
+                                <li><code class="inline">id="icon-NAME"</code> hinzufügen (eindeutig!)</li>
+                                <li><code class="inline">viewBox</code> behalten!</li>
+                                <li><code class="inline">fill="#000"</code> → <code class="inline">fill="currentColor"</code> (für CSS-Styling)</li>
+                                <li>Bei Stroke-Icons: <code class="inline">stroke="currentColor"</code></li>
+                            </ul>
+                        </div>
+
+                        <h3 id="namenskonvention">Namenskonvention</h3>
+
+                        <p>Halte deine Icon-IDs konsistent. Beispiele:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Empfohlene Benennung</span>
+                            </div>
+                            <pre><code class="language-xml">&lt;!-- Projekt-Präfix für eigene Icons --&gt;
+&lt;symbol id="dpz-check-circle"&gt;...&lt;/symbol&gt;
+&lt;symbol id="dpz-info-circle"&gt;...&lt;/symbol&gt;
+&lt;symbol id="dpz-warning-circle"&gt;...&lt;/symbol&gt;
+
+&lt;!-- Oder generisch --&gt;
+&lt;symbol id="icon-check"&gt;...&lt;/symbol&gt;
+&lt;symbol id="icon-info"&gt;...&lt;/symbol&gt;
+&lt;symbol id="icon-warning"&gt;...&lt;/symbol&gt;
+
+&lt;!-- Bibliotheks-Präfix für externe Icons --&gt;
+&lt;symbol id="lucide-star"&gt;...&lt;/symbol&gt;
+&lt;symbol id="lucide-heart"&gt;...&lt;/symbol&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Sprite einbinden -->
+                    <section class="tutorials-content">
+                        <h2 id="sprite-einbinden">Sprite einbinden</h2>
+
+                        <p>Es gibt mehrere Wege, das SVG Sprite in deine Seite zu bekommen. Alle sind <strong>100%
+                                lokal</strong> – keine externe Verbindung nötig.</p>
+
+                        <h3 id="methode-javascript">Methode 1: Per JavaScript laden (empfohlen)</h3>
+
+                        <p>Die eleganteste Lösung: Das Sprite wird einmal geladen und ist auf allen Seiten verfügbar.
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// ===================================
+// SVG SPRITE LADEN
+// ===================================
+
+fetch('/assets/icons/sprite.svg')
+    .then(response =&gt; {
+        if (!response.ok) {
+            throw new Error('Sprite nicht gefunden');
+        }
+        return response.text();
+    })
+    .then(svg =&gt; {
+        // Sprite am Anfang des body einfügen
+        document.body.insertAdjacentHTML('afterbegin', svg);
+        console.log('✅ SVG Sprite geladen');
+    })
+    .catch(error =&gt; {
+        console.warn('⚠️ Sprite konnte nicht geladen werden:', error);
+    });</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Warum diese Methode?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <div class="grid-2col">
+                                <div>
+                                    <ul class="arrow-list">
+                                        <li><strong>Zentral:</strong> Ein Script, alle Seiten versorgt</li>
+                                        <li><strong>Gecached:</strong> Browser speichert die SVG-Datei</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="arrow-list">
+                                        <li><strong>Wartbar:</strong> Icons ändern = nur Sprite-Datei anpassen</li>
+                                        <li><strong>Sauber:</strong> Kein Copy-Paste in jede HTML-Datei</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 id="methode-inline">Methode 2: Direkt im HTML</h3>
+
+                        <p>Für einzelne Seiten oder wenn du kein JavaScript möchtest:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;body&gt;
+    &lt;!-- SVG Sprite direkt am Anfang von body --&gt;
+    &lt;svg xmlns="http://www.w3.org/2000/svg" style="display:none"&gt;
+        &lt;symbol id="icon-check" viewBox="0 0 24 24"&gt;
+            &lt;path d="M20 6 9 17l-5-5"/&gt;
+        &lt;/symbol&gt;
+        &lt;!-- weitere Symbole --&gt;
+    &lt;/svg&gt;
+    
+    &lt;!-- Rest der Seite --&gt;
+    &lt;header&gt;...&lt;/header&gt;
+&lt;/body&gt;</code></pre>
+                        </div>
+
+                        <h3 id="methode-php">Methode 3: PHP Include</h3>
+
+                        <p>Wenn du PHP nutzt, kannst du das Sprite includen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">PHP</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-php">&lt;body&gt;
+    &lt;?php include 'assets/icons/sprite.svg'; ?&gt;
+    
+    &lt;!-- Rest der Seite --&gt;
+&lt;/body&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Welche Methode wählen?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-help-circle"></use>
+                                </svg>
+                            </strong>
+                            <div class="grid-2col">
+                                <div>
+                                    <p><strong>JavaScript (Methode 1)</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Statische HTML-Seiten</li>
+                                        <li>Zentrale Verwaltung gewünscht</li>
+                                        <li>Build-Tools im Einsatz</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p><strong>PHP Include (Methode 3)</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>PHP-basierte Projekte</li>
+                                        <li>WordPress Themes</li>
+                                        <li>Kein JavaScript gewünscht</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Icons verwenden -->
+                    <section class="tutorials-content">
+                        <h2 id="icons-verwenden">Icons verwenden</h2>
+
+                        <h3 id="basis-syntax">Basis-Syntax</h3>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Grundform --&gt;
+&lt;svg class="icon"&gt;
+    &lt;use href="#icon-check"/&gt;
+&lt;/svg&gt;
+
+&lt;!-- Mit zusätzlicher Klasse --&gt;
+&lt;svg class="icon icon-green"&gt;
+    &lt;use href="#dpz-check-circle"/&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                        <h3 id="farben-aendern">Farben ändern</h3>
+
+                        <p>Wenn dein Icon <code class="inline">fill="currentColor"</code> oder <code class="inline">stroke="currentColor"</code> verwendet, kannst du die Farbe per CSS
+                            steuern:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Basis-Icon erbt die Textfarbe */
+.icon {
+    width: 1em;
+    height: 1em;
+    color: currentColor;  /* Erbt vom Parent */
+}
+
+/* Farbvarianten */
+.icon-green {
+    color: var(--color-success, #22c55e);
+}
+
+.icon-red {
+    color: var(--color-danger, #ef4444);
+}
+
+.icon-yellow {
+    color: var(--color-warning, #eab308);
+}
+
+.icon-blue {
+    color: var(--color-info, #3b82f6);
+}</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Wichtig: color, nicht fill!
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Da das Icon <code class="inline">currentColor</code> verwendet, steuerst du die Farbe
+                                über die CSS-Property <code class="inline">color</code> – nicht <code class="inline">fill</code>!</p>
+                        </div>
+
+                        <h3 id="groesse-aendern">Größe ändern</h3>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Relativ zur Schriftgröße */
+.icon {
+    width: 1em;
+    height: 1em;
+}
+
+/* Feste Größen */
+.icon-sm { width: 16px; height: 16px; }
+.icon-md { width: 24px; height: 24px; }
+.icon-lg { width: 32px; height: 32px; }
+.icon-xl { width: 48px; height: 48px; }</code></pre>
+                        </div>
+
+                        <h3 id="icon-klassen">Praktische Icon-Klassen</h3>
+
+                        <p>Eine komplette Utility-Klassen-Sammlung für Icons:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ===================================
+   ICON UTILITY CLASSES
+   =================================== */
+
+/* Basis-Icon */
+.icon {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* Icon in UI-Elementen (Buttons, Boxen) */
+.icon-ui {
+    width: 24px;
+    height: 24px;
+}
+
+/* Inline-Icon (im Fließtext) */
+.icon--inline {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;  /* Optische Ausrichtung */
+    margin-inline: 0.15em;
+}
+
+/* Farben */
+.icon-green  { color: var(--color-success); }
+.icon-red    { color: var(--color-danger); }
+.icon-yellow { color: var(--color-warning); }
+.icon-blue   { color: var(--color-info); }
+.icon-muted  { color: var(--color-text-muted); }</code></pre>
+                        </div>
+
+                        <h3 id="verwendungsbeispiele">Verwendungsbeispiele</h3>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- In einer Überschrift --&gt;
+&lt;h2&gt;
+    Erfolg!
+    &lt;svg class="icon-ui icon-green"&gt;
+        &lt;use href="#dpz-check-circle"/&gt;
+    &lt;/svg&gt;
+&lt;/h2&gt;
+
+&lt;!-- Im Fließtext --&gt;
+&lt;p&gt;
+    Das ist ein Hinweis 
+    &lt;svg class="icon icon--inline icon-blue"&gt;
+        &lt;use href="#dpz-info-circle"/&gt;
+    &lt;/svg&gt;
+    mit einem Icon.
+&lt;/p&gt;
+
+&lt;!-- In einem Button --&gt;
+&lt;button class="btn"&gt;
+    &lt;svg class="icon"&gt;
+        &lt;use href="#icon-download"/&gt;
+    &lt;/svg&gt;
+    Download
+&lt;/button&gt;
+
+&lt;!-- In einer Liste --&gt;
+&lt;ul&gt;
+    &lt;li&gt;
+        &lt;svg class="icon icon-green"&gt;
+            &lt;use href="#dpz-check-inline"/&gt;
+        &lt;/svg&gt;
+        Feature vorhanden
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Barrierefreiheit (Accessibility) -->
+                    <section class="tutorials-content">
+                        <h2 id="barrierefreiheit">Barrierefreiheit (Accessibility)</h2>
+
+                        <p>Icons sind meistens <strong>dekorativ</strong> – sie unterstützen den Text, tragen aber keine
+                            eigene Bedeutung. In diesem Fall sollten sie für Screenreader unsichtbar sein.</p>
+
+                        <h3 id="dekorative-icons">Dekorative Icons</h3>
+
+                        <p>Die meisten Icons sind dekorativ – der danebenstehende Text erklärt bereits, worum es geht:
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Dekoratives Icon: aria-hidden="true" --&gt;
+&lt;button&gt;
+    &lt;svg class="icon" aria-hidden="true"&gt;
+        &lt;use href="#icon-download"/&gt;
+    &lt;/svg&gt;
+    Download
+&lt;/button&gt;
+
+&lt;!-- In Info-Boxen --&gt;
+&lt;div class="info-box"&gt;
+    &lt;strong&gt;
+        Hinweis
+        &lt;svg class="icon-ui" aria-hidden="true"&gt;
+            &lt;use href="#dpz-info-circle"/&gt;
+        &lt;/svg&gt;
+    &lt;/strong&gt;
+    &lt;p&gt;Das ist wichtig.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+
+                        <h3 id="bedeutungstragende-icons">Bedeutungstragende Icons</h3>
+
+                        <p>Wenn ein Icon <strong>alleine steht</strong> und eine Aktion oder Information vermittelt:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Icon-Only Button: role + aria-label --&gt;
+&lt;button class="btn-icon" aria-label="Menü schließen"&gt;
+    &lt;svg class="icon" role="img"&gt;
+        &lt;use href="#icon-x"/&gt;
+    &lt;/svg&gt;
+&lt;/button&gt;
+
+&lt;!-- Status-Icon ohne Text --&gt;
+&lt;span&gt;
+    &lt;svg class="icon icon-green" role="img" aria-label="Erfolgreich"&gt;
+        &lt;use href="#dpz-check-circle"/&gt;
+    &lt;/svg&gt;
+&lt;/span&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Faustregel
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Text daneben?</strong> → <code class="inline">aria-hidden="true"</code></li>
+                                <li><strong>Icon alleine?</strong> → <code class="inline">role="img"</code> + <code class="inline">aria-label="Beschreibung"</code></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Praxisbeispiel: Info-Boxen -->
+                    <section class="tutorials-content">
+                        <h2 id="praxisbeispiel">Praxisbeispiel: Info-Boxen</h2>
+
+                        <p>So sehen die verschiedenen Info-Box-Varianten mit Sprite-Icons aus:</p>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Info
+                                <svg class="icon-ui" aria-hidden="true">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Das ist eine neutrale Information.</p>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Erfolg
+                                <svg class="icon-ui" aria-hidden="true">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Die Aktion war erfolgreich!</p>
+                        </div>
+
+                        <div class="info-box warning">
+                            <strong class="box-title warning no-toc">Warnung
+                                <svg class="icon-ui" aria-hidden="true">
+                                    <use href="#dpz-warning-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Achtung, hier ist etwas zu beachten.</p>
+                        </div>
+
+                        <div class="info-box danger">
+                            <strong class="box-title danger no-toc">Fehler
+                                <svg class="icon-ui" aria-hidden="true">
+                                    <use href="#dpz-cross-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Etwas ist schiefgelaufen.</p>
+                        </div>
+
+                        <h3 class="no-toc">Der Code dazu</h3>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Info-Box mit Sprite-Icon --&gt;
+&lt;div class="info-box notice"&gt;
+    &lt;strong class="box-title notice"&gt;
+        Erfolg
+        &lt;svg class="icon-ui" aria-hidden="true"&gt;
+            &lt;use href="#dpz-check-circle"/&gt;
+        &lt;/svg&gt;
+    &lt;/strong&gt;
+    &lt;p&gt;Die Aktion war erfolgreich!&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Bonus: Icon-Bibliotheken als Sprite -->
+                    <section class="tutorials-content">
+                        <h2 id="icon-bibliotheken">Bonus: Icon-Bibliotheken als Sprite</h2>
+
+                        <p>Du musst nicht alle Icons selbst erstellen. Es gibt hervorragende Open-Source-Bibliotheken,
+                            die sich perfekt für den Sprite-Workflow eignen.</p>
+
+                        <h3 id="lucide-icons">Lucide Icons (empfohlen)</h3>
+
+                        <p><a href="https://lucide.dev/icons" target="_blank" rel="noopener">Lucide</a> ist eine
+                            moderne, schlanke Icon-Library – perfekt für SVG Sprites:</p>
+
+                        <ul class="arrow-list">
+                            <li><strong>1500+ Icons</strong> – konsistentes Design</li>
+                            <li><strong>MIT-Lizenz</strong> – frei nutzbar</li>
+                            <li><strong>24×24 viewBox</strong> – einheitlich</li>
+                            <li><strong>Stroke-basiert</strong> – skaliert perfekt</li>
+                        </ul>
+
+                        <h4 class="no-toc">Workflow: Lucide Icon zum Sprite hinzufügen</h4>
+
+                        <ol class="grid-2col-bg">
+                            <li>Gehe zu <a href="https://lucide.dev/icons" target="_blank" rel="noopener">lucide.dev/icons</a></li>
+                            <li>Suche dein Icon und klicke "Copy SVG"</li>
+                            <li>Wandle das <code class="inline">&lt;svg&gt;</code> in ein <code class="inline">&lt;symbol&gt;</code> um</li>
+                            <li>Füge es in deine Sprite-Datei ein</li>
+                        </ol>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Von Lucide kopiert</span>
+                            </div>
+                            <pre><code class="language-xml">&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+     viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;
+    &lt;path d="M20 6 9 17l-5-5"/&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Als Symbol im Sprite</span>
+                            </div>
+                            <pre><code class="language-xml">&lt;symbol id="lucide-check" viewBox="0 0 24 24" fill="none" 
+        stroke="currentColor" stroke-width="2" 
+        stroke-linecap="round" stroke-linejoin="round"&gt;
+    &lt;path d="M20 6 9 17l-5-5"/&gt;
+&lt;/symbol&gt;</code></pre>
+                        </div>
+
+                        <h3 id="weitere-bibliotheken">Weitere sprite-freundliche Bibliotheken</h3>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Library</th>
+                                    <th>Icons</th>
+                                    <th>Stil</th>
+                                    <th>Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Lucide</td>
+                                    <td>1500+</td>
+                                    <td>Stroke, minimalistisch</td>
+                                    <td><a href="https://lucide.dev" target="_blank" rel="noopener">lucide.dev</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Heroicons</td>
+                                    <td>450+</td>
+                                    <td>Outline &amp; Solid</td>
+                                    <td><a href="https://heroicons.com" target="_blank" rel="noopener">heroicons.com</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Feather</td>
+                                    <td>280+</td>
+                                    <td>Stroke, minimalistisch</td>
+                                    <td><a href="https://feathericons.com" target="_blank" rel="noopener">feathericons.com</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Tabler Icons</td>
+                                    <td>4000+</td>
+                                    <td>Stroke, vielfältig</td>
+                                    <td><a href="https://tabler-icons.io" target="_blank" rel="noopener">tabler-icons.io</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 id="bootstrap-fontawesome">Warum Bootstrap Icons / Font Awesome nicht ideal sind</h3>
+
+                        <p>Diese Libraries <em>funktionieren</em> als Sprite, sind aber nicht dafür optimiert:</p>
+
+                        <div class="grid-2col-cards">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Bootstrap Icons</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-md px-md">
+                                    <ul class="arrow-list">
+                                        <li>Primär als Icon-Font konzipiert</li>
+                                        <li>~300 KB für die Font-Datei</li>
+                                        <li>SVGs müssen einzeln gesammelt werden</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Font Awesome</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-md px-md">
+                                    <ul class="arrow-list">
+                                        <li>~250 KB (Free) bis 2 MB (Pro)</li>
+                                        <li>Komplexes Build-System</li>
+                                        <li>Viele Features, die du nicht brauchst</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Fazit
+                                <svg class="icon-ui">
+                                    <use href="#dpz-bulb-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Wenn du den Sprite-Workflow nutzen willst, wähle eine Library, die dafür gemacht ist –
+                                oder erstelle deine eigenen Icons. Das Ergebnis: <strong>Wenige KB statt
+                                    hunderte.</strong></p>
+                        </div>
+                    </section>
+
+                    <!-- Zusammenfassung -->
+                    <section class="tutorials-content">
+                        <h2 id="zusammenfassung">Zusammenfassung</h2>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">SVG Sprites – Quick Reference
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Sprite-Datei:</strong> <code class="inline">/assets/icons/sprite.svg</code>
+                                </li>
+                                <li><strong>Laden:</strong> Per JavaScript, Inline oder PHP Include</li>
+                                <li><strong>Verwenden:</strong> <code class="inline">&lt;svg class="icon"&gt;&lt;use href="#icon-NAME"/&gt;&lt;/svg&gt;</code>
+                                </li>
+                                <li><strong>Farbe:</strong> CSS <code class="inline">color</code> (nicht fill!)</li>
+                                <li><strong>Größe:</strong> CSS <code class="inline">width</code> / <code class="inline">height</code></li>
+                                <li><strong>Erweitern:</strong> Neues <code class="inline">&lt;symbol&gt;</code> in
+                                    Sprite einfügen</li>
+                                <li><strong>Accessibility:</strong> <code class="inline">aria-hidden="true"</code> für
+                                    dekorative Icons</li>
+                            </ul>
+                        </div>
+
+                        <div class="grid-2col-cards pb-lg">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Vorteile</span>
+                                    <svg class="icon-ui icon-green">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-0 mb-0 px-md">
+                                    <ul class="arrow-list">
+                                        <li>Ein Request für alle Icons</li>
+                                        <li>Winzig (~2-5 KB für 10-20 Icons)</li>
+                                        <li>100% lokal, DSGVO-konform</li>
+                                        <li>CSS-Styling möglich</li>
+                                        <li>Sauberes, lesbares HTML</li>
+                                        <li>Leicht erweiterbar</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Nachteile</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-0 mb-0 px-md">
+                                    <ul class="arrow-list">
+                                        <li>Manuelle Icon-Auswahl nötig</li>
+                                        <li>Icons müssen als Symbol formatiert werden</li>
+                                        <li>Sprite muss im DOM eingebunden sein</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- Prev/Next Navigation -->
+                    
+                <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/html/html-advanced/html-audio-video.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">HTML Audio & Video</span>
+                <span class="tutorial-nav-category">HTML Advanced</span>
+            </a>
+        </div><div class="tutorial-nav-next"></div></nav>
+                    </section>
+
+                </div> <!-- Wrapper .container -->
+
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav" aria-label="Footer-Navigation">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
+
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+
+    
+
+</body></html>
