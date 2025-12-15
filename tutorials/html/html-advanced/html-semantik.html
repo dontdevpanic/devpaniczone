@@ -1,338 +1,362 @@
-<!DOCTYPE html><html lang="de"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Warum semantisches HTML wichtig ist, wie du mit Elementen wie <header>, <article> oder <section> arbeitest und wie sie Struktur, SEO und Barrierefreiheit verbessern.">
-    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
-    <meta name="author" content="DevPanicZone">
-    <title>Semantisches HTML | DevPanicZone</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/tutorials.css">
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
-</head>
+<!DOCTYPE html>
+<html lang="de">
 
-<body>
-    <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                </a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+            content="Warum semantisches HTML wichtig ist, wie du mit Elementen wie <header>, <article> oder <section> arbeitest und wie sie Struktur, SEO und Barrierefreiheit verbessern.">
+        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="author" content="DevPanicZone">
+        <title>Semantisches HTML | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                        </a>
+                    </div>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/documentation/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                        <path
+                                            d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
             </div>
+        </header>
+        <!-- Header-End -->
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
+                            class="breadcrumb-separator">›</span><a href="/tutorials/html/"
+                            class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span
+                            class="breadcrumb-current">Semantisches HTML</span></nav>
+                    <h1 class="Semantisches HTML">Semantisches HTML</h1>
+                    <p class="hero-subtitle">Semantisches HTML sorgt dafür, dass dein Code nicht nur für Menschen,
+                        sondern
+                        auch für Maschinen verständlich ist. Es beschreibt die Bedeutung von Inhalten – nicht nur deren
+                        Aussehen.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
                 </span>
             </button>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                            <li class="toc-level-1"><a href="#was-bedeutet-semantik-im-web">Was bedeutet „Semantik“ im
+                                    Web?</a></li>
+                            <li class="toc-level-1"><a href="#warum-ist-semantik-wichtig">Warum ist Semantik
+                                    wichtig?</a></li>
+                            <li class="toc-level-1"><a href="#wichtige-semantische-html-elemente">Wichtige semantische
+                                    HTML-Elemente</a></li>
+                            <li class="toc-level-1"><a href="#beispiel-fuer-semantischen-seitenaufbau">Beispiel für
+                                    semantischen Seitenaufbau</a></li>
+                            <li class="toc-level-1"><a href="#text-semantik-inline-elemente">Text-Semantik
+                                    (Inline-Elemente)</a></li>
+                            <li class="toc-level-1"><a href="#medien-semantik">Medien-Semantik</a></li>
+                            <li class="toc-level-1"><a href="#interaktive-elemente">Interaktive Elemente</a></li>
+                            <li class="toc-level-1"><a href="#weitere-strukturelemente">Weitere Strukturelemente</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#heading-hierarchie">Heading-Hierarchie</a></li>
+                            <li class="toc-level-1"><a href="#wann-semantik-fehlt-und-was-passiert">Wann Semantik fehlt
+                                    – und was passiert</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/documentation/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                            </svg>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
                         </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
-                        </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                            <li class="sidebar-group-title">HTML Basics</li>
+                            <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level
+                                    Navigation</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a>
+                            </li>
+                            <li><a href="/tutorials/html/html-basics/html-navigation-accessibility.html">HTML Navigation
+                                    Accessibility</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                            <li class="sidebar-group-title">HTML Advanced</li>
+                            <li><a href="/tutorials/html/html-advanced/html-semantik.html" class="active">Semantisches
+                                    HTML</a></li>
+                            <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                            <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+                </aside>
 
-    <main class="site-main">
+                <!-- Wrapper .container -->
+                <div class="container">
 
-        <!-- Hero -->
-        <section class="hero tutorial-hero">
-            <div class="container">
-                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Semantisches HTML</span></nav>
-                <h1 class="Semantisches HTML">Semantisches HTML</h1>
-                <p class="hero-subtitle">Semantisches HTML sorgt dafür, dass dein Code nicht nur für Menschen, sondern
-                    auch für Maschinen verständlich ist. Es beschreibt die Bedeutung von Inhalten – nicht nur deren
-                    Aussehen.</p>
-            </div>
-        </section>
+                    <!-- Was bedeutet „Semantik“ im Web? -->
+                    <section class="tutorials-content mt-xl">
+                        <h2 id="was-bedeutet-semantik-im-web">Was bedeutet „Semantik“ im Web?</h2>
+                        <p>Der Begriff <strong>Semantik</strong> bezieht sich auf die Bedeutung von Elementen. Ein
+                            semantisches HTML-Element beschreibt also, <em>welche Rolle</em> sein Inhalt auf der Seite
+                            spielt. Dadurch verstehen Browser, Suchmaschinen und Screenreader deine Inhalte besser.</p>
+                        <p>Beispiel: Ein <code class="inline">&lt;header&gt;</code> sagt aus, dass es sich um den
+                            Kopfbereich eines Inhalts handelt – egal, ob er groß, fett oder farbig dargestellt ist.</p>
+                    </section>
 
-        <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
-            <span class="toggle-icon">☰</span>
-        </button>
+                    <!-- Warum ist Semantik wichtig? -->
+                    <section class="tutorials-content">
+                        <h2 id="warum-ist-semantik-wichtig">Warum ist Semantik wichtig?</h2>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><strong>Barrierefreiheit:</strong> Screenreader können Inhalte korrekt vorlesen.</li>
+                            <li><strong>SEO:</strong> Suchmaschinen verstehen den Aufbau deiner Seite und bewerten
+                                Inhalte
+                                besser.</li>
+                            <li><strong>Wartbarkeit:</strong> Dein Code ist übersichtlicher und leichter zu pflegen.
+                            </li>
+                            <li><strong>Standardkonformität:</strong> Sauber strukturierte Websites funktionieren in
+                                mehr
+                                Browsern.</li>
+                        </ul>
+                    </section>
 
-        <!-- Floating Button Rechts (Tutorial Navigation) -->
-        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
-            <span class="toggle-icon">
-                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
-            </span>
-        </button>
+                    <!-- Wichtige semantische HTML-Elemente -->
+                    <section class="tutorials-content">
+                        <h2 id="wichtige-semantische-html-elemente">Wichtige semantische HTML-Elemente</h2>
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Element</th>
+                                    <th>Bedeutung</th>
+                                    <th>Typischer Einsatz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">&lt;header&gt;</code></td>
+                                    <td>Kopfbereich eines Dokuments oder Abschnitts</td>
+                                    <td>Logo, Navigation, Überschrift</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;nav&gt;</code></td>
+                                    <td>Bereich für Navigationslinks</td>
+                                    <td>Hauptmenü oder Seitennavigation</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;main&gt;</code></td>
+                                    <td>Hauptinhalt der Seite</td>
+                                    <td>Alles, was sich auf das Thema der Seite bezieht</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;section&gt;</code></td>
+                                    <td>Logisch zusammenhängender Themenabschnitt</td>
+                                    <td>Kapitel, Themenbereiche, Tutorials</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;article&gt;</code></td>
+                                    <td>In sich geschlossener, eigenständiger Inhalt</td>
+                                    <td>Blogbeiträge, Nachrichtenartikel, Forenbeiträge</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;aside&gt;</code></td>
+                                    <td>Ergänzende Informationen</td>
+                                    <td>Seitenleiste, Infoboxen, weiterführende Links</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;footer&gt;</code></td>
+                                    <td>Abschluss eines Dokuments oder Abschnitts</td>
+                                    <td>Copyright, Kontaktinfos, Links</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
 
-        <!-- Sidebar Overlay für Mobile -->
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-        <!-- Tutorial Layout -->
-        <div class="tutorial-layout">
-
-            <!-- Linke Sidebar (Floating Panel) -->
-            <aside class="tutorial-sidebar" id="tutorialSidebar">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
-                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
-                        <span>×</span>
-                    </button>
-                </div>
-
-                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
-                    <ul class="toc-list">
-                        <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#was-bedeutet-semantik-im-web">Was bedeutet „Semantik“ im Web?</a></li>
-                    <li class="toc-level-1"><a href="#warum-ist-semantik-wichtig">Warum ist Semantik wichtig?</a></li>
-                    <li class="toc-level-1"><a href="#wichtige-semantische-html-elemente">Wichtige semantische HTML-Elemente</a></li>
-                    <li class="toc-level-1"><a href="#beispiel-fuer-semantischen-seitenaufbau">Beispiel für semantischen Seitenaufbau</a></li>
-                    <li class="toc-level-1"><a href="#text-semantik-inline-elemente">Text-Semantik (Inline-Elemente)</a></li>
-                    <li class="toc-level-1"><a href="#medien-semantik">Medien-Semantik</a></li>
-                    <li class="toc-level-1"><a href="#interaktive-elemente">Interaktive Elemente</a></li>
-                    <li class="toc-level-1"><a href="#weitere-strukturelemente">Weitere Strukturelemente</a></li>
-                    <li class="toc-level-1"><a href="#heading-hierarchie">Heading-Hierarchie</a></li>
-                    <li class="toc-level-1"><a href="#wann-semantik-fehlt-und-was-passiert">Wann Semantik fehlt – und was passiert</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
-                    <!-- Sidebar-Anchor-End -->
-                    </ul>
-                </nav>
-            </aside>
-
-            <!-- Rechte Sidebar (Floating Panel) -->
-            <aside class="tutorial-related">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc">Tutorials</h3>
-                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
-                        <span>×</span>
-                    </button>
-                </div>
-
-                <div class="sidebar-nav">
-                    <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">HTML Basics</li>
-                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-navigation-accessibility.html">HTML Navigation Accessibility</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
-                    <li class="sidebar-group-title">HTML Advanced</li>
-                    <li><a href="/tutorials/html/html-advanced/html-semantik.html" class="active">Semantisches HTML</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a></li>
-                </ul>
-                </div>
-            </aside>
-
-            <!-- Wrapper .container -->
-            <div class="container">
-
-                <!-- Was bedeutet „Semantik“ im Web? -->
-                <section class="tutorials-content mt-xl">
-                    <h2 id="was-bedeutet-semantik-im-web">Was bedeutet „Semantik“ im Web?</h2>
-                    <p>Der Begriff <strong>Semantik</strong> bezieht sich auf die Bedeutung von Elementen. Ein
-                        semantisches HTML-Element beschreibt also, <em>welche Rolle</em> sein Inhalt auf der Seite
-                        spielt. Dadurch verstehen Browser, Suchmaschinen und Screenreader deine Inhalte besser.</p>
-                    <p>Beispiel: Ein <code class="inline">&lt;header&gt;</code> sagt aus, dass es sich um den
-                        Kopfbereich eines Inhalts handelt – egal, ob er groß, fett oder farbig dargestellt ist.</p>
-                </section>
-
-                <!-- Warum ist Semantik wichtig? -->
-                <section class="tutorials-content">
-                    <h2 id="warum-ist-semantik-wichtig">Warum ist Semantik wichtig?</h2>
-                    <ul class="arrow-list grid-2col-bg">
-                        <li><strong>Barrierefreiheit:</strong> Screenreader können Inhalte korrekt vorlesen.</li>
-                        <li><strong>SEO:</strong> Suchmaschinen verstehen den Aufbau deiner Seite und bewerten Inhalte
-                            besser.</li>
-                        <li><strong>Wartbarkeit:</strong> Dein Code ist übersichtlicher und leichter zu pflegen.</li>
-                        <li><strong>Standardkonformität:</strong> Sauber strukturierte Websites funktionieren in mehr
-                            Browsern.</li>
-                    </ul>
-                </section>
-
-                <!-- Wichtige semantische HTML-Elemente -->
-                <section class="tutorials-content">
-                    <h2 id="wichtige-semantische-html-elemente">Wichtige semantische HTML-Elemente</h2>
-                    <table class="ref-table">
-                        <thead>
-                            <tr>
-                                <th>Element</th>
-                                <th>Bedeutung</th>
-                                <th>Typischer Einsatz</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code class="inline">&lt;header&gt;</code></td>
-                                <td>Kopfbereich eines Dokuments oder Abschnitts</td>
-                                <td>Logo, Navigation, Überschrift</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;nav&gt;</code></td>
-                                <td>Bereich für Navigationslinks</td>
-                                <td>Hauptmenü oder Seitennavigation</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;main&gt;</code></td>
-                                <td>Hauptinhalt der Seite</td>
-                                <td>Alles, was sich auf das Thema der Seite bezieht</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;section&gt;</code></td>
-                                <td>Logisch zusammenhängender Themenabschnitt</td>
-                                <td>Kapitel, Themenbereiche, Tutorials</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;article&gt;</code></td>
-                                <td>In sich geschlossener, eigenständiger Inhalt</td>
-                                <td>Blogbeiträge, Nachrichtenartikel, Forenbeiträge</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;aside&gt;</code></td>
-                                <td>Ergänzende Informationen</td>
-                                <td>Seitenleiste, Infoboxen, weiterführende Links</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;footer&gt;</code></td>
-                                <td>Abschluss eines Dokuments oder Abschnitts</td>
-                                <td>Copyright, Kontaktinfos, Links</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <!-- Beispiel für semantischen Seitenaufbau -->
-                <section class="tutorials-content">
-                    <h2 id="beispiel-fuer-semantischen-seitenaufbau">Beispiel für semantischen Seitenaufbau</h2>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
-                        </div>
-                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+                    <!-- Beispiel für semantischen Seitenaufbau -->
+                    <section class="tutorials-content">
+                        <h2 id="beispiel-fuer-semantischen-seitenaufbau">Beispiel für semantischen Seitenaufbau</h2>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang="de"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -362,153 +386,161 @@
     &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-                    </div>
-                </section>
-
-
-
-                <!-- Text-Semantik (Inline-Elemente) -->
-                <section class="tutorials-content">
-                    <h2 id="text-semantik-inline-elemente">Text-Semantik (Inline-Elemente)</h2>
-                    <p>Neben den strukturellen Elementen gibt es semantische Elemente für Textauszeichnungen. Diese
-                        helfen Suchmaschinen und Screenreadern, die Bedeutung einzelner Wörter oder Phrasen zu
-                        verstehen.</p>
-
-                    <table class="ref-table">
-                        <thead>
-                            <tr>
-                                <th>Element</th>
-                                <th>Bedeutung</th>
-                                <th>Beispiel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code class="inline">&lt;strong&gt;</code></td>
-                                <td>Wichtiger Text (semantisch betont)</td>
-                                <td><code class="inline">&lt;strong&gt;Achtung!&lt;/strong&gt;</code></td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;b&gt;</code></td>
-                                <td>Visuell fett, ohne besondere Bedeutung</td>
-                                <td>Produktnamen, Keywords ohne Betonung</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;em&gt;</code></td>
-                                <td>Betonung (wie beim Sprechen)</td>
-                                <td><code class="inline">Das ist &lt;em&gt;wirklich&lt;/em&gt; wichtig</code></td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;i&gt;</code></td>
-                                <td>Alternative Stimme, Fachbegriffe, Gedanken</td>
-                                <td><code class="inline">Der Begriff &lt;i&gt;Semantik&lt;/i&gt; kommt aus dem Griechischen</code>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;mark&gt;</code></td>
-                                <td>Hervorgehobener Text (wie Textmarker)</td>
-                                <td>Suchergebnisse, relevante Passagen</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;time&gt;</code></td>
-                                <td>Maschinenlesbare Zeit-/Datumsangabe</td>
-                                <td><code class="inline">&lt;time datetime="2025-01-15"&gt;15. Januar&lt;/time&gt;</code>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;abbr&gt;</code></td>
-                                <td>Abkürzung mit Erklärung</td>
-                                <td><code class="inline">&lt;abbr title="Hypertext Markup Language"&gt;HTML&lt;/abbr&gt;</code>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;cite&gt;</code></td>
-                                <td>Titel eines Werks (Buch, Film, Artikel)</td>
-                                <td><code class="inline">&lt;cite&gt;Der Herr der Ringe&lt;/cite&gt;</code></td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;code&gt;</code></td>
-                                <td>Programmcode</td>
-                                <td><code class="inline">Die Variable &lt;code&gt;count&lt;/code&gt;</code></td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;kbd&gt;</code></td>
-                                <td>Tastatureingabe</td>
-                                <td><code class="inline">Drücke &lt;kbd&gt;Strg&lt;/kbd&gt; + &lt;kbd&gt;S&lt;/kbd&gt;</code>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;samp&gt;</code></td>
-                                <td>Programmausgabe</td>
-                                <td><code class="inline">&lt;samp&gt;Error 404&lt;/samp&gt;</code></td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;var&gt;</code></td>
-                                <td>Variable in Mathematik/Programmierung</td>
-                                <td><code class="inline">&lt;var&gt;x&lt;/var&gt; + &lt;var&gt;y&lt;/var&gt; = 10</code>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="info-box">
-                        <strong class="box-title no-toc">strong vs. b / em vs. i
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                </path>
-                            </svg>
-                        </strong>
-                        <p>Der Unterschied ist subtil, aber wichtig: <code class="inline">&lt;strong&gt;</code> und
-                            <code class="inline">&lt;em&gt;</code> haben semantische Bedeutung – sie sagen "das ist
-                            wichtig" bzw. "das wird betont". <code class="inline">&lt;b&gt;</code> und <code class="inline">&lt;i&gt;</code> sind rein visuell. Screenreader lesen <code class="inline">&lt;strong&gt;</code> oft mit anderer Betonung vor, <code class="inline">&lt;b&gt;</code> nicht.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Medien-Semantik -->
-                <section class="tutorials-content">
-                    <h2 id="medien-semantik">Medien-Semantik</h2>
-                    <p>Für Bilder, Diagramme und andere Medien gibt es spezielle semantische Elemente, die Kontext und
-                        Beschriftungen ermöglichen.</p>
-
-                    <table class="ref-table">
-                        <thead>
-                            <tr>
-                                <th>Element</th>
-                                <th>Bedeutung</th>
-                                <th>Typischer Einsatz</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code class="inline">&lt;figure&gt;</code></td>
-                                <td>Eigenständige Einheit (Bild, Diagramm, Code)</td>
-                                <td>Alles, was eine Beschriftung haben könnte</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;figcaption&gt;</code></td>
-                                <td>Beschriftung für figure</td>
-                                <td>Bildunterschriften, Quellenangaben</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;picture&gt;</code></td>
-                                <td>Container für responsive Bildquellen</td>
-                                <td>Verschiedene Bilder für verschiedene Viewports</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
                         </div>
-                        <pre><code class="language-html">&lt;figure&gt;
+                    </section>
+
+
+
+                    <!-- Text-Semantik (Inline-Elemente) -->
+                    <section class="tutorials-content">
+                        <h2 id="text-semantik-inline-elemente">Text-Semantik (Inline-Elemente)</h2>
+                        <p>Neben den strukturellen Elementen gibt es semantische Elemente für Textauszeichnungen. Diese
+                            helfen Suchmaschinen und Screenreadern, die Bedeutung einzelner Wörter oder Phrasen zu
+                            verstehen.</p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Element</th>
+                                    <th>Bedeutung</th>
+                                    <th>Beispiel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">&lt;strong&gt;</code></td>
+                                    <td>Wichtiger Text (semantisch betont)</td>
+                                    <td><code class="inline">&lt;strong&gt;Achtung!&lt;/strong&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;b&gt;</code></td>
+                                    <td>Visuell fett, ohne besondere Bedeutung</td>
+                                    <td>Produktnamen, Keywords ohne Betonung</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;em&gt;</code></td>
+                                    <td>Betonung (wie beim Sprechen)</td>
+                                    <td><code class="inline">Das ist &lt;em&gt;wirklich&lt;/em&gt; wichtig</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;i&gt;</code></td>
+                                    <td>Alternative Stimme, Fachbegriffe, Gedanken</td>
+                                    <td><code
+                                            class="inline">Der Begriff &lt;i&gt;Semantik&lt;/i&gt; kommt aus dem Griechischen</code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;mark&gt;</code></td>
+                                    <td>Hervorgehobener Text (wie Textmarker)</td>
+                                    <td>Suchergebnisse, relevante Passagen</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;time&gt;</code></td>
+                                    <td>Maschinenlesbare Zeit-/Datumsangabe</td>
+                                    <td><code
+                                            class="inline">&lt;time datetime="2025-01-15"&gt;15. Januar&lt;/time&gt;</code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;abbr&gt;</code></td>
+                                    <td>Abkürzung mit Erklärung</td>
+                                    <td><code
+                                            class="inline">&lt;abbr title="Hypertext Markup Language"&gt;HTML&lt;/abbr&gt;</code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;cite&gt;</code></td>
+                                    <td>Titel eines Werks (Buch, Film, Artikel)</td>
+                                    <td><code class="inline">&lt;cite&gt;Der Herr der Ringe&lt;/cite&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;code&gt;</code></td>
+                                    <td>Programmcode</td>
+                                    <td><code class="inline">Die Variable &lt;code&gt;count&lt;/code&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;kbd&gt;</code></td>
+                                    <td>Tastatureingabe</td>
+                                    <td><code
+                                            class="inline">Drücke &lt;kbd&gt;Strg&lt;/kbd&gt; + &lt;kbd&gt;S&lt;/kbd&gt;</code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;samp&gt;</code></td>
+                                    <td>Programmausgabe</td>
+                                    <td><code class="inline">&lt;samp&gt;Error 404&lt;/samp&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;var&gt;</code></td>
+                                    <td>Variable in Mathematik/Programmierung</td>
+                                    <td><code
+                                            class="inline">&lt;var&gt;x&lt;/var&gt; + &lt;var&gt;y&lt;/var&gt; = 10</code>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">strong vs. b / em vs. i
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>Der Unterschied ist subtil, aber wichtig: <code class="inline">&lt;strong&gt;</code> und
+                                <code class="inline">&lt;em&gt;</code> haben semantische Bedeutung – sie sagen "das ist
+                                wichtig" bzw. "das wird betont". <code class="inline">&lt;b&gt;</code> und <code
+                                    class="inline">&lt;i&gt;</code> sind rein visuell. Screenreader lesen <code
+                                    class="inline">&lt;strong&gt;</code> oft mit anderer Betonung vor, <code
+                                    class="inline">&lt;b&gt;</code> nicht.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Medien-Semantik -->
+                    <section class="tutorials-content">
+                        <h2 id="medien-semantik">Medien-Semantik</h2>
+                        <p>Für Bilder, Diagramme und andere Medien gibt es spezielle semantische Elemente, die Kontext
+                            und
+                            Beschriftungen ermöglichen.</p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Element</th>
+                                    <th>Bedeutung</th>
+                                    <th>Typischer Einsatz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">&lt;figure&gt;</code></td>
+                                    <td>Eigenständige Einheit (Bild, Diagramm, Code)</td>
+                                    <td>Alles, was eine Beschriftung haben könnte</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;figcaption&gt;</code></td>
+                                    <td>Beschriftung für figure</td>
+                                    <td>Bildunterschriften, Quellenangaben</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;picture&gt;</code></td>
+                                    <td>Container für responsive Bildquellen</td>
+                                    <td>Verschiedene Bilder für verschiedene Viewports</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;figure&gt;
     &lt;img src="screenshot.png" alt="Screenshot der Anwendung"&gt;
     &lt;figcaption&gt;Abb. 1: Die Benutzeroberfläche im Dark Mode&lt;/figcaption&gt;
 &lt;/figure&gt;
@@ -518,53 +550,53 @@
     &lt;pre&gt;&lt;code&gt;console.log('Hello World');&lt;/code&gt;&lt;/pre&gt;
     &lt;figcaption&gt;JavaScript: Ausgabe in der Konsole&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
-                    </div>
-                </section>
-
-                <!-- Interaktive Elemente -->
-                <section class="tutorials-content">
-                    <h2 id="interaktive-elemente">Interaktive Elemente</h2>
-                    <p>HTML5 bietet native interaktive Elemente, die ohne JavaScript funktionieren und von Haus aus
-                        barrierefrei sind.</p>
-
-                    <table class="ref-table">
-                        <thead>
-                            <tr>
-                                <th>Element</th>
-                                <th>Bedeutung</th>
-                                <th>Typischer Einsatz</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code class="inline">&lt;details&gt;</code></td>
-                                <td>Aufklappbarer Bereich</td>
-                                <td>FAQs, zusätzliche Infos, Spoiler</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;summary&gt;</code></td>
-                                <td>Sichtbare Überschrift für details</td>
-                                <td>Klickbarer Text zum Auf-/Zuklappen</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;dialog&gt;</code></td>
-                                <td>Dialogfenster/Modal</td>
-                                <td>Bestätigungen, Formulare, Warnungen</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
                         </div>
-                        <pre><code class="language-html">&lt;!-- Aufklappbarer Bereich - funktioniert ohne JavaScript! --&gt;
+                    </section>
+
+                    <!-- Interaktive Elemente -->
+                    <section class="tutorials-content">
+                        <h2 id="interaktive-elemente">Interaktive Elemente</h2>
+                        <p>HTML5 bietet native interaktive Elemente, die ohne JavaScript funktionieren und von Haus aus
+                            barrierefrei sind.</p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Element</th>
+                                    <th>Bedeutung</th>
+                                    <th>Typischer Einsatz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">&lt;details&gt;</code></td>
+                                    <td>Aufklappbarer Bereich</td>
+                                    <td>FAQs, zusätzliche Infos, Spoiler</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;summary&gt;</code></td>
+                                    <td>Sichtbare Überschrift für details</td>
+                                    <td>Klickbarer Text zum Auf-/Zuklappen</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;dialog&gt;</code></td>
+                                    <td>Dialogfenster/Modal</td>
+                                    <td>Bestätigungen, Formulare, Warnungen</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Aufklappbarer Bereich - funktioniert ohne JavaScript! --&gt;
 &lt;details&gt;
     &lt;summary&gt;Mehr erfahren&lt;/summary&gt;
     &lt;p&gt;Hier steht der ausführliche Text, der erst nach dem Klick sichtbar wird.&lt;/p&gt;
@@ -575,78 +607,80 @@
     &lt;summary&gt;FAQ: Was ist HTML?&lt;/summary&gt;
     &lt;p&gt;HTML steht für Hypertext Markup Language...&lt;/p&gt;
 &lt;/details&gt;</code></pre>
-                    </div>
-
-                    <div class="info-box">
-                        <strong class="box-title no-toc">Vorteil von details/summary
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                </path>
-                            </svg>
-                        </strong>
-                        <p>Diese Elemente sind von Natur aus barrierefrei – Screenreader kündigen sie korrekt an, und
-                            sie funktionieren auch ohne JavaScript. Perfekt für FAQs oder zusätzliche Informationen!</p>
-                    </div>
-                </section>
-
-                <!-- Weitere Strukturelemente -->
-                <section class="tutorials-content">
-                    <h2 id="weitere-strukturelemente">Weitere Strukturelemente</h2>
-                    <p>Diese Elemente werden oft übersehen, sind aber sehr nützlich für spezifische Inhaltstypen.</p>
-
-                    <table class="ref-table">
-                        <thead>
-                            <tr>
-                                <th>Element</th>
-                                <th>Bedeutung</th>
-                                <th>Typischer Einsatz</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code class="inline">&lt;dl&gt;</code></td>
-                                <td>Description List (Definitionsliste)</td>
-                                <td>Glossare, Metadaten, Key-Value-Paare</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;dt&gt;</code></td>
-                                <td>Definition Term (Begriff)</td>
-                                <td>Der zu definierende Begriff</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;dd&gt;</code></td>
-                                <td>Definition Description (Beschreibung)</td>
-                                <td>Die Erklärung zum Begriff</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;address&gt;</code></td>
-                                <td>Kontaktinformationen</td>
-                                <td>Autor, Firma, E-Mail, Adresse</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;blockquote&gt;</code></td>
-                                <td>Längeres Zitat (Block)</td>
-                                <td>Zitate aus anderen Quellen</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">&lt;q&gt;</code></td>
-                                <td>Kurzes Zitat (Inline)</td>
-                                <td>Zitate im Fließtext</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
                         </div>
-                        <pre><code class="language-html">&lt;!-- Definition List - perfekt für Glossare --&gt;
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Vorteil von details/summary
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>Diese Elemente sind von Natur aus barrierefrei – Screenreader kündigen sie korrekt an,
+                                und
+                                sie funktionieren auch ohne JavaScript. Perfekt für FAQs oder zusätzliche Informationen!
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Weitere Strukturelemente -->
+                    <section class="tutorials-content">
+                        <h2 id="weitere-strukturelemente">Weitere Strukturelemente</h2>
+                        <p>Diese Elemente werden oft übersehen, sind aber sehr nützlich für spezifische Inhaltstypen.
+                        </p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Element</th>
+                                    <th>Bedeutung</th>
+                                    <th>Typischer Einsatz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">&lt;dl&gt;</code></td>
+                                    <td>Description List (Definitionsliste)</td>
+                                    <td>Glossare, Metadaten, Key-Value-Paare</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;dt&gt;</code></td>
+                                    <td>Definition Term (Begriff)</td>
+                                    <td>Der zu definierende Begriff</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;dd&gt;</code></td>
+                                    <td>Definition Description (Beschreibung)</td>
+                                    <td>Die Erklärung zum Begriff</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;address&gt;</code></td>
+                                    <td>Kontaktinformationen</td>
+                                    <td>Autor, Firma, E-Mail, Adresse</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;blockquote&gt;</code></td>
+                                    <td>Längeres Zitat (Block)</td>
+                                    <td>Zitate aus anderen Quellen</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;q&gt;</code></td>
+                                    <td>Kurzes Zitat (Inline)</td>
+                                    <td>Zitate im Fließtext</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Definition List - perfekt für Glossare --&gt;
 &lt;dl&gt;
     &lt;dt&gt;HTML&lt;/dt&gt;
     &lt;dd&gt;Hypertext Markup Language - die Struktursprache des Webs.&lt;/dd&gt;
@@ -666,35 +700,37 @@
     &lt;p&gt;Guter Code erklärt sich selbst.&lt;/p&gt;
     &lt;footer&gt;— &lt;cite&gt;Clean Code&lt;/cite&gt;, Robert C. Martin&lt;/footer&gt;
 &lt;/blockquote&gt;</code></pre>
-                    </div>
-                </section>
-
-                <!-- Heading-Hierarchie -->
-                <section class="tutorials-content">
-                    <h2 id="heading-hierarchie">Heading-Hierarchie</h2>
-                    <p>Die richtige Verwendung von Überschriften ist einer der wichtigsten Aspekte semantischen HTMLs.
-                        Sie definieren die Dokumentstruktur und sind essentiell für Barrierefreiheit und SEO.</p>
-
-                    <h3 class="no-toc">Die Regeln</h3>
-                    <ul class="arrow-list grid-2col-bg mb-lg">
-                        <li>Jede Seite sollte genau ein <code class="inline">&lt;h1&gt;</code> haben (der Haupttitel)
-                        </li>
-                        <li>Überschriften-Ebenen niemals überspringen (h1 → h2 → h3, nicht h1 → h3)</li>
-                        <li>Überschriften beschreiben den folgenden Inhalt</li>
-                        <li>Nicht für Styling missbrauchen – dafür gibt es CSS</li>
-                    </ul>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
                         </div>
-                        <pre><code class="language-html">&lt;!-- ✓ Richtig: Logische Hierarchie --&gt;
+                    </section>
+
+                    <!-- Heading-Hierarchie -->
+                    <section class="tutorials-content">
+                        <h2 id="heading-hierarchie">Heading-Hierarchie</h2>
+                        <p>Die richtige Verwendung von Überschriften ist einer der wichtigsten Aspekte semantischen
+                            HTMLs.
+                            Sie definieren die Dokumentstruktur und sind essentiell für Barrierefreiheit und SEO.</p>
+
+                        <h3 class="no-toc">Die Regeln</h3>
+                        <ul class="arrow-list grid-2col-bg mb-lg">
+                            <li>Jede Seite sollte genau ein <code class="inline">&lt;h1&gt;</code> haben (der
+                                Haupttitel)
+                            </li>
+                            <li>Überschriften-Ebenen niemals überspringen (h1 → h2 → h3, nicht h1 → h3)</li>
+                            <li>Überschriften beschreiben den folgenden Inhalt</li>
+                            <li>Nicht für Styling missbrauchen – dafür gibt es CSS</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- ✓ Richtig: Logische Hierarchie --&gt;
 &lt;h1&gt;CSS Tutorial&lt;/h1&gt;
     &lt;h2&gt;Grundlagen&lt;/h2&gt;
         &lt;h3&gt;Selektoren&lt;/h3&gt;
@@ -709,104 +745,107 @@
 
 &lt;!-- ✗ Falsch: h-Tags für Styling --&gt;
 &lt;h4&gt;Dieser Text soll nur klein sein&lt;/h4&gt;  &lt;!-- Besser: p mit CSS --&gt;</code></pre>
-                    </div>
+                        </div>
 
-                    <div class="info-box">
-                        <strong class="box-title no-toc">Warum ist das so wichtig?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                </path>
-                            </svg>
-                        </strong>
-                        <p>Screenreader-Nutzer navigieren oft per Überschriften durch eine Seite – ähnlich wie ein
-                            Inhaltsverzeichnis. Wenn Ebenen fehlen oder die Struktur unlogisch ist, wird die Navigation
-                            verwirrend. Auch Suchmaschinen nutzen die Heading-Struktur, um den Inhalt zu verstehen.</p>
-                    </div>
-                </section>
-
-
-                <!-- Wann Semantik fehlt – und was passiert -->
-                <section class="tutorials-content">
-                    <h2 id="wann-semantik-fehlt-und-was-passiert">Wann Semantik fehlt – und was passiert</h2>
-                    <p>Wenn du alles mit <code class="inline">&lt;div&gt;</code> und <code class="inline">&lt;span&gt;</code> strukturierst, hat dein Code keine erkennbare Bedeutung.
-                        Suchmaschinen und Screenreader sehen dann nur Container – keine Zusammenhänge.</p>
-                    <div class="info-box">
-                        <strong class="box-title no-toc">Hinweis
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                </path>
-                            </svg>
-                        </strong>
-                        <p>Nutze <code class="inline">&lt;div&gt;</code> nur, wenn es kein passendes semantisches
-                            Element
-                            gibt. Jedes <code class="inline">&lt;header&gt;</code>, <code class="inline">&lt;section&gt;</code> oder <code class="inline">&lt;footer&gt;</code>
-                            macht
-                            deinen Code verständlicher – für Mensch und Maschine.</p>
-                    </div>
-                </section>
-
-                <!-- Prev/Next Navigation -->
-
-                <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
-
-                <section class="tutorials-content">
-                    <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/html/html-basics/html-meta-tags.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">HTML Meta-Tags</span>
-                <span class="tutorial-nav-category is-new">HTML Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/html/html-advanced/html-formulare.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">HTML Formulare</span>
-                <span class="tutorial-nav-category">HTML Advanced</span>
-            </a>
-        </div></nav>
-                </section>
-
-            </div> <!-- Wrapper .container -->
-
-        </div> <!-- Tutorial Layout -->
-
-    </main>
-
-    <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
-
-    <script src="/assets/js/code-copy.js" defer></script>
-    <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/vendor/prism/prism.js" defer></script>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum ist das so wichtig?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>Screenreader-Nutzer navigieren oft per Überschriften durch eine Seite – ähnlich wie ein
+                                Inhaltsverzeichnis. Wenn Ebenen fehlen oder die Struktur unlogisch ist, wird die
+                                Navigation
+                                verwirrend. Auch Suchmaschinen nutzen die Heading-Struktur, um den Inhalt zu verstehen.
+                            </p>
+                        </div>
+                    </section>
 
 
+                    <!-- Wann Semantik fehlt – und was passiert -->
+                    <section class="tutorials-content">
+                        <h2 id="wann-semantik-fehlt-und-was-passiert">Wann Semantik fehlt – und was passiert</h2>
+                        <p>Wenn du alles mit <code class="inline">&lt;div&gt;</code> und <code
+                                class="inline">&lt;span&gt;</code> strukturierst, hat dein Code keine erkennbare
+                            Bedeutung.
+                            Suchmaschinen und Screenreader sehen dann nur Container – keine Zusammenhänge.</p>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Hinweis
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>Nutze <code class="inline">&lt;div&gt;</code> nur, wenn es kein passendes semantisches
+                                Element
+                                gibt. Jedes <code class="inline">&lt;header&gt;</code>, <code
+                                    class="inline">&lt;section&gt;</code> oder <code
+                                    class="inline">&lt;footer&gt;</code>
+                                macht
+                                deinen Code verständlicher – für Mensch und Maschine.</p>
+                        </div>
+                    </section>
 
+                    <!-- Prev/Next Navigation -->
 
+                    <!-- Latest-Tutorials-Start -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/html/html-basics/html-meta-tags.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">HTML Meta-Tags</span>
+                                    <span class="tutorial-nav-category is-new">HTML Basics</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/html/html-advanced/html-formulare.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">HTML Formulare</span>
+                                    <span class="tutorial-nav-category">HTML Advanced</span>
+                                </a>
+                            </div>
+                        </nav>
+                    </section>
 
+                </div> <!-- Wrapper .container -->
 
-</body></html>
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
+
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+
+    </body>
+
+</html>
