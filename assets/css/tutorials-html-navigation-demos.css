@@ -914,3 +914,44 @@ Klassen: .menu-click, .dropdown-click,
 .mobile-menu-demo a:hover {
     color: var(--primary-light);
 }
+
+/* --------------------------------------------
+    BREADCRUMBS
+    -------------------------------------------- */
+
+.breadcrumb-demo {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    /* Umbruch bei wenig Platz */
+    padding: 0.75rem 1rem;
+    margin: 0;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+/* Trennzeichen zwischen den Elementen */
+.breadcrumb-demo li+li::before {
+    content: '›';
+    /* oder '»' oder '→' oder '/' */
+    padding: 0 0.5rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb-demo a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.breadcrumb-demo a:hover {
+    text-decoration: underline;
+}
+
+/* Aktuelle Seite (nicht klickbar) */
+.breadcrumb-demo [aria-current="page"] {
+    color: var(--text-secondary);
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.4;
+}
