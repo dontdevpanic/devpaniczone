@@ -15,198 +15,9 @@
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
         <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <!-- <link rel="stylesheet" href="/assets/css/html-naviagation-dropdown-demo.css"> -->
+        <link rel="stylesheet" href="/assets/css/tutorial-html-dropdown-demo.css">
         <link rel="stylesheet" href="/assets/css/sidebar.css">
         <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
-
-        <style>
-            /* ============================================
-       GEMEINSAME STYLES FÜR ALLE DEMOS
-       ============================================ */
-
-            .demo-header {
-                margin-top: 1rem;
-                padding: 1rem 2rem;
-                background: var(--bg-secondary);
-                border-radius: 0 8px 8px 0;
-                border-left: 4px solid var(--accent-blue);
-            }
-
-            .nav-demo {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .nav-demo .logo img {
-                width: 35px;
-                height: auto;
-            }
-
-            /* ============================================
-       BASIS-MENÜ (für beide Varianten)
-       ============================================ */
-
-            .menu-demo,
-            .menu-click {
-                display: flex;
-                gap: 2rem;
-                list-style: none;
-                align-items: center;
-                margin: 0;
-                padding: 0;
-            }
-
-            .menu-demo>li,
-            .menu-click>li {
-                position: relative;
-            }
-
-            .menu-demo a,
-            .menu-click a {
-                color: var(--text-primary);
-                text-decoration: none;
-                font-weight: 500;
-                font-size: 0.95rem;
-                transition: color 0.3s;
-                display: block;
-                padding: 0.5rem 0;
-            }
-
-            .menu-demo a:hover,
-            .menu-click a:hover {
-                color: var(--accent-blue);
-            }
-
-            /* ============================================
-       HOVER-DROPDOWN (.dropdown-demo)
-       ============================================ */
-
-            .dropdown-demo {
-                position: relative;
-            }
-
-            .dropdown-menu-demo {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background: var(--bg-tertiary);
-                border: 1px solid var(--border-color);
-                border-radius: 8px;
-                min-width: 180px;
-                list-style: none;
-                padding: 0.5rem 0;
-                margin: 0;
-
-                display: flex;
-                flex-direction: column;
-
-                /* Versteckt */
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-10px);
-                transition: all 0.3s ease;
-
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-                z-index: 100;
-            }
-
-            /* HOVER: Dropdown sichtbar */
-            .dropdown-demo:hover .dropdown-menu-demo,
-            .dropdown-demo:focus-within .dropdown-menu-demo {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-
-            .dropdown-menu-demo li a {
-                padding: 0.5rem 1rem;
-                display: block;
-            }
-
-            .dropdown-menu-demo li a:hover {
-                background: var(--bg-secondary);
-            }
-
-            /* ============================================
-       KLICK-DROPDOWN (.dropdown-click)
-       ============================================ */
-
-            .dropdown-click {
-                position: relative;
-            }
-
-            .dropdown-click>a {
-                cursor: pointer;
-                user-select: none;
-            }
-
-            /* Pfeil-Indikator */
-            .dropdown-click>a::after {
-                content: ' ▼';
-                font-size: 0.7em;
-                margin-left: 0.3rem;
-                transition: transform 0.3s;
-                display: inline-block;
-            }
-
-            /* Pfeil dreht sich wenn offen */
-            .dropdown-click.open>a::after {
-                transform: rotate(180deg);
-            }
-
-            .dropdown-menu-click {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background: var(--bg-tertiary);
-                border: 1px solid var(--border-color);
-                border-radius: 8px;
-                min-width: 180px;
-                list-style: none;
-                padding: 0.5rem 0;
-                margin: 0;
-
-                display: flex;
-                flex-direction: column;
-
-                /* Versteckt */
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-10px);
-                transition: all 0.3s ease;
-
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-                z-index: 100;
-            }
-
-            /* KLICK: Sichtbar via .open Klasse */
-            .dropdown-click.open>.dropdown-menu-click {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-
-            .dropdown-menu-click li a {
-                padding: 0.5rem 1rem;
-                display: block;
-            }
-
-            .dropdown-menu-click li a:hover {
-                background: var(--bg-secondary);
-            }
-
-            /* NUR FÜR DEMO_SITE */
-
-
-            .menu-demo li,
-            .menu-click li,
-            .dropdown-menu-demo li,
-            .dropdown-menu-click li {
-                margin-bottom: 0 !important;
-                padding-left: 0 !important;
-            }
-        </style>
     </head>
 
     <body>
@@ -530,23 +341,24 @@
                         </div>
 
                         <!-- Demo -->
-                        <p class="mt-md"><strong>Demo:</strong> Fahre mit der Maus über "Tutorials"</p>
+                        <p class="mt-md" id="hover-dropdown-demo"><strong>Demo:</strong> Fahre mit der Maus über
+                            "Tutorials"</p>
                         <div class="demo-header">
                             <nav class="nav-demo" aria-label="Demo Navigation">
-                                <a href="#hover-dropdown" class="logo">
+                                <a href="#hover-dropdown-demo" class="logo">
                                     <img src="/assets/icons/logo.svg" alt="Logo">
                                 </a>
                                 <ul class="menu-demo">
-                                    <li><a href="#hover-dropdown">Home</a></li>
+                                    <li><a href="#hover-dropdown-demo">Home</a></li>
                                     <li class="dropdown-demo">
-                                        <a href="#hover-dropdown">Tutorials</a>
+                                        <a href="#hover-dropdown-demo">Tutorials</a>
                                         <ul class="dropdown-menu-demo">
-                                            <li><a href="#hover-dropdown">HTML</a></li>
-                                            <li><a href="#hover-dropdown">CSS</a></li>
-                                            <li><a href="#hover-dropdown">JavaScript</a></li>
+                                            <li><a href="#hover-dropdown-demo">HTML</a></li>
+                                            <li><a href="#hover-dropdown-demo">CSS</a></li>
+                                            <li><a href="#hover-dropdown-demo">JavaScript</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#hover-dropdown">Kontakt</a></li>
+                                    <li><a href="#hover-dropdown-demo">Kontakt</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -682,21 +494,21 @@
                         </div>
 
                         <!-- Demo -->
-                        <p class="mt-md"><strong>Demo:</strong> Klicke auf "Tutorials"</p>
+                        <p class="mt-md" id="klick-dropdown-demo"><strong>Demo:</strong> Klicke auf "Tutorials"</p>
                         <div class="demo-header">
                             <nav aria-label="Demo Navigation Klick">
                                 <ul class="menu-click">
-                                    <li><a href="#klick-dropdown">Home</a></li>
+                                    <li><a href="#klick-dropdown-demo">Home</a></li>
                                     <li class="dropdown-click">
-                                        <a href="#klick-dropdown" aria-expanded="false"
+                                        <a href="#klick-dropdown-demo" aria-expanded="false"
                                             aria-haspopup="true">Tutorials</a>
                                         <ul class="dropdown-menu-click">
-                                            <li><a href="#klick-dropdown">HTML</a></li>
-                                            <li><a href="#klick-dropdown">CSS</a></li>
-                                            <li><a href="#klick-dropdown">JavaScript</a></li>
+                                            <li><a href="#klick-dropdown-demo">HTML</a></li>
+                                            <li><a href="#klick-dropdown-demo">CSS</a></li>
+                                            <li><a href="#klick-dropdown-demo">JavaScript</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#klick-dropdown">Kontakt</a></li>
+                                    <li><a href="#klick-dropdown-demo">Kontakt</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -892,9 +704,9 @@
                         </div>
 
                         <!-- Click-Dropdown Demo -->
-                        <div class="demo-header">
+                        <div class="demo-header" id="dropdown-auf-klick-demo">
                             <nav>
-                                <ul class="menu-click" id="dropdown-auf-klick-demo">
+                                <ul class="menu-click">
                                     <li><i><small>Klick auf "Themen" →</small></i>
                                     </li>
                                     <li><a href="#dropdown-auf-klick-demo">Home</a></li>
@@ -1081,7 +893,7 @@ document.addEventListener('click', function(e) {
                             </li>
                         </ul>
 
-                        <h3 id="keyboard-navigation">Keyboard-Navigation</h3>
+                        <h3 id="keyboard-navigation" class="mt-xl">Keyboard-Navigation</h3>
                         <p>Ein gutes Dropdown sollte auch mit der Tastatur bedienbar sein:</p>
 
                         <ul class="arrow-list grid-2col-bg">
@@ -1142,7 +954,7 @@ document.addEventListener('click', function(e) {
 
                         </div>
 
-                        <h3 id="hover-und-klick-kombinieren">Hover und Klick kombinieren</h3>
+                        <h3 id="hover-und-klick-kombinieren" class="mt-xl">Hover und Klick kombinieren</h3>
                         <p>Die beste UX bietet oft eine Kombination: Auf Desktop öffnet Hover das Menü, auf
                             Touch-Geräten der Klick.</p>
 

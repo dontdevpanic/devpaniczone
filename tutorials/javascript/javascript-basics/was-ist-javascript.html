@@ -1,19 +1,22 @@
-<!DOCTYPE html><html lang="de"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!------------------------------------------------ 
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!------------------------------------------------ 
     ============== DESCRIPTION ERSETZEN ==============
     ------------------------------------------------->
-    <meta name="description" content="------------------- DIESER TEXT WIRD ERSETZT -------------------">
-    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
-    <meta name="author" content="DevPanicZone">
+        <meta name="description" content="------------------- DIESER TEXT WIRD ERSETZT -------------------">
+        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="author" content="DevPanicZone">
 
-    <!------------------------------------------------ 
+        <!------------------------------------------------ 
     ============== OPEN GRAPH (Optional) ==============
     Benötigt: /assets/images/og-preview.jpg (1200x630px)
     Nur aktivieren, wenn Bild existiert!
     ------------------------------------------------->
-    <!--
+        <!--
     <meta property="og:type" content="website">
     <meta property="og:title" content="DevPanicZone – Webentwicklung lernen mit Spaß">
     <meta property="og:description" content="Deine Ressource für Webentwicklung, Tutorials und kreative Projekte.">
@@ -21,340 +24,341 @@
     <meta property="og:url" content="https://devpaniczone.de">
     -->
 
-    <!------------------------------------------ 
+        <!------------------------------------------ 
     ============== TITLE ERSETZEN ==============
     ------------------------------------------->
-    <title>Was ist JavaScript | DevPanicZone</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/tutorials.css">
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <title>Was ist JavaScript | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
 
-    <style>
-        button.demo-btn {
-            padding: .6rem 1rem;
-            font-size: 1rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            background: #3aa0ff;
-            color: #0b1220;
-            font-weight: 600;
-            margin: 1rem 0;
-        }
-    </style>
+    </head>
 
-</head>
+    <body>
+        <!-- Header-Start -->
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                        </a>
+                    </div>
 
-<body>
-    <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                </a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/documentation/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                        <path
+                                            d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
             </div>
+        </header>
+        <!-- Header-End -->
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
+                            class="breadcrumb-separator">›</span><a href="/tutorials/javascript/"
+                            class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span
+                            class="breadcrumb-current">Was ist JavaScript eigentlich?</span></nav>
+                    <!----------------------------------------------- 
+                ================ HERO BEARBEITEN ================
+                ------------------------------------------------>
+                    <h1 class="hero-title">Was ist JavaScript eigentlich?</h1>
+                    <p class="hero-subtitle">Was kann es, wofür brauche ich es? Der entspannte Einstieg.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
                 </span>
             </button>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                            <li class="toc-level-1"><a href="#die-basics">Die Basics</a></li>
+                            <li class="toc-level-1"><a href="#was-ist-javascript-ueberhaupt">Was ist JavaScript
+                                    überhaupt?</a></li>
+                            <li class="toc-level-1"><a href="#dein-erstes-mini-beispiel">Dein erstes Mini-Beispiel</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#ein-funktionierendes-beispiel-auf-dieser-seite">Ein
+                                    funktionierendes Beispiel auf dieser
+                                    Seite</a></li>
+                            <li class="toc-level-1"><a href="#was-du-am-anfang-wirklich-brauchst">Was du am Anfang
+                                    wirklich brauchst</a></li>
+                            <li class="toc-level-1"><a href="#was-spaeter-dazu-kommt">Was später dazu kommt</a></li>
+                            <li class="toc-level-1"><a href="#einsteiger-cheat-sheet">Einsteiger Cheat-Sheet</a></li>
+                            <li class="toc-level-2"><a href="#variablen">Variablen</a></li>
+                            <li class="toc-level-2"><a href="#datentypen">Datentypen</a></li>
+                            <li class="toc-level-2"><a href="#bedingungen">Bedingungen</a></li>
+                            <li class="toc-level-2"><a href="#elemente-auswaehlen">Elemente auswählen</a></li>
+                            <li class="toc-level-2"><a href="#events">Events</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/documentation/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                            </svg>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
                         </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                    </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
-
-    <main class="site-main">
-
-        <!-- Hero -->
-        <section class="hero tutorial-hero">
-            <div class="container">
-                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Was ist JavaScript eigentlich?</span></nav>
-                <!----------------------------------------------- 
-                ================ HERO BEARBEITEN ================
-                ------------------------------------------------>
-                <h1 class="hero-title">Was ist JavaScript eigentlich?</h1>
-                <p class="hero-subtitle">Was kann es, wofür brauche ich es? Der entspannte Einstieg.</p>
-            </div>
-        </section>
-
-        <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
-            <span class="toggle-icon">☰</span>
-        </button>
-
-        <!-- Floating Button Rechts (Tutorial Navigation) -->
-        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
-            <span class="toggle-icon">
-                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
-            </span>
-        </button>
-
-        <!-- Sidebar Overlay für Mobile -->
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-        <!-- Tutorial Layout -->
-        <div class="tutorial-layout">
-
-            <!-- Linke Sidebar (Floating Panel) -->
-            <aside class="tutorial-sidebar" id="tutorialSidebar">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
-                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
-                        <span>×</span>
-                    </button>
-                </div>
-
-                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
-                    <ul class="toc-list">
-                        <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#die-basics">Die Basics</a></li>
-                    <li class="toc-level-1"><a href="#was-ist-javascript-ueberhaupt">Was ist JavaScript überhaupt?</a></li>
-                    <li class="toc-level-1"><a href="#dein-erstes-mini-beispiel">Dein erstes Mini-Beispiel</a></li>
-                    <li class="toc-level-1"><a href="#ein-funktionierendes-beispiel-auf-dieser-seite">Ein funktionierendes Beispiel auf dieser
-                        Seite</a></li>
-                    <li class="toc-level-1"><a href="#was-du-am-anfang-wirklich-brauchst">Was du am Anfang wirklich brauchst</a></li>
-                    <li class="toc-level-1"><a href="#was-spaeter-dazu-kommt">Was später dazu kommt</a></li>
-                    <li class="toc-level-1"><a href="#einsteiger-cheat-sheet">Einsteiger Cheat-Sheet</a></li>
-                    <li class="toc-level-2"><a href="#variablen">Variablen</a></li>
-                    <li class="toc-level-2"><a href="#datentypen">Datentypen</a></li>
-                    <li class="toc-level-2"><a href="#bedingungen">Bedingungen</a></li>
-                    <li class="toc-level-2"><a href="#elemente-auswaehlen">Elemente auswählen</a></li>
-                    <li class="toc-level-2"><a href="#events">Events</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
-                    <!-- Sidebar-Anchor-End -->
-                    </ul>
-                </nav>
-            </aside>
-
-            <!-- Rechte Sidebar (Floating Panel) -->
-            <aside class="tutorial-related">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc">Tutorials</h3>
-                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
-                        <span>×</span>
-                    </button>
-                </div>
-
-                <div class="sidebar-nav">
-                    <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">JavaScript Basics</li>
-                    <li><a href="/tutorials/javascript/javascript-basics/was-ist-javascript.html" class="active">Was ist JavaScript eigentlich?</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-variables.html">JavaScript Variables</a></li>
-                    <li class="sidebar-group-title">JavaScript Projects</li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript: HTML-Code Escaper</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity Encoder</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit JavaScript</a></li>
-                </ul>
-                </div>
-            </aside>
-
-            <!-- Wrapper .container -->
-            <div class="container">
-
-                <!-- Intro -->
-                <section class="tutorials-content mt-xl">
-                    <h2 id="die-basics">Die Basics</h2>
-                    <p>
-                        JavaScript wirkt am Anfang wie ein großes Mysterium. Dabei ist es eigentlich
-                        nur ein Werkzeug, das Webseiten lebendig macht. Kein Zauber, kein Geheimcode,
-                        sondern einfach Logik, ein paar Grundideen – und der Rest ergibt sich mit der
-                        Zeit fast von selbst.
-                    </p>
-                </section>
-
-                <!-- Was ist JavaScript überhaupt? -->
-                <section class="tutorials-content">
-                    <h2 id="was-ist-javascript-ueberhaupt">Was ist JavaScript überhaupt?</h2>
-                    <p>
-                        HTML sorgt dafür, <strong>was</strong> auf der Seite steht.
-                        CSS sorgt dafür, <strong>wie</strong> es aussieht.
-                        JavaScript sorgt dafür, <strong>dass etwas passiert</strong>.
-                    </p>
-
-                    <p>Zum Beispiel:</p>
-
-                    <div class="grid-2col grid-2col-bg">
-                        <div>
-                            <ul class="arrow-list">
-                                <li>Ein Menü aufklappen</li>
-                                <li>Tekste ändern</li>
-                                <li>Buttons reagieren lassen</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="arrow-list">
-                                <li>Elemente ein- oder ausblenden</li>
-                                <li>Eingaben prüfen</li>
-                                <li>Animationen starten</li>
-                            </ul>
-                        </div>
                     </div>
 
-                    <p>Ohne JavaScript wäre eine Webseite einfach nur statisch.</p>
-                </section>
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                            <li class="sidebar-group-title">JavaScript Basics</li>
+                            <li><a href="/tutorials/javascript/javascript-basics/was-ist-javascript.html"
+                                    class="active">Was ist JavaScript eigentlich?</a></li>
+                            <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a>
+                            </li>
+                            <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript
+                                    Sicherheit</a></li>
+                            <li><a href="/tutorials/javascript/javascript-basics/js-variables.html">JavaScript
+                                    Variables</a></li>
+                            <li class="sidebar-group-title">JavaScript Projects</li>
+                            <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript:
+                                    HTML-Code Escaper</a></li>
+                            <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity
+                                    Encoder</a></li>
+                            <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit
+                                    JavaScript</a></li>
+                        </ul>
+                    </div>
+                </aside>
 
-                <!-- Dein erstes Mini-Beispiel -->
-                <section class="tutorials-content">
-                    <h2 id="dein-erstes-mini-beispiel">Dein erstes Mini-Beispiel</h2>
-                    <p>
-                        Nichts installieren, keine Vorbereitung – du kannst JavaScript direkt im
-                        Browser testen:
-                    </p>
-                    <ol class="grid-2col-bg">
-                        <li>Irgendeine Webseite öffnen</li>
-                        <li>Rechtsklick → „Untersuchen“</li>
-                        <li>Reiter „Konsole“</li>
-                        <li>Code eingeben: <code>console.log("Hallo!");</code></li>
-                    </ol>
-                    <p>Das ist schon JavaScript. Wirklich.</p>
-                </section>
+                <!-- Wrapper .container -->
+                <div class="container">
 
-                <!-- Weitere Sections nach Bedarf -->
-                <section class="tutorials-content">
-                    <h2 id="ein-funktionierendes-beispiel-auf-dieser-seite">Ein funktionierendes Beispiel auf dieser
-                        Seite</h2>
-                    <p>Klick mal auf den Button – das ist pures JavaScript:</p>
+                    <!-- Intro -->
+                    <section class="tutorials-content mt-xl">
+                        <h2 id="die-basics">Die Basics</h2>
+                        <p>
+                            JavaScript wirkt am Anfang wie ein großes Mysterium. Dabei ist es eigentlich
+                            nur ein Werkzeug, das Webseiten lebendig macht. Kein Zauber, kein Geheimcode,
+                            sondern einfach Logik, ein paar Grundideen – und der Rest ergibt sich mit der
+                            Zeit fast von selbst.
+                        </p>
+                    </section>
 
-                    <button class="btn btn-primary" id="helloBtn">Sag Hallo</button>
+                    <!-- Was ist JavaScript überhaupt? -->
+                    <section class="tutorials-content">
+                        <h2 id="was-ist-javascript-ueberhaupt">Was ist JavaScript überhaupt?</h2>
+                        <p>
+                            HTML sorgt dafür, <strong>was</strong> auf der Seite steht.
+                            CSS sorgt dafür, <strong>wie</strong> es aussieht.
+                            JavaScript sorgt dafür, <strong>dass etwas passiert</strong>.
+                        </p>
 
-                    <p class="pt-lg">
-                        So wenig Code reicht, um etwas auf der Seite zu verändern oder zu reagieren:
-                    </p>
+                        <p>Zum Beispiel:</p>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">HTML</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Ein Menü aufklappen</li>
+                                    <li>Tekste ändern</li>
+                                    <li>Buttons reagieren lassen</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Elemente ein- oder ausblenden</li>
+                                    <li>Eingaben prüfen</li>
+                                    <li>Animationen starten</li>
+                                </ul>
+                            </div>
                         </div>
-                        <pre><code class="language-javascript">&lt;button id="helloBtn"&gt;Sag Hallo&lt;/button&gt;
+
+                        <p>Ohne JavaScript wäre eine Webseite einfach nur statisch.</p>
+                    </section>
+
+                    <!-- Dein erstes Mini-Beispiel -->
+                    <section class="tutorials-content">
+                        <h2 id="dein-erstes-mini-beispiel">Dein erstes Mini-Beispiel</h2>
+                        <p>
+                            Nichts installieren, keine Vorbereitung – du kannst JavaScript direkt im
+                            Browser testen:
+                        </p>
+                        <ol class="grid-2col-bg">
+                            <li>Irgendeine Webseite öffnen</li>
+                            <li>Rechtsklick → „Untersuchen“</li>
+                            <li>Reiter „Konsole“</li>
+                            <li>Code eingeben: <code>console.log("Hallo!");</code></li>
+                        </ol>
+                        <p>Das ist schon JavaScript. Wirklich.</p>
+                    </section>
+
+                    <!-- Weitere Sections nach Bedarf -->
+                    <section class="tutorials-content">
+                        <h2 id="ein-funktionierendes-beispiel-auf-dieser-seite">Ein funktionierendes Beispiel auf dieser
+                            Seite</h2>
+                        <p>Klick mal auf den Button – das ist pures JavaScript:</p>
+
+                        <button class="btn btn-primary" id="helloBtn">Sag Hallo</button>
+
+                        <p class="pt-lg">
+                            So wenig Code reicht, um etwas auf der Seite zu verändern oder zu reagieren:
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">&lt;button id="helloBtn"&gt;Sag Hallo&lt;/button&gt;
 
 &lt;script&gt;
   const button = document.querySelector("#helloBtn");
@@ -363,199 +367,198 @@
     alert("Hallo!");
   });
 &lt;/script&gt;</code></pre>
-                    </div>
-
-                </section>
-
-                <!-- Was du am Anfang wirklich brauchst -->
-                <section class="tutorials-content">
-                    <h2 id="was-du-am-anfang-wirklich-brauchst">Was du am Anfang wirklich brauchst</h2>
-                    <p>
-                        Viele Tutorials werfen mit Fachbegriffen um sich – aber die Wahrheit ist:
-                        Für deinen Start brauchst du nur ein paar Grundbausteine.
-                    </p>
-
-                    <div class="grid-2col grid-2col-bg">
-                        <div>
-                            <ul class="arrow-list">
-                                <li><strong>Variablen</strong> – kleine Schubladen für Werte</li>
-                                <li><strong>Datentypen</strong> – Zahlen, Text, true/false</li>
-                                <li><strong>Bedingungen</strong> – „wenn X, dann Y“</li>
-                            </ul>
                         </div>
-                        <div>
-                            <ul class="arrow-list">
-                                <li><strong>Events</strong> – Klicks, Scrollen, Eingaben usw.</li>
-                                <li><strong>DOM-Auswahl</strong> – Elemente aus HTML auswählen</li>
-                            </ul>
-                        </div>
-                    </div>
 
-                    <p>Das reicht locker für die ersten Tage oder Wochen. Im nächsten Tutorial gehen wir etwas genauer
-                        auf die Basics ein:</p>
-                    <div class="cta-content">
-                        <a href="/tutorials/javascript/javascript-basics/js-basics.html" class="btn btn-secondary" target="_blank">→ Zum Tutorial JavaScript Basics</a>
-                    </div>
-                </section>
+                    </section>
 
-                <!-- Was später dazu kommt -->
-                <section class="tutorials-content">
-                    <h2 id="was-spaeter-dazu-kommt">Was später dazu kommt</h2>
-                    <div class="grid-2col grid-2col-bg">
-                        <div>
-                            <ul class="arrow-list">
-                                <li>Funktionen</li>
-                                <li>Arrays und Objekte</li>
-                                <li>Schleifen</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="arrow-list">
-                                <li>Module</li>
-                                <li>APIs</li>
-                                <li>Asynchrone Abläufe</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <p>
-                        Alles Schritt für Schritt – und sobald du eine Basis hast, wird JavaScript
-                        plötzlich logisch.
-                    </p>
-                </section>
+                    <!-- Was du am Anfang wirklich brauchst -->
+                    <section class="tutorials-content">
+                        <h2 id="was-du-am-anfang-wirklich-brauchst">Was du am Anfang wirklich brauchst</h2>
+                        <p>
+                            Viele Tutorials werfen mit Fachbegriffen um sich – aber die Wahrheit ist:
+                            Für deinen Start brauchst du nur ein paar Grundbausteine.
+                        </p>
 
-                <!-- Einsteiger Cheat-Sheet -->
-                <section class="tutorials-content">
-                    <h2 id="einsteiger-cheat-sheet">Einsteiger Cheat-Sheet</h2>
-                    <h3 id="variablen">Variablen</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">javascript</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><strong>Variablen</strong> – kleine Schubladen für Werte</li>
+                                    <li><strong>Datentypen</strong> – Zahlen, Text, true/false</li>
+                                    <li><strong>Bedingungen</strong> – „wenn X, dann Y“</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><strong>Events</strong> – Klicks, Scrollen, Eingaben usw.</li>
+                                    <li><strong>DOM-Auswahl</strong> – Elemente aus HTML auswählen</li>
+                                </ul>
+                            </div>
                         </div>
-                        <pre><code class="language-javascript">const name = "Alex"; // fester Wert
+
+                        <p>Das reicht locker für die ersten Tage oder Wochen. Im nächsten Tutorial gehen wir etwas
+                            genauer
+                            auf die Basics ein:</p>
+                        <div class="cta-content">
+                            <a href="/tutorials/javascript/javascript-basics/js-basics.html" class="btn btn-secondary"
+                                target="_blank">→ Zum Tutorial JavaScript Basics</a>
+                        </div>
+                    </section>
+
+                    <!-- Was später dazu kommt -->
+                    <section class="tutorials-content">
+                        <h2 id="was-spaeter-dazu-kommt">Was später dazu kommt</h2>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Funktionen</li>
+                                    <li>Arrays und Objekte</li>
+                                    <li>Schleifen</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Module</li>
+                                    <li>APIs</li>
+                                    <li>Asynchrone Abläufe</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p>
+                            Alles Schritt für Schritt – und sobald du eine Basis hast, wird JavaScript
+                            plötzlich logisch.
+                        </p>
+                    </section>
+
+                    <!-- Einsteiger Cheat-Sheet -->
+                    <section class="tutorials-content">
+                        <h2 id="einsteiger-cheat-sheet">Einsteiger Cheat-Sheet</h2>
+                        <h3 id="variablen">Variablen</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">javascript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">const name = "Alex"; // fester Wert
 let score = 0;       // veränderbarer Wert</code></pre>
-                    </div>
-
-                    <h3 id="datentypen">Datentypen</h3>
-                    <ul class="arrow-list grid-2col-bg">
-                        <li><code>"Text"</code> – String</li>
-                        <li><code>42</code> – Number</li>
-                        <li><code>true</code> / <code>false</code> – Boolean</li>
-                        <li><code>[1, 2, 3]</code> – Array</li>
-                        <li><code>{ key: "value" }</code> – Objekt</li>
-                    </ul>
-
-                    <h3 id="bedingungen">Bedingungen</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">javascript</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
                         </div>
-                        <pre><code class="language-javascript">if (score &gt; 10) {
+
+                        <h3 id="datentypen">Datentypen</h3>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><code>"Text"</code> – String</li>
+                            <li><code>42</code> – Number</li>
+                            <li><code>true</code> / <code>false</code> – Boolean</li>
+                            <li><code>[1, 2, 3]</code> – Array</li>
+                            <li><code>{ key: "value" }</code> – Objekt</li>
+                        </ul>
+
+                        <h3 id="bedingungen">Bedingungen</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">javascript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">if (score &gt; 10) {
   console.log("Gewonnen!");
 } else {
   console.log("Weitermachen!");
 }</code></pre>
-                    </div>
+                        </div>
 
-                    <h3 id="elemente-auswaehlen">Elemente auswählen</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">javascript</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
+                        <h3 id="elemente-auswaehlen">Elemente auswählen</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">javascript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">const title = document.querySelector("h1");</code></pre>
                         </div>
-                        <pre><code class="language-javascript">const title = document.querySelector("h1");</code></pre>
-                    </div>
-                    <h3 id="events">Events</h3>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang">javascript</span>
-                            <button class="code-copy">
-                                <span class="copy-icon">
-                                    <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                </span>
-                                <span class="copy-text">Kopieren</span>
-                            </button>
-                        </div>
-                        <pre><code class="language-javascript">button.addEventListener("click", function() {
+                        <h3 id="events">Events</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">javascript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">button.addEventListener("click", function() {
   console.log("Button geklickt!");
 });</code></pre>
-                    </div>
-                </section>
-            
-                <!-- Prev/Next Navigation -->
+                        </div>
+                    </section>
 
-                <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="javascript">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <!-- Prev/Next Navigation -->
 
-                <section class="tutorials-content">
-                    <nav class="tutorial-nav"><div class="tutorial-nav-prev"></div><div class="tutorial-nav-next">
-            <a href="/tutorials/javascript/javascript-basics/js-basics.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">JavaScript Basics</span>
-                <span class="tutorial-nav-category">JavaScript Basics</span>
-            </a>
-        </div></nav>
-                </section>
+                    <!-- Latest-Tutorials-Start -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="javascript">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
-            </div> <!-- Wrapper .container -->
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+                            <div class="tutorial-nav-prev"></div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/javascript/javascript-basics/js-basics.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">JavaScript Basics</span>
+                                    <span class="tutorial-nav-category">JavaScript Basics</span>
+                                </a>
+                            </div>
+                        </nav>
+                    </section>
 
-        </div> <!-- Tutorial Layout -->
+                </div> <!-- Wrapper .container -->
 
-    </main>
+            </div> <!-- Tutorial Layout -->
 
-    <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
-    <script src="/assets/js/was-ist-javascript.js" defer></script>
-    <script src="/assets/js/code-copy.js" defer></script>
-    <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/vendor/prism/prism.js" defer></script>
+        </main>
 
+        <!-- Footer-Start -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
+        <script src="/assets/js/was-ist-javascript.js" defer></script>
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
 
+    </body>
 
-
-
-
-
-
-
-
-</body></html>
+</html>
