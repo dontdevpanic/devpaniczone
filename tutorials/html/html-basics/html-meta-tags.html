@@ -1,8 +1,9 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Wie du Meta-Tags im HTML-Head richtig einsetzt – für SEO, Social Media und technische Informationen.">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="HTML Meta-Tags: charset, viewport, description für SEO, Open Graph und Twitter Cards für Social Media, Canonical und robots.">
+        <meta name="keywords" content="HTML Meta-Tags, meta charset, meta viewport, meta description, meta robots, Open Graph, og:image, Twitter Cards, SEO Meta-Tags, Social Media Tags, noindex nofollow">
         <meta name="author" content="DevPanicZone">
         <title>HTML Meta-Tags – Bedeutung, Beispiele &amp; Einsatz</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -210,8 +211,14 @@
                     <li class="toc-level-2"><a href="#twitter-cards">Twitter
                                 Cards</a></li>
                     <li class="toc-level-1"><a href="#technische-meta-tags">Technische Meta-Tags</a></li>
+                    <li class="toc-level-1"><a href="#canonical-tag">Der Canonical Tag – Duplicate Content vermeiden</a></li>
+                    <li class="toc-level-2"><a href="#canonical-bei-duplikaten">Canonical bei URL-Varianten</a></li>
+                    <li class="toc-level-2"><a href="#wann-canonical-verwenden">Wann brauchst du einen Canonical Tag?</a></li>
+                    <li class="toc-level-1"><a href="#strukturierte-daten">Strukturierte Daten – Rich Snippets in Google</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler bei Meta-Tags</a></li>
                     <li class="toc-level-1"><a href="#uebersicht-wichtiger-meta-tags">Übersicht
                             wichtiger Meta-Tags</a></li>
+                    <li class="toc-level-1"><a href="#vollstaendiges-beispiel">Vollständiges Meta-Tags Template</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
                     <!-- Sidebar-Anchor-End -->
                         </ul>
@@ -623,6 +630,211 @@
                         </div>
                     </section> <!-- Technische Meta-Tags -->
 
+                    <!-- Canonical Tag -->
+                    <section class="tutorials-content">
+                        <h2 id="canonical-tag">Der Canonical Tag – Duplicate Content vermeiden</h2>
+                        <p>Der <code class="inline">canonical</code>-Tag teilt Suchmaschinen mit, welche URL die
+                            "Hauptversion" einer Seite ist. Das ist wichtig, wenn derselbe Inhalt unter mehreren URLs
+                            erreichbar ist.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Auf https://www.beispiel.de/artikel --&gt;
+&lt;link rel="canonical" href="https://www.beispiel.de/artikel"&gt;</code></pre>
+                        </div>
+
+                        <h3 id="canonical-bei-duplikaten">Canonical bei URL-Varianten</h3>
+                        <p>Wenn derselbe Inhalt unter mehreren URLs erreichbar ist, verweisen alle Varianten auf
+                            dieselbe Haupt-URL:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Alle diese Seiten haben denselben Canonical: --&gt;
+
+&lt;!-- Hauptseite: beispiel.de/artikel --&gt;
+&lt;link rel="canonical" href="https://www.beispiel.de/artikel"&gt;
+
+&lt;!-- Variante mit Tracking-Parameter --&gt;
+&lt;!-- beispiel.de/artikel?ref=newsletter --&gt;
+&lt;link rel="canonical" href="https://www.beispiel.de/artikel"&gt;
+
+&lt;!-- Variante mit Session-ID --&gt;
+&lt;!-- beispiel.de/artikel?sessionid=abc123 --&gt;
+&lt;link rel="canonical" href="https://www.beispiel.de/artikel"&gt;</code></pre>
+                        </div>
+
+                        <h3 id="wann-canonical-verwenden">Wann brauchst du einen Canonical Tag?</h3>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><strong>URL-Varianten:</strong> <code class="inline">beispiel.de/seite</code> vs. <code class="inline">beispiel.de/seite/</code> vs. <code class="inline">www.beispiel.de/seite</code></li>
+                            <li><strong>Session-Parameter:</strong> <code class="inline">?sessionid=123</code> oder
+                                <code class="inline">?ref=newsletter</code>
+                            </li>
+                            <li><strong>Sortierung/Filter:</strong> <code class="inline">/produkte?sort=preis</code> vs.
+                                <code class="inline">/produkte?sort=name</code>
+                            </li>
+                            <li><strong>HTTP vs. HTTPS:</strong> Beide Versionen erreichbar</li>
+                            <li><strong>Syndizierte Inhalte:</strong> Dein Artikel wird auf anderen Seiten
+                                veröffentlicht</li>
+                        </ul>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Kein Canonical nötig bei
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Unterschiedliche Seiten mit ähnlichen Elementen (z.B. in meinem Fall gleiches
+                                Code-Beispiel in Tutorial und Cheatsheet) sind <strong>kein</strong> Duplicate Content.
+                                Der Gesamtkontext zählt –
+                                jede Seite bekommt ihren eigenen self-referencing Canonical.</p>
+                        </div>
+
+                        <div class="info-box warning">
+                            <strong class="box-title warning no-toc">Wichtig
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>Immer <strong>absolute URLs</strong> verwenden (mit <code class="inline">https://</code>)</li>
+                                <li>Jede Seite sollte auf sich selbst verweisen (self-referencing canonical)</li>
+                                <li>Auch bei paginierten Seiten: Jede Seite verweist auf sich selbst, nicht alle auf
+                                    Seite 1
+                                </li>
+                                <li>Der Canonical ist ein <strong>Hinweis</strong>, keine Anweisung – Google kann ihn
+                                    ignorieren</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Self-referencing Canonical (Best Practice) --&gt;
+&lt;head&gt;
+    &lt;link rel="canonical" href="https://www.beispiel.de/aktueller-artikel"&gt;
+&lt;/head&gt;
+
+&lt;!-- Bei paginierten Seiten --&gt;
+&lt;!-- Seite 1: verweist auf sich selbst --&gt;
+&lt;link rel="canonical" href="https://www.beispiel.de/blog"&gt;
+
+&lt;!-- Seite 2, 3, etc.: verweisen auf sich selbst, NICHT auf Seite 1! --&gt;
+&lt;link rel="canonical" href="https://www.beispiel.de/blog?page=2"&gt;</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Strukturierte Daten -->
+                    <section class="tutorials-content">
+                        <h2 id="strukturierte-daten">Strukturierte Daten – Rich Snippets in Google</h2>
+                        <p>Neben Meta-Tags gibt es <strong>strukturierte Daten</strong> (Schema.org / JSON-LD), die
+                            Google noch mehr Kontext über deine Seite geben. Sie ermöglichen Rich Snippets wie
+                            Sternebewertungen, Rezepte, FAQs oder Event-Daten in den Suchergebnissen.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;script type="application/ld+json"&gt;
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "HTML Meta-Tags erklärt",
+    "author": {
+        "@type": "Person",
+        "name": "DevPanicZone"
+    },
+    "datePublished": "2025-01-15",
+    "description": "Ein umfassender Guide zu Meta-Tags."
+}
+&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Weiterführende Ressourcen
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><a href="https://schema.org/" target="_blank" rel="noopener">Schema.org</a> –
+                                    Dokumentation aller verfügbaren Typen</li>
+                                <li><a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Google Rich Results Test</a> – Prüfe deine strukturierten Daten
+                                </li>
+                                <li><a href="https://developers.google.com/search/docs/appearance/structured-data" target="_blank" rel="noopener">Google Structured Data Guide</a></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Häufige Fehler -->
+                    <section class="tutorials-content">
+                        <h2 id="haeufige-fehler">Häufige Fehler bei Meta-Tags</h2>
+
+                        <div class="grid-2col">
+                            <div class="info-box danger">
+                                <strong class="box-title danger no-toc">Vermeiden
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Gleiche <code class="inline">description</code> auf allen Seiten</li>
+                                    <li><code class="inline">description</code> zu kurz (&lt;50 Zeichen) oder zu lang
+                                        (&gt;160)</li>
+                                    <li><code class="inline">keywords</code> mit Keyword-Stuffing füllen</li>
+                                    <li>Fehlender <code class="inline">viewport</code>-Tag (Mobile-Probleme)</li>
+                                    <li>Relative URLs bei <code class="inline">og:image</code> oder <code class="inline">canonical</code></li>
+                                    <li><code class="inline">noindex</code> auf wichtigen Seiten vergessen</li>
+                                    <li>Doppelte oder widersprüchliche Meta-Tags</li>
+                                </ul>
+                            </div>
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Best Practices
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Jede Seite: einzigartige <code class="inline">description</code></li>
+                                    <li>150–160 Zeichen, aktiv formuliert</li>
+                                    <li><code class="inline">keywords</code> weglassen oder minimal halten</li>
+                                    <li><code class="inline">viewport</code> immer setzen</li>
+                                    <li>Absolute URLs mit https:// verwenden</li>
+                                    <li><code class="inline">robots</code> bewusst einsetzen</li>
+                                    <li>Mit Validierungstools prüfen</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
                     <!-- Übersicht wichtiger Meta-Tags -->
                     <section class="tutorials-content">
                         <h2 class="section-title" id="uebersicht-wichtiger-meta-tags">Übersicht
@@ -707,11 +919,88 @@
                             </strong>
                             <p>
                                 Halte deine Meta-Tags so minimal wie möglich – nur das, was du wirklich brauchst. Viele
-                                alte oder doppelte Angaben - wie <code class="inline">keywords</code> - können sogar
-                                kontraproduktiv wirken.
+                                alte oder doppelte Angaben – wie <code class="inline">keywords</code> – können sogar
+                                kontraproduktiv wirken und zu <a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate
+                                    Content</a>-Problemen führen.
                             </p>
+                            <div class="cta-content">
+                                <a href="/tutorials/misc/seo-optimization/duplicate-content.html" class="btn btn--small btn-secondary">→ Zum Tutorial Duplicate Content</a>
+                            </div>
                         </div>
                     </section> <!-- Übersicht wichtiger Meta-Tags -->
+
+                    <!-- Vollständiges Beispiel -->
+                    <section class="tutorials-content">
+                        <h2 id="vollstaendiges-beispiel">Vollständiges Meta-Tags Template</h2>
+                        <p>Hier ein Copy-Paste-fertiges Template mit allen wichtigen Meta-Tags für eine typische
+                            Webseite:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;head&gt;
+    &lt;!-- Basis --&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    
+    &lt;!-- SEO --&gt;
+    &lt;title&gt;Seitentitel – Markenname&lt;/title&gt;
+    &lt;meta name="description" content="Kurze, prägnante Beschreibung der Seite (150-160 Zeichen)."&gt;
+    &lt;meta name="author" content="Dein Name oder Firma"&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
+    &lt;link rel="canonical" href="https://www.beispiel.de/aktuelle-seite"&gt;
+    
+    &lt;!-- Open Graph (Facebook, LinkedIn, WhatsApp) --&gt;
+    &lt;meta property="og:type" content="website"&gt;
+    &lt;meta property="og:title" content="Seitentitel für Social Media"&gt;
+    &lt;meta property="og:description" content="Beschreibung für geteilte Beiträge."&gt;
+    &lt;meta property="og:image" content="https://www.beispiel.de/images/og-preview.jpg"&gt;
+    &lt;meta property="og:url" content="https://www.beispiel.de/aktuelle-seite"&gt;
+    &lt;meta property="og:site_name" content="Markenname"&gt;
+    
+    &lt;!-- Twitter Cards --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:title" content="Seitentitel für Twitter"&gt;
+    &lt;meta name="twitter:description" content="Beschreibung für Twitter."&gt;
+    &lt;meta name="twitter:image" content="https://www.beispiel.de/images/twitter-preview.jpg"&gt;
+    &lt;meta name="twitter:site" content="@deinprofil"&gt;
+    
+    &lt;!-- Technisch --&gt;
+    &lt;meta name="theme-color" content="#4a90d9"&gt;
+    
+    &lt;!-- Favicon --&gt;
+    &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+    &lt;link rel="icon" type="image/png" href="/favicon.png"&gt;
+    &lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;
+    
+    &lt;!-- Stylesheet --&gt;
+    &lt;link rel="stylesheet" href="/css/style.css"&gt;
+&lt;/head&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Checkliste vor dem Launch
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>☐ Jede Seite hat einen einzigartigen <code class="inline">title</code> und <code class="inline">description</code></li>
+                                <li>☐ <code class="inline">og:image</code> ist mindestens 1200×630px und als absolute
+                                    URL angegeben</li>
+                                <li>☐ <code class="inline">canonical</code> zeigt auf die korrekte URL</li>
+                                <li>☐ <code class="inline">robots</code> ist auf Produktiv-Seiten auf <code class="inline">index, follow</code></li>
+                                <li>☐ Mit <a href="https://developers.facebook.com/tools/debug/" target="_blank" rel="noopener">Facebook Debugger</a> und <a href="https://cards-dev.twitter.com/validator" target="_blank" rel="noopener">Twitter Validator</a> getestet</li>
+                            </ul>
+                        </div>
+                    </section>
 
                     <!-- Prev/Next Navigation -->
 
@@ -769,6 +1058,8 @@
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 
