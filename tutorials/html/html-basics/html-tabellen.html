@@ -1,8 +1,9 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="HTML-Listen-Cheatsheet: verständliche Beispiele, praktische Hinweise zu ul/ol und verschachtelten Listen – ideal als schnelles, persönliches Nachschlagewerk.">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="HTML Tabellen erstellen: Grundaufbau mit table, tr, td und th, semantische Struktur mit thead, tbody und tfoot, Zellen verbinden mit colspan und rowspan, Barrierefreiheit mit scope.">
+        <meta name="keywords" content="HTML Tabellen, table Element, tr td th, thead tbody tfoot, colspan rowspan, Zellen verbinden, scope Attribut, Tabellen Barrierefreiheit, responsive Tabellen">
         <meta name="author" content="DevPanicZone">
         <title>HTML Tabellen | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -159,6 +160,8 @@
                     <p class="hero-subtitle">Tabellen helfen dir, Daten strukturiert und übersichtlich darzustellen. In
                         diesem Cheatsheet siehst du, wie sie aufgebaut sind, welche Elemente es gibt und wann welche
                         Variante sinnvoll ist.</p>
+                    <p>Tabellen strukturieren Daten in Zeilen und Spalten: Grundaufbau mit table, thead, tbody, Zellen
+                        verbinden mit colspan und rowspan, und barrierefreie Tabellen mit scope.</p>
                 </div>
             </section>
 
@@ -195,8 +198,19 @@
                     <li class="toc-level-1"><a href="#was-sind-html-tabellen">Was sind HTML-Tabellen?</a></li>
                     <li class="toc-level-1"><a href="#grundaufbau-einer-tabelle">Grundaufbau einer Tabelle</a></li>
                     <li class="toc-level-1"><a href="#arten-von-tabellen">Arten von Tabellen</a></li>
+                    <li class="toc-level-1"><a href="#zellen-verbinden-colspan-rowspan">Zellen verbinden mit colspan und rowspan</a></li>
+                    <li class="toc-level-2"><a href="#colspan-spalten-zusammenfuehren">colspan – Spalten horizontal zusammenführen</a></li>
+                    <li class="toc-level-2"><a href="#rowspan-zeilen-zusammenfuehren">rowspan – Zeilen vertikal zusammenführen</a></li>
+                    <li class="toc-level-1"><a href="#beispiele-colspan-rowspan">Praktische Beispiele</a></li>
+                    <li class="toc-level-2"><a href="#beispiel-lebenslauf">Beispiel 1: Lebenslauf-Eintrag</a></li>
+                    <li class="toc-level-2"><a href="#beispiel-tfoot-colspan">Beispiel 2: Fußzeile mit colspan</a></li>
+                    <li class="toc-level-2"><a href="#beispiel-kombiniert">Beispiel 3: colspan und rowspan kombiniert</a></li>
                     <li class="toc-level-1"><a href="#scope-fuer-browser-und-screenreader">&lt;scope&gt; für Browser und Screenreader</a></li>
                     <li class="toc-level-1"><a href="#best-practices-fuer-tabellen">Best Practices für Tabellen</a></li>
+                    <li class="toc-level-1"><a href="#responsive-tabellen">Responsive Tabellen</a></li>
+                    <li class="toc-level-2"><a href="#horizontales-scrollen">Lösung 1: Horizontales Scrollen</a></li>
+                    <li class="toc-level-2"><a href="#tabelle-stapeln">Lösung 2: Tabelle auf Mobile stapeln</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler bei Tabellen</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
                     <!-- Sidebar-Anchor-End -->
                         </ul>
@@ -342,6 +356,318 @@
                         </ul>
                     </section>
 
+                    <!-- Zellen verbinden mit colspan und rowspan -->
+                    <section class="tutorials-content">
+                        <h2 id="zellen-verbinden-colspan-rowspan">Zellen verbinden mit colspan und rowspan</h2>
+                        <p>Manchmal müssen Zellen über mehrere Spalten oder Zeilen gehen – etwa für Überschriften,
+                            Zusammenfassungen oder komplexe Datenstrukturen. Dafür gibt es <code class="inline">colspan</code> und <code class="inline">rowspan</code>.</p>
+
+                        <h3 id="colspan-spalten-zusammenfuehren">colspan – Spalten horizontal zusammenführen</h3>
+                        <p>Mit <code class="inline">colspan</code> erstreckt sich eine Zelle über mehrere
+                            <strong>Spalten</strong> (waagerecht):
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Eine Zelle über 3 Spalten --&gt;
+&lt;td colspan="3"&gt;Diese Zelle geht über 3 Spalten&lt;/td&gt;</code></pre>
+                        </div>
+
+                        <p class="pt-lg"><strong>Visualisiert:</strong></p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Visualisierung</span>
+                            </div>
+                            <pre><code class="language-plaintext">Normal (3 separate Zellen):
+[ Spalte 1 ] [ Spalte 2 ] [ Spalte 3 ]
+
+Mit colspan="3" (1 Zelle über alle 3 Spalten):
+[      Eine Zelle über 3 Spalten      ]</code></pre>
+                        </div>
+
+                        <p class="pt-lg"><strong>Typische Anwendungen:</strong></p>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li>Abschnittsüberschriften über die ganze Tabellenbreite</li>
+                            <li>Zusammenfassungen oder Fußzeilen</li>
+                            <li>Wenn eine Zeile weniger Zellen braucht als andere</li>
+                        </ul>
+
+                        <h3 id="rowspan-zeilen-zusammenfuehren">rowspan – Zeilen vertikal zusammenführen
+                        </h3>
+                        <p>Mit <code class="inline">rowspan</code> erstreckt sich eine Zelle über mehrere
+                            <strong>Zeilen</strong> (senkrecht):
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Eine Zelle über 3 Zeilen --&gt;
+&lt;td rowspan="3"&gt;Diese Zelle geht über 3 Zeilen&lt;/td&gt;</code></pre>
+                        </div>
+
+                        <p class="pt-lg"><strong>Visualisiert:</strong></p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Visualisierung</span>
+                            </div>
+                            <pre><code class="language-plaintext">Mit rowspan="3" (linke Zelle über 3 Zeilen):
+[ Links: 3 Zeilen ] [ Rechts Zeile 1 ]
+[   zusammen      ] [ Rechts Zeile 2 ]
+[                 ] [ Rechts Zeile 3 ]</code></pre>
+                        </div>
+
+                        <p class="pt-lg"><strong>Typische Anwendungen:</strong></p>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li>Kategorien, die mehrere Unterpunkte abdecken</li>
+                            <li>Zeiträume mit mehreren zugehörigen Einträgen</li>
+                            <li>Gruppierungen in der ersten Spalte</li>
+                        </ul>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Merkhilfe
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>col</strong>span = <strong>col</strong>umns = Spalten =
+                                    <strong>waagerecht</strong> →
+                                </li>
+                                <li><strong>row</strong>span = <strong>row</strong>s = Zeilen =
+                                    <strong>senkrecht</strong> ↓
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Praktische Beispiele für colspan und rowspan -->
+                    <section class="tutorials-content">
+                        <h2 id="beispiele-colspan-rowspan">Praktische Beispiele</h2>
+
+                        <h3 id="beispiel-lebenslauf">Beispiel 1: Lebenslauf-Eintrag</h3>
+                        <p>Links ein Zeitraum (über 2 Zeilen), rechts Titel und Details:</p>
+
+                        <table class="ref-table">
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2" style="vertical-align: top; font-weight: 600;">09/2008 – 06/2015
+                                    </td>
+                                    <td><strong>Abitur</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Mustergymnasium, Musterstadt, Abschlussnote: 1,0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;table&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;09/2008 – 06/2015&lt;/td&gt;
+            &lt;td&gt;&lt;strong&gt;Abitur&lt;/strong&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;!-- Keine erste Zelle! rowspan füllt sie --&gt;
+            &lt;td&gt;Mustergymnasium, Musterstadt, Abschlussnote: 1,0&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Wichtig
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Bei <code class="inline">rowspan</code> hat die <strong>folgende Zeile eine Zelle
+                                    weniger</strong>! Die Zelle mit rowspan "blockiert" den Platz bereits.</p>
+                        </div>
+
+                        <h3 id="beispiel-tfoot-colspan">Beispiel 2: Fußzeile mit colspan</h3>
+                        <p>Im <code class="inline">&lt;tfoot&gt;</code> sollen Kontaktdaten über die gesamte
+                            Tabellenbreite gehen:</p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Zeitraum</th>
+                                    <th>Position</th>
+                                    <th>Unternehmen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020 – heute</td>
+                                    <td>Frontend Developer</td>
+                                    <td>Web Agency GmbH</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" style="text-align: center; border-top: 2px solid var(--color-border);">
+                                        Musterstadt, 01.01.2025</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align: center;"><strong>Max Mustermann</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align: center; font-size: 0.9em;">Tel: 01234 456789 ·
+                                        max@beispiel.de</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Zeitraum&lt;/th&gt;
+            &lt;th&gt;Position&lt;/th&gt;
+            &lt;th&gt;Unternehmen&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2020 – heute&lt;/td&gt;
+            &lt;td&gt;Frontend Developer&lt;/td&gt;
+            &lt;td&gt;Web Agency GmbH&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td colspan="3"&gt;Musterstadt, 01.01.2025&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="3"&gt;Max Mustermann&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="3"&gt;
+                Tel: 01234 456789 · max@beispiel.de
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+
+                        <h3 id="beispiel-kombiniert">Beispiel 3: colspan und rowspan kombiniert</h3>
+                        <p>Eine komplexere Tabelle mit beiden Attributen:</p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Kategorie</th>
+                                    <th>Produkt</th>
+                                    <th>Preis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="2">Obst</td>
+                                    <td>Äpfel</td>
+                                    <td>2,50 €</td>
+                                </tr>
+                                <tr>
+                                    <td>Bananen</td>
+                                    <td>1,80 €</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Gemüse</td>
+                                    <td>Tomaten</td>
+                                    <td>3,20 €</td>
+                                </tr>
+                                <tr>
+                                    <td>Gurken</td>
+                                    <td>1,50 €</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><strong>Gesamt</strong></td>
+                                    <td><strong>9,00 €</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Kategorie&lt;/th&gt;
+            &lt;th&gt;Produkt&lt;/th&gt;
+            &lt;th&gt;Preis&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;Obst&lt;/td&gt;
+            &lt;td&gt;Äpfel&lt;/td&gt;
+            &lt;td&gt;2,50 €&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;!-- Keine Kategorie-Zelle! --&gt;
+            &lt;td&gt;Bananen&lt;/td&gt;
+            &lt;td&gt;1,80 €&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;Gemüse&lt;/td&gt;
+            &lt;td&gt;Tomaten&lt;/td&gt;
+            &lt;td&gt;3,20 €&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Gurken&lt;/td&gt;
+            &lt;td&gt;1,50 €&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2"&gt;&lt;strong&gt;Gesamt&lt;/strong&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;strong&gt;9,00 €&lt;/strong&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </section>
+
                     <!-- scope für Browser und Screenreader -->
                     <section class="tutorials-content">
                         <h2 id="scope-fuer-browser-und-screenreader">&lt;scope&gt; für Browser und Screenreader</h2>
@@ -426,6 +752,157 @@
                         </div>
                     </section>
 
+                    <!-- Responsive Tabellen -->
+                    <section class="tutorials-content">
+                        <h2 id="responsive-tabellen">Responsive Tabellen</h2>
+                        <p>Tabellen sind von Natur aus nicht responsiv – auf kleinen Bildschirmen werden sie oft
+                            abgeschnitten oder erfordern horizontales Scrollen. Hier sind praktische Lösungen:</p>
+
+                        <h3 id="horizontales-scrollen">Lösung 1: Horizontales Scrollen</h3>
+                        <p>Die einfachste Methode – die Tabelle wird in einen scrollbaren Container gepackt:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML + CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="table-wrapper"&gt;
+    &lt;table&gt;
+        &lt;!-- Tabelleninhalt --&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth Scroll auf iOS */
+}
+
+.table-wrapper table {
+    min-width: 600px; /* Mindestbreite der Tabelle */
+}
+&lt;/style&gt;</code></pre>
+                        </div>
+
+                        <h3 id="tabelle-stapeln">Lösung 2: Tabelle auf Mobile stapeln</h3>
+                        <p>Auf kleinen Bildschirmen wird jede Zeile zu einem eigenen Block:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    
+    /* Kopfzeile verstecken */
+    thead {
+        display: none;
+    }
+    
+    /* Jede Zeile als Card */
+    tr {
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    
+    /* Label vor jeder Zelle */
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+    
+    td {
+        padding: 0.5rem;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+}</code></pre>
+                        </div>
+
+                        <p>Dazu brauchst du <code class="inline">data-label</code> Attribute im HTML:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;tr&gt;
+    &lt;td data-label="Name"&gt;Leo&lt;/td&gt;
+    &lt;td data-label="Art"&gt;Kater&lt;/td&gt;
+    &lt;td data-label="Alter"&gt;13 Jahre&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Tipp
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Für einfache Tabellen reicht oft das horizontale Scrollen. Die Stapel-Methode lohnt sich
+                                bei komplexeren Daten, wo der Kontext wichtig ist.</p>
+                        </div>
+                    </section>
+
+                    <!-- Häufige Fehler -->
+                    <section class="tutorials-content">
+                        <h2 id="haeufige-fehler">Häufige Fehler bei Tabellen</h2>
+
+                        <div class="grid-2col">
+                            <div class="info-box danger">
+                                <strong class="box-title danger no-toc">Vermeiden
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Tabellen für Layouts verwenden</li>
+                                    <li><code class="inline">&lt;th&gt;</code> vergessen – nur <code class="inline">&lt;td&gt;</code> für alles</li>
+                                    <li>Bei rowspan: Zellen in Folgezeilen nicht weglassen</li>
+                                    <li>colspan/rowspan-Werte falsch zählen</li>
+                                    <li>Leere Zellen ohne <code class="inline">&lt;td&gt;&lt;/td&gt;</code></li>
+                                    <li>Verschachtelte Tabellen ohne guten Grund</li>
+                                </ul>
+                            </div>
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Best Practice
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Tabellen nur für tabellarische Daten</li>
+                                    <li><code class="inline">&lt;th&gt;</code> für Überschriften, <code class="inline">&lt;td&gt;</code> für Daten</li>
+                                    <li>Bei rowspan="2" → nächste Zeile hat 1 Zelle weniger</li>
+                                    <li>Spalten/Zeilen vor dem Coden skizzieren</li>
+                                    <li>Leere Zellen: <code class="inline">&lt;td&gt;&lt;/td&gt;</code> oder <code class="inline">&lt;td&gt;–&lt;/td&gt;</code></li>
+                                    <li><code class="inline">scope</code> für Barrierefreiheit nutzen</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
@@ -483,6 +960,8 @@
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 
