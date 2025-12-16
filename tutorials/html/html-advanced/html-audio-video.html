@@ -6,10 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
         <meta name="description"
-            content="Wie du mit HTML5 Audio- und Videoelemente einbindest, steuerst und optimierst – inklusive Formate, Autoplay, Hintergrundvideos und Barrierefreiheit.">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+            content="HTML5 Audio und Video einbinden: Formate, Attribute, Untertitel, Hintergrundvideos und barrierefreie Medieneinbettung mit Praxisbeispielen.">
+        <meta name="keywords"
+            content="HTML5 audio, HTML5 video, video einbinden, audio tag, video tag, MP4 WebM, autoplay muted, video poster, track subtitles, iframe YouTube, Hintergrundvideo HTML">
         <meta name="author" content="DevPanicZone">
-        <title>HTML Audio &amp; Video | DevPanicZone</title>
+        <title>HTML Audio &amp; Video – Medien einbinden &amp; steuern | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -204,8 +205,15 @@
                             <li class="toc-level-1"><a href="#audio-in-html">Audio in HTML</a></li>
                             <li class="toc-level-1"><a href="#video-in-html">Video in HTML</a></li>
                             <li class="toc-level-1"><a href="#hintergrundvideos">Hintergrundvideos</a></li>
+                            <li class="toc-level-1"><a href="#responsive-videos">Responsive Videos</a></li>
+                            <li class="toc-level-2"><a href="#methode-1-css-width">Methode 1: CSS width</a></li>
+                            <li class="toc-level-2"><a href="#methode-2-aspect-ratio">Methode 2: Aspect Ratio
+                                    Container</a></li>
+                            <li class="toc-level-1"><a href="#performance-lazy-loading">Performance &amp; Lazy
+                                    Loading</a></li>
                             <li class="toc-level-1"><a href="#barrierefreiheit-bei-medien">Barrierefreiheit bei
                                     Medien</a></li>
+                            <li class="toc-level-2"><a href="#webvtt-untertitel">WebVTT-Format für Untertitel</a></li>
                             <li class="toc-level-1"><a href="#externe-plattformen-einbinden">Externe Plattformen
                                     einbinden</a></li>
                             <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
@@ -436,6 +444,155 @@
                         </div>
                     </section>
 
+                    <!-- Responsive Videos -->
+                    <section class="tutorials-content">
+                        <h2 id="responsive-videos">Responsive Videos</h2>
+                        <p>Videos sollten sich an verschiedene Bildschirmgrößen anpassen. Hier sind die gängigsten
+                            Methoden:</p>
+
+                        <h3 id="methode-1-css-width">Methode 1: CSS width</h3>
+                        <p>Die einfachste Lösung für responsive Videos:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">video {
+    width: 100%;
+    max-width: 800px;  /* Maximale Breite */
+    height: auto;      /* Behält Seitenverhältnis */
+}</code></pre>
+                        </div>
+
+                        <h3 id="methode-2-aspect-ratio">Methode 2: Aspect Ratio Container</h3>
+                        <p>Für eingebettete Videos (iframes) mit festem Seitenverhältnis:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML + CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="video-container"&gt;
+    &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;  /* Modernes CSS */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+&lt;/style&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Browser-Support
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p><code class="inline">aspect-ratio</code> wird von allen modernen Browsern unterstützt.
+                                Für ältere Browser gibt es den klassischen Padding-Hack mit <code
+                                    class="inline">padding-bottom: 56.25%</code> (für 16:9).</p>
+                        </div>
+                    </section>
+
+                    <!-- Performance & Lazy Loading -->
+                    <section class="tutorials-content">
+                        <h2 id="performance-lazy-loading">Performance &amp; Lazy Loading</h2>
+                        <p>Videos sind oft die größten Dateien auf einer Website. Mit diesen Techniken optimierst du die
+                            Ladezeit:</p>
+
+                        <h3 class="no-toc">Preload-Strategien</h3>
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Wert</th>
+                                    <th>Beschreibung</th>
+                                    <th>Empfohlen für</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">none</code></td>
+                                    <td>Lädt nichts vor</td>
+                                    <td>Videos, die selten abgespielt werden</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">metadata</code></td>
+                                    <td>Lädt nur Metadaten (Länge, Abmessungen)</td>
+                                    <td>Die meisten Anwendungsfälle</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">auto</code></td>
+                                    <td>Browser entscheidet (oft komplettes Video)</td>
+                                    <td>Wichtige Videos, die sofort starten sollen</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Optimiert: Nur Metadaten laden, Poster anzeigen --&gt;
+&lt;video controls preload="metadata" poster="video/thumbnail.jpg"&gt;
+    &lt;source src="video/demo.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- Lazy Loading für Videos außerhalb des Viewports --&gt;
+&lt;video controls preload="none" loading="lazy"&gt;
+    &lt;source src="video/demo.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+                        </div>
+
+                        <h3 class="no-toc">Komprimierung &amp; Formate</h3>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><strong>WebM:</strong> Kleiner als MP4, gute Qualität – als erste <code
+                                    class="inline">&lt;source&gt;</code> angeben</li>
+                            <li><strong>MP4 (H.264):</strong> Universell kompatibel – als Fallback</li>
+                            <li><strong>Auflösung:</strong> Biete verschiedene Qualitätsstufen an (720p, 1080p)</li>
+                            <li><strong>Tools:</strong> FFmpeg, HandBrake für Komprimierung</li>
+                        </ul>
+
+                        <div class="info-box warning">
+                            <strong class="box-title warning no-toc">Autoplay-Einschränkungen
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Browser blockieren Autoplay mit Ton aus UX-Gründen. <code class="inline">autoplay</code>
+                                funktioniert nur zuverlässig mit <code class="inline">muted</code>. Für Videos mit Ton
+                                muss der User erst interagieren (Klick, Scrollen).</p>
+                        </div>
+                    </section>
+
                     <!-- Barrierefreiheit bei Medien -->
                     <section class="tutorials-content">
                         <h2 id="barrierefreiheit-bei-medien">Barrierefreiheit bei Medien</h2>
@@ -467,6 +624,88 @@
     &lt;track src="video/subtitles.vtt" kind="subtitles" srclang="de" label="Deutsch"&gt;
 &lt;/video&gt;</code></pre>
                         </div>
+
+                        <h3 id="webvtt-untertitel">WebVTT-Format für Untertitel</h3>
+                        <p>Das <code class="inline">.vtt</code>-Format ist der Standard für Untertitel im Web:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">VTT</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-plaintext">WEBVTT
+
+00:00:00.000 --&gt; 00:00:03.000
+Willkommen zum Tutorial!
+
+00:00:03.500 --&gt; 00:00:07.000
+Heute lernen wir HTML Audio und Video.
+
+00:00:08.000 --&gt; 00:00:12.000
+Beginnen wir mit dem &lt;audio&gt;-Element...</code></pre>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;video controls&gt;
+    &lt;source src="video/tutorial.mp4" type="video/mp4"&gt;
+    
+    &lt;!-- Untertitel --&gt;
+    &lt;track src="video/subtitles-de.vtt" kind="subtitles" 
+           srclang="de" label="Deutsch" default&gt;
+    &lt;track src="video/subtitles-en.vtt" kind="subtitles" 
+           srclang="en" label="English"&gt;
+    
+    &lt;!-- Audiodeskription für Sehbehinderte --&gt;
+    &lt;track src="video/descriptions.vtt" kind="descriptions" 
+           srclang="de" label="Audiodeskription"&gt;
+&lt;/video&gt;</code></pre>
+                        </div>
+
+                        <h3 class="no-toc">Track-Arten (kind)</h3>
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Wert</th>
+                                    <th>Beschreibung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">subtitles</code></td>
+                                    <td>Untertitel (Dialog, Übersetzungen)</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">captions</code></td>
+                                    <td>Untertitel + Geräusche für Gehörlose</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">descriptions</code></td>
+                                    <td>Audiodeskription für Sehbehinderte</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">chapters</code></td>
+                                    <td>Kapitelmarken zur Navigation</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">metadata</code></td>
+                                    <td>Maschinenlesbare Daten (für JavaScript)</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
 
                     <!-- Externe Plattformen einbinden -->
@@ -492,10 +731,6 @@
     allow="autoplay; encrypted-media"
     allowfullscreen&gt;
 &lt;/iframe&gt;</code></pre>
-                        </div>
-
-                        <div class="cta-content">
-                            <a href="#" class="btn btn--small btn-secondary">Mehr zu iFrames</a>
                         </div>
 
                         <div class="info-box">
@@ -570,6 +805,8 @@
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 
