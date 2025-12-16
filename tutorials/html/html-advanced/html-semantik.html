@@ -1,8 +1,9 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Warum semantisches HTML wichtig ist, wie du mit Elementen wie <header>, <article> oder <section> arbeitest und wie sie Struktur, SEO und Barrierefreiheit verbessern.">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="Semantisches HTML erklärt: Strukturelemente wie header, article, section richtig einsetzen für bessere Barrierefreiheit, SEO und wartbaren Code.">
+        <meta name="keywords" content="semantisches HTML, HTML5 Strukturelemente, header footer main, article section aside, Barrierefreiheit HTML, SEO HTML Struktur, HTML Bedeutung, figure figcaption, details summary">
         <meta name="author" content="DevPanicZone">
         <title>Semantisches HTML | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -197,11 +198,13 @@
                     <li class="toc-level-1"><a href="#warum-ist-semantik-wichtig">Warum ist Semantik wichtig?</a></li>
                     <li class="toc-level-1"><a href="#wichtige-semantische-html-elemente">Wichtige semantische HTML-Elemente</a></li>
                     <li class="toc-level-1"><a href="#beispiel-fuer-semantischen-seitenaufbau">Beispiel für semantischen Seitenaufbau</a></li>
+                    <li class="toc-level-1"><a href="#heading-hierarchie">Heading-Hierarchie</a></li>
                     <li class="toc-level-1"><a href="#text-semantik-inline-elemente">Text-Semantik (Inline-Elemente)</a></li>
                     <li class="toc-level-1"><a href="#medien-semantik">Medien-Semantik</a></li>
                     <li class="toc-level-1"><a href="#interaktive-elemente">Interaktive Elemente</a></li>
+                    <li class="toc-level-1"><a href="#aria-landmarks-und-rollen">ARIA-Landmarks und Rollen</a></li>
                     <li class="toc-level-1"><a href="#weitere-strukturelemente">Weitere Strukturelemente</a></li>
-                    <li class="toc-level-1"><a href="#heading-hierarchie">Heading-Hierarchie</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-fehler-vermeiden">Häufige Fehler vermeiden</a></li>
                     <li class="toc-level-1"><a href="#wann-semantik-fehlt-und-was-passiert">Wann Semantik fehlt – und was passiert</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
                     <!-- Sidebar-Anchor-End -->
@@ -248,7 +251,7 @@
                 <div class="container">
 
                     <!-- Was bedeutet „Semantik“ im Web? -->
-                    <section class="tutorials-content mt-xl">
+                    <section class="tutorials-content">
                         <h2 id="was-bedeutet-semantik-im-web">Was bedeutet „Semantik“ im Web?</h2>
                         <p>Der Begriff <strong>Semantik</strong> bezieht sich auf die Bedeutung von Elementen. Ein
                             semantisches HTML-Element beschreibt also, <em>welche Rolle</em> sein Inhalt auf der Seite
@@ -370,7 +373,65 @@
                         </div>
                     </section>
 
+                    <!-- Heading-Hierarchie -->
+                    <section class="tutorials-content">
+                        <h2 id="heading-hierarchie">Heading-Hierarchie</h2>
+                        <p>Die richtige Verwendung von Überschriften ist einer der wichtigsten Aspekte semantischen
+                            HTMLs.
+                            Sie definieren die Dokumentstruktur und sind essentiell für Barrierefreiheit und SEO.</p>
 
+                        <div class="pb-md">
+                            <h3 class="no-toc">Die Regeln</h3>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li>Jede Seite sollte genau ein <code class="inline">&lt;h1&gt;</code> haben (der
+                                    Haupttitel)
+                                </li>
+                                <li>Überschriften-Ebenen nicht überspringen (h1 → h2 → h3, nicht h1 → h3)</li>
+                                <li>Überschriften beschreiben den folgenden Inhalt</li>
+                                <li>Nicht für Styling missbrauchen – dafür gibt es CSS</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- ✓ Richtig: Logische Hierarchie --&gt;
+&lt;h1&gt;CSS Tutorial&lt;/h1&gt;
+    &lt;h2&gt;Grundlagen&lt;/h2&gt;
+        &lt;h3&gt;Selektoren&lt;/h3&gt;
+        &lt;h3&gt;Eigenschaften&lt;/h3&gt;
+    &lt;h2&gt;Layout&lt;/h2&gt;
+        &lt;h3&gt;Flexbox&lt;/h3&gt;
+        &lt;h3&gt;Grid&lt;/h3&gt;
+
+&lt;!-- ✗ Falsch: Ebene übersprungen --&gt;
+&lt;h1&gt;CSS Tutorial&lt;/h1&gt;
+    &lt;h3&gt;Selektoren&lt;/h3&gt;  &lt;!-- h2 fehlt! --&gt;
+
+&lt;!-- ✗ Falsch: h-Tags für Styling --&gt;
+&lt;h4&gt;Dieser Text soll nur klein sein&lt;/h4&gt;  &lt;!-- Besser: p mit CSS --&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum ist das so wichtig?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Screenreader-Nutzer navigieren oft per Überschriften durch eine Seite – ähnlich wie ein
+                                Inhaltsverzeichnis. Wenn Ebenen fehlen oder die Struktur unlogisch ist, wird die
+                                Navigation
+                                verwirrend. Auch Suchmaschinen nutzen die Heading-Struktur, um den Inhalt zu verstehen.
+                            </p>
+                        </div>
+                    </section>
 
                     <!-- Text-Semantik (Inline-Elemente) -->
                     <section class="tutorials-content">
@@ -595,6 +656,71 @@
                         </div>
                     </section>
 
+                    <!-- ARIA-Landmarks und Rollen -->
+                    <section class="tutorials-content">
+                        <h2 id="aria-landmarks-und-rollen">ARIA-Landmarks und Rollen</h2>
+                        <p>Semantische HTML-Elemente haben implizite ARIA-Rollen, die Screenreadern helfen. Du musst sie
+                            nicht manuell setzen – das passiert automatisch.</p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>HTML-Element</th>
+                                    <th>Implizite ARIA-Rolle</th>
+                                    <th>Landmark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">&lt;header&gt;</code></td>
+                                    <td><code class="inline">banner</code></td>
+                                    <td>✓ (nur auf oberster Ebene)</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;nav&gt;</code></td>
+                                    <td><code class="inline">navigation</code></td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;main&gt;</code></td>
+                                    <td><code class="inline">main</code></td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;aside&gt;</code></td>
+                                    <td><code class="inline">complementary</code></td>
+                                    <td>✓</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;footer&gt;</code></td>
+                                    <td><code class="inline">contentinfo</code></td>
+                                    <td>✓ (nur auf oberster Ebene)</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;section&gt;</code></td>
+                                    <td><code class="inline">region</code></td>
+                                    <td>✓ (wenn mit aria-label/labelledby)</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">&lt;article&gt;</code></td>
+                                    <td><code class="inline">article</code></td>
+                                    <td>✗</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Best Practice
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Verwende semantische HTML-Elemente statt <code class="inline">role="..."</code>
+                                Attribute. Ein <code class="inline">&lt;nav&gt;</code> ist besser als <code class="inline">&lt;div role="navigation"&gt;</code> – kürzer, wartbarer und
+                                robuster.</p>
+                        </div>
+                    </section>
+
                     <!-- Weitere Strukturelemente -->
                     <section class="tutorials-content">
                         <h2 id="weitere-strukturelemente">Weitere Strukturelemente</h2>
@@ -676,64 +802,102 @@
                         </div>
                     </section>
 
-                    <!-- Heading-Hierarchie -->
+                    <!-- Häufige Fehler vermeiden -->
                     <section class="tutorials-content">
-                        <h2 id="heading-hierarchie">Heading-Hierarchie</h2>
-                        <p>Die richtige Verwendung von Überschriften ist einer der wichtigsten Aspekte semantischen
-                            HTMLs.
-                            Sie definieren die Dokumentstruktur und sind essentiell für Barrierefreiheit und SEO.</p>
+                        <h2 id="haeufige-fehler-vermeiden">Häufige Fehler vermeiden</h2>
 
-                        <h3 class="no-toc">Die Regeln</h3>
-                        <ul class="arrow-list grid-2col-bg mb-lg">
-                            <li>Jede Seite sollte genau ein <code class="inline">&lt;h1&gt;</code> haben (der
-                                Haupttitel)
-                            </li>
-                            <li>Überschriften-Ebenen niemals überspringen (h1 → h2 → h3, nicht h1 → h3)</li>
-                            <li>Überschriften beschreiben den folgenden Inhalt</li>
-                            <li>Nicht für Styling missbrauchen – dafür gibt es CSS</li>
-                        </ul>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;!-- ✓ Richtig: Logische Hierarchie --&gt;
-&lt;h1&gt;CSS Tutorial&lt;/h1&gt;
-    &lt;h2&gt;Grundlagen&lt;/h2&gt;
-        &lt;h3&gt;Selektoren&lt;/h3&gt;
-        &lt;h3&gt;Eigenschaften&lt;/h3&gt;
-    &lt;h2&gt;Layout&lt;/h2&gt;
-        &lt;h3&gt;Flexbox&lt;/h3&gt;
-        &lt;h3&gt;Grid&lt;/h3&gt;
-
-&lt;!-- ✗ Falsch: Ebene übersprungen --&gt;
-&lt;h1&gt;CSS Tutorial&lt;/h1&gt;
-    &lt;h3&gt;Selektoren&lt;/h3&gt;  &lt;!-- h2 fehlt! --&gt;
-
-&lt;!-- ✗ Falsch: h-Tags für Styling --&gt;
-&lt;h4&gt;Dieser Text soll nur klein sein&lt;/h4&gt;  &lt;!-- Besser: p mit CSS --&gt;</code></pre>
+                        <div class="grid-2col-cards pb-lg">
+                            <!-- block cross -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Falsch</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Falsch: Mehrere &lt;main&gt; Elemente --&gt;
+&lt;main&gt;Inhalt 1&lt;/main&gt;
+&lt;main&gt;Inhalt 2&lt;/main&gt;</code></pre>
+                            </div> <!-- block cross -->
+                            <!-- block check -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Richtig</span>
+                                    <svg class="icon-ui icon-green">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Richtig: Nur ein &lt;main&gt; pro Seite --&gt;
+&lt;main&gt;
+    &lt;section&gt;Inhalt 1&lt;/section&gt;
+    &lt;section&gt;Inhalt 2&lt;/section&gt;
+&lt;/main&gt;</code></pre>
+                            </div> <!-- block check -->
                         </div>
 
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Warum ist das so wichtig?
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle"></use>
-                                </svg>
-                            </strong>
-                            <p>Screenreader-Nutzer navigieren oft per Überschriften durch eine Seite – ähnlich wie ein
-                                Inhaltsverzeichnis. Wenn Ebenen fehlen oder die Struktur unlogisch ist, wird die
-                                Navigation
-                                verwirrend. Auch Suchmaschinen nutzen die Heading-Struktur, um den Inhalt zu verstehen.
-                            </p>
+                        <div class="grid-2col-cards pb-lg">
+                            <!-- block cross -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Falsch</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Falsch: &lt;section&gt; ohne Überschrift --&gt;
+&lt;section&gt;
+    &lt;p&gt;Ein Absatz ohne Kontext...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                            </div> <!-- block cross -->
+                            <!-- block check -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Richtig</span>
+                                    <svg class="icon-ui icon-green">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Richtig: &lt;section&gt; mit Überschrift --&gt;
+&lt;section&gt;
+    &lt;h2&gt;Abschnittstitel&lt;/h2&gt;
+    &lt;p&gt;Inhalt mit klarem Kontext.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                            </div> <!-- block check -->
+                        </div>
+
+                        <div class="grid-2col-cards pb-lg">
+                            <!-- block cross -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Falsch</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Falsch: &lt;article&gt; 
+     für nicht-eigenständige Inhalte --&gt;
+&lt;article&gt;
+    &lt;p&gt;Nur ein kurzer Hinweis.&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+                            </div> <!-- block cross -->
+                            <!-- block check -->
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Richtig</span>
+                                    <svg class="icon-ui icon-green">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Richtig: &lt;article&gt; 
+     für eigenständige Inhalte --&gt;
+&lt;article&gt;
+    &lt;h2&gt;Blogpost-Titel&lt;/h2&gt;
+    &lt;p&gt;Vollständiger, in sich geschlossener Beitrag...&lt;/p&gt;
+    &lt;footer&gt;Veröffentlicht am 15. Januar 2025&lt;/footer&gt;
+&lt;/article&gt;</code></pre>
+                            </div> <!-- block check -->
                         </div>
                     </section>
-
 
                     <!-- Wann Semantik fehlt – und was passiert -->
                     <section class="tutorials-content">
@@ -812,6 +976,8 @@
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
     
 
