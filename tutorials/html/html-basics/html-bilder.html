@@ -1,8 +1,9 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Bilder in HTML: Formate, Einbindung mit <img>, responsive Bilder, Alt-Texte, Titel, Caption, Hintergrundbilder, Float, Positionierung und Performance-Tipps.">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="HTML Bilder richtig einbinden: Das img-Element, Bildformate (WebP, AVIF, SVG), responsive Bilder mit picture und srcset, Alt-Texte für Barrierefreiheit, Lazy Loading und Performance-Optimierung.">
+        <meta name="keywords" content="HTML Bilder, img Tag, picture Element, srcset, responsive Bilder, WebP, AVIF, SVG, Alt-Text, Barrierefreiheit, Lazy Loading, figure figcaption, Bildoptimierung">
         <meta name="author" content="DevPanicZone">
         <title>HTML Bilder | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -198,10 +199,23 @@
                     <li class="toc-level-1"><a href="#bildformate-und-einsatzbereiche">Bildformate und Einsatzbereiche</a></li>
                     <li class="toc-level-1"><a href="#responsive-bilder-unterschiedliche-formate">Responsive Bilder &amp; unterschiedliche
                             Formate</a></li>
-                    <li class="toc-level-1"><a href="#bilder-mit-beschriftung">Bilder mit Beschriftung</a></li>
+                    <li class="toc-level-1"><a href="#srcset-und-sizes">srcset und sizes – Bilder für verschiedene Auflösungen</a></li>
+                    <li class="toc-level-2"><a href="#srcset-fuer-verschiedene-pixeldichten">srcset für verschiedene Pixeldichten (Retina)</a></li>
+                    <li class="toc-level-2"><a href="#srcset-mit-breiten-deskriptoren">srcset mit Breiten-Deskriptoren</a></li>
+                    <li class="toc-level-1"><a href="#bilder-mit-beschriftung">Bilder mit Beschriftung – figure und
+                            figcaption</a></li>
+                    <li class="toc-level-2"><a href="#figure-mit-mehreren-bildern">figure mit mehreren Bildern</a></li>
                     <li class="toc-level-1"><a href="#bilder-als-hintergrund">Bilder als Hintergrund</a></li>
                     <li class="toc-level-1"><a href="#positionierung-im-text">Positionierung im Text</a></li>
                     <li class="toc-level-1"><a href="#alt-texte-und-barrierefreiheit">Alt-Texte und Barrierefreiheit</a></li>
+                    <li class="toc-level-2"><a href="#gute-alt-texte-schreiben">Gute Alt-Texte schreiben</a></li>
+                    <li class="toc-level-2"><a href="#wann-leerer-alt-text">Wann ein leerer Alt-Text sinnvoll ist</a></li>
+                    <li class="toc-level-1"><a href="#performance-optimierung">Performance-Optimierung für Bilder</a></li>
+                    <li class="toc-level-2"><a href="#lazy-loading">Lazy Loading – Bilder erst bei Bedarf laden</a></li>
+                    <li class="toc-level-2"><a href="#width-height-fuer-cls">Width und Height gegen Layout-Shifts</a></li>
+                    <li class="toc-level-2"><a href="#fetchpriority">fetchpriority für wichtige Bilder</a></li>
+                    <li class="toc-level-2"><a href="#decoding-async">decoding=&quot;async&quot; für flüssiges Rendering</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler bei HTML-Bildern</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
                     <!-- Sidebar-Anchor-End -->
                         </ul>
@@ -246,7 +260,7 @@
                 <!-- Wrapper .container -->
                 <div class="container">
 
-                    <!-- Abschnitte in Sections -->
+                    <!-- Bilder in HTML -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="bilder-in-html">Bilder in HTML</h2>
                         <p>Bilder sind ein zentrales Gestaltungselement auf Webseiten. Sie können zur Illustration, als
@@ -445,9 +459,92 @@ img {
                         <p>So passt sich dein Bild an die Bildschirmgröße an und lädt jeweils die passende Variante.</p>
                     </section>
 
+                    <!-- srcset und sizes -->
+                    <section class="tutorials-content">
+                        <h2 id="srcset-und-sizes">srcset und sizes – Bilder für verschiedene Auflösungen</h2>
+                        <p>Neben dem <code class="inline">&lt;picture&gt;</code>-Element gibt es eine weitere
+                            Möglichkeit, responsive Bilder bereitzustellen: die Attribute <code class="inline">srcset</code> und <code class="inline">sizes</code> direkt am <code class="inline">&lt;img&gt;</code>-Tag.</p>
+
+                        <h3 id="srcset-fuer-verschiedene-pixeldichten">srcset für verschiedene Pixeldichten (Retina)
+                        </h3>
+                        <p>Moderne Displays haben unterschiedliche Pixeldichten. Mit <code class="inline">srcset</code>
+                            kannst du hochauflösende Varianten für Retina-Displays bereitstellen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Pixeldichte-Varianten (1x, 2x, 3x) --&gt;
+&lt;img 
+    src="logo.png"
+    srcset="logo.png 1x,
+            logo@2x.png 2x,
+            logo@3x.png 3x"
+    alt="Firmenlogo"
+    width="200"
+    height="100"&gt;</code></pre>
+                        </div>
+
+                        <h3 id="srcset-mit-breiten-deskriptoren">srcset mit Breiten-Deskriptoren</h3>
+                        <p>Für Content-Bilder, die ihre Größe je nach Viewport ändern, verwendest du
+                            Breiten-Deskriptoren (<code class="inline">w</code>):</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;img 
+    src="bild-800.jpg"
+    srcset="bild-400.jpg 400w,
+            bild-800.jpg 800w,
+            bild-1200.jpg 1200w,
+            bild-1600.jpg 1600w"
+    sizes="(max-width: 600px) 100vw,
+           (max-width: 1200px) 50vw,
+           800px"
+    alt="Landschaftsfoto"&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">sizes erklärt
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Das <code class="inline">sizes</code>-Attribut teilt dem Browser mit, wie breit das Bild
+                                im Layout sein wird:</p>
+                            <ul class="arrow-list">
+                                <li><code class="inline">(max-width: 600px) 100vw</code> – Bei Viewports bis 600px nimmt
+                                    das Bild 100% der Breite ein</li>
+                                <li><code class="inline">(max-width: 1200px) 50vw</code> – Bei Viewports bis 1200px
+                                    nimmt es 50% ein</li>
+                                <li><code class="inline">800px</code> – Standardfall: Das Bild ist 800px breit</li>
+                            </ul>
+                            <p>Der Browser wählt dann automatisch die passende Bildgröße aus <code class="inline">srcset</code>.</p>
+                        </div>
+                    </section>
+
                     <!-- Bilder mit Beschriftung -->
                     <section class="tutorials-content">
-                        <h2 id="bilder-mit-beschriftung">Bilder mit Beschriftung</h2>
+                        <h2 id="bilder-mit-beschriftung">Bilder mit Beschriftung – <code>figure</code> und
+                            <code>figcaption</code>
+                        </h2>
+                        <p>
+                        </p><p>Das <code class="inline">&lt;figure&gt;</code>-Element ist ein semantischer Container für
+                            Bilder, Diagramme, Code-Beispiele oder andere Medien, die eine Beschriftung benötigen. Die
+                            Beschriftung wird mit <code class="inline">&lt;figcaption&gt;</code> hinzugefügt.</p>
                         <p></p>
 
                         <div class="code-block">
@@ -464,6 +561,42 @@ img {
     &lt;img src="see.jpg" alt="Blick über den See"&gt;
     &lt;figcaption&gt;Ein ruhiger Morgen am See&lt;/figcaption&gt;
 &lt;/figure&gt;</code></pre>
+                        </div>
+
+                        <h3 id="figure-mit-mehreren-bildern">figure mit mehreren Bildern</h3>
+                        <p>Ein <code class="inline">&lt;figure&gt;</code>-Element kann auch mehrere Bilder enthalten:
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;figure&gt;
+    &lt;img src="vorher.jpg" alt="Raum vor der Renovierung"&gt;
+    &lt;img src="nachher.jpg" alt="Raum nach der Renovierung"&gt;
+    &lt;figcaption&gt;Vorher-Nachher-Vergleich der Wohnzimmer-Renovierung&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Semantik beachten
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><code class="inline">&lt;figure&gt;</code> ist für eigenständige Inhalte gedacht,
+                                    die vom Haupttext referenziert werden</li>
+                                <li><code class="inline">&lt;figcaption&gt;</code> kann am Anfang oder Ende stehen</li>
+                                <li>Der <code class="inline">alt</code>-Text beschreibt das Bild, die <code class="inline">figcaption</code> gibt Kontext</li>
+                                <li>Screenreader lesen beides – vermeide Wiederholungen</li>
+                            </ul>
                         </div>
                     </section>
 
@@ -516,23 +649,258 @@ img.left {
                     <!-- Alt-Texte und Barrierefreiheit -->
                     <section class="tutorials-content">
                         <h2 id="alt-texte-und-barrierefreiheit">Alt-Texte und Barrierefreiheit</h2>
-                        <p>Das <code class="inline">alt</code>-Attribut ist entscheidend für Screenreader und SEO.
-                            Kurze,
-                            beschreibende Texte verwenden, rein dekorative Bilder <code class="inline">alt=""</code>.
+                        <p>Das <code class="inline">alt</code>-Attribut ist eines der wichtigsten Attribute für Bilder.
+                            Es wird von Screenreadern vorgelesen, erscheint wenn das Bild nicht lädt, und hilft
+                            Suchmaschinen beim Verstehen des Bildinhalts.
                         </p>
 
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Tipp: Performance &amp; Lazy Loading
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle"></use>
+                        <h3 id="gute-alt-texte-schreiben">Gute Alt-Texte schreiben</h3>
+
+                        <div class="grid-2col-cards pb-lg">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Gute Beispiele</span>
+                                    <svg class="icon-ui icon-green">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-0 mb-0 px-md">
+                                    <ul class="arrow-list">
+                                        <li><code class="inline">alt="Golden Retriever spielt mit Ball im Park"</code>
+                                        </li>
+                                        <li><code class="inline">alt="Balkendiagramm: Umsatz 2024 nach Quartalen"</code>
+                                        </li>
+                                        <li><code class="inline">alt="Screenshot: Einstellungen-Menü in Firefox"</code>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Schlechte Beispiele</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-0 mb-0 px-md">
+                                    <ul class="arrow-list">
+                                        <li><code class="inline">alt="Bild"</code> – Zu unspezifisch</li>
+                                        <li><code class="inline">alt="hund.jpg"</code> – Dateiname ist kein Alt-Text
+                                        </li>
+                                        <li><code class="inline">alt="Bild von einem Hund der im Park spielt und einen Ball fängt während die Sonne scheint..."</code>
+                                            – Zu lang</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 id="wann-leerer-alt-text">Wann ein leerer Alt-Text sinnvoll ist</h3>
+                        <p>Dekorative Bilder, die keine Information vermitteln, erhalten einen leeren Alt-Text. So
+                            überspringen Screenreader sie:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Dekoratives Trennelement --&gt;
+&lt;img src="divider.svg" alt=""&gt;
+
+&lt;!-- Icon neben Text (Text erklärt bereits) --&gt;
+&lt;button&gt;
+    &lt;img src="search-icon.svg" alt=""&gt;
+    Suchen
+&lt;/button&gt;
+
+&lt;!-- Hintergrundbild als CSS ist besser --&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box warning">
+                            <strong class="box-title warning no-toc">Wichtig
+                                <svg class="icon-ui icon-gray">
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <ul class="arrow-list">
-                                <li>Moderne Formate wie WebP oder AVIF verwenden</li>
-                                <li>Bilder komprimieren (TinyPNG, Squoosh)</li>
-                                <li><code class="inline">loading="lazy"</code> nutzen</li>
+                            <p><strong>Niemals</strong> das <code class="inline">alt</code>-Attribut weglassen! Ein
+                                fehlendes <code class="inline">alt</code> ist nicht das Gleiche wie <code class="inline">alt=""</code>. Ohne Attribut lesen manche Screenreader den Dateinamen
+                                vor.</p>
+                        </div>
+
+                    </section>
+
+                    <!-- Performance-Optimierung -->
+                    <section class="tutorials-content">
+                        <h2 id="performance-optimierung">Performance-Optimierung für Bilder</h2>
+                        <p>Bilder sind oft der größte Anteil am Seitengewicht. Mit ein paar Techniken kannst du die
+                            Ladezeit drastisch verbessern.</p>
+
+                        <h3 id="lazy-loading">Lazy Loading – Bilder erst bei Bedarf laden</h3>
+                        <p>Mit <code class="inline">loading="lazy"</code> werden Bilder erst geladen, wenn sie in den
+                            sichtbaren Bereich scrollen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Lazy Loading für Bilder unterhalb des sichtbaren Bereichs --&gt;
+&lt;img 
+    src="bild.jpg" 
+    alt="Beispielbild" 
+    loading="lazy"
+    width="800"
+    height="600"&gt;
+
+&lt;!-- Hero-Bilder sollten NICHT lazy sein --&gt;
+&lt;img 
+    src="hero.jpg" 
+    alt="Hero Banner" 
+    loading="eager"&gt;</code></pre>
+                        </div>
+
+                        <h3 id="width-height-fuer-cls">Width und Height gegen Layout-Shifts</h3>
+                        <p>Gib immer <code class="inline">width</code> und <code class="inline">height</code> an – so
+                            reserviert der Browser Platz und verhindert Layoutsprünge (CLS):</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Mit Dimensionen – Browser reserviert Platz --&gt;
+&lt;img 
+    src="foto.jpg" 
+    alt="Produktfoto" 
+    width="400" 
+    height="300"
+    loading="lazy"&gt;
+
+&lt;!-- CSS macht es trotzdem responsiv --&gt;
+&lt;style&gt;
+img {
+    max-width: 100%;
+    height: auto;
+}
+&lt;/style&gt;</code></pre>
+                        </div>
+
+                        <h3 id="fetchpriority">fetchpriority für wichtige Bilder</h3>
+                        <p>Das <code class="inline">fetchpriority</code>-Attribut teilt dem Browser mit, welche Bilder
+                            priorisiert geladen werden sollen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- LCP-Bild (Largest Contentful Paint) priorisieren --&gt;
+&lt;img 
+    src="hero-banner.jpg" 
+    alt="Willkommen auf unserer Seite"
+    fetchpriority="high"&gt;
+
+&lt;!-- Unwichtige Bilder herabstufen --&gt;
+&lt;img 
+    src="decoration.jpg" 
+    alt="" 
+    fetchpriority="low"
+    loading="lazy"&gt;</code></pre>
+                        </div>
+
+                        <h3 id="decoding-async">decoding="async" für flüssiges Rendering</h3>
+                        <p>Mit <code class="inline">decoding="async"</code> blockiert das Dekodieren des Bildes nicht
+                            das Rendering der Seite:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;img 
+    src="grosses-bild.jpg" 
+    alt="Hochauflösendes Foto"
+    decoding="async"
+    loading="lazy"&gt;</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Performance-Checkliste
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="check-list">
+                                <li>Moderne Formate nutzen (WebP, AVIF mit Fallback)</li>
+                                <li>Bilder komprimieren (TinyPNG, Squoosh, ImageOptim)</li>
+                                <li><code class="inline">loading="lazy"</code> für Bilder below the fold</li>
+                                <li><code class="inline">width</code> und <code class="inline">height</code> immer
+                                    angeben</li>
+                                <li><code class="inline">fetchpriority="high"</code> für Hero/LCP-Bilder</li>
+                                <li>Bilder in passender Größe ausliefern (nicht 4000px für 400px-Anzeige)</li>
                             </ul>
-                            <code class="inline">&lt;img src="bild.jpg" alt="Beispiel" loading="lazy"&gt;</code>
+                        </div>
+                    </section>
+
+                    <!-- Häufige Fehler -->
+                    <section class="tutorials-content">
+                        <h2 id="haeufige-fehler">Häufige Fehler bei HTML-Bildern</h2>
+
+                        <div class="grid-2col">
+                            <div class="info-box danger">
+                                <strong class="box-title danger no-toc">✗ Fehler
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-x-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Alt-Attribut weglassen</li>
+                                    <li>Riesige Bilder ohne Kompression</li>
+                                    <li>Keine width/height → Layout-Shifts</li>
+                                    <li>Alle Bilder mit <code class="inline">loading="lazy"</code> (auch Hero)</li>
+                                    <li>Nur JPG für alles verwenden</li>
+                                    <li>Absolute URLs zu externen Bildern</li>
+                                </ul>
+                            </div>
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">✓ Best Practices
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Immer <code class="inline">alt</code> angeben (leer für Deko)</li>
+                                    <li>Bilder optimieren und komprimieren</li>
+                                    <li>width/height für Platzreservierung</li>
+                                    <li>Hero: <code class="inline">loading="eager"</code> + <code class="inline">fetchpriority="high"</code></li>
+                                    <li>Format nach Inhalt wählen (WebP, SVG)</li>
+                                    <li>Bilder lokal hosten für Kontrolle</li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
 
@@ -594,6 +962,8 @@ img.left {
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 
