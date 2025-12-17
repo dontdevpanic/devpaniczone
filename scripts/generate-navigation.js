@@ -180,8 +180,9 @@ const TUTORIAL_ORDER = {
         'html-svg-sprites.html'
     ],
     'tutorials/css/css-basics': [
-        'grundlagen-der-css-struktur.html',
         'css-einbinden.html',
+        'css-grundlagen.html',
+        'css-datei-strukturieren.html',
         'css-color-units.html',
         // 'css-typografie.html',
         'css-mobile-first.html',

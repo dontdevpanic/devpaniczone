@@ -2,10 +2,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="CSS einbinden: Externe Stylesheets, internes CSS und Inline-Styles – wann du welche Methode verwendest.">
-        <meta name="keywords" content="CSS einbinden, link stylesheet, style tag, inline CSS, externe CSS Datei, style.css, main.css, CSS im head">
+        <meta name="description" content="Grundlagen der CSS Struktur - Formatierungsregeln, Vererbung, Kaskade, CSS-Eigenschaften">
+        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
         <meta name="author" content="DevPanicZone">
-        <title>CSS einbinden – Externe, interne &amp; Inline-Styles | DevPanicZone</title>
+        <title>CSS Struktur | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -156,8 +156,9 @@
             <section class="hero tutorial-hero">
                 <div class="container">
                     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/css/" class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">CSS einbinden</span></nav>
-                    <h1 class="hero-title">CSS einbinden</h1>
-                    <p class="hero-subtitle">Die drei Methoden, CSS in HTML einzubinden – und wann du welche verwendest.
+                    <h1 class="hero-title">CSS Datei strukturieren</h1>
+                    <p class="hero-subtitle">Ein erster Überblick über die Grundlagen der CSS Struktur -
+                        Formatierungsregeln, Vererbung, Kaskade, CSS-Eigenschaften.
                     </p>
                 </div>
             </section>
@@ -192,14 +193,15 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#drei-wege-css-einzubinden">Drei Wege, CSS einzubinden</a></li>
-                    <li class="toc-level-1"><a href="#externes-css-empfohlen">Externes CSS (empfohlen)</a></li>
-                    <li class="toc-level-2"><a href="#das-link-element-erklaert">Das link-Element erklärt</a></li>
-                    <li class="toc-level-2"><a href="#dateipfade-verstehen">Dateipfade verstehen</a></li>
-                    <li class="toc-level-1"><a href="#internes-css-style-tag">Internes CSS (style-Tag)</a></li>
-                    <li class="toc-level-1"><a href="#inline-css-style-attribut">Inline CSS (style-Attribut)</a></li>
-                    <li class="toc-level-1"><a href="#reihenfolge-und-spezifitaet">Reihenfolge und Spezifität</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung: Welche Methode wann?</a></li>
+                    <li class="toc-level-1"><a href="#warum-struktur-wichtig-ist">Warum Struktur wichtig ist</a></li>
+                    <li class="toc-level-1"><a href="#reset-normalize">1. Reset / Normalize</a></li>
+                    <li class="toc-level-1"><a href="#base-styles">2. Base Styles</a></li>
+                    <li class="toc-level-1"><a href="#layout">3. Layout</a></li>
+                    <li class="toc-level-1"><a href="#components">4. Components (Inhaltselemente)</a></li>
+                    <li class="toc-level-1"><a href="#typography">5. Typography</a></li>
+                    <li class="toc-level-1"><a href="#utilities">6. Utilities (Hilfsklassen)</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung: Empfohlene Reihenfolge</a></li>
+                    <li class="toc-level-2"><a href="#wann-aufteilen">Wann auf mehrere Dateien aufteilen?</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
                     <!-- Sidebar-Anchor-End -->
                         </ul>
@@ -218,9 +220,9 @@
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
                     <li class="sidebar-group-title">CSS Basics</li>
-                    <li><a href="/tutorials/css/css-basics/css-einbinden.html" class="active">CSS einbinden</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
                     <li><a href="/tutorials/css/css-basics/css-grundlagen.html">CSS Grundlagen</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-datei-strukturieren.html">CSS Datei strukturieren</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-datei-strukturieren.html" class="active">CSS Datei strukturieren</a></li>
                     <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
                     <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
                     <li><a href="/tutorials/css/css-basics/css-navigation-states.html">CSS Navigation States</a></li>
@@ -230,346 +232,441 @@
                     </div>
                 </aside>
 
-                <!-- Wrapper .container -->
+                <!-- Wrapper -->
                 <div class="container">
 
-                    <!-- Drei Wege, CSS einzubinden -->
+                    <!-- Intro -->
                     <section class="tutorials-content">
-                        <h2 id="drei-wege-css-einzubinden">Drei Wege, CSS einzubinden</h2>
-                        <p>Es gibt drei Methoden, CSS in HTML einzubinden – jede hat ihre Berechtigung:</p>
+                        <h2 id="warum-struktur-wichtig-ist">Warum Struktur wichtig ist</h2>
+                        <p>Eine CSS-Datei kann schnell hunderte oder tausende Zeilen lang werden. Ohne klare Struktur
+                            verlierst du den Überblick: Wo war nochmal der Button-Style? Warum überschreibt sich hier
+                            etwas?</p>
 
-                        <table class="ref-table">
-                            <thead>
-                                <tr>
-                                    <th>Methode</th>
-                                    <th>Beschreibung</th>
-                                    <th>Empfohlen für</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Externes CSS</strong></td>
-                                    <td>Separate <code class="inline">.css</code>-Datei</td>
-                                    <td>Produktive Websites ✓</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Internes CSS</strong></td>
-                                    <td><code class="inline">&lt;style&gt;</code>-Tag im Head</td>
-                                    <td>Einzelseiten, Prototypen</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Inline CSS</strong></td>
-                                    <td><code class="inline">style</code>-Attribut am Element</td>
-                                    <td>Ausnahmen, dynamische Styles</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-
-                    <!-- Externes CSS (empfohlen) -->
-                    <section class="tutorials-content">
-                        <h2 id="externes-css-empfohlen">Externes CSS (empfohlen)</h2>
-                        <p>Die beste Methode für echte Projekte: Eine separate <code class="inline">.css</code>-Datei,
-                            die im HTML-Head verlinkt wird.</p>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang="de"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Meine Website&lt;/title&gt;
-    
-    &lt;!-- CSS einbinden --&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Hallo Welt!&lt;/h1&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                        </div>
-
-                        <h3 id="das-link-element-erklaert">Das link-Element erklärt</h3>
-                        <table class="ref-table">
-                            <thead>
-                                <tr>
-                                    <th>Attribut</th>
-                                    <th>Bedeutung</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code class="inline">rel="stylesheet"</code></td>
-                                    <td>Sagt dem Browser: "Das ist eine CSS-Datei"</td>
-                                </tr>
-                                <tr>
-                                    <td><code class="inline">href="..."</code></td>
-                                    <td>Pfad zur CSS-Datei (relativ oder absolut)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h3 id="dateipfade-verstehen">Dateipfade verstehen</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;!-- CSS im gleichen Ordner --&gt;
-&lt;link rel="stylesheet" href="style.css"&gt;
-
-&lt;!-- CSS im Unterordner "css" --&gt;
-&lt;link rel="stylesheet" href="css/style.css"&gt;
-
-&lt;!-- Absoluter Pfad (von der Root) --&gt;
-&lt;link rel="stylesheet" href="/assets/css/style.css"&gt;
-
-&lt;!-- Mehrere CSS-Dateien --&gt;
-&lt;link rel="stylesheet" href="/assets/css/style.css"&gt;
-&lt;link rel="stylesheet" href="/assets/css/variables.css"&gt;
-&lt;link rel="stylesheet" href="/assets/css/layout.css"&gt;
-&lt;link rel="stylesheet" href="/assets/css/components.css"&gt;
-&lt;link rel="stylesheet" href="/assets/css/utilities.css"&gt;</code></pre>
-                        </div>
-
-                        <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Vorteile von externem CSS
-                                <svg class="icon-ui">
-                                    <use href="#dpz-check-circle"></use>
-                                </svg>
-                            </strong>
-                            <ul class="arrow-list">
-                                <li><strong>Wiederverwendbar:</strong> Eine Datei für alle HTML-Seiten</li>
-                                <li><strong>Caching:</strong> Browser speichert die Datei → schnellere Ladezeiten</li>
-                                <li><strong>Übersichtlich:</strong> HTML und CSS getrennt</li>
-                                <li><strong>Wartbar:</strong> Änderungen wirken sich auf alle Seiten aus</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <!-- Internes CSS -->
-                    <section class="tutorials-content">
-                        <h2 id="internes-css-style-tag">Internes CSS (style-Tag)</h2>
-                        <p>CSS direkt im HTML-Dokument, innerhalb eines <code class="inline">&lt;style&gt;</code>-Tags
-                            im Head:</p>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang="de"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Meine Website&lt;/title&gt;
-    
-    &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-        
-        h1 {
-            color: #333;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Hallo Welt!&lt;/h1&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                        </div>
-
-                        <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Wann internes CSS verwenden?
-                                <svg class="icon-ui">
-                                    <use href="#dpz-warning"></use>
-                                </svg>
-                            </strong>
-                            <ul class="arrow-list">
-                                <li>Schnelle Tests und Prototypen</li>
-                                <li>Einzelseiten ohne weitere HTML-Dateien</li>
-                                <li>Critical CSS für Above-the-Fold-Inhalte</li>
-                                <li><strong>Nicht empfohlen</strong> für produktive Websites mit mehreren Seiten</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <!-- Inline CSS -->
-                    <section class="tutorials-content">
-                        <h2 id="inline-css-style-attribut">Inline CSS (style-Attribut)</h2>
-                        <p>CSS direkt am HTML-Element über das <code class="inline">style</code>-Attribut:</p>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;!-- Inline-Styles --&gt;
-&lt;h1 style="color: blue; font-size: 2rem;"&gt;Blaue Überschrift&lt;/h1&gt;
-
-&lt;p style="margin-top: 20px; padding: 10px; background: #f0f0f0;"&gt;
-    Absatz mit Hintergrund
-&lt;/p&gt;
-
-&lt;!-- Mehrere Eigenschaften, semikolon-getrennt --&gt;
-&lt;div style="display: flex; gap: 1rem; justify-content: center;"&gt;
-    ...
-&lt;/div&gt;</code></pre>
-                        </div>
-
-                        <div class="info-box danger">
-                            <strong class="box-title danger no-toc">Nachteile von Inline CSS
-                                <svg class="icon-ui">
-                                    <use href="#dpz-x-circle"></use>
-                                </svg>
-                            </strong>
-                            <ul class="arrow-list">
-                                <li><strong>Nicht wiederverwendbar:</strong> Gilt nur für dieses eine Element</li>
-                                <li><strong>Unübersichtlich:</strong> HTML wird aufgebläht</li>
-                                <li><strong>Höchste Spezifität:</strong> Schwer zu überschreiben</li>
-                                <li><strong>Wartungshölle:</strong> Änderungen müssen überall gemacht werden</li>
-                            </ul>
-                        </div>
-
-                        <p><strong>Wann Inline CSS sinnvoll ist:</strong></p>
+                        <p>Eine logische Reihenfolge hilft dir:</p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li>Dynamische Werte per JavaScript setzen</li>
-                            <li>E-Mail-Templates (externe CSS wird oft blockiert)</li>
-                            <li>Einmalige Ausnahmen, die nirgends anders vorkommen</li>
+                            <li><strong>Schneller finden:</strong> Du weißt sofort, wo welche Styles stehen</li>
+                            <li><strong>Weniger Konflikte:</strong> Allgemeine Regeln zuerst, spezifische später</li>
+                            <li><strong>Einfacher erweitern:</strong> Neue Styles passen logisch ins System</li>
+                            <li><strong>Bessere Teamarbeit:</strong> Andere verstehen deinen Code</li>
                         </ul>
-                    </section>
-
-                    <!-- Reihenfolge und Spezifität -->
-                    <section class="tutorials-content">
-                        <h2 id="reihenfolge-und-spezifitaet">Reihenfolge und Spezifität</h2>
-                        <p>Wenn mehrere CSS-Regeln auf das gleiche Element wirken, gewinnt die spezifischere oder später
-                            definierte:</p>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML + CSS</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;!-- externes CSS (style.css) --&gt;
-h1 { color: red; }
-
-&lt;!-- internes CSS im Head --&gt;
-&lt;style&gt;
-    h1 { color: blue; }  /* Überschreibt externes CSS */
-&lt;/style&gt;
-
-&lt;!-- Inline CSS am Element --&gt;
-&lt;h1 style="color: green;"&gt;Ich bin grün!&lt;/h1&gt;
-&lt;!-- Inline gewinnt immer (außer !important) --&gt;</code></pre>
-                        </div>
-
-                        <p><strong>Spezifitäts-Hierarchie (von schwach zu stark):</strong></p>
-                        <ol class="grid-2col-bg">
-                            <li>Externes CSS (link)</li>
-                            <li>Internes CSS (style-Tag)</li>
-                            <li>Inline CSS (style-Attribut)</li>
-                            <li><code class="inline">!important</code> (vermeiden!)</li>
-                        </ol>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Reihenfolge bei mehreren Stylesheets
+                            <strong class="box-title no-toc">Die goldene Regel
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Bei mehreren <code class="inline">&lt;link&gt;</code>-Tags gilt: Die später eingebundene
-                                Datei überschreibt frühere Regeln (bei gleicher Spezifität). Deshalb kommt <code class="inline">style.css</code> oder <code class="inline">main.css</code> immer
-                                zuerst.</p>
-                            <pre><code class="language-html">&lt;!-- Reihenfolge ist wichtig! --&gt;
-&lt;link rel="stylesheet" href="css/style.css"&gt;      &lt;!-- Basis-Styles --&gt;
-&lt;link rel="stylesheet" href="css/components.css"&gt; &lt;!-- Komponenten --&gt;
-&lt;link rel="stylesheet" href="css/utilities.css"&gt;  &lt;!-- Utilities (überschreiben) --&gt;</code></pre>
-                            <p class="mt-sm">Für kleinere Projekte reicht oft eine einzige <code class="inline">style.css</code> mit klarer Struktur.</p>
+                            <p><strong>Von allgemein zu spezifisch.</strong> Beginne mit globalen Styles (Reset, Base),
+                                dann Layout-Strukturen, dann Komponenten, und am Ende Utilities, die alles überschreiben
+                                können.</p>
                         </div>
-                    </section>
+
+                    </section> <!-- Intro -->
+
+                    <!-- 1 Reset / Normalize -->
+                    <section class="tutorials-content">
+                        <h2 id="reset-normalize">1. Reset / Normalize</h2>
+                        <!-- <p>Bevor du mit dem Pixelschubsen beginnst, legst du zunächst das Grundgerüst an – meist in
+                            einer Datei namens <code>style.css</code>. Diese dient als Startseite und wird automatisch
+                            geladen, wenn jemand deine Domain aufruft. Du kannst sie in einem einfachen Texteditor
+                            anlegen.</p>
+                        <p>Zu Beginn setzt du Browser-Standardstile zurück oder gleichst sie an.</p> -->
+
+                        <p>Browser haben eigene Standardstyles – und die sind nicht einheitlich. Ein Reset setzt diese
+                            zurück, damit du von einer sauberen Basis startest.</p>
+
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ===================
+   1. RESET
+   =================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}</code></pre>
+                        </div>
+
+                        <p>Mit <code class="inline">box-sizing: border-box</code> werden Padding und Border in die
+                            Breite eingerechnet – das macht Layouts viel berechenbarer. Der Reset auf <code class="inline">margin</code> und <code class="inline">padding</code> entfernt die
+                            unterschiedlichen Browser-Abstände bei Elementen wie <code class="inline">&lt;p&gt;</code>,
+                            <code class="inline">&lt;ul&gt;</code> oder <code class="inline">&lt;h1&gt;</code>.
+                        </p>
+
+                    </section> <!-- 1 Reset / Normalize -->
+
+                    <!-- 2. Base Styles -->
+                    <section class="tutorials-content">
+                        <h2 id="base-styles">2. Base Styles</h2>
+
+                        <p>Die Grundeinstellungen für <code class="inline">html</code> und <code class="inline">body</code> – hier definierst du Schriftart, Farben und grundlegendes
+                            Verhalten für die gesamte Seite.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ===================
+   2. BASE STYLES
+   =================== */
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #222;
+    background-color: #fdfdfd;
+    min-height: 100vh;
+}</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum font-size auf html?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Die <code class="inline">font-size</code> auf <code class="inline">html</code> ist die
+                                Basis für alle <code class="inline">rem</code>-Einheiten. Mit <code class="inline">16px</code> entspricht <code class="inline">1rem = 16px</code>, <code class="inline">1.5rem = 24px</code> usw.</p>
+                        </div>
+                    </section> <!-- 2. Base Styles -->
+
+                    <!-- 3 Layout -->
+                    <section class="tutorials-content">
+                        <h2 id="layout">3. Layout</h2>
+                        <p>Die großen Strukturelemente deiner Seite: Header, Navigation, Main-Bereich, Footer. Hier
+                            definierst du das Grundgerüst.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ===================
+   3. LAYOUT
+   =================== */
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+main {
+    flex: 1;  /* Füllt verfügbaren Platz (bei flex auf body) */
+    padding: 2rem 0;
+}
+
+footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* Container für zentrierten Inhalt */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}</code></pre>
+                        </div>
+                    </section> <!-- 3 Layout -->
+
+                    <!-- 4 Components -->
+                    <section class="tutorials-content">
+                        <h2 id="components">4. Components (Inhaltselemente)</h2>
+                        <p>Wiederverwendbare UI-Bausteine wie Buttons, Cards, Navigation, Formulare. Diese Styles kannst
+                            du überall auf der Seite einsetzen.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ===================
+   4. COMPONENTS
+   =================== */
+
+/* Navigation */
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+}
+
+/* Cards */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}</code></pre>
+                        </div>
+                    </section> <!-- 4 Components -->
+
+                    <!-- 5 Typography -->
+                    <section class="tutorials-content">
+                        <h2 id="typography">5. Typography</h2>
+                        <p>Globale Schriftstile für Überschriften, Absätze, Links und andere Textelemente.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ===================
+   5. TYPOGRAPHY
+   =================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}</code></pre>
+                        </div>
+                    </section> <!-- 5 Typography -->
+
+                    <!-- 6 Utilities / Hilfsklassen -->
+                    <section class="tutorials-content">
+                        <h2 id="utilities">6. Utilities (Hilfsklassen)</h2>
+                        <p>Kleine, einzweckige Klassen für schnelle Anpassungen. Sie stehen am Ende, weil sie andere
+                            Styles überschreiben sollen.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ===================
+   6. UTILITIES
+   =================== */
+
+/* Display */
+.hidden { display: none; }
+.block { display: block; }
+.flex { display: flex; }
+
+/* Text */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.bold { font-weight: bold; }
+.uppercase { text-transform: uppercase; }
+
+/* Spacing - Margin */
+.mt-sm { margin-top: 0.5rem; }
+.mt-md { margin-top: 1rem; }
+.mt-lg { margin-top: 2rem; }
+.mb-sm { margin-bottom: 0.5rem; }
+.mb-md { margin-bottom: 1rem; }
+.mb-lg { margin-bottom: 2rem; }
+
+/* Spacing - Padding */
+.pt-sm { padding-top: 0.5rem; }
+.pt-md { padding-top: 1rem; }
+.pt-lg { padding-top: 2rem; }
+.pb-sm { padding-bottom: 0.5rem; }
+.pb-md { padding-bottom: 1rem; }
+.pb-lg { padding-bottom: 2rem; }</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Utility-First?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Frameworks wie <strong>Tailwind CSS</strong> setzen komplett auf Utility-Klassen. Für
+                                eigene Projekte ist ein Mix aus Komponenten und Utilities oft praktischer – Komponenten
+                                für komplexe, wiederkehrende Elemente, Utilities für schnelle Anpassungen.</p>
+                        </div>
+                    </section> <!-- 8 Utilities / Hilfsklassen -->
 
                     <!-- Zusammenfassung -->
                     <section class="tutorials-content">
-                        <h2 id="zusammenfassung">Zusammenfassung: Welche Methode wann?</h2>
+                        <h2 id="zusammenfassung">Zusammenfassung: Empfohlene Reihenfolge</h2>
 
-                        <table class="ref-table">
-                            <thead>
-                                <tr>
-                                    <th>Methode</th>
-                                    <th>Verwenden für</th>
-                                    <th>Vermeiden bei</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Externes CSS</strong></td>
-                                    <td>Produktive Websites, mehrere Seiten, Team-Projekte</td>
-                                    <td>—</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Internes CSS</strong></td>
-                                    <td>Schnelle Tests, Einzelseiten, Critical CSS</td>
-                                    <td>Websites mit mehreren Seiten</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Inline CSS</strong></td>
-                                    <td>JavaScript-generierte Styles, E-Mail-Templates</td>
-                                    <td>Reguläres Styling (fast immer)</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p>So sieht eine gut strukturierte CSS-Datei aus:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* ===================
+   1. RESET
+   =================== */
+/* Browser-Defaults zurücksetzen */
+
+/* ===================
+   2. BASE STYLES
+   =================== */
+/* html, body Grundeinstellungen */
+
+/* ===================
+   3. LAYOUT
+   =================== */
+/* header, main, footer, .container */
+
+/* ===================
+   4. COMPONENTS
+   =================== */
+/* .btn, .card, .nav, .form, etc. */
+
+/* ===================
+   5. TYPOGRAPHY
+   =================== */
+/* h1-h6, p, a, listen */
+
+/* ===================
+   6. UTILITIES
+   =================== */
+/* Hilfsklassen (.mt-md, .text-center, etc.) */</code></pre>
+                        </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Best Practice
+                            <strong class="box-title notice no-toc">Warum diese Reihenfolge?
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
-                            <p><strong>Nutze externes CSS als Standard.</strong> Starte mit einer einzigen <code class="inline">style.css</code> – erst wenn diese unübersichtlich wird, teile sie in
-                                mehrere Dateien auf. Wie du deine CSS-Datei sinnvoll strukturierst, lernst du im
-                                nächsten Tutorial.</p>
+                            <ul class="arrow-list">
+                                <li><strong>Reset zuerst:</strong> Saubere Basis ohne Browser-Unterschiede</li>
+                                <li><strong>Base danach:</strong> Globale Einstellungen, die überall gelten</li>
+                                <li><strong>Layout:</strong> Grundgerüst der Seite</li>
+                                <li><strong>Components:</strong> Wiederverwendbare UI-Elemente</li>
+                                <li><strong>Typography:</strong> Kann Komponenten ergänzen</li>
+                                <li><strong>Utilities am Ende:</strong> Höchste Priorität, überschreiben alles andere
+                                </li>
+                            </ul>
                         </div>
 
+                        <h3 id="wann-aufteilen">Wann auf mehrere Dateien aufteilen?</h3>
+                        <p>Solange deine <code class="inline">style.css</code> überschaubar bleibt (unter 500 Zeilen),
+                            reicht eine Datei. Wenn es mehr wird, kannst du aufteilen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Dateistruktur</span>
+                            </div>
+                            <pre><code class="language-plaintext">css/
+├── style.css          (importiert alle anderen)
+├── reset.css
+├── base.css
+├── layout.css
+├── components.css
+├── typography.css
+└── utilities.css</code></pre>
+                        </div>
+
+                        <p>Mehr dazu im Tutorial <a href="/tutorials/css/css-specials/css-organization.html">CSS
+                                Organisation</a>.</p>
+
                         <div class="cta-content">
-                            <a href="/tutorials/css/css-basics/css-datei-strukturieren.html" class="btn btn-secondary">Weiter: CSS Datei strukturieren</a>
+                            <a href="/tutorials/css/css-specials/css-organization.html" class="btn btn-secondary">Weiter: CSS Organisation</a>
                         </div>
                     </section>
 
+                    <!-- Prev/Next -->
 
-                    <!-- Prev/Next Navigation -->
-                    
-                <!-- Latest-Tutorials-Start -->
+                    <!-- Latest-Tutorials-Start -->
                 <section class="categories">
                     <h2 id="mehr-aus-css">Mehr aus CSS</h2>
                     <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
@@ -579,17 +676,27 @@ h1 { color: red; }
                 </section>
                 <!-- Latest-Tutorials-End -->
 
-                <section class="tutorials-content">
-                        <nav class="tutorial-nav"><div class="tutorial-nav-prev"></div><div class="tutorial-nav-next">
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
             <a href="/tutorials/css/css-basics/css-grundlagen.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-label">← Vorheriges</span>
                 <span class="tutorial-nav-link">CSS Grundlagen</span>
+                <span class="tutorial-nav-category">CSS Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/css/css-basics/css-color-units.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">CSS Farben & Einheiten</span>
                 <span class="tutorial-nav-category">CSS Basics</span>
             </a>
         </div></nav>
                     </section>
 
-                </div> <!-- Wrapper .container -->
+
+
+
+                </div> <!-- Wrapper -->
 
             </div> <!-- Tutorial Layout -->
 
@@ -617,6 +724,12 @@ h1 { color: red; }
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+
+
+
 
     
 

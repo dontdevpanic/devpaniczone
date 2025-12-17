@@ -1,0 +1,954 @@
+<!DOCTYPE html><html lang="de"><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="CSS Grundlagen: Syntax, Selektoren, Klassen, IDs, Pseudoklassen und Pseudoelemente verstehen – mit einfachen Beispielen für Einsteiger.">
+        <meta name="keywords" content="CSS Syntax, CSS Selektoren, CSS Klassen, CSS ID, Pseudoklassen hover focus, Pseudoelemente before after, CSS Grundlagen, CSS lernen">
+        <meta name="author" content="DevPanicZone">
+        <title>CSS Grundlagen – Syntax, Selektoren &amp; Pseudoklassen | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/documentation/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/documentation/#devpaniczone">DevPanicZone</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
+
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/css/" class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">CSS einbinden</span></nav>
+                    <h1 class="hero-title">CSS Grundlagen</h1>
+                    <p class="hero-subtitle">CSS-Syntax: Wie Regeln aufgebaut sind, welche Selektoren es gibt und wie du
+                        Elemente gezielt ansprichst.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                </span>
+            </button>
+
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                    <li class="toc-level-1"><a href="#was-ist-css">Was ist CSS?</a></li>
+                    <li class="toc-level-1"><a href="#formatierungsregeln">Formatierungsregeln</a></li>
+                    <li class="toc-level-1"><a href="#selektoren">Selektoren</a></li>
+                    <li class="toc-level-2"><a href="#element-selektoren">Element-Selektoren</a></li>
+                    <li class="toc-level-2"><a href="#klassen-selektor">Klassen-Selektor .klasse</a></li>
+                    <li class="toc-level-2"><a href="#id-selektor-id">ID-Selektor #id</a></li>
+                    <li class="toc-level-1"><a href="#pseudoklassen">Pseudoklassen z. B. :hover,
+                            :focus, :first-child</a></li>
+                    <li class="toc-level-1"><a href="#pseudoelemente">Pseudoelemente ::before,
+                                ::after</a></li>
+                    <li class="toc-level-1"><a href="#kombinierte-selektoren-kombinatoren">Kombinierte Selektoren &amp; Kombinatoren</a></li>
+                    <li class="toc-level-2"><a href="#mehrere-selektoren-verketten">Mehrere Selektoren verketten</a></li>
+                    <li class="toc-level-2"><a href="#selektorlisten-mehrere-elemente-gleich-stylen">Selektorlisten – mehrere Elemente gleich
+                            stylen</a></li>
+                    <li class="toc-level-2"><a href="#kombinatoren">Kombinatoren – Beziehungen zwischen
+                                Elementen</a></li>
+                    <li class="toc-level-1"><a href="#spezifitaet">Spezifität – Welche Regel gewinnt?</a></li>
+                    <li class="toc-level-2"><a href="#spezifitaet-berechnen">Spezifität berechnen</a></li>
+                    <li class="toc-level-2"><a href="#spezifitaet-hierarchie">Hierarchie (von schwach zu stark)</a></li>
+                    <li class="toc-level-2"><a href="#beispiel-spezifitaet">Beispiel: Wer gewinnt?</a></li>
+                    <li class="toc-level-2"><a href="#bei-gleicher-spezifitaet">Bei gleicher Spezifität</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
+                    <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                    <li class="sidebar-group-title">CSS Basics</li>
+                    <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-grundlagen.html" class="active">CSS Grundlagen</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-datei-strukturieren.html">CSS Datei strukturieren</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
+                    <li><a href="/tutorials/css/css-basics/css-navigation-states.html">CSS Navigation States</a></li>
+                    <li class="sidebar-group-title">CSS Specials</li>
+                    <li><a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a></li>
+                </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper -->
+                <div class="container">
+
+                    <!-- Intro -->
+                    <section class="tutorials-content">
+                        <h2 id="was-ist-css">Was ist CSS?</h2>
+                        <p><strong>CSS (Cascading Style Sheets)</strong> ist die Sprache für das Design deiner Webseite.
+                            Während HTML die Struktur und den Inhalt definiert, bestimmt CSS das Aussehen: Farben,
+                            Schriften, Abstände, Layouts und Animationen.</p>
+
+                        <p>Der Name "Cascading" (kaskadierend) beschreibt, wie CSS-Regeln von oben nach unten fließen
+                            und sich gegenseitig überschreiben können – ein Konzept, das wir am Ende dieses Tutorials
+                            bei der Spezifität genauer betrachten.</p>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Was du in diesem Tutorial siehst
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong><a href="#formatierungsregeln">Syntax:</a></strong> Wie CSS-Regeln aufgebaut
+                                    sind</li>
+                                <li><strong><a href="#selektoren">Selektoren:</a></strong> Elemente, Klassen,
+                                    IDs und mehr</li>
+                                <li><strong><a href="#pseudoklassen">Pseudoklassen</a> &amp; <a href="#pseudoelemente">-elemente:</a> </strong> Zustände und virtuelle
+                                    Inhalte</li>
+                                <li><strong><a href="#kombinierte-selektoren-kombinatoren">Kombinatoren:</a></strong>
+                                    Elemente in Beziehung zueinander ansprechen</li>
+                                <li><strong><a href="#spezifitaet">Spezifität:</a></strong> Welche Regel gewinnt bei
+                                    Konflikten?</li>
+                            </ul>
+                        </div>
+                    </section> <!-- Intro -->
+
+                    <!-- Formatierungsregeln -->
+                    <section class="tutorials-content">
+                        <h2 id="formatierungsregeln">Formatierungsregeln</h2>
+                        <p>Ein CSS-Stylesheet enthält alle Regeln, die bestimmen, wie eine Webseite und ihre einzelnen
+                            Elemente dargestellt werden.
+                            Jede Regel besteht aus zwei Teilen: Selektor und Deklarationsblock.</p>
+                        <p>Der Selektor legt fest, auf welche Elemente sich die Formatierung bezieht.
+                            Der Deklarationsblock steht in geschweiften Klammern und enthält ein oder mehrere
+                            Eigenschaft-Wert-Paare, die das Aussehen dieser Elemente definieren.</p>
+                        <p>Ein Selektor kann zum Beispiel einfach der Name eines HTML-Elements sein – dann wirkt die
+                            Regel auf alle Elemente dieses Typs.</p>
+                        <p class="pt-md"><strong>Beispiel für eine CSS-Regel für eine h1-Überschrift</strong></p>
+                        <pre><code class="language-css">h1 {
+    color: teal;
+    margin-bottom: 20px;
+}</code></pre>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">CSS-Syntax auf einen Blick
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ol class="ml-md mb-xl">
+                                <li>Eine Regel beginnt mit dem Selektor, z. B. <code>h1</code> (einzelner Selektor oder
+                                    eine Kombination <code>h1, h2, h3</code>
+                                    ).</li>
+                                <li>Danach folgen geschweifte Klammern <code>{ }</code></li>
+                                <li>Im Inneren stehen die Eigenschaft-Wert-Paare, jeweils im Format
+                                    <code>eigenschaft: wert;</code> / <code>property: value;</code>
+                                    – getrennt durch Doppelpunkte und abgeschlossen mit einem Semikolon.
+                                </li>
+
+                            </ol>
+                            <div class="css-regel" role="img" aria-label="Grafik CSS Regel"></div>
+                        </div>
+
+                    </section>
+
+                    <!-- Selektoren -->
+                    <section class="tutorials-content">
+                        <h2 id="selektoren">Selektoren</h2>
+
+                        <!-- Element-Selektoren -->
+                        <div>
+                            <h3 id="element-selektoren">Element-Selektoren</h3>
+                            <p>Seit HTML5 kannst du die HTML-Struktur-Elemente <code class="inline">&lt;header&gt;</code>,
+                                <code class="inline">&lt;main&gt;</code>, <code class="inline">&lt;footer&gt;</code>,
+                                <code class="inline">&lt;nav&gt;</code>, <code class="inline">&lt;section&gt;</code>,
+                                <code class="inline">&lt;article&gt;</code> usw. direkt ansprechen, ohne Punkt – weil
+                                sie
+                                echte
+                                Tags
+                                sind, keine Klassen.
+                            </p>
+
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">/* 3. HTML5-Struktur-Elemente */
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+main {
+    padding: 60px 0;
+}
+
+footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 40px 0;
+    text-align: center;
+}
+</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Klassen-Selektor -->
+                        <div class="mt-lg">
+                            <h3 id="klassen-selektor">Klassen-Selektor <code>.klasse</code></h3>
+                            <p>Das ist dein „Werkzeugkasten" für Layout und Gestaltung. Hier kommen Hilfsklassen und
+                                Komponenten, die du mehrfach brauchst.</p>
+
+                            <p>Eine Klasse kannst du beliebig vielen Elementen zuweisen. Ideal für wiederkehrende Stile.
+                            </p>
+
+                            <pre><code class="language-html">&lt;p class="highlight"&gt;Wichtiger Hinweis&lt;/p&gt;</code></pre>
+                            <pre><code class="language-css">.highlight {
+    background-color: yellow;
+    padding: 0.5rem;
+}</code></pre>
+
+                            <pre><code class="language-css">/* 4. Allgemeine, wiederverwendbare Klassen */
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.bg-light { background-color: #f6f8f6; }
+.bg-dark  { background-color: #333; color: #fff; }
+
+.text-center { text-align: center; }
+.mt-2 { margin-top: 20px; }
+.pt-4 { padding-top: 40px; }</code></pre>
+                        </div>
+
+                        <!-- ID-Selektor -->
+                        <div class="mt-xl">
+                            <h3 id="id-selektor-id">ID-Selektor <code>#id</code></h3>
+                            <p>Eine ID sollte nur einmal pro Seite auf deiner Website vorkommen. Gut für eindeutig
+                                identifizierbare Bereiche.</p>
+                            <pre><code class="language-html">&lt;section id="hero"&gt;
+    Willkommen auf meiner Seite
+&lt;/section&gt;</code></pre>
+                            <pre><code class="language-css">#hero {
+    text-align: center;
+    padding: 2rem;
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Pseudoklassen -->
+                    <section class="tutorials-content">
+
+                        <h2 id="pseudoklassen">Pseudoklassen z. B. <code>:hover</code>,
+                            <code>:focus</code>, <code>:first-child</code>
+                        </h2>
+                        <p>Pseudoklassen greifen auf dynamische Zustände oder spezielle Positionen zu.</p>
+                        <pre><code class="language-css">button:hover {
+    opacity: 0.8;
+}
+
+input:focus {
+    border-color: dodgerblue;
+}
+
+ul li:first-child {
+    font-weight: bold;
+}</code></pre>
+
+                    </section>
+
+                    <!-- Pseudoelemente -->
+                    <section class="tutorials-content">
+                        <div>
+                            <h2 id="pseudoelemente">Pseudoelemente <code>::before</code>,
+                                <code>::after</code>
+                            </h2>
+                            <p>Damit kannst du virtuelle Elemente erzeugen, z. B. für Icons, Schmuckelemente oder
+                                Marker.
+                            </p>
+                            <pre><code class="language-css">h2::before {
+    content: "◆ ";
+    color: orange;
+}
+
+p::after {
+    content: " ↩";
+    opacity: 0.6;
+}</code></pre>
+                        </div>
+
+                    </section> <!-- Selektoren -->
+
+                    <!-- Kombinierte Selektoren & Kombinatoren -->
+                    <section class="tutorials-content">
+                        <h2 id="kombinierte-selektoren-kombinatoren">Kombinierte Selektoren &amp; Kombinatoren</h2>
+                        <p>Du kannst Selektoren kombinieren, um Elemente präziser anzusprechen. Dabei gibt es zwei
+                            Ansätze: mehrere Selektoren verketten oder Beziehungen zwischen Elementen nutzen.</p>
+
+                        <h3 id="mehrere-selektoren-verketten">Mehrere Selektoren verketten</h3>
+                        <p>Ohne Leerzeichen verbunden bedeutet: Element muss <strong>alle</strong> Bedingungen erfüllen.
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Element mit bestimmter Klasse */
+p.intro {
+    font-size: 1.2rem;
+}
+/* Nur &lt;p&gt; mit class="intro", nicht &lt;div class="intro"&gt; */
+
+/* Element mit mehreren Klassen */
+.btn.primary {
+    background: blue;
+}
+/* Nur Elemente mit BEIDEN Klassen: class="btn primary" */
+
+/* Element mit ID */
+div#hero {
+    min-height: 100vh;
+}
+
+/* Kombination aus allem */
+input.form-control:focus {
+    border-color: blue;
+}</code></pre>
+                        </div>
+
+                        <h3 id="selektorlisten-mehrere-elemente-gleich-stylen">Selektorlisten – mehrere Elemente gleich
+                            stylen</h3>
+                        <p>Mit Komma getrennt: Die Regel gilt für <strong>alle</strong> aufgelisteten Selektoren.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Alle Überschriften */
+h1, h2, h3, h4 {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.2;
+}
+
+/* Verschiedene Elemente */
+button, .btn, input[type="submit"] {
+    cursor: pointer;
+}</code></pre>
+                        </div>
+
+
+                        <!-- Kombinatoren -->
+                        <div>
+                            <h3 id="kombinatoren">Kombinatoren – Beziehungen zwischen
+                                Elementen</h3>
+                            <p>Kombinatoren beschreiben die <strong>Beziehung</strong> zwischen Elementen im HTML-Baum:
+                            </p>
+
+                            <table class="ref-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kombinator</th>
+                                        <th>Name</th>
+                                        <th>Beschreibung</th>
+                                        <th>Beispiel</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>␣</code> <code class="inline">(Leerzeichen)</code></td>
+                                        <td>Nachfahre</td>
+                                        <td>Alle Nachfahren (egal wie tief verschachtelt)</td>
+                                        <td><code class="inline">nav a</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="inline">&gt;</code></td>
+                                        <td>Kind</td>
+                                        <td>Nur direkte Kinder</td>
+                                        <td><code class="inline">ul &gt; li</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="inline">+</code></td>
+                                        <td>Direkter Nachbar</td>
+                                        <td>Das unmittelbar folgende Geschwister</td>
+                                        <td><code class="inline">h2 + p</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="inline">~</code></td>
+                                        <td>Allgemeiner Nachbar</td>
+                                        <td>Alle folgenden Geschwister</td>
+                                        <td><code class="inline">h2 ~ p</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Nachfahren-Selektor -->
+                        <div>
+                            <h4 class="no-toc">Nachfahren-Selektor - <code>␣</code> Leerzeichen</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML + CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Link 1&lt;/a&gt;&lt;/li&gt;  &lt;!-- ✓ wird gestylt --&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Link 2&lt;/a&gt;&lt;/li&gt;  &lt;!-- ✓ wird gestylt --&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                                <pre><code class="language-css">/* Alle &lt;a&gt; innerhalb von &lt;nav&gt;, egal wie tief */
+nav a {
+    color: white;
+    text-decoration: none;
+}</code></pre>
+                            </div>
+
+
+                        </div>
+
+                        <!-- Kind-Selektor -->
+                        <div>
+                            <h4 class="no-toc">Kind-Selektor <code>&gt;</code></h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML + CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;ul class="menu"&gt;
+    &lt;li&gt;Punkt 1&lt;/li&gt;           &lt;!-- ✓ direktes Kind --&gt;
+    &lt;li&gt;Punkt 2
+        &lt;ul&gt;
+            &lt;li&gt;Unterpunkt&lt;/li&gt;  &lt;!-- ✗ kein direktes Kind von .menu --&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                                <pre><code class="language-css">/* Nur direkte &lt;li&gt;-Kinder von .menu */
+.menu &gt; li {
+    border-bottom: 1px solid #ccc;
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Direkter Nachbar -->
+                        <div>
+                            <h4 class="no-toc">Direkter Nachbar <code>+</code></h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML + CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;h2&gt;Überschrift&lt;/h2&gt;
+&lt;p&gt;Erster Absatz&lt;/p&gt;   &lt;!-- ✓ direkt nach h2 --&gt;
+&lt;p&gt;Zweiter Absatz&lt;/p&gt;  &lt;!-- ✗ nicht direkt nach h2 --&gt;</code></pre>
+                                <pre><code class="language-css">/* Nur der erste Absatz direkt nach einer h2 */
+h2 + p {
+    font-size: 1.1rem;
+    color: #666;
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Allgemeiner Nachbar -->
+                        <div>
+                            <h4 class="no-toc">Allgemeiner Nachbar <code>~</code></h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML + CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;h2&gt;Überschrift&lt;/h2&gt;
+&lt;p&gt;Absatz 1&lt;/p&gt;  &lt;!-- ✓ --&gt;
+&lt;p&gt;Absatz 2&lt;/p&gt;  &lt;!-- ✓ --&gt;
+&lt;p&gt;Absatz 3&lt;/p&gt;  &lt;!-- ✓ --&gt;</code></pre>
+                                <pre><code class="language-css">/* ALLE Absätze, die nach einer h2 kommen */
+h2 ~ p {
+    margin-left: 1rem;
+}</code></pre>
+                            </div>
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">Praxis-Tipp
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <p>Der Nachfahren-Selektor (Leerzeichen) ist am häufigsten. Der Kind-Selektor (<code class="inline">&gt;</code>) ist nützlich bei verschachtelten Menüs. Die
+                                    Geschwister-Selektoren (<code class="inline">+</code> und <code class="inline">~</code>)
+                                    sind praktisch für Abstände nach Überschriften oder Checkbox-Hacks ohne JavaScript.
+                                </p>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <!-- Spezifität -->
+                    <section class="tutorials-content">
+                        <h2 id="spezifitaet">Spezifität – Welche Regel gewinnt?</h2>
+                        <p>Wenn mehrere CSS-Regeln auf dasselbe Element zutreffen, entscheidet die
+                            <strong>Spezifität</strong>, welche Regel angewendet wird. Je spezifischer ein Selektor,
+                            desto höher seine Priorität.
+                        </p>
+
+                        <h3 id="spezifitaet-berechnen">Spezifität berechnen</h3>
+                        <p>Spezifität wird oft als Zahlenreihe dargestellt: <strong>(Inline, IDs, Klassen,
+                                Elemente)</strong></p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Selektor</th>
+                                    <th>Spezifität</th>
+                                    <th>Erklärung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">p</code></td>
+                                    <td>(0, 0, 0, 1)</td>
+                                    <td>1 Element</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">.intro</code></td>
+                                    <td>(0, 0, 1, 0)</td>
+                                    <td>1 Klasse</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">p.intro</code></td>
+                                    <td>(0, 0, 1, 1)</td>
+                                    <td>1 Klasse + 1 Element</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">#hero</code></td>
+                                    <td>(0, 1, 0, 0)</td>
+                                    <td>1 ID</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">#hero .title</code></td>
+                                    <td>(0, 1, 1, 0)</td>
+                                    <td>1 ID + 1 Klasse</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">style="..."</code></td>
+                                    <td>(1, 0, 0, 0)</td>
+                                    <td>Inline-Style</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 id="spezifitaet-hierarchie">Hierarchie (von schwach zu stark)</h3>
+                        <ol class="grid-2col-bg">
+                            <li><strong>Element-Selektoren:</strong> <code class="inline">p</code>, <code class="inline">div</code>, <code class="inline">header</code></li>
+                            <li><strong>Klassen, Attribute, Pseudoklassen:</strong> <code class="inline">.btn</code>,
+                                <code class="inline">[type="text"]</code>, <code class="inline">:hover</code>
+                            </li>
+                            <li><strong>IDs:</strong> <code class="inline">#hero</code>, <code class="inline">#navigation</code></li>
+                            <li><strong>Inline-Styles:</strong> <code class="inline">style="color: red;"</code></li>
+                            <li><strong>!important:</strong> Überschreibt alles (vermeiden!)</li>
+                        </ol>
+
+                        <h3 id="beispiel-spezifitaet">Beispiel: Wer gewinnt?</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML + CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;p id="intro" class="highlight"&gt;Dieser Text ist...&lt;/p&gt;</code></pre>
+                            <pre><code class="language-css">p { color: black; }              /* (0,0,0,1) */
+.highlight { color: yellow; }    /* (0,0,1,0) */
+#intro { color: blue; }          /* (0,1,0,0) ✓ Gewinner! */
+p.highlight { color: green; }    /* (0,0,1,1) */</code></pre>
+                        </div>
+                        <p>Der Text ist <strong>blau</strong>, weil <code class="inline">#intro</code> die höchste
+                            Spezifität hat.</p>
+
+                        <h3 id="bei-gleicher-spezifitaet">Bei gleicher Spezifität</h3>
+                        <p>Wenn zwei Regeln die gleiche Spezifität haben, gewinnt die <strong>später
+                                definierte</strong>:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">.btn { background: blue; }   /* Erste Regel */
+.btn { background: green; }  /* ✓ Gewinnt (später definiert) */</code></pre>
+                        </div>
+
+                        <div class="info-box warning">
+                            <strong class="box-title warning no-toc">Vermeide !important
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle"></use>
+                                </svg>
+                            </strong>
+                            <p><code class="inline">!important</code> überschreibt alle anderen Regeln – aber es führt
+                                schnell zu Wartungsproblemen. Wenn du es brauchst, ist das meist ein Zeichen für
+                                schlecht strukturiertes CSS. Besser: Spezifischere Selektoren verwenden.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-css">/* ✗ Vermeiden */
+.btn { background: red !important; }
+
+/* ✓ Besser: Spezifischer Selektor */
+.header .btn { background: red; }</code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Zusammenfassung -->
+                    <section class="tutorials-content">
+                        <h2 id="zusammenfassung">Zusammenfassung</h2>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Selektor-Typ</th>
+                                    <th>Syntax</th>
+                                    <th>Spezifität</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Element</td>
+                                    <td><code class="inline">p</code>, <code class="inline">div</code>, <code class="inline">header</code></td>
+                                    <td>Niedrig</td>
+                                </tr>
+                                <tr>
+                                    <td>Klasse</td>
+                                    <td><code class="inline">.klasse</code></td>
+                                    <td>Mittel</td>
+                                </tr>
+                                <tr>
+                                    <td>ID</td>
+                                    <td><code class="inline">#id</code></td>
+                                    <td>Hoch</td>
+                                </tr>
+                                <tr>
+                                    <td>Pseudoklasse</td>
+                                    <td><code class="inline">:hover</code>, <code class="inline">:focus</code></td>
+                                    <td>Wie Klasse</td>
+                                </tr>
+                                <tr>
+                                    <td>Pseudoelement</td>
+                                    <td><code class="inline">::before</code>, <code class="inline">::after</code></td>
+                                    <td>Wie Element</td>
+                                </tr>
+                                <tr>
+                                    <td>Kombinatoren</td>
+                                    <td><code class="inline">&gt;</code>, <code class="inline">+</code>, <code class="inline">~</code>, Leerzeichen</td>
+                                    <td>Erhöhen nicht die Spezifität</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Nächste Schritte
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Jetzt kennst du die CSS-Syntax und Selektoren. Im nächsten Tutorial lernst du, wie du
+                                deine CSS-Datei sinnvoll strukturierst – von Reset über Base-Styles bis zu
+                                Utility-Klassen.</p>
+                        </div>
+
+                        <div class="cta-content">
+                            <a href="/tutorials/css/css-basics/css-datei-strukturieren.html" class="btn btn-secondary">→
+                                Weiter: CSS Datei strukturieren</a>
+                        </div>
+                    </section>
+
+                    <!-- Prev/Next -->
+
+                    <!-- Latest-Tutorials-Start -->
+                <section class="categories">
+                    <h2 id="mehr-aus-css">Mehr aus CSS</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
+
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/css/css-basics/css-einbinden.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">CSS einbinden</span>
+                <span class="tutorial-nav-category">CSS Basics</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/css/css-basics/css-datei-strukturieren.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">CSS Datei strukturieren</span>
+                <span class="tutorial-nav-category">CSS Basics</span>
+            </a>
+        </div></nav>
+                    </section>
+
+
+
+
+                </div> <!-- Wrapper -->
+
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav" aria-label="Footer-Navigation">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
+
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+
+
+    
+
+</body></html>
