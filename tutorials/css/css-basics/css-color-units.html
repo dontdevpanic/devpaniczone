@@ -2,10 +2,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Entdecke die verschiedenen CSS-Color-Units – von HEX, RGB und HSL bis zu modernen Funktionen wie lab() und lch(). Mit Beispielen und Tipps für präzise Farbgestaltung im Webdesign.">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="description" content="CSS Farbeinheiten: HEX, RGB, RGBA, HSL und moderne Funktionen wie lab() und lch(). Mit Code-Beispielen für präzise Farbgestaltung.">
+        <meta name="keywords" content="CSS Farben, HEX Farbcode, RGB CSS, RGBA Transparenz, HSL Farbwert, CSS Color Functions, lab lch CSS, Farbverläufe CSS">
         <meta name="author" content="DevPanicZone">
-        <title>CSS Color Units | DevPanicZone</title>
+        <title>CSS Farben &amp; Einheiten – HEX, RGB, HSL erklärt | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -202,6 +202,8 @@
                     <li class="toc-level-1"><a href="#aktuelle-css-color-funktionen-ab-css-color-module-4">Aktuelle CSS Color Funktionen (ab
                             CSS Color Module 4)</a></li>
                     <li class="toc-level-1"><a href="#farbtransparenzen-und-verlauf">Farbtransparenzen und Verlauf</a></li>
+                    <li class="toc-level-1"><a href="#css-variablen-fuer-farben">CSS Variablen für Farben</a></li>
+                    <li class="toc-level-1"><a href="#currentcolor-keyword">Das currentColor Keyword</a></li>
                     <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
                     <!-- Sidebar-Anchor-End -->
@@ -1154,6 +1156,43 @@
     background-color: lch(70% 90 45);
 }</code></pre>
                         </div>
+
+                        <p>Eine besonders praktische neue Funktion ist <code class="inline">color-mix()</code> zum
+                            Mischen von Farben direkt in CSS:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Beispiel: Farben mischen mit color-mix() */
+
+.example-mix {
+    /* 50% Rot + 50% Blau = Lila */
+    background-color: color-mix(in srgb, red 50%, blue);
+    
+    /* Farbe aufhellen: 70% Original + 30% Weiß */
+    --color-light: color-mix(in srgb, var(--color-primary) 70%, white);
+    
+    /* Farbe abdunkeln: 80% Original + 20% Schwarz */
+    --color-dark: color-mix(in srgb, var(--color-primary) 80%, black);
+}</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Browser-Support
+                                <svg class="icon-ui">
+                                    <use href="#dpz-notice-check"></use>
+                                </svg>
+                            </strong>
+                            <p><code class="inline">color-mix()</code> wird seit 2023 von allen modernen Browsern
+                                unterstützt (Chrome 111+, Firefox 113+, Safari 16.2+).</p>
+                        </div>
                     </section>
 
                     <!-- Farbtransparenzen und Verlauf -->
@@ -1181,13 +1220,91 @@
                         </div>
                     </section>
 
-                    <!-- Weitere Sections nach Bedarf -->
+                    <!-- CSS Variablen für Farben -->
+                    <section class="tutorials-content">
+                        <h2 id="css-variablen-fuer-farben">CSS Variablen für Farben</h2>
+                        <p>Mit CSS Custom Properties kannst du Farben zentral definieren und wiederverwenden – ideal für
+                            Themes und Dark Mode.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Beispiel: Farben als CSS-Variablen */
+
+:root {
+    --color-primary: #3498db;
+    --color-primary-light: hsl(204, 70%, 60%);
+    --color-text: rgb(51, 51, 51);
+}
+
+.button {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.button:hover {
+    background-color: var(--color-primary-light);
+}</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Praxis-Tipp
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>HSL in Variablen ermöglicht einfache Farbvariationen: Ändere nur die Helligkeit für
+                                Hover-States.</p>
+                        </div>
+                    </section>
+
+                    <!-- Das currentColor Keyword -->
+                    <section class="tutorials-content">
+                        <h2 id="currentcolor-keyword">Das currentColor Keyword</h2>
+                        <p>Mit <code class="inline">currentColor</code> übernimmst du automatisch die aktuelle Textfarbe
+                            <code class="inline">color</code> für andere Properties wie Borders oder SVG-Fills.
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Beispiel: currentColor für konsistente Icons */
+
+.link-with-icon {
+    color: #3498db;
+    border-bottom: 2px solid currentColor;
+}
+
+.link-with-icon svg {
+    fill: currentColor;  /* SVG-Icon übernimmt Linkfarbe */
+}
+
+.link-with-icon:hover {
+    color: #2980b9;  /* Border und Icon ändern sich automatisch mit */
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Zusammenfassung -->
                     <section class="tutorials-content">
                         <h2 id="zusammenfassung">Zusammenfassung</h2>
                         <p>
                             CSS bietet vielfältige Möglichkeiten, Farben zu definieren – von einfachen Namen über HEX
-                            bis zu
-                            präzisen Farbmodellen.
+                            bis zu präzisen Farbmodellen.
                             Welche Einheit du nutzt, hängt davon ab, ob du lieber kreativ arbeitest oder exakt steuern
                             willst.
                         </p>
@@ -1224,6 +1341,21 @@
                                     <td>LAB / LCH / color()</td>
                                     <td><code>lch(70% 90 45)</code></td>
                                     <td>Hohe Farbtreue, modern, noch eingeschränkt unterstützt</td>
+                                </tr>
+                                <tr>
+                                    <td>CSS Variablen</td>
+                                    <td><code>var(--color-primary)</code></td>
+                                    <td>Zentrale Definition, ideal für Themes</td>
+                                </tr>
+                                <tr>
+                                    <td>currentColor</td>
+                                    <td><code>currentColor</code></td>
+                                    <td>Übernimmt aktuelle Textfarbe</td>
+                                </tr>
+                                <tr>
+                                    <td>color-mix()</td>
+                                    <td><code>color-mix(in srgb, red, blue)</code></td>
+                                    <td>Farben direkt in CSS mischen</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1296,6 +1428,8 @@
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 
