@@ -274,7 +274,7 @@ const TUTORIAL_ORDER = {
     'tutorials/misc/web': [
         'console-security.html'
     ],
-    'tutorials/documentation/devpaniczone': [
+    'tutorials/devpaniczone/documentation': [
         'devpaniczone-automation.html',
         'devpaniczone-code-snippets.html',
         'devpaniczone-generate-navigation-js.html',
@@ -349,7 +349,7 @@ const CATEGORY_NAMES = {
     'javascript': 'JavaScript',
     'php': 'PHP',
     'misc': 'Verschiedenes',
-    'documentation': 'DevPanicZone!'
+    'devpaniczone': 'DevPanicZone!'
 };
 
 // Spezielle Kapitalisierung für Akronyme
