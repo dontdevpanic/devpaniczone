@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Lerne verschiedene Methoden zur CSS-Organisation: Dateiaufteilung, BEM, ITCSS, Sass/SCSS, CSS-in-JS und Utility-First. Behalte den Überblick bei großen Projekten.">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials, CSS Organisation, BEM, ITCSS, Sass, SCSS, Tailwind, CSS-in-JS">
         <meta name="author" content="DevPanicZone">
-
-        <title>CSS Organisation | DevPanicZone</title>
+        <meta name="description" content="CSS Organisation: Dateiaufteilung, BEM-Methodik, ITCSS-Architektur, Sass/SCSS, CSS-in-JS und Tailwind im Vergleich. Finde die richtige Methode für dein Projekt.">
+        <meta name="keywords" content="CSS Organisation, BEM Methodik, ITCSS Architektur, Sass SCSS, CSS-in-JS, Tailwind CSS, CSS Dateistruktur, CSS Spezifität">
+        <meta name="author" content="DevPanicZone">
+        <title>CSS Organisation – BEM, ITCSS, Sass &amp; Tailwind im Vergleich | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -228,11 +228,11 @@
                     <li class="toc-level-2"><a href="#responsive-design-mit-tailwind">Responsive Design mit Tailwind</a></li>
                     <li class="toc-level-2"><a href="#komponenten-extrahieren">Komponenten extrahieren</a></li>
                     <li class="toc-level-2"><a href="#vor--nachteile-tailwind">Vor- &amp; Nachteile dieser Methode</a></li>
+                    <li class="toc-level-1"><a href="#methode-7-css-layers">Bonus: CSS Layers (@layer)</a></li>
+                    <li class="toc-level-2"><a href="#layers-vs-itcss">Layers vs. ITCSS</a></li>
                     <li class="toc-level-1"><a href="#vergleich-welche-methode-passt-zu-dir">Vergleich: Welche Methode passt zu dir?</a></li>
                     <li class="toc-level-1"><a href="#beispiel-dpz">Beispiel: Mein Projekt</a></li>
-                    <li class="toc-level-2"><a href="#kurzfristig-dateiaufteilung-erweitern">Kurzfristig: Dateiaufteilung erweitern</a></li>
                     <li class="toc-level-2"><a href="#mittelfristig-bem-fuer-neue-komponenten">Mittelfristig: BEM für neue Komponenten</a></li>
-                    <li class="toc-level-2"><a href="#langfristig-optional-sassscss">Langfristig: Optional Sass/SCSS</a></li>
                     <li class="toc-level-1"><a href="#fazit">Fazit</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
                     <!-- Sidebar-Anchor-End -->
@@ -267,7 +267,7 @@
                 <!-- Wrapper .container -->
                 <div class="container">
 
-                    <!-- Einleitung -->
+                    <!-- Intro -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="das-problem-mit-wachsendem-css">Das Problem mit wachsendem CSS</h2>
                         <p>Kennst du das? Du startest ein Projekt mit einer übersichtlichen <code>style.css</code>. Nach
@@ -534,13 +534,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="info-box">
-                        <p><strong>Für DevPanicZone:</strong> Diese Methode nutze ich bereits teilweise! Ich habe
-                            schon <code>style.css</code>, <code>tutorials.css</code>, <code>sidebar.css</code> und
-                            <code>utilities.css</code>. Der nächste logische Schritt wäre, die <code>style.css</code>
-                            weiter aufzuteilen und die At-Rules einzuführen.
-                        </p>
-                    </div> -->
                     </section>
 
                     <!-- Methode 2: BEM -->
@@ -603,20 +596,6 @@
                             die Abweichung vom Standard. Im HTML brauchst du deshalb <strong>immer beide
                                 Klassen</strong>:
                         </p>
-
-
-
-
-                        <!-- <p>Zunächst wird die Basis <code>.card</code> gestyled. Die Elemente innerhalb der
-                        <code>.card</code> werden mit <code>__</code> erweitert, z. B. <code>.card__button</code>. Soll
-                        der Button meherere Zustände erreichen können, werden die Elemente modifiziert und mit
-                        <code>--</code> erweitert, z. B. <code>.card__button--disabled { }</code>
-                    </p>
-
-                    <p><strong>Häufiger Denkfehler</strong>: Man könnte meinen, dass bei einem Button
-                        <code>--disabled</code> allein reicht. Aber dann fehlen alle Basis-Styles! Der Modifier ist nur
-                        die Abweichung vom Standard.
-                    </p> -->
 
                         <div class="code-block">
                             <div class="code-header">
@@ -1189,7 +1168,7 @@ $breakpoint-md: 768px;
                     </section>
 
                     <!-- Methode 5: CSS-in-JS / Scoped CSS -->
-                    <div class="tutorials-content">
+                    <section class="tutorials-content">
                         <h2 id="methode-5-css-in-js-und-scoped-css">Methode 5: CSS-in-JS und Scoped CSS</h2>
                         <p>Bei JavaScript-Frameworks wie React, Vue oder Svelte gibt es einen anderen Ansatz: Das CSS
                             lebt
@@ -1370,47 +1349,46 @@ function Card({ title }) {
                             <p>CSS-in-JS ist Overkill. Es glänzt in komplexen Web-Apps mit vielen wiederverwendbaren
                                 Komponenten.</p>
                         </div>
+                    </section>
 
+                    <!-- Methode 6: Utility-First (Tailwind) -->
+                    <section class="tutorials-content">
+                        <h2 id="methode-6-utility-first-mit-tailwind-css">Methode 6: Utility-First mit Tailwind CSS
+                        </h2>
+                        <p>Der radikalste Ansatz: Du schreibst kaum noch eigenes CSS. Stattdessen nutzt du
+                            vordefinierte
+                            Utility-Klassen direkt im HTML.</p>
 
+                        <h3 id="traditionelles-css-vs-utility-first">Traditionelles CSS vs. Utility-First</h3>
 
-                        <!-- Methode 6: Utility-First (Tailwind) -->
-                        <section class="tutorials-content">
-                            <h2 id="methode-6-utility-first-mit-tailwind-css">Methode 6: Utility-First mit Tailwind CSS
-                            </h2>
-                            <p>Der radikalste Ansatz: Du schreibst kaum noch eigenes CSS. Stattdessen nutzt du
-                                vordefinierte
-                                Utility-Klassen direkt im HTML.</p>
-
-                            <h3 id="traditionelles-css-vs-utility-first">Traditionelles CSS vs. Utility-First</h3>
-
-                            <h4>Traditionell:</h4>
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-lang">HTML</span>
-                                    <button class="code-copy">
-                                        <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                        </span>
-                                        <span class="copy-text">Kopieren</span>
-                                    </button>
-                                </div>
-                                <pre><code class="language-html">&lt;div class="card"&gt;
+                        <h4>Traditionell:</h4>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="card"&gt;
     &lt;h3 class="card-title"&gt;Titel&lt;/h3&gt;
     &lt;p class="card-content"&gt;Inhalt...&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
+                        </div>
 
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-lang">CSS</span>
-                                    <button class="code-copy">
-                                        <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                        </span>
-                                        <span class="copy-text">Kopieren</span>
-                                    </button>
-                                </div>
-                                <pre><code class="language-css">.card {
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">.card {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -1428,103 +1406,103 @@ function Card({ title }) {
 .card-content {
     color: #a0a0a0;
 }</code></pre>
-                            </div>
+                        </div>
 
-                            <h4>Mit Tailwind:</h4>
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-lang">Tailwind</span>
-                                    <button class="code-copy">
-                                        <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                        </span>
-                                        <span class="copy-text">Kopieren</span>
-                                    </button>
-                                </div>
-                                <pre><code class="language-html">&lt;div class="flex flex-col gap-4 p-6 bg-gray-900 rounded-lg"&gt;
+                        <h4>Mit Tailwind:</h4>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Tailwind</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div class="flex flex-col gap-4 p-6 bg-gray-900 rounded-lg"&gt;
     &lt;h3 class="text-xl font-semibold text-white"&gt;Titel&lt;/h3&gt;
     &lt;p class="text-gray-400"&gt;Inhalt...&lt;/p&gt;
 &lt;/div&gt;</code></pre>
+                        </div>
+
+                        <p>Kein zusätzliches CSS nötig!</p>
+
+                        <h3 id="das-tailwind-vokabular">Das Tailwind-Vokabular</h3>
+                        <p>Einige häufige Klassen:</p>
+
+                        <div class="table-wrapper">
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kategorie</th>
+                                        <th>Klassen</th>
+                                        <th>Bedeutung</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Spacing</td>
+                                        <td><code>p-4</code>, <code>m-2</code>, <code>px-6</code>, <code>mt-8</code>
+                                        </td>
+                                        <td>Padding/Margin (4 = 1rem)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Flexbox</td>
+                                        <td><code>flex</code>, <code>items-center</code>,
+                                            <code>justify-between</code>
+                                        </td>
+                                        <td>Layout</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Grid</td>
+                                        <td><code>grid</code>, <code>grid-cols-3</code>, <code>gap-4</code></td>
+                                        <td>Grid-Layout</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Farben</td>
+                                        <td><code>bg-blue-500</code>, <code>text-white</code>,
+                                            <code>border-gray-300</code>
+                                        </td>
+                                        <td>Hintergrund, Text, Border</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Typography</td>
+                                        <td><code>text-lg</code>, <code>font-bold</code>,
+                                            <code>leading-relaxed</code>
+                                        </td>
+                                        <td>Schriftgröße, -gewicht, Zeilenhöhe</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Responsive</td>
+                                        <td><code>md:flex</code>, <code>lg:grid-cols-4</code></td>
+                                        <td>Ab Breakpoint aktiv</td>
+                                    </tr>
+                                    <tr>
+                                        <td>States</td>
+                                        <td><code>hover:bg-blue-600</code>, <code>focus:ring-2</code></td>
+                                        <td>Pseudo-Klassen</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dark Mode</td>
+                                        <td><code>dark:bg-gray-800</code>, <code>dark:text-white</code></td>
+                                        <td>Nur im Dark Mode</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 id="responsive-design-mit-tailwind">Responsive Design mit Tailwind</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Tailwind</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
                             </div>
-
-                            <p>Kein zusätzliches CSS nötig!</p>
-
-                            <h3 id="das-tailwind-vokabular">Das Tailwind-Vokabular</h3>
-                            <p>Einige häufige Klassen:</p>
-
-                            <div class="table-wrapper">
-                                <table class="styled-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Kategorie</th>
-                                            <th>Klassen</th>
-                                            <th>Bedeutung</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Spacing</td>
-                                            <td><code>p-4</code>, <code>m-2</code>, <code>px-6</code>, <code>mt-8</code>
-                                            </td>
-                                            <td>Padding/Margin (4 = 1rem)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Flexbox</td>
-                                            <td><code>flex</code>, <code>items-center</code>,
-                                                <code>justify-between</code>
-                                            </td>
-                                            <td>Layout</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Grid</td>
-                                            <td><code>grid</code>, <code>grid-cols-3</code>, <code>gap-4</code></td>
-                                            <td>Grid-Layout</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Farben</td>
-                                            <td><code>bg-blue-500</code>, <code>text-white</code>,
-                                                <code>border-gray-300</code>
-                                            </td>
-                                            <td>Hintergrund, Text, Border</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Typography</td>
-                                            <td><code>text-lg</code>, <code>font-bold</code>,
-                                                <code>leading-relaxed</code>
-                                            </td>
-                                            <td>Schriftgröße, -gewicht, Zeilenhöhe</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Responsive</td>
-                                            <td><code>md:flex</code>, <code>lg:grid-cols-4</code></td>
-                                            <td>Ab Breakpoint aktiv</td>
-                                        </tr>
-                                        <tr>
-                                            <td>States</td>
-                                            <td><code>hover:bg-blue-600</code>, <code>focus:ring-2</code></td>
-                                            <td>Pseudo-Klassen</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dark Mode</td>
-                                            <td><code>dark:bg-gray-800</code>, <code>dark:text-white</code></td>
-                                            <td>Nur im Dark Mode</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <h3 id="responsive-design-mit-tailwind">Responsive Design mit Tailwind</h3>
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-lang">Tailwind</span>
-                                    <button class="code-copy">
-                                        <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                        </span>
-                                        <span class="copy-text">Kopieren</span>
-                                    </button>
-                                </div>
-                                <pre><code class="language-html">&lt;div class="
+                            <pre><code class="language-html">&lt;div class="
     grid 
     grid-cols-1 
     md:grid-cols-2 
@@ -1535,164 +1513,270 @@ function Card({ title }) {
 "&gt;
     &lt;!-- 1 Spalte mobil, 2 ab 768px, 4 ab 1024px --&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
+                        </div>
 
-                            <h3 id="komponenten-extrahieren">Komponenten extrahieren</h3>
-                            <p>Wenn sich Patterns wiederholen, kannst du sie in CSS extrahieren:</p>
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-lang">CSS</span>
-                                    <button class="code-copy">
-                                        <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                        </span>
-                                        <span class="copy-text">Kopieren</span>
-                                    </button>
-                                </div>
-                                <pre><code class="language-css">/* Mit @apply (in deiner CSS-Datei) */
+                        <h3 id="komponenten-extrahieren">Komponenten extrahieren</h3>
+                        <p>Wenn sich Patterns wiederholen, kannst du sie in CSS extrahieren:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-css">/* Mit @apply (in deiner CSS-Datei) */
 .btn-primary {
     @apply px-6 py-3 bg-blue-600 text-white font-semibold 
            rounded-lg hover:bg-blue-700 transition-colors;
 }</code></pre>
-                            </div>
+                        </div>
 
-                            <h3 id="vor--nachteile-tailwind">Vor- &amp; Nachteile dieser Methode</h3>
-                            <div class="grid-2col-cards pb-lg">
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span class="code-lang">Vorteile</span>
-                                        <svg class="icon-ui icon-green">
-                                            <use href="#dpz-check-circle"></use>
-                                        </svg>
-                                    </div>
-                                    <div class="pt-lg pb-0 mb-0 px-md">
-                                        <ul class="arrow-list">
-                                            <li>Extrem schnelle Entwicklung</li>
-                                            <li>Konsistentes Design-System eingebaut</li>
-                                            <li>Keine CSS-Dateien die wachsen</li>
-                                            <li>Unused CSS wird automatisch entfernt (PurgeCSS)</li>
-                                            <li>Responsive Design ist trivial</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span class="code-lang">Nachteile</span>
-                                        <svg class="icon-ui icon-red-light">
-                                            <use href="#dpz-cross-circle"></use>
-                                        </svg>
-                                    </div>
-                                    <div class="pt-lg pb-0 mb-0 px-md">
-                                        <ul class="arrow-list">
-                                            <li>HTML wird "hässlich" mit vielen Klassen</li>
-                                            <li>Lernkurve – du musst die Klassen kennen</li>
-                                            <li>Build-Prozess erforderlich</li>
-                                            <li>Nicht für jeden – polarisierender Ansatz</li>
-                                            <li>Komplexe Custom-Styles werden umständlich</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="info-box">
-                                <strong class="box-title no-toc">Ehrliche Meinung
-                                    <svg class="icon-ui">
-                                        <use href="#dpz-info-circle"></use>
+                        <h3 id="vor--nachteile-tailwind">Vor- &amp; Nachteile dieser Methode</h3>
+                        <div class="grid-2col-cards pb-lg">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Vorteile</span>
+                                    <svg class="icon-ui icon-green">
+                                        <use href="#dpz-check-circle"></use>
                                     </svg>
-                                </strong>
-                                <p>Tailwind ist großartig für schnelles Prototyping und wenn du das Design-System
-                                    akzeptierst. Für individuelle Designs wie DevPanicZone, wo du volle
-                                    Kontrolle willst, kann es einschränkend sein.</p>
+                                </div>
+                                <div class="pt-lg pb-0 mb-0 px-md">
+                                    <ul class="arrow-list">
+                                        <li>Extrem schnelle Entwicklung</li>
+                                        <li>Konsistentes Design-System eingebaut</li>
+                                        <li>Keine CSS-Dateien die wachsen</li>
+                                        <li>Unused CSS wird automatisch entfernt (PurgeCSS)</li>
+                                        <li>Responsive Design ist trivial</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="warning-box">
-                                <p>Tailwind ist großartig für schnelles Prototyping und wenn du das Design-System
-                                    akzeptierst. Für individuelle Designs wie DevPanicZone, wo du volle
-                                    Kontrolle willst, kann es einschränkend sein.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Nachteile</span>
+                                    <svg class="icon-ui icon-red-light">
+                                        <use href="#dpz-cross-circle"></use>
+                                    </svg>
+                                </div>
+                                <div class="pt-lg pb-0 mb-0 px-md">
+                                    <ul class="arrow-list">
+                                        <li>HTML wird "hässlich" mit vielen Klassen</li>
+                                        <li>Lernkurve – du musst die Klassen kennen</li>
+                                        <li>Build-Prozess erforderlich</li>
+                                        <li>Nicht für jeden – polarisierender Ansatz</li>
+                                        <li>Komplexe Custom-Styles werden umständlich</li>
+                                    </ul>
+                                </div>
                             </div>
-                        </section>
+                        </div>
 
-                        <!-- Vergleichstabelle -->
-                        <section class="tutorials-content">
-                            <h2 id="vergleich-welche-methode-passt-zu-dir">Vergleich: Welche Methode passt zu dir?</h2>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Ehrliche Meinung
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Tailwind ist großartig für schnelles Prototyping und wenn du das Design-System
+                                akzeptierst. Für individuelle Designs wie DevPanicZone, wo du volle
+                                Kontrolle willst, kann es einschränkend sein.</p>
+                        </div>
+                        <div class="warning-box">
+                            <p>Tailwind ist großartig für schnelles Prototyping und wenn du das Design-System
+                                akzeptierst. Für individuelle Designs wie DevPanicZone, wo du volle
+                                Kontrolle willst, kann es einschränkend sein.</p>
+                        </div>
+                    </section>
 
-                            <div class="table-wrapper">
-                                <table class="styled-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Methode</th>
-                                            <th>Lernkurve</th>
-                                            <th>Build-Tools</th>
-                                            <th>Projekt­größe</th>
-                                            <th>Ideal für</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Dateiaufteilung</strong></td>
-                                            <td>★</td>
-                                            <td>Nein</td>
-                                            <td>Klein–Mittel</td>
-                                            <td>Einsteiger, einfache Projekte</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>BEM</strong></td>
-                                            <td>★★</td>
-                                            <td>Nein</td>
-                                            <td>Alle</td>
-                                            <td>Teams, langlebige Projekte</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>ITCSS</strong></td>
-                                            <td>★★★</td>
-                                            <td>Optional</td>
-                                            <td>Mittel–Groß</td>
-                                            <td>Enterprise, große Teams</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Sass/SCSS</strong></td>
-                                            <td>★★</td>
-                                            <td>Ja</td>
-                                            <td>Mittel–Groß</td>
-                                            <td>Komplexe Styles, DRY-Code</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>CSS-in-JS</strong></td>
-                                            <td>★★★</td>
-                                            <td>Ja</td>
-                                            <td>Mittel–Groß</td>
-                                            <td>React/Vue/Svelte Apps</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Tailwind</strong></td>
-                                            <td>★★</td>
-                                            <td>Ja</td>
-                                            <td>Alle</td>
-                                            <td>Schnelles Prototyping, Teams</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <!-- Bonus: CSS Layers (@layer) -->
+                    <section class="tutorials-content">
+                        <h2 id="methode-7-css-layers">Bonus: CSS Layers (@layer)</h2>
+                        <p>CSS Layers sind eine <strong>native Browser-Lösung</strong> für das Spezifitäts-Problem. Sie
+                            ermöglichen dir, CSS in Ebenen zu organisieren, deren Reihenfolge du selbst bestimmst –
+                            unabhängig von der Position im Code.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">CSS</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
                             </div>
-                        </section>
+                            <pre><code class="language-css">/* Reihenfolge definieren: Letzte gewinnt bei Konflikten */
+@layer reset, base, components, utilities;
 
-                        <!-- Empfehlung für DevPanicZone -->
-                        <section class="tutorials-content">
-                            <h2 id="beispiel-dpz">Beispiel: Mein Projekt</h2>
-                            <p>Basierend auf dem, was ich bereits habe und wo ich hin will.</p>
+/* Reset-Styles */
+@layer reset {
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+    }
+}
 
-                            <h3 id="kurzfristig-dateiaufteilung-erweitern">Kurzfristig: Dateiaufteilung erweitern</h3>
-                            <p>Meine Basis mit getrennten Dateien ist bereits gut. Der nächste Schritt:</p>
-                            <pre><code class="language-plaintext">css/
+/* Basis-Styles */
+@layer base {
+    body {
+        font-family: var(--font-base);
+        line-height: 1.6;
+    }
+    
+    a {
+        color: var(--color-primary);
+    }
+}
+
+/* Komponenten */
+@layer components {
+    .button {
+        padding: 0.75rem 1.5rem;
+        background: var(--color-primary);
+        border-radius: 4px;
+    }
+}
+
+/* Utilities überschreiben alles */
+@layer utilities {
+    .hidden { display: none !important; }
+    .text-center { text-align: center; }
+}</code></pre>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Warum Layers?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><strong>Spezifität wird ignoriert:</strong> Ein Selektor in <code>utilities</code>
+                                    gewinnt gegen <code>components</code>, egal wie spezifisch</li>
+                                <li><strong>Reihenfolge im Code egal:</strong> Du kannst Layers überall definieren</li>
+                                <li><strong>Kein Build-Prozess:</strong> Funktioniert nativ im Browser</li>
+                                <li><strong>Browser-Support:</strong> Alle modernen Browser seit 2022 (Chrome 99+,
+                                    Firefox 97+, Safari 15.4+)</li>
+                            </ul>
+                        </div>
+
+                        <h3 id="layers-vs-itcss">Layers vs. ITCSS</h3>
+                        <p>CSS Layers sind quasi <strong>ITCSS nativ im Browser</strong>. Der Unterschied:</p>
+
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h4 class="no-toc">ITCSS</h4>
+                                <ul class="arrow-list">
+                                    <li>Konvention – du musst dich dran halten</li>
+                                    <li>Reihenfolge im Code entscheidend</li>
+                                    <li>Funktioniert überall</li>
+                                </ul>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <h4 class="no-toc">@layer</h4>
+                                <ul class="arrow-list">
+                                    <li>Browser erzwingt die Reihenfolge</li>
+                                    <li>Reihenfolge im Code egal</li>
+                                    <li>Braucht moderne Browser</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Vergleichstabelle -->
+                    <section class="tutorials-content">
+                        <h2 id="vergleich-welche-methode-passt-zu-dir">Vergleich: Welche Methode passt zu dir?</h2>
+
+                        <div class="table-wrapper">
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Methode</th>
+                                        <th>Lernkurve</th>
+                                        <th>Build-Tools</th>
+                                        <th>Projekt­größe</th>
+                                        <th>Ideal für</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Dateiaufteilung</strong></td>
+                                        <td>★</td>
+                                        <td>Nein</td>
+                                        <td>Klein–Mittel</td>
+                                        <td>Einsteiger, einfache Projekte</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>BEM</strong></td>
+                                        <td>★★</td>
+                                        <td>Nein</td>
+                                        <td>Alle</td>
+                                        <td>Teams, langlebige Projekte</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ITCSS</strong></td>
+                                        <td>★★★</td>
+                                        <td>Optional</td>
+                                        <td>Mittel–Groß</td>
+                                        <td>Enterprise, große Teams</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sass/SCSS</strong></td>
+                                        <td>★★</td>
+                                        <td>Ja</td>
+                                        <td>Mittel–Groß</td>
+                                        <td>Komplexe Styles, DRY-Code</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>CSS-in-JS</strong></td>
+                                        <td>★★★</td>
+                                        <td>Ja</td>
+                                        <td>Mittel–Groß</td>
+                                        <td>React/Vue/Svelte Apps</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Tailwind</strong></td>
+                                        <td>★★</td>
+                                        <td>Ja</td>
+                                        <td>Alle</td>
+                                        <td>Schnelles Prototyping, Teams</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>CSS Layers</strong></td>
+                                        <td>★★</td>
+                                        <td>Nein</td>
+                                        <td>Alle</td>
+                                        <td>Moderne Browser, ITCSS-Alternative</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Empfehlung für DevPanicZone -->
+                    <section class="tutorials-content">
+                        <h2 id="beispiel-dpz">Beispiel: Mein Projekt</h2>
+                        <p>Basierend auf dem, was ich bereits habe und wo ich hin will.</p>
+
+                        <h3 class="no-toc">Kurzfristig: Dateiaufteilung erweitern: check
+                            <svg class="icon icon--inline icon-green">
+                                <use href="#dpz-check-inline"></use>
+                            </svg>
+                        </h3>
+                        <p>Meine Basis mit getrennten Dateien ist bereits übersichtlich.</p>
+                        <pre><code class="language-plaintext">css/
 ├── style.css         /* Nur noch: Reset, Typography, Base */
-├── layout.css        /* NEU: Header, Footer, Grid, Container */
+├── layout.css        /* Header, Footer, Grid, Container */
 ├── components.css    /* Buttons, Cards, Info-Boxes */
 ├── tutorials.css     /* Bleibt: Tutorial-spezifische Styles */
 ├── sidebar.css       /* Bleibt */
 └── utilities.css     /* Bleibt */</code></pre>
 
-                            <h3 id="mittelfristig-bem-fuer-neue-komponenten">Mittelfristig: BEM für neue Komponenten
-                            </h3>
-                            <p>Wenn ich neue Komponenten brauche, nutze ich BEM-Konventionen:</p>
-                            <pre><code class="language-css">/* Statt */
+                        <h3 id="mittelfristig-bem-fuer-neue-komponenten">Mittelfristig: BEM für neue Komponenten
+                        </h3>
+                        <p>Wenn ich neue Komponenten brauche, nutze ich BEM-Konventionen:</p>
+                        <pre><code class="language-css">/* Statt */
 .info-box { }
 .info-box p { }
 .info-box.warning { }
@@ -1702,46 +1786,48 @@ function Card({ title }) {
 .info-box__content { }
 .info-box--warning { }</code></pre>
 
-                            <h3 id="langfristig-optional-sassscss">Langfristig: Optional Sass/SCSS</h3>
-                            <p>Wenn ich merke, dass ich viele Mixins oder komplexe Verschachtelungen brauche, ist Sass
-                                der
-                                logische nächste Schritt. Aber: Modernes CSS kann mittlerweile sehr viel – natives
-                                Nesting
-                                kommt!</p>
+                        <h3 class="no-toc">Langfristig: Optional Sass/SCSS</h3>
+                        <p>Wenn ich merke, dass ich viele Mixins oder komplexe Verschachtelungen brauche, ist Sass
+                            der
+                            logische nächste Schritt. Aber: Modernes CSS kann mittlerweile sehr viel – natives
+                            Nesting
+                            kommt!</p>
 
-                        </section>
+                    </section>
 
-                        <!-- Fazit -->
-                        <section class="tutorials-content">
-                            <h2 id="fazit">Fazit</h2>
-                            <p>Es gibt keine "beste" Methode – nur die richtige für dein Projekt. Die wichtigsten
-                                Takeaways:
+                    <!-- Fazit -->
+                    <section class="tutorials-content">
+                        <h2 id="fazit">Fazit</h2>
+                        <p>Es gibt keine "beste" Methode – nur die richtige für dein Projekt. Die wichtigsten
+                            Takeaways:
+                        </p>
+
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><strong>Dateiaufteilung</strong> ist der einfachste erste Schritt</li>
+                            <li><strong>BEM</strong> löst Namenskonflikte und Spezifitätsprobleme</li>
+                            <li><strong>ITCSS</strong> gibt dir eine Architektur für große Projekte</li>
+                            <li><strong>Sass/SCSS</strong> macht CSS mächtiger, braucht aber Build-Tools</li>
+                            <li><strong>CSS-in-JS</strong> ist perfekt für komponentenbasierte Frameworks</li>
+                            <li><strong>Tailwind</strong> eliminiert CSS fast komplett – wenn du das magst</li>
+                            <li><strong>CSS Layers</strong> sind die native Zukunft der CSS-Organisation</li>
+
+                        </ul>
+
+                        <p>Und das Wichtigste: Jeder kämpft mit CSS-Organisation. Du bist in guter Gesellschaft!</p>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Wichtig
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Du musst nicht alles auf einmal ändern! Refactoring im laufenden Betrieb – neue
+                                Komponenten nach neuen Regeln, alte nach und nach migrieren.
                             </p>
+                        </div>
+                    </section>
 
-                            <ul class="arrow-list grid-2col-bg">
-                                <li><strong>Dateiaufteilung</strong> ist der einfachste erste Schritt</li>
-                                <li><strong>BEM</strong> löst Namenskonflikte und Spezifitätsprobleme</li>
-                                <li><strong>ITCSS</strong> gibt dir eine Architektur für große Projekte</li>
-                                <li><strong>Sass/SCSS</strong> macht CSS mächtiger, braucht aber Build-Tools</li>
-                                <li><strong>CSS-in-JS</strong> ist perfekt für komponentenbasierte Frameworks</li>
-                                <li><strong>Tailwind</strong> eliminiert CSS fast komplett – wenn du das magst</li>
-                            </ul>
-
-                            <p>Und das Wichtigste: Jeder kämpft mit CSS-Organisation. Du bist in guter Gesellschaft!</p>
-
-                            <div class="info-box">
-                                <strong class="box-title no-toc">Wichtig
-                                    <svg class="icon-ui">
-                                        <use href="#dpz-info-circle"></use>
-                                    </svg>
-                                </strong>
-                                <p>Du musst nicht alles auf einmal ändern! Refactoring im laufenden Betrieb – neue
-                                    Komponenten nach neuen Regeln, alte nach und nach migrieren.
-                                </p>
-                            </div>
-                        </section>
-
-                        <!-- Latest-Tutorials-Start -->
+                    <!-- Latest-Tutorials-Start -->
                 <section class="categories">
                     <h2 id="mehr-aus-css">Mehr aus CSS</h2>
                     <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
@@ -1751,9 +1837,9 @@ function Card({ title }) {
                 </section>
                 <!-- Latest-Tutorials-End -->
 
-                        <!-- Prev/Next Navigation -->
-                        <section class="tutorials-content">
-                            <nav class="tutorial-nav">
+                    <!-- Prev/Next Navigation -->
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav">
         <div class="tutorial-nav-prev">
             <a href="/tutorials/css/css-basics/css-navigation-states.html">
                 <span class="tutorial-nav-label">← Vorheriges</span>
@@ -1761,13 +1847,13 @@ function Card({ title }) {
                 <span class="tutorial-nav-category is-new">CSS Basics</span>
             </a>
         </div><div class="tutorial-nav-next"></div></nav>
-                        </section>
+                    </section>
 
-                    </div> <!-- Wrapper .container -->
+                </div> <!-- Wrapper .container -->
 
-                </div> <!-- Tutorial Layout -->
+            </div> <!-- Tutorial Layout -->
 
-            </div>
+            
         </main>
 
         <!-- Footer-Start -->
@@ -1792,6 +1878,8 @@ function Card({ title }) {
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 
