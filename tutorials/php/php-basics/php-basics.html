@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="de">
-
-    <head>
+<!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description"
-            content="PHP Grundlagen: die Basics von PHP - von der Installation über Variablen und Datentypen bis zu einfachen Funktionen. Verständlich erklärt mit praktischen Beispielen.">
-        <meta name="keywords"
-            content="PHP, PHP lernen, PHP Anfänger, PHP Tutorial, PHP Grundlagen, PHP Variablen, PHP Arrays, PHP Funktionen, PHP Schleifen, PHP if else, serverseitige Programmierung, Webentwicklung, XAMPP, PHP echo, PHP Formulare, htmlspecialchars">
+        <meta name="description" content="PHP Grundlagen: die Basics von PHP - von der Installation über Variablen und Datentypen bis zu einfachen Funktionen. Verständlich erklärt mit praktischen Beispielen.">
+        <meta name="keywords" content="PHP, PHP lernen, PHP Anfänger, PHP Tutorial, PHP Grundlagen, PHP Variablen, PHP Arrays, PHP Funktionen, PHP Schleifen, PHP if else, serverseitige Programmierung, Webentwicklung, XAMPP, PHP echo, PHP Formulare, htmlspecialchars">
         <meta name="author" content="DevPanicZone">
         <title>PHP Basics - Die Grundlagen | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -21,149 +16,146 @@
 
     <body>
         <!-- Header-Start -->
-        <header class="site-header">
-            <div class="container">
-                <div class="header-content">
-                    <div class="brand">
-                        <a href="/" class="brand-link">
-                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                            <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                        </a>
-                    </div>
-
-                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                        <span class="theme-icon">
-                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                        </span>
-                    </button>
-
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                        <span class="hamburger"></span>
-                    </button>
-
-                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                        <ul class="nav-list">
-                            <li><a href="/" class="nav-link">Home</a></li>
-                            <li class="nav-item-dropdown">
-                                <button class="nav-link dropdown-toggle" aria-expanded="false">
-                                    Tutorials
-                                    <span class="dropdown-icon">▾</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <!-- Main-Nav-Start -->
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/html/" class="nav-link">
-                                            HTML
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/css/" class="nav-link">
-                                            CSS
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/javascript/" class="nav-link">
-                                            JavaScript
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
-                                            </li>
-                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
-                                                    Projects</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/php/" class="nav-link">
-                                            PHP
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/misc/" class="nav-link">
-                                            Verschiedenes
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                                            DevPanicZone!
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Main-Nav-End -->
-                                </ul>
-                            </li>
-                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-
-                            <!-- Search Toggle -->
-                            <li>
-                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                                    <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                        <path
-                                            d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
-                                    </svg>
-                                </button>
-                            </li>
-                        </ul>
-
-                        <!-- Search Dropdown -->
-                        <div class="search-dropdown" id="searchDropdown" hidden>
-                            <div class="search-input-group">
-                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                    <path
-                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
-                                </svg>
-                                <input type="search" id="globalSearch" class="search-input"
-                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
-                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                            </div>
-
-                            <div class="search-results" id="searchResults" hidden>
-                                <div class="search-results-list" id="searchResultsList"></div>
-                                <div class="search-results-footer">
-                                    <button class="search-view-all" id="searchViewAll">
-                                        Alle Ergebnisse anzeigen →
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
             </div>
-        </header>
-        <!-- Header-End -->
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
 
         <main class="site-main">
 
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
-                            class="breadcrumb-separator">›</span><a href="/tutorials/php/"
-                            class="breadcrumb-link">PHP</a><span class="breadcrumb-separator">›</span><span
-                            class="breadcrumb-current">PHP Basics - Die Grundlagen</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/php/" class="breadcrumb-link">PHP</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">PHP Basics - Die Grundlagen</span></nav>
                     <h1 class="hero-title">PHP Basics - Die Grundlagen</h1>
                     <p class="hero-subtitle">Von "Was ist PHP?" bis zu deinem ersten funktionierenden Code. Easy,
                         verständlich und sicher.</p>
@@ -171,8 +163,7 @@
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
-                title="Auf dieser Seite">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
                 <span class="toggle-icon">☰</span>
             </button>
 
@@ -201,111 +192,74 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                            <li class="toc-level-1"><a href="#was-ist-php-ueberhaupt">Was ist PHP überhaupt?</a></li>
-                            <li class="toc-level-2"><a href="#was-kannst-du-mit-php-machen">Was kannst du mit PHP
-                                    machen?</a></li>
-                            <li class="toc-level-1"><a href="#php-zum-laufen-bringen">PHP zum Laufen bringen</a></li>
-                            <li class="toc-level-2"><a href="#optionen-fuer-lokale-entwicklung">Optionen für lokale
-                                    Entwicklung</a></li>
-                            <li class="toc-level-1"><a href="#dein-erstes-php-programm">Dein erstes PHP-Programm</a>
-                            </li>
-                            <li class="toc-level-2"><a href="#php-tags-der-anfang-und-das-ende">PHP-Tags: Der Anfang und
-                                    das Ende</a></li>
-                            <li class="toc-level-2"><a href="#hello-world-beispiel">Hello World Beispiel</a></li>
-                            <li class="toc-level-1"><a href="#kommentare-in-php">Kommentare in PHP</a></li>
-                            <li class="toc-level-1"><a href="#variablen-in-php">Variablen in PHP</a></li>
-                            <li class="toc-level-2"><a href="#variablen-erstellen">Variablen erstellen</a></li>
-                            <li class="toc-level-2"><a href="#strings-zusammenfuegen-concatenation">Strings
-                                    zusammenfügen (Concatenation)</a></li>
-                            <li class="toc-level-1"><a href="#datentypen">Datentypen</a></li>
-                            <li class="toc-level-2"><a href="#type-juggling-automatische-typumwandlung">Type Juggling
-                                    (Automatische Typumwandlung)</a></li>
-                            <li class="toc-level-1"><a href="#arrays-listen-von-werten">Arrays - Listen von Werten</a>
-                            </li>
-                            <li class="toc-level-2"><a href="#einfaches-array-numerisch-indiziert">Einfaches Array
-                                    (numerisch indiziert)</a></li>
-                            <li class="toc-level-2"><a href="#assoziatives-array-mit-benannten-keys">Assoziatives Array
-                                    (mit benannten Keys)</a></li>
-                            <li class="toc-level-2"><a href="#mehrdimensionale-arrays">Mehrdimensionale Arrays</a></li>
-                            <li class="toc-level-2"><a href="#array-durchlaufen">Array durchlaufen</a></li>
-                            <li class="toc-level-1"><a href="#operatoren">Operatoren</a></li>
-                            <li class="toc-level-2"><a href="#arithmetische-operatoren">Arithmetische Operatoren</a>
-                            </li>
-                            <li class="toc-level-2"><a href="#vergleichsoperatoren">Vergleichsoperatoren</a></li>
-                            <li class="toc-level-2"><a href="#logische-operatoren">Logische Operatoren</a></li>
-                            <li class="toc-level-2"><a href="#string-operatoren">String-Operatoren</a></li>
-                            <li class="toc-level-1"><a href="#bedingungen-if-else-elseif">Bedingungen: if, else,
-                                    elseif</a></li>
-                            <li class="toc-level-2"><a href="#einfaches-if">Einfaches if</a></li>
-                            <li class="toc-level-2"><a href="#if-else">if-else</a></li>
-                            <li class="toc-level-2"><a href="#if-elseif-else">if-elseif-else</a></li>
-                            <li class="toc-level-2"><a href="#switch-case-fuer-viele-bedingungen">Switch-Case (für viele
-                                    Bedingungen)</a></li>
-                            <li class="toc-level-1"><a href="#schleifen-code-wiederholen">Schleifen: Code
-                                    wiederholen</a></li>
-                            <li class="toc-level-2"><a href="#while-schleife">while-Schleife</a></li>
-                            <li class="toc-level-2"><a href="#do-while-schleife">do-while-Schleife</a></li>
-                            <li class="toc-level-2"><a href="#for-schleife">for-Schleife</a></li>
-                            <li class="toc-level-2"><a href="#foreach-schleife-fuer-arrays">foreach-Schleife (für
-                                    Arrays)</a></li>
-                            <li class="toc-level-2"><a href="#break-und-continue">break und continue</a></li>
-                            <li class="toc-level-1"><a href="#funktionen-code-wiederverwenden">Funktionen: Code
-                                    wiederverwenden</a></li>
-                            <li class="toc-level-2"><a href="#einfache-funktion">Einfache Funktion</a></li>
-                            <li class="toc-level-2"><a href="#funktion-mit-parametern">Funktion mit Parametern</a></li>
-                            <li class="toc-level-2"><a href="#funktion-mit-rueckgabewert">Funktion mit Rückgabewert</a>
-                            </li>
-                            <li class="toc-level-2"><a href="#standardwerte-fuer-parameter">Standardwerte für
-                                    Parameter</a></li>
-                            <li class="toc-level-2"><a href="#type-declarations-empfohlen">Type Declarations
-                                    (empfohlen!)</a></li>
-                            <li class="toc-level-1"><a href="#wichtige-sicherheitsgrundlagen">Wichtige
-                                    Sicherheitsgrundlagen</a></li>
-                            <li class="toc-level-2"><a href="#nutzereingaben-immer-bereinigen">Nutzereingaben IMMER
-                                    bereinigen</a></li>
-                            <li class="toc-level-2"><a href="#formulardaten-sicher-empfangen">Formulardaten sicher
-                                    empfangen</a></li>
-                            <li class="toc-level-2"><a href="#passwoerter-niemals-im-klartext-speichern">Passwörter
-                                    niemals im Klartext speichern</a></li>
-                            <li class="toc-level-1"><a href="#dateien-einbinden-include-und-require">Dateien einbinden:
-                                    include und require</a></li>
-                            <li class="toc-level-2"><a href="#die-vier-varianten">Die vier Varianten</a></li>
-                            <li class="toc-level-2"><a href="#praktisches-beispiel">Praktisches Beispiel</a></li>
-                            <li class="toc-level-1"><a href="#superglobals-vordefinierte-variablen">Superglobals:
-                                    Vordefinierte Variablen</a></li>
-                            <li class="toc-level-2"><a href="#die-wichtigsten-superglobals">Die wichtigsten
-                                    Superglobals</a></li>
-                            <li class="toc-level-1"><a
-                                    href="#praktisches-beispiel-einfaches-kontaktformular">Praktisches Beispiel:
-                                    Einfaches
-                                    Kontaktformular</a></li>
-                            <li class="toc-level-1"><a href="#nuetzliche-php-funktionen-fuer-den-alltag">Nützliche
-                                    PHP-Funktionen für den Alltag</a></li>
-                            <li class="toc-level-2"><a href="#string-funktionen">String-Funktionen</a></li>
-                            <li class="toc-level-2"><a href="#array-funktionen">Array-Funktionen</a></li>
-                            <li class="toc-level-2"><a href="#datum-und-zeit">Datum und Zeit</a></li>
-                            <li class="toc-level-2"><a href="#mathematische-funktionen">Mathematische Funktionen</a>
-                            </li>
-                            <li class="toc-level-1"><a href="#best-practices-fuer-sauberen-php-code">Best Practices für
-                                    sauberen PHP-Code</a></li>
-                            <li class="toc-level-2"><a href="#1-nutze-aussagekraeftige-variablennamen">1. Nutze
-                                    aussagekräftige Variablennamen</a></li>
-                            <li class="toc-level-2"><a href="#2-verwende-konstanten-fuer-feste-werte">2. Verwende
-                                    Konstanten für feste Werte</a></li>
-                            <li class="toc-level-2"><a href="#3-aktiviere-error-reporting-waehrend-der-entwicklung">3.
-                                    Aktiviere Error Reporting
-                                    während
-                                    der Entwicklung</a></li>
-                            <li class="toc-level-2"><a href="#4-nutze-type-declarations">4. Nutze Type Declarations</a>
-                            </li>
-                            <li class="toc-level-2"><a href="#5-verwende-immer-statt-">5. Verwende immer === statt
-                                    ==</a></li>
-                            <li class="toc-level-2"><a href="#6-nutze-den-null-coalescing-operator">6. Nutze den Null
-                                    Coalescing Operator</a></li>
-                            <li class="toc-level-1"><a href="#zusammenfassung-das-hast-du-gelernt">Zusammenfassung: Das
-                                    hast du gelernt</a></li>
-                            <li class="toc-level-1"><a href="#mehr-aus-php">Mehr aus PHP</a></li>
-                            <!-- Sidebar-Anchor-End -->
+                    <li class="toc-level-1"><a href="#was-ist-php-ueberhaupt">Was ist PHP überhaupt?</a></li>
+                    <li class="toc-level-2"><a href="#was-kannst-du-mit-php-machen">Was kannst du mit PHP machen?</a></li>
+                    <li class="toc-level-1"><a href="#php-zum-laufen-bringen">PHP zum Laufen bringen</a></li>
+                    <li class="toc-level-2"><a href="#optionen-fuer-lokale-entwicklung">Optionen für lokale Entwicklung</a></li>
+                    <li class="toc-level-1"><a href="#dein-erstes-php-programm">Dein erstes PHP-Programm</a></li>
+                    <li class="toc-level-2"><a href="#php-tags-der-anfang-und-das-ende">PHP-Tags: Der Anfang und das Ende</a></li>
+                    <li class="toc-level-2"><a href="#hello-world-beispiel">Hello World Beispiel</a></li>
+                    <li class="toc-level-1"><a href="#kommentare-in-php">Kommentare in PHP</a></li>
+                    <li class="toc-level-1"><a href="#variablen-in-php">Variablen in PHP</a></li>
+                    <li class="toc-level-2"><a href="#variablen-erstellen">Variablen erstellen</a></li>
+                    <li class="toc-level-2"><a href="#strings-zusammenfuegen-concatenation">Strings zusammenfügen (Concatenation)</a></li>
+                    <li class="toc-level-1"><a href="#datentypen">Datentypen</a></li>
+                    <li class="toc-level-2"><a href="#type-juggling-automatische-typumwandlung">Type Juggling (Automatische Typumwandlung)</a></li>
+                    <li class="toc-level-1"><a href="#arrays-listen-von-werten">Arrays - Listen von Werten</a></li>
+                    <li class="toc-level-2"><a href="#einfaches-array-numerisch-indiziert">Einfaches Array (numerisch indiziert)</a></li>
+                    <li class="toc-level-2"><a href="#assoziatives-array-mit-benannten-keys">Assoziatives Array (mit benannten Keys)</a></li>
+                    <li class="toc-level-2"><a href="#mehrdimensionale-arrays">Mehrdimensionale Arrays</a></li>
+                    <li class="toc-level-2"><a href="#array-durchlaufen">Array durchlaufen</a></li>
+                    <li class="toc-level-1"><a href="#operatoren">Operatoren</a></li>
+                    <li class="toc-level-2"><a href="#arithmetische-operatoren">Arithmetische Operatoren</a></li>
+                    <li class="toc-level-2"><a href="#vergleichsoperatoren">Vergleichsoperatoren</a></li>
+                    <li class="toc-level-2"><a href="#logische-operatoren">Logische Operatoren</a></li>
+                    <li class="toc-level-2"><a href="#string-operatoren">String-Operatoren</a></li>
+                    <li class="toc-level-1"><a href="#bedingungen-if-else-elseif">Bedingungen: if, else, elseif</a></li>
+                    <li class="toc-level-2"><a href="#einfaches-if">Einfaches if</a></li>
+                    <li class="toc-level-2"><a href="#if-else">if-else</a></li>
+                    <li class="toc-level-2"><a href="#if-elseif-else">if-elseif-else</a></li>
+                    <li class="toc-level-2"><a href="#switch-case-fuer-viele-bedingungen">Switch-Case (für viele Bedingungen)</a></li>
+                    <li class="toc-level-1"><a href="#schleifen-code-wiederholen">Schleifen: Code wiederholen</a></li>
+                    <li class="toc-level-2"><a href="#while-schleife">while-Schleife</a></li>
+                    <li class="toc-level-2"><a href="#do-while-schleife">do-while-Schleife</a></li>
+                    <li class="toc-level-2"><a href="#for-schleife">for-Schleife</a></li>
+                    <li class="toc-level-2"><a href="#foreach-schleife-fuer-arrays">foreach-Schleife (für Arrays)</a></li>
+                    <li class="toc-level-2"><a href="#break-und-continue">break und continue</a></li>
+                    <li class="toc-level-1"><a href="#funktionen-code-wiederverwenden">Funktionen: Code wiederverwenden</a></li>
+                    <li class="toc-level-2"><a href="#einfache-funktion">Einfache Funktion</a></li>
+                    <li class="toc-level-2"><a href="#funktion-mit-parametern">Funktion mit Parametern</a></li>
+                    <li class="toc-level-2"><a href="#funktion-mit-rueckgabewert">Funktion mit Rückgabewert</a></li>
+                    <li class="toc-level-2"><a href="#standardwerte-fuer-parameter">Standardwerte für Parameter</a></li>
+                    <li class="toc-level-2"><a href="#type-declarations-empfohlen">Type Declarations (empfohlen!)</a></li>
+                    <li class="toc-level-1"><a href="#wichtige-sicherheitsgrundlagen">Wichtige Sicherheitsgrundlagen</a></li>
+                    <li class="toc-level-2"><a href="#nutzereingaben-immer-bereinigen">Nutzereingaben IMMER bereinigen</a></li>
+                    <li class="toc-level-2"><a href="#formulardaten-sicher-empfangen">Formulardaten sicher empfangen</a></li>
+                    <li class="toc-level-2"><a href="#passwoerter-niemals-im-klartext-speichern">Passwörter niemals im Klartext speichern</a></li>
+                    <li class="toc-level-1"><a href="#dateien-einbinden-include-und-require">Dateien einbinden: include und require</a></li>
+                    <li class="toc-level-2"><a href="#die-vier-varianten">Die vier Varianten</a></li>
+                    <li class="toc-level-2"><a href="#praktisches-beispiel">Praktisches Beispiel</a></li>
+                    <li class="toc-level-1"><a href="#superglobals-vordefinierte-variablen">Superglobals: Vordefinierte Variablen</a></li>
+                    <li class="toc-level-2"><a href="#die-wichtigsten-superglobals">Die wichtigsten Superglobals</a></li>
+                    <li class="toc-level-1"><a href="#praktisches-beispiel-einfaches-kontaktformular">Praktisches Beispiel: Einfaches
+                            Kontaktformular</a></li>
+                    <li class="toc-level-1"><a href="#nuetzliche-php-funktionen-fuer-den-alltag">Nützliche PHP-Funktionen für den Alltag</a></li>
+                    <li class="toc-level-2"><a href="#string-funktionen">String-Funktionen</a></li>
+                    <li class="toc-level-2"><a href="#array-funktionen">Array-Funktionen</a></li>
+                    <li class="toc-level-2"><a href="#datum-und-zeit">Datum und Zeit</a></li>
+                    <li class="toc-level-2"><a href="#mathematische-funktionen">Mathematische Funktionen</a></li>
+                    <li class="toc-level-1"><a href="#best-practices-fuer-sauberen-php-code">Best Practices für sauberen PHP-Code</a></li>
+                    <li class="toc-level-2"><a href="#1-nutze-aussagekraeftige-variablennamen">1. Nutze aussagekräftige Variablennamen</a></li>
+                    <li class="toc-level-2"><a href="#2-verwende-konstanten-fuer-feste-werte">2. Verwende Konstanten für feste Werte</a></li>
+                    <li class="toc-level-2"><a href="#3-aktiviere-error-reporting-waehrend-der-entwicklung">3. Aktiviere Error Reporting
+                            während
+                            der Entwicklung</a></li>
+                    <li class="toc-level-2"><a href="#4-nutze-type-declarations">4. Nutze Type Declarations</a></li>
+                    <li class="toc-level-2"><a href="#5-verwende-immer-statt-">5. Verwende immer === statt ==</a></li>
+                    <li class="toc-level-2"><a href="#6-nutze-den-null-coalescing-operator">6. Nutze den Null Coalescing Operator</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung-das-hast-du-gelernt">Zusammenfassung: Das hast du gelernt</a></li>
+                    <li class="toc-level-1"><a href="#mehr-aus-php">Mehr aus PHP</a></li>
+                    <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -321,11 +275,10 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                            <li class="sidebar-group-title">PHP Basics</li>
-                            <li><a href="/tutorials/php/php-basics/php-basics.html" class="active">PHP Basics - Die
-                                    Grundlagen</a></li>
-                            <li><a href="/tutorials/php/php-basics/php-security.html">PHP Sicherheit</a></li>
-                        </ul>
+                    <li class="sidebar-group-title">PHP Basics</li>
+                    <li><a href="/tutorials/php/php-basics/php-basics.html" class="active">PHP Basics - Die Grundlagen</a></li>
+                    <li><a href="/tutorials/php/php-basics/php-security.html">PHP Sicherheit</a></li>
+                </ul>
                     </div>
                 </aside>
 
@@ -345,7 +298,7 @@
                         <div class="info-box">
                             <strong class="box-title no-toc">Was heißt "serverseitig"?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Das bedeutet, dass PHP-Code auf dem <strong>Server</strong> ausgeführt wird, bevor die
@@ -367,7 +320,7 @@
                         <div class="info-box warning">
                             <strong class="box-title warning no-toc">Wichtig für Anfänger
                                 <svg class="icon-ui">
-                                    <use href="#dpz-warning-circle" />
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p>PHP kann sehr mächtig sein - aber auch gefährlich, wenn du Sicherheitsaspekte ignorierst.
@@ -415,8 +368,7 @@
                                     <span class="code-lang">PHP</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -434,7 +386,7 @@ php -S localhost:8000</code></pre>
                         <div class="info-box">
                             <strong class="box-title no-toc">Wo speichere ich meine PHP-Dateien?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -477,7 +429,7 @@ php -S localhost:8000</code></pre>
                         <div class="info-box">
                             <strong class="box-title no-toc">Die PHP-Tags im Detail
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -527,7 +479,7 @@ php -S localhost:8000</code></pre>
                         <div class="info-box">
                             <strong class="box-title no-toc">Was passiert hier?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -541,7 +493,7 @@ php -S localhost:8000</code></pre>
                         <div class="info-box warning">
                             <strong class="box-title warning no-toc">Sicherheitshinweis
                                 <svg class="icon-ui">
-                                    <use href="#dpz-warning-circle" />
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p>Wenn du Nutzereingaben ausgibst (z.B. aus Formularen), nutze <strong>NIEMALS</strong>
@@ -619,7 +571,7 @@ echo "Hallo, " . $name . "!"; // Gibt "Hallo, Leo!" aus
                             <strong class="box-title no-toc">Wichtige Regeln für
                                 Variablennamen
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -732,7 +684,7 @@ echo $text + 5;   // Gibt 15 aus (PHP nimmt die 10 am Anfang)
                         <div class="info-box warning">
                             <strong class="box-title warning no-toc">Vorsicht mit automatischer Typumwandlung!
                                 <svg class="icon-ui">
-                                    <use href="#dpz-warning-circle" />
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p>Die automatische Typumwandlung kann praktisch sein, aber auch zu Bugs führen. Achte
@@ -782,7 +734,7 @@ echo count($farben); // Gibt 4 aus
                         <div class="info-box">
                             <strong class="box-title no-toc">Wichtig: Der Index beginnt bei 0!
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>In der Programmierung beginnt man beim Zählen fast immer bei 0 statt bei 1</p>
@@ -948,7 +900,7 @@ var_dump($a &lt;= 4);   // false
                             <strong class="box-title warning no-toc"><span>Wichtig: <code>==</code> vs.
                                     <code>===</code></span>
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -1125,7 +1077,7 @@ switch ($tag) {
                         <div class="info-box">
                             <strong class="box-title no-toc">Das break-Keyword
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Das <code>break</code> in jedem <code>case</code> ist wichtig! Ohne <code>break</code>
@@ -1396,7 +1348,7 @@ echo addiere(5, 3); // 8
                         <div class="info-box">
                             <strong class="box-title no-toc">Strict Types aktivieren
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Füge am Anfang deiner PHP-Datei hinzu:</p>
@@ -1405,8 +1357,7 @@ echo addiere(5, 3); // 8
                                     <span class="code-lang">PHP</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1434,7 +1385,7 @@ declare(strict_types=1);
                         <div class="info-box">
                             <strong class="box-title no-toc">Strict Types aktivieren
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Füge am Anfang deiner PHP-Datei hinzu:</p>
@@ -1443,8 +1394,7 @@ declare(strict_types=1);
                                     <span class="code-lang">PHP</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1464,7 +1414,7 @@ echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); // ✅ Immer so!
                         <div class="info-box warning">
                             <strong class="box-title warning no-toc">Warum ist das wichtig?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-warning-circle" />
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p>Ohne <code>htmlspecialchars()</code> könnte ein Nutzer JavaScript-Code eingeben, der dann
@@ -1538,14 +1488,13 @@ if (password_verify($eingabe, $hash)) {
                         <div class="info-box">
                             <strong class="box-title no-toc">Mehr zu Security
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Das sind nur die absoluten Basics! In einem separaten Tutorial werden wir tiefer in PHP
                                 Security eintauchen: SQL Injection, CSRF-Schutz, Session-Sicherheit und mehr.</p>
                             <div class="cta-content">
-                                <a href="/tutorials/php/php-basics/php-security.html" target="_blank"
-                                    class="btn btn--small btn-secondary">Zum Tutorial PHP Security ↵</a>
+                                <a href="/tutorials/php/php-basics/php-security.html" target="_blank" class="btn btn--small btn-secondary">Zum Tutorial PHP Security ↵</a>
                             </div>
                         </div>
                     </section>
@@ -1587,7 +1536,7 @@ require_once 'database.php';
                         <div class="info-box">
                             <strong class="box-title no-toc">Wann was nutzen?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -1774,7 +1723,7 @@ session_destroy();
                         <div class="info-box warning">
                             <strong class="box-title warning no-toc">Wichtig bei Superglobals
                                 <svg class="icon-ui">
-                                    <use href="#dpz-warning-circle" />
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -1909,7 +1858,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="info-box">
                             <strong class="box-title no-toc">Was passiert hier?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -2096,7 +2045,7 @@ echo sqrt(16); // 4
                                 <div class="code-header">
                                     <span class="code-lang">Gut</span>
                                     <svg class="icon-ui icon-green">
-                                        <use href="#dpz-check-circle" />
+                                        <use href="#dpz-check-circle"></use>
                                     </svg>
                                 </div>
                                 <pre><code class="language-php">&lt;?php
@@ -2110,7 +2059,7 @@ $vollstaendigeInfo = $benutzername . ", " . $alter;
                                 <div class="code-header">
                                     <span class="code-lang">Schlecht</span>
                                     <svg class="icon-ui icon-red-light">
-                                        <use href="#dpz-cross-circle" />
+                                        <use href="#dpz-cross-circle"></use>
                                     </svg>
                                 </div>
                                 <pre><code class="language-php">&lt;?php
@@ -2200,7 +2149,7 @@ $bruttoPreis = berechnePreis(100.0, 0.19); // 119.0
                                 <div class="code-header">
                                     <span class="code-lang">Gut</span>
                                     <svg class="icon-ui icon-green">
-                                        <use href="#dpz-check-circle" />
+                                        <use href="#dpz-check-circle"></use>
                                     </svg>
                                 </div>
                                 <pre><code class="language-php">&lt;?php
@@ -2220,7 +2169,7 @@ if ($zahl === $string) {
                                 <div class="code-header">
                                     <span class="code-lang">Schlecht</span>
                                     <svg class="icon-ui icon-red-light">
-                                        <use href="#dpz-cross-circle" />
+                                        <use href="#dpz-cross-circle"></use>
                                     </svg>
                                 </div>
                                 <pre><code class="language-php">&lt;?php
@@ -2242,7 +2191,7 @@ if ($zahl == $string) {
                                 <div class="code-header">
                                     <span class="code-lang">Gut</span>
                                     <svg class="icon-ui icon-green">
-                                        <use href="#dpz-check-circle" />
+                                        <use href="#dpz-check-circle"></use>
                                     </svg>
                                 </div>
                                 <pre><code class="language-php">&lt;?php
@@ -2258,7 +2207,7 @@ $name = $_GET['name'] ?? $_POST['name'] ?? 'Gast';
                                 <div class="code-header">
                                     <span class="code-lang">Schlecht</span>
                                     <svg class="icon-ui icon-red-light">
-                                        <use href="#dpz-cross-circle" />
+                                        <use href="#dpz-cross-circle"></use>
                                     </svg>
                                 </div>
                                 <pre><code class="language-php">&lt;?php
@@ -2271,7 +2220,7 @@ $name = isset($_GET['name']) ? $_GET['name'] : 'Gast';
                         <div class="info-box">
                             <strong class="box-title no-toc">Weitere Best Practices
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -2317,7 +2266,7 @@ $name = isset($_GET['name']) ? $_GET['name'] : 'Gast';
                         <div class="info-box">
                             <strong class="box-title no-toc">Wie geht's weiter?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
@@ -2337,26 +2286,23 @@ $name = isset($_GET['name']) ? $_GET['name'] : 'Gast';
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                    <section class="categories">
-                        <h2 id="mehr-aus-php">Mehr aus PHP</h2>
-                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="php">
-                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                            <p class="text-muted">Tutorials werden geladen...</p>
-                        </div>
-                    </section>
-                    <!-- Latest-Tutorials-End -->
+                <section class="categories">
+                    <h2 id="mehr-aus-php">Mehr aus PHP</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="php">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
-                        <nav class="tutorial-nav">
-                            <div class="tutorial-nav-prev"></div>
-                            <div class="tutorial-nav-next">
-                                <a href="/tutorials/php/php-basics/php-security.html">
-                                    <span class="tutorial-nav-label">Nächstes →</span>
-                                    <span class="tutorial-nav-link">PHP Sicherheit</span>
-                                    <span class="tutorial-nav-category">PHP Basics</span>
-                                </a>
-                            </div>
-                        </nav>
+                        <nav class="tutorial-nav"><div class="tutorial-nav-prev"></div><div class="tutorial-nav-next">
+            <a href="/tutorials/php/php-basics/php-security.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">PHP Sicherheit</span>
+                <span class="tutorial-nav-category">PHP Basics</span>
+            </a>
+        </div></nav>
                     </section>
 
                 </div> <!-- Wrapper .container -->
@@ -2366,24 +2312,23 @@ $name = isset($_GET['name']) ? $_GET['name'] : 'Gast';
         </main>
 
         <!-- Footer-Start -->
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-content">
-                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
-                    </p>
-                    <nav class="footer-nav" aria-label="Footer-Navigation">
-                        <a href="/impressum.html">Impressum</a>
-                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
-                    </nav>
-                </div>
-            </div>
-        </footer>
-        <button id="scrollTopBtn" title="Nach oben">↑</button>
-        <script src="/assets/js/main.js" defer></script>
-        <script src="/assets/js/search.js" defer></script>
-        <script src="/assets/js/scroll-spy.js" defer></script>
-        <script src="/assets/js/latest-tutorials.js" defer></script>
-        <!-- Footer-End -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav" aria-label="Footer-Navigation">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
@@ -2391,6 +2336,6 @@ $name = isset($_GET['name']) ? $_GET['name'] : 'Gast';
 
 
 
-    </body>
+    
 
-</html>
+</body></html>
