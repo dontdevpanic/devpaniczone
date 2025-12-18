@@ -1,8 +1,9 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Baue eine einfache ToDo-App mit JavaScript - lerne, wie du Aufgaben im Browser speicherst und bearbeitest.">
-        <meta name="keywords" content="JavaScript ToDo App, Projekt, JavaScript lernen, LocalStorage, DOM">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="JavaScript ToDo-App: Aufgaben mit localStorage speichern, filtern, suchen und sortieren. Mit Prioritäten, Tags, Drag &amp; Drop und Schritt-für-Schritt Code-Erklärung.">
+        <meta name="keywords" content="JavaScript ToDo App, localStorage Tutorial, DOM Manipulation, JavaScript Projekt, Array filter sort, Drag and Drop JavaScript, JavaScript Anfänger Projekt">
         <meta name="author" content="DevPanicZone">
         <title>ToDo-App mit JavaScript - DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -157,8 +158,8 @@
                 <div class="container">
                     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">ToDo-App mit JavaScript</span></nav>
                     <h1 class="hero-title">ToDo-App mit JavaScript</h1>
-                    <p class="hero-subtitle">Ein kleines Projekt, das komplett im Browser läuft - ohne Frameworks oder
-                        Backend!</p>
+                    <p class="hero-subtitle">Aufgaben speichern, filtern, suchen und sortieren – komplett im Browser,
+                        ohne Backend.</p>
                 </div>
             </section>
 
@@ -192,7 +193,7 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#projektüberblick">Projektüberblick</a></li>
+                    <li class="toc-level-1"><a href="#projektueberblick">Projektüberblick</a></li>
                     <li class="toc-level-1"><a href="#app-ausprobieren">App ausprobieren</a></li>
                     <li class="toc-level-2"><a href="#meine-aufgaben">Meine Aufgaben</a></li>
                     <li class="toc-level-1"><a href="#code-verstehen">Code verstehen</a></li>
@@ -216,6 +217,7 @@
                     <li class="toc-level-2"><a href="#prioritaets-filter">Erweiterter Filter: Prioritäten</a></li>
                     <li class="toc-level-2"><a href="#drag-and-drop">Drag &amp; Drop Sortierung</a></li>
                     <li class="toc-level-2"><a href="#migration">Migration: Bestehende Daten erweitern</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
                     <li class="toc-level-1"><a href="#vollstaendiger-code">Vollständiger Code</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
                     <!-- Sidebar-Anchor-End -->
@@ -251,11 +253,41 @@
                     <div class="content-wrapper">
 
                         <section class="tutorials-content">
-                            <h2 id="projektüberblick">Projektüberblick</h2>
+                            <h2 id="projektueberblick">Projektüberblick</h2>
                             <p>In diesem Tutorial erstellst du eine kleine <strong>ToDo-App</strong> mit HTML, CSS und
                                 JavaScript.
                                 Sie läuft komplett im Browser und speichert deine Aufgaben im <code class="inline">localStorage</code>.
                             </p>
+
+                            <h3 id="features" class="no-toc">Was du bauen wirst</h3>
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <ul class="arrow-list">
+                                        <li>Aufgaben hinzufügen, bearbeiten, löschen</li>
+                                        <li>Als erledigt markieren</li>
+                                        <li>Drei Prioritätsstufen mit farbiger Anzeige</li>
+                                        <li>Automatische Speicherung im Browser</li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <ul class="arrow-list">
+                                        <li>Filter: Alle / Offen / Erledigt</li>
+                                        <li>Suche mit Debounce und Highlighting</li>
+                                        <li>Tags für flexible Kategorisierung</li>
+                                        <li>Drag &amp; Drop zum Umsortieren</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h3 id="was-du-lernst" class="no-toc">Was du dabei lernst</h3>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li><code class="inline">localStorage</code> – Daten im Browser speichern</li>
+                                <li><code class="inline">JSON.stringify()</code> / <code class="inline">JSON.parse()</code> – Objekte in Text umwandeln</li>
+                                <li><code class="inline">Array.filter()</code> / <code class="inline">Array.sort()</code> – Daten filtern und sortieren</li>
+                                <li>DOM-Manipulation mit <code class="inline">createElement()</code> und <code class="inline">textContent</code></li>
+                                <li>Event Handling mit <code class="inline">addEventListener()</code></li>
+                                <li>HTML5 Drag &amp; Drop API</li>
+                            </ul>
                         </section>
 
                         <!-- ToDo App testen -->
@@ -350,12 +382,11 @@
 
                                 <div class="info-box">
                                     <strong class="box-title no-toc">Wichtig
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                            <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                            </path>
+                                        <svg class="icon-ui">
+                                            <use href="#dpz-warning-circle"></use>
                                         </svg>
                                     </strong>
-                                    <p><code>localStorage</code> kann nur <em>Text</em> speichern, keine
+                                    <p><code class="inline">localStorage</code> kann nur <em>Text</em> speichern, keine
                                         JavaScript-Objekte oder Arrays. Deshalb brauchen wir <code class="inline">JSON.stringify()</code> und
                                         <code class="inline">JSON.parse()</code> zur Umwandlung.
                                     </p>
@@ -363,11 +394,8 @@
 
                                 <div class="info-box">
                                     <strong class="box-title no-toc">Sind meine Daten sicher?
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                            <path d="M15.249,7.567c-1.381,0-2.505,1.124-2.505,2.505v.803c.73-.019,1.562-.03,2.504-.03s1.775.011,2.506.03v-.803c0-1.381-1.124-2.505-2.505-2.505Z">
-                                            </path>
-                                            <path d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM22.454,13.916v7.407c0,.303-.164.583-.431.727-1.773.956-4.166,1.542-6.775,1.542s-4.984-.585-6.755-1.542c-.266-.144-.43-.422-.431-.724l-.021-7.409.019-2.076c.002-.234.145-.445.363-.529.102-.039.23-.081.395-.124.325-.083.968-.164,1.948-.227v-.888c0-2.47,2.01-4.481,4.482-4.481s4.481,2.011,4.481,4.481v.888c.979.063,1.622.144,1.947.227.171.044.305.088.41.128.222.086.367.299.367.536v2.065Z">
-                                            </path>
+                                        <svg class="icon-ui">
+                                            <use href="#dpz-lock-circle"></use>
                                         </svg>
                                     </strong>
                                     <p>Ja! localStorage ist <em>100% privat</em>. Deine ToDos bleiben in <em>deinem</em>
@@ -612,9 +640,8 @@ const filteredTodos = todos.filter(todo =&gt; {
 
                                 <div class="info-box">
                                     <strong class="box-title no-toc">Warum ist das sicher?
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                            <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                            </path>
+                                        <svg class="icon-ui">
+                                            <use href="#dpz-info-circle"></use>
                                         </svg>
                                     </strong>
                                     <p>Das Modal-HTML enthält nur statischen Code (Labels, Inputs) - keinen User-Input.
@@ -679,9 +706,8 @@ const filteredTodos = todos.filter(todo =&gt; {
 
                                 <div class="info-box">
                                     <strong class="box-title no-toc">Warum nicht innerHTML?
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                            <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                            </path>
+                                        <svg class="icon-ui">
+                                            <use href="#dpz-info-circle"></use>
                                         </svg>
                                     </strong>
                                     <p><code class="inline">innerHTML</code> interpretiert HTML-Tags und führt sie aus.
@@ -696,11 +722,8 @@ const filteredTodos = todos.filter(todo =&gt; {
 
                                 <div class="info-box notice">
                                     <strong class="box-title notice no-toc">Wann ist innerHTML trotzdem sicher?
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                            <path d="M15.249,7.567c-1.381,0-2.505,1.124-2.505,2.505v.803c.73-.019,1.562-.03,2.504-.03s1.775.011,2.506.03v-.803c0-1.381-1.124-2.505-2.505-2.505Z">
-                                            </path>
-                                            <path d="M15.248,0C6.827,0,0,6.827,0,15.248s6.827,15.248,15.248,15.248,15.248-6.827,15.248-15.248S23.67,0,15.248,0ZM22.454,13.916v7.407c0,.303-.164.583-.431.727-1.773.956-4.166,1.542-6.775,1.542s-4.984-.585-6.755-1.542c-.266-.144-.43-.422-.431-.724l-.021-7.409.019-2.076c.002-.234.145-.445.363-.529.102-.039.23-.081.395-.124.325-.083.968-.164,1.948-.227v-.888c0-2.47,2.01-4.481,4.482-4.481s4.481,2.011,4.481,4.481v.888c.979.063,1.622.144,1.947.227.171.044.305.088.41.128.222.086.367.299.367.536v2.065Z">
-                                            </path>
+                                        <svg class="icon-ui">
+                                            <use href="#dpz-lock-circle"></use>
                                         </svg>
                                     </strong>
                                     <p>Die goldene Regel: <code class="inline">innerHTML</code> ist nur gefährlich, wenn
@@ -711,21 +734,22 @@ const filteredTodos = todos.filter(todo =&gt; {
                                         es kein Problem:
                                     </p>
                                     <ul class="arrow-list">
-                                        <li><code class="inline">todoList.innerHTML = "";</code> → <strong>Sicher <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2" aria-hidden="true">
-                                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
-                                                    </path>
-                                                </svg> </strong> nur ein leerer String</li>
+                                        <li><code class="inline">todoList.innerHTML = "";</code> → <strong>Sicher<svg class="icon icon--inline icon-green ml-sm">
+                                                    <use href="#dpz-check-inline"></use>
+                                                </svg>
+                                            </strong> nur ein leerer String</li>
                                         <li><code class="inline">btn.innerHTML = '&lt;svg&gt;...&lt;/svg&gt;';</code> →
-                                            <strong>Sicher<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" width="15" height="15" fill="var(--accent-green)" class="icon-va-y-2 ml-sm mr-sm" aria-hidden="true">
-                                                    <path d="M6.285,15c-.47,0-.919-.21-1.22-.577L.359,8.696c-.554-.674-.456-1.668.217-2.222.673-.553,1.668-.457,2.222.217l3.287,4.001L12.069.764c.449-.748,1.419-.987,2.167-.537.747.45.988,1.42.537,2.167l-7.136,11.842c-.264.439-.726.722-1.237.76-.039.002-.077.004-.115.004Z">
-                                                    </path>
-                                                </svg></strong>dein eigener SVG-Code
+                                            <strong>Sicher<svg class="icon icon--inline icon-green ml-sm">
+                                                    <use href="#dpz-check-inline"></use>
+                                                </svg>
+                                            </strong>dein eigener SVG-Code
                                         </li>
                                         <li><code class="inline">div.innerHTML = todo.text;</code> →
-                                            <strong>Gefährlich<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" class="icon-va-y-2 ml-sm mr-sm" fill="var(--accent-red)" aria-hidden="true">
-                                                    <path d="M14.516,12.177c.646.646.646,1.693,0,2.338h0c-.646.646-1.693.646-2.339,0l-4.342-4.342c-.185-.185-.484-.185-.669,0l-4.342,4.342c-.646.646-1.693.646-2.338,0h0c-.646-.646-.646-1.693,0-2.339l4.343-4.342c.185-.185.185-.484,0-.669L.484,2.823c-.646-.646-.646-1.693,0-2.338h0c.646-.646,1.693-.646,2.338,0l4.342,4.342c.185.185.484.185.669,0L12.177.484c.646-.646,1.693-.646,2.339,0h0c.646.646.646,1.693,0,2.338l-4.342,4.343c-.185.185-.185.484,0,.669l4.342,4.342Z">
-                                                    </path>
-                                                </svg></strong>User-Input!</li>
+                                            <strong>Gefährlich<svg class="icon icon--inline icon-red ml-sm">
+                                                    <use href="#dpz-cross-inline"></use>
+                                                </svg>
+                                            </strong>User-Input!
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1152,9 +1176,8 @@ filteredTodos.sort((a, b) =&gt; {
 
                                 <div class="info-box">
                                     <strong class="box-title no-toc">Warum ID statt Index?
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                            <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                            </path>
+                                        <svg class="icon-ui">
+                                            <use href="#dpz-info-circle"></use>
                                         </svg>
                                     </strong>
                                     <p>Bei Drag &amp; Drop dürfen wir nicht mit Array-Indizes arbeiten! Filter und
@@ -1210,6 +1233,38 @@ renderTodos();</code></pre>
                                     ohne dass User etwas manuell tun müssen.</p>
                             </div>
 
+                        </section>
+
+                        <section class="tutorials-content">
+                            <h2 id="zusammenfassung">Zusammenfassung</h2>
+                            <p>Du hast jetzt eine vollwertige ToDo-App gebaut! Die wichtigsten Konzepte waren:</p>
+
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Das hast du gelernt
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li><strong>localStorage:</strong> Daten im Browser speichern, die auch nach dem
+                                        Schließen erhalten bleiben</li>
+                                    <li><strong>Re-Rendering:</strong> Bei jeder Änderung die komplette Ansicht neu
+                                        aufbauen</li>
+                                    <li><strong>textContent statt innerHTML:</strong> User-Input sicher anzeigen</li>
+                                    <li><strong>Filter-Verkettung:</strong> Mehrere Filter nacheinander anwenden</li>
+                                    <li><strong>Debounce:</strong> Performance bei häufigen Events optimieren</li>
+                                    <li><strong>Migration:</strong> Bestehende Daten beim Update erweitern</li>
+                                </ul>
+                            </div>
+
+                            <h3 id="erweiterungsideen" class="no-toc">Ideen zum Weiterbauen</h3>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li>Fälligkeitsdatum mit Erinnerung</li>
+                                <li>Export/Import als JSON-Datei</li>
+                                <li>Mehrere Listen (Arbeit, Privat, Einkaufen...)</li>
+                                <li>Subtasks (Unteraufgaben)</li>
+                                <li>Keyboard-Shortcuts (Enter zum Hinzufügen, etc.)</li>
+                            </ul>
                         </section>
 
                         <!-- Vollständiger Code -->
@@ -2559,6 +2614,8 @@ renderTodos();</code></pre>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/js/js-to-do-app.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
     
 
