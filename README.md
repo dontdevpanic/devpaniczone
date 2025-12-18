@@ -2,7 +2,7 @@
 
 **Don't DevPanic. Cheat.**
 
-Eine Sammlung von Web-Development-Tutorials und Cheatsheets – entstanden als persönliches Lernprojekt und Nachschlagewerk.
+Eine Sammlung von Web-Development-Tutorials und Cheatsheets - entstanden als persönliches Lernprojekt und Nachschlagewerk.
 
 ## Über das Projekt
 
@@ -94,7 +94,7 @@ root/
 
 ## Status
 
-🚧 **Work in Progress** – Dieses Projekt wächst kontinuierlich mit meinem Lernfortschritt.
+🚧 **Work in Progress** - Dieses Projekt wächst kontinuierlich mit meinem Lernfortschritt.
 
 **Aktuell verfügbar:**
 - HTML-Grundlagen und semantische Struktur
@@ -124,7 +124,7 @@ npm run build
 
 ## Lizenz
 
-MIT – siehe [LICENSE](LICENSE) für Details.
+MIT - siehe [LICENSE](LICENSE) für Details.
 
 ---
 

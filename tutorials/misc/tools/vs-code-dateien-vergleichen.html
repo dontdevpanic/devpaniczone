@@ -2,7 +2,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="CSS-Duplikate in VS Code finden: Dateien vergleichen, doppelten Code innerhalb einer CSS-Datei erkennen und Styles sauber zusammenführen – ohne zusätzliche Tools.">
+        <meta name="description" content="CSS-Duplikate in VS Code finden: Dateien vergleichen, doppelten Code innerhalb einer CSS-Datei erkennen und Styles sauber zusammenführen - ohne zusätzliche Tools.">
         <meta name="keywords" content="VS Code CSS vergleichen, CSS Duplikate finden, CSS Refactoring VS Code, CSS Diff, Duplicate CSS Code, CSS aufräumen, VS Code Compare Files">
         <meta name="author" content="DevPanicZone">
         <title>CSS-Duplikate in VS Code finden | DevPanicZone</title>
@@ -158,7 +158,7 @@
                     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">CSS-Duplikate finden &amp; vergleichen in VS Code</span></nav>
                     <h1 class="hero-title">CSS-Duplikate finden &amp; vergleichen in VS Code</h1>
                     <p class="hero-subtitle">CSS-Dateien vergleichen, doppelten Code erkennen und Styles sauber
-                        zusammenführen – direkt in VS Code.</p>
+                        zusammenführen - direkt in VS Code.</p>
                 </div>
             </section>
 
@@ -195,17 +195,26 @@
                     <li class="toc-level-1"><a href="#warum-dieses-tutorial">Warum dieses Tutorial?</a></li>
                     <li class="toc-level-1"><a href="#begriffe-kurz-erklaert">Begriffe kurz erklärt</a></li>
                     <li class="toc-level-1"><a href="#wann-lohnt-sich-ein-vergleich">Wann lohnt sich ein Vergleich?</a></li>
-                    <li class="toc-level-1"><a href="#zwei-css-dateien-miteinander-vergleichen-diff">Zwei CSS-Dateien miteinander vergleichen (Diff)</a></li>
+                    <li class="toc-level-1"><a href="#zwei-css-dateien-miteinander-vergleichen-diff">Zwei CSS-Dateien miteinander vergleichen
+                            (Diff)</a></li>
                     <li class="toc-level-2"><a href="#vorgehen">Vorgehen</a></li>
-                    <li class="toc-level-2"><a href="#alternative-compare-ueber-die-command-palette">Alternative: Compare über die Command Palette</a></li>
-                    <li class="toc-level-1"><a href="#css-bloecke-gezielt-vergleichen-partial-diff">CSS-Blöcke gezielt vergleichen (Partial Diff)</a></li>
+                    <li class="toc-level-2"><a href="#alternative-compare-ueber-die-command-palette">Alternative: Compare über die Command
+                            Palette</a></li>
+                    <li class="toc-level-1"><a href="#css-bloecke-gezielt-vergleichen-partial-diff">CSS-Blöcke gezielt vergleichen (Partial
+                            Diff)</a></li>
                     <li class="toc-level-2"><a href="#mit-der-extension-partial-diff">Mit der Extension „Partial Diff“</a></li>
-                    <li class="toc-level-1"><a href="#duplikate-innerhalb-einer-einzigen-css-datei-finden">Duplikate innerhalb einer einzigen CSS-Datei finden</a></li>
-                    <li class="toc-level-2"><a href="#variante-a-datei-mit-sich-selbst-vergleichen-hidden-trick">Variante A: Datei mit sich selbst vergleichen (Hidden Trick)</a></li>
-                    <li class="toc-level-2"><a href="#variante-b-block-vs-block-innerhalb-der-datei-empfohlen">Variante B: Block-vs.-Block innerhalb der Datei (empfohlen)</a></li>
-                    <li class="toc-level-2"><a href="#variante-c-muster-suche-nach-typischen-properties">Variante C: Muster-Suche nach typischen Properties</a></li>
-                    <li class="toc-level-2"><a href="#variante-d-alle-gleichen-stellen-markieren">Variante D: Alle gleichen Stellen markieren</a></li>
-                    <li class="toc-level-1"><a href="#temporaerer-kommentar-workflow-refactor-hilfe">Temporärer Kommentar-Workflow (Refactor-Hilfe)</a></li>
+                    <li class="toc-level-1"><a href="#duplikate-innerhalb-einer-einzigen-css-datei-finden">Duplikate innerhalb einer einzigen
+                            CSS-Datei finden</a></li>
+                    <li class="toc-level-2"><a href="#variante-a-datei-mit-sich-selbst-vergleichen-hidden-trick">Variante
+                            A: Datei mit sich selbst vergleichen (Hidden Trick)</a></li>
+                    <li class="toc-level-2"><a href="#variante-b-block-vs-block-innerhalb-der-datei-empfohlen">Variante
+                            B: Block-vs.-Block innerhalb der Datei (empfohlen)</a></li>
+                    <li class="toc-level-2"><a href="#variante-c-muster-suche-nach-typischen-properties">Variante C:
+                            Muster-Suche nach typischen Properties</a></li>
+                    <li class="toc-level-2"><a href="#variante-d-alle-gleichen-stellen-markieren">Variante D: Alle
+                            gleichen Stellen markieren</a></li>
+                    <li class="toc-level-1"><a href="#temporaerer-kommentar-workflow-refactor-hilfe">Temporärer Kommentar-Workflow
+                            (Refactor-Hilfe)</a></li>
                     <li class="toc-level-1"><a href="#extensions-fuer-groessere-css-projekte">Extensions für größere CSS-Projekte</a></li>
                     <li class="toc-level-1"><a href="#checkliste-built-in-vs-extension">Checkliste: Built-in vs. Extension</a></li>
                     <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
@@ -249,13 +258,13 @@
                     <!-- Warum dieses Tutorial? -->
                     <section class="tutorials-content">
                         <h2 id="warum-dieses-tutorial">Warum dieses Tutorial?</h2>
-                        <p>Kennst du das? Wenn CSS-Dateien wachsen – z. B. durch mehrere Navigation-, Footer- oder
-                            Sidebar-Demos –
+                        <p>Kennst du das? Wenn CSS-Dateien wachsen - z. B. durch mehrere Navigation-, Footer- oder
+                            Sidebar-Demos -
                             schleichen sich fast automatisch doppelte Regeln ein. VS Code bringt dafür überraschend
                             viele Bordmittel mit.</p>
                         <p>Ein hilfreicher Grundsatz beim Aufräumen:
                             Jede Zeile Code sollte einen Zweck erfüllen.
-                            Was nichts mehr beiträgt, darf – nach kurzer Prüfung – auch gehen.</p>
+                            Was nichts mehr beiträgt, darf - nach kurzer Prüfung - auch gehen.</p>
                         <p>Dieses Tutorial zeigt dir <strong>praxisnah und ohne Zusatz-Tools</strong>:</p>
                         <ul class="arrow-list grid-2col-bg">
                             <li>wie du zwei CSS-Dateien miteinander vergleichst</li>
@@ -265,10 +274,11 @@
                         <div class="info-box">
                             <strong class="box-title no-toc">Bedenke
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
                                 </svg>
                             </strong>
-                            <p>Nicht jedes Duplikat ist ein Fehler – aber jedes unerkannte Duplikat
+                            <p>Nicht jedes Duplikat ist ein Fehler - aber jedes unerkannte Duplikat
                                 führt vielleicht früher oder später zu einem Fehler.</p>
                         </div>
 
@@ -309,8 +319,9 @@
 
                     <!-- Zwei CSS-Dateien miteinander vergleichen (Diff) -->
                     <section class="tutorials-content">
-                        <h2 id="zwei-css-dateien-miteinander-vergleichen-diff">Zwei CSS-Dateien miteinander vergleichen (Diff)</h2>
-                        <p>VS Code hat dafür bereits alles eingebaut – <strong>keine Extension nötig</strong>.</p>
+                        <h2 id="zwei-css-dateien-miteinander-vergleichen-diff">Zwei CSS-Dateien miteinander vergleichen
+                            (Diff)</h2>
+                        <p>VS Code hat dafür bereits alles eingebaut - <strong>keine Extension nötig</strong>.</p>
 
                         <h3 id="vorgehen">Vorgehen</h3>
                         <ol class="grid-2col-bg ml-0 pl-0">
@@ -327,10 +338,11 @@
                             <li>Unterschiede sind farblich markiert</li>
                         </ul>
 
-                        <p><strong>Identische Codezeilen bleiben unmarkiert</strong> – ideal, um Duplikate sofort zu
+                        <p><strong>Identische Codezeilen bleiben unmarkiert</strong> - ideal, um Duplikate sofort zu
                             erkennen.</p>
 
-                        <h3 id="alternative-compare-ueber-die-command-palette">Alternative: Compare über die Command Palette</h3>
+                        <h3 id="alternative-compare-ueber-die-command-palette">Alternative: Compare über die Command
+                            Palette</h3>
                         <ol class="grid-2col-bg ml-0 pl-0">
                             <li><kbd>Cmd + Shift + P</kbd> / <kbd>Strg + Shift + P</kbd></li>
                             <li>Compare Active File With…</li>
@@ -342,7 +354,8 @@
 
                     <!-- CSS-Blöcke gezielt vergleichen (Partial Diff) -->
                     <section class="tutorials-content mt-xl">
-                        <h2 id="css-bloecke-gezielt-vergleichen-partial-diff">CSS-Blöcke gezielt vergleichen (Partial Diff)</h2>
+                        <h2 id="css-bloecke-gezielt-vergleichen-partial-diff">CSS-Blöcke gezielt vergleichen (Partial
+                            Diff)</h2>
                         <p>Gerade bei Navigationen oder Komponenten ist es oft sinnvoller, nur bestimmte Blöcke zu
                             vergleichen.</p>
 
@@ -381,11 +394,13 @@
 
                     <!-- Duplikate innerhalb einer einzigen CSS-Datei finden -->
                     <section class="tutorials-content mt-xl">
-                        <h2 id="duplikate-innerhalb-einer-einzigen-css-datei-finden">Duplikate innerhalb einer einzigen CSS-Datei finden</h2>
-                        <p>Jetzt zum spannenden Teil – besonders relevant, wenn ähnliche oder wiederkehrende
+                        <h2 id="duplikate-innerhalb-einer-einzigen-css-datei-finden">Duplikate innerhalb einer einzigen
+                            CSS-Datei finden</h2>
+                        <p>Jetzt zum spannenden Teil - besonders relevant, wenn ähnliche oder wiederkehrende
                             Styles innerhalb einer Datei zusammengeführt werden sollen.</p>
 
-                        <h3 class="mt-xl pt-xxl" id="variante-a-datei-mit-sich-selbst-vergleichen-hidden-trick">Variante A: Datei mit sich selbst vergleichen (Hidden Trick)</h3>
+                        <h3 class="mt-xl pt-xxl" id="variante-a-datei-mit-sich-selbst-vergleichen-hidden-trick">Variante
+                            A: Datei mit sich selbst vergleichen (Hidden Trick)</h3>
                         <p>Ja, das geht wirklich.</p>
                         <ol class="grid-2col-bg ml-0 pl-0">
                             <li>Öffne die CSS-Datei</li>
@@ -400,7 +415,8 @@
                             </li>
                         </ul>
 
-                        <h3 class="mt-xl pt-xxl" id="variante-b-block-vs-block-innerhalb-der-datei-empfohlen">Variante B: Block-vs.-Block innerhalb der Datei (empfohlen)</h3>
+                        <h3 class="mt-xl pt-xxl" id="variante-b-block-vs-block-innerhalb-der-datei-empfohlen">Variante
+                            B: Block-vs.-Block innerhalb der Datei (empfohlen)</h3>
                         <p>Mit <strong>Partial Diff</strong> kannst du auch innerhalb derselben Datei arbeiten:</p>
                         <ol class="grid-2col-bg ml-0 pl-0">
                             <li>Markiere einen zusammenhängenden CSS-Block (inkl. Selektor und Properties)</li>
@@ -421,7 +437,8 @@
                             um ähnliche CSS-Blöcke direkt miteinander zu vergleichen, ohne komplette Dateien
                             öffnen oder durchsuchen zu müssen.</p>
 
-                        <h3 class="mt-xl pt-xxl" id="variante-c-muster-suche-nach-typischen-properties">Variante C: Muster-Suche nach typischen Properties</h3>
+                        <h3 class="mt-xl pt-xxl" id="variante-c-muster-suche-nach-typischen-properties">Variante C:
+                            Muster-Suche nach typischen Properties</h3>
                         <p>Oft wiederholen sich in CSS immer dieselben Zeilen:</p>
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
@@ -445,7 +462,8 @@
                             <li>wo sich Auslagerungen lohnen</li>
                         </ul>
 
-                        <h3 class="mt-xl pt-xxl" id="variante-d-alle-gleichen-stellen-markieren">Variante D: Alle gleichen Stellen markieren</h3>
+                        <h3 class="mt-xl pt-xxl" id="variante-d-alle-gleichen-stellen-markieren">Variante D: Alle
+                            gleichen Stellen markieren</h3>
                         <p>Sehr nützlich beim manuellen Refactoring:</p>
                         <ol class="grid-2col-bg ml-0 pl-0">
                             <li>Cursor auf eine Property setzen, z. B. <code>list-style</code></li>
@@ -461,7 +479,8 @@
 
                     <!-- Temporärer Kommentar-Workflow (Refactor-Hilfe) -->
                     <section class="tutorials-content">
-                        <h2 id="temporaerer-kommentar-workflow-refactor-hilfe">Temporärer Kommentar-Workflow (Refactor-Hilfe)</h2>
+                        <h2 id="temporaerer-kommentar-workflow-refactor-hilfe">Temporärer Kommentar-Workflow
+                            (Refactor-Hilfe)</h2>
                         <p>Gerade bei größeren oder gewachsenen Stylesheets bewährt:</p>
                         <div class="code-block">
                             <div class="code-header">
@@ -500,7 +519,7 @@ nav.demo-2 ul {
                     <!-- Extensions zum Finden doppelten Codes -->
                     <section class="tutorials-content">
                         <h2 id="extensions-fuer-groessere-css-projekte">Extensions für größere CSS-Projekte</h2>
-                        <p>Optional – vor allem bei sehr großen Dateien:</p>
+                        <p>Optional - vor allem bei sehr großen Dateien:</p>
                         <ul class="arrow-list grid-2col-bg">
                             <li>Duplicate Code Finder</li>
                             <li>CodeMetrics</li>
@@ -508,7 +527,8 @@ nav.demo-2 ul {
                         <div class="info-box">
                             <strong class="box-title no-toc">Hinweis
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
                                 </svg>
                             </strong>
                             <p>Diese Extensions arbeiten meist <strong>zeilenbasiert</strong>, nicht semantisch. Für CSS
@@ -547,7 +567,8 @@ nav.demo-2 ul {
                         <div class="info-box">
                             <strong class="box-title no-toc">Merke
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z"></path>
+                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
+                                    </path>
                                 </svg>
                             </strong>
                             <p>VS Code kann ganze Dateien von Haus aus vergleichen
@@ -579,7 +600,7 @@ nav.demo-2 ul {
                         </div>
                         <!-- <div class="grid-2col">
                             <div class="grid-2col-bg">
-                                <p>VS Code ist kein automatisches CSS-Refactoring-Tool – aber:</p>
+                                <p>VS Code ist kein automatisches CSS-Refactoring-Tool - aber:</p>
                                 <ul class="arrow-list">
                                     <li>Diff-Vergleiche</li>
                                     <li>Partial Diff</li>
@@ -601,8 +622,8 @@ nav.demo-2 ul {
 
 
                     <!-- Prev/Next Navigation -->
-                    
-                <!-- Latest-Tutorials-Start -->
+
+                    <!-- Latest-Tutorials-Start -->
                 <section class="categories">
                     <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
                     <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
@@ -612,7 +633,7 @@ nav.demo-2 ul {
                 </section>
                 <!-- Latest-Tutorials-End -->
 
-                <section class="tutorials-content">
+                    <section class="tutorials-content">
                         <nav class="tutorial-nav">
         <div class="tutorial-nav-prev">
             <a href="/tutorials/misc/tools/vs-code.html">
