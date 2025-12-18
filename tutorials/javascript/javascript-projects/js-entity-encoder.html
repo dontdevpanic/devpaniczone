@@ -1,10 +1,11 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="HTML Entity Encoder - Wandle Text in numerische HTML-Entities um. Perfekt für E-Mail-Spam-Schutz und Obfuskation. Mit Schritt-für-Schritt Code-Erklärung.">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="HTML Entity Encoder &amp; Decoder: Text in numerische Codes umwandeln für E-Mail-Spam-Schutz. Mit Code-Erklärung zu charCodeAt, RegEx und String.fromCharCode.">
+        <meta name="keywords" content="HTML Entity Encoder, Entity Decoder, Spam Schutz E-Mail, charCodeAt JavaScript, String fromCharCode, HTML Entities, Obfuskation, ASCII Code">
         <meta name="author" content="DevPanicZone">
-        <title>JavaScript: HTML Entity Encoder | DevPanicZone</title>
+        <title>HTML Entity Encoder &amp; Decoder - Spam-Schutz Tool | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -155,9 +156,10 @@
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Entity Encoder</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Entity Encoder &amp; Decoder</span></nav>
                     <h1 class="hero-title">HTML Entity Encoder</h1>
-                    <p class="hero-subtitle">Text in numerische Codes umwandeln - für Spam-Schutz und mehr.</p>
+                    <p class="hero-subtitle">Text in numerische Codes umwandeln – für E-Mail-Spam-Schutz, Datenschutz
+                        und mehr.</p>
                 </div>
             </section>
 
@@ -194,6 +196,7 @@
                     <li class="toc-level-1"><a href="#was-ist-ein-entity-encoder">Was ist ein Entity Encoder?</a></li>
                     <li class="toc-level-1"><a href="#entity-encoder">Entity Encoder Tool</a></li>
                     <li class="toc-level-1"><a href="#entity-decoder">Entity Decoder Tool</a></li>
+                    <li class="toc-level-1"><a href="#live-vorschau">Live-Vorschau</a></li>
                     <li class="toc-level-1"><a href="#einsatz-szenarien">Wofür kann ich das nutzen?</a></li>
                     <li class="toc-level-2"><a href="#spam-schutz">1. E-Mail-Adressen vor Spam-Bots schützen</a></li>
                     <li class="toc-level-2"><a href="#telefonnummern">2. Telefonnummern verschleiern</a></li>
@@ -258,13 +261,8 @@
 
                         <div class="info-box warning">
                             <strong class="box-title warning no-toc">Wichtig
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
-                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
-                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
-                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
-                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
-                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p>Das ist <span class="tooltip"><em>Obfuskation</em><span class="tooltiptext">Absichtliche
@@ -339,7 +337,28 @@
                             <textarea class="code-output" placeholder="Hier erscheint der dekodierte Text..." readonly></textarea>
                         </div>
 
+                    </section>
 
+                    <section class="tutorials-content">
+                        <h2 id="live-vorschau">Live-Vorschau</h2>
+                        <p>So sieht der encoded Text im Browser aus – identisch zum Original:</p>
+
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Original</h3>
+                                <p style="font-size: 1.25rem;">info@example.com</p>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Entity-kodiert</h3>
+                                <p style="font-size: 1.25rem;">
+                                    info@example.com
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="text-muted">Beide Zeilen sehen identisch aus – aber im Quellcode steht bei der zweiten
+                            nur Zahlencode:</p>
+                        <code>&amp;#105;&amp;#110;&amp;#102;&amp;#111;&amp;#64;&amp;#101;&amp;#120;&amp;#97;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#46;&amp;#99;&amp;#111;&amp;#109;</code>
                     </section>
 
                     <!-- Einsatz-Szenarien -->
@@ -366,11 +385,11 @@
                                 </button>
                             </div>
                             <pre><code class="language-html">&lt;!-- Statt --&gt;
-&lt;a href="mailto:<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="244d4a424b64415c45495448410a474b49">[email&nbsp;protected]</a>"&gt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="99f0f7fff6d9fce1f8f4e9f5fcb7faf6f4">[email&nbsp;protected]</a>&lt;/a&gt;
+&lt;a href="mailto:info&amp;#64;example.com"&gt;info&amp;#64;example.com&lt;/a&gt;
 
 &lt;!-- Verwendest du --&gt;
-&lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#105;&amp;#110;&amp;#102;&amp;#111;&amp;#64;&amp;#101;&amp;#120;&amp;#97;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#46;&amp;#99;&amp;#111;&amp;#109;"&gt;
-    &amp;#105;&amp;#110;&amp;#102;&amp;#111;&amp;#64;&amp;#101;&amp;#120;&amp;#97;&amp;#109;&amp;#112;&amp;#108;&amp;#101;&amp;#46;&amp;#99;&amp;#111;&amp;#109;
+&lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;..."&gt;
+    ...
 &lt;/a&gt;</code></pre>
                         </div>
 
@@ -396,13 +415,8 @@
 
                         <div class="info-box danger">
                             <strong class="box-title danger no-toc" id="achtung">Nicht geeignet für:
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
-                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
-                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
-                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
-                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
-                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p><strong>Echte Sicherheitsanforderungen!</strong> Wenn du sensible Daten wirklich schützen
@@ -523,14 +537,19 @@ const encodeBtn = block.querySelector('.encode-btn');</code></pre>
                             </li>
                             <li><code>'&amp;#' + ... + ';'</code> - Baut daraus den Entity-Code (z.B.
                                 <code>&amp;#65;</code>
-                                für "A")</li>
+                                für "A")
+                            </li>
                             <li><code>encoded +=</code> - Hängt jeden Code an den Ergebnis-String an</li>
                         </ul>
 
                         <div class="info-box">
-                            <p><strong>Beispiel:</strong> Der Buchstabe <code>A</code> hat den Unicode-Wert
-                                <code>65</code>.
-                                Also wird daraus <code>&amp;#65;</code>.</p>
+                            <strong class="box-title no-toc">Beispiel
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Der Buchstabe <code class="inline">A</code> hat den Unicode-Wert <code class="inline">65</code>. Also wird daraus <code class="inline">&amp;#65;</code>.
+                            </p>
                         </div>
 
                         <h3 id="schritt-4">Schritt 4: Event Listener für den Button</h3>
@@ -632,6 +651,11 @@ const encodeBtn = block.querySelector('.encode-btn');</code></pre>
                         </ul>
 
                         <div class="info-box">
+                            <strong class="box-title no-toc">Beispiel
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
                             <p><strong>Das Gegenstück:</strong> <code>charCodeAt()</code> macht aus Zeichen Zahlen,
                                 <code>String.fromCharCode()</code> macht aus Zahlen wieder Zeichen.
                             </p>
@@ -669,7 +693,13 @@ const encodeBtn = block.querySelector('.encode-btn');</code></pre>
                             Umlaute, Sonderzeichen anderer Sprachen und Emojis.</p>
 
                         <div class="info-box">
-                            <p><strong>Fun Fact:</strong> Großbuchstaben (65-90) und Kleinbuchstaben (97-122) liegen
+                            <strong class="box-title no-toc">Fun Fact
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+
+                            <p>Großbuchstaben (65-90) und Kleinbuchstaben (97-122) liegen
                                 genau
                                 32 Positionen auseinander. Deshalb funktioniert <code>'A'.charCodeAt(0) + 32</code> →
                                 <code>97</code> → <code>'a'</code>!
