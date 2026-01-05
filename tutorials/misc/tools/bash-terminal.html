@@ -1,10 +1,11 @@
 <!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Terminal &amp; Bash Basics für Webentwicklung - Wichtige Befehle und Kommandos für die tägliche Arbeit">
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
+        <meta name="robots" content="index, follow">
+        <meta name="description" content="Terminal &amp; Bash Basics für Webentwicklung - Navigation, Dateiverwaltung, Git, NPM und Shortcuts. Cheatsheet für Mac, Windows &amp; Linux.">
+        <meta name="keywords" content="Bash Befehle, Terminal Kommandos, CLI Tutorial, Git Befehle, NPM Commands, Shell Basics, Kommandozeile lernen, Terminal Mac, PowerShell Windows">
         <meta name="author" content="DevPanicZone">
-        <title>Terminal &amp; Bash Basics - DevPanicZone</title>
+        <title>Terminal &amp; Bash Basics - Befehle für Webentwickler | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -155,11 +156,8 @@
                 <div class="container">
                     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Terminal &amp; Bash Basics</span></nav>
                     <h1 class="hero-title">Terminal &amp; Bash Basics</h1>
-                    <p class="hero-subtitle">Das Terminal (auch Kommandozeile oder CLI) ist dein mächtigstes Werkzeug
-                        als
-                        Webentwickler.
-                        Hier siehst du die wichtigsten Bash-Befehle für die tägliche Arbeit - von der Navigation
-                        durch Ordner bis zu Git-Befehlen und npm-Scripts.
+                    <p class="hero-subtitle">Die wichtigsten Kommandozeilen-Befehle für Navigation, Dateiverwaltung, Git
+                        und NPM - mit Cheatsheet.
                     </p>
                 </div>
             </section>
@@ -203,6 +201,7 @@
                     <li class="toc-level-2"><a href="#pwd-wo-bin-ich">pwd - Wo bin ich?</a></li>
                     <li class="toc-level-2"><a href="#ls-was-ist-hier">ls - Was ist hier?</a></li>
                     <li class="toc-level-2"><a href="#cd-ordner-wechseln">cd - Ordner wechseln</a></li>
+                    <li class="toc-level-2"><a href="#clear-terminal-leeren">clear - Terminal leeren</a></li>
                     <li class="toc-level-1"><a href="#dateien-ordner-verwalten">Dateien &amp; Ordner verwalten</a></li>
                     <li class="toc-level-2"><a href="#mkdir-ordner-erstellen">mkdir - Ordner erstellen</a></li>
                     <li class="toc-level-2"><a href="#touch-datei-erstellen">touch - Datei erstellen</a></li>
@@ -213,6 +212,7 @@
                     <li class="toc-level-2"><a href="#cat-dateiinhalt-anzeigen">cat - Dateiinhalt anzeigen</a></li>
                     <li class="toc-level-2"><a href="#head-tail-ersteletzte-zeilen">head &amp; tail - Erste/Letzte Zeilen</a></li>
                     <li class="toc-level-2"><a href="#less-datei-durchblaettern">less - Datei durchblättern</a></li>
+                    <li class="toc-level-2"><a href="#echo-text-ausgeben">echo - Text ausgeben</a></li>
                     <li class="toc-level-1"><a href="#suchen-finden">Suchen &amp; Finden</a></li>
                     <li class="toc-level-2"><a href="#find-dateien-finden">find - Dateien finden</a></li>
                     <li class="toc-level-2"><a href="#grep-in-dateien-suchen">grep - In Dateien suchen</a></li>
@@ -274,8 +274,8 @@
                 <!-- Wrapper .container -->
                 <div class="container">
 
-                    <!-- Weitere Sections nach Bedarf -->
-                    <section class="tutorials-content mt-xl">
+                    <!-- Was ist das Terminal? -->
+                    <section class="tutorials-content">
                         <h2 class="section-title" id="was-ist-das-terminal">Was ist das Terminal?</h2>
                         <p>Das Terminal ist eine textbasierte Schnittstelle zu deinem Computer. Statt mit Maus und
                             Fenstern arbeitest du hier mit Textbefehlen. Das mag am Anfang umständlich wirken, ist aber
@@ -284,9 +284,8 @@
                         </p>
                         <div class="info-box">
                             <strong class="box-title no-toc">Wichtig
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                    </path>
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Auf Mac/Linux heißt die Shell "Bash" oder "Zsh". Auf Windows gibt es
@@ -313,6 +312,25 @@
                                 <p><kbd>Ctrl + `</kbd></p>
                                 <p>(Backtick) öffnet integriertes Terminal</p>
                             </div>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">VS Code vom Terminal öffnen
+                                <svg class="icon-ui">
+                                    <use href="#dpz-bulb-circle"></use>
+                                </svg>
+                            </strong>
+                            <pre><code class="language-bash"># Aktuellen Ordner in VS Code öffnen
+code .
+
+# Bestimmte Datei öffnen
+code index.html
+
+# Neues Fenster
+code -n .</code></pre>
+                            <p class="mt-sm"><strong>Hinweis:</strong> Funktioniert nur, wenn VS Code im PATH ist. Bei
+                                Mac: In VS Code <kbd>Cmd + Shift + P</kbd> → "Shell Command: Install 'code' command in
+                                PATH"</p>
                         </div>
                     </section>
 
@@ -390,11 +408,24 @@ cd ~/DevPanicZone</code></pre>
                             </div>
                         </div>
 
+                        <div>
+                            <h3 id="clear-terminal-leeren">clear - Terminal leeren</h3>
+                            <p>Räumt das Terminal auf, wenn es zu voll wird.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">bash</span>
+                                </div>
+                                <pre><code class="language-bash"># Terminal leeren
+clear
+
+# Oder Shortcut: Ctrl + L (Mac/Linux) bzw. Cmd + K (Mac Terminal)</code></pre>
+                            </div>
+                        </div>
+
                         <div class="info-box">
                             <strong class="box-title no-toc">Tipp
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                    </path>
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Mit <kbd>Tab</kbd> kannst du Ordner- und Dateinamen automatisch
@@ -517,14 +548,10 @@ rm -rf folder</code></pre>
 
                             <div class="info-box danger">
                                 <strong class="box-title danger no-toc" id="achtung">Achtung
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                        <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
-                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
-                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
-                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
-                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
-                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-warning-circle"></use>
                                     </svg>
+
                                 </strong>
                                 <p><code class="inline">rm</code> löscht <strong>endgültig</strong>! Keine
                                     Wiederherstellung möglich. Der Papierkorb wird umgangen. Sei vorsichtig mit
@@ -594,6 +621,28 @@ tail -f server.log</code></pre>
 # b = Vorherige Seite
 # q = Beenden
 # /suchbegriff = Suchen</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- echo - Text ausgeben -->
+                        <div>
+                            <h3 id="echo-text-ausgeben">echo - Text ausgeben</h3>
+                            <p>Gibt Text aus – nützlich für Scripts und zum Testen von Variablen.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">bash</span>
+                                </div>
+                                <pre><code class="language-bash"># Einfache Ausgabe
+echo "Hallo Welt"
+
+# Variable ausgeben
+echo $PATH
+
+# In Datei schreiben
+echo "Neuer Inhalt" &gt; datei.txt
+
+# An Datei anhängen
+echo "Mehr Inhalt" &gt;&gt; datei.txt</code></pre>
                             </div>
                         </div>
 
@@ -963,9 +1012,8 @@ find . -name "*.html" -mtime 0</code></pre>
 
                         <div class="info-box">
                             <strong class="box-title no-toc">Befehl wiederholen
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                    </path>
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
 
@@ -981,9 +1029,8 @@ find . -name "*.html" -mtime 0</code></pre>
 
                         <div class="info-box">
                             <strong class="box-title no-toc">Mehrere Befehle kombinieren
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                    <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                    </path>
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <pre><code class="language-bash"># Nacheinander ausführen (auch bei Fehler)
