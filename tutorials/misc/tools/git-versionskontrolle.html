@@ -1,355 +1,393 @@
-<!DOCTYPE html><html lang="de"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Git von Grund auf verstehen: Installation, Commits, Branches und alles was du für lokale Versionskontrolle brauchst. Schritt für Schritt erklärt.">
-    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
-    <meta name="author" content="DevPanicZone">
-    <title>Git - Lokale Versionskontrolle | DevPanicZone</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/tutorials.css">
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
-</head>
+<!DOCTYPE html>
+<html lang="de">
 
-<body>
-    <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                </a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description"
+            content="Git von Grund auf verstehen: Installation, Commits, Branches und alles was du für lokale Versionskontrolle brauchst. Schritt für Schritt erklärt.">
+        <meta name="keywords"
+            content="Git Tutorial, Versionskontrolle, Git Befehle, Git Branches, Git Commit, gitignore, Git für Anfänger, Git installieren, Git Cheatsheet">
+        <meta name="author" content="DevPanicZone">
+        <title>Git - Lokale Versionskontrolle | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                        </a>
+                    </div>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                        <path
+                                            d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
             </div>
+        </header>
+        <!-- Header-End -->
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
+                            class="breadcrumb-separator">›</span><a href="/tutorials/misc/"
+                            class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span
+                            class="breadcrumb-current">Git - Lokale Versionskontrolle</span></nav>
+                    <h1 class="hero-title">Git - Lokale Versionskontrolle</h1>
+                    <p class="hero-subtitle">Nie wieder "final_v2_FINAL_wirklich_251007.html" - Git merkt sich alles für
+                        dich.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
                 </span>
             </button>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                            <li class="toc-level-1"><a href="#was-ist-git-eigentlich">Was ist Git eigentlich?</a></li>
+                            <li class="toc-level-1"><a href="#git-installieren">Git installieren</a></li>
+                            <li class="toc-level-1"><a href="#projekt-mit-git-verbinden">Projekt mit Git verbinden</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#gitignore---was-git-ignorieren-soll">.gitignore - Was Git
+                                    ignorieren soll</a></li>
+                            <li class="toc-level-1"><a href="#die-drei-zustaende-verstehen">Die drei Zustände
+                                    verstehen</a></li>
+                            <li class="toc-level-1"><a href="#status-checken">Status checken</a></li>
+                            <li class="toc-level-1"><a href="#aenderungen-stagen">Änderungen stagen</a></li>
+                            <li class="toc-level-1"><a href="#commits-machen">Commits machen</a></li>
+                            <li class="toc-level-1"><a href="#aenderungen-ansehen">Änderungen ansehen</a></li>
+                            <li class="toc-level-1"><a href="#historie-anschauen">Historie anschauen</a></li>
+                            <li class="toc-level-1"><a href="#aenderungen-rueckgaengig-machen">Änderungen rückgängig
+                                    machen</a></li>
+                            <li class="toc-level-1"><a href="#branches---parallele-welten">Branches - Parallele
+                                    Welten</a></li>
+                            <li class="toc-level-1"><a href="#stashing---aenderungen-parken">Stashing - Änderungen
+                                    parken</a></li>
+                            <li class="toc-level-1"><a href="#tags---versionen-markieren">Tags - Versionen markieren</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#git-cheatsheet">Git Cheatsheet</a></li>
+                            <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
+                            <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                            <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
+                            <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                            <li class="sidebar-group-title">SEO Optimization</li>
+                            <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content
+                                    verstehen & vermeiden</a></li>
+                            <li class="sidebar-group-title">Tools</li>
+                            <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
+                            <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">CSS-Duplikate finden &
+                                    vergleichen in VS Code</a></li>
+                            <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
+                            <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                            <li><a href="/tutorials/misc/tools/git-versionskontrolle.html" class="active">Git - Lokale
+                                    Versionskontrolle</a></li>
+                            <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a>
+                            </li>
+                            <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla anhand des Beispiels
+                                    All-Inkl</a></li>
+                            <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale
+                                    Änderungen an HTML-Dateien</a></li>
+                            <li class="sidebar-group-title">Web</li>
+                            <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper .container -->
+                <div class="container">
+
+                    <!-- Was ist Git eigentlich? -->
+                    <section class="tutorials-content mt-xl">
+                        <h2 id="was-ist-git-eigentlich">Was ist Git eigentlich?</h2>
+                        <p>Git ist ein Programm, das Änderungen an deinen Dateien trackt. Stell dir vor, du hast einen
+                            unsichtbaren Assistenten, der jedes Mal, wenn du sagst "Merk dir das!", einen Snapshot
+                            deines
+                            gesamten Projekts macht.</p>
+
+                        <p>Das Geniale: Git speichert nicht jedes Mal eine komplette Kopie, sondern nur die
+                            Unterschiede.
+                            Deshalb braucht es kaum Speicherplatz.</p>
+
+                        <h3 class="no-toc">Was passiert technisch?</h3>
+                        <p>Git erstellt einen versteckten <code class="inline">.git</code>-Ordner in deinem Projekt. Da
+                            drin
+                            liegt:</p>
+                        <div class="grid-2col-bg">
+                            <ul class="arrow-list">
+                                <li>Die komplette Historie aller Änderungen</li>
+                                <li>Informationen darüber, wer wann was geändert hat</li>
+                                <li>Die Möglichkeit, zu jedem gespeicherten Zustand zurückzuspringen</li>
+                            </ul>
                         </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+                        <h3 class="no-toc">Warum überhaupt?</h3>
+                        <p>Kennst du das?</p>
+                        <div class="grid-2col-bg">
+                            <ul class="arrow-list">
+                                <li>"Mist, gestern hat das noch funktioniert..."</li>
+                                <li>"Welche Version war nochmal die richtige?"</li>
+                                <li>"Ich trau mich nicht, das zu ändern - was wenn ich alles kaputt mache?"</li>
+                            </ul>
+                        </div>
+                        <p style="margin-top: 1.5rem;">Mit Git sind diese Sorgen Geschichte. Du kannst mutig
+                            experimentieren, weil du jederzeit
+                            zurück kannst.</p>
+                    </section>
 
-    <main class="site-main">
+                    <!-- Git installieren -->
+                    <section class="tutorials-content">
+                        <h2 id="git-installieren">Git installieren</h2>
 
-        <!-- Hero -->
-        <section class="hero tutorial-hero">
-            <div class="container">
-                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Git - Lokale Versionskontrolle</span></nav>
-                <h1 class="hero-title">Git - Lokale Versionskontrolle</h1>
-                <p class="hero-subtitle">Nie wieder "final_v2_FINAL_wirklich_251007.html" - Git merkt sich alles für
-                    dich.</p>
-            </div>
-        </section>
+                        <h3 class="no-toc">macOS</h3>
+                        <p>Gute Nachrichten: Git ist wahrscheinlich schon da. Check im Terminal:</p>
+                        <pre><code class="language-bash">git --version</code></pre>
 
-        <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
-            <span class="toggle-icon">☰</span>
-        </button>
+                        <p>Kommt eine Versionsnummer? Dann bist du fertig. Falls nicht, fragt macOS automatisch, ob du
+                            die
+                            Command Line Tools installieren willst. Einfach bestätigen und warten.</p>
 
-        <!-- Floating Button Rechts (Tutorial Navigation) -->
-        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
-            <span class="toggle-icon">
-                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
-            </span>
-        </button>
+                        <h3 class="no-toc">Windows</h3>
+                        <p>Lade Git von <a href="https://git-scm.com/download/win" target="_blank"
+                                rel="noopener">git-scm.com</a> herunter. Der Installer fragt viel - die
+                            Standardeinstellungen sind okay.</p>
 
-        <!-- Sidebar Overlay für Mobile -->
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-        <!-- Tutorial Layout -->
-        <div class="tutorial-layout">
-
-            <!-- Linke Sidebar (Floating Panel) -->
-            <aside class="tutorial-sidebar" id="tutorialSidebar">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
-                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
-                        <span>×</span>
-                    </button>
-                </div>
-
-                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
-                    <ul class="toc-list">
-                        <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#was-ist-git-eigentlich">Was ist Git eigentlich?</a></li>
-                    <li class="toc-level-1"><a href="#git-installieren">Git installieren</a></li>
-                    <li class="toc-level-1"><a href="#projekt-mit-git-verbinden">Projekt mit Git verbinden</a></li>
-                    <li class="toc-level-1"><a href="#gitignore---was-git-ignorieren-soll">.gitignore - Was Git ignorieren soll</a></li>
-                    <li class="toc-level-1"><a href="#die-drei-zustaende-verstehen">Die drei Zustände verstehen</a></li>
-                    <li class="toc-level-1"><a href="#status-checken">Status checken</a></li>
-                    <li class="toc-level-1"><a href="#aenderungen-stagen">Änderungen stagen</a></li>
-                    <li class="toc-level-1"><a href="#commits-machen">Commits machen</a></li>
-                    <li class="toc-level-1"><a href="#aenderungen-ansehen">Änderungen ansehen</a></li>
-                    <li class="toc-level-1"><a href="#historie-anschauen">Historie anschauen</a></li>
-                    <li class="toc-level-1"><a href="#aenderungen-rueckgaengig-machen">Änderungen rückgängig machen</a></li>
-                    <li class="toc-level-1"><a href="#branches---parallele-welten">Branches - Parallele Welten</a></li>
-                    <li class="toc-level-1"><a href="#stashing---aenderungen-parken">Stashing - Änderungen parken</a></li>
-                    <li class="toc-level-1"><a href="#tags---versionen-markieren">Tags - Versionen markieren</a></li>
-                    <li class="toc-level-1"><a href="#git-cheatsheet">Git Cheatsheet</a></li>
-                    <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
-                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
-                    <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
-                    <!-- Sidebar-Anchor-End -->
-                    </ul>
-                </nav>
-            </aside>
-
-            <!-- Rechte Sidebar (Floating Panel) -->
-            <aside class="tutorial-related">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc">Tutorials</h3>
-                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
-                        <span>×</span>
-                    </button>
-                </div>
-
-                <div class="sidebar-nav">
-                    <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">SEO Optimization</li>
-                    <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content verstehen & vermeiden</a></li>
-                    <li class="sidebar-group-title">Tools</li>
-                    <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
-                    <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">CSS-Duplikate finden & vergleichen in VS Code</a></li>
-                    <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
-                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
-                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html" class="active">Git - Lokale Versionskontrolle</a></li>
-                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
-                    <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla anhand des Beispiels All-Inkl</a></li>
-                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
-                    <li class="sidebar-group-title">Web</li>
-                    <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
-                </ul>
-                </div>
-            </aside>
-
-            <!-- Wrapper .container -->
-            <div class="container">
-
-                <!-- Was ist Git eigentlich? -->
-                <section class="tutorials-content mt-xl">
-                    <h2 id="was-ist-git-eigentlich">Was ist Git eigentlich?</h2>
-                    <p>Git ist ein Programm, das Änderungen an deinen Dateien trackt. Stell dir vor, du hast einen
-                        unsichtbaren Assistenten, der jedes Mal, wenn du sagst "Merk dir das!", einen Snapshot deines
-                        gesamten Projekts macht.</p>
-
-                    <p>Das Geniale: Git speichert nicht jedes Mal eine komplette Kopie, sondern nur die Unterschiede.
-                        Deshalb braucht es kaum Speicherplatz.</p>
-
-                    <h3 class="no-toc">Was passiert technisch?</h3>
-                    <p>Git erstellt einen versteckten <code class="inline">.git</code>-Ordner in deinem Projekt. Da drin
-                        liegt:</p>
-                    <div class="grid-2col-bg">
-                        <ul class="arrow-list">
-                            <li>Die komplette Historie aller Änderungen</li>
-                            <li>Informationen darüber, wer wann was geändert hat</li>
-                            <li>Die Möglichkeit, zu jedem gespeicherten Zustand zurückzuspringen</li>
-                        </ul>
-                    </div>
-                    <h3 class="no-toc">Warum überhaupt?</h3>
-                    <p>Kennst du das?</p>
-                    <div class="grid-2col-bg">
-                        <ul class="arrow-list">
-                            <li>"Mist, gestern hat das noch funktioniert..."</li>
-                            <li>"Welche Version war nochmal die richtige?"</li>
-                            <li>"Ich trau mich nicht, das zu ändern - was wenn ich alles kaputt mache?"</li>
-                        </ul>
-                    </div>
-                    <p style="margin-top: 1.5rem;">Mit Git sind diese Sorgen Geschichte. Du kannst mutig
-                        experimentieren, weil du jederzeit
-                        zurück kannst.</p>
-                </section>
-
-                <!-- Git installieren -->
-                <section class="tutorials-content">
-                    <h2 id="git-installieren">Git installieren</h2>
-
-                    <h3 class="no-toc">macOS</h3>
-                    <p>Gute Nachrichten: Git ist wahrscheinlich schon da. Check im Terminal:</p>
-                    <pre><code class="language-bash">git --version</code></pre>
-
-                    <p>Kommt eine Versionsnummer? Dann bist du fertig. Falls nicht, fragt macOS automatisch, ob du die
-                        Command Line Tools installieren willst. Einfach bestätigen und warten.</p>
-
-                    <h3 class="no-toc">Windows</h3>
-                    <p>Lade Git von <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com</a> herunter. Der Installer fragt viel - die
-                        Standardeinstellungen sind okay.</p>
-
-                    <h3 class="no-toc">Linux</h3>
-                    <pre><code class="language-bash">sudo apt update
+                        <h3 class="no-toc">Linux</h3>
+                        <pre><code class="language-bash">sudo apt update
 sudo apt install git</code></pre>
 
-                    <h3 class="no-toc">Einmalige Konfiguration</h3>
-                    <p>Git will wissen, wer du bist. Das steht dann bei jedem Commit dabei:</p>
-                    <pre><code class="language-bash">git config --global user.name "Dein Name"
+                        <h3 class="no-toc">Einmalige Konfiguration</h3>
+                        <p>Git will wissen, wer du bist. Das steht dann bei jedem Commit dabei:</p>
+                        <pre><code class="language-bash">git config --global user.name "Dein Name"
 git config --global user.email "deine@email.com"</code></pre>
 
-                    <p>Das <code class="inline">--global</code> bedeutet: gilt für alle deine Projekte auf diesem
-                        Rechner.</p>
+                        <p>Das <code class="inline">--global</code> bedeutet: gilt für alle deine Projekte auf diesem
+                            Rechner.</p>
 
-                    <h3 class="no-toc">Einstellungen prüfen</h3>
-                    <pre><code class="language-bash">git config --list</code></pre>
-                </section>
+                        <h3 class="no-toc">Einstellungen prüfen</h3>
+                        <pre><code class="language-bash">git config --list</code></pre>
+                    </section>
 
-                <!-- Projekt mit Git verbinden -->
-                <section class="tutorials-content">
-                    <h2 id="projekt-mit-git-verbinden">Projekt mit Git verbinden</h2>
+                    <!-- Projekt mit Git verbinden -->
+                    <section class="tutorials-content">
+                        <h2 id="projekt-mit-git-verbinden">Projekt mit Git verbinden</h2>
 
-                    <h3 class="no-toc">Repository initialisieren</h3>
-                    <p>Im Terminal in deinen Projektordner wechseln:</p>
-                    <pre><code class="language-bash">cd /pfad/zu/deinem/projekt</code></pre>
+                        <h3 class="no-toc">Repository initialisieren</h3>
+                        <p>Im Terminal in deinen Projektordner wechseln:</p>
+                        <pre><code class="language-bash">cd /pfad/zu/deinem/projekt</code></pre>
 
-                    <div class="tip">
-                        <h4>Terminal-Tipp für macOS</h4>
-                        <p>Keine Lust, den Pfad einzutippen? Schreib <code class="inline">cd </code>&nbsp;[mit
-                            Leerzeichen], dann zieh
-                            den
-                            Ordner aus dem Finder direkt ins Terminal-Fenster. Der Pfad wird automatisch eingefügt!</p>
-                        <p>Oder: Rechtsklick auf Ordner → "Dienste" → "Neues Terminal beim Ordner"</p>
-                    </div>
+                        <div class="tip">
+                            <h4>Terminal-Tipp für macOS</h4>
+                            <p>Keine Lust, den Pfad einzutippen? Schreib <code class="inline">cd </code>&nbsp;[mit
+                                Leerzeichen], dann zieh
+                                den
+                                Ordner aus dem Finder direkt ins Terminal-Fenster. Der Pfad wird automatisch eingefügt!
+                            </p>
+                            <p>Oder: Rechtsklick auf Ordner → "Dienste" → "Neues Terminal beim Ordner"</p>
+                        </div>
 
-                    <p>Dann Git aktivieren:</p>
-                    <pre><code class="language-bash">git init</code></pre>
+                        <p>Dann Git aktivieren:</p>
+                        <pre><code class="language-bash">git init</code></pre>
 
-                    <p>Das war's. Git antwortet mit sowas wie "Initialized empty Git repository in...". Der versteckte
-                        <code class="inline">.git</code>-Ordner ist jetzt da.
-                    </p>
+                        <p>Das war's. Git antwortet mit sowas wie "Initialized empty Git repository in...". Der
+                            versteckte
+                            <code class="inline">.git</code>-Ordner ist jetzt da.
+                        </p>
 
-                    <h3 class="no-toc">Was jetzt NICHT passiert</h3>
-                    <p>Git trackt noch nichts automatisch! Es wartet darauf, dass du sagst, welche Dateien es beobachten
-                        soll. Das machst du mit deinem ersten Commit (kommt gleich).</p>
-                </section>
+                        <h3 class="no-toc">Was jetzt NICHT passiert</h3>
+                        <p>Git trackt noch nichts automatisch! Es wartet darauf, dass du sagst, welche Dateien es
+                            beobachten
+                            soll. Das machst du mit deinem ersten Commit (kommt gleich).</p>
 
-                <!-- .gitignore - Was Git ignorieren soll -->
-                <section class="tutorials-content">
-                    <h2 id="gitignore---was-git-ignorieren-soll">.gitignore - Was Git ignorieren soll</h2>
+                        <h3 class="no-toc">Existierendes Repo kopieren</h3>
+                        <pre><code class="language-bash"># Von GitHub oder anderem Server
+git clone https://github.com/user/repo.git
 
-                    <p>Bevor du anfängst zu committen: Sag Git, was es NICHT tracken soll. Dafür erstellst du eine
-                        <code class="inline">.gitignore</code>-Datei im Root deines Projekts.
-                    </p>
+# Lokales Repo kopieren (selten, aber möglich)
+git clone /pfad/zum/original /pfad/zur/kopie</code></pre>
+                    </section>
 
-                    <h3 class="no-toc">Typische .gitignore für Webprojekte</h3>
-                    <pre><code class="language-gitignore"># Dependencies - die werden über package.json neu installiert
+                    <!-- .gitignore - Was Git ignorieren soll -->
+                    <section class="tutorials-content">
+                        <h2 id="gitignore---was-git-ignorieren-soll">.gitignore - Was Git ignorieren soll</h2>
+
+                        <p>Bevor du anfängst zu committen: Sag Git, was es NICHT tracken soll. Dafür erstellst du eine
+                            <code class="inline">.gitignore</code>-Datei im Root deines Projekts.
+                        </p>
+
+                        <h3 class="no-toc">Typische .gitignore für Webprojekte</h3>
+                        <pre><code class="language-gitignore"># Dependencies - die werden über package.json neu installiert
 node_modules/
 package-lock.json
 
@@ -371,69 +409,86 @@ Thumbs.db
 README/
 temp/</code></pre>
 
-                    <h3 class="no-toc">Wie die Syntax funktioniert</h3>
-                    <ul class="arrow-list grid-2col-bg">
-                        <li><code class="inline">datei.txt</code> - Diese eine Datei ignorieren</li>
-                        <li><code class="inline">ordner/</code> - Kompletter Ordner (der Slash am Ende = "ist ein
-                            Verzeichnis")</li>
-                        <li><code class="inline">*.log</code> - Alle Dateien mit dieser Endung</li>
-                        <li><code class="inline"># Kommentar</code> - Wird ignoriert, nur für dich zur Orientierung</li>
-                    </ul>
+                        <h3 class="no-toc">Wie die Syntax funktioniert</h3>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><code class="inline">datei.txt</code> - Diese eine Datei ignorieren</li>
+                            <li><code class="inline">ordner/</code> - Kompletter Ordner (der Slash am Ende = "ist ein
+                                Verzeichnis")</li>
+                            <li><code class="inline">*.log</code> - Alle Dateien mit dieser Endung</li>
+                            <li><code class="inline"># Kommentar</code> - Wird ignoriert, nur für dich zur Orientierung
+                            </li>
+                        </ul>
 
-                    <h3 class="no-toc">Warum das wichtig ist</h3>
-                    <p>Der <code class="inline">node_modules</code>-Ordner kann hunderte MB groß sein. Den willst du
-                        nicht in deiner
-                        Git-Historie haben. Außerdem kann jeder ihn mit <code class="inline">npm install</code> neu
-                        generieren - dafür
-                        ist ja die <code class="inline">package.json</code> da.</p>
-                </section>
+                        <h3 class="no-toc">Warum das wichtig ist</h3>
+                        <p>Der <code class="inline">node_modules</code>-Ordner kann hunderte MB groß sein. Den willst du
+                            nicht in deiner
+                            Git-Historie haben. Außerdem kann jeder ihn mit <code class="inline">npm install</code> neu
+                            generieren - dafür
+                            ist ja die <code class="inline">package.json</code> da.</p>
 
-                <!-- Die drei Zustände verstehen -->
-                <section class="tutorials-content">
-                    <h2 id="die-drei-zustaende-verstehen">Die drei Zustände verstehen</h2>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Leere Ordner tracken
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>Git ignoriert leere Ordner. Wenn du einen leeren Ordner behalten willst (z.B. <code
+                                    class="inline">uploads/</code>), erstelle darin eine leere Datei namens <code
+                                    class="inline">.gitkeep</code>:</p>
+                            <pre><code class="language-bash">touch uploads/.gitkeep
+git add uploads/.gitkeep</code></pre>
+                            <p><code class="inline">.gitkeep</code> ist keine Git-Funktion, sondern eine Konvention.</p>
+                        </div>
+                    </section>
 
-                    <p>Das ist der Teil, der am Anfang verwirrend ist. Git hat drei "Bereiche":</p>
+                    <!-- Die drei Zustände verstehen -->
+                    <section class="tutorials-content">
+                        <h2 id="die-drei-zustaende-verstehen">Die drei Zustände verstehen</h2>
 
-                    <h3 class="no-toc">1. Working Directory</h3>
-                    <p>Das ist einfach dein Projektordner. Hier arbeitest du ganz normal an deinen Dateien.</p>
+                        <p>Das ist der Teil, der am Anfang verwirrend ist. Git hat drei "Bereiche":</p>
 
-                    <h3 class="no-toc">2. Staging Area</h3>
-                    <p>Ein Zwischenbereich. Hier sammelst du Änderungen, die zusammen in den nächsten Commit sollen. Wie
-                        ein Einkaufskorb - du legst rein, was du "kaufen" (committen) willst.</p>
+                        <h3 class="no-toc">1. Working Directory</h3>
+                        <p>Das ist einfach dein Projektordner. Hier arbeitest du ganz normal an deinen Dateien.</p>
 
-                    <h3 class="no-toc">3. Repository</h3>
-                    <p>Die permanente Git-Datenbank im <code class="inline">.git</code>-Ordner. Hier landen die Commits.
-                    </p>
+                        <h3 class="no-toc">2. Staging Area</h3>
+                        <p>Ein Zwischenbereich. Hier sammelst du Änderungen, die zusammen in den nächsten Commit sollen.
+                            Wie
+                            ein Einkaufskorb - du legst rein, was du "kaufen" (committen) willst.</p>
 
-                    <h3 class="no-toc">Der Ablauf</h3>
-                    <pre><code class="language-bash"># 1. Du änderst eine Datei (Working Directory)
+                        <h3 class="no-toc">3. Repository</h3>
+                        <p>Die permanente Git-Datenbank im <code class="inline">.git</code>-Ordner. Hier landen die
+                            Commits.
+                        </p>
+
+                        <h3 class="no-toc">Der Ablauf</h3>
+                        <pre><code class="language-bash"># 1. Du änderst eine Datei (Working Directory)
 # 2. Du sagst "die soll in den nächsten Commit"
 git add datei.html
 
 # 3. Du machst den Commit (speicherst den Snapshot)
 git commit -m "Navigation überarbeitet"</code></pre>
 
-                    <h3 class="no-toc">Warum nicht direkt committen?</h3>
-                    <p>Die Staging Area gibt dir Kontrolle. Du kannst 10 Dateien geändert haben, aber nur 3 davon
-                        committen. So bleiben deine Commits thematisch sauber.</p>
-                </section>
+                        <h3 class="no-toc">Warum nicht direkt committen?</h3>
+                        <p>Die Staging Area gibt dir Kontrolle. Du kannst 10 Dateien geändert haben, aber nur 3 davon
+                            committen. So bleiben deine Commits thematisch sauber.</p>
+                    </section>
 
-                <!-- Status checken -->
-                <section class="tutorials-content">
-                    <h2 id="status-checken">Status checken</h2>
+                    <!-- Status checken -->
+                    <section class="tutorials-content">
+                        <h2 id="status-checken">Status checken</h2>
 
-                    <p>Der wichtigste Befehl, den du ständig nutzen wirst:</p>
-                    <pre><code class="language-bash">git status</code></pre>
+                        <p>Der wichtigste Befehl, den du ständig nutzen wirst:</p>
+                        <pre><code class="language-bash">git status</code></pre>
 
-                    <h3 class="no-toc">Was du siehst</h3>
-                    <ul class="arrow-list grid-2col-bg">
-                        <li><span style="color: #e2777a;">Rot</span> = Geändert, aber noch nicht staged</li>
-                        <li><span style="color: #7ec699;">Grün</span> = Staged, bereit für Commit</li>
-                        <li>"Untracked files" = Neue Dateien, die Git noch nie gesehen hat</li>
-                    </ul>
+                        <h3 class="no-toc">Was du siehst</h3>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><span style="color: #e2777a;">Rot</span> = Geändert, aber noch nicht staged</li>
+                            <li><span style="color: #7ec699;">Grün</span> = Staged, bereit für Commit</li>
+                            <li>"Untracked files" = Neue Dateien, die Git noch nie gesehen hat</li>
+                        </ul>
 
-                    <h3 class="no-toc">Beispiel-Output</h3>
-                    <pre><code class="language-bash">On branch main
+                        <h3 class="no-toc">Beispiel-Output</h3>
+                        <pre><code class="language-bash">On branch main
 Changes not staged for commit:
   modified:   css/style.css
   modified:   index.html
@@ -441,19 +496,21 @@ Changes not staged for commit:
 Untracked files:
   js/new-feature.js</code></pre>
 
-                    <p>Das heißt: Du hast <code class="inline">style.css</code> und <code class="inline">index.html</code> geändert (aber noch nicht
-                        staged), und <code class="inline">new-feature.js</code> ist komplett neu.</p>
-                </section>
+                        <p>Das heißt: Du hast <code class="inline">style.css</code> und <code
+                                class="inline">index.html</code> geändert (aber noch nicht
+                            staged), und <code class="inline">new-feature.js</code> ist komplett neu.</p>
+                    </section>
 
-                <!-- Änderungen stagen -->
-                <section class="tutorials-content">
-                    <h2 id="aenderungen-stagen">Änderungen stagen</h2>
+                    <!-- Änderungen stagen -->
+                    <section class="tutorials-content">
+                        <h2 id="aenderungen-stagen">Änderungen stagen</h2>
 
-                    <p>Mit <code class="inline">git add</code> sagst du: "Diese Änderung soll in den nächsten Commit."
-                    </p>
+                        <p>Mit <code class="inline">git add</code> sagst du: "Diese Änderung soll in den nächsten
+                            Commit."
+                        </p>
 
-                    <h3 class="no-toc">Verschiedene Wege</h3>
-                    <pre><code class="language-bash"># Eine einzelne Datei
+                        <h3 class="no-toc">Verschiedene Wege</h3>
+                        <pre><code class="language-bash"># Eine einzelne Datei
 git add index.html
 
 # Mehrere Dateien
@@ -465,31 +522,32 @@ git add .
 # Alle Änderungen im gesamten Projekt
 git add -A</code></pre>
 
-                    <h3 class="no-toc">Was ist der Unterschied zwischen . und -A?</h3>
-                    <p><code class="inline">git add .</code> staged alles im aktuellen Verzeichnis und darunter.
-                        <code class="inline">git add -A</code> staged wirklich ALLES, egal wo du gerade im Terminal
-                        bist. Meistens
-                        macht das keinen Unterschied, wenn du im Root-Ordner bist.
-                    </p>
+                        <h3 class="no-toc">Was ist der Unterschied zwischen . und -A?</h3>
+                        <p><code class="inline">git add .</code> staged alles im aktuellen Verzeichnis und darunter.
+                            <code class="inline">git add -A</code> staged wirklich ALLES, egal wo du gerade im Terminal
+                            bist. Meistens
+                            macht das keinen Unterschied, wenn du im Root-Ordner bist.
+                        </p>
 
-                    <h3 class="no-toc">Staging rückgängig machen</h3>
-                    <p>Ups, doch nicht? Kein Problem:</p>
-                    <pre><code class="language-bash">git restore --staged datei.html</code></pre>
-                    <p>Die Datei ist wieder "unstaged", aber deine Änderungen bleiben erhalten.</p>
-                </section>
+                        <h3 class="no-toc">Staging rückgängig machen</h3>
+                        <p>Ups, doch nicht? Kein Problem:</p>
+                        <pre><code class="language-bash">git restore --staged datei.html</code></pre>
+                        <p>Die Datei ist wieder "unstaged", aber deine Änderungen bleiben erhalten.</p>
+                    </section>
 
-                <!-- Commits machen -->
-                <section class="tutorials-content">
-                    <h2 id="commits-machen">Commits machen</h2>
+                    <!-- Commits machen -->
+                    <section class="tutorials-content">
+                        <h2 id="commits-machen">Commits machen</h2>
 
-                    <p>Ein Commit ist ein Snapshot deines Projekts. Der Befehl:</p>
-                    <pre><code class="language-bash">git commit -m "Deine Nachricht hier"</code></pre>
+                        <p>Ein Commit ist ein Snapshot deines Projekts. Der Befehl:</p>
+                        <pre><code class="language-bash">git commit -m "Deine Nachricht hier"</code></pre>
 
-                    <p>Das <code class="inline">-m</code> steht für "message". Die Nachricht beschreibt, was du geändert
-                        hast.</p>
+                        <p>Das <code class="inline">-m</code> steht für "message". Die Nachricht beschreibt, was du
+                            geändert
+                            hast.</p>
 
-                    <h3 class="no-toc">Gute vs. schlechte Commit-Nachrichten</h3>
-                    <pre><code class="language-bash"># Schlecht - sagt nichts aus
+                        <h3 class="no-toc">Gute vs. schlechte Commit-Nachrichten</h3>
+                        <pre><code class="language-bash"># Schlecht - sagt nichts aus
 git commit -m "Update"
 git commit -m "Fix"
 git commit -m "Stuff"
@@ -499,96 +557,100 @@ git commit -m "Header: Mobile Navigation hinzugefügt"
 git commit -m "Bugfix: Footer bleibt jetzt unten"
 git commit -m "SEO: Meta-Descriptions ergänzt"</code></pre>
 
-                    <p>Stell dir vor, du schaust in 6 Monaten auf die Historie. "Update" hilft dir null. "Header: Mobile
-                        Navigation hinzugefügt" sagt dir sofort, worum es geht. Hier gibt es eine kleine Übersicht der
-                        <a href="#conventional-commits">Conventional Commits</a>.
-                    </p>
+                        <p>Stell dir vor, du schaust in 6 Monaten auf die Historie. "Update" hilft dir null. "Header:
+                            Mobile
+                            Navigation hinzugefügt" sagt dir sofort, worum es geht. Hier gibt es eine kleine Übersicht
+                            der
+                            <a href="#conventional-commits">Conventional Commits</a>.
+                        </p>
 
-                    <h3 class="no-toc">Shortcut für Faule</h3>
-                    <pre><code class="language-bash">git commit -am "Nachricht"</code></pre>
-                    <p>Das <code class="inline">-a</code> staged automatisch alle geänderten (bereits getrackten)
-                        Dateien. Funktioniert
-                        aber NICHT für neue Dateien!</p>
+                        <h3 class="no-toc">Shortcut für Faule</h3>
+                        <pre><code class="language-bash">git commit -am "Nachricht"</code></pre>
+                        <p>Das <code class="inline">-a</code> staged automatisch alle geänderten (bereits getrackten)
+                            Dateien. Funktioniert
+                            aber NICHT für neue Dateien!</p>
 
-                    <h3 class="no-toc">Erster Commit eines Projekts</h3>
-                    <pre><code class="language-bash">git add -A
+                        <h3 class="no-toc">Erster Commit eines Projekts</h3>
+                        <pre><code class="language-bash">git add -A
 git commit -m "Initial commit"</code></pre>
-                    <p>"Initial commit" ist die übliche Nachricht für den allerersten Commit.</p>
-                </section>
+                        <p>"Initial commit" ist die übliche Nachricht für den allerersten Commit.</p>
+                    </section>
 
-                <!-- Änderungen ansehen -->
-                <section class="tutorials-content">
-                    <h2 id="aenderungen-ansehen">Änderungen ansehen</h2>
+                    <!-- Änderungen ansehen -->
+                    <section class="tutorials-content">
+                        <h2 id="aenderungen-ansehen">Änderungen ansehen</h2>
 
-                    <h3 class="no-toc">Was hab ich geändert?</h3>
-                    <pre><code class="language-bash">git diff</code></pre>
-                    <p>Zeigt alle Änderungen, die noch nicht staged sind. Zeilen mit <code class="inline">-</code>
-                        wurden entfernt, mit
-                        <code class="inline">+</code> hinzugefügt.
-                    </p>
+                        <h3 class="no-toc">Was hab ich geändert?</h3>
+                        <pre><code class="language-bash">git diff</code></pre>
+                        <p>Zeigt alle Änderungen, die noch nicht staged sind. Zeilen mit <code class="inline">-</code>
+                            wurden entfernt, mit
+                            <code class="inline">+</code> hinzugefügt.
+                        </p>
 
-                    <h3 class="no-toc">Was ist staged?</h3>
-                    <pre><code class="language-bash">git diff --staged</code></pre>
-                    <p>Zeigt, was in den nächsten Commit gehen würde.</p>
+                        <h3 class="no-toc">Was ist staged?</h3>
+                        <pre><code class="language-bash">git diff --staged</code></pre>
+                        <p>Zeigt, was in den nächsten Commit gehen würde.</p>
 
-                    <h3 class="no-toc">Nur Dateinamen</h3>
-                    <pre><code class="language-bash">git diff --name-only</code></pre>
-                    <p>Wenn du nur wissen willst, welche Dateien betroffen sind.</p>
-                </section>
+                        <h3 class="no-toc">Nur Dateinamen</h3>
+                        <pre><code class="language-bash">git diff --name-only</code></pre>
+                        <p>Wenn du nur wissen willst, welche Dateien betroffen sind.</p>
+                    </section>
 
-                <!-- Historie anschauen -->
-                <section class="tutorials-content">
-                    <h2 id="historie-anschauen">Historie anschauen</h2>
+                    <!-- Historie anschauen -->
+                    <section class="tutorials-content">
+                        <h2 id="historie-anschauen">Historie anschauen</h2>
 
-                    <h3 class="no-toc">Commit-Log</h3>
-                    <pre><code class="language-bash">git log</code></pre>
-                    <p>Zeigt alle Commits mit Hash, Autor, Datum und Nachricht. Mit <kbd>q</kbd> kommst du wieder
-                        raus.</p>
+                        <h3 class="no-toc">Commit-Log</h3>
+                        <pre><code class="language-bash">git log</code></pre>
+                        <p>Zeigt alle Commits mit Hash, Autor, Datum und Nachricht. Mit <kbd>q</kbd> kommst du wieder
+                            raus.</p>
 
-                    <h3 class="no-toc">Kompakte Ansicht</h3>
-                    <pre><code class="language-bash">git log --oneline</code></pre>
-                    <p>Viel übersichtlicher - eine Zeile pro Commit:</p>
-                    <pre><code class="language-bash">a1b2c3d Header: Mobile Navigation
+                        <h3 class="no-toc">Kompakte Ansicht</h3>
+                        <pre><code class="language-bash">git log --oneline</code></pre>
+                        <p>Viel übersichtlicher - eine Zeile pro Commit:</p>
+                        <pre><code class="language-bash">a1b2c3d Header: Mobile Navigation
 e4f5g6h Bugfix: Footer Position
 i7j8k9l Initial commit</code></pre>
 
-                    <p>Die komische Zeichenfolge am Anfang (a1b2c3d) ist der Commit-Hash - eine eindeutige ID.</p>
+                        <p>Die komische Zeichenfolge am Anfang (a1b2c3d) ist der Commit-Hash - eine eindeutige ID.</p>
 
-                    <h3 class="no-toc">Letzte X Commits</h3>
-                    <pre><code class="language-bash">git log -5</code></pre>
-                    <p>Zeigt nur die letzten 5 Commits.</p>
+                        <h3 class="no-toc">Letzte X Commits</h3>
+                        <pre><code class="language-bash">git log -5</code></pre>
+                        <p>Zeigt nur die letzten 5 Commits.</p>
 
-                    <h3 class="no-toc">Historie einer Datei</h3>
-                    <pre><code class="language-bash">git log -- css/style.css</code></pre>
-                    <p>Zeigt nur Commits, die diese Datei betreffen.</p>
-                </section>
+                        <h3 class="no-toc">Historie einer Datei</h3>
+                        <pre><code class="language-bash">git log -- css/style.css</code></pre>
+                        <p>Zeigt nur Commits, die diese Datei betreffen.</p>
+                    </section>
 
-                <!-- Änderungen rückgängig machen -->
-                <section class="tutorials-content">
-                    <h2 id="aenderungen-rueckgaengig-machen">Änderungen rückgängig machen</h2>
+                    <!-- Änderungen rückgängig machen -->
+                    <section class="tutorials-content">
+                        <h2 id="aenderungen-rueckgaengig-machen">Änderungen rückgängig machen</h2>
 
-                    <h3 class="no-toc">Änderungen verwerfen (VORSICHT!)</h3>
-                    <pre><code class="language-bash">git restore datei.html</code></pre>
-                    <p>Setzt die Datei auf den letzten Commit zurück. Deine Änderungen sind dann WEG. Wirklich weg. Kein
-                        Papierkorb.</p>
+                        <h3 class="no-toc">Änderungen verwerfen (VORSICHT!)</h3>
+                        <pre><code class="language-bash">git restore datei.html</code></pre>
+                        <p>Setzt die Datei auf den letzten Commit zurück. Deine Änderungen sind dann WEG. Wirklich weg.
+                            Kein
+                            Papierkorb.</p>
 
-                    <h3 class="no-toc">Letzten Commit korrigieren</h3>
-                    <p>Tippfehler in der Commit-Nachricht?</p>
-                    <pre><code class="language-bash">git commit --amend -m "Richtige Nachricht"</code></pre>
+                        <h3 class="no-toc">Letzten Commit korrigieren</h3>
+                        <p>Tippfehler in der Commit-Nachricht?</p>
+                        <pre><code class="language-bash">git commit --amend -m "Richtige Nachricht"</code></pre>
 
-                    <p>Datei vergessen?</p>
-                    <pre><code class="language-bash">git add vergessene-datei.html
+                        <p>Datei vergessen?</p>
+                        <pre><code class="language-bash">git add vergessene-datei.html
 git commit --amend --no-edit</code></pre>
-                    <p><code class="inline">--no-edit</code> behält die ursprüngliche Nachricht.</p>
+                        <p><code class="inline">--no-edit</code> behält die ursprüngliche Nachricht.</p>
 
-                    <h3 class="no-toc">Commit rückgängig machen</h3>
-                    <pre><code class="language-bash">git revert abc123</code></pre>
-                    <p>Erstellt einen neuen Commit, der die Änderungen von <code class="inline">abc123</code> rückgängig
-                        macht. Die
-                        Historie bleibt intakt.</p>
+                        <h3 class="no-toc">Commit rückgängig machen</h3>
+                        <pre><code class="language-bash">git revert abc123</code></pre>
+                        <p>Erstellt einen neuen Commit, der die Änderungen von <code class="inline">abc123</code>
+                            rückgängig
+                            macht. Die
+                            Historie bleibt intakt.</p>
 
-                    <h3 class="no-toc">Zurück zu einem älteren Zustand</h3>
-                    <pre><code class="language-bash"># Soft: Änderungen bleiben staged
+                        <h3 class="no-toc">Zurück zu einem älteren Zustand</h3>
+                        <pre><code class="language-bash"># Soft: Änderungen bleiben staged
 git reset --soft HEAD~1
 
 # Mixed: Änderungen bleiben, aber unstaged
@@ -597,56 +659,54 @@ git reset HEAD~1
 # Hard: ALLES weg (GEFÄHRLICH!)
 git reset --hard HEAD~1</code></pre>
 
-                    <p><code class="inline">HEAD~1</code> bedeutet "ein Commit zurück". <code class="inline">HEAD~3</code> wäre drei zurück.</p>
+                        <p><code class="inline">HEAD~1</code> bedeutet "ein Commit zurück". <code
+                                class="inline">HEAD~3</code> wäre drei zurück.</p>
 
-                    <div class="info-box danger">
-                        <strong class="box-title danger no-toc" id="achtung">reset --hard ist destruktiv!
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,
-                15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM14.35,4.75h1.71c.6,
-                0,1.07.49,1.06,1.09l-.35,12.32c-.02.57-.48,1.03-1.06,1.03h-.98c-.57,
-                0-1.04-.45-1.06-1.02l-.38-12.32c-.02-.6.46-1.09,1.06-1.09ZM16.7,
-                25.2c-.39.37-.88.55-1.46.55s-1.04-.18-1.44-.55c-.39-.37-.59-.81-.59-1.33s.2-.95.59-1.32c.4-.37.88-.55,
-                1.44-.55s1.07.18,1.46.55c.39.37.59.81.59,1.32s-.2.96-.59,1.33Z"></path>
-                            </svg>
-                        </strong>
-                        <p>Damit löschst du wirklich Änderungen. Nutze es nur, wenn du weißt was du tust. Im Zweifel
-                            lieber <code class="inline">git revert</code>.</p>
-                    </div>
-                </section>
+                        <div class="info-box danger">
+                            <strong class="box-title danger no-toc" id="achtung">reset --hard ist destruktiv!
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle" />
+                                </svg>
 
-                <!-- Branches - Parallele Welten -->
-                <section class="tutorials-content">
-                    <h2 id="branches---parallele-welten">Branches - Parallele Welten</h2>
-
-                    <p>Branches sind wie parallele Zeitlinien. Du kannst an einem Feature arbeiten, ohne den Hauptcode
-                        zu berühren.</p>
-
-                    <div class="grid-2col">
-                        <div>
-                            <h3 class="no-toc">Branches anzeigen</h3>
-                            <pre><code class="language-bash">git branch</code></pre>
-                            <p>Der mit <code class="inline">*</code> markierte ist dein aktueller Branch.</p>
+                            </strong>
+                            <p>Damit löschst du wirklich Änderungen. Nutze es nur, wenn du weißt was du tust. Im Zweifel
+                                lieber <code class="inline">git revert</code>.</p>
                         </div>
-                        <div>
-                            <h3 class="no-toc">Neuen Branch erstellen</h3>
-                            <pre><code class="language-bash">git branch feature-suche</code></pre>
-                        </div>
-                    </div>
-                    <div class="grid-2col">
-                        <div>
-                            <h3 class="no-toc">Zu Branch wechseln</h3>
-                            <pre><code class="language-bash">git checkout feature-suche</code></pre>
-                        </div>
-                        <div>
-                            <h3 class="no-toc">Erstellen + Wechseln in einem</h3>
-                            <pre><code class="language-bash">git checkout -b feature-suche</code></pre>
-                            <p>Das ist der Befehl, den du am häufigsten nutzen wirst.</p>
-                        </div>
-                    </div>
+                    </section>
 
-                    <h3 class="no-toc">Typischer Workflow</h3>
-                    <pre><code class="language-bash"># 1. Neues Feature starten
+                    <!-- Branches - Parallele Welten -->
+                    <section class="tutorials-content">
+                        <h2 id="branches---parallele-welten">Branches - Parallele Welten</h2>
+
+                        <p>Branches sind wie parallele Zeitlinien. Du kannst an einem Feature arbeiten, ohne den
+                            Hauptcode
+                            zu berühren.</p>
+
+                        <div class="grid-2col">
+                            <div>
+                                <h3 class="no-toc">Branches anzeigen</h3>
+                                <pre><code class="language-bash">git branch</code></pre>
+                                <p>Der mit <code class="inline">*</code> markierte ist dein aktueller Branch.</p>
+                            </div>
+                            <div>
+                                <h3 class="no-toc">Neuen Branch erstellen</h3>
+                                <pre><code class="language-bash">git branch feature-suche</code></pre>
+                            </div>
+                        </div>
+                        <div class="grid-2col">
+                            <div>
+                                <h3 class="no-toc">Zu Branch wechseln</h3>
+                                <pre><code class="language-bash">git checkout feature-suche</code></pre>
+                            </div>
+                            <div>
+                                <h3 class="no-toc">Erstellen + Wechseln in einem</h3>
+                                <pre><code class="language-bash">git checkout -b feature-suche</code></pre>
+                                <p>Das ist der Befehl, den du am häufigsten nutzen wirst.</p>
+                            </div>
+                        </div>
+
+                        <h3 class="no-toc">Typischer Workflow</h3>
+                        <pre><code class="language-bash"># 1. Neues Feature starten
 git checkout -b feature-suche
 
 # 2. Arbeiten, committen...
@@ -663,314 +723,345 @@ git merge feature-suche
 # 5. Branch löschen (optional)
 git branch -d feature-suche</code></pre>
 
-                    <h3 class="no-toc">Branch löschen</h3>
-                    <pre><code class="language-bash"># Nur wenn gemerged
+                        <h3 class="no-toc">Branch löschen</h3>
+                        <pre><code class="language-bash"># Nur wenn gemerged
 git branch -d feature-suche
 
 # Erzwingen (auch wenn nicht gemerged)
 git branch -D feature-suche</code></pre>
 
-                    <h3 class="no-toc">Merge-Konflikte</h3>
-                    <p>Manchmal haben beide Branches die gleiche Stelle geändert. Git markiert das so:</p>
-                    <pre><code class="language-plaintext">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+                        <h3 class="no-toc">Merge-Konflikte</h3>
+                        <p>Manchmal haben beide Branches die gleiche Stelle geändert. Git markiert das so:</p>
+                        <pre><code class="language-plaintext">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 Deine Version
 =======
 Die andere Version
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-suche</code></pre>
 
-                    <p>Du musst manuell entscheiden, welche Version richtig ist. Lösch die Marker
-                        <code class="inline">&lt;&lt;&lt;</code>, <code class="inline">===</code>, <code class="inline">&gt;&gt;&gt;</code>, behalte den Code den
-                        du willst, dann:
-                    </p>
-                    <pre><code class="language-bash">git add die-datei.html
+                        <p>Du musst manuell entscheiden, welche Version richtig ist. Lösch die Marker
+                            <code class="inline">&lt;&lt;&lt;</code>, <code class="inline">===</code>, <code
+                                class="inline">&gt;&gt;&gt;</code>, behalte den Code den
+                            du willst, dann:
+                        </p>
+                        <pre><code class="language-bash">git add die-datei.html
 git commit -m "Merge-Konflikt gelöst"</code></pre>
-                </section>
 
-                <!-- Stashing - Änderungen parken -->
-                <section class="tutorials-content">
-                    <h2 id="stashing---aenderungen-parken">Stashing - Änderungen parken</h2>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Moderner Befehl: git switch
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>Seit Git 2.23 gibt es <code class="inline">git switch</code> als klarere Alternative:</p>
+                            <pre><code class="language-bash"># Statt: git checkout feature-suche
+git switch feature-suche
 
-                    <p>Du arbeitest an etwas, musst aber schnell was anderes machen? Stash parkt deine Änderungen
-                        temporär.</p>
-                    <div class="grid-2col">
-                        <div>
-                            <h3 class="no-toc">Änderungen stashen</h3>
-                            <pre><code class="language-bash">git stash</code></pre>
-                            <p>Dein Working Directory ist jetzt sauber, als hättest du nichts geändert.</p>
+# Statt: git checkout -b feature-suche
+git switch -c feature-suche</code></pre>
+                            <p>Beide Varianten funktionieren. <code class="inline">checkout</code> ist noch weit
+                                verbreitet, aber <code class="inline">switch</code> ist eindeutiger.</p>
                         </div>
-                        <div>
-                            <h3 class="no-toc">Mit Beschreibung</h3>
-                            <pre><code class="language-bash">git stash save "Angefangene Navigation"</code></pre>
+                    </section>
+
+                    <!-- Stashing - Änderungen parken -->
+                    <section class="tutorials-content">
+                        <h2 id="stashing---aenderungen-parken">Stashing - Änderungen parken</h2>
+
+                        <p>Du arbeitest an etwas, musst aber schnell was anderes machen? Stash parkt deine Änderungen
+                            temporär.</p>
+                        <div class="grid-2col">
+                            <div>
+                                <h3 class="no-toc">Änderungen stashen</h3>
+                                <pre><code class="language-bash">git stash</code></pre>
+                                <p>Dein Working Directory ist jetzt sauber, als hättest du nichts geändert.</p>
+                            </div>
+                            <div>
+                                <h3 class="no-toc">Mit Beschreibung</h3>
+                                <pre><code class="language-bash">git stash save "Angefangene Navigation"</code></pre>
+                            </div>
                         </div>
-                    </div>
-                    <h3 class="no-toc">Stash wiederholen</h3>
-                    <pre><code class="language-bash"># Anwenden und behalten
+                        <h3 class="no-toc">Stash wiederholen</h3>
+                        <pre><code class="language-bash"># Anwenden und behalten
 git stash apply
 
 # Anwenden und löschen
 git stash pop</code></pre>
 
-                    <h3 class="no-toc">Alle Stashes anzeigen</h3>
-                    <pre><code class="language-bash">git stash list</code></pre>
+                        <h3 class="no-toc">Alle Stashes anzeigen</h3>
+                        <pre><code class="language-bash">git stash list</code></pre>
 
-                    <h3 class="no-toc">Stash löschen</h3>
-                    <pre><code class="language-bash"># Einen bestimmten
+                        <h3 class="no-toc">Stash löschen</h3>
+                        <pre><code class="language-bash"># Einen bestimmten
 git stash drop stash@{0}
 
 # Alle
 git stash clear</code></pre>
-                </section>
+                    </section>
 
-                <!-- Tags - Versionen markieren -->
-                <section class="tutorials-content">
-                    <h2 id="tags---versionen-markieren">Tags - Versionen markieren</h2>
+                    <!-- Tags - Versionen markieren -->
+                    <section class="tutorials-content">
+                        <h2 id="tags---versionen-markieren">Tags - Versionen markieren</h2>
 
-                    <p>Tags sind Lesezeichen für wichtige Commits, typischerweise Releases.</p>
+                        <p>Tags sind Lesezeichen für wichtige Commits, typischerweise Releases.</p>
 
-                    <h3 class="no-toc">Tag erstellen</h3>
-                    <pre><code class="language-bash"># Einfacher Tag
+                        <h3 class="no-toc">Tag erstellen</h3>
+                        <pre><code class="language-bash"># Einfacher Tag
 git tag v1.0.0
 
 # Mit Beschreibung (empfohlen)
 git tag -a v1.0.0 -m "Erste stabile Version"</code></pre>
 
-                    <div class="grid-2col">
-                        <div>
-                            <h3 class="no-toc">Tags anzeigen</h3>
-                            <pre><code class="language-bash">git tag</code></pre>
+                        <div class="grid-2col">
+                            <div>
+                                <h3 class="no-toc">Tags anzeigen</h3>
+                                <pre><code class="language-bash">git tag</code></pre>
+                            </div>
+                            <div>
+                                <h3 class="no-toc">Tag löschen</h3>
+                                <pre><code class="language-bash">git tag -d v1.0.0</code></pre>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="no-toc">Tag löschen</h3>
-                            <pre><code class="language-bash">git tag -d v1.0.0</code></pre>
-                        </div>
-                    </div>
-                    <h3 class="no-toc">Zu Tag wechseln</h3>
-                    <pre><code class="language-bash">git checkout v1.0.0</code></pre>
-                    <p>Du bist dann im "detached HEAD" Zustand - quasi nur zum Anschauen.</p>
-                </section>
+                        <h3 class="no-toc">Zu Tag wechseln</h3>
+                        <pre><code class="language-bash">git checkout v1.0.0</code></pre>
+                        <p>Du bist dann im "detached HEAD" Zustand - quasi nur zum Anschauen.</p>
+                    </section>
 
-                <!-- Git Cheatsheet -->
-                <section class="tutorials-content">
-                    <h2 id="git-cheatsheet">Git Cheatsheet</h2>
+                    <!-- Git Cheatsheet -->
+                    <section class="tutorials-content">
+                        <h2 id="git-cheatsheet">Git Cheatsheet</h2>
 
-                    <h3 class="no-toc">Setup</h3>
-                    <pre><code class="language-bash">git config --global user.name "Name"
+                        <h3 class="no-toc">Setup</h3>
+                        <pre><code class="language-bash">git config --global user.name "Name"
 git config --global user.email "email"
 git init</code></pre>
 
-                    <h3 class="no-toc">Tägliche Arbeit</h3>
-                    <pre><code class="language-bash">git status              # Was ist los?
+                        <h3 class="no-toc">Tägliche Arbeit</h3>
+                        <pre><code class="language-bash">git status              # Was ist los?
 git add .               # Alles stagen
 git commit -m "Text"    # Committen
 git log --oneline       # Historie</code></pre>
 
-                    <h3 class="no-toc">Änderungen</h3>
-                    <pre><code class="language-bash">git diff                # Was hab ich geändert?
+                        <h3 class="no-toc">Änderungen</h3>
+                        <pre><code class="language-bash">git diff                # Was hab ich geändert?
 git restore datei       # Änderungen verwerfen
 git restore --staged d  # Unstagen</code></pre>
 
-                    <h3 class="no-toc">Branches</h3>
-                    <pre><code class="language-bash">git branch              # Branches anzeigen
+                        <h3 class="no-toc">Branches</h3>
+                        <pre><code class="language-bash">git branch              # Branches anzeigen
 git checkout -b name    # Neuer Branch
 git checkout main       # Wechseln
 git merge name          # Zusammenführen
 git branch -d name      # Löschen</code></pre>
 
-                    <h3 class="no-toc">Rückgängig</h3>
-                    <pre><code class="language-bash">git commit --amend      # Letzten Commit ändern
+                        <h3 class="no-toc">Rückgängig</h3>
+                        <pre><code class="language-bash">git commit --amend      # Letzten Commit ändern
 git revert hash         # Commit rückgängig
 git stash               # Zwischenspeichern
 git stash pop           # Wiederherstellen</code></pre>
-                </section>
+                    </section>
 
-                <!-- Häufige Probleme -->
-                <section class="tutorials-content">
-                    <h2 id="haeufige-probleme">Häufige Probleme</h2>
-                    <div class="grid-2col">
-                    <div>
-                    <h3 class="no-toc">"fatal: not a git repository"</h3>
-                    <p>Du bist nicht in einem Git-Projekt. Entweder <code class="inline">git init</code> ausführen oder
-                        in den
-                        richtigen Ordner wechseln.</p>
-</div><div>
-                    <h3 class="no-toc">"nothing to commit"</h3>
-                    <p>Du hast entweder nichts geändert, oder alles ist schon committet. <code class="inline">git status</code> zeigt
-                        dir mehr.</p>
-</div>
-</div>
+                    <!-- Häufige Probleme -->
+                    <section class="tutorials-content">
+                        <h2 id="haeufige-probleme">Häufige Probleme</h2>
+                        <div class="grid-2col">
+                            <div>
+                                <h3 class="no-toc">"fatal: not a git repository"</h3>
+                                <p>Du bist nicht in einem Git-Projekt. Entweder <code class="inline">git init</code>
+                                    ausführen oder
+                                    in den
+                                    richtigen Ordner wechseln.</p>
+                            </div>
+                            <div>
+                                <h3 class="no-toc">"nothing to commit"</h3>
+                                <p>Du hast entweder nichts geändert, oder alles ist schon committet. <code
+                                        class="inline">git status</code> zeigt
+                                    dir mehr.</p>
+                            </div>
+                        </div>
 
-                    <h3 class="no-toc">Datei wird trotz .gitignore getrackt</h3>
-                    <p>Die Datei war schon getrackt, bevor du sie zur .gitignore hinzugefügt hast:</p>
-                    <pre><code class="language-bash">git rm --cached datei.html
+                        <h3 class="no-toc">Datei wird trotz .gitignore getrackt</h3>
+                        <p>Die Datei war schon getrackt, bevor du sie zur .gitignore hinzugefügt hast:</p>
+                        <pre><code class="language-bash">git rm --cached datei.html
 git commit -m "Datei aus Tracking entfernt"</code></pre>
 
-                    <h3 class="no-toc">Alles kaputt, zurück zum Start</h3>
-                    <pre><code class="language-bash"># Zum letzten Commit zurück (LÖSCHT ÄNDERUNGEN!)
+                        <h3 class="no-toc">Alles kaputt, zurück zum Start</h3>
+                        <pre><code class="language-bash"># Zum letzten Commit zurück (LÖSCHT ÄNDERUNGEN!)
 git reset --hard HEAD
 
 # Zu bestimmtem Commit
 git log --oneline  # Hash finden
 git reset --hard abc123</code></pre>
 
-                    <h3 class="no-toc">Was hab ich eigentlich gemacht?</h3>
-                    <pre><code class="language-bash">git reflog</code></pre>
-                    <p>Zeigt ALLES was du gemacht hast - auch "gelöschte" Commits. Lebensretter!</p>
-                </section>
+                        <h3 class="no-toc">Was hab ich eigentlich gemacht?</h3>
+                        <pre><code class="language-bash">git reflog</code></pre>
+                        <p>Zeigt ALLES was du gemacht hast - auch "gelöschte" Commits. Lebensretter!</p>
+                    </section>
 
-                <!-- Best Practices -->
-                <section class="tutorials-content">
-                    <h2 id="best-practices">Best Practices</h2>
+                    <!-- Best Practices -->
+                    <section class="tutorials-content">
+                        <h2 id="best-practices">Best Practices</h2>
 
-                    <h3 class="no-toc">Commit-Häufigkeit</h3>
-                    <p>Lieber zu oft als zu selten. Ein Commit pro logischer Änderung ist ideal. "Header fertig" ist ein
-                        Commit. "Komplette Website redesigned" sind 20 Commits.</p>
+                        <h3 class="no-toc">Commit-Häufigkeit</h3>
+                        <p>Lieber zu oft als zu selten. Ein Commit pro logischer Änderung ist ideal. "Header fertig" ist
+                            ein
+                            Commit. "Komplette Website redesigned" sind 20 Commits.</p>
 
-                    <h3 class="no-toc">Commit-Nachrichten</h3>
-                    <p>Kurz, aber aussagekräftig. Was wurde geändert? Nicht wie oder warum - das steht im Code.</p>
+                        <h3 class="no-toc">Commit-Nachrichten</h3>
+                        <p>Kurz, aber aussagekräftig. Was wurde geändert? Nicht wie oder warum - das steht im Code.</p>
 
-                    <h3 class="no-toc">.gitignore von Anfang an</h3>
-                    <p>Erstell die .gitignore BEVOR du den ersten Commit machst. Dann landet kein Müll in der Historie.
+                        <h3 class="no-toc">.gitignore von Anfang an</h3>
+                        <p>Erstell die .gitignore BEVOR du den ersten Commit machst. Dann landet kein Müll in der
+                            Historie.
+                        </p>
+
+                        <h3 class="no-toc">Branches nutzen</h3>
+                        <p>Sobald du an etwas Experimentellem arbeitest: neuer Branch. Funktioniert es? Merge.
+                            Funktioniert
+                            es nicht? Branch löschen. Dein main-Branch bleibt sauber.</p>
+
+                        <h3 class="no-toc">Regelmäßig Status checken</h3>
+                        <p><code class="inline">git status</code> ist dein Freund. Vor jedem Commit, nach jedem Commit,
+                            zwischendurch. Es
+                            zeigt dir immer, wo du stehst.</p>
+
+                        <h3 class="no-toc" id="conventional-commits">Conventional Commits</h3>
+                        <table class="ref-table table-2col">
+                            <thead>
+                                <tr>
+                                    <th>Type-Prefix</th>
+                                    <th>Funktion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">git commit -m "Refactor:..."</code></td>
+                                    <td>Code-Umstrukturierung</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">git commit -m "Add:..."</code></td>
+                                    <td>Neues Feature</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">git commit -m "Style:..."</code></td>
+                                    <td>Formatierung, keine Code-Änderung</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">git commit -m "Fix:..."</code></td>
+                                    <td>Bugfix</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">git commit -m "Update:..."</code></td>
+                                    <td>Änderungen</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">git commit -m "Remove:..."</code></td>
+                                    <td>Löschungen</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">git commit -m "Docs:..."</code></td>
+                                    <td>Dokumentation</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">git commit -m "Chore:..."</code></td>
+                                    <td>Aufräumen, Dependencies, Build</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Nächste Schritte -->
+                    <section class="tutorials-content">
+                        <h2 id="naechste-schritte">Nächste Schritte</h2>
+
+                        <p>Du hast jetzt alles, was du für lokale Versionskontrolle brauchst. Git läuft komplett auf
+                            deinem
+                            Rechner, ohne Internet, ohne Account, ohne alles.</p>
+
+                        <p>Wenn du dein Projekt online stellen, mit anderen teilen oder ein Backup in der Cloud haben
+                            willst, schau dir das <a href="github-remote.html" target="_blank">GitHub Tutorial</a> an.
+                            Aber
+                            das ist optional - Git
+                            funktioniert auch prima ohne.</p>
+
+                        <h3 class="no-toc">Zum Üben</h3>
+                        <ol class="pl-md grid-2col-bg">
+                            <li>Initialisiere Git in einem Testprojekt</li>
+                            <li>Erstell eine .gitignore</li>
+                            <li>Mach deinen ersten Commit</li>
+                            <li>Ändere was und committe wieder</li>
+                            <li>Schau dir die Historie an</li>
+                            <li>Erstell einen Branch und merge ihn</li>
+                        </ol>
+
+                        <p class="pt-md">Nach ein paar Tagen wird <code class="inline">git add</code> + <code
+                                class="inline">git commit</code> so automatisch wie
+                            Speichern.</p>
+                    </section>
+
+
+                    <!-- Prev/Next Navigation -->
+
+                    <!-- Latest-Tutorials-Start -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
+
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/misc/tools/bash-terminal.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Terminal & Bash Basics</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/misc/tools/github-remote.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">GitHub - Dein Code in der Cloud</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                        </nav>
+                    </section>
+
+                </div> <!-- Wrapper .container -->
+
+            </div> <!-- Tutorial Layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
                     </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
-                    <h3 class="no-toc">Branches nutzen</h3>
-                    <p>Sobald du an etwas Experimentellem arbeitest: neuer Branch. Funktioniert es? Merge. Funktioniert
-                        es nicht? Branch löschen. Dein main-Branch bleibt sauber.</p>
-
-                    <h3 class="no-toc">Regelmäßig Status checken</h3>
-                    <p><code class="inline">git status</code> ist dein Freund. Vor jedem Commit, nach jedem Commit,
-                        zwischendurch. Es
-                        zeigt dir immer, wo du stehst.</p>
-
-                    <h3 class="no-toc" id="conventional-commits">Conventional Commits</h3>
-                    <table class="ref-table table-2col">
-                        <thead>
-                            <tr>
-                                <th>Type-Prefix</th>
-                                <th>Funktion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code class="inline">git commit -m "Refactor:..."</code></td>
-                                <td>Code-Umstrukturierung</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">git commit -m "Add:..."</code></td>
-                                <td>Neues Feature</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">git commit -m "Style:..."</code></td>
-                                <td>Formatierung, keine Code-Änderung</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">git commit -m "Fix:..."</code></td>
-                                <td>Bugfix</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">git commit -m "Update:..."</code></td>
-                                <td>Änderungen</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">git commit -m "Remove:..."</code></td>
-                                <td>Löschungen</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">git commit -m "Docs:..."</code></td>
-                                <td>Dokumentation</td>
-                            </tr>
-                            <tr>
-                                <td><code class="inline">git commit -m "Chore:..."</code></td>
-                                <td>Aufräumen, Dependencies, Build</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <!-- Nächste Schritte -->
-                <section class="tutorials-content">
-                    <h2 id="naechste-schritte">Nächste Schritte</h2>
-
-                    <p>Du hast jetzt alles, was du für lokale Versionskontrolle brauchst. Git läuft komplett auf deinem
-                        Rechner, ohne Internet, ohne Account, ohne alles.</p>
-
-                    <p>Wenn du dein Projekt online stellen, mit anderen teilen oder ein Backup in der Cloud haben
-                        willst, schau dir das <a href="github-remote.html" target="_blank">GitHub Tutorial</a> an. Aber
-                        das ist optional - Git
-                        funktioniert auch prima ohne.</p>
-
-                    <h3 class="no-toc">Zum Üben</h3>
-                    <ol class="pl-md grid-2col-bg">
-                        <li>Initialisiere Git in einem Testprojekt</li>
-                        <li>Erstell eine .gitignore</li>
-                        <li>Mach deinen ersten Commit</li>
-                        <li>Ändere was und committe wieder</li>
-                        <li>Schau dir die Historie an</li>
-                        <li>Erstell einen Branch und merge ihn</li>
-                    </ol>
-
-                    <p class="pt-md">Nach ein paar Tagen wird <code class="inline">git add</code> + <code class="inline">git commit</code> so automatisch wie
-                        Speichern.</p>
-                </section>
-
-
-                <!-- Prev/Next Navigation -->
-
-                <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
-
-                <section class="tutorials-content">
-                    <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/misc/tools/bash-terminal.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Terminal & Bash Basics</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/misc/tools/github-remote.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">GitHub - Dein Code in der Cloud</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div></nav>
-                </section>
-
-            </div> <!-- Wrapper .container -->
-
-        </div> <!-- Tutorial Layout -->
-
-    </main>
-
-    <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
-
-    <script src="/assets/js/code-copy.js" defer></script>
-    <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/vendor/prism/prism.js" defer></script>
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
 
 
 
-</body></html>
+    </body>
+
+</html>
