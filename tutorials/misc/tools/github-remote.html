@@ -1,524 +1,605 @@
-<!DOCTYPE html><html lang="de"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GitHub Schritt für Schritt: Repository erstellen, Code hochladen, SSH einrichten und mit der Cloud synchronisieren. Für Git-Anfänger erklärt.">
-    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
-    <meta name="author" content="DevPanicZone">
-    <title>GitHub - Remote Repositories | DevPanicZone</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/tutorials.css">
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
-</head>
+<!DOCTYPE html>
+<html lang="de">
 
-<body>
-    <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                </a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description"
+            content="GitHub Schritt für Schritt: Repository erstellen, Code hochladen, SSH einrichten und mit der Cloud synchronisieren. Für Git-Anfänger erklärt.">
+        <meta name="keywords"
+            content="GitHub Tutorial, Git Push, GitHub Repository, SSH Key GitHub, GitHub Pages, Remote Repository, Git Clone, GitHub Anfänger">
+        <meta name="author" content="DevPanicZone">
+        <title>GitHub - Remote Repositories & Push für Einsteiger | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+        <!-- Header-Start -->
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                        </a>
+                    </div>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                        <path
+                                            d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
             </div>
+        </header>
+        <!-- Header-End -->
 
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
+                            class="breadcrumb-separator">›</span><a href="/tutorials/misc/"
+                            class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span
+                            class="breadcrumb-current">GitHub - Dein Code in der Cloud</span></nav>
+                    <h1 class="hero-title">GitHub - Dein Code in der Cloud</h1>
+                    <p class="hero-subtitle">Git lokal ist super. Git + GitHub ist Backup, Portfolio und Zusammenarbeit
+                        in einem.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
                 </span>
             </button>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                    </div>
+
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                            <li class="toc-level-1"><a href="#git-vs-github---was-ist-der-unterschied">Git vs. GitHub -
+                                    Was ist der Unterschied?</a></li>
+                            <li class="toc-level-1"><a href="#github-account-erstellen">GitHub Account erstellen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#repository-auf-github-erstellen">Repository auf GitHub
+                                    erstellen</a></li>
+                            <li class="toc-level-1"><a href="#https-vs-ssh">HTTPS vs. SSH</a></li>
+                            <li class="toc-level-1"><a href="#ssh-einrichten">SSH einrichten</a></li>
+                            <li class="toc-level-1"><a href="#lokales-projekt-mit-github-verbinden">Lokales Projekt mit
+                                    GitHub verbinden</a></li>
+                            <li class="toc-level-1"><a href="#push---code-hochladen">Push - Code hochladen</a></li>
+                            <li class="toc-level-1"><a href="#clone---projekt-herunterladen">Clone - Projekt
+                                    herunterladen</a></li>
+                            <li class="toc-level-1"><a href="#pull---aenderungen-holen">Pull - Änderungen holen</a></li>
+                            <li class="toc-level-1"><a href="#readmemd---dein-projekt-praesentieren">README.md - Dein
+                                    Projekt präsentieren</a></li>
+                            <li class="toc-level-1"><a href="#github-pages---kostenlos-hosten">GitHub Pages - Kostenlos
+                                    hosten</a></li>
+                            <li class="toc-level-1"><a href="#wichtige-github-konzepte">Wichtige GitHub-Konzepte</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#github-cheatsheet">GitHub Cheatsheet</a></li>
+                            <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
+                            <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                            <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                            </svg>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
                         </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
 
-    <main class="site-main">
-
-        <!-- Hero -->
-        <section class="hero tutorial-hero">
-            <div class="container">
-                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">GitHub - Dein Code in der Cloud</span></nav>
-                <h1 class="hero-title">GitHub - Dein Code in der Cloud</h1>
-                <p class="hero-subtitle">Git lokal ist super. Git + GitHub ist Backup, Portfolio und Zusammenarbeit in
-                    einem.</p>
-            </div>
-        </section>
-
-        <!-- Floating Button Links (Sidebar) -->
-        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
-            <span class="toggle-icon">☰</span>
-        </button>
-
-        <!-- Floating Button Rechts (Tutorial Navigation) -->
-        <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
-            <span class="toggle-icon">
-                <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
-            </span>
-        </button>
-
-        <!-- Sidebar Overlay für Mobile -->
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-        <!-- Tutorial Layout -->
-        <div class="tutorial-layout">
-
-            <!-- Linke Sidebar (Floating Panel) -->
-            <aside class="tutorial-sidebar" id="tutorialSidebar">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
-                    <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
-                        <span>×</span>
-                    </button>
-                </div>
-
-                <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
-                    <ul class="toc-list">
-                        <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#git-vs-github---was-ist-der-unterschied">Git vs. GitHub - Was ist der Unterschied?</a></li>
-                    <li class="toc-level-1"><a href="#github-account-erstellen">GitHub Account erstellen</a></li>
-                    <li class="toc-level-1"><a href="#repository-auf-github-erstellen">Repository auf GitHub erstellen</a></li>
-                    <li class="toc-level-1"><a href="#https-vs-ssh">HTTPS vs. SSH</a></li>
-                    <li class="toc-level-1"><a href="#ssh-einrichten">SSH einrichten</a></li>
-                    <li class="toc-level-1"><a href="#lokales-projekt-mit-github-verbinden">Lokales Projekt mit GitHub verbinden</a></li>
-                    <li class="toc-level-1"><a href="#push---code-hochladen">Push - Code hochladen</a></li>
-                    <li class="toc-level-1"><a href="#clone---projekt-herunterladen">Clone - Projekt herunterladen</a></li>
-                    <li class="toc-level-1"><a href="#pull---aenderungen-holen">Pull - Änderungen holen</a></li>
-                    <li class="toc-level-1"><a href="#readmemd---dein-projekt-praesentieren">README.md - Dein Projekt präsentieren</a></li>
-                    <li class="toc-level-1"><a href="#github-pages---kostenlos-hosten">GitHub Pages - Kostenlos hosten</a></li>
-                    <li class="toc-level-1"><a href="#wichtige-github-konzepte">Wichtige GitHub-Konzepte</a></li>
-                    <li class="toc-level-1"><a href="#github-cheatsheet">GitHub Cheatsheet</a></li>
-                    <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
-                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
-                    <li class="toc-level-1"><a href="#naechste-schritte">Nächste Schritte</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
-                    <!-- Sidebar-Anchor-End -->
-                    </ul>
-                </nav>
-            </aside>
-
-            <!-- Rechte Sidebar (Floating Panel) -->
-            <aside class="tutorial-related">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title no-toc">Tutorials</h3>
-                    <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
-                        <span>×</span>
-                    </button>
-                </div>
-
-                <div class="sidebar-nav">
-                    <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">SEO Optimization</li>
-                    <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content verstehen & vermeiden</a></li>
-                    <li class="sidebar-group-title">Tools</li>
-                    <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
-                    <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">CSS-Duplikate finden & vergleichen in VS Code</a></li>
-                    <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
-                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
-                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale Versionskontrolle</a></li>
-                    <li><a href="/tutorials/misc/tools/github-remote.html" class="active">GitHub - Dein Code in der Cloud</a></li>
-                    <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla anhand des Beispiels All-Inkl</a></li>
-                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
-                    <li class="sidebar-group-title">Web</li>
-                    <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
-                </ul>
-                </div>
-            </aside>
-
-            <!-- Wrapper .container -->
-            <div class="container">
-
-                <!-- Git vs. GitHub -->
-                <section class="tutorials-content mt-xl">
-                    <h2 id="git-vs-github---was-ist-der-unterschied">Git vs. GitHub - Was ist der Unterschied?</h2>
-
-                    <p><strong>Git</strong> = Das Programm auf deinem Rechner, das Versionen trackt.</p>
-                    <p><strong>GitHub</strong> = Ein Online-Service, der Git-Repositories hostet.</p>
-
-                    <p>Stell dir vor: Git ist wie ein Tagebuch, das du lokal schreibst. GitHub ist wie ein Tresor in der
-                        Cloud, wo du eine Kopie aufbewahrst.</p>
-
-                    <div class="info-box">
-                        <strong class="box-title no-toc">Was GitHub bietet
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                </path>
-                            </svg>
-                        </strong>
-                        <ul class="arrow-list">
-                            <li><strong>Backup</strong> - Dein Code ist sicher, auch wenn dein Rechner stirbt</li>
-                            <li><strong>Portfolio</strong> - Zeig der Welt (oder Arbeitgebern) was du kannst</li>
-                            <li><strong>Zusammenarbeit</strong> - Mehrere Leute können am gleichen Projekt arbeiten
-                            </li>
-                            <li><strong>Hosting</strong> - GitHub Pages kann statische Websites kostenlos hosten
-                            </li>
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                            <li class="sidebar-group-title">SEO Optimization</li>
+                            <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content
+                                    verstehen & vermeiden</a></li>
+                            <li class="sidebar-group-title">Tools</li>
+                            <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
+                            <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">CSS-Duplikate finden &
+                                    vergleichen in VS Code</a></li>
+                            <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
+                            <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                            <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale
+                                    Versionskontrolle</a></li>
+                            <li><a href="/tutorials/misc/tools/github-remote.html" class="active">GitHub - Dein Code in
+                                    der Cloud</a></li>
+                            <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla anhand des Beispiels
+                                    All-Inkl</a></li>
+                            <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale
+                                    Änderungen an HTML-Dateien</a></li>
+                            <li class="sidebar-group-title">Web</li>
+                            <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
                         </ul>
                     </div>
+                </aside>
 
-                    <div class="info-box">
-                        <strong class="box-title no-toc">Brauche ich GitHub?
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30" fill="currentColor">
-                                <path d="M15.25,0C6.83,0,0,6.83,0,15.25s6.83,15.25,15.25,15.25,15.25-6.83,15.25-15.25S23.67,0,15.25,0ZM15.56,3.83c1.22,0,2.21.99,2.21,2.21s-.99,2.21-2.21,2.21-2.21-.99-2.21-2.21.99-2.21,2.21-2.21ZM18.51,25.93h-5.9c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h1.47v-8.84h-1.47c-.82,0-1.47-.66-1.47-1.47s.66-1.47,1.47-1.47h2.95c.82,0,1.47.66,1.47,1.47v10.32h1.47c.82,0,1.47.66,1.47,1.47s-.66,1.47-1.47,1.47Z">
-                                </path>
-                            </svg>
-                        </strong>
-                        <p>Nicht zwingend. Git funktioniert komplett ohne. Aber sobald du:</p>
-                        <div class="grid-2col">
-                            <div>
-                                <ul class="arrow-list">
-                                    <li>Ein Backup in der Cloud willst</li>
-                                    <li>Deinen Code teilen möchtest</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul class="arrow-list">
-                                    <li>Von mehreren Geräten arbeiten willst</li>
-                                    <li>Ein Portfolio aufbauen möchtest</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p>...ist GitHub (oder GitLab, Bitbucket) der logische nächste Schritt.</p>
-                    </div>
+                <!-- Wrapper .container -->
+                <div class="container">
 
-                </section>
+                    <!-- Git vs. GitHub -->
+                    <section class="tutorials-content mt-xl">
+                        <h2 id="git-vs-github---was-ist-der-unterschied">Git vs. GitHub - Was ist der Unterschied?</h2>
 
-                <!-- GitHub Account erstellen -->
-                <section class="tutorials-content">
-                    <h2 id="github-account-erstellen">GitHub Account erstellen</h2>
+                        <p><strong>Git</strong> = Das Programm auf deinem Rechner, das Versionen trackt.</p>
+                        <p><strong>GitHub</strong> = Ein Online-Service, der Git-Repositories hostet.</p>
 
-                    <ol class="grid-2col-bg">
-                        <li>Geh zu <a href="https://github.com" target="_blank" rel="noopener">github.com</a></li>
-                        <li>Klick "Sign up"</li>
-                        <li>E-Mail, Passwort, Username wählen</li>
-                        <li>E-Mail bestätigen</li>
-                    </ol>
+                        <p>Stell dir vor: Git ist wie ein Tagebuch, das du lokal schreibst. GitHub ist wie ein Tresor in
+                            der
+                            Cloud, wo du eine Kopie aufbewahrst.</p>
 
-                    <h3 class="no-toc">Username-Tipp</h3>
-                    <p>Dein Username wird Teil deiner GitHub-URL: <code class="inline">github.com/dein-username</code>.
-                        Wenn du GitHub
-                        als Portfolio nutzen willst, wähl was Professionelles. "xXDarkCoder420Xx" macht sich auf dem
-                        Lebenslauf weniger gut.</p>
-
-                    <h3 class="no-toc">Kostenlos vs. Bezahlt</h3>
-                    <p>Der kostenlose Account reicht völlig. Du bekommst:</p>
-                    <div class="grid-2col grid-2col-bg">
-                        <div>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Was GitHub bietet
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
                             <ul class="arrow-list">
-                                <li>Unbegrenzte öffentliche Repositories</li>
-                                <li>Unbegrenzte private Repositories</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="arrow-list">
-                                <li>GitHub Pages (kostenlos Websites hosten)</li>
-                                <li>2000 Actions-Minuten/Monat (CI/CD)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Repository auf GitHub erstellen -->
-                <section class="tutorials-content">
-                    <h2 id="repository-auf-github-erstellen">Repository auf GitHub erstellen</h2>
-
-                    <ol class="grid-2col-bg">
-                        <li>Eingeloggt auf GitHub: Klick das <strong>+</strong> oben rechts → "New repository"</li>
-                        <li><strong>Repository name</strong>: z.B. "DevPanicZone" oder "mein-projekt"</li>
-                        <li><strong>Description</strong>: Optional, kurze Beschreibung</li>
-                        <li><strong>Public/Private</strong>:
-                            <ul class="arrow-list mt-sm">
-                                <li>Public = Jeder kann es sehen (gut für Portfolio)</li>
-                                <li>Private = Nur du (und eingeladene Personen)</li>
-                            </ul>
-                        </li>
-                        <li><strong>Initialize with README</strong>: NEIN! (Du hast ja schon ein lokales Projekt)</li>
-                        <li><strong>Add .gitignore</strong>: NEIN! (Hast du auch schon)</li>
-                        <li>Klick "Create repository"</li>
-                    </ol>
-
-                    <h3 class="no-toc">Was jetzt passiert</h3>
-                    <p>GitHub zeigt dir eine Seite mit Befehlen. Die wichtigen sind unter "…or push an existing
-                        repository from the command line".</p>
-                </section>
-
-                <!-- HTTPS vs. SSH -->
-                <section class="tutorials-content">
-                    <h2 id="https-vs-ssh">HTTPS vs. SSH</h2>
-
-                    <p>Zwei Wege, um mit GitHub zu kommunizieren:</p>
-                    <div class="grid-2col">
-                        <div class="grid-2col-bg">
-                            <h3 class="no-toc">HTTPS</h3>
-                            <ul class="arrow-list">
-                                <li>Einfacher einzurichten</li>
-                                <li>URL sieht so aus: <code class="inline">https://github.com/username/repo.git</code>
+                                <li><strong>Backup</strong> - Dein Code ist sicher, auch wenn dein Rechner stirbt</li>
+                                <li><strong>Portfolio</strong> - Zeig der Welt (oder Arbeitgebern) was du kannst</li>
+                                <li><strong>Zusammenarbeit</strong> - Mehrere Leute können am gleichen Projekt arbeiten
                                 </li>
-                                <li>Braucht Personal Access Token (PAT) statt Passwort</li>
-                                <li>Token muss regelmäßig erneuert werden</li>
+                                <li><strong>Hosting</strong> - GitHub Pages kann statische Websites kostenlos hosten
+                                </li>
                             </ul>
                         </div>
-                        <div class="grid-2col-bg">
-                            <h3 class="no-toc">SSH</h3>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Brauche ich GitHub?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>Nicht zwingend. Git funktioniert komplett ohne. Aber sobald du:</p>
+                            <div class="grid-2col">
+                                <div>
+                                    <ul class="arrow-list">
+                                        <li>Ein Backup in der Cloud willst</li>
+                                        <li>Deinen Code teilen möchtest</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <ul class="arrow-list">
+                                        <li>Von mehreren Geräten arbeiten willst</li>
+                                        <li>Ein Portfolio aufbauen möchtest</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p>...ist GitHub (oder GitLab, Bitbucket) der logische nächste Schritt.</p>
+                        </div>
+
+                    </section>
+
+                    <!-- GitHub Account erstellen -->
+                    <section class="tutorials-content">
+                        <h2 id="github-account-erstellen">GitHub Account erstellen</h2>
+
+                        <ol class="grid-2col-bg">
+                            <li>Geh zu <a href="https://github.com" target="_blank" rel="noopener">github.com</a></li>
+                            <li>Klick "Sign up"</li>
+                            <li>E-Mail, Passwort, Username wählen</li>
+                            <li>E-Mail bestätigen</li>
+                        </ol>
+
+                        <h3 class="no-toc">Username-Tipp</h3>
+                        <p>Dein Username wird Teil deiner GitHub-URL: <code
+                                class="inline">github.com/dein-username</code>.
+                            Wenn du GitHub
+                            als Portfolio nutzen willst, wähl was Professionelles. "xXDarkCoder420Xx" macht sich auf dem
+                            Lebenslauf weniger gut.</p>
+
+                        <h3 class="no-toc">Kostenlos vs. Bezahlt</h3>
+                        <p>Der kostenlose Account reicht völlig. Du bekommst:</p>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>Unbegrenzte öffentliche Repositories</li>
+                                    <li>Unbegrenzte private Repositories</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li>GitHub Pages (kostenlos Websites hosten)</li>
+                                    <li>2000 Actions-Minuten/Monat (CI/CD)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- GitHub Oberfläche verstehen -->
+                    <section class="tutorials-content">
+                        <h2 id="github-oberflaeche-verstehen">GitHub Oberfläche verstehen</h2>
+
+                        <p>GitHub kann am Anfang überwältigend wirken. Hier die wichtigsten Bereiche:</p>
+
+                        <h3 class="no-toc">Dein Profil finden</h3>
+                        <p>Klick oben rechts auf dein Profilbild → "Your profile". Hier siehst du:</p>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li>Alle deine Repositories</li>
+                            <li>Deine Contribution-Übersicht (grüne Kästchen)</li>
+                            <li>Deine README (falls du eine hast)</li>
+                        </ul>
+                        <p>Deine Profil-URL: <code class="inline">github.com/dein-username</code></p>
+
+                        <h3 class="no-toc">Deine Repositories finden</h3>
+                        <ul class="arrow-list grid-2col-bg">
+                            <li><strong>Schnellzugriff:</strong> Profilbild → "Your repositories"</li>
+                            <li><strong>Oder:</strong> <code
+                                    class="inline">github.com/dein-username?tab=repositories</code></li>
+                            <li><strong>Einzelnes Repo:</strong> <code
+                                    class="inline">github.com/dein-username/repo-name</code></li>
+                        </ul>
+
+                        <h3 class="no-toc">GitHub Pages URL finden</h3>
+                        <p>Wenn du GitHub Pages aktiviert hast, ist deine Live-Seite unter:</p>
+                        <pre><code class="language-plaintext">https://dein-username.github.io/repository-name/</code></pre>
+
+                        <p>Du findest den Link auch im Repository unter:</p>
+                        <ol class="grid-2col-bg">
+                            <li>Repository öffnen</li>
+                            <li>Rechts in der Sidebar: "Deployments" oder "github-pages"</li>
+                            <li>Oder: Settings → Pages → "Your site is live at..."</li>
+                        </ol>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Tipp: Repository-Sidebar
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>Auf der rechten Seite jedes Repositories siehst du:</p>
                             <ul class="arrow-list">
-                                <li>Einmalig mehr Setup</li>
-                                <li>URL sieht so aus: <code class="inline">git@github.com:username/repo.git</code></li>
-                                <li>Danach keine Passwort-Eingabe mehr</li>
-                                <li>Sicherer</li>
+                                <li><strong>About:</strong> Beschreibung + Website-Link (falls gesetzt)</li>
+                                <li><strong>Releases:</strong> Veröffentlichte Versionen</li>
+                                <li><strong>Deployments:</strong> GitHub Pages Status</li>
+                                <li><strong>Languages:</strong> Verwendete Programmiersprachen</li>
                             </ul>
                         </div>
-                    </div>
-                    <p class="mt-lg"><strong>Empfehlung:</strong> Nimm SSH. Das Setup dauert 5 Minuten,
-                        danach hast du Ruhe.</p>
-                </section>
+                    </section>
 
-                <!-- SSH einrichten -->
-                <section class="tutorials-content">
-                    <h2 id="ssh-einrichten">SSH einrichten</h2>
+                    <!-- Repository auf GitHub erstellen -->
+                    <section class="tutorials-content">
+                        <h2 id="repository-auf-github-erstellen">Repository auf GitHub erstellen</h2>
 
-                    <h3 class="no-toc">1. SSH-Key generieren</h3>
-                    <pre><code class="language-bash">ssh-keygen -t ed25519 -C "deine@email.com"</code></pre>
+                        <ol class="grid-2col-bg">
+                            <li>Eingeloggt auf GitHub: Klick das <strong>+</strong> oben rechts → "New repository"</li>
+                            <li><strong>Repository name</strong>: z.B. "DevPanicZone" oder "mein-projekt"</li>
+                            <li><strong>Description</strong>: Optional, kurze Beschreibung</li>
+                            <li><strong>Public/Private</strong>:
+                                <ul class="arrow-list mt-sm">
+                                    <li>Public = Jeder kann es sehen (gut für Portfolio)</li>
+                                    <li>Private = Nur du (und eingeladene Personen)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Initialize with README</strong>: NEIN! (Du hast ja schon ein lokales Projekt)
+                            </li>
+                            <li><strong>Add .gitignore</strong>: NEIN! (Hast du auch schon)</li>
+                            <li>Klick "Create repository"</li>
+                        </ol>
 
-                    <p>Es fragt nach einem Speicherort - einfach Enter drücken für den Standard. Dann optional ein
-                        Passwort (Passphrase) für extra Sicherheit.</p>
+                        <h3 class="no-toc">Was jetzt passiert</h3>
+                        <p>GitHub zeigt dir eine Seite mit Befehlen. Die wichtigen sind unter "…or push an existing
+                            repository from the command line".</p>
+                    </section>
 
-                    <h3 class="no-toc">2. SSH-Agent starten</h3>
-                    <pre><code class="language-bash">eval "$(ssh-agent -s)"</code></pre>
+                    <!-- HTTPS vs. SSH -->
+                    <section class="tutorials-content">
+                        <h2 id="https-vs-ssh">HTTPS vs. SSH</h2>
 
-                    <h3 class="no-toc">3. Key zum Agent hinzufügen</h3>
-                    <p><strong>macOS:</strong></p>
-                    <pre><code class="language-bash">ssh-add --apple-use-keychain ~/.ssh/id_ed25519</code></pre>
+                        <p>Zwei Wege, um mit GitHub zu kommunizieren:</p>
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">HTTPS</h3>
+                                <ul class="arrow-list">
+                                    <li>Einfacher einzurichten</li>
+                                    <li>URL sieht so aus: <code
+                                            class="inline">https://github.com/username/repo.git</code>
+                                    </li>
+                                    <li>Braucht Personal Access Token (PAT) statt Passwort</li>
+                                    <li>Token muss regelmäßig erneuert werden</li>
+                                </ul>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">SSH</h3>
+                                <ul class="arrow-list">
+                                    <li>Einmalig mehr Setup</li>
+                                    <li>URL sieht so aus: <code class="inline">git@github.com:username/repo.git</code>
+                                    </li>
+                                    <li>Danach keine Passwort-Eingabe mehr</li>
+                                    <li>Sicherer</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="mt-lg"><strong>Empfehlung:</strong> Nimm SSH. Das Setup dauert 5 Minuten,
+                            danach hast du Ruhe.</p>
+                    </section>
 
-                    <p><strong>Linux/Windows:</strong></p>
-                    <pre><code class="language-bash">ssh-add ~/.ssh/id_ed25519</code></pre>
+                    <!-- SSH einrichten -->
+                    <section class="tutorials-content">
+                        <h2 id="ssh-einrichten">SSH einrichten</h2>
 
-                    <h3 class="no-toc">4. Öffentlichen Key kopieren</h3>
-                    <pre><code class="language-bash">cat ~/.ssh/id_ed25519.pub</code></pre>
-                    <p>Kopier den gesamten Output (fängt mit <code class="inline">ssh-ed25519</code> an).</p>
+                        <h3 class="no-toc">1. SSH-Key generieren</h3>
+                        <pre><code class="language-bash">ssh-keygen -t ed25519 -C "deine@email.com"</code></pre>
 
-                    <h3 class="no-toc">5. Key auf GitHub hinzufügen</h3>
-                    <ol class="grid-2col-bg">
-                        <li>GitHub → Profilbild oben rechts → Settings</li>
-                        <li>Links: "SSH and GPG keys"</li>
-                        <li>"New SSH key"</li>
-                        <li>Title: z.B. "MacMini" oder "Arbeits-Laptop"</li>
-                        <li>Key: Einfügen was du kopiert hast</li>
-                        <li>"Add SSH key"</li>
-                    </ol>
+                        <p>Es fragt nach einem Speicherort - einfach Enter drücken für den Standard. Dann optional ein
+                            Passwort (Passphrase) für extra Sicherheit.</p>
 
-                    <h3 class="no-toc">6. Testen</h3>
-                    <pre><code class="language-bash">ssh -T git@github.com</code></pre>
-                    <p>Wenn "Hi username!" kommt, hat's geklappt.</p>
-                </section>
+                        <h3 class="no-toc">2. SSH-Agent starten</h3>
+                        <pre><code class="language-bash">eval "$(ssh-agent -s)"</code></pre>
 
-                <!-- Lokales Projekt mit GitHub verbinden -->
-                <section class="tutorials-content">
-                    <h2 id="lokales-projekt-mit-github-verbinden">Lokales Projekt mit GitHub verbinden</h2>
+                        <h3 class="no-toc">3. Key zum Agent hinzufügen</h3>
+                        <p><strong>macOS:</strong></p>
+                        <pre><code class="language-bash">ssh-add --apple-use-keychain ~/.ssh/id_ed25519</code></pre>
 
-                    <p>Du hast ein lokales Git-Repository und ein leeres GitHub-Repository. Jetzt verbinden:</p>
+                        <p><strong>Linux/Windows:</strong></p>
+                        <pre><code class="language-bash">ssh-add ~/.ssh/id_ed25519</code></pre>
 
-                    <h3 class="no-toc">Remote hinzufügen</h3>
-                    <pre><code class="language-bash">git remote add origin git@github.com:dein-username/dein-repo.git</code></pre>
+                        <h3 class="no-toc">4. Öffentlichen Key kopieren</h3>
+                        <pre><code class="language-bash">cat ~/.ssh/id_ed25519.pub</code></pre>
+                        <p>Kopier den gesamten Output (fängt mit <code class="inline">ssh-ed25519</code> an).</p>
 
-                    <p><code class="inline">origin</code> ist der Name für das Remote-Repository. Das ist Konvention -
-                        du könntest es
-                        auch "github" oder "cloud" nennen, aber "origin" ist Standard.</p>
+                        <h3 class="no-toc">5. Key auf GitHub hinzufügen</h3>
+                        <ol class="grid-2col-bg">
+                            <li>GitHub → Profilbild oben rechts → Settings</li>
+                            <li>Links: "SSH and GPG keys"</li>
+                            <li>"New SSH key"</li>
+                            <li>Title: z.B. "MacMini" oder "Arbeits-Laptop"</li>
+                            <li>Key: Einfügen was du kopiert hast</li>
+                            <li>"Add SSH key"</li>
+                        </ol>
 
-                    <h3 class="no-toc">Prüfen ob's geklappt hat</h3>
-                    <pre><code class="language-bash">git remote -v</code></pre>
-                    <p>Sollte deine GitHub-URL anzeigen.</p>
+                        <h3 class="no-toc">6. Testen</h3>
+                        <pre><code class="language-bash">ssh -T git@github.com</code></pre>
+                        <p>Wenn "Hi username!" kommt, hat's geklappt.</p>
+                    </section>
 
-                    <h3 class="no-toc">Branch umbenennen (falls nötig)</h3>
-                    <p>GitHub erwartet "main" als Hauptbranch. Falls deiner "master" heißt:</p>
-                    <pre><code class="language-bash">git branch -M main</code></pre>
+                    <!-- Lokales Projekt mit GitHub verbinden -->
+                    <section class="tutorials-content">
+                        <h2 id="lokales-projekt-mit-github-verbinden">Lokales Projekt mit GitHub verbinden</h2>
 
-                    <h3 class="no-toc">Erster Push</h3>
-                    <pre><code class="language-bash">git push -u origin main</code></pre>
+                        <p>Du hast ein lokales Git-Repository und ein leeres GitHub-Repository. Jetzt verbinden:</p>
 
-                    <p>Das <code class="inline">-u</code> (oder <code class="inline">--set-upstream</code>) verknüpft
-                        deinen lokalen main-Branch mit
-                        dem remote main-Branch. Danach reicht <code class="inline">git push</code>.</p>
+                        <h3 class="no-toc">Remote hinzufügen</h3>
+                        <pre><code class="language-bash">git remote add origin git@github.com:dein-username/dein-repo.git</code></pre>
 
-                    <p>Refresh deine GitHub-Seite - dein Code sollte jetzt dort sein!</p>
-                </section>
+                        <p><code class="inline">origin</code> ist der Name für das Remote-Repository. Das ist Konvention
+                            -
+                            du könntest es
+                            auch "github" oder "cloud" nennen, aber "origin" ist Standard.</p>
 
-                <!-- Push - Code hochladen -->
-                <section class="tutorials-content">
-                    <h2 id="push---code-hochladen">Push - Code hochladen</h2>
+                        <h3 class="no-toc">Prüfen ob's geklappt hat</h3>
+                        <pre><code class="language-bash">git remote -v</code></pre>
+                        <p>Sollte deine GitHub-URL anzeigen.</p>
 
-                    <p>Nachdem du lokal Commits gemacht hast:</p>
-                    <pre><code class="language-bash">git push</code></pre>
+                        <h3 class="no-toc">Branch umbenennen (falls nötig)</h3>
+                        <p>GitHub erwartet "main" als Hauptbranch. Falls deiner "master" heißt:</p>
+                        <pre><code class="language-bash">git branch -M main</code></pre>
 
-                    <p>Das war's. Deine lokalen Commits werden auf GitHub hochgeladen.</p>
+                        <h3 class="no-toc">Erster Push</h3>
+                        <pre><code class="language-bash">git push -u origin main</code></pre>
 
-                    <h3 class="no-toc">Was wenn's nicht klappt?</h3>
-                    <p>Wenn jemand (oder du von einem anderen Gerät) in der Zwischenzeit gepusht hat:</p>
-                    <pre><code class="language-bash">git pull
+                        <p>Das <code class="inline">-u</code> (oder <code class="inline">--set-upstream</code>)
+                            verknüpft
+                            deinen lokalen main-Branch mit
+                            dem remote main-Branch. Danach reicht <code class="inline">git push</code>.</p>
+
+                        <p>Refresh deine GitHub-Seite - dein Code sollte jetzt dort sein!</p>
+                    </section>
+
+                    <!-- Push - Code hochladen -->
+                    <section class="tutorials-content">
+                        <h2 id="push---code-hochladen">Push - Code hochladen</h2>
+
+                        <p>Nachdem du lokal Commits gemacht hast:</p>
+                        <pre><code class="language-bash">git push</code></pre>
+
+                        <p>Das war's. Deine lokalen Commits werden auf GitHub hochgeladen.</p>
+
+                        <h3 class="no-toc">Was wenn's nicht klappt?</h3>
+                        <p>Wenn jemand (oder du von einem anderen Gerät) in der Zwischenzeit gepusht hat:</p>
+                        <pre><code class="language-bash">git pull
 git push</code></pre>
-                    <p>Erst die Änderungen holen, dann pushen.</p>
+                        <p>Erst die Änderungen holen, dann pushen.</p>
 
-                    <h3 class="no-toc">Bestimmten Branch pushen</h3>
-                    <pre><code class="language-bash">git push origin feature-xyz</code></pre>
-                </section>
+                        <h3 class="no-toc">Bestimmten Branch pushen</h3>
+                        <pre><code class="language-bash">git push origin feature-xyz</code></pre>
+                    </section>
 
-                <!-- Clone - Projekt herunterladen -->
-                <section class="tutorials-content">
-                    <h2 id="clone---projekt-herunterladen">Clone - Projekt herunterladen</h2>
+                    <!-- Clone - Projekt herunterladen -->
+                    <section class="tutorials-content">
+                        <h2 id="clone---projekt-herunterladen">Clone - Projekt herunterladen</h2>
 
-                    <p>Ein Repository von GitHub auf deinen Rechner kopieren:</p>
-                    <pre><code class="language-bash">git clone git@github.com:username/repository.git</code></pre>
+                        <p>Ein Repository von GitHub auf deinen Rechner kopieren:</p>
+                        <pre><code class="language-bash">git clone git@github.com:username/repository.git</code></pre>
 
-                    <p>Das erstellt einen neuen Ordner mit dem Projektnamen und der kompletten Git-Historie.</p>
+                        <p>Das erstellt einen neuen Ordner mit dem Projektnamen und der kompletten Git-Historie.</p>
 
-                    <h3 class="no-toc">In bestimmten Ordner clonen</h3>
-                    <pre><code class="language-bash">git clone git@github.com:username/repository.git mein-ordnername</code></pre>
+                        <h3 class="no-toc">In bestimmten Ordner clonen</h3>
+                        <pre><code class="language-bash">git clone git@github.com:username/repository.git mein-ordnername</code></pre>
 
-                    <h3 class="no-toc">HTTPS-Version</h3>
-                    <pre><code class="language-bash">git clone https://github.com/username/repository.git</code></pre>
-                </section>
+                        <h3 class="no-toc">HTTPS-Version</h3>
+                        <pre><code class="language-bash">git clone https://github.com/username/repository.git</code></pre>
+                    </section>
 
-                <!-- Pull - Änderungen holen -->
-                <section class="tutorials-content">
-                    <h2 id="pull---aenderungen-holen">Pull - Änderungen holen</h2>
+                    <!-- Pull - Änderungen holen -->
+                    <section class="tutorials-content">
+                        <h2 id="pull---aenderungen-holen">Pull - Änderungen holen</h2>
 
-                    <p>Wenn auf GitHub Änderungen sind (von dir oder anderen):</p>
-                    <pre><code class="language-bash">git pull</code></pre>
+                        <p>Wenn auf GitHub Änderungen sind (von dir oder anderen):</p>
+                        <pre><code class="language-bash">git pull</code></pre>
 
-                    <p>Das holt die Änderungen UND merged sie in deinen lokalen Branch.</p>
+                        <p>Das holt die Änderungen UND merged sie in deinen lokalen Branch.</p>
 
-                    <h3 class="no-toc">Sicherer: Fetch + Merge</h3>
-                    <pre><code class="language-bash">git fetch</code></pre>
-                    <p>Holt die Infos, merged aber noch nicht. Du kannst dann schauen:</p>
-                    <pre><code class="language-bash">git log origin/main</code></pre>
-                    <p>Und wenn du zufrieden bist:</p>
-                    <pre><code class="language-bash">git merge origin/main</code></pre>
-                </section>
+                        <h3 class="no-toc">Sicherer: Fetch + Merge</h3>
+                        <pre><code class="language-bash">git fetch</code></pre>
+                        <p>Holt die Infos, merged aber noch nicht. Du kannst dann schauen:</p>
+                        <pre><code class="language-bash">git log origin/main</code></pre>
+                        <p>Und wenn du zufrieden bist:</p>
+                        <pre><code class="language-bash">git merge origin/main</code></pre>
+                    </section>
 
-                <!-- README.md -->
-                <section class="tutorials-content">
-                    <h2 id="readmemd---dein-projekt-praesentieren">README.md - Dein Projekt präsentieren</h2>
+                    <!-- README.md -->
+                    <section class="tutorials-content">
+                        <h2 id="readmemd---dein-projekt-praesentieren">README.md - Dein Projekt präsentieren</h2>
 
-                    <p>GitHub zeigt die <code class="inline">README.md</code> automatisch auf der Repository-Startseite
-                        an. Das ist
-                        deine Chance, dein Projekt vorzustellen.</p>
+                        <p>GitHub zeigt die <code class="inline">README.md</code> automatisch auf der
+                            Repository-Startseite
+                            an. Das ist
+                            deine Chance, dein Projekt vorzustellen.</p>
 
-                    <h3 class="no-toc">Was rein sollte</h3>
-                    <pre><code class="language-markdown"># Projektname
+                        <h3 class="no-toc">Was rein sollte</h3>
+                        <pre><code class="language-markdown"># Projektname
 
 Kurze Beschreibung was das Projekt macht.
 
@@ -550,8 +631,8 @@ Wie benutzt man das Projekt?
 
 MIT License</code></pre>
 
-                    <h3 class="no-toc">Markdown-Basics</h3>
-                    <pre><code class="language-markdown"># H1 Überschrift
+                        <h3 class="no-toc">Markdown-Basics</h3>
+                        <pre><code class="language-markdown"># H1 Überschrift
 ## H2 Überschrift
 ### H3 Überschrift
 
@@ -568,83 +649,86 @@ MIT License</code></pre>
 [Link-Text](https://url.com)
 
 ![Bild-Alt-Text](pfad/zum/bild.png)</code></pre>
-                </section>
+                    </section>
 
-                <!-- GitHub Pages -->
-                <section class="tutorials-content">
-                    <h2 id="github-pages---kostenlos-hosten">GitHub Pages - Kostenlos hosten</h2>
+                    <!-- GitHub Pages -->
+                    <section class="tutorials-content">
+                        <h2 id="github-pages---kostenlos-hosten">GitHub Pages - Kostenlos hosten</h2>
 
-                    <p>GitHub kann deine statische Website kostenlos hosten. Perfekt für Portfolio-Seiten, Dokumentation
-                        oder Projekte wie DevPanicZone.</p>
+                        <p>GitHub kann deine statische Website kostenlos hosten. Perfekt für Portfolio-Seiten,
+                            Dokumentation
+                            oder Projekte wie DevPanicZone.</p>
 
-                    <h3 class="no-toc">Einrichten</h3>
-                    <ol class="grid-2col-bg">
-                        <li>Repository auf GitHub öffnen</li>
-                        <li>Settings (oben rechts im Repo)</li>
-                        <li>Links: "Pages"</li>
-                        <li>Source: "Deploy from a branch"</li>
-                        <li>Branch: "main" (oder "master")</li>
-                        <li>Folder: "/ (root)" oder "/docs"</li>
-                        <li>Save</li>
-                    </ol>
+                        <h3 class="no-toc">Einrichten</h3>
+                        <ol class="grid-2col-bg">
+                            <li>Repository auf GitHub öffnen</li>
+                            <li>Settings (oben rechts im Repo)</li>
+                            <li>Links: "Pages"</li>
+                            <li>Source: "Deploy from a branch"</li>
+                            <li>Branch: "main" (oder "master")</li>
+                            <li>Folder: "/ (root)" oder "/docs"</li>
+                            <li>Save</li>
+                        </ol>
 
-                    <p class="pt-md">Nach ein paar Minuten ist deine Seite live unter:</p>
-                    <pre><code class="language-plaintext">https://dein-username.github.io/repository-name/</code></pre>
+                        <p class="pt-md">Nach ein paar Minuten ist deine Seite live unter:</p>
+                        <pre><code class="language-plaintext">https://dein-username.github.io/repository-name/</code></pre>
 
-                    <h3 class="no-toc">Custom Domain (optional)</h3>
-                    <p>Du kannst auch eine eigene Domain verwenden. Unter Settings → Pages → Custom domain eintragen und
-                        DNS-Einträge setzen.</p>
-                </section>
+                        <h3 class="no-toc">Custom Domain (optional)</h3>
+                        <p>Du kannst auch eine eigene Domain verwenden. Unter Settings → Pages → Custom domain eintragen
+                            und
+                            DNS-Einträge setzen.</p>
+                    </section>
 
-                <!-- Wichtige GitHub-Konzepte -->
-                <section class="tutorials-content">
-                    <h2 id="wichtige-github-konzepte">Wichtige GitHub-Konzepte</h2>
+                    <!-- Wichtige GitHub-Konzepte -->
+                    <section class="tutorials-content">
+                        <h2 id="wichtige-github-konzepte">Wichtige GitHub-Konzepte</h2>
 
-                    <div class="tag-grid">
+                        <div class="tag-grid">
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Fork</h3>
-                            <p>Eine Kopie eines fremden Repositories in deinen Account. Du kannst daran arbeiten, ohne
-                                das Original zu beeinflussen.</p>
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Fork</h3>
+                                <p>Eine Kopie eines fremden Repositories in deinen Account. Du kannst daran arbeiten,
+                                    ohne
+                                    das Original zu beeinflussen.</p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Pull Request</h3>
+                                <p>"Hey, ich hab was geändert, willst du das in dein Projekt übernehmen?" Wird für
+                                    Zusammenarbeit und Open-Source-Beiträge genutzt.</p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Issues</h3>
+                                <p>Bug-Tracker und Feature-Requests. Wie eine To-Do-Liste für dein Projekt.</p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Stars</h3>
+                                <p>Wie "Likes". Zeigt, dass Leute dein Projekt gut finden.</p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Watch</h3>
+                                <p>Benachrichtigungen für ein Repository aktivieren.</p>
+                            </div>
+
                         </div>
+                    </section>
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Pull Request</h3>
-                            <p>"Hey, ich hab was geändert, willst du das in dein Projekt übernehmen?" Wird für
-                                Zusammenarbeit und Open-Source-Beiträge genutzt.</p>
-                        </div>
+                    <!-- GitHub Cheatsheet -->
+                    <section class="tutorials-content">
+                        <h2 id="github-cheatsheet">GitHub Cheatsheet</h2>
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Issues</h3>
-                            <p>Bug-Tracker und Feature-Requests. Wie eine To-Do-Liste für dein Projekt.</p>
-                        </div>
-
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Stars</h3>
-                            <p>Wie "Likes". Zeigt, dass Leute dein Projekt gut finden.</p>
-                        </div>
-
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Watch</h3>
-                            <p>Benachrichtigungen für ein Repository aktivieren.</p>
-                        </div>
-
-                    </div>
-                </section>
-
-                <!-- GitHub Cheatsheet -->
-                <section class="tutorials-content">
-                    <h2 id="github-cheatsheet">GitHub Cheatsheet</h2>
-
-                    <h3 class="no-toc">Einmalig</h3>
-                    <pre><code class="language-bash"># Remote hinzufügen
+                        <h3 class="no-toc">Einmalig</h3>
+                        <pre><code class="language-bash"># Remote hinzufügen
 git remote add origin git@github.com:user/repo.git
 
 # Erster Push
 git push -u origin main</code></pre>
 
-                    <h3 class="no-toc">Tägliche Arbeit</h3>
-                    <pre><code class="language-bash"># Änderungen hochladen
+                        <h3 class="no-toc">Tägliche Arbeit</h3>
+                        <pre><code class="language-bash"># Änderungen hochladen
 git push
 
 # Änderungen holen
@@ -653,179 +737,219 @@ git pull
 # Status der Remotes
 git remote -v</code></pre>
 
-                    <h3 class="no-toc">Projekt klonen</h3>
-                    <pre><code class="language-bash">git clone git@github.com:user/repo.git</code></pre>
+                        <h3 class="no-toc">Projekt klonen</h3>
+                        <pre><code class="language-bash">git clone git@github.com:user/repo.git</code></pre>
 
-                    <h3 class="no-toc">Remote-Branches</h3>
-                    <pre><code class="language-bash"># Alle anzeigen (lokal + remote)
+                        <h3 class="no-toc">Remote-Branches</h3>
+                        <pre><code class="language-bash"># Alle anzeigen (lokal + remote)
 git branch -a
 
 # Remote-Branch holen
 git checkout -b feature origin/feature</code></pre>
-                </section>
+                    </section>
 
-                <!-- Häufige Probleme -->
-                <section class="tutorials-content">
-                    <h2 id="haeufige-probleme">Häufige Probleme</h2>
+                    <!-- Häufige Probleme -->
+                    <section class="tutorials-content">
+                        <h2 id="haeufige-probleme">Häufige Probleme</h2>
 
-                    <h3 class="no-toc">"Permission denied (publickey)"</h3>
-                    <p>Dein SSH-Key ist nicht korrekt eingerichtet. Check:</p>
-                    <pre><code class="language-bash">ssh -T git@github.com</code></pre>
-                    <p>Wenn's nicht klappt, geh nochmal durch die SSH-Setup-Schritte.</p>
+                        <h3 class="no-toc">"Permission denied (publickey)"</h3>
+                        <p>Dein SSH-Key ist nicht korrekt eingerichtet. Check:</p>
+                        <pre><code class="language-bash">ssh -T git@github.com</code></pre>
+                        <p>Wenn's nicht klappt, geh nochmal durch die SSH-Setup-Schritte.</p>
 
-                    <h3 class="no-toc">"rejected - non-fast-forward"</h3>
-                    <p>Jemand hat vor dir gepusht. Erst pullen:</p>
-                    <pre><code class="language-bash">git pull --rebase
+                        <h3 class="no-toc">"rejected - non-fast-forward"</h3>
+                        <p>Jemand hat vor dir gepusht. Erst pullen:</p>
+                        <pre><code class="language-bash">git pull --rebase
 git push</code></pre>
 
-                    <h3 class="no-toc">"remote origin already exists"</h3>
-                    <p>Du hast schon ein Remote namens "origin". Entweder löschen:</p>
-                    <pre><code class="language-bash">git remote remove origin
+                        <h3 class="no-toc">"remote origin already exists"</h3>
+                        <p>Du hast schon ein Remote namens "origin". Entweder löschen:</p>
+                        <pre><code class="language-bash">git remote remove origin
 git remote add origin neue-url</code></pre>
-                    <p>Oder anderen Namen wählen:</p>
-                    <pre><code class="language-bash">git remote add github neue-url</code></pre>
+                        <p>Oder anderen Namen wählen:</p>
+                        <pre><code class="language-bash">git remote add github neue-url</code></pre>
 
-                    <h3 class="no-toc">Versehentlich sensitive Daten gepusht</h3>
-                    <p>Passwörter, API-Keys etc. sind jetzt in der Git-Historie. Ändere SOFORT das Passwort/den Key. Die
-                        Datei aus der Historie zu entfernen ist kompliziert und die Daten waren kurz öffentlich.</p>
+                        <h3 class="no-toc">Versehentlich sensitive Daten gepusht</h3>
+                        <p>Passwörter, API-Keys etc. sind jetzt in der Git-Historie. Ändere SOFORT das Passwort/den Key.
+                            Die
+                            Datei aus der Historie zu entfernen ist kompliziert und die Daten waren kurz öffentlich.</p>
 
-                    <p>Besser: Nutze <code class="inline">.gitignore</code> für <code class="inline">.env</code>-Dateien
-                        von Anfang an!</p>
-                </section>
+                        <p>Besser: Nutze <code class="inline">.gitignore</code> für <code
+                                class="inline">.env</code>-Dateien
+                            von Anfang an!</p>
 
-                <!-- Best Practices -->
-                <section class="tutorials-content">
-                    <h2 id="best-practices">Best Practices</h2>
+                        <h3 class="no-toc">Nachträglich Dateien aus Git entfernen</h3>
+                        <p>Du hast <code class="inline">node_modules</code> oder andere Dateien gepusht, die nicht ins
+                            Repo gehören? So entfernst du sie:</p>
 
-                    <div class="tag-grid">
+                        <pre><code class="language-bash"># 1. Erst .gitignore aktualisieren (falls noch nicht geschehen)
+# Füge z.B. node_modules/ hinzu
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Regelmäßig pushen</h3>
-                            <p>Mindestens am Ende jedes Arbeitstages. So hast du immer ein Backup.</p>
+# 2. Dateien aus Git entfernen (bleiben aber lokal!)
+git rm -r --cached node_modules/
+git rm --cached .DS_Store
+
+# 3. Commit & Push
+git commit -m "Remove: node_modules aus Git entfernt"
+git push</code></pre>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">Was macht --cached?
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p><code class="inline">--cached</code> entfernt die Dateien nur aus Git, nicht von deiner
+                                Festplatte. Ohne <code class="inline">--cached</code> würden die Dateien auch lokal
+                                gelöscht!</p>
                         </div>
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Vor der Arbeit pullen</h3>
-                            <p>Wenn du von mehreren Geräten arbeitest: Immer erst <code class="inline">git pull</code>,
-                                dann arbeiten.
-                            </p>
+                        <p><strong>Wichtig:</strong> Die Dateien sind noch in der Git-Historie. Für ein komplett
+                            sauberes Repo müsstest du die Historie neu schreiben (kompliziert). Für die meisten Fälle
+                            reicht das Entfernen aber aus.</p>
+                    </section>
+
+                    <!-- Best Practices -->
+                    <section class="tutorials-content">
+                        <h2 id="best-practices">Best Practices</h2>
+
+                        <div class="tag-grid">
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Regelmäßig pushen</h3>
+                                <p>Mindestens am Ende jedes Arbeitstages. So hast du immer ein Backup.</p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Vor der Arbeit pullen</h3>
+                                <p>Wenn du von mehreren Geräten arbeitest: Immer erst <code
+                                        class="inline">git pull</code>,
+                                    dann arbeiten.
+                                </p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Sinnvolle .gitignore</h3>
+                                <p>Keine <code class="inline">node_modules</code>, keine <code
+                                        class="inline">.env</code>-Dateien, keine
+                                    IDE-Einstellungen.</p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Gute README</h3>
+                                <p>Dein Repository ist nur so gut wie seine Dokumentation. Erkläre, was das Projekt
+                                    macht
+                                    und wie man es benutzt.</p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Private für Unfertiges</h3>
+                                <p>Wenn du noch lernst oder experimentierst: Private Repository. Du kannst es später
+                                    public
+                                    machen.
+                                </p>
+                            </div>
+
+                            <div class="tag-item tag-blue">
+                                <h3 class="no-toc">Branches für Features</h3>
+                                <p>Auch wenn du alleine arbeitest: Feature-Branches halten main sauber.</p>
+                            </div>
+
                         </div>
+                    </section>
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Sinnvolle .gitignore</h3>
-                            <p>Keine <code class="inline">node_modules</code>, keine <code class="inline">.env</code>-Dateien, keine
-                                IDE-Einstellungen.</p>
+                    <!-- Nächste Schritte -->
+                    <section class="tutorials-content">
+                        <h2 id="naechste-schritte">Nächste Schritte</h2>
+
+                        <p>Du hast jetzt das Grundwissen für GitHub. Ein paar Dinge zum Erkunden, wenn du tiefer
+                            einsteigen
+                            willst:</p>
+
+                        <ul class="grid-2col-bg arrow-list">
+                            <li><strong>GitHub Actions</strong> - Automatisierung (Tests, Deployments)</li>
+                            <li><strong>Branch Protection Rules</strong> - Verhindere versehentliche Pushes zu main</li>
+                            <li><strong>GitHub Projects</strong> - Kanban-Boards für Projektmanagement</li>
+                            <li><strong>Collaborators</strong> - Andere zu deinem Repository einladen</li>
+                        </ul>
+
+                        <h3 class="no-toc">Zum Üben</h3>
+                        <ol class="grid-2col-bg">
+                            <li>Erstell ein GitHub-Konto</li>
+                            <li>Richte SSH ein</li>
+                            <li>Erstell ein leeres Repository</li>
+                            <li>Verbinde ein lokales Projekt</li>
+                            <li>Push deinen ersten Commit</li>
+                            <li>Schreib eine README.md</li>
+                            <li>Aktiviere GitHub Pages (falls statische Website)</li>
+                        </ol>
+
+                        <p>Nach dem ersten Mal wird <code class="inline">git push</code> so selbstverständlich wie
+                            Speichern.</p>
+                    </section>
+
+
+                    <!-- Prev/Next Navigation -->
+
+                    <!-- Latest-Tutorials-Start -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
                         </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Gute README</h3>
-                            <p>Dein Repository ist nur so gut wie seine Dokumentation. Erkläre, was das Projekt macht
-                                und wie man es benutzt.</p>
-                        </div>
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav">
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/misc/tools/git-versionskontrolle.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Git - Lokale Versionskontrolle</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/misc/tools/ftp-client-filezilla.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">FileZilla anhand des Beispiels All-Inkl</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                        </nav>
+                    </section>
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Private für Unfertiges</h3>
-                            <p>Wenn du noch lernst oder experimentierst: Private Repository. Du kannst es später public
-                                machen.
-                            </p>
-                        </div>
+                </div> <!-- Wrapper .container -->
 
-                        <div class="tag-item tag-blue">
-                            <h3 class="no-toc">Branches für Features</h3>
-                            <p>Auch wenn du alleine arbeitest: Feature-Branches halten main sauber.</p>
-                        </div>
+            </div> <!-- Tutorial Layout -->
 
-                    </div>
-                </section>
+        </main>
 
-                <!-- Nächste Schritte -->
-                <section class="tutorials-content">
-                    <h2 id="naechste-schritte">Nächste Schritte</h2>
+        <!-- Footer-Start -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
-                    <p>Du hast jetzt das Grundwissen für GitHub. Ein paar Dinge zum Erkunden, wenn du tiefer einsteigen
-                        willst:</p>
+        <script src="/assets/js/code-copy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
 
-                    <ul class="grid-2col-bg arrow-list">
-                        <li><strong>GitHub Actions</strong> - Automatisierung (Tests, Deployments)</li>
-                        <li><strong>Branch Protection Rules</strong> - Verhindere versehentliche Pushes zu main</li>
-                        <li><strong>GitHub Projects</strong> - Kanban-Boards für Projektmanagement</li>
-                        <li><strong>Collaborators</strong> - Andere zu deinem Repository einladen</li>
-                    </ul>
+    </body>
 
-                    <h3 class="no-toc">Zum Üben</h3>
-                    <ol class="grid-2col-bg">
-                        <li>Erstell ein GitHub-Konto</li>
-                        <li>Richte SSH ein</li>
-                        <li>Erstell ein leeres Repository</li>
-                        <li>Verbinde ein lokales Projekt</li>
-                        <li>Push deinen ersten Commit</li>
-                        <li>Schreib eine README.md</li>
-                        <li>Aktiviere GitHub Pages (falls statische Website)</li>
-                    </ol>
-
-                    <p>Nach dem ersten Mal wird <code class="inline">git push</code> so selbstverständlich wie
-                        Speichern.</p>
-                </section>
-
-
-                <!-- Prev/Next Navigation -->
-
-                <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
-
-                <section class="tutorials-content">
-                    <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/misc/tools/git-versionskontrolle.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Git - Lokale Versionskontrolle</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/misc/tools/ftp-client-filezilla.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">FileZilla anhand des Beispiels All-Inkl</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div></nav>
-                </section>
-
-            </div> <!-- Wrapper .container -->
-
-        </div> <!-- Tutorial Layout -->
-
-    </main>
-
-    <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
-
-    <script src="/assets/js/code-copy.js" defer></script>
-    <script src="/assets/js/sidebar.js" defer></script>
-    <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-</body></html>
+</html>
