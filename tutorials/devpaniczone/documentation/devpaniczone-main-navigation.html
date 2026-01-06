@@ -2,8 +2,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Details zur Generierung der Main Navigation auf DevPanicZone">
-        <meta name="keywords" content="???">
+        <meta name="description" content="Dokumentation zur automatischen Generierung der Main Navigation im Header auf DevPanicZone. Dropdown-Menü mit Kategorien und Unterkategorien.">
+        <meta name="keywords" content="Navigation, Header, Dropdown, JavaScript, generate-navigation.js, DevPanicZone, Tutorials, Automatisierung">
         <meta name="author" content="DevPanicZone">
         <title>Main Navigation | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -156,8 +156,9 @@
             <section class="hero tutorial-hero">
                 <div class="container">
                     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Main Nav Header</span></nav>
-                    <h1 class="hero-title">Main Nav Header</h1>
-                    <p class="hero-subtitle">Die Automatische Generierung der Main Navigation im Header.</p>
+                    <h1 class="hero-title">Main Navigation im Header</h1>
+                    <p class="hero-subtitle">Die Automatische Generierung des Dropdown-Menüs mit Kategorien und
+                        Unterkategorien.</p>
                 </div>
             </section>
 
@@ -191,14 +192,17 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#main-nav-header">Main Nav Header</a></li>
+                    <li class="toc-level-1"><a href="#main-nav-header">Main Navigation im Header</a></li>
                     <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
+                    <li class="toc-level-1"><a href="#generierte-struktur">Generierte Struktur</a></li>
                     <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
-                    <li class="toc-level-1"><a href="#beispiel-generierte-navigation">Beispiel: Generierte Navigation</a></li>
-                    <li class="toc-level-1"><a href="#kategorien-hinzufuegen-oder-aendern">Kategorien hinzufügen oder ändern</a></li>
-                    <li class="toc-level-1"><a href="#neue-hauptkategorie-hinzufuegen">Neue Hauptkategorie hinzufügen</a></li>
-                    <li class="toc-level-1"><a href="#technische-details-wie-das-script-arbeitet">Technische Details: Wie das Script arbeitet</a></li>
+                    <li class="toc-level-2"><a href="#category-names">CATEGORY_NAMES</a></li>
+                    <li class="toc-level-2"><a href="#tutorial-order">TUTORIAL_ORDER</a></li>
+                    <li class="toc-level-1"><a href="#generatemainnavigation">generateMainNavigation()</a></li>
+                    <li class="toc-level-1"><a href="#getsubcategoriesforcategory">getSubcategoriesForCategory()</a></li>
+                    <li class="toc-level-1"><a href="#neue-kategorie-hinzufuegen">Neue Kategorie hinzufügen</a></li>
                     <li class="toc-level-1"><a href="#blacklist">Blacklist: Ignorierte Ordner</a></li>
+                    <li class="toc-level-1"><a href="#root-files-exclude">ROOT_FILES_EXCLUDE: Ausgeschlossene Root-Dateien</a></li>
                     <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
                     <!-- Sidebar-Anchor-End -->
@@ -221,7 +225,7 @@
                     <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
                     <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One Cheatsheet für meine Tutorials</a></li>
                     <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html">Was macht generate-navigation.js</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html" class="active">Main Nav Header</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html" class="active">Main Navigation im Header</a></li>
                     <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">Wie funktionieren die Sidebars?</a></li>
                     <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">Hero Breadcrumbs</a></li>
                     <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">Prev / Next Buttons in den Tutorials</a></li>
@@ -238,18 +242,16 @@
 
                     <!-- Main Nav Auto -->
                     <section class="tutorials-content">
-                        <h2 id="main-nav-header">Main Nav Header</h2>
-                        <p>Die Hauptnavigation im Header wird automatisch durch <code class="inline">generate-navigation.js</code> generiert. Das Script erstellt Links zu
-                            allen
-                            Tutorial-Kategorien.</p>
+                        <h2 id="main-nav-header">Main Navigation im Header</h2>
+                        <p>Die Hauptnavigation im Header wird automatisch durch <code class="inline">generate-navigation.js</code> generiert. Das Script erstellt ein
+                            verschachteltes Dropdown-Menü mit allen Kategorien und deren Unterkategorien.</p>
                     </section>
 
                     <!-- HTML-Struktur -->
                     <section class="tutorials-content">
                         <h2 id="html-struktur">HTML-Struktur</h2>
                         <p>Die Navigation wird im Header zwischen den Kommentar-Markern
-                            <code class="inline">&lt;!-- Main-Nav-Start --&gt;</code> und <code class="inline">&lt;!-- Main-Nav-End--&gt;</code>
-                            eingefügt:
+                            <code class="inline">&lt;!-- Main-Nav-Start --&gt;</code> und <code class="inline">&lt;!-- Main-Nav-End --&gt;</code> eingefügt:
                         </p>
                         <div class="code-block">
                             <div class="code-header">
@@ -261,95 +263,75 @@
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-html">&lt;header class="site-header"&gt;
-    &lt;div class="container"&gt;
-        &lt;div class="header-content"&gt;
-            &lt;!-- Logo, Theme Toggle, Mobile Menu Button --&gt;
-            
-            &lt;nav class="main-nav" id="mainNav"&gt;
-                &lt;ul class="nav-list"&gt;
-                    &lt;li&gt;&lt;a href="/" class="nav-link"&gt;Home&lt;/a&gt;&lt;/li&gt;
-                    &lt;li class="nav-item-dropdown"&gt;
-                        &lt;button class="nav-link dropdown-toggle" aria-expanded="false"&gt;
-                            Tutorials
-                            &lt;span class="dropdown-icon"&gt;▾&lt;/span&gt;
-                        &lt;/button&gt;
-                        &lt;ul class="dropdown-menu"&gt;
-                            &lt;!-- Main-Nav-Start --&gt;
-                            &lt;!-- Main-Nav-End --&gt;
-                        &lt;/ul&gt;
-                    &lt;/li&gt;
-                    &lt;li&gt;&lt;a href="/glossary.html" class="nav-link"&gt;Glossar&lt;/a&gt;&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/nav&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/header&gt;</code></pre>
+                            <pre><code class="language-html">&lt;nav class="main-nav" id="mainNav" aria-label="Hauptnavigation"&gt;
+    &lt;ul class="nav-list"&gt;
+        &lt;li&gt;&lt;a href="/" class="nav-link"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item-dropdown"&gt;
+            &lt;button class="nav-link dropdown-toggle" aria-expanded="false"&gt;
+                Tutorials
+                &lt;span class="dropdown-icon"&gt;▾&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;ul class="dropdown-menu"&gt;
+                &lt;!-- Main-Nav-Start --&gt;
+                &lt;!-- Hier werden die Kategorien eingefügt --&gt;
+                &lt;!-- Main-Nav-End --&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="/glossary.html" class="nav-link"&gt;Glossar&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
                         </div>
+                    </section>
 
+                    <!-- Generierte Struktur -->
+                    <section class="tutorials-content">
+                        <h2 id="generierte-struktur">Generierte Struktur</h2>
+                        <p>Das Script erzeugt für jede Kategorie ein verschachteltes Dropdown mit Unterkategorien. Die
+                            Links führen zu Anker-IDs auf der jeweiligen Kategorieseite:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!-- Main-Nav-Start --&gt;
+&lt;li class="nav-item-nested"&gt;
+    &lt;a href="/tutorials/html/" class="nav-link"&gt;
+        HTML
+        &lt;span class="submenu-icon"&gt;▸&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;ul class="dropdown-submenu"&gt;
+        &lt;li&gt;&lt;a href="/tutorials/html/#html-basics"&gt;HTML Basics&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/tutorials/html/#html-advanced"&gt;HTML Advanced&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/li&gt;
+&lt;li class="nav-item-nested"&gt;
+    &lt;a href="/tutorials/css/" class="nav-link"&gt;
+        CSS
+        &lt;span class="submenu-icon"&gt;▸&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;ul class="dropdown-submenu"&gt;
+        &lt;li&gt;&lt;a href="/tutorials/css/#css-basics"&gt;CSS Basics&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/tutorials/css/#css-advanced"&gt;CSS Advanced&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/tutorials/css/#css-specials"&gt;CSS Specials&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/li&gt;
+&lt;!-- ... weitere Kategorien --&gt;
+&lt;!-- Main-Nav-End --&gt;</code></pre>
+                        </div>
                     </section>
 
                     <!-- Wie funktioniert's -->
                     <section class="tutorials-content">
                         <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
-                        <p>Das Script liest die <code class="inline">mainCategories</code> aus der Konfiguration und
-                            generiert für jede Kategorie einen Link:</p>
-                        <div class="grid-2col grid-2col-bg">
-                            <div>
-                                <ul class="arrow-list">
-                                    <li><strong>HTML</strong> → <code class="inline">/tutorials/html/</code></li>
-                                    <li><strong>CSS</strong> → <code class="inline">/tutorials/css/</code></li>
-                                    <li><strong>Bootstrap</strong> → <code class="inline">/tutorials/bootstrap/</code>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul class="arrow-list">
-                                    <li><strong>JavaScript</strong> → <code class="inline">/tutorials/javascript/</code>
-                                    </li>
-                                    <li><strong>PHP</strong> → <code class="inline">/tutorials/php/</code></li>
-                                    <li><strong>Verschiedenes</strong> → <code class="inline">/tutorials/misc/</code>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
+                        <p>Das Script nutzt zwei Konfigurationen:</p>
 
-                    <!-- Beispiel: Generierte Navigation -->
-                    <section class="tutorials-content">
-                        <h2 id="beispiel-generierte-navigation">Beispiel: Generierte Navigation</h2>
-                        <p>Nach dem Ausführen von <code class="inline">npm run generate</code> wird der Bereich zwischen
-                            den
-                            Markern automatisch gefüllt:</p>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;ul class="dropdown-menu"&gt;
-    &lt;!-- Main-Nav-Start --&gt;
-    &lt;li&gt;&lt;a href="/tutorials/html/"&gt;HTML&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/tutorials/css/"&gt;CSS&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/tutorials/bootstrap/"&gt;Bootstrap&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/tutorials/javascript/"&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/tutorials/php/"&gt;PHP&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="/tutorials/misc/"&gt;Verschiedenes&lt;/a&gt;&lt;/li&gt;
-    &lt;!-- Main-Nav-End --&gt;
-&lt;/ul&gt;</code></pre>
-                        </div>
-                    </section>
-
-                    <!-- Kategorien anpassen -->
-                    <section class="tutorials-content">
-                        <h2 id="kategorien-hinzufuegen-oder-aendern">Kategorien hinzufügen oder ändern</h2>
-                        <p>Um die Navigation anzupassen, bearbeite die <code class="inline">mainCategories</code> in
-                            <code class="inline">generate-navigation.js</code>:
-                        </p>
+                        <h3 id="category-names">CATEGORY_NAMES</h3>
+                        <p>Definiert die Hauptkategorien und ihre Anzeigenamen:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
@@ -360,41 +342,102 @@
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">/**
- * Generiert die Main Navigation (Dropdown-Menü)
- */
-function generateMainNav() {
-    const mainCategories = [
-        { path: 'tutorials/html/', label: 'HTML' },
-        { path: 'tutorials/css/', label: 'CSS' },
-        { path: 'tutorials/bootstrap/', label: 'Bootstrap' },
-        { path: 'tutorials/javascript/', label: 'JavaScript' },
-        { path: 'tutorials/php/', label: 'PHP' },
-        { path: 'tutorials/misc/', label: 'Verschiedenes' },
-        // Neue Kategorie hier hinzufügen:
-        // { path: 'tutorials/documentation/', label: 'Dokumentation' },
-    ];
+                            <pre><code class="language-javascript">const CATEGORY_NAMES = {
+    'html': 'HTML',
+    'css': 'CSS',
+    'bootstrap': 'Bootstrap',
+    'javascript': 'JavaScript',
+    'php': 'PHP',
+    'misc': 'Verschiedenes',
+    'devpaniczone': 'DevPanicZone!'
+};</code></pre>
+                        </div>
 
-    let navHTML = '';
+                        <h3 id="tutorial-order">TUTORIAL_ORDER</h3>
+                        <p>Definiert die Unterkategorien und deren Tutorials. Das Script erkennt automatisch, welche
+                            Unterkategorien existieren:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">const TUTORIAL_ORDER = {
+    'tutorials/html/html-basics': [
+        'html-grundlagen.html',
+        'html-grundgeruest.html',
+        // ...
+    ],
+    'tutorials/html/html-advanced': [
+        'html-semantik.html',
+        'html-formulare.html',
+        // ...
+    ],
+    // ...
+};</code></pre>
+                        </div>
+                    </section>
 
-    mainCategories.forEach(category =&gt; {
-        navHTML += `                                &lt;li&gt;&lt;a href="/${category.path}"&gt;${category.label}&lt;/a&gt;&lt;/li&gt;\n`;
+                    <!-- generateMainNavigation() -->
+                    <section class="tutorials-content">
+                        <h2 id="generatemainnavigation">generateMainNavigation()</h2>
+                        <p>Diese Funktion erzeugt das verschachtelte Dropdown-Menü:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">function generateMainNavigation() {
+    const categories = Object.keys(CATEGORY_NAMES);
+    const navItems = [];
+
+    categories.forEach(category =&gt; {
+        const categoryName = CATEGORY_NAMES[category];
+        const subcategories = getSubcategoriesForCategory(category);
+
+        // Prüfe ob es Tutorials in dieser Kategorie gibt
+        if (Object.keys(subcategories).length &gt; 0) {
+            // Item mit Unterkategorien
+            let navItem = `&lt;li class="nav-item-nested"&gt;
+                &lt;a href="/tutorials/${category}/" class="nav-link"&gt;
+                    ${categoryName}
+                    &lt;span class="submenu-icon"&gt;▸&lt;/span&gt;
+                &lt;/a&gt;
+                &lt;ul class="dropdown-submenu"&gt;`;
+
+            // Füge Unterkategorien hinzu
+            Object.keys(subcategories).forEach(subKey =&gt; {
+                const sub = subcategories[subKey];
+                navItem += `
+                    &lt;li&gt;&lt;a href="/tutorials/${category}/#${subKey}"&gt;${sub.name}&lt;/a&gt;&lt;/li&gt;`;
+            });
+
+            navItem += `
+                &lt;/ul&gt;
+            &lt;/li&gt;`;
+
+            navItems.push(navItem);
+        }
     });
 
-    return navHTML.trimEnd();
+    return navItems;
 }</code></pre>
                         </div>
                     </section>
 
-                    <!-- Neue Kategorie hinzufügen -->
+                    <!-- getSubcategoriesForCategory() -->
                     <section class="tutorials-content">
-                        <h2 id="neue-hauptkategorie-hinzufuegen">Neue Hauptkategorie hinzufügen</h2>
-                        <ol class="grid-2col-bg">
-                            <li>Erstelle den Ordner: <code class="inline">/tutorials/[kategorie-name]/</code></li>
-                            <li>Erstelle eine <code class="inline">index.html</code> in diesem Ordner</li>
-                            <li>Öffne <code class="inline">generate-navigation.js</code></li>
-                            <li>Füge die neue Kategorie zu <code class="inline">mainCategories</code> hinzu:</li>
-                        </ol>
+                        <h2 id="getsubcategoriesforcategory">getSubcategoriesForCategory()</h2>
+                        <p>Hilfsfunktion, die alle Unterkategorien einer Hauptkategorie aus <code class="inline">TUTORIAL_ORDER</code> extrahiert:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
@@ -405,106 +448,94 @@ function generateMainNav() {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">const mainCategories = [
-    { path: 'tutorials/html/', label: 'HTML' },
-    { path: 'tutorials/css/', label: 'CSS' },
-    { path: 'tutorials/bootstrap/', label: 'Bootstrap' },
-    { path: 'tutorials/javascript/', label: 'JavaScript' },
-    { path: 'tutorials/php/', label: 'PHP' },
-    { path: 'tutorials/documentation/', label: 'Dokumentation' }, // Neue Kategorie
-    { path: 'tutorials/misc/', label: 'Verschiedenes' },
-];</code></pre>
+                            <pre><code class="language-javascript">function getSubcategoriesForCategory(category) {
+    const subcategories = {};
+
+    Object.keys(TUTORIAL_ORDER).forEach(key =&gt; {
+        // Prüfe ob der Key zur Kategorie gehört
+        if (key.startsWith(`tutorials/${category}/`)) {
+            const parts = key.split('/');
+            const subcategoryName = parts[2]; // z.B. "html-basics"
+
+            // Nur wenn Tutorials vorhanden sind
+            if (TUTORIAL_ORDER[key] &amp;&amp; TUTORIAL_ORDER[key].length &gt; 0) {
+                // Display Name: "html-basics" → "HTML Basics"
+                const displayName = capitalizeWithAcronyms(subcategoryName);
+
+                subcategories[subcategoryName] = {
+                    name: displayName,
+                    path: key.replace('tutorials/', '/tutorials/')
+                };
+            }
+        }
+    });
+
+    return subcategories;
+}</code></pre>
                         </div>
-                        <ol class="grid-2col-bg" start="5">
-                            <li>Führe <code class="inline">npm run generate</code> aus</li>
-                            <li>Die neue Kategorie erscheint automatisch in der Navigation auf allen Seiten</li>
+                        <p>Die Funktion <code class="inline">capitalizeWithAcronyms()</code> sorgt dafür, dass Akronyme
+                            wie HTML, CSS, PHP korrekt großgeschrieben werden.</p>
+                    </section>
+
+                    <!-- Neue Kategorie hinzufügen -->
+                    <section class="tutorials-content">
+                        <h2 id="neue-kategorie-hinzufuegen">Neue Kategorie hinzufügen</h2>
+                        <p>Um eine neue Hauptkategorie zur Navigation hinzuzufügen:</p>
+                        <ol class="grid-2col-bg">
+                            <li>Erstelle den Ordner: <code class="inline">/tutorials/[kategorie-name]/</code></li>
+                            <li>Erstelle eine <code class="inline">index.html</code> in diesem Ordner</li>
+                            <li>Füge die Kategorie zu <code class="inline">CATEGORY_NAMES</code> hinzu</li>
+                            <li>Füge mindestens eine Unterkategorie zu <code class="inline">TUTORIAL_ORDER</code> hinzu
+                            </li>
+                            <li>Führe <code class="inline">npm run build</code> aus</li>
                         </ol>
 
-                        <div class="info-box warning info-box">
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// 1. Kategorie-Name hinzufügen
+const CATEGORY_NAMES = {
+    // ... bestehende Kategorien
+    'react': 'React',  // Neue Kategorie
+};
+
+// 2. Unterkategorie(n) mit Tutorials hinzufügen
+const TUTORIAL_ORDER = {
+    // ... bestehende Einträge
+    'tutorials/react/react-basics': [
+        'react-intro.html',
+        'react-components.html',
+    ],
+};</code></pre>
+                        </div>
+
+                        <div class="info-box warning">
                             <strong class="box-title warning no-toc">Wichtig
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li>Die Navigation wird auf <strong>allen HTML-Seiten</strong> aktualisiert, die die
-                                    Kommentar-Marker enthalten</li>
-                                <li>Die Reihenfolge im <code class="inline">mainCategories</code> Array bestimmt die
+                                <li>Die Kategorie erscheint nur, wenn mindestens eine Unterkategorie mit Tutorials
+                                    existiert</li>
+                                <li>Die Reihenfolge in <code class="inline">CATEGORY_NAMES</code> bestimmt die
                                     Reihenfolge im Dropdown</li>
-                                <li>Der <code class="inline">path</code> muss mit einem <code class="inline">/</code>
-                                    enden
-                                </li>
-                                <li>Es muss eine <code class="inline">index.html</code> im Zielordner existieren, sonst
-                                    führt der Link ins Leere</li>
+                                <li>Der Key in <code class="inline">TUTORIAL_ORDER</code> muss dem Schema <code class="inline">tutorials/[kategorie]/[unterkategorie]</code> folgen</li>
                             </ul>
                         </div>
                     </section>
 
-                    <!-- Technische Details -->
-                    <section class="tutorials-content">
-                        <h2 id="technische-details-wie-das-script-arbeitet">Technische Details: Wie das Script arbeitet
-                        </h2>
-                        <p>Der Generierungs-Prozess läuft in folgenden Schritten ab:</p>
-                        <ol class="grid-2col-bg">
-                            <li><strong>HTML-Dateien finden:</strong> Das Script durchsucht alle Dateien rekursiv (außer
-                                Blacklist-Ordner)</li>
-                            <li><strong>Marker suchen:</strong> In jeder Datei wird nach <code class="inline">&lt;!-- Main-Nav-Start --&gt;</code> und <code class="inline">&lt;!-- Main-Nav-End --&gt;</code> gesucht</li>
-                            <li><strong>Navigation generieren:</strong> Aus <code class="inline">mainCategories</code>
-                                wird
-                                HTML-Code erstellt</li>
-                            <li><strong>Inhalt ersetzen:</strong> Der Bereich zwischen den Markern wird mit dem neuen
-                                HTML
-                                ersetzt</li>
-                            <li><strong>Datei speichern:</strong> Die aktualisierte HTML-Datei wird gespeichert</li>
-                        </ol>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">/**
- * Aktualisiert die Main Navigation in allen HTML-Dateien
- */
-function updateMainNavigation(files) {
-    const mainNavContent = generateMainNav();
-    let updatedCount = 0;
-
-    files.forEach(file =&gt; {
-        const filePath = path.join(BASE_DIR, file);
-        let content = fs.readFileSync(filePath, 'utf8');
-
-        const startMarker = '&lt;!-- Main-Nav-Start --&gt;';
-        const endMarker = '&lt;!-- Main-Nav-End --&gt;';
-
-        if (content.includes(startMarker) &amp;&amp; content.includes(endMarker)) {
-            const before = content.substring(0, content.indexOf(startMarker) + startMarker.length);
-            const after = content.substring(content.indexOf(endMarker));
-
-            content = before + '\n' + mainNavContent + '\n                                ' + after;
-
-            fs.writeFileSync(filePath, content, 'utf8');
-            updatedCount++;
-        }
-    });
-
-    console.log(`✅ Main Navigation aktualisiert in ${updatedCount} Dateien`);
-}</code></pre>
-                        </div>
-                    </section>
-
-
-                    <!-- Blacklist Info-Box -->
+                    <!-- Blacklist -->
                     <section class="tutorials-content">
                         <h2 id="blacklist">Blacklist: Ignorierte Ordner</h2>
-                        <p>Bestimmte Ordner werden von <strong>allen</strong> Navigations-Funktionen ignoriert. Diese
-                            Ordner werden in der <code class="inline">blacklistFolders</code> Konstante definiert:</p>
-
+                        <p>Bestimmte Ordner werden bei der Navigation ignoriert:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
@@ -515,43 +546,33 @@ function updateMainNavigation(files) {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">// Blacklist: Diese Ordner werden ignoriert
-const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code></pre>
+                            <pre><code class="language-javascript">const BLACKLIST_FOLDERS = ['noupload', 'node_modules', '.git', 'assets', 'snippet-collection'];</code></pre>
                         </div>
-
-                        <div>
-                            <p>Weitere Ordner können in einfachen 'Anführungszeichen' hinzugefügt werden, immer
-                                kommagetrennt.</p>
-                            <p><strong>Warum werden diese Ordner ignoriert?</strong></p>
-                            <div class="grid-2col grid-2col-bg">
-                                <div>
-                                    <ul class="arrow-list">
-                                        <li><code class="inline">noupload</code> - Test-Dateien, die nicht live gehen
-                                            sollen
-                                        </li>
-                                        <li><code class="inline">node_modules</code> - NPM-Abhängigkeiten</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <ul class="arrow-list">
-                                        <li><code class="inline">.git</code> - Git-Versionskontrolle</li>
-                                        <li><code class="inline">assets</code> - CSS, JS, Bilder (keine HTML-Inhalte)
-                                        </li>
-                                    </ul>
-                                </div>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">noupload</code> – Test-Dateien</li>
+                                    <li><code class="inline">node_modules</code> – NPM-Abhängigkeiten</li>
+                                    <li><code class="inline">.git</code> – Versionskontrolle</li>
+                                </ul>
                             </div>
-
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">assets</code> – CSS, JS, Bilder</li>
+                                    <li><code class="inline">snippet-collection</code> – Code-Snippets</li>
+                                </ul>
+                            </div>
                         </div>
-
                     </section>
 
-                    <!-- npm run generate -->
+                    <!-- ROOT_FILES_EXCLUDE -->
                     <section class="tutorials-content">
-                        <h2 id="ausfuehren">Ausführen</h2>
-                        <p>Nach allen Änderungen ausführen:</p>
+                        <h2 id="root-files-exclude">ROOT_FILES_EXCLUDE: Ausgeschlossene Root-Dateien</h2>
+                        <p>Neben der Ordner-Blacklist gibt es eine separate Liste für Root-Level HTML-Dateien, die
+                            <strong>nicht</strong> aktualisiert werden sollen:</p>
                         <div class="code-block">
                             <div class="code-header">
-                                <span class="code-lang">Plain Text</span>
+                                <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -559,8 +580,48 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-text">npm run generate</code></pre>
+                            <pre><code class="language-javascript">// Root-Dateien die NICHT aktualisiert werden sollen
+const ROOT_FILES_EXCLUDE = [
+    'search.html', // Wird automatisch generiert
+];</code></pre>
                         </div>
+                        <p>Alle anderen Root-Dateien wie <code class="inline">index.html</code>, <code class="inline">glossary.html</code>, <code class="inline">impressum.html</code> oder
+                            <code class="inline">datenschutzerklaerung.html</code> bekommen Header und Footer
+                            automatisch aktualisiert.</p>
+
+                        <div class="info-box info">
+                            <strong class="box-title info no-toc">Unterschied zur Blacklist
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li><code class="inline">BLACKLIST_FOLDERS</code> – ignoriert komplette
+                                    <strong>Ordner</strong> (inkl. aller Unterordner)</li>
+                                <li><code class="inline">ROOT_FILES_EXCLUDE</code> – ignoriert einzelne
+                                    <strong>Dateien</strong> im Root-Verzeichnis</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Ausführen -->
+                    <section class="tutorials-content">
+                        <h2 id="ausfuehren">Ausführen</h2>
+                        <p>Nach Änderungen an der Konfiguration:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Bash</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-bash">npm run build</code></pre>
+                        </div>
+                        <p>Die Navigation wird auf allen HTML-Seiten aktualisiert, die die Kommentar-Marker enthalten –
+                            sowohl in <code class="inline">/tutorials/</code> als auch im Root-Verzeichnis.</p>
                     </section>
 
                     <!-- Prev/Next Navigation -->
@@ -620,6 +681,10 @@ const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code><
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
+
+
 
     
 
