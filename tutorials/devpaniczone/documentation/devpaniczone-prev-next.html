@@ -2,8 +2,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Details zu den automatisch generierten vorheriges / nächstes Buttons am Ende der Cheatsheets.">
-        <meta name="keywords" content="???">
+        <meta name="description" content="Dokumentation zur automatischen Generierung der Prev/Next Navigation auf DevPanicZone. Tutorial-Navigation über Unterkategorien hinweg.">
+        <meta name="keywords" content="Prev Next, Navigation, Tutorial, generate-navigation.js, DevPanicZone, Automatisierung, TUTORIAL_ORDER">
         <meta name="author" content="DevPanicZone">
         <title>Prev / Next Buttons | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -195,12 +195,16 @@
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
                     <li class="toc-level-1"><a href="#tutorial-navigation">Tutorial Navigation</a></li>
-                    <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
                     <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
-                    <li class="toc-level-1"><a href="#manualorder-konfiguration">manualOrder Konfiguration</a></li>
-                    <li class="toc-level-1"><a href="#neues-tutorial-hinzufuegen">Neues Tutorial zur Reihenfolge hinzufügen</a></li>
+                    <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
+                    <li class="toc-level-1"><a href="#beispiel-generierte-navigation">Beispiel: Generierte Navigation</a></li>
+                    <li class="toc-level-2"><a href="#html-elemente-erklaert">HTML-Elemente erklärt</a></li>
+                    <li class="toc-level-1"><a href="#tutorial-order-konfiguration">TUTORIAL_ORDER Konfiguration</a></li>
+                    <li class="toc-level-1"><a href="#neues-tutorial-hinzufuegen">Neues Tutorial hinzufügen</a></li>
                     <li class="toc-level-1"><a href="#button-titel-anpassen">Button-Titel anpassen</a></li>
-                    <li class="toc-level-1"><a href="#technische-details-wie-das-script-arbeitet">Technische Details: Wie das Script arbeitet</a></li>
+                    <li class="toc-level-1"><a href="#generateprevnextnav">generatePrevNextNav()</a></li>
+                    <li class="toc-level-2"><a href="#ablauf-schritt-fuer-schritt">Ablauf Schritt für Schritt</a></li>
+                    <li class="toc-level-1"><a href="#edge-cases">Edge Cases</a></li>
                     <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
                     <!-- Sidebar-Anchor-End -->
@@ -241,16 +245,55 @@
                     <!-- Intro -->
                     <section class="tutorials-content">
                         <h2 id="tutorial-navigation">Tutorial Navigation</h2>
-                        <p>Ähnlich wie in Blogs kannst du am Ende der Tutorials zum vorheringen oder zum nächsten
-                            Tutorial
-                            springen. Die Buttons werden automatisch generiert.</p>
+                        <p>Am Ende jedes Tutorials findest du Buttons zum vorherigen und nächsten Tutorial. Die
+                            Navigation führt durch <strong>alle Tutorials einer Hauptkategorie</strong> – auch über
+                            Unterkategorien hinweg.</p>
+                    </section>
+
+                    <!-- Wie funktioniert's -->
+                    <section class="tutorials-content">
+                        <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
+                        <p>Das Script <code class="inline">generate-navigation.js</code> nutzt <code class="inline">getAllTutorialsFlat()</code>, um alle Tutorials einer Kategorie als
+                            sortierte Liste zu holen:</p>
+
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <p><strong>Beispiel: CSS-Kategorie</strong></p>
+                                <ol class="pl-md">
+                                    <li>CSS Basics: CSS einbinden</li>
+                                    <li>CSS Basics: CSS Grundlagen</li>
+                                    <li>CSS Basics: CSS Farben &amp; Einheiten</li>
+                                    <li>CSS Advanced: ... (falls vorhanden)</li>
+                                    <li>CSS Specials: CSS Organization</li>
+                                </ol>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <p><strong>Navigation</strong></p>
+                                <ul class="arrow-list">
+                                    <li><strong>Prev:</strong> Vorheriges Tutorial in der Liste</li>
+                                    <li><strong>Next:</strong> Nächstes Tutorial in der Liste</li>
+                                    <li>Die Reihenfolge kommt aus <code class="inline">TUTORIAL_ORDER</code></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-box info">
+                            <strong class="box-title info no-toc">Unterkategorie-Wechsel
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Wenn das nächste Tutorial in einer <strong>anderen Unterkategorie</strong> liegt, wird
+                                das visuell hervorgehoben (Klasse <code class="inline">.is-new</code>). So weißt du,
+                                dass du z.B. von "CSS Basics" zu "CSS Advanced" wechselst.</p>
+                        </div>
                     </section>
 
                     <!-- HTML-Struktur -->
                     <section class="tutorials-content">
                         <h2 id="html-struktur">HTML-Struktur</h2>
-                        <p>Die Navigation wird am Ende des Tutorial-Contents eingefügt (vor dem schließenden <code class="inline">&lt;/div&gt;</code> des Wrappers <code class="inline">&lt;div class="container"&gt;</code>):
-                        </p>
+                        <p>Die Navigation wird in das <code class="inline">&lt;nav class="tutorial-nav"&gt;</code>
+                            Element eingefügt:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
@@ -261,52 +304,70 @@
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-html">&lt;!-- Prev/Next Navigation --&gt;
-&lt;section class="tutorials-content"&gt;
+                            <pre><code class="language-html">&lt;section class="tutorials-content"&gt;
     &lt;nav class="tutorial-nav"&gt;
-        &lt;div class="tutorial-nav-prev"&gt;
-            &lt;!-- Wird automatisch gefüllt --&gt;
-        &lt;/div&gt;
-        &lt;div class="tutorial-nav-next"&gt;
-            &lt;!-- Wird automatisch gefüllt --&gt;
-        &lt;/div&gt;
+        &lt;!-- Wird automatisch gefüllt --&gt;
     &lt;/nav&gt;
-&lt;/section&gt;
-
-&lt;/div&gt; &lt;!-- Ende Wrapper --&gt;</code></pre>
+&lt;/section&gt;</code></pre>
                         </div>
                     </section>
 
-                    <!-- Wie funktioniert's -->
+                    <!-- Beispiel: Generierte Navigation -->
                     <section class="tutorials-content">
-                        <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
-                        <p>Das Script <code class="inline">generate-navigation.js</code> liest die Datei-Reihenfolge aus
-                            <code class="inline">manualOrder</code> und generiert automatisch:
-                        </p>
+                        <h2 id="beispiel-generierte-navigation">Beispiel: Generierte Navigation</h2>
+                        <p>Das Script generiert folgende Struktur:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav class="tutorial-nav"&gt;
+    &lt;div class="tutorial-nav-prev"&gt;
+        &lt;a href="/tutorials/css/css-basics/css-einbinden.html"&gt;
+            &lt;span class="tutorial-nav-label"&gt;← Vorheriges&lt;/span&gt;
+            &lt;span class="tutorial-nav-link"&gt;CSS einbinden&lt;/span&gt;
+            &lt;span class="tutorial-nav-category"&gt;CSS Basics&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="tutorial-nav-next"&gt;
+        &lt;a href="/tutorials/css/css-advanced/css-flexbox.html"&gt;
+            &lt;span class="tutorial-nav-label"&gt;Nächstes →&lt;/span&gt;
+            &lt;span class="tutorial-nav-link"&gt;CSS Flexbox&lt;/span&gt;
+            &lt;span class="tutorial-nav-category is-new"&gt;CSS Advanced&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
 
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
+                        <h3 id="html-elemente-erklaert">HTML-Elemente erklärt</h3>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
                                 <ul class="arrow-list">
-                                    <li><strong>Prev-Button:</strong> Link zum vorherigen Tutorial in der Reihenfolge
+                                    <li><code class="inline">.tutorial-nav-prev</code> → Container für Prev-Button</li>
+                                    <li><code class="inline">.tutorial-nav-next</code> → Container für Next-Button</li>
+                                    <li><code class="inline">.tutorial-nav-label</code> → "← Vorheriges" / "Nächstes →"
                                     </li>
-                                    <li><strong>Next-Button:</strong> Link zum nächsten Tutorial in der Reihenfolge</li>
                                 </ul>
                             </div>
-                            <div class="grid-2col-bg">
+                            <div>
                                 <ul class="arrow-list">
-                                    <li><strong>Erstes Tutorial:</strong> Kein Prev-Button (leeres <code class="inline">div</code>)
-                                    </li>
-                                    <li><strong>Letztes Tutorial:</strong> Kein Next-Button (leeres <code class="inline">div</code>)
-                                    </li>
+                                    <li><code class="inline">.tutorial-nav-link</code> → Tutorial-Titel</li>
+                                    <li><code class="inline">.tutorial-nav-category</code> → Unterkategorie-Name</li>
+                                    <li><code class="inline">.is-new</code> → Zeigt Wechsel der Unterkategorie an</li>
                                 </ul>
                             </div>
                         </div>
                     </section>
 
-                    <!-- manualOrder Konfiguration -->
+                    <!-- TUTORIAL_ORDER Konfiguration -->
                     <section class="tutorials-content">
-                        <h2 id="manualorder-konfiguration">manualOrder Konfiguration</h2>
-                        <p>Die Reihenfolge wird in <code class="inline">generate-navigation.js</code> unter <code class="inline">manualOrder</code> definiert:</p>
+                        <h2 id="tutorial-order-konfiguration">TUTORIAL_ORDER Konfiguration</h2>
+                        <p>Die Reihenfolge wird in <code class="inline">generate-navigation.js</code> unter <code class="inline">TUTORIAL_ORDER</code> definiert:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
@@ -317,35 +378,44 @@
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">// ============================================================================
-// Manuelle Sortierung für Tutorial-Seiten (Prev/Next Navigation)
-// ============================================================================
-const manualOrder = {
+                            <pre><code class="language-javascript">const TUTORIAL_ORDER = {
     'tutorials/css/css-basics': [
         'css-einbinden.html',
+        'css-grundlagen.html',
         'css-color-units.html',
-        'css-variables.html',
-        'css-typografie.html',
-        'css-textstyling.html'
-        // Reihenfolge bestimmt Prev/Next Links
-        // Index 0 = Erstes Tutorial (kein Prev)
-        // Letzter Index = Letztes Tutorial (kein Next)
+        'css-mobile-first.html'
     ],
     'tutorials/css/css-advanced': [
-        'css-positioning.html',
-        'css-z-index.html',
-        'css-transitions.html'
+        // Tutorials hier...
+    ],
+    'tutorials/css/css-specials': [
+        'css-organization.html'
     ]
 };</code></pre>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Reihenfolge bestimmt Navigation
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Die Prev/Next Navigation folgt der Reihenfolge in <code class="inline">TUTORIAL_ORDER</code>:</p>
+                            <ul class="arrow-list">
+                                <li>Erst alle Tutorials aus <code class="inline">css-basics</code> (in der angegebenen
+                                    Reihenfolge)</li>
+                                <li>Dann alle aus <code class="inline">css-advanced</code></li>
+                                <li>Dann alle aus <code class="inline">css-specials</code></li>
+                            </ul>
                         </div>
                     </section>
 
                     <!-- Neues Tutorial hinzufügen -->
                     <section class="tutorials-content">
-                        <h2 id="neues-tutorial-hinzufuegen">Neues Tutorial zur Reihenfolge hinzufügen</h2>
+                        <h2 id="neues-tutorial-hinzufuegen">Neues Tutorial hinzufügen</h2>
                         <ol class="grid-2col-bg pl-md">
                             <li>Öffne <code class="inline">generate-navigation.js</code></li>
-                            <li>Finde die passende Kategorie im <code class="inline">manualOrder</code> Objekt</li>
+                            <li>Finde die passende Unterkategorie in <code class="inline">TUTORIAL_ORDER</code></li>
                             <li>Füge den Dateinamen an der gewünschten Position ein:</li>
                         </ol>
                         <div class="code-block">
@@ -360,22 +430,22 @@ const manualOrder = {
                             </div>
                             <pre><code class="language-javascript">'tutorials/css/css-basics': [
     'css-einbinden.html',
+    'css-grundlagen.html',
+    'mein-neues-tutorial.html',  // ← Neues Tutorial
     'css-color-units.html',
-    'mein-neues-tutorial.html',  // &lt;-- Neues Tutorial an gewünschter Stelle einfügen
-    'css-variables.html',
-    'css-typografie.html'
+    'css-mobile-first.html'
 ]</code></pre>
                         </div>
-                        <p>Führe dann <code class="inline">npm run generate</code> aus, um die Navigation zu
-                            aktualisieren.
-                        </p>
+                        <ol class="grid-2col-bg pl-md" start="4">
+                            <li>Führe <code class="inline">npm run build</code> aus</li>
+                        </ol>
                     </section>
 
-                    <!-- Custom Titles -->
+                    <!-- Button-Titel anpassen -->
                     <section class="tutorials-content">
                         <h2 id="button-titel-anpassen">Button-Titel anpassen</h2>
-                        <p>Standardmäßig wird der Dateiname als Titel verwendet. Um einen individuellen Titel zu setzen,
-                            füge ihn in <code class="inline">customTitles</code> hinzu:</p>
+                        <p>Der Titel im Button kommt aus <code class="inline">CUSTOM_TITLES</code> oder wird aus der
+                            H1-Überschrift extrahiert:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
@@ -386,22 +456,25 @@ const manualOrder = {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">// ============================================================================
-// Custom Titles für einzelne Tutorial-Seiten (statt Dateinamen)
-// ============================================================================
-const customTitles = {
-    'tutorials/css/css-basics/css-einbinden.html': 'CSS einbinden',
-    'tutorials/css/css-advanced/css-z-index.html': 'Z-Index',
-    // Voller Pfad ab 'tutorials/' = Custom Title
+                            <pre><code class="language-javascript">// Custom Titles (überschreibt H1 aus HTML)
+const CUSTOM_TITLES = {
+    'css-einbinden.html': 'CSS einbinden',
+    'css-color-units.html': 'CSS Farben &amp; Einheiten',
+    'html-grundgeruest.html': 'HTML Grundgerüst',
+    // ...
 };</code></pre>
                         </div>
+                        <p>Falls kein Eintrag in <code class="inline">CUSTOM_TITLES</code> existiert, wird der Text aus
+                            der <code class="inline">&lt;h1&gt;</code> Überschrift der jeweiligen Datei verwendet.</p>
+                    </section>
 
-                        <!-- Beispiel generierte Navigation -->
-                        <h4 class="no-toc">Beispiel: Generierte Navigation</h4>
-                        <p>Wenn das Script läuft, wird aus der leeren Struktur eine vollständige Navigation:</p>
+                    <!-- generatePrevNextNav() -->
+                    <section class="tutorials-content">
+                        <h2 id="generateprevnextnav">generatePrevNextNav()</h2>
+                        <p>Die Funktion holt alle Tutorials der Kategorie und findet Prev/Next:</p>
                         <div class="code-block">
                             <div class="code-header">
-                                <span class="code-lang">HTML</span>
+                                <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -409,144 +482,99 @@ const customTitles = {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-html">&lt;nav class="tutorial-nav"&gt;
-    &lt;div class="tutorial-nav-prev"&gt;
-        &lt;span class="tutorial-nav-label"&gt;← Vorheriges Tutorial&lt;/span&gt;
-        &lt;a href="/tutorials/css/css-basics/css-einbinden.html" class="tutorial-nav-link"&gt;CSS einbinden&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div class="tutorial-nav-next"&gt;
-        &lt;span class="tutorial-nav-label"&gt;Nächstes Tutorial →&lt;/span&gt;
-        &lt;a href="/tutorials/css/css-basics/css-variables.html" class="tutorial-nav-link"&gt;CSS Variables&lt;/a&gt;
-    &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
+                            <pre><code class="language-javascript">function generatePrevNextNav(filePath) {
+    // 1. Ermittle die Hauptkategorie (z.B. "css")
+    const category = getCategoryFromPath(filePath);
+    const currentSubcategory = getSubcategoryFromPath(filePath);
+    
+    // 2. Hole ALLE Tutorials dieser Kategorie als flache Liste
+    const allTutorials = getAllTutorialsFlat(category);
+    
+    // 3. Finde das aktuelle Tutorial in der Liste
+    const currentIndex = allTutorials.findIndex(t =&gt; t.filePath === filePath);
+    if (currentIndex === -1) return '';
+
+    // 4. Prev = Index - 1, Next = Index + 1
+    const prev = currentIndex &gt; 0 ? allTutorials[currentIndex - 1] : null;
+    const next = currentIndex &lt; allTutorials.length - 1 ? allTutorials[currentIndex + 1] : null;
+
+    let navHtml = '';
+
+    // 5. PREV Button generieren
+    if (prev) {
+        const prevSubcategory = `tutorials/${category}/${prev.subcategory}`;
+        const isNewCategory = prevSubcategory !== currentSubcategory;
+        const categoryClass = isNewCategory ? ' is-new' : '';
+
+        navHtml += `
+        &lt;div class="tutorial-nav-prev"&gt;
+            &lt;a href="${prev.url}"&gt;
+                &lt;span class="tutorial-nav-label"&gt;← Vorheriges&lt;/span&gt;
+                &lt;span class="tutorial-nav-link"&gt;${prev.title}&lt;/span&gt;
+                &lt;span class="tutorial-nav-category${categoryClass}"&gt;${prev.subcategoryDisplay}&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;`;
+    } else {
+        navHtml += '&lt;div class="tutorial-nav-prev"&gt;&lt;/div&gt;';
+    }
+
+    // 6. NEXT Button (analog)
+    // ...
+
+    return navHtml;
+}</code></pre>
+                        </div>
+
+                        <h3 id="ablauf-schritt-fuer-schritt">Ablauf Schritt für Schritt</h3>
+                        <div class="grid-2col-bg">
+                            <ol class="pl-md">
+                                <li><strong>Kategorie ermitteln:</strong> Aus dem Dateipfad wird die Hauptkategorie
+                                    extrahiert (z.B. "css")</li>
+                                <li><strong>Alle Tutorials holen:</strong> <code class="inline">getAllTutorialsFlat()</code> gibt alle Tutorials der Kategorie
+                                    als sortierte Liste zurück</li>
+                                <li><strong>Position finden:</strong> Das aktuelle Tutorial wird in der Liste gesucht
+                                </li>
+                                <li><strong>Prev/Next bestimmen:</strong> Index - 1 = Prev, Index + 1 = Next</li>
+                                <li><strong>Unterkategorie-Wechsel prüfen:</strong> Wenn Prev/Next in einer anderen
+                                    Unterkategorie liegt → <code class="inline">.is-new</code> Klasse</li>
+                                <li><strong>HTML generieren:</strong> Buttons mit Titel und Unterkategorie-Anzeige</li>
+                            </ol>
                         </div>
                     </section>
 
-                    <!-- Technische Details -->
+                    <!-- Edge Cases -->
                     <section class="tutorials-content">
-                        <h2 id="technische-details-wie-das-script-arbeitet">Technische Details: Wie das Script arbeitet
-                        </h2>
-                        <p>Das Script durchläuft folgende Schritte:</p>
-                        <ol class="grid-2col-bg pl-md">
-                            <li><strong>Datei erkennen:</strong> Liest die aktuelle Datei-URL</li>
-                            <li><strong>Kategorie finden:</strong> Sucht passenden Eintrag in <code class="inline">manualOrder</code></li>
-                            <li><strong>Position bestimmen:</strong> Findet Index des aktuellen Tutorials im Array</li>
-                            <li><strong>Prev/Next ermitteln:</strong> Index -1 = Prev, Index +1 = Next</li>
-                            <li><strong>HTML generieren:</strong> Erstellt die Buttons mit Titeln aus <code class="inline">customTitles</code></li>
-                            <li><strong>DOM updaten:</strong> Ersetzt den Inhalt zwischen den <code class="inline">&lt;nav&gt;</code>-Tags</li>
-                        </ol>
-                        <details>
-                            <summary>
-                                JavaScript Code
-                            </summary>
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-lang">JavaScript</span>
-                                    <button class="code-copy">
-                                        <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                        </span>
-                                        <span class="copy-text">Kopieren</span>
-                                    </button>
-                                </div>
-                                <pre><code class="language-javascript">// ============================================================================
-// TUTORIAL NAVIGATION (PREV/NEXT)
-// ============================================================================
-
-/**
- * Findet die vorherige und nächste Seite für Tutorial-Navigation
- */
-function findPrevNext(currentFile) {
-    // Normalisiere den Pfad
-    currentFile = currentFile.replace(/\\/g, '/');
-
-    // Finde den passenden Ordner in manualOrder
-    for (const [folder, files] of Object.entries(manualOrder)) {
-        if (currentFile.includes(folder)) {
-            const fileName = path.basename(currentFile);
-            const index = files.indexOf(fileName);
-
-            if (index !== -1) {
-                const prev = index &gt; 0 ? path.join(folder, files[index - 1]).replace(/\\/g, '/') : null;
-                const next = index &lt; files.length - 1 ? path.join(folder, files[index + 1]).replace(/\\/g, '/') : null;
-
-                return { prev, next };
-            }
-        }
-    }
-
-    return { prev: null, next: null };
-}
-
-/**
- * Generiert HTML für Tutorial Navigation
- */
-function generateTutorialNav(currentFile, prev, next) {
-    let navHTML = '';
-
-    if (prev) {
-        const prevPath = '/' + prev; // Absoluter Pfad
-        const prevTitle = customTitles[prev] || fileNameToTitle(path.basename(prev));
-        navHTML += `        &lt;div class="tutorial-nav-prev"&gt;
-            &lt;span class="tutorial-nav-label"&gt;← Vorheriges Tutorial&lt;/span&gt;
-            &lt;a href="${prevPath}" class="tutorial-nav-link"&gt;${prevTitle}&lt;/a&gt;
-        &lt;/div&gt;\n`;
-    } else {
-        navHTML += `        &lt;div class="tutorial-nav-prev"&gt;&lt;/div&gt;\n`;
-    }
-
-    if (next) {
-        const nextPath = '/' + next; // Absoluter Pfad
-        const nextTitle = customTitles[next] || fileNameToTitle(path.basename(next));
-        navHTML += `        &lt;div class="tutorial-nav-next"&gt;
-            &lt;span class="tutorial-nav-label"&gt;Nächstes Tutorial →&lt;/span&gt;
-            &lt;a href="${nextPath}" class="tutorial-nav-link"&gt;${nextTitle}&lt;/a&gt;
-        &lt;/div&gt;`;
-    } else {
-        navHTML += `        &lt;div class="tutorial-nav-next"&gt;&lt;/div&gt;`;
-    }
-
-    return navHTML;
-}
-
-/**
- * Aktualisiert die Tutorial Navigation in allen HTML-Dateien
- */
-function updateTutorialNavigation(files) {
-    let updatedCount = 0;
-
-    files.forEach(file =&gt; {
-        const filePath = path.join(BASE_DIR, file);
-        let content = fs.readFileSync(filePath, 'utf8');
-
-        // Suche nach &lt;nav class="tutorial-nav"&gt;&lt;/nav&gt;
-        const navRegex = /&lt;nav\s+class=["']tutorial-nav["'][^&gt;]*&gt;[\s\S]*?&lt;\/nav&gt;/;
-
-        if (navRegex.test(content)) {
-            const { prev, next } = findPrevNext(file);
-
-            if (prev || next) {
-                const newNav = `&lt;nav class="tutorial-nav"&gt;\n${generateTutorialNav(file, prev, next)}\n    &lt;/nav&gt;`;
-                content = content.replace(navRegex, newNav);
-
-                fs.writeFileSync(filePath, content, 'utf8');
-                updatedCount++;
-            }
-        }
-    });
-
-    console.log(`✅ Tutorial Navigation aktualisiert in ${updatedCount} Dateien`);
-}</code></pre>
+                        <h2 id="edge-cases">Edge Cases</h2>
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc pt-0">Erstes Tutorial</h3>
+                                <ul class="arrow-list">
+                                    <li>Kein Prev-Button (leeres <code class="inline">&lt;div&gt;</code>)</li>
+                                    <li>Next-Button zeigt auf das zweite Tutorial</li>
+                                </ul>
                             </div>
-                        </details>
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc pt-0">Letztes Tutorial</h3>
+                                <ul class="arrow-list">
+                                    <li>Prev-Button zeigt auf das vorletzte Tutorial</li>
+                                    <li>Kein Next-Button (leeres <code class="inline">&lt;div&gt;</code>)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="grid-2col-bg mt-md">
+                            <h3 class="no-toc pt-0">Tutorial nicht in TUTORIAL_ORDER</h3>
+                            <p>Wenn ein Tutorial nicht in <code class="inline">TUTORIAL_ORDER</code> eingetragen ist,
+                                werden keine Prev/Next Buttons generiert.</p>
+                        </div>
                     </section>
 
+                    <!-- Ausführen -->
                     <section class="tutorials-content">
                         <h2 id="ausfuehren">Ausführen</h2>
-                        <p>Nach allen Änderungen ausführen:</p>
+                        <p>Nach Änderungen an <code class="inline">TUTORIAL_ORDER</code> oder <code class="inline">CUSTOM_TITLES</code>:</p>
                         <div class="code-block">
                             <div class="code-header">
-                                <span class="code-lang">Plain Text</span>
+                                <span class="code-lang">Bash</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -554,7 +582,7 @@ function updateTutorialNavigation(files) {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-text">npm run generate</code></pre>
+                            <pre><code class="language-bash">npm run build</code></pre>
                         </div>
                     </section>
 
