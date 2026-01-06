@@ -2,8 +2,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Wie die 'Zuletzt hinzugefügt' Section funktioniert - auf der Startseite, Kategorieseiten und in Tutorials. Automatisch generiert aus JSON.">
-        <meta name="keywords" content="???">
+        <meta name="description" content="Dokumentation zur Latest Tutorials Section auf DevPanicZone. Dynamische Anzeige der neuesten Tutorials auf Startseite, Kategorieseiten und in einzelnen Tutorials.">
+        <meta name="keywords" content="Latest Tutorials, JSON, JavaScript, Tutorial Cards, generate-navigation.js, latest-tutorials.js, DevPanicZone, Automatisierung">
         <meta name="author" content="DevPanicZone">
         <title>Latest Tutorials Section | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -158,8 +158,7 @@
                     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Latest Tutorials Section</span></nav>
                     <h1 class="hero-title">Latest Tutorials Section</h1>
                     <p class="hero-subtitle">Die "Zuletzt hinzugefügt" Section zeigt dynamisch die neuesten Tutorials an
-                        -
-                        auf der Startseite, Kategorieseiten und in einzelnen Tutorials. Alles basiert auf einer
+                        - auf der Startseite, Kategorieseiten und in einzelnen Tutorials. Alles basiert auf einer
                         automatisch generierten JSON-Datei.</p>
                 </div>
             </section>
@@ -203,8 +202,8 @@
                     <li class="toc-level-2"><a href="#html-struktur-1">HTML-Struktur</a></li>
                     <li class="toc-level-2"><a href="#was-passiert-im-browser-1">Was passiert im Browser?</a></li>
                     <li class="toc-level-1"><a href="#variante-3-in-einzelnen-tutorials">Variante 3: In einzelnen Tutorials</a></li>
-                    <li class="toc-level-2"><a href="#html-struktur-2">HTML-Struktur</a></li>
-                    <li class="toc-level-2"><a href="#script-einbinden-nicht-vergessen">Script einbinden nicht vergessen!</a></li>
+                    <li class="toc-level-2"><a href="#automatische-generierung">Automatische Generierung</a></li>
+                    <li class="toc-level-2"><a href="#script-einbinden">Script einbinden</a></li>
                     <li class="toc-level-1"><a href="#die-tutorialsjson-struktur">Die tutorials.json Struktur</a></li>
                     <li class="toc-level-2"><a href="#woher-kommen-die-daten">Woher kommen die Daten?</a></li>
                     <li class="toc-level-1"><a href="#das-frontend-script">Das Frontend Script</a></li>
@@ -315,6 +314,7 @@ const LATEST_TUTORIALS = [
 ];</code></pre>
                         </div>
 
+                        <!-- Neues Tutorial hinzufügen -->
                         <div>
                             <h4>Neues Tutorial hinzufügen</h4>
                             <ol class="grid-2col-bg">
@@ -325,6 +325,7 @@ const LATEST_TUTORIALS = [
                                 <li><code class="inline">npm run build</code> ausführen</li>
                             </ol>
                         </div>
+
                     </section>
 
                     <!-- Variante 1: Startseite -->
@@ -334,18 +335,20 @@ const LATEST_TUTORIALS = [
                             angezeigt -
                             kategorieübergreifend.</p>
 
-                        <h3 id="html-struktur">HTML-Struktur</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre class="code-block"><code class="language-html">&lt;!-- Latest Tutorials Section --&gt;
+                        <!-- HTML-Struktur -->
+                        <div>
+                            <h3 id="html-struktur">HTML-Struktur</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre class="code-block"><code class="language-html">&lt;!-- Latest Tutorials Section --&gt;
 &lt;section class="categories"&gt;
     &lt;h2&gt;Zuletzt hinzugefügt&lt;/h2&gt;
     &lt;div id="latestTutorials" class="tutorials-grid"&gt;
@@ -353,25 +356,31 @@ const LATEST_TUTORIALS = [
         &lt;p class="text-muted"&gt;Tutorials werden geladen...&lt;/p&gt;
     &lt;/div&gt;
 &lt;/section&gt;</code></pre>
+                            </div>
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">Wichtig
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Die ID muss <code class="inline">latestTutorials</code> sein</li>
+                                    <li>Kein <code class="inline">data-category</code> Attribut nötig</li>
+                                    <li>Das Script <code class="inline">latest-tutorials.js</code> muss eingebunden sein
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Wichtig
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle"></use>
-                                </svg>
-                            </strong>
-                            <ul class="arrow-list">
-                                <li>Die ID muss <code class="inline">latestTutorials</code> sein</li>
-                                <li>Kein <code class="inline">data-category</code> Attribut nötig</li>
-                                <li>Das Script <code class="inline">latest-tutorials.js</code> muss eingebunden sein
-                                </li>
-                            </ul>
+                        <!-- Was passiert im Browser? -->
+                        <div>
+                            <h3 id="was-passiert-im-browser">Was passiert im Browser?</h3>
+                            <p>Das Script <code class="inline">latest-tutorials.js</code> sucht nach <code class="inline">#latestTutorials</code>
+                                und lädt die 4 Einträge aus <code class="inline">data.latest</code> in der JSON.</p>
                         </div>
 
-                        <h3 id="was-passiert-im-browser">Was passiert im Browser?</h3>
-                        <p>Das Script <code class="inline">latest-tutorials.js</code> sucht nach <code class="inline">#latestTutorials</code>
-                            und lädt die 4 Einträge aus <code class="inline">data.latest</code> in der JSON.</p>
+
                     </section>
 
                     <!-- Variante 2: Kategorieseiten -->
@@ -380,18 +389,20 @@ const LATEST_TUTORIALS = [
                         <p>Auf Kategorieseiten (z.B. <code class="inline">/tutorials/css/index.html</code>) werden die
                             neuesten Tutorials <strong>dieser Kategorie</strong> angezeigt.</p>
 
-                        <h3 id="html-struktur-1">HTML-Struktur</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre class="code-block"><code class="language-html">&lt;!-- Latest Tutorials Section --&gt;
+                        <!-- HTML-Struktur -->
+                        <div>
+                            <h3 id="html-struktur-1">HTML-Struktur</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre class="code-block"><code class="language-html">&lt;!-- Latest Tutorials Section --&gt;
 &lt;section class="categories"&gt;
     &lt;h2&gt;Zuletzt hinzugefügt&lt;/h2&gt;
     &lt;div id="categoryLatestTutorials" class="tutorials-grid" data-category="css"&gt;
@@ -399,28 +410,36 @@ const LATEST_TUTORIALS = [
         &lt;p class="text-muted"&gt;Tutorials werden geladen...&lt;/p&gt;
     &lt;/div&gt;
 &lt;/section&gt;</code></pre>
+                            </div>
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">Wichtig
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Die ID muss <code class="inline">categoryLatestTutorials</code> sein</li>
+                                    <li>Das <code class="inline">data-category</code> Attribut bestimmt die Kategorie
+                                    </li>
+                                    <li>Gültige Werte: <code class="inline">html</code>, <code class="inline">css</code>,
+                                        <code class="inline">javascript</code>, <code class="inline">php</code>, <code class="inline">bootstrap</code>, <code class="inline">misc</code>, <code class="inline">devpaniczone</code>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Was passiert im Browser? -->
+                            <div>
+                                <h3 id="was-passiert-im-browser-1">Was passiert im Browser?</h3>
+                                <p>Das Script liest <code class="inline">data-category</code> aus und filtert die
+                                    Tutorials
+                                    aus
+                                    <code class="inline">data.byCategory[category]</code>. Es zeigt die letzten 4 dieser
+                                    Kategorie.
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Wichtig
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle"></use>
-                                </svg>
-                            </strong>
-                            <ul class="arrow-list">
-                                <li>Die ID muss <code class="inline">categoryLatestTutorials</code> sein</li>
-                                <li>Das <code class="inline">data-category</code> Attribut bestimmt die Kategorie</li>
-                                <li>Gültige Werte: <code class="inline">html</code>, <code class="inline">css</code>,
-                                    <code class="inline">javascript</code>, <code class="inline">php</code>, <code class="inline">misc</code>, <code class="inline">documentation</code>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <h3 id="was-passiert-im-browser-1">Was passiert im Browser?</h3>
-                        <p>Das Script liest <code class="inline">data-category</code> aus und filtert die Tutorials aus
-                            <code class="inline">data.byCategory[category]</code>. Es zeigt die letzten 4 dieser
-                            Kategorie.
-                        </p>
                     </section>
 
                     <!-- Variante 3: In Tutorials -->
@@ -429,51 +448,76 @@ const LATEST_TUTORIALS = [
                         <p>Am Ende jedes Tutorials (vor den Prev/Next Buttons) werden verwandte Tutorials der gleichen
                             Kategorie angezeigt - als "Mehr aus [Kategorie]".</p>
 
-                        <h3 id="html-struktur-2">HTML-Struktur</h3>
-                        <p>Die Struktur ist identisch mit Variante 2:</p>
+                        <!-- Automatische Generierung -->
+                        <div>
+                            <h3 id="automatische-generierung">Automatische Generierung</h3>
+                            <p>Diese Section wird <strong>automatisch</strong> durch <code class="inline">generate-navigation.js</code> eingefügt! Du musst sie nicht manuell
+                                anlegen.</p>
 
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre class="code-block"><code class="language-html">&lt;!-- Latest Tutorials Section --&gt;
+                            <p>Das Script fügt die Section zwischen den Markern ein (oder erstellt sie neu):</p>
+
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Latest-Tutorials-Start --&gt;
 &lt;section class="categories"&gt;
-    &lt;h2&gt;Mehr aus CSS&lt;/h2&gt;
+    &lt;h2 id="mehr-aus-css"&gt;Mehr aus CSS&lt;/h2&gt;
     &lt;div id="categoryLatestTutorials" class="tutorials-grid" data-category="css"&gt;
         &lt;!-- Wird per JavaScript aus /assets/data/tutorials.json geladen --&gt;
         &lt;p class="text-muted"&gt;Tutorials werden geladen...&lt;/p&gt;
     &lt;/div&gt;
 &lt;/section&gt;
+&lt;!-- Latest-Tutorials-End --&gt;
 
 &lt;!-- Prev/Next Navigation --&gt;
 &lt;section class="tutorials-content"&gt;
     &lt;nav class="tutorial-nav"&gt;&lt;/nav&gt;
 &lt;/section&gt;</code></pre>
+                            </div>
+
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Automatisch vs. Manuell
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li><strong>Kategorie:</strong> Wird automatisch aus dem Dateipfad ermittelt</li>
+                                    <li><strong>Überschrift:</strong> "Mehr aus [Kategorie]" wird automatisch generiert
+                                    </li>
+                                    <li><strong>ID für H2:</strong> Wird automatisch erstellt (z.B. <code class="inline">mehr-aus-css</code>)</li>
+                                    <li><strong>data-category:</strong> Wird automatisch gesetzt</li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Im Template
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle"></use>
-                                </svg>
-                            </strong>
-                            <p>Das Tutorial-Template enthält diese Section bereits. Wichtig: die
-                                <code class="inline">data-category</code> auf die richtige Kategorie setzen
-                                (oder es wird automatisch durch <code class="inline">generate-navigation.js</code>
-                                gesetzt).
-                            </p>
+                        <!-- Script einbinden -->
+                        <div>
+                            <h3 id="script-einbinden">Script einbinden</h3>
+                            <p>Das Script ist bereits im <code class="inline">FOOTER_TEMPLATE</code> enthalten und wird
+                                automatisch auf allen Seiten eingebunden:</p>
+
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;script src="/assets/js/latest-tutorials.js" defer&gt;&lt;/script&gt;</code></pre>
+                            </div>
                         </div>
 
-                        <h3 id="script-einbinden-nicht-vergessen">Script einbinden nicht vergessen!</h3>
-                        <p>Das Script muss am Ende der Seite eingebunden sein:</p>
-
-                        <pre class="code-block"><code class="language-html">&lt;script src="/assets/js/latest-tutorials.js" defer&gt;&lt;/script&gt;</code></pre>
                     </section>
 
                     <!-- Die JSON-Struktur -->
@@ -485,7 +529,7 @@ const LATEST_TUTORIALS = [
 
                         <div class="code-block">
                             <div class="code-header">
-                                <span class="code-lang">json</span>
+                                <span class="code-lang">JSON</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -493,7 +537,7 @@ const LATEST_TUTORIALS = [
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre class="code-block"><code class="language-json">{
+                            <pre><code class="language-json">{
   "generated": "2025-06-03T18:23:43.522Z",
   "total": 41,
   "all": [
@@ -515,45 +559,50 @@ const LATEST_TUTORIALS = [
   "byCategory": {
     "html": [ /* HTML Tutorials */ ],
     "css": [ /* CSS Tutorials */ ],
+    "bootstrap": [ /* Bootstrap Tutorials */ ],
     "javascript": [ /* JS Tutorials */ ],
     "php": [ /* PHP Tutorials */ ],
     "misc": [ /* Misc Tutorials */ ],
-    "documentation": [ /* DevPanicZone Tutorials */ ]
+    "devpaniczone": [ /* DevPanicZone Tutorials */ ]
   }
 }</code></pre>
                         </div>
 
-                        <h3 id="woher-kommen-die-daten">Woher kommen die Daten?</h3>
-                        <table class="ref-table">
-                            <thead>
-                                <tr>
-                                    <th>Feld</th>
-                                    <th>Quelle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code class="inline">title</code></td>
-                                    <td><code class="inline">CUSTOM_TITLES</code> oder H1 der Seite</td>
-                                </tr>
-                                <tr>
-                                    <td><code class="inline">excerpt</code></td>
-                                    <td><code class="inline">.hero-subtitle</code> oder <code class="inline">.hero-text</code> (max. 160 Zeichen)</td>
-                                </tr>
-                                <tr>
-                                    <td><code class="inline">url</code></td>
-                                    <td>Dateipfad relativ zum Root</td>
-                                </tr>
-                                <tr>
-                                    <td><code class="inline">category</code></td>
-                                    <td>Ordnername (html, css, etc.)</td>
-                                </tr>
-                                <tr>
-                                    <td><code class="inline">badgeClass</code></td>
-                                    <td>Generiert aus Kategorie für CSS-Styling</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <!-- Woher kommen die Daten? -->
+                        <div>
+                            <h3 id="woher-kommen-die-daten">Woher kommen die Daten?</h3>
+                            <table class="ref-table">
+                                <thead>
+                                    <tr>
+                                        <th>Feld</th>
+                                        <th>Quelle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code class="inline">title</code></td>
+                                        <td><code class="inline">CUSTOM_TITLES</code> oder H1 der Seite</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="inline">excerpt</code></td>
+                                        <td><code class="inline">.hero-subtitle</code> oder <code class="inline">.hero-text</code> (max. 160 Zeichen)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="inline">url</code></td>
+                                        <td>Dateipfad relativ zum Root</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="inline">category</code></td>
+                                        <td>Ordnername (html, css, etc.)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="inline">badgeClass</code></td>
+                                        <td>Generiert aus Kategorie für CSS-Styling</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </section>
 
                     <!-- Das Frontend Script -->
@@ -563,20 +612,22 @@ const LATEST_TUTORIALS = [
                             das
                             Laden und Rendern der Cards.</p>
 
-                        <h3 id="die-createtutorialcard-funktion">Die createTutorialCard Funktion</h3>
-                        <p>Diese Funktion erstellt das HTML für jede Card:</p>
+                        <!-- Die createTutorialCard Funktion -->
+                        <div>
+                            <h3 id="die-createtutorialcard-funktion">Die createTutorialCard Funktion</h3>
+                            <p>Diese Funktion erstellt das HTML für jede Card:</p>
 
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">javascript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre class="code-block"><code class="language-javascript">function createTutorialCard(tutorial) {
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">javascript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre class="code-block"><code class="language-javascript">function createTutorialCard(tutorial) {
     const card = document.createElement('article');
     card.className = 'tutorial-card';
     
@@ -595,22 +646,25 @@ const LATEST_TUTORIALS = [
     
     return card;
 }</code></pre>
+                            </div>
                         </div>
 
-                        <h3 id="container-erkennung">Container-Erkennung</h3>
-                        <p>Das Script prüft automatisch, welcher Container vorhanden ist:</p>
+                        <!-- Container-Erkennung -->
+                        <div>
+                            <h3 id="container-erkennung">Container-Erkennung</h3>
+                            <p>Das Script prüft automatisch, welcher Container vorhanden ist:</p>
 
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">javascript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre class="code-block"><code class="language-javascript">// Startseite: Neueste Tutorials (aus LATEST_TUTORIALS)
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">javascript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre class="code-block"><code class="language-javascript">// Startseite: Neueste Tutorials (aus LATEST_TUTORIALS)
 if (latestContainer) {
     renderLatestTutorials(latestContainer, data.latest);
 }
@@ -621,7 +675,9 @@ if (categoryContainer) {
     const latestInCategory = data.byCategory[category].slice(-4).reverse();
     renderLatestTutorials(categoryContainer, latestInCategory);
 }</code></pre>
+                            </div>
                         </div>
+
                     </section>
 
                     <!-- CSS Styling -->
@@ -629,18 +685,20 @@ if (categoryContainer) {
                         <h2 id="css-styling">CSS Styling</h2>
                         <p>Die Styles für die Tutorial Cards befinden sich in <code class="inline">/assets/css/components.css</code>:</p>
 
-                        <h3 id="das-grid">Das Grid</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">CSS</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre class="code-block"><code class="language-css">/* Tutorial Grid: 1 Spalte mobil, 2 Spalten Desktop */
+                        <!-- Das Grid -->
+                        <div>
+                            <h3 id="das-grid">Das Grid</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre class="code-block"><code class="language-css">/* Tutorial Grid: 1 Spalte mobil, 2 Spalten Desktop */
 .tutorials-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -652,20 +710,23 @@ if (categoryContainer) {
         grid-template-columns: repeat(2, 1fr);
     }
 }</code></pre>
+                            </div>
                         </div>
 
-                        <h3 id="die-cards">Die Cards</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">CSS</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre class="code-block"><code class="language-css">.tutorial-card {
+                        <!-- Die Cards -->
+                        <div>
+                            <h3 id="die-cards">Die Cards</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre class="code-block"><code class="language-css">.tutorial-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -677,25 +738,29 @@ if (categoryContainer) {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }</code></pre>
+                            </div>
                         </div>
 
-                        <h3 id="farbcodierte-badges">Farbcodierte Badges</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">CSS</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre class="code-block"><code class="language-css">.card-badge-html { background: var(--accent-blue); }
+                        <!-- Farbcodierte Badges -->
+                        <div>
+                            <h3 id="farbcodierte-badges">Farbcodierte Badges</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre class="code-block"><code class="language-css">.card-badge-html { background: var(--accent-blue); }
 .card-badge-css { background: var(--accent-green); }
 .card-badge-bootstrap { background: var(--accent-purple); }
 .card-badge-javascript { background: var(--accent-orange); }
 .card-badge-php { background: var(--accent-cyan); }
 .card-badge-misc { background: var(--accent-red); }</code></pre>
+                            </div>
                         </div>
 
                     </section>
@@ -714,11 +779,12 @@ if (categoryContainer) {
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
-                                <h3 class="no-toc">Kategorieseiten &amp; Tutorials</h3>
+                                <h3 class="no-toc pt-0">Kategorieseiten &amp; Tutorials</h3>
                                 <ul class="arrow-list">
                                     <li>ID: <code class="inline">#categoryLatestTutorials</code></li>
                                     <li>Attribut: <code class="inline">data-category="xxx"</code></li>
                                     <li>Zeigt: Die letzten 4 der Kategorie</li>
+                                    <li>In Tutorials: Automatisch generiert!</li>
                                 </ul>
                             </div>
                         </div>
@@ -784,12 +850,6 @@ if (categoryContainer) {
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
-
 
     
 
