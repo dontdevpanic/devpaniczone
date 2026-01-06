@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="de">
-
-    <head>
+<!DOCTYPE html><html lang="de"><head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description"
-            content="Wie das generate-navigation.js Script funktioniert und alle Navigationen automatisch erstellt.">
-        <meta name="keywords" content="???">
+        <meta name="description" content="Detaillierte Erklärung des generate-navigation.js Scripts v2.2: Wie Header, Footer, Breadcrumbs, Sidebars und Prev/Next-Buttons automatisch generiert werden.">
+        <meta name="keywords" content="generate-navigation.js, Node.js Script, JSDOM, automatische Navigation, Tutorial-Generator, DevPanicZone, JavaScript Automation">
         <meta name="author" content="DevPanicZone">
-        <title>Navigation Script erklärt | DevPanicZone</title>
+        <title>generate-navigation.js erklärt | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
         <link rel="stylesheet" href="/assets/css/style.css">
@@ -20,158 +16,154 @@
 
     <body>
         <!-- Header-Start -->
-        <header class="site-header">
-            <div class="container">
-                <div class="header-content">
-                    <div class="brand">
-                        <a href="/" class="brand-link">
-                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                            <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                        </a>
-                    </div>
-
-                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                        <span class="theme-icon">
-                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                        </span>
-                    </button>
-
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                        <span class="hamburger"></span>
-                    </button>
-
-                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                        <ul class="nav-list">
-                            <li><a href="/" class="nav-link">Home</a></li>
-                            <li class="nav-item-dropdown">
-                                <button class="nav-link dropdown-toggle" aria-expanded="false">
-                                    Tutorials
-                                    <span class="dropdown-icon">▾</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <!-- Main-Nav-Start -->
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/html/" class="nav-link">
-                                            HTML
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/css/" class="nav-link">
-                                            CSS
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/javascript/" class="nav-link">
-                                            JavaScript
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
-                                            </li>
-                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
-                                                    Projects</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/php/" class="nav-link">
-                                            PHP
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/misc/" class="nav-link">
-                                            Verschiedenes
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item-nested">
-                                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                                            DevPanicZone!
-                                            <span class="submenu-icon">▸</span>
-                                        </a>
-                                        <ul class="dropdown-submenu">
-                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Main-Nav-End -->
-                                </ul>
-                            </li>
-                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-
-                            <!-- Search Toggle -->
-                            <li>
-                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                                    <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                        <path
-                                            d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
-                                    </svg>
-                                </button>
-                            </li>
-                        </ul>
-
-                        <!-- Search Dropdown -->
-                        <div class="search-dropdown" id="searchDropdown" hidden>
-                            <div class="search-input-group">
-                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                    <path
-                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
-                                </svg>
-                                <input type="search" id="globalSearch" class="search-input"
-                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
-                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                            </div>
-
-                            <div class="search-results" id="searchResults" hidden>
-                                <div class="search-results-list" id="searchResultsList"></div>
-                                <div class="search-results-footer">
-                                    <button class="search-view-all" id="searchViewAll">
-                                        Alle Ergebnisse anzeigen →
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <a href="/" class="brand-link">
+                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                    <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                </a>
             </div>
-        </header>
-        <!-- Header-End -->
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                <span class="theme-icon">
+                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                </span>
+            </button>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item-dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false">
+                            Tutorials
+                            <span class="dropdown-icon">▾</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <!-- Main-Nav-Start -->
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/html/" class="nav-link">
+                            HTML
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/css/" class="nav-link">
+                            CSS
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/javascript/" class="nav-link">
+                            JavaScript
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
+                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/php/" class="nav-link">
+                            PHP
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/misc/" class="nav-link">
+                            Verschiedenes
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                        </ul>
+                    </li>
+                                <li class="nav-item-nested">
+                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                            DevPanicZone!
+                            <span class="submenu-icon">▸</span>
+                        </a>
+                        <ul class="dropdown-submenu">
+                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                        </ul>
+                    </li>
+                                <!-- Main-Nav-End -->
+                        </ul>
+                    </li>
+                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+                    
+                    <!-- Search Toggle -->
+                    <li>
+                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                            <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Search Dropdown -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="globalSearch" 
+                            class="search-input" 
+                            placeholder="Tutorials durchsuchen..."
+                            aria-label="Suche">
+                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                    </div>
+                    
+                    <div class="search-results" id="searchResults" hidden>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                        <div class="search-results-footer">
+                            <button class="search-view-all" id="searchViewAll">
+                                Alle Ergebnisse anzeigen →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header-End -->
 
         <main class="site-main">
 
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
-                            class="breadcrumb-separator">›</span><a href="/tutorials/documentation/"
-                            class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span
-                            class="breadcrumb-current">Was macht generate-navigation.js</span></nav>
-                    <h1 class="hero-title">Navigation Script - So funktioniert's</h1>
-                    <p class="hero-subtitle">Eine verständliche Erklärung, wie das generate-navigation.js Script alle
-                        Navigationen automatisch erstellt und aktualisiert.</p>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Was macht generate-navigation.js</span></nav>
+                    <h1 class="hero-title">Navigation Script generate-navigation.js - So funktioniert's</h1>
+                    <p class="hero-subtitle">Wie das Script alle Navigationen, Header, Footer und Sidebars automatisch
+                        generiert – Schritt für Schritt.</p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
-                title="Auf dieser Seite">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
                 <span class="toggle-icon">☰</span>
             </button>
 
@@ -200,41 +192,37 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                            <li class="toc-level-1"><a href="#was-macht-das-script">Was macht das Script?</a></li>
-                            <li class="toc-level-1"><a href="#aufbau-des-scripts">Aufbau des Scripts</a></li>
-                            <li class="toc-level-2"><a href="#1-konfiguration-setup">1. Konfiguration &amp; Setup</a>
-                            </li>
-                            <li class="toc-level-2"><a href="#2-deine-konfiguration">2. Deine Konfiguration</a></li>
-                            <li class="toc-level-2"><a href="#3-header-footer-templates">3. Header &amp; Footer
-                                    Templates</a></li>
-                            <li class="toc-level-1"><a href="#hilfsfunktionen">Hilfsfunktionen</a></li>
-                            <li class="toc-level-2"><a href="#findhtmlfiles-html-dateien-finden">HTML-Dateien finden</a>
-                            </li>
-                            <li class="toc-level-2"><a href="#getcategoryfrompath-kategorie-ermitteln">Kategorie
-                                    ermitteln</a></li>
-                            <li class="toc-level-2"><a
-                                    href="#getsubcategoryfrompath-unterkategorie-ermitteln">Unterkategorie ermitteln</a>
-                            </li>
-                            <li class="toc-level-1"><a href="#navigation-generierung">Navigation-Generierung</a></li>
-                            <li class="toc-level-2"><a href="#generatemainnavigation-dropdown-menue">Dropdown-Menü</a>
-                            </li>
-                            <li class="toc-level-2"><a href="#generatebreadcrumbs-navigationspfad">Navigationspfad</a>
-                            </li>
-                            <li class="toc-level-2"><a
-                                    href="#generateprevnextnav-vorherigesnaechstes">Vorheriges/Nächstes</a></li>
-                            <li class="toc-level-2"><a href="#addidstoheadingsandgeneratesidebar-sidebar-toc">Sidebar
-                                    TOC</a></li>
-                            <li class="toc-level-1"><a href="#html-aktualisieren">HTML aktualisieren</a></li>
-                            <li class="toc-level-1"><a href="#regex-patterns-erklaert">Regex Patterns erklärt</a></li>
-                            <li class="toc-level-2"><a href="#pattern-fuer-kommentar-marker">Pattern für
-                                    Kommentar-Marker</a></li>
-                            <li class="toc-level-2"><a href="#pattern-fuer-html-tags">Pattern für HTML-Tags</a></li>
-                            <li class="toc-level-1"><a href="#die-hauptlogik">Die Hauptlogik</a></li>
-                            <li class="toc-level-1"><a href="#best-practices-tipps">Best Practices &amp; Tipps</a></li>
-                            <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
-                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                            <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
-                            <!-- Sidebar-Anchor-End -->
+                    <li class="toc-level-1"><a href="#was-macht-das-script">Was macht das Script?</a></li>
+                    <li class="toc-level-1"><a href="#aufbau-des-scripts">Aufbau des Scripts</a></li>
+                    <li class="toc-level-2"><a href="#1-konfiguration-setup">1. Konfiguration &amp; Setup</a></li>
+                    <li class="toc-level-2"><a href="#2-deine-konfiguration">2. Deine Konfiguration</a></li>
+                    <li class="toc-level-2"><a href="#3-latest-tutorials-config">3. Latest Tutorials für die Startseite</a></li>
+                    <li class="toc-level-2"><a href="#4-header-footer-templates">4. Header &amp; Footer Templates</a></li>
+                    <li class="toc-level-2"><a href="#5-acronyms-konfiguration">5. Akronyme automatisch kapitalisieren</a></li>
+                    <li class="toc-level-1"><a href="#hilfsfunktionen">Hilfsfunktionen</a></li>
+                    <li class="toc-level-2"><a href="#findhtmlfiles-html-dateien-finden">HTML-Dateien finden</a></li>
+                    <li class="toc-level-2"><a href="#getcategoryfrompath-kategorie-ermitteln">Kategorie ermitteln</a></li>
+                    <li class="toc-level-2"><a href="#getsubcategoryfrompath-unterkategorie-ermitteln">Unterkategorie ermitteln</a></li>
+                    <li class="toc-level-1"><a href="#navigation-generierung">Navigation-Generierung</a></li>
+                    <li class="toc-level-2"><a href="#generatemainnavigation-dropdown-menue">Dropdown-Menü</a></li>
+                    <li class="toc-level-2"><a href="#generatebreadcrumbs-navigationspfad">Navigationspfad</a></li>
+                    <li class="toc-level-2"><a href="#generateprevnextnav-vorherigesnaechstes">Vorheriges/Nächstes</a></li>
+                    <li class="toc-level-2"><a href="#addidstoheadingsandgeneratesidebar-sidebar-toc">Sidebar TOC</a></li>
+                    <li class="toc-level-2"><a href="#generatesidebarnavlist-gruppiert">generateSidebarNavList() – Gruppierte
+                                Tutorial-Liste</a></li>
+                    <li class="toc-level-1"><a href="#tutorials-json-generierung">tutorials.json Generierung (NEU in v2.2)</a></li>
+                    <li class="toc-level-2"><a href="#extractheroexcerpt">extractHeroExcerpt() – Excerpt aus Hero ziehen</a></li>
+                    <li class="toc-level-2"><a href="#generatelatestjson">generateLatestTutorialsJSON() – JSON erstellen</a></li>
+                    <li class="toc-level-1"><a href="#html-aktualisieren">HTML aktualisieren</a></li>
+                    <li class="toc-level-1"><a href="#regex-patterns-erklaert">Regex Patterns erklärt</a></li>
+                    <li class="toc-level-2"><a href="#pattern-fuer-kommentar-marker">Pattern für Kommentar-Marker</a></li>
+                    <li class="toc-level-2"><a href="#pattern-fuer-html-tags">Pattern für HTML-Tags</a></li>
+                    <li class="toc-level-1"><a href="#die-hauptlogik">Die Hauptlogik</a></li>
+                    <li class="toc-level-1"><a href="#best-practices-tipps">Best Practices &amp; Tipps</a></li>
+                    <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
+                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                    <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
+                    <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -250,37 +238,26 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                            <li class="sidebar-group-title">Documentation</li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches
-                                    Generieren der Navigationen</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One
-                                    Cheatsheet für meine Tutorials</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html"
-                                    class="active">Was macht generate-navigation.js</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">Main
-                                    Nav Header</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">Wie
-                                    funktionieren die Sidebars?</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">Hero
-                                    Breadcrumbs</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">Prev / Next
-                                    Buttons in den Tutorials</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">Tutorial
-                                    Buttons</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">Toggle
-                                    Night Mode</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">currentYear
-                                    im Footer</a></li>
-                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">Latest
-                                    Tutorials Section</a></li>
-                        </ul>
+                    <li class="sidebar-group-title">Documentation</li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One Cheatsheet für meine Tutorials</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html" class="active">Was macht generate-navigation.js</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">Main Nav Header</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">Wie funktionieren die Sidebars?</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">Hero Breadcrumbs</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">Prev / Next Buttons in den Tutorials</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">Tutorial Buttons</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">Toggle Night Mode</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">currentYear im Footer</a></li>
+                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">Latest Tutorials Section</a></li>
+                </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
 
-                    <!-- Überblick -->
+                    <!-- Überblick - Was macht das Script? -->
                     <section class="tutorials-content">
                         <h2 id="was-macht-das-script">Was macht das Script?</h2>
                         <p>Das <code class="inline">generate-navigation.js</code> Script ist das Herzstück der
@@ -309,13 +286,13 @@
                         <div class="info-box">
                             <strong class="box-title no-toc">Warum automatisch?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Stell dir vor, du müsstest bei jedem neuen Tutorial ALLE anderen Tutorial-Seiten manuell
-                                aktualisieren! Das Script macht das automatisch mit einem einzigen Befehl: <code
-                                    class="inline">npm run build</code></p>
+                                aktualisieren! Das Script macht das automatisch mit einem einzigen Befehl: <code class="inline">npm run build</code></p>
                         </div>
+
                     </section>
 
                     <!-- Aufbau des Scripts -->
@@ -323,20 +300,22 @@
                         <h2 id="aufbau-des-scripts">Aufbau des Scripts</h2>
                         <p>Das Script ist in logische Abschnitte unterteilt. Lass uns jeden einzelnen durchgehen!</p>
 
-                        <h3 id="1-konfiguration-setup">1. Konfiguration &amp; Setup</h3>
-                        <p>Ganz am Anfang werden die wichtigsten Einstellungen definiert:</p>
+                        <!-- 1. Konfiguration &amp; Setup -->
+                        <div>
+                            <h3 id="1-konfiguration-setup">1. Konfiguration &amp; Setup</h3>
+                            <p>Ganz am Anfang werden die wichtigsten Einstellungen definiert:</p>
 
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">const fs = require('fs');
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">const fs = require('fs');
 const path = require('path');
 const { JSDOM } = require('jsdom');
 
@@ -346,57 +325,61 @@ const assetsDir = path.join(__dirname, '..', 'assets');
 
 // Blacklist: Diese Ordner werden ignoriert
 const BLACKLIST_FOLDERS = ['noupload', 'node_modules', '.git', 'assets'];</code></pre>
+                            </div>
+
+                            <h4>Was passiert hier?</h4>
+
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <ul class="arrow-list">
+                                        <li><code class="inline">fs</code> → Zum Lesen und Schreiben von Dateien</li>
+                                        <li><code class="inline">path</code> → Zum Arbeiten mit Dateipfaden</li>
+                                        <li><code class="inline">JSDOM</code> → Zum Parsen und Manipulieren von HTML
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <ul class="arrow-list">
+                                        <li><code class="inline">tutorialsDir</code> → Zeigt auf den <code class="inline">/tutorials</code> Ordner</li>
+                                        <li><code class="inline">BLACKLIST_FOLDERS</code> → Ordner, die das Script
+                                            ignorieren
+                                            soll</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Warum __dirname, '..' ?
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <p>Das Script liegt in <code class="inline">/scripts/generate-navigation.js</code>. Um
+                                    auf
+                                    <code class="inline">/tutorials</code> zu kommen, muss es einen Ordner HOCH <code class="inline">..</code> und dann in
+                                    den <code class="inline">tutorials</code> Ordner.
+                                </p>
+                            </div>
                         </div>
 
-                        <h4>Was passiert hier?</h4>
-
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <ul class="arrow-list">
-                                    <li><code class="inline">fs</code> → Zum Lesen und Schreiben von Dateien</li>
-                                    <li><code class="inline">path</code> → Zum Arbeiten mit Dateipfaden</li>
-                                    <li><code class="inline">JSDOM</code> → Zum Parsen und Manipulieren von HTML</li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <ul class="arrow-list">
-                                    <li><code class="inline">tutorialsDir</code> → Zeigt auf den <code
-                                            class="inline">/tutorials</code> Ordner</li>
-                                    <li><code class="inline">BLACKLIST_FOLDERS</code> → Ordner, die das Script
-                                        ignorieren
-                                        soll</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Warum __dirname, '..' ?
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
-                                </svg>
-                            </strong>
-                            <p>Das Script liegt in <code class="inline">/scripts/generate-navigation.js</code>. Um auf
-                                <code class="inline">/tutorials</code> zu kommen, muss es einen Ordner HOCH <code
-                                    class="inline">..</code> und dann in
-                                den <code class="inline">tutorials</code> Ordner.
+                        <!-- 2. Deine Konfiguration -->
+                        <div>
+                            <h3 id="2-deine-konfiguration">2. Deine Konfiguration</h3>
+                            <p>Diese Konstanten definierst <strong>DU</strong> - sie steuern, wie die Navigationen
+                                aussehen:
                             </p>
-                        </div>
 
-                        <h3 id="2-deine-konfiguration">2. Deine Konfiguration</h3>
-                        <p>Diese Konstanten definierst <strong>DU</strong> - sie steuern, wie die Navigationen aussehen:
-                        </p>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">// Kategorie-Namen für Main-Navigation
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">// Kategorie-Namen für Main-Navigation
 const CATEGORY_NAMES = {
     'html': 'HTML',
     'css': 'CSS',
@@ -415,34 +398,76 @@ const TUTORIAL_ORDER = {
 const CUSTOM_TITLES = {
     'tutorials/html/html-basics/html-basics.html': 'Was ist HTML?'
 };</code></pre>
+                            </div>
+
+                            <p><strong>Das bedeutet:</strong></p>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li><code class="inline">CATEGORY_NAMES</code> → Welche Kategorien im Dropdown
+                                    erscheinen
+                                </li>
+                                <li><code class="inline">TUTORIAL_ORDER</code> → In welcher Reihenfolge Tutorials
+                                    erscheinen
+                                    (wichtig für
+                                    Prev/Next!)</li>
+                                <li><code class="inline">CUSTOM_TITLES</code> → Alternative Namen für Links (z.B. statt
+                                    "html-basics" → "Was
+                                    ist HTML?")</li>
+                            </ul>
                         </div>
 
-                        <p><strong>Das bedeutet:</strong></p>
-                        <ul class="arrow-list grid-2col-bg">
-                            <li><code class="inline">CATEGORY_NAMES</code> → Welche Kategorien im Dropdown erscheinen
-                            </li>
-                            <li><code class="inline">TUTORIAL_ORDER</code> → In welcher Reihenfolge Tutorials erscheinen
-                                (wichtig für
-                                Prev/Next!)</li>
-                            <li><code class="inline">CUSTOM_TITLES</code> → Alternative Namen für Links (z.B. statt
-                                "html-basics" → "Was
-                                ist HTML?")</li>
-                        </ul>
+                        <!-- 3. Latest Tutorials für die Startseite -->
+                        <div>
+                            <h3 id="3-latest-tutorials-config">3. Latest Tutorials für die Startseite</h3>
+                            <p>Die "Neueste Tutorials" auf der Startseite werden <strong>manuell gepflegt</strong>:</p>
 
-                        <h3 id="3-header-footer-templates">3. Header &amp; Footer Templates</h3>
-                        <p>Das Script hat fertige HTML-Templates für Header und Footer gespeichert:</p>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">const LATEST_TUTORIALS = [
+    'tutorials/css/css-specials/css-organization.html',
+    'tutorials/javascript/javascript-basics/js-security.html',
+    'tutorials/misc/web/console-security.html',
+    'tutorials/php/php-basics/php-security.html'
+];</code></pre>
                             </div>
-                            <pre><code class="language-javascript">const HEADER_TEMPLATE = `&lt;!-- Header --&gt;
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">So funktioniert's
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li>Die ersten 4 Einträge erscheinen auf der Startseite</li>
+                                    <li>Reihenfolge im Array = Reihenfolge auf der Startseite</li>
+                                    <li>Neues Tutorial featuren? → An Position 1 einfügen, letztes entfernen</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 4. Header &amp; Footer Templates -->
+                        <div>
+                            <h3 id="4-header-footer-templates">4. Header &amp; Footer Templates</h3>
+                            <p>Das Script hat fertige HTML-Templates für Header und Footer gespeichert:</p>
+
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">const HEADER_TEMPLATE = `&lt;!-- Header --&gt;
 &lt;header class="site-header"&gt;
     &lt;div class="container"&gt;
         &lt;!-- Logo, Theme Toggle, Navigation... --&gt;
@@ -454,11 +479,57 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
         &lt;!-- Copyright, Links... --&gt;
     &lt;/div&gt;
 &lt;/footer&gt;`;</code></pre>
+                            </div>
+
+                            <p><strong>Vorteil:</strong> Wenn du den Header ändern willst, änderst du ihn nur HIER -
+                                dann
+                                wird er auf ALLEN Seiten aktualisiert!</p>
                         </div>
 
-                        <p><strong>Vorteil:</strong> Wenn du den Header ändern willst, änderst du ihn nur HIER - dann
-                            wird
-                            er auf ALLEN Seiten aktualisiert!</p>
+                        <!-- 5. Akronyme automatisch kapitalisieren -->
+                        <div>
+                            <h3 id="5-acronyms-konfiguration">5. Akronyme automatisch kapitalisieren</h3>
+                            <p>Das Script erkennt Akronyme und kapitalisiert sie korrekt in allen Navigationstiteln:</p>
+
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">const ACRONYMS = {
+    'html': 'HTML',
+    'css': 'CSS',
+    'php': 'PHP',
+    'js': 'JS',
+    'javascript': 'JavaScript',
+    'seo': 'SEO',
+    'ftp': 'FTP',
+    'devpaniczone': 'DevPanicZone'
+};
+
+function capitalizeWithAcronyms(text) {
+    return text.split('-')
+        .map(word =&gt; {
+            const lower = word.toLowerCase();
+            if (ACRONYMS[lower]) {
+                return ACRONYMS[lower];
+            }
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(' ');
+}</code></pre>
+                            </div>
+
+                            <p><strong>Beispiel:</strong> Der Ordner <code class="inline">html-basics</code> wird zu
+                                "HTML
+                                Basics" (nicht "Html Basics").</p>
+                        </div>
+
                     </section>
 
                     <!-- Hilfsfunktionen -->
@@ -466,18 +537,20 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                         <h2 id="hilfsfunktionen">Hilfsfunktionen</h2>
                         <p>Das Script hat kleine Helferlein, die bestimmte Aufgaben übernehmen:</p>
 
-                        <h3 id="findhtmlfiles-html-dateien-finden">findHtmlFiles() - HTML-Dateien finden</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">function findHtmlFiles(dir, fileList = []) {
+                        <!-- findHtmlFiles() - HTML-Dateien finden -->
+                        <div>
+                            <h3 id="findhtmlfiles-html-dateien-finden">findHtmlFiles() - HTML-Dateien finden</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function findHtmlFiles(dir, fileList = []) {
     const files = fs.readdirSync(dir);
     files.forEach(file =&gt; {
         const filePath = path.join(dir, file);
@@ -496,80 +569,88 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
     });
     return fileList;
 }</code></pre>
-                        </div>
-
-                        <h4>Was macht die Funktion?</h4>
-                        <ol class="grid-2col-bg">
-                            <li>Liest alle Dateien in einem Ordner</li>
-                            <li>Ist es ein Ordner? → Prüfe, ob er auf der Blacklist steht</li>
-                            <li>Ist es keine Blacklist? → Gehe rekursiv in den Ordner (Funktion ruft sich selbst auf!)
-                            </li>
-                            <li>Ist es eine HTML-Datei? → Füge sie zur Liste hinzu</li>
-                        </ol>
-
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Was bedeutet "rekursiv"?
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
-                                </svg>
-                            </strong>
-                            <p>Die Funktion ruft sich selbst auf! Das ermöglicht es, durch ALLE Unterordner zu gehen,
-                                egal
-                                wie tief verschachtelt.</p>
-                        </div>
-
-                        <h3 id="getcategoryfrompath-kategorie-ermitteln">getCategoryFromPath() - Kategorie ermitteln
-                        </h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
                             </div>
-                            <pre><code class="language-javascript">function getCategoryFromPath(filePath) {
+
+                            <h4>Was macht die Funktion?</h4>
+                            <ol class="grid-2col-bg">
+                                <li>Liest alle Dateien in einem Ordner</li>
+                                <li>Ist es ein Ordner? → Prüfe, ob er auf der Blacklist steht</li>
+                                <li>Ist es keine Blacklist? → Gehe rekursiv in den Ordner (Funktion ruft sich selbst
+                                    auf!)
+                                </li>
+                                <li>Ist es eine HTML-Datei? → Füge sie zur Liste hinzu</li>
+                            </ol>
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">Was bedeutet "rekursiv"?
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <p>Die Funktion ruft sich selbst auf! Das ermöglicht es, durch ALLE Unterordner zu
+                                    gehen,
+                                    egal
+                                    wie tief verschachtelt.</p>
+                            </div>
+                        </div>
+
+                        <!-- getCategoryFromPath() - Kategorie ermitteln -->
+                        <div>
+                            <h3 id="getcategoryfrompath-kategorie-ermitteln">getCategoryFromPath() - Kategorie ermitteln
+                            </h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function getCategoryFromPath(filePath) {
     const relativePath = path.relative(tutorialsDir, filePath);
     const parts = relativePath.split(path.sep);
     return parts[0]; // Erste Ebene (html, css, etc.)
 }</code></pre>
+                            </div>
+
+                            <h4>Beispiel:</h4>
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <ul class="arrow-list">
+                                        <li>Pfad: <code class="inline">/tutorials/html/html-basics/html-basics.html</code>
+                                        </li>
+                                        <li>Relative Pfad: <code class="inline">html/html-basics/html-basics.html</code>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <ul class="arrow-list">
+                                        <li>Aufteilen: <code class="inline">['html', 'html-basics', 'html-basics.html']</code>
+                                        </li>
+                                        <li>Erste Ebene: <code class="inline">html</code> ← Das ist die Kategorie!</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
-                        <h4>Beispiel:</h4>
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <ul class="arrow-list">
-                                    <li>Pfad: <code class="inline">/tutorials/html/html-basics/html-basics.html</code>
-                                    </li>
-                                    <li>Relative Pfad: <code class="inline">html/html-basics/html-basics.html</code>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <ul class="arrow-list">
-                                    <li>Aufteilen: <code
-                                            class="inline">['html', 'html-basics', 'html-basics.html']</code>
-                                    </li>
-                                    <li>Erste Ebene: <code class="inline">html</code> ← Das ist die Kategorie!</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h3 id="getsubcategoryfrompath-unterkategorie-ermitteln">getSubcategoryFromPath() -
-                            Unterkategorie
-                            ermitteln</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">function getSubcategoryFromPath(filePath) {
+                        <!-- getSubcategoryFromPath() - Unterkategorie ermitteln -->
+                        <div>
+                            <h3 id="getsubcategoryfrompath-unterkategorie-ermitteln">getSubcategoryFromPath() -
+                                Unterkategorie
+                                ermitteln</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function getSubcategoryFromPath(filePath) {
     const relativePath = path.relative(tutorialsDir, filePath);
     const parts = relativePath.split(path.sep);
     if (parts.length &gt;= 2) {
@@ -577,29 +658,32 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
     }
     return 'tutorials/' + parts[0];
 }</code></pre>
+                            </div>
+
+                            <h4>Beispiel:</h4>
+
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <ul class="arrow-list">
+                                        <li>Pfad: <code class="inline">/tutorials/html/html-basics/html-basics.html</code>
+                                        </li>
+                                        <li>Parts: <code class="inline">['html', 'html-basics', 'html-basics.html']</code>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <ul class="arrow-list">
+                                        <li>Erste 2 Ebenen: <code class="inline">['html', 'html-basics']</code></li>
+                                        <li>Ergebnis: <code class="inline">tutorials/html/html-basics</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h4>Warum wichtig?</h4>
+                            <p>Das Script braucht diese Info, um in <code class="inline">TUTORIAL_ORDER</code>
+                                die richtige Reihenfolge zu finden!</p>
+
                         </div>
 
-                        <h4>Beispiel:</h4>
-
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <ul class="arrow-list">
-                                    <li>Pfad: <code class="inline">/tutorials/html/html-basics/html-basics.html</code>
-                                    </li>
-                                    <li>Parts: <code class="inline">['html', 'html-basics', 'html-basics.html']</code>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <ul class="arrow-list">
-                                    <li>Erste 2 Ebenen: <code class="inline">['html', 'html-basics']</code></li>
-                                    <li>Ergebnis: <code class="inline">tutorials/html/html-basics</code></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h4>Warum wichtig?</h4>
-                        <p>Das Script braucht diese Info, um in <code class="inline">TUTORIAL_ORDER</code>
-                            die richtige Reihenfolge zu finden!</p>
                     </section>
 
                     <!-- Navigation-Generierung -->
@@ -607,61 +691,99 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                         <h2 id="navigation-generierung">Navigation-Generierung</h2>
                         <p>Jetzt wird's interessant! Diese Funktionen erstellen die eigentlichen Navigationen:</p>
 
-                        <h3 id="generatemainnavigation-dropdown-menue">generateMainNavigation() - Dropdown-Menü</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">function generateMainNavigation() {
+                        <!-- generateMainNavigation() -->
+                        <div>
+                            <h3 id="generatemainnavigation-dropdown-menue">generateMainNavigation() – Dropdown mit
+                                Submenus</h3>
+                            <p>Die neue Version erstellt <strong>verschachtelte Submenus</strong> für jede Kategorie:
+                            </p>
+
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function generateMainNavigation() {
     const categories = Object.keys(CATEGORY_NAMES);
     const navItems = [];
-    
+
     categories.forEach(category =&gt; {
         const categoryName = CATEGORY_NAMES[category];
-        
-        // Hat diese Kategorie Tutorials?
-        const hasEntry = Object.keys(TUTORIAL_ORDER).some(key =&gt; 
-            key.startsWith('tutorials/' + category + '/')
-        );
-        
-        if (hasEntry) {
-            navItems.push(
-                `&lt;li&gt;&lt;a href="/tutorials/${category}/"&gt;${categoryName}&lt;/a&gt;&lt;/li&gt;`
-            );
+        const subcategories = getSubcategoriesForCategory(category);
+
+        if (Object.keys(subcategories).length &gt; 0) {
+            let navItem = `&lt;li class="nav-item-nested"&gt;
+                &lt;a href="/tutorials/${category}/" class="nav-link"&gt;
+                    ${categoryName}
+                    &lt;span class="submenu-icon"&gt;▸&lt;/span&gt;
+                &lt;/a&gt;
+                &lt;ul class="dropdown-submenu"&gt;`;
+
+            // Unterkategorien hinzufügen
+            Object.keys(subcategories).forEach(subKey =&gt; {
+                const sub = subcategories[subKey];
+                navItem += `
+                    &lt;li&gt;&lt;a href="/tutorials/${category}/#${subKey}"&gt;${sub.name}&lt;/a&gt;&lt;/li&gt;`;
+            });
+
+            navItem += `
+                &lt;/ul&gt;
+            &lt;/li&gt;`;
+
+            navItems.push(navItem);
         }
     });
-    
+
     return navItems;
 }</code></pre>
+                            </div>
+
+                            <h4>Was ist neu?</h4>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li><code class="inline">.nav-item-nested</code> – Kategorie mit aufklappbarem Submenu
+                                </li>
+                                <li><code class="inline">.dropdown-submenu</code> – Liste der Unterkategorien</li>
+                                <li><code class="inline">.submenu-icon</code> – Pfeil-Symbol (▸) zeigt Submenu an</li>
+                                <li>Links zu Ankern: <code class="inline">/tutorials/html/#html-basics</code></li>
+                            </ul>
+
+                            <p><strong>Ergebnis im Dropdown:</strong></p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">Struktur</span>
+                                </div>
+                                <pre><code class="language-plaintext">Tutorials ▾
+├── HTML ▸
+│   ├── HTML Basics
+│   └── HTML Advanced
+├── CSS ▸
+│   ├── CSS Basics
+│   └── CSS Specials
+└── JavaScript ▸
+    ├── JavaScript Basics
+    └── JavaScript Projects</code></pre>
+                            </div>
                         </div>
 
-                        <h4>Schritt für Schritt:</h4>
-                        <ol class="grid-2col-bg">
-                            <li>Hole alle Kategorien aus <code class="inline">CATEGORY_NAMES</code></li>
-                            <li>Für jede Kategorie: Prüfe, ob es Tutorials dafür gibt (in <code
-                                    class="inline">TUTORIAL_ORDER</code>)</li>
-                            <li>Wenn ja: Erstelle einen Link für das Dropdown</li>
-                            <li>Gib alle Links zurück</li>
-                        </ol>
-
-                        <h3 id="generatebreadcrumbs-navigationspfad">generateBreadcrumbs() - Navigationspfad</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">function generateBreadcrumbs(filePath, currentTitle) {
+                        <!-- generateBreadcrumbs() - Navigationspfad -->
+                        <div>
+                            <h3 id="generatebreadcrumbs-navigationspfad">generateBreadcrumbs() - Navigationspfad</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function generateBreadcrumbs(filePath, currentTitle) {
     const category = getCategoryFromPath(filePath);
     const categoryName = CATEGORY_NAMES[category] || category;
     const basename = path.basename(filePath);
@@ -680,113 +802,168 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
             &lt;span&gt;›&lt;/span&gt;
             &lt;span&gt;${currentTitle}&lt;/span&gt;`;
 }</code></pre>
+                            </div>
+
+                            <p><strong>Unterschied:</strong></p>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li><strong>Kategorieseite:</strong> <code class="inline">Home › CSS</code> (CSS ist
+                                    nicht
+                                    klickbar)</li>
+                                <li><strong>Tutorial-Seite:</strong> <code class="inline">Home › CSS › Flexbox</code>
+                                    (CSS
+                                    ist
+                                    klickbar!)</li>
+                            </ul>
                         </div>
 
-                        <p><strong>Unterschied:</strong></p>
-                        <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Kategorieseite:</strong> <code class="inline">Home › CSS</code> (CSS ist nicht
-                                klickbar)</li>
-                            <li><strong>Tutorial-Seite:</strong> <code class="inline">Home › CSS › Flexbox</code> (CSS
-                                ist
-                                klickbar!)</li>
-                        </ul>
+                        <!-- generatePrevNextNav() – Kategorieübergreifend -->
+                        <div>
+                            <h3 id="generateprevnextnav-vorherigesnaechstes">generatePrevNextNav() –
+                                Kategorieübergreifend
+                            </h3>
+                            <p>Die Prev/Next-Navigation führt durch <strong>alle Tutorials einer
+                                    Hauptkategorie</strong>,
+                                nicht nur innerhalb einer Unterkategorie:</p>
 
-                        <h3 id="generateprevnextnav-vorherigesnaechstes">generatePrevNextNav() - Vorheriges/Nächstes
-                        </h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">function generatePrevNextNav(filePath) {
-    const subcategory = getSubcategoryFromPath(filePath);
-    const tutorials = getOrderedTutorials(subcategory);
-    const currentIndex = tutorials.findIndex(t =&gt; t.filePath === filePath);
-    
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function generatePrevNextNav(filePath) {
+    const category = getCategoryFromPath(filePath);
+    const currentSubcategory = getSubcategoryFromPath(filePath);
+    const allTutorials = getAllTutorialsFlat(category);  // Alle Tutorials der Kategorie!
+    const currentIndex = allTutorials.findIndex(t =&gt; t.filePath === filePath);
+
     if (currentIndex === -1) return '';
-    
-    const prev = currentIndex &gt; 0 ? tutorials[currentIndex - 1] : null;
-    const next = currentIndex &lt; tutorials.length - 1 ? 
-                 tutorials[currentIndex + 1] : null;
-    
+
+    const prev = currentIndex &gt; 0 ? allTutorials[currentIndex - 1] : null;
+    const next = currentIndex &lt; allTutorials.length - 1 ? allTutorials[currentIndex + 1] : null;
+
     let navHtml = '';
-    
-    // Vorheriges Tutorial
+
+    // PREV Button
     if (prev) {
+        const prevSubcategory = `tutorials/${category}/${prev.subcategory}`;
+        const isNewCategory = prevSubcategory !== currentSubcategory;
+        const categoryClass = isNewCategory ? ' is-new' : '';
+
         navHtml += `&lt;div class="tutorial-nav-prev"&gt;
             &lt;a href="${prev.url}"&gt;
-                &lt;span&gt;← Vorheriges&lt;/span&gt;
-                &lt;span&gt;${prev.title}&lt;/span&gt;
+                &lt;span class="tutorial-nav-label"&gt;← Vorheriges&lt;/span&gt;
+                &lt;span class="tutorial-nav-link"&gt;${prev.title}&lt;/span&gt;
+                &lt;span class="tutorial-nav-category${categoryClass}"&gt;${prev.subcategoryDisplay}&lt;/span&gt;
             &lt;/a&gt;
         &lt;/div&gt;`;
     } else {
         navHtml += '&lt;div class="tutorial-nav-prev"&gt;&lt;/div&gt;';
     }
-    
-    // Nächstes Tutorial (DIREKT anschließend ohne Leerzeichen!)
+
+    // NEXT Button (analog)
     if (next) {
+        const nextSubcategory = `tutorials/${category}/${next.subcategory}`;
+        const isNewCategory = nextSubcategory !== currentSubcategory;
+        const categoryClass = isNewCategory ? ' is-new' : '';
+
         navHtml += `&lt;div class="tutorial-nav-next"&gt;
             &lt;a href="${next.url}"&gt;
-                &lt;span&gt;Nächstes →&lt;/span&gt;
-                &lt;span&gt;${next.title}&lt;/span&gt;
+                &lt;span class="tutorial-nav-label"&gt;Nächstes →&lt;/span&gt;
+                &lt;span class="tutorial-nav-link"&gt;${next.title}&lt;/span&gt;
+                &lt;span class="tutorial-nav-category${categoryClass}"&gt;${next.subcategoryDisplay}&lt;/span&gt;
             &lt;/a&gt;
         &lt;/div&gt;`;
     } else {
         navHtml += '&lt;div class="tutorial-nav-next"&gt;&lt;/div&gt;';
     }
-    
+
     return navHtml;
 }</code></pre>
-                        </div>
-
-                        <h4>Logik:</h4>
-                        <ol class="grid-2col-bg">
-                            <li>Finde die Unterkategorie (z.B. <code class="inline">tutorials/html/html-basics</code>)
-                            </li>
-                            <li>Hole die Tutorial-Liste aus <code class="inline">TUTORIAL_ORDER</code></li>
-                            <li>Finde die Position des aktuellen Tutorials in der Liste</li>
-                            <li>Vorheriges = Index - 1, Nächstes = Index + 1</li>
-                            <li>Erstelle HTML für beide Buttons (oder leere divs, wenn es keinen Prev/Next gibt)</li>
-                        </ol>
-
-                        <div class="info-box info-box warning">
-                            <strong class="box-title warning no-toc">Wichtig: Keine Leerzeichen!
-                                <svg class="icon-ui">
-                                    <use href="#dpz-warning-circle" />
-                                </svg>
-                            </strong>
-                            <p>Die beiden <code class="inline">&lt;div&gt;</code>-Elemente müssen DIREKT aneinander ohne
-                                Leerzeichen, damit
-                                das CSS sie nebeneinander anzeigt (Flexbox)!</p>
-                        </div>
-
-                        <h3 id="addidstoheadingsandgeneratesidebar-sidebar-toc">addIdsToHeadingsAndGenerateSidebar() -
-                            Sidebar TOC</h3>
-                        <p>Diese Funktion macht mehrere Dinge auf einmal:</p>
-                        <ol class="grid-2col-bg">
-                            <li>Findet alle <code class="inline">&lt;h2&gt;</code> und <code
-                                    class="inline">&lt;h3&gt;</code> Überschriften</li>
-                            <li>Fügt ihnen IDs hinzu (falls keine vorhanden)</li>
-                            <li>Prüft ob Custom Titles in TOC_CUSTOM_TITLES definiert sind</li>
-                            <li>Erstellt die Sidebar-Links mit Custom oder Original-Titel</li>
-                        </ol>
-
-                        <div class="code-block mt-xl">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
                             </div>
-                            <pre><code class="language-javascript">function addIdsToHeadingsAndGenerateSidebar(html, filename) {
+
+                            <h4>Was ist neu gegenüber der alten Version?</h4>
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <p><strong>Alt (vor v2.2):</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Nur innerhalb einer Unterkategorie</li>
+                                        <li>Am Ende von "HTML Basics" → Sackgasse</li>
+                                        <li>Kein Hinweis auf Kategorie-Wechsel</li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <p><strong>Neu (v2.2):</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Durch <strong>alle</strong> Tutorials der Hauptkategorie</li>
+                                        <li>"HTML Basics" → weiter zu "HTML Advanced"</li>
+                                        <li>Badge zeigt Unterkategorie an</li>
+                                        <li><code class="inline">.is-new</code> Klasse bei Kategorie-Wechsel</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h4>Beispiel-Output:</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                </div>
+                                <pre><code class="language-html">&lt;div class="tutorial-nav-prev"&gt;
+    &lt;a href="/tutorials/html/html-basics/html-listen.html"&gt;
+        &lt;span class="tutorial-nav-label"&gt;← Vorheriges&lt;/span&gt;
+        &lt;span class="tutorial-nav-link"&gt;HTML Listen&lt;/span&gt;
+        &lt;span class="tutorial-nav-category"&gt;HTML Basics&lt;/span&gt;
+    &lt;/a&gt;
+&lt;/div&gt;&lt;div class="tutorial-nav-next"&gt;
+    &lt;a href="/tutorials/html/html-advanced/html-semantik.html"&gt;
+        &lt;span class="tutorial-nav-label"&gt;Nächstes →&lt;/span&gt;
+        &lt;span class="tutorial-nav-link"&gt;HTML Semantik&lt;/span&gt;
+        &lt;span class="tutorial-nav-category is-new"&gt;HTML Advanced&lt;/span&gt;
+    &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">getAllTutorialsFlat() – Die Hilfsfunktion
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <p>Diese Funktion sammelt alle Tutorials einer Hauptkategorie (z.B. "html") als flache,
+                                    geordnete Liste – über alle Unterkategorien hinweg. Die Reihenfolge folgt der
+                                    Definition
+                                    in <code class="inline">TUTORIAL_ORDER</code>.</p>
+                            </div>
+                        </div>
+
+                        <!-- addIdsToHeadingsAndGenerateSidebar() - Sidebar TOC -->
+                        <div>
+                            <h3 id="addidstoheadingsandgeneratesidebar-sidebar-toc">addIdsToHeadingsAndGenerateSidebar()
+                                -
+                                Sidebar TOC</h3>
+                            <p>Diese Funktion macht mehrere Dinge auf einmal:</p>
+                            <ol class="grid-2col-bg">
+                                <li>Findet alle <code class="inline">&lt;h2&gt;</code> und <code class="inline">&lt;h3&gt;</code> Überschriften</li>
+                                <li>Fügt ihnen IDs hinzu (falls keine vorhanden)</li>
+                                <li>Prüft ob Custom Titles in TOC_CUSTOM_TITLES definiert sind</li>
+                                <li>Erstellt die Sidebar-Links mit Custom oder Original-Titel</li>
+                            </ol>
+
+                            <div class="code-block mt-xl">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function addIdsToHeadingsAndGenerateSidebar(html, filename) {
     const dom = new JSDOM(html);
     const doc = dom.window.document;
     const headings = doc.querySelectorAll('h2, h3');
@@ -847,50 +1024,48 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
         anchors: anchors.join('\n')
     };
 }</code></pre>
-                        </div>
-
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <h4 class="pt-sm">Beispiel Normal:</h4>
-                                <ul class="arrow-list">
-                                    <li>Überschrift: <code class="inline">&lt;h2&gt;Was ist CSS?&lt;/h2&gt;</code></li>
-                                    <li>Wird zu: <code
-                                            class="inline">&lt;h2 id="was-ist-css"&gt;Was ist CSS?&lt;/h2&gt;</code>
-                                    </li>
-                                    <li>Sidebar-Link: <code
-                                            class="inline">&lt;a href="#was-ist-css"&gt;Was ist CSS?&lt;/a&gt;</code>
-                                    </li>
-                                </ul>
                             </div>
-                            <div class="grid-2col-bg">
-                                <h4 class="pt-sm">Beispiel mit Custom Title:</h4>
-                                <ul class="arrow-list">
-                                    <li>Überschrift:
-                                        <code
-                                            class="inline">&lt;h2 id="die-top-15-tags"&gt;HTML Cheat Sheet - Die Top 15 Tags&lt;/h2&gt;</code>
-                                    </li>
-                                    <li>Custom Title in TOC_CUSTOM_TITLES: <code
-                                            class="inline">'die-top-15-tags': 'Top 15 Tags'</code>
-                                    </li>
-                                    <li>Sidebar-Link: <code
-                                            class="inline">&lt;a href="#die-top-15-tags"&gt;Top 15 Tags&lt;/a&gt;</code>
-                                        (gekürzt!)
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
 
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Custom Titles für TOC
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
-                                </svg>
-                            </strong>
-                            <p>Lange Überschriften können in der Sidebar zu breit werden. Mit TOC_CUSTOM_TITLES kannst
-                                du
-                                kurze, prägnante Titel für die Sidebar definieren, während die Original-Überschrift im
-                                Haupttext erhalten bleibt:</p>
-                            <pre><code class="language-javascript">const TOC_CUSTOM_TITLES = {
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <h4 class="pt-sm">Beispiel Normal:</h4>
+                                    <ul class="arrow-list">
+                                        <li>Überschrift: <code class="inline">&lt;h2&gt;Was ist CSS?&lt;/h2&gt;</code>
+                                        </li>
+                                        <li>Wird zu: <code class="inline">&lt;h2 id="was-ist-css"&gt;Was ist CSS?&lt;/h2&gt;</code>
+                                        </li>
+                                        <li>Sidebar-Link: <code class="inline">&lt;a href="#was-ist-css"&gt;Was ist CSS?&lt;/a&gt;</code>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <h4 class="pt-sm">Beispiel mit Custom Title:</h4>
+                                    <ul class="arrow-list">
+                                        <li>Überschrift:
+                                            <code class="inline">&lt;h2 id="die-top-15-tags"&gt;HTML Cheat Sheet - Die Top 15 Tags&lt;/h2&gt;</code>
+                                        </li>
+                                        <li>Custom Title in TOC_CUSTOM_TITLES: <code class="inline">'die-top-15-tags': 'Top 15 Tags'</code>
+                                        </li>
+                                        <li>Sidebar-Link: <code class="inline">&lt;a href="#die-top-15-tags"&gt;Top 15 Tags&lt;/a&gt;</code>
+                                            (gekürzt!)
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">Custom Titles für TOC
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <p>Lange Überschriften können in der Sidebar zu breit werden. Mit TOC_CUSTOM_TITLES
+                                    kannst
+                                    du
+                                    kurze, prägnante Titel für die Sidebar definieren, während die Original-Überschrift
+                                    im
+                                    Haupttext erhalten bleibt:</p>
+                                <pre><code class="language-javascript">const TOC_CUSTOM_TITLES = {
     'html-basics.html': {
         'die-top-15-tags': 'Top 15 Tags',
         'html-attribute-erklaert': 'HTML Attribute'
@@ -899,24 +1074,189 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
         'rgb-rgba-hex': 'Farbformate'
     }
 };</code></pre>
-                            <h5 class="mt-md">Wichtig:</h5>
-                            <p>Die ID muss die <strong>finale ID</strong> sein (nach
-                                Slug-Generierung), also z.B. <code class="inline">'die-top-15-tags'</code> nicht
-                                <code class="inline">'die-Top-15-Tags'</code>.
-                            </p>
+                                <h5 class="mt-md">Wichtig:</h5>
+                                <p>Die ID muss die <strong>finale ID</strong> sein (nach
+                                    Slug-Generierung), also z.B. <code class="inline">'die-top-15-tags'</code> nicht
+                                    <code class="inline">'die-Top-15-Tags'</code>.
+                                </p>
+                            </div>
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">Warum Umlaute ersetzen?
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <p>IDs wie <code class="inline">#für-anfänger</code> können in URLs Probleme machen.
+                                    Besser:
+                                    <code class="inline">#fuer-anfaenger</code>
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Warum Umlaute ersetzen?
-                                <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
-                                </svg>
-                            </strong>
-                            <p>IDs wie <code class="inline">#für-anfänger</code> können in URLs Probleme machen. Besser:
-                                <code class="inline">#fuer-anfaenger</code>
-                            </p>
+                        <!-- generateSidebarNavList() – Gruppierte Tutorial-Liste -->
+                        <div>
+                            <h3 id="generatesidebarnavlist-gruppiert">generateSidebarNavList() – Gruppierte
+                                Tutorial-Liste</h3>
+                            <p>Die rechte Sidebar zeigt <strong>alle Tutorials der Hauptkategorie</strong>, gruppiert
+                                nach Unterkategorien:</p>
+
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function generateSidebarNavList(filePath) {
+    const category = getCategoryFromPath(filePath);
+    const currentUrl = getRelativeUrl(filePath);
+    const allTutorials = getAllTutorialsForCategory(category);
+
+    let html = '';
+
+    Object.keys(allTutorials).forEach(subcategoryKey =&gt; {
+        const group = allTutorials[subcategoryKey];
+
+        // Gruppen-Überschrift
+        html += `&lt;li class="sidebar-group-title"&gt;${group.displayName}&lt;/li&gt;\n`;
+
+        // Tutorials dieser Gruppe
+        group.tutorials.forEach(tutorial =&gt; {
+            const isActive = tutorial.url === currentUrl;
+            const activeClass = isActive ? ' class="active"' : '';
+            html += `&lt;li&gt;&lt;a href="${tutorial.url}"${activeClass}&gt;${tutorial.title}&lt;/a&gt;&lt;/li&gt;\n`;
+        });
+    });
+
+    return html.trim();
+}</code></pre>
+                            </div>
+
+                            <h4>Ergebnis in der Sidebar:</h4>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML Output</span>
+                                </div>
+                                <pre><code class="language-html">&lt;li class="sidebar-group-title"&gt;HTML Basics&lt;/li&gt;
+&lt;li&gt;&lt;a href="/tutorials/html/html-basics/html-basics.html"&gt;HTML Basics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/tutorials/html/html-basics/html-grundgeruest.html"&gt;HTML Grundgerüst&lt;/a&gt;&lt;/li&gt;
+
+&lt;li class="sidebar-group-title"&gt;HTML Advanced&lt;/li&gt;
+&lt;li&gt;&lt;a href="/tutorials/html/html-advanced/html-semantik.html" class="active"&gt;HTML Semantik&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/tutorials/html/html-advanced/html-formulare.html"&gt;HTML Formulare&lt;/a&gt;&lt;/li&gt;</code></pre>
+                            </div>
+
+                            <div class="info-box">
+                                <strong class="box-title no-toc">Was ist neu?
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-info-circle"></use>
+                                    </svg>
+                                </strong>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">.sidebar-group-title</code> – Visuelle Gruppierung nach
+                                        Unterkategorie</li>
+                                    <li>Zeigt <strong>alle</strong> Tutorials der Hauptkategorie (nicht nur aktuelle
+                                        Unterkategorie)</li>
+                                    <li>Bessere Übersicht beim Navigieren zwischen Unterkategorien</li>
+                                </ul>
+                            </div>
                         </div>
+
                     </section>
+
+                    <!-- tutorials.json Generierung (NEU in v2.2) -->
+                    <section class="tutorials-content">
+                        <h2 id="tutorials-json-generierung">tutorials.json Generierung (NEU in v2.2)</h2>
+                        <p>Das Script generiert automatisch eine JSON-Datei mit allen Tutorial-Metadaten:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Dateipfad</span>
+                            </div>
+                            <pre><code class="language-plaintext">/assets/data/tutorials.json</code></pre>
+                        </div>
+
+                        <!-- extractHeroExcerpt() – Excerpt aus Hero ziehen -->
+                        <div>
+                            <h3 id="extractheroexcerpt">extractHeroExcerpt() – Excerpt aus Hero ziehen</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">function extractHeroExcerpt(html) {
+    const dom = new JSDOM(html);
+    const document = dom.window.document;
+
+    // Versuche verschiedene Selektoren
+    const selectors = [
+        '.hero-subtitle',
+        '.hero-text',
+        '.hero p',
+        '.tutorial-hero p'
+    ];
+
+    for (const selector of selectors) {
+        const element = document.querySelector(selector);
+        if (element) {
+            let text = element.textContent.trim();
+            // Kürze auf max 160 Zeichen
+            if (text.length &gt; 160) {
+                text = text.substring(0, 157) + '...';
+            }
+            return text;
+        }
+    }
+    return null;
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- generateLatestTutorialsJSON() – JSON erstellen -->
+                        <div>
+                            <h3 id="generatelatestjson">generateLatestTutorialsJSON() – JSON erstellen</h3>
+                            <p>Diese Funktion sammelt alle Tutorial-Metadaten und speichert sie als JSON:</p>
+
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JSON Struktur</span>
+                                </div>
+                                <pre><code class="language-javascript">{
+    "generated": "2025-01-06T12:00:00.000Z",
+    "total": 42,
+    "all": [...],           // Alle Tutorials
+    "latest": [...],        // Die 4 aus LATEST_TUTORIALS
+    "byCategory": {         // Gruppiert
+        "html": [...],
+        "css": [...],
+        "javascript": [...]
+    }
+}</code></pre>
+                            </div>
+
+                            <div class="info-box notice">
+                                <strong class="box-title notice no-toc">Automatisch bei jedem Build
+                                    <svg class="icon-ui">
+                                        <use href="#dpz-check-circle"></use>
+                                    </svg>
+                                </strong>
+                                <p>Die JSON-Datei wird bei jedem <code class="inline">npm run generate</code> neu
+                                    erstellt.
+                                    Du musst sie nie manuell bearbeiten!</p>
+                            </div>
+                        </div>
+
+                    </section>
+
 
                     <!-- HTML-Update -->
                     <section class="tutorials-content">
@@ -934,41 +1274,44 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                                 </button>
                             </div>
                             <pre><code class="language-javascript">function updateHtmlFile(filePath) {
-    // 1. HTML-Datei einlesen
+    // HTML-Datei einlesen
     let html = fs.readFileSync(filePath, 'utf8');
     
-    // 2. Metadaten sammeln
+    // Metadaten sammeln
     const category = getCategoryFromPath(filePath);
     const basename = path.basename(filePath);
     const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);
-    
-    // 3. IDs zu Headings hinzufügen (ZUERST!)
+
+    // WICHTIG: ZUERST IDs zu Headings hinzufügen (nur für Tutorial-Seiten)
     let sidebarAnchorsHtml = '';
     if (basename !== 'index.html') {
-        const result = addIdsToHeadingsAndGenerateSidebar(html);
+        const result = addIdsToHeadingsAndGenerateSidebar(html, basename);
         html = result.html;  // Nutze das HTML mit IDs!
         sidebarAnchorsHtml = result.anchors;
     }
-    
-    // 4. Header aktualisieren
+
+    // 1. HEADER AKTUALISIEREN
     html = updateHeader(html);
-    
-    // 5. Footer aktualisieren
+
+    // 2. FOOTER AKTUALISIEREN
     html = updateFooter(html);
-    
-    // 6. Tutorial-Buttons (nur für Kategorieseiten)
+
+    // 3. TUTORIAL BUTTONS (nur bei Kategorieseiten!)
     if (basename === 'index.html') {
         html = updateTutorialButtons(html, category);
     }
-    
-    // 7. Main Navigation einfügen
+
+    // 4. Main Navigation einfügen
     const mainNavItems = generateMainNavigation();
     html = html.replace(
         /&lt;!-- Main-Nav-Start --&gt;.*?&lt;!-- Main-Nav-End --&gt;/s,
         `&lt;!-- Main-Nav-Start --&gt;\n${mainNavItems.join('\n')}\n&lt;!-- Main-Nav-End --&gt;`
     );
+
+    // 5. Breadcrumbs (nur für Tutorial-Seiten)
+    const relativePath = path.relative(path.join(__dirname, '..'), filePath);
+    const isInTutorials = relativePath.includes('tutorials');
     
-    // 8. Breadcrumbs einfügen
     if (isInTutorials) {
         const breadcrumbs = generateBreadcrumbs(filePath, currentTitle);
         html = html.replace(
@@ -976,8 +1319,14 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
             `&lt;nav class="breadcrumbs"&gt;${breadcrumbs}&lt;/nav&gt;`
         );
     }
-    
-    // 9. Prev/Next Navigation
+
+    // 6. Latest Tutorials Section (nur Tutorial-Seiten, nicht index.html)
+    if (basename !== 'index.html') {
+        const latestSection = generateLatestTutorialsSection(category);
+        // ... (ersetzt oder fügt "Mehr aus X" Section ein)
+    }
+
+    // 7. Prev/Next Navigation (nur Tutorial-Seiten)
     if (basename !== 'index.html') {
         const prevNext = generatePrevNextNav(filePath);
         html = html.replace(
@@ -985,16 +1334,16 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
             `&lt;nav class="tutorial-nav"&gt;${prevNext}&lt;/nav&gt;`
         );
     }
-    
-    // 10. Sidebar Anchors
+
+    // 8. Sidebar Anchors (TOC)
     if (basename !== 'index.html') {
         html = html.replace(
             /&lt;!-- Sidebar-Anchor-Start --&gt;.*?&lt;!-- Sidebar-Anchor-End --&gt;/s,
             `&lt;!-- Sidebar-Anchor-Start --&gt;\n${sidebarAnchorsHtml}\n&lt;!-- Sidebar-Anchor-End --&gt;`
         );
     }
-    
-    // 11. Sidebar Navigation List
+
+    // 9. Sidebar Navigation List
     if (basename !== 'index.html') {
         const navList = generateSidebarNavList(filePath);
         html = html.replace(
@@ -1002,16 +1351,16 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
             `&lt;ul class="sidebar-nav-list"&gt;\n${navList}\n&lt;/ul&gt;`
         );
     }
-    
-    // 12. Datei speichern
+
+    // 10. Datei speichern
     fs.writeFileSync(filePath, html, 'utf8');
 }</code></pre>
                         </div>
 
-                        <div class="info-box info-box warning">
+                        <div class="info-box warning">
                             <strong class="box-title warning no-toc">Wichtig: Die Reihenfolge ist entscheidend!
                                 <svg class="icon-ui">
-                                    <use href="#dpz-warning-circle" />
+                                    <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <ol class="ml-md">
@@ -1021,10 +1370,11 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                                 <li><strong>Zum Schluss</strong> Datei speichern</li>
                             </ol>
                         </div>
-                        <div class="info-box info-box">
+
+                        <div class="info-box">
                             <strong class="box-title no-toc">Warum IDs zuerst?
                                 <svg class="icon-ui">
-                                    <use href="#dpz-info-circle" />
+                                    <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Die Sidebar-Links verweisen auf IDs <code class="inline">#meine-ueberschrift</code>.
@@ -1041,77 +1391,89 @@ const FOOTER_TEMPLATE = `&lt;footer class="site-footer"&gt;
                             ersetzen.
                             Das sieht kompliziert aus, ist aber logisch:</p>
 
-                        <h3 id="pattern-fuer-kommentar-marker">Pattern für Kommentar-Marker</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
+                        <!-- Pattern für Kommentar-Marker -->
+                        <div>
+                            <h3 id="pattern-fuer-kommentar-marker">Pattern für Kommentar-Marker</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">/&lt;!-- Main-Nav-Start --&gt;.*?&lt;!-- Main-Nav-End --&gt;/s</code></pre>
                             </div>
-                            <pre><code class="language-javascript">/&lt;!-- Main-Nav-Start --&gt;.*?&lt;!-- Main-Nav-End --&gt;/s</code></pre>
-                        </div>
 
-                        <p><strong>Aufschlüsselung:</strong></p>
-                        <ul class="arrow-list grid-2col-bg">
-                            <li><code class="inline">/</code> → Start des Regex</li>
-                            <li><code class="inline">&lt;!-- Main-Nav-Start --&gt;</code> → Findet den Start-Kommentar
-                            </li>
-                            <li><code class="inline">.*?</code> → Findet ALLES dazwischen (aber so wenig wie möglich)
-                            </li>
-                            <li><code class="inline">&lt;!-- Main-Nav-End --&gt;</code> → Findet den End-Kommentar</li>
-                            <li><code class="inline">/s</code> → "Dotall" Mode - <code class="inline">.</code> matched
-                                auch
-                                Zeilenumbrüche</li>
-                        </ul>
+                            <p><strong>Aufschlüsselung:</strong></p>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li><code class="inline">/</code> → Start des Regex</li>
+                                <li><code class="inline">&lt;!-- Main-Nav-Start --&gt;</code> → Findet den
+                                    Start-Kommentar
+                                </li>
+                                <li><code class="inline">.*?</code> → Findet ALLES dazwischen (aber so wenig wie
+                                    möglich)
+                                </li>
+                                <li><code class="inline">&lt;!-- Main-Nav-End --&gt;</code> → Findet den End-Kommentar
+                                </li>
+                                <li><code class="inline">/s</code> → "Dotall" Mode - <code class="inline">.</code>
+                                    matched
+                                    auch
+                                    Zeilenumbrüche</li>
+                            </ul>
 
-                        <p><strong>Beispiel:</strong></p>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;!-- Main-Nav-Start --&gt;
+                            <p><strong>Beispiel:</strong></p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">HTML</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Main-Nav-Start --&gt;
 &lt;li&gt;&lt;a href="/tutorials/html/"&gt;HTML&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/tutorials/css/"&gt;CSS&lt;/a&gt;&lt;/li&gt;
 &lt;!-- Main-Nav-End --&gt;</code></pre>
-                        </div>
-
-                        <p>Das Regex findet <strong>ALLES</strong> zwischen den Markern und ersetzt es mit neuem HTML!
-                        </p>
-
-                        <h3 id="pattern-fuer-html-tags">Pattern für HTML-Tags</h3>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
                             </div>
-                            <pre><code class="language-javascript">/&lt;nav class="breadcrumbs"&gt;.*?&lt;\/nav&gt;/s</code></pre>
+
+                            <p>Das Regex findet <strong>ALLES</strong> zwischen den Markern und ersetzt es mit neuem
+                                HTML!
+                            </p>
                         </div>
 
-                        <p><strong>Aufschlüsselung:</strong></p>
-                        <ul class="arrow-list grid-2col-bg">
-                            <li><code class="inline">&lt;nav class="breadcrumbs"&gt;</code> → Findet das öffnende Tag
-                            </li>
-                            <li><code class="inline">.*?</code> → Findet den Inhalt</li>
-                            <li><code class="inline">&lt;\/nav&gt;</code> → Findet das schließende Tag (<code
-                                    class="inline">/</code> muss escaped
-                                werden!)</li>
-                            <li><code class="inline">/s</code> → Dotall Mode</li>
-                        </ul>
+                        <!-- Pattern für HTML-Tags -->
+                        <div>
+                            <h3 id="pattern-fuer-html-tags">Pattern für HTML-Tags</h3>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">/&lt;nav class="breadcrumbs"&gt;.*?&lt;\/nav&gt;/s</code></pre>
+                            </div>
+
+                            <p><strong>Aufschlüsselung:</strong></p>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li><code class="inline">&lt;nav class="breadcrumbs"&gt;</code> → Findet das öffnende
+                                    Tag
+                                </li>
+                                <li><code class="inline">.*?</code> → Findet den Inhalt</li>
+                                <li><code class="inline">&lt;\/nav&gt;</code> → Findet das schließende Tag (<code class="inline">/</code> muss escaped
+                                    werden!)</li>
+                                <li><code class="inline">/s</code> → Dotall Mode</li>
+                            </ul>
+                        </div>
+
                     </section>
 
                     <!-- Hauptlogik -->
@@ -1162,7 +1524,7 @@ generateAllNavigation();</code></pre>
                         <div class="info-box">
                             <strong class="box-title no-toc">Das war's!
                                 <svg class="icon-ui">
-                                    <use href="#dpz-check-circle" />
+                                    <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <p>Mit <code class="inline">npm run build</code> wird das Script ausgeführt und es
@@ -1174,126 +1536,144 @@ generateAllNavigation();</code></pre>
                     <section class="tutorials-content">
                         <h2 id="best-practices-tipps">Best Practices &amp; Tipps</h2>
 
-                        <h3 class="no-toc">1. Immer vor dem Committen ausführen</h3>
-                        <p>Gewöhne dir an, vor jedem Git-Commit <code class="inline">npm run build</code> auszuführen.
-                            So
-                            sind alle
-                            Navigationen garantiert aktuell!</p>
+                        <div>
+                            <h3 class="no-toc">1. Immer vor dem Committen ausführen</h3>
+                            <p>Gewöhne dir an, vor jedem Git-Commit <code class="inline">npm run build</code>
+                                auszuführen.
+                                So sind alle Navigationen garantiert aktuell!</p>
+                        </div>
 
-                        <h3 class="no-toc">2. Teste nach Änderungen</h3>
-                        <p>Nach größeren Änderungen am Script:</p>
-                        <ul class="arrow-list grid-2col-bg">
-                            <li>Führe <code class="inline">npm run build</code> aus</li>
-                            <li>Öffne mehrere Tutorial-Seiten</li>
-                            <li>Prüfe Prev/Next, Sidebar, Breadcrumbs</li>
-                            <li>Teste die Links!</li>
-                        </ul>
+                        <div>
+                            <h3 class="no-toc">2. Teste nach Änderungen</h3>
+                            <p>Nach größeren Änderungen am Script:</p>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li>Führe <code class="inline">npm run build</code> aus</li>
+                                <li>Öffne mehrere Tutorial-Seiten</li>
+                                <li>Prüfe Prev/Next, Sidebar, Breadcrumbs</li>
+                                <li>Teste die Links!</li>
+                            </ul>
+                        </div>
 
-                        <h3 class="no-toc">3. Backup vor Script-Änderungen</h3>
-                        <p>Wenn du das Script änderst:</p>
-                        <ul class="arrow-list grid-2col-bg">
-                            <li>Erstelle eine Kopie: <code class="inline">generate-navigation-backup.js</code></li>
-                            <li>Teste deine Änderungen auf einer Datei</li>
-                            <li>Erst dann auf allen Dateien ausführen</li>
-                        </ul>
+                        <div>
+                            <h3 class="no-toc">3. Backup vor Script-Änderungen</h3>
+                            <p>Wenn du das Script änderst:</p>
+                            <ul class="arrow-list grid-2col-bg">
+                                <li>Erstelle eine Kopie: <code class="inline">generate-navigation-backup.js</code></li>
+                                <li>Teste deine Änderungen auf einer Datei</li>
+                                <li>Erst dann auf allen Dateien ausführen</li>
+                            </ul>
+                        </div>
 
-                        <h3 class="no-toc">4. Console-Logs nutzen</h3>
-                        <p>Füge bei Problemen Console-Logs hinzu:</p>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">console.log('Aktuelle Kategorie:', category);
+                        <div>
+                            <h3 class="no-toc">4. Console-Logs nutzen</h3>
+                            <p>Füge bei Problemen Console-Logs hinzu:</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">JavaScript</span>
+                                    <button class="code-copy">
+                                        <span class="copy-icon">
+                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        </span>
+                                        <span class="copy-text">Kopieren</span>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">console.log('Aktuelle Kategorie:', category);
 console.log('Gefundene Tutorials:', tutorials);
 console.log('Current Index:', currentIndex);</code></pre>
+                            </div>
                         </div>
+
                     </section>
 
                     <!-- Troubleshooting -->
                     <section class="tutorials-content">
                         <h2 id="haeufige-probleme">Häufige Probleme</h2>
 
-                        <h3 class="no-toc">Problem: Script findet keine Dateien</h3>
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <p><strong>Ursache:</strong></p>
-                                <ul class="arrow-list">
-                                    <li>Blacklist oder Pfad falsch</li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <p><strong>Lösung:</strong></p>
-                                <ul class="arrow-list">
-                                    <li>Prüfe <code class="inline">BLACKLIST_FOLDERS</code></li>
-                                    <li>Prüfe ob Script in <code class="inline">/scripts/</code> liegt</li>
-                                    <li>Teste: <code class="inline">console.log(tutorialsDir)</code></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <h3 class="no-toc">Problem: Prev/Next zeigt falsches Tutorial</h3>
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <p><strong>Ursache:</strong></p>
-                                <ul class="arrow-list">
-                                    <li>Reihenfolge in <code class="inline">TUTORIAL_ORDER</code> falsch</li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <p><strong>Lösung:</strong></p>
-                                <ul class="arrow-list">
-                                    <li>Öffne <code class="inline">generate-navigation.js</code></li>
-                                    <li>Finde die richtige Unterkategorie</li>
-                                    <li>Korrigiere die Reihenfolge</li>
-                                    <li>Führe <code class="inline">npm run build</code> aus</li>
-                                </ul>
+                        <div>
+                            <h3 class="no-toc">Problem: Script findet keine Dateien</h3>
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <p><strong>Ursache:</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Blacklist oder Pfad falsch</li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <p><strong>Lösung:</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Prüfe <code class="inline">BLACKLIST_FOLDERS</code></li>
+                                        <li>Prüfe ob Script in <code class="inline">/scripts/</code> liegt</li>
+                                        <li>Teste: <code class="inline">console.log(tutorialsDir)</code></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
 
-                        <h3 class="no-toc">Problem: Sidebar-Links führen nirgends hin</h3>
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <p><strong>Ursache:</strong></p>
-                                <ul class="arrow-list">
-                                    <li>IDs wurden nicht zu Headings hinzugefügt</li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <p><strong>Lösung:</strong></p>
-                                <ul class="arrow-list">
-                                    <li>Prüfe ob <code class="inline">addIdsToHeadingsAndGenerateSidebar</code>
-                                        ausgeführt
-                                        wird</li>
-                                    <li>Prüfe ob <code class="inline">html = result.html</code> verwendet wird</li>
-                                    <li>Führe <code class="inline">npm run build</code> nochmal aus</li>
-                                </ul>
+                        <div>
+                            <h3 class="no-toc">Problem: Prev/Next zeigt falsches Tutorial</h3>
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <p><strong>Ursache:</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Reihenfolge in <code class="inline">TUTORIAL_ORDER</code> falsch</li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <p><strong>Lösung:</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Öffne <code class="inline">generate-navigation.js</code></li>
+                                        <li>Finde die richtige Unterkategorie</li>
+                                        <li>Korrigiere die Reihenfolge</li>
+                                        <li>Führe <code class="inline">npm run build</code> aus</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
 
-                        <h3 class="no-toc">Problem: Dropdown fehlt eine Kategorie</h3>
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <p><strong>Ursache:</strong></p>
-                                <ul class="arrow-list">
-                                    <li>Keine Tutorials in <code class="inline">TUTORIAL_ORDER</code> für diese
-                                        Kategorie
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <p><strong>Lösung:</strong></p>
-                                <ul class="arrow-list">
-                                    <li>Füge Tutorials zu <code class="inline">TUTORIAL_ORDER</code> hinzu</li>
-                                    <li>Oder: Entferne die Kategorie aus <code class="inline">CATEGORY_NAMES</code></li>
-                                </ul>
+                        <div>
+                            <h3 class="no-toc">Problem: Sidebar-Links führen nirgends hin</h3>
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <p><strong>Ursache:</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>IDs wurden nicht zu Headings hinzugefügt</li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <p><strong>Lösung:</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Prüfe ob <code class="inline">addIdsToHeadingsAndGenerateSidebar</code>
+                                            ausgeführt
+                                            wird</li>
+                                        <li>Prüfe ob <code class="inline">html = result.html</code> verwendet wird</li>
+                                        <li>Führe <code class="inline">npm run build</code> nochmal aus</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+
+                        <div>
+                            <h3 class="no-toc">Problem: Dropdown fehlt eine Kategorie</h3>
+                            <div class="grid-2col">
+                                <div class="grid-2col-bg">
+                                    <p><strong>Ursache:</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Keine Tutorials in <code class="inline">TUTORIAL_ORDER</code> für diese
+                                            Kategorie
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="grid-2col-bg">
+                                    <p><strong>Lösung:</strong></p>
+                                    <ul class="arrow-list">
+                                        <li>Füge Tutorials zu <code class="inline">TUTORIAL_ORDER</code> hinzu</li>
+                                        <li>Oder: Entferne die Kategorie aus <code class="inline">CATEGORY_NAMES</code>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </section>
 
                     <!-- Zusammenfassung -->
@@ -1331,32 +1711,30 @@ console.log('Current Index:', currentIndex);</code></pre>
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                    <section class="categories">
-                        <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
-                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
-                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                            <p class="text-muted">Tutorials werden geladen...</p>
-                        </div>
-                    </section>
-                    <!-- Latest-Tutorials-End -->
+                <section class="categories">
+                    <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
+                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
+                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                        <p class="text-muted">Tutorials werden geladen...</p>
+                    </div>
+                </section>
+                <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-                            <div class="tutorial-nav-prev">
-                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">
-                                    <span class="tutorial-nav-label">← Vorheriges</span>
-                                    <span class="tutorial-nav-link">All-in-One Cheatsheet für meine Tutorials</span>
-                                    <span class="tutorial-nav-category">Documentation</span>
-                                </a>
-                            </div>
-                            <div class="tutorial-nav-next">
-                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">
-                                    <span class="tutorial-nav-label">Nächstes →</span>
-                                    <span class="tutorial-nav-link">Main Nav Header</span>
-                                    <span class="tutorial-nav-category">Documentation</span>
-                                </a>
-                            </div>
-                        </nav>
+        <div class="tutorial-nav-prev">
+            <a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">
+                <span class="tutorial-nav-label">← Vorheriges</span>
+                <span class="tutorial-nav-link">All-in-One Cheatsheet für meine Tutorials</span>
+                <span class="tutorial-nav-category">Documentation</span>
+            </a>
+        </div><div class="tutorial-nav-next">
+            <a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">
+                <span class="tutorial-nav-label">Nächstes →</span>
+                <span class="tutorial-nav-link">Main Nav Header</span>
+                <span class="tutorial-nav-category">Documentation</span>
+            </a>
+        </div></nav>
                     </section>
 
                 </div> <!-- Wrapper .container -->
@@ -1366,29 +1744,28 @@ console.log('Current Index:', currentIndex);</code></pre>
         </main>
 
         <!-- Footer-Start -->
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-content">
-                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
-                    </p>
-                    <nav class="footer-nav" aria-label="Footer-Navigation">
-                        <a href="/impressum.html">Impressum</a>
-                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
-                    </nav>
-                </div>
-            </div>
-        </footer>
-        <button id="scrollTopBtn" title="Nach oben">↑</button>
-        <script src="/assets/js/main.js" defer></script>
-        <script src="/assets/js/search.js" defer></script>
-        <script src="/assets/js/scroll-spy.js" defer></script>
-        <script src="/assets/js/latest-tutorials.js" defer></script>
-        <!-- Footer-End -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
+            <nav class="footer-nav" aria-label="Footer-Navigation">
+                <a href="/impressum.html">Impressum</a>
+                <a href="/datenschutzerklaerung.html">Datenschutz</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+<button id="scrollTopBtn" title="Nach oben">↑</button>
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script>
+<!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
 
-    </body>
+    
 
-</html>
+</body></html>
