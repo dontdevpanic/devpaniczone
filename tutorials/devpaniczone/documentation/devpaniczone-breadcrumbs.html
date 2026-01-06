@@ -2,8 +2,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Details zu den automatisch generierten Breadcrumbs auf DevPanicZone.">
-        <meta name="keywords" content="???">
+        <meta name="description" content="Dokumentation zur automatischen Generierung der Breadcrumbs auf DevPanicZone. Brotkrumen-Navigation für bessere Orientierung.">
+        <meta name="keywords" content="Breadcrumbs, Navigation, Brotkrumen, generate-navigation.js, DevPanicZone, Tutorial, Automatisierung">
         <meta name="author" content="DevPanicZone">
         <title>Die Breadcrumbs | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -192,16 +192,16 @@
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
                     <li class="toc-level-1"><a href="#hero-breadcrumbs">Hero Breadcrumbs</a></li>
-                    <li class="toc-level-1"><a href="#html-struktur-in-der-hero-section">HTML-Struktur in der Hero-Section</a></li>
-                    <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
+                    <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
+                    <li class="toc-level-1"><a href="#zwei-varianten">Zwei Varianten</a></li>
                     <li class="toc-level-1"><a href="#beispiel-generierte-breadcrumbs">Beispiel: Generierte Breadcrumbs</a></li>
-                    <li class="toc-level-1"><a href="#klickbare-vs-nicht-klickbare-links">Klickbare vs. nicht-klickbare Links</a></li>
-                    <li class="toc-level-1"><a href="#ordnernamen-automatisch-umbenennen">Ordnernamen automatisch umbenennen</a></li>
-                    <li class="toc-level-1"><a href="#dateinamen-mit-customtitles-anpassen">Dateinamen mit customTitles anpassen</a></li>
-                    <li class="toc-level-1"><a href="#neue-hauptkategorie-zu-breadcrumbs-hinzufuegen">Neue Hauptkategorie zu Breadcrumbs
-                            hinzufügen</a></li>
-                    <li class="toc-level-1"><a href="#breadcrumb-separator-aendern">Breadcrumb-Separator ändern</a></li>
-                    <li class="toc-level-1"><a href="#vollstaendiger-code">Vollständiger Code</a></li>
+                    <li class="toc-level-2"><a href="#kategorieseite">Kategorieseite</a></li>
+                    <li class="toc-level-2"><a href="#tutorial-seite">Tutorial-Seite</a></li>
+                    <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
+                    <li class="toc-level-1"><a href="#category-names">Kategorie-Namen aus CATEGORY_NAMES</a></li>
+                    <li class="toc-level-1"><a href="#tutorial-titel">Tutorial-Titel aus CUSTOM_TITLES oder H1</a></li>
+                    <li class="toc-level-1"><a href="#css-klassen">CSS-Klassen</a></li>
+                    <li class="toc-level-1"><a href="#neue-kategorie-hinzufuegen">Neue Kategorie hinzufügen</a></li>
                     <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
                     <!-- Sidebar-Anchor-End -->
@@ -242,15 +242,16 @@
                     <!-- Hero Breadcrumbs -->
                     <section class="tutorials-content">
                         <h2 id="hero-breadcrumbs">Hero Breadcrumbs</h2>
-                        <p>Breadcrumbs (Brotkrumen-Navigation) zeigen den Pfad zur aktuellen Seite und werden
-                            automatisch
-                            aus der Ordnerstruktur generiert.</p>
+                        <p>Breadcrumbs (Brotkrumen-Navigation) zeigen den Pfad zur aktuellen Seite. Sie werden
+                            automatisch durch <code class="inline">generate-navigation.js</code> generiert und helfen
+                            bei der Orientierung.</p>
                     </section>
 
                     <!-- HTML-Struktur -->
                     <section class="tutorials-content">
-                        <h2 id="html-struktur-in-der-hero-section">HTML-Struktur in der Hero-Section</h2>
-                        <p>Die Breadcrumbs werden in der Hero-Section als erstes Element eingefügt:</p>
+                        <h2 id="html-struktur">HTML-Struktur</h2>
+                        <p>Die Breadcrumbs werden in der Hero-Section platziert. Das Script sucht nach dem <code class="inline">&lt;nav class="breadcrumbs"&gt;</code> Element und ersetzt dessen Inhalt:
+                        </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
@@ -261,11 +262,10 @@
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-html">&lt;!-- Hero Section --&gt;
-&lt;section class="hero tutorial-hero"&gt;
+                            <pre><code class="language-html">&lt;section class="hero tutorial-hero"&gt;
     &lt;div class="container"&gt;
-        &lt;!-- Breadcrumbs werden hier automatisch eingefügt --&gt;
-        &lt;nav class="breadcrumbs"&gt;&lt;/nav&gt;
+        &lt;!-- Breadcrumbs werden hier automatisch gefüllt --&gt;
+        &lt;nav class="breadcrumbs" aria-label="Breadcrumb"&gt;&lt;/nav&gt;
         
         &lt;h1 class="hero-title"&gt;Seitentitel&lt;/h1&gt;
         &lt;p class="hero-subtitle"&gt;Untertitel&lt;/p&gt;
@@ -274,34 +274,42 @@
                         </div>
                     </section>
 
-                    <!-- Wie funktioniert's -->
+                    <!-- Zwei Varianten -->
                     <section class="tutorials-content">
-                        <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
-                        <p>Das Script analysiert den Dateipfad und erstellt daraus eine Breadcrumb-Kette:</p>
+                        <h2 id="zwei-varianten">Zwei Varianten</h2>
+                        <p>Das Script generiert je nach Seitentyp unterschiedliche Breadcrumbs:</p>
 
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">Plain Text</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc pt-0">Kategorieseiten (index.html)</h3>
+                                <p>Pfad: <code class="inline">/tutorials/css/index.html</code></p>
+                                <p><strong>Ergebnis:</strong> Home › CSS</p>
                             </div>
-                            <pre><code class="language-text">Dateipfad:
-tutorials/css/css-basics/css-einbinden.html
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc pt-0">Tutorial-Seiten</h3>
+                                <p>Pfad: <code class="inline">/tutorials/css/css-basics/css-einbinden.html</code></p>
+                                <p><strong>Ergebnis:</strong> Home › CSS › CSS einbinden</p>
+                            </div>
+                        </div>
 
-Wird zu Breadcrumbs:
-Home › Tutorials › CSS › CSS Basics › CSS einbinden</code></pre>
+                        <div class="info-box info">
+                            <strong class="box-title info no-toc">Hinweis
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Die Unterkategorie (z.B. "CSS Basics") wird <strong>nicht</strong> in den Breadcrumbs
+                                angezeigt. Die Navigation bleibt dadurch kompakt: Home → Hauptkategorie → aktuelles
+                                Tutorial.</p>
                         </div>
                     </section>
 
                     <!-- Beispiel: Generierte Breadcrumbs -->
                     <section class="tutorials-content">
                         <h2 id="beispiel-generierte-breadcrumbs">Beispiel: Generierte Breadcrumbs</h2>
-                        <p>Aus dem leeren <code class="inline">&lt;nav class="breadcrumbs"&gt;&lt;/nav&gt;</code> wird:
-                        </p>
+
+                        <h3 id="kategorieseite">Kategorieseite</h3>
+                        <p>Für <code class="inline">/tutorials/css/index.html</code>:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
@@ -312,32 +320,48 @@ Home › Tutorials › CSS › CSS Basics › CSS einbinden</code></pre>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-html">&lt;nav class="breadcrumbs"&gt;
+                            <pre><code class="language-html">&lt;nav class="breadcrumbs" aria-label="Breadcrumb"&gt;
     &lt;a href="/" class="breadcrumb-link"&gt;Home&lt;/a&gt;
     &lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;
-    &lt;a href="/tutorials/" class="breadcrumb-link"&gt;Tutorials&lt;/a&gt;
+    &lt;span class="breadcrumb-current"&gt;CSS&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+
+                        <h3 id="tutorial-seite">Tutorial-Seite</h3>
+                        <p>Für <code class="inline">/tutorials/css/css-basics/css-einbinden.html</code>:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;nav class="breadcrumbs" aria-label="Breadcrumb"&gt;
+    &lt;a href="/" class="breadcrumb-link"&gt;Home&lt;/a&gt;
     &lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;
     &lt;a href="/tutorials/css/" class="breadcrumb-link"&gt;CSS&lt;/a&gt;
-    &lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;
-    &lt;a href="/tutorials/css/css-basics/" class="breadcrumb-link"&gt;CSS Basics&lt;/a&gt;
     &lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;
     &lt;span class="breadcrumb-current"&gt;CSS einbinden&lt;/span&gt;
 &lt;/nav&gt;</code></pre>
                         </div>
                     </section>
 
-                    <!-- Logik: Klickbar vs. Nicht-klickbar -->
+                    <!-- Wie funktioniert's -->
                     <section class="tutorials-content">
-                        <h2 id="klickbare-vs-nicht-klickbare-links">Klickbare vs. nicht-klickbare Links</h2>
-                        <p>Das Script entscheidet automatisch, welche Breadcrumb-Elemente anklickbar sind:</p>
+                        <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
+                        <p>Die Funktion <code class="inline">generateBreadcrumbs()</code> nutzt zwei Informationen:</p>
 
-                        <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Klickbar <code class="inline">&lt;a&gt;</code>:</strong> Ordner, die eine <code class="inline">index.html</code> enthalten</li>
-                            <li><strong>Nicht klickbar <code class="inline">&lt;span&gt;</code>:</strong> Ordner ohne
-                                <code class="inline">index.html</code>
-                            </li>
-                            <li><strong>Aktuelle Seite:</strong> Immer nicht klickbar <code class="inline">.breadcrumb-current</code></li>
-                        </ul>
+                        <div class="grid-2col-bg">
+                            <ol class="pl-md">
+                                <li><strong>Kategorie</strong> aus dem Dateipfad via <code class="inline">getCategoryFromPath()</code></li>
+                                <li><strong>Kategorie-Name</strong> aus <code class="inline">CATEGORY_NAMES</code></li>
+                                <li><strong>Tutorial-Titel</strong> aus <code class="inline">CUSTOM_TITLES</code> oder
+                                    der H1-Überschrift</li>
+                            </ol>
+                        </div>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -349,19 +373,33 @@ Home › Tutorials › CSS › CSS Basics › CSS einbinden</code></pre>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">// URL: Wenn es ein index.html im Ordner gibt, verlinken
-const indexPath = path.join(BASE_DIR, currentPath, 'index.html');
-const url = fs.existsSync(indexPath) ? `/${currentPath}/` : null;
+                            <pre><code class="language-javascript">function generateBreadcrumbs(filePath, currentTitle) {
+    const category = getCategoryFromPath(filePath);
+    const categoryName = CATEGORY_NAMES[category] || category;
+    const basename = path.basename(filePath);
 
-// url = '/tutorials/css/' → Klickbar
-// url = null → Nicht klickbar</code></pre>
+    // Für Kategorieseiten (index.html): nur Home › Kategorie
+    if (basename === 'index.html') {
+        return `&lt;a href="/" class="breadcrumb-link"&gt;Home&lt;/a&gt;` +
+               `&lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;` +
+               `&lt;span class="breadcrumb-current"&gt;${categoryName}&lt;/span&gt;`;
+    }
+
+    // Für Tutorial-Seiten: Home › Kategorie › Tutorial
+    return `&lt;a href="/" class="breadcrumb-link"&gt;Home&lt;/a&gt;` +
+           `&lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;` +
+           `&lt;a href="/tutorials/${category}/" class="breadcrumb-link"&gt;${categoryName}&lt;/a&gt;` +
+           `&lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;` +
+           `&lt;span class="breadcrumb-current"&gt;${currentTitle}&lt;/span&gt;`;
+}</code></pre>
                         </div>
                     </section>
 
-                    <!-- Ordnernamen-Mapping -->
+                    <!-- CATEGORY_NAMES -->
                     <section class="tutorials-content">
-                        <h2 id="ordnernamen-automatisch-umbenennen">Ordnernamen automatisch umbenennen</h2>
-                        <p>Bestimmte Ordnernamen werden automatisch in schönere Labels umgewandelt:</p>
+                        <h2 id="category-names">Kategorie-Namen aus CATEGORY_NAMES</h2>
+                        <p>Die Anzeigenamen der Kategorien werden aus der <code class="inline">CATEGORY_NAMES</code>
+                            Konfiguration geholt:</p>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -373,51 +411,51 @@ const url = fs.existsSync(indexPath) ? `/${currentPath}/` : null;
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">// Spezielle Ordner umbenennen
-let label = part;
-if (part === 'tutorials') label = 'Tutorials';
-else if (part === 'html') label = 'HTML';
-else if (part === 'css') label = 'CSS';
-else if (part === 'bootstrap') label = 'Bootstrap';
-else if (part === 'javascript') label = 'JavaScript';
-else if (part === 'php') label = 'PHP';
-else if (part === 'misc') label = 'Verschiedenes';
-else if (part.includes('basics')) label = 'Basics';
-else if (part.includes('advanced')) label = 'Advanced';
-else if (part.includes('specials')) label = 'Specials';
-else {
-    // Normale Ordnernamen formatieren (z.B. 'my-folder' → 'My Folder')
-    label = fileNameToTitle(part);
-}</code></pre>
+                            <pre><code class="language-javascript">const CATEGORY_NAMES = {
+    'html': 'HTML',
+    'css': 'CSS',
+    'bootstrap': 'Bootstrap',
+    'javascript': 'JavaScript',
+    'php': 'PHP',
+    'misc': 'Verschiedenes',
+    'devpaniczone': 'DevPanicZone!'
+};</code></pre>
                         </div>
 
-                        <p><strong>Beispiele der Umwandlung:</strong></p>
-
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
+                        <p><strong>Beispiele:</strong></p>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
                                 <ul class="arrow-list">
-                                    <li><code class="inline">tutorials</code> → <strong>Tutorials</strong></li>
-                                    <li><code class="inline">css</code> → <strong>CSS</strong></li>
-                                    <li><code class="inline">misc</code> → <strong>Verschiedenes</strong></li>
+                                    <li>Ordner <code class="inline">css</code> → Anzeige <strong>CSS</strong></li>
+                                    <li>Ordner <code class="inline">javascript</code> → Anzeige
+                                        <strong>JavaScript</strong>
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="grid-2col-bg">
+                            <div>
                                 <ul class="arrow-list">
-                                    <li><code class="inline">css-basics</code> → <strong>CSS Basics</strong> (enthält
-                                        "basics")</li>
-                                    <li><code class="inline">seo-optimization</code> → <strong>SEO Optimization</strong>
-                                        (fileNameToTitle)
+                                    <li>Ordner <code class="inline">misc</code> → Anzeige <strong>Verschiedenes</strong>
+                                    </li>
+                                    <li>Ordner <code class="inline">devpaniczone</code> → Anzeige
+                                        <strong>DevPanicZone!</strong>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Dateinamen-Mapping mit customTitles -->
+                    <!-- Tutorial-Titel -->
                     <section class="tutorials-content">
-                        <h2 id="dateinamen-mit-customtitles-anpassen">Dateinamen mit customTitles anpassen</h2>
-                        <p>Die aktuelle Seite (letztes Breadcrumb) nutzt <code class="inline">customTitles</code>, falls
-                            vorhanden:</p>
+                        <h2 id="tutorial-titel">Tutorial-Titel aus CUSTOM_TITLES oder H1</h2>
+                        <p>Der Titel des aktuellen Tutorials (letztes Breadcrumb-Element) wird so ermittelt:</p>
+
+                        <div class="grid-2col-bg">
+                            <ol class="pl-md">
+                                <li>Prüfe ob ein Eintrag in <code class="inline">CUSTOM_TITLES</code> existiert</li>
+                                <li>Falls nicht: Extrahiere den Text aus der <code class="inline">&lt;h1&gt;</code>
+                                    Überschrift</li>
+                            </ol>
+                        </div>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -429,104 +467,66 @@ else {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">// In generate-navigation.js
-const customTitles = {
-    'tutorials/css/css-basics/css-einbinden.html': 'CSS einbinden',
-    'tutorials/html/html-advanced/html-iframes.html': 'iFrames',
-    'tutorials/misc/projects/devpaniczone-tutorial-template.html': 'Diese Seite',
+                            <pre><code class="language-javascript">// Custom Titles (überschreibt H1 aus HTML)
+const CUSTOM_TITLES = {
+    'css-einbinden.html': 'CSS einbinden',
+    'css-color-units.html': 'CSS Farben &amp; Einheiten',
+    'html-grundgeruest.html': 'HTML Grundgerüst',
     // ...
 };
 
-// Im Breadcrumb-Code:
-const fileName = part.replace('.html', '');
-const label = customTitles[filePath] || fileNameToTitle(fileName);</code></pre>
-                        </div>
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <p><strong>Ohne customTitle:</strong></p>
-                                <ul class="arrow-list">
-                                    <li><code class="inline">css-einbinden.html</code> → <strong>CSS Einbinden</strong>
-                                        (automatisch
-                                        formatiert)
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <p><strong>Mit customTitle:</strong></p>
-                                <ul class="arrow-list">
-                                    <li><code class="inline">css-einbinden.html</code> → <strong>CSS einbinden</strong>
-                                        (wie
-                                        definiert in
-                                        customTitles)
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Neue Ordner hinzufügen -->
-                    <section class="tutorials-content">
-                        <h2 id="neue-hauptkategorie-zu-breadcrumbs-hinzufuegen">Neue Hauptkategorie zu Breadcrumbs
-                            hinzufügen
-                        </h2>
-                        <p>Wenn du eine neue Hauptkategorie erstellst (z.B. "React"), füge sie zur Ordner-Mapping hinzu:
-                        </p>
-
-                        <ol class="grid-2col-bg">
-                            <li>Öffne <code class="inline">generate-navigation.js</code></li>
-                            <li>Finde die Breadcrumb-Funktion <code class="inline">generateBreadcrumbs()</code></li>
-                            <li>Füge die neue Kategorie hinzu:</li>
-                        </ol>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">// Spezielle Ordner umbenennen
-let label = part;
-if (part === 'tutorials') label = 'Tutorials';
-else if (part === 'html') label = 'HTML';
-else if (part === 'css') label = 'CSS';
-else if (part === 'bootstrap') label = 'Bootstrap';
-else if (part === 'javascript') label = 'JavaScript';
-else if (part === 'php') label = 'PHP';
-else if (part === 'react') label = 'React';  // ← Neue Kategorie
-else if (part === 'misc') label = 'Verschiedenes';
-// ...</code></pre>
+// Im Code:
+const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);</code></pre>
                         </div>
 
-                        <ol class="grid-2col-bg" start="4">
-                            <li>Führe <code class="inline">npm run generate</code> aus</li>
-                        </ol>
-
-                        <!-- Blacklist-Hinweis -->
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Hinweis: Blacklist
+                        <div class="info-box info">
+                            <strong class="box-title info no-toc">Wann CUSTOM_TITLES nutzen?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Ordner in <code class="inline">blacklistFolders</code> werden automatisch übersprungen
-                                und
-                                erscheinen nicht in den Breadcrumbs:</p>
-                            <div class="code-block">
-                                <pre><code class="language-javascript">const blacklistFolders = ['noupload', 'node_modules', '.git', 'assets'];</code></pre>
+                            <ul class="arrow-list">
+                                <li>Wenn die H1 zu lang ist für die Navigation</li>
+                                <li>Wenn du eine andere Schreibweise bevorzugst (z.B. "CSS einbinden" statt "CSS
+                                    Einbinden")</li>
+                                <li>Wenn die H1 Sonderzeichen enthält, die problematisch sein könnten</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- CSS-Klassen -->
+                    <section class="tutorials-content">
+                        <h2 id="css-klassen">CSS-Klassen</h2>
+                        <p>Die Breadcrumbs nutzen folgende CSS-Klassen:</p>
+
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">.breadcrumbs</code> → Container (nav-Element)</li>
+                                    <li><code class="inline">.breadcrumb-link</code> → Klickbare Links</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">.breadcrumb-separator</code> → Trennzeichen (›)</li>
+                                    <li><code class="inline">.breadcrumb-current</code> → Aktuelle Seite (nicht
+                                        klickbar)</li>
+                                </ul>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Separator ändern -->
+                    <!-- Neue Kategorie hinzufügen -->
                     <section class="tutorials-content">
-                        <h2 id="breadcrumb-separator-aendern">Breadcrumb-Separator ändern</h2>
-                        <p>Der Separator (›) kann in der Funktion <code class="inline">generateBreadcrumbsHTML()</code>
-                            geändert
-                            werden:</p>
+                        <h2 id="neue-kategorie-hinzufuegen">Neue Kategorie hinzufügen</h2>
+                        <p>Um eine neue Kategorie in den Breadcrumbs anzuzeigen:</p>
+
+                        <div class="grid-2col-bg">
+                            <ol class="pl-md">
+                                <li>Füge die Kategorie zu <code class="inline">CATEGORY_NAMES</code> hinzu</li>
+                                <li>Führe <code class="inline">npm run build</code> aus</li>
+                            </ol>
+                        </div>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -538,151 +538,25 @@ else if (part === 'misc') label = 'Verschiedenes';
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">if (!isLast) {
-    html += '&lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;';  // ← Hier ändern
-}
-
-// Alternativen:
-// → / // &gt; » ⟩</code></pre>
+                            <pre><code class="language-javascript">const CATEGORY_NAMES = {
+    'html': 'HTML',
+    'css': 'CSS',
+    // ...
+    'react': 'React',  // ← Neue Kategorie
+};</code></pre>
                         </div>
+
+                        <p>Die Breadcrumbs nutzen dieselbe <code class="inline">CATEGORY_NAMES</code> Konfiguration wie
+                            die Main Navigation – eine Änderung wirkt sich auf beide aus.</p>
                     </section>
 
-                    <!-- Vollständiger Code -->
-                    <section class="tutorials-content">
-                        <h2 id="vollstaendiger-code">Vollständiger Code</h2>
-                        <details>
-                            <summary>
-                                Vollständiger JavaScript-Code
-                            </summary>
-                            <div class="toggle-detail">
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span class="code-lang">JavaScript</span>
-                                        <button class="code-copy">
-                                            <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                            </span>
-                                            <span class="copy-text">Kopieren</span>
-                                        </button>
-                                    </div>
-                                    <pre><code class="language-javascript">// ============================================================================
-// BREADCRUMBS
-// ============================================================================
-
-/**
- * Generiert Breadcrumbs aus dem Dateipfad
- */
-function generateBreadcrumbs(filePath) {
-    const parts = filePath.replace(/\\/g, '/').split('/');
-    const breadcrumbs = [{ label: 'Home', url: '/' }];
-
-    let currentPath = '';
-
-    for (let i = 0; i &lt; parts.length; i++) {
-        const part = parts[i];
-
-        // Letztes Element (Dateiname)
-        if (i === parts.length - 1) {
-            const fileName = part.replace('.html', '');
-            const label = customTitles[filePath] || fileNameToTitle(fileName);
-            breadcrumbs.push({ label, url: null }); // Kein Link für aktuelle Seite
-        }
-        // Ordner
-        else if (part &amp;&amp; !blacklistFolders.includes(part)) {
-            currentPath += (currentPath ? '/' : '') + part;
-
-            // Spezielle Ordner umbenennen
-            let label = part;
-            if (part === 'tutorials') label = 'Tutorials';
-            else if (part === 'html') label = 'HTML';
-            else if (part === 'css') label = 'CSS';
-            else if (part === 'bootstrap') label = 'Bootstrap';
-            else if (part === 'javascript') label = 'JavaScript';
-            else if (part === 'php') label = 'PHP';
-            else if (part === 'misc') label = 'Verschiedenes';
-            else if (part.includes('basics')) label = 'Basics';
-            else if (part.includes('advanced')) label = 'Advanced';
-            else if (part.includes('specials')) label = 'Specials';
-            else {
-                // Normale Ordnernamen formatieren
-                label = fileNameToTitle(part);
-            }
-
-            // URL: Wenn es ein index.html im Ordner gibt, verlinken
-            const indexPath = path.join(BASE_DIR, currentPath, 'index.html');
-            const url = fs.existsSync(indexPath) ? `/${currentPath}/` : null;
-
-            breadcrumbs.push({ label, url });
-        }
-    }
-
-    return breadcrumbs;
-}
-
-/**
- * Generiert HTML für Breadcrumbs
- */
-function generateBreadcrumbsHTML(breadcrumbs, currentFile) {
-    let html = '';
-
-    breadcrumbs.forEach((crumb, index) =&gt; {
-        const isLast = index === breadcrumbs.length - 1;
-
-        if (crumb.url) {
-            // Verwende absolute Pfade
-            const absolutePath = crumb.url === '/' ? '/' : crumb.url;
-            html += `&lt;a href="${absolutePath}" class="breadcrumb-link"&gt;${crumb.label}&lt;/a&gt;`;
-        } else {
-            html += `&lt;span class="breadcrumb-current"&gt;${crumb.label}&lt;/span&gt;`;
-        }
-
-        if (!isLast) {
-            html += '&lt;span class="breadcrumb-separator"&gt;›&lt;/span&gt;';
-        }
-    });
-
-    return html;
-}
-
-/**
- * Aktualisiert Breadcrumbs in allen HTML-Dateien
- */
-function updateBreadcrumbs(files) {
-    let updatedCount = 0;
-
-    files.forEach(file =&gt; {
-        const filePath = path.join(BASE_DIR, file);
-        let content = fs.readFileSync(filePath, 'utf8');
-
-        // Suche nach &lt;nav class="breadcrumbs"&gt;&lt;/nav&gt;
-        const breadcrumbsRegex = /&lt;nav\s+class=["']breadcrumbs["'][^&gt;]*&gt;[\s\S]*?&lt;\/nav&gt;/;
-
-        if (breadcrumbsRegex.test(content)) {
-            const breadcrumbs = generateBreadcrumbs(file);
-            const breadcrumbsHTML = generateBreadcrumbsHTML(breadcrumbs, file);
-
-            const newBreadcrumbs = `&lt;nav class="breadcrumbs"&gt;\n        ${breadcrumbsHTML}\n    &lt;/nav&gt;`;
-            content = content.replace(breadcrumbsRegex, newBreadcrumbs);
-
-            fs.writeFileSync(filePath, content, 'utf8');
-            updatedCount++;
-        }
-    });
-
-    console.log(`✅ Breadcrumbs aktualisiert in ${updatedCount} Dateien`);
-}</code></pre>
-                                </div>
-                            </div>
-                        </details>
-                    </section>
-
-                    <!-- npm run generate -->
+                    <!-- Ausführen -->
                     <section class="tutorials-content">
                         <h2 id="ausfuehren">Ausführen</h2>
-                        <p>Nach allen Änderungen ausführen:</p>
+                        <p>Nach Änderungen an der Konfiguration:</p>
                         <div class="code-block">
                             <div class="code-header">
-                                <span class="code-lang">Plain Text</span>
+                                <span class="code-lang">Bash</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -690,7 +564,7 @@ function updateBreadcrumbs(files) {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-text">npm run generate</code></pre>
+                            <pre><code class="language-bash">npm run build</code></pre>
                         </div>
                     </section>
 
@@ -751,6 +625,8 @@ function updateBreadcrumbs(files) {
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
     
 
