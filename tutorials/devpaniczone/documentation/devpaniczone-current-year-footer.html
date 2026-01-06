@@ -2,8 +2,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Details zum JacaScript currentYear im Footer">
-        <meta name="keywords" content="???">
+        <meta name="description" content="Dokumentation zur automatischen Aktualisierung des Jahres im Footer auf DevPanicZone. JavaScript currentYear mit Fallback">
+        <meta name="keywords" content="currentYear, Footer, JavaScript, Copyright, Jahr, Automatisierung, DevPanicZone">
         <meta name="author" content="DevPanicZone">
         <title>currentYear im Footer | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -195,7 +195,6 @@
                     <li class="toc-level-1"><a href="#html-struktur-im-footer">HTML-Struktur im Footer</a></li>
                     <li class="toc-level-1"><a href="#javascript-code">JavaScript-Code</a></li>
                     <li class="toc-level-1"><a href="#alternative-inline-script-im-footer">Alternative: Inline Script im Footer</a></li>
-                    <li class="toc-level-1"><a href="#fallback-javascript-deaktiviert">Fallback: JavaScript deaktiviert</a></li>
                     <li class="toc-level-1"><a href="#erweiterung-zeitraum-anzeigen-zb-2023-2025">Erweiterung: Zeitraum anzeigen (z.B.
                             2023-2025)</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
@@ -246,8 +245,8 @@
                     <!-- HTML-Struktur -->
                     <section class="tutorials-content">
                         <h2 id="html-struktur-im-footer">HTML-Struktur im Footer</h2>
-                        <p>Füge einen <code class="inline">&lt;span id="currentYear"&gt;&lt;/span&gt;</code> im
-                            Copyright-Text ein:</p>
+                        <p>Im <code class="inline">FOOTER_TEMPLATE</code> in <code class="inline">generate-navigation.js</code> ist das Jahr bereits mit Fallback-Wert
+                            eingebaut:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
@@ -261,21 +260,23 @@
                             <pre><code class="language-html">&lt;footer class="site-footer"&gt;
     &lt;div class="container"&gt;
         &lt;div class="footer-content"&gt;
-            &lt;p class="footer-text"&gt;© &lt;span id="currentYear"&gt;&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;
-            &lt;nav class="footer-nav"&gt;
+            &lt;p class="footer-text"&gt;© &lt;span id="currentYear"&gt;2025&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;
+            &lt;nav class="footer-nav" aria-label="Footer-Navigation"&gt;
                 &lt;a href="/impressum.html"&gt;Impressum&lt;/a&gt;
-                &lt;a href="/datenschutz.html"&gt;Datenschutz&lt;/a&gt;
+                &lt;a href="/datenschutzerklaerung.html"&gt;Datenschutz&lt;/a&gt;
             &lt;/nav&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/footer&gt;</code></pre>
                         </div>
+                        <p>Der Fallback-Wert <code class="inline">2025</code> wird angezeigt, falls JavaScript
+                            deaktiviert ist. Das JavaScript überschreibt ihn mit dem aktuellen Jahr.</p>
                     </section>
 
                     <!-- JavaScript-Code -->
                     <section class="tutorials-content">
                         <h2 id="javascript-code">JavaScript-Code</h2>
-                        <p>Das JavaScript füllt automatisch das aktuelle Jahr ein. Platziere den Code in <code class="inline">main.js</code> oder direkt vor dem schließenden <code class="inline">&lt;/body&gt;</code> Tag:</p>
+                        <p>In <code class="inline">main.js</code> ist die Funktion <code class="inline">setCurrentYear()</code> definiert:</p>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -287,28 +288,29 @@
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">// ============================================================================
-// CURRENT YEAR im Footer
-// ============================================================================
+                            <pre><code class="language-javascript">// ===================================
+// CURRENT YEAR IM FOOTER
+// ===================================
 
-/**
- * Setzt das aktuelle Jahr im Footer
- * Wird beim Laden der Seite ausgeführt
- */
-const yearElement = document.getElementById('currentYear');
-if (yearElement) {
-    const currentYear = new Date().getFullYear();
-    yearElement.textContent = currentYear;
-}</code></pre>
+function setCurrentYear() {
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+}
+
+setCurrentYear();</code></pre>
                         </div>
+
+                        <p>Die Funktion wird innerhalb des <code class="inline">DOMContentLoaded</code> Events
+                            aufgerufen, sodass das Element garantiert existiert.</p>
                     </section>
 
                     <!-- Alternative: Inline Script -->
                     <section class="tutorials-content">
                         <h2 id="alternative-inline-script-im-footer">Alternative: Inline Script im Footer</h2>
                         <p>Falls du es nicht in einer separaten JavaScript-Datei haben möchtest, kannst du es auch
-                            direkt im
-                            Footer einfügen.</p>
+                            direkt im Footer einfügen:</p>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -323,24 +325,22 @@ if (yearElement) {
                             <pre><code class="language-html">&lt;footer class="site-footer"&gt;
     &lt;div class="container"&gt;
         &lt;div class="footer-content"&gt;
-            &lt;p class="footer-text"&gt;© &lt;span id="currentYear"&gt;&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;
-            &lt;nav class="footer-nav"&gt;
+            &lt;p class="footer-text"&gt;© &lt;span id="currentYear"&gt;2025&lt;/span&gt; DevPanicZone. Alle Rechte vorbehalten.&lt;/p&gt;
+            &lt;nav class="footer-nav" aria-label="Footer-Navigation"&gt;
                 &lt;a href="/impressum.html"&gt;Impressum&lt;/a&gt;
-                &lt;a href="/datenschutz.html"&gt;Datenschutz&lt;/a&gt;
+                &lt;a href="/datenschutzerklaerung.html"&gt;Datenschutz&lt;/a&gt;
             &lt;/nav&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/footer&gt;
 
 &lt;script&gt;
-    // Setze aktuelles Jahr
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 &lt;/script&gt;</code></pre>
                         </div>
 
-                        <p>Ich würde aber möglichst auf inline Scripts verzichten. Schau dir dazu auch das Tutorial
-                            JavaScript
-                            Sicherheit an:</p>
+                        <p>Ich würde aber möglichst auf Inline Scripts verzichten. Schau dir dazu auch das Tutorial
+                            JavaScript Sicherheit an:</p>
                         <div>
                             <a href="/tutorials/javascript/javascript-basics/js-security.html" target="_blank">
                                 <kbd class="key-active">Zum Tutorial JavaScript Sicherheit ↵</kbd>
@@ -349,7 +349,7 @@ if (yearElement) {
                     </section>
 
                     <!-- Fallback für JavaScript deaktiviert -->
-                    <section class="tutorials-content">
+                    <!-- <section class="tutorials-content">
                         <h2 id="fallback-javascript-deaktiviert">Fallback: JavaScript deaktiviert</h2>
                         <p>Falls JavaScript deaktiviert ist, kannst du einen Fallback-Wert direkt im HTML einfügen:</p>
 
@@ -369,7 +369,7 @@ if (yearElement) {
                         <p>Das JavaScript überschreibt dann "2025" mit dem aktuellen Jahr. Wenn JavaScript aus ist,
                             bleibt
                             "2025" stehen.</p>
-                    </section>
+                    </section> -->
 
                     <!-- Warum automatisch? -->
                     <section class="tutorials-content">
@@ -506,6 +506,8 @@ if (yearElement) {
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
 
 
