@@ -2,8 +2,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Die automatisch generierten Tutorial Buttons der Kategorieseiten im Detail.">
-        <meta name="keywords" content="???">
+        <meta name="description" content="Dokumentation zur automatischen Generierung der Tutorial-Buttons auf Kategorieseiten. Gruppierte Button-Listen aus TUTORIAL_ORDER.">
+        <meta name="keywords" content="Tutorial Buttons, Kategorieseiten, Navigation, generate-navigation.js, TUTORIAL_ORDER, DevPanicZone, Automatisierung">
         <meta name="author" content="DevPanicZone">
         <title>Tutorial Buttons der Kategorieseiten | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -191,14 +191,16 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#tutorial-listen-kategorieseiten">Tutorial-Listen (Kategorieseiten)</a></li>
-                    <li class="toc-level-1"><a href="#html-struktur-auf-kategorieseiten">HTML-Struktur auf Kategorieseiten</a></li>
+                    <li class="toc-level-1"><a href="#tutorial-listen-kategorieseiten">Tutorial-Listen auf Kategorieseiten</a></li>
+                    <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
+                    <li class="toc-level-1"><a href="#beispiel-generierte-buttons">Beispiel: Generierte Buttons</a></li>
+                    <li class="toc-level-2"><a href="#html-elemente-erklaert">HTML-Elemente erklärt</a></li>
                     <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
-                    <li class="toc-level-1"><a href="#beispiel-generierte-button-liste">Beispiel: Generierte Button-Liste</a></li>
-                    <li class="toc-level-1"><a href="#reihenfolge-der-gruppen-und-buttons">Reihenfolge der Gruppen und Buttons</a></li>
-                    <li class="toc-level-1"><a href="#neues-tutorial-zur-liste-hinzufuegen">Neues Tutorial zur Liste hinzufügen</a></li>
-                    <li class="toc-level-1"><a href="#neue-tutorial-gruppe-hinzufuegen">Neue Tutorial-Gruppe hinzufügen</a></li>
-                    <li class="toc-level-1"><a href="#gruppentitel-anpassen">Gruppentitel anpassen</a></li>
+                    <li class="toc-level-1"><a href="#generatetutorialbuttons">generateTutorialButtons()</a></li>
+                    <li class="toc-level-1"><a href="#reihenfolge">Reihenfolge der Gruppen und Buttons</a></li>
+                    <li class="toc-level-1"><a href="#neues-tutorial-hinzufuegen">Neues Tutorial hinzufügen</a></li>
+                    <li class="toc-level-1"><a href="#neue-gruppe-hinzufuegen">Neue Tutorial-Gruppe hinzufügen</a></li>
+                    <li class="toc-level-1"><a href="#gruppentitel">Gruppentitel und Akronyme</a></li>
                     <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
                     <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
                     <!-- Sidebar-Anchor-End -->
@@ -238,19 +240,17 @@
 
                     <!-- Tutorial-Listen Kategorieseiten -->
                     <section class="tutorials-content">
-                        <h2 id="tutorial-listen-kategorieseiten">Tutorial-Listen (Kategorieseiten)
-                        </h2>
-                        <p>Auf Kategorieseiten (z.B. <code class="inline">/tutorials/html/index.html</code>) werden
-                            automatisch alle
-                            Tutorials dieser Kategorie als Button-Grid angezeigt. Die Liste wird aus <code class="inline">manualOrder</code> generiert.</p>
+                        <h2 id="tutorial-listen-kategorieseiten">Tutorial-Listen auf Kategorieseiten</h2>
+                        <p>Auf Kategorieseiten (z.B. <code class="inline">/tutorials/css/index.html</code>) werden
+                            automatisch alle Tutorials dieser Kategorie als Button-Grid angezeigt. Die Buttons sind nach
+                            Unterkategorien gruppiert und werden aus <code class="inline">TUTORIAL_ORDER</code>
+                            generiert.</p>
                     </section>
 
                     <!-- HTML-Struktur -->
                     <section class="tutorials-content">
-                        <h2 id="html-struktur-auf-kategorieseiten">HTML-Struktur auf Kategorieseiten</h2>
-                        <p>Füge diesen Container auf deiner Kategorieseite ein (z.B.
-                            <code class="inline">/tutorials/css/index.html</code>):
-                        </p>
+                        <h2 id="html-struktur">HTML-Struktur</h2>
+                        <p>Die Tutorial-Buttons werden zwischen Kommentar-Markern eingefügt:</p>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -265,79 +265,27 @@
                             <pre><code class="language-html">&lt;section class="tutorials-content"&gt;
     &lt;h2&gt;Alle CSS Tutorials&lt;/h2&gt;
     
-    &lt;!-- Tutorial-Listen Container --&gt;
-    &lt;div id="tutorialButtons" class="tutorial-buttons" data-category="css"&gt;
-        &lt;!-- Wird automatisch gefüllt --&gt;
-    &lt;/div&gt;
+    &lt;!-- Tutorial-Buttons-Start --&gt;
+    &lt;!-- Wird automatisch gefüllt --&gt;
+    &lt;!-- Tutorial-Buttons-End --&gt;
 &lt;/section&gt;</code></pre>
                         </div>
 
-                        <div class="info-box">
-                            <strong class="box-title no-toc">Wichtig
+                        <div class="info-box info">
+                            <strong class="box-title info no-toc">Automatische Kategorie-Erkennung
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Das <code class="inline">data-category</code> Attribut muss mit dem
-                                Ordnernamen übereinstimmen!</p>
-                        </div>
-                        <div class="grid-2col">
-                            <div class="grid-2col-bg">
-                                <ul class="arrow-list">
-                                    <li><code class="inline">data-category="html"</code> → Zeigt alle HTML-Tutorials
-                                    </li>
-                                    <li><code class="inline">data-category="css"</code> → Zeigt alle CSS-Tutorials</li>
-                                </ul>
-                            </div>
-                            <div class="grid-2col-bg">
-                                <ul class="arrow-list">
-                                    <li><code class="inline">data-category="javascript"</code> → Zeigt alle
-                                        JavaScript-Tutorials</li>
-                                    <li><code class="inline">data-category="php"</code> → Zeigt alle PHP-Tutorials</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Wie funktioniert's -->
-                    <section class="tutorials-content">
-                        <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
-                        <p>Das Script durchsucht <code class="inline">manualOrder</code> nach allen Einträgen, die zur
-                            Kategorie gehören:</p>
-
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">JavaScript</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-javascript">// Beispiel: data-category="css"
-// Das Script findet automatisch alle Ordner, die "css" enthalten:
-
-const manualOrder = {
-    'tutorials/css/css-basics': [
-        'css-einbinden.html',
-        'css-color-units.html',
-        'css-variables.html'
-    ],
-    'tutorials/css/css-advanced': [
-        'css-positioning.html',
-        'css-z-index.html'
-    ]
-};
-
-// Ergebnis: Zwei Gruppen mit Buttons werden erstellt</code></pre>
+                            <p>Die Kategorie wird automatisch aus dem Dateipfad ermittelt. Bei <code class="inline">/tutorials/css/index.html</code> erkennt das Script, dass es sich um
+                                die CSS-Kategorie handelt.</p>
                         </div>
                     </section>
 
                     <!-- Beispiel: Generierte Button-Liste -->
                     <section class="tutorials-content">
-                        <h2 id="beispiel-generierte-button-liste">Beispiel: Generierte Button-Liste</h2>
-                        <p>Aus dem leeren Container wird eine gruppierte Button-Liste:</p>
+                        <h2 id="beispiel-generierte-buttons">Beispiel: Generierte Buttons</h2>
+                        <p>Das Script generiert gruppierte Button-Listen mit Anker-IDs:</p>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -349,53 +297,186 @@ const manualOrder = {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-html">&lt;div id="tutorialButtons" class="tutorial-buttons" data-category="css"&gt;
-    
-    &lt;!-- Gruppe 1: CSS Basics --&gt;
-    &lt;div class="tutorial-group"&gt;
+                            <pre><code class="language-html">&lt;!-- Tutorial-Buttons-Start --&gt;
+&lt;div id="tutorialButtons" class="tutorial-buttons" data-category="css"&gt;
+
+    &lt;div id="css-basics" class="tutorial-group"&gt;
         &lt;h3 class="tutorial-group-title"&gt;CSS Basics&lt;/h3&gt;
         &lt;div class="tutorial-group-buttons"&gt;
             &lt;a href="/tutorials/css/css-basics/css-einbinden.html" class="tutorial-button"&gt;CSS einbinden&lt;/a&gt;
-            &lt;a href="/tutorials/css/css-basics/css-color-units.html" class="tutorial-button"&gt;CSS Color Units&lt;/a&gt;
-            &lt;a href="/tutorials/css/css-basics/css-variables.html" class="tutorial-button"&gt;CSS Variables&lt;/a&gt;
+            &lt;a href="/tutorials/css/css-basics/css-grundlagen.html" class="tutorial-button"&gt;CSS Grundlagen&lt;/a&gt;
+            &lt;a href="/tutorials/css/css-basics/css-color-units.html" class="tutorial-button"&gt;CSS Farben &amp; Einheiten&lt;/a&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;!-- Gruppe 2: CSS Advanced --&gt;
-    &lt;div class="tutorial-group"&gt;
+    &lt;div id="css-advanced" class="tutorial-group"&gt;
         &lt;h3 class="tutorial-group-title"&gt;CSS Advanced&lt;/h3&gt;
         &lt;div class="tutorial-group-buttons"&gt;
-            &lt;a href="/tutorials/css/css-advanced/css-positioning.html" class="tutorial-button"&gt;CSS Positioning&lt;/a&gt;
-            &lt;a href="/tutorials/css/css-advanced/css-z-index.html" class="tutorial-button"&gt;Z-Index&lt;/a&gt;
+            &lt;!-- Buttons hier... --&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 
-&lt;/div&gt;</code></pre>
+    &lt;div id="css-specials" class="tutorial-group"&gt;
+        &lt;h3 class="tutorial-group-title"&gt;CSS Specials&lt;/h3&gt;
+        &lt;div class="tutorial-group-buttons"&gt;
+            &lt;a href="/tutorials/css/css-specials/css-organization.html" class="tutorial-button"&gt;CSS Organization&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!-- Tutorial-Buttons-End --&gt;</code></pre>
+                        </div>
+
+                        <h3 id="html-elemente-erklaert">HTML-Elemente erklärt</h3>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">#tutorialButtons</code> → Haupt-Container</li>
+                                    <li><code class="inline">.tutorial-group</code> → Container pro Unterkategorie</li>
+                                    <li><code class="inline">id="css-basics"</code> → Anker-ID für Deep-Links</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">.tutorial-group-title</code> → Gruppenüberschrift</li>
+                                    <li><code class="inline">.tutorial-group-buttons</code> → Button-Container</li>
+                                    <li><code class="inline">.tutorial-button</code> → Einzelner Button</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-box notice">
+                            <strong class="box-title notice no-toc">Anker-IDs für Deep-Links
+                                <svg class="icon-ui">
+                                    <use href="#dpz-check-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>Jede Gruppe hat eine ID (z.B. <code class="inline">id="css-basics"</code>). Dadurch kann
+                                die Main Navigation direkt zu einer Gruppe verlinken: <code class="inline">/tutorials/css/#css-basics</code></p>
+                        </div>
+                    </section>
+
+                    <!-- Wie funktioniert's -->
+                    <section class="tutorials-content">
+                        <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
+                        <p>Das Script durchsucht <code class="inline">TUTORIAL_ORDER</code> nach allen Einträgen der
+                            Kategorie:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Für /tutorials/css/index.html findet das Script:
+const TUTORIAL_ORDER = {
+    'tutorials/css/css-basics': [
+        'css-einbinden.html',
+        'css-grundlagen.html',
+        'css-color-units.html'
+    ],
+    'tutorials/css/css-advanced': [
+        // ...
+    ],
+    'tutorials/css/css-specials': [
+        'css-organization.html'
+    ]
+};
+
+// Ergebnis: Drei Gruppen mit Buttons werden erstellt</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- generateTutorialButtons() -->
+                    <section class="tutorials-content">
+                        <h2 id="generatetutorialbuttons">generateTutorialButtons()</h2>
+                        <p>Diese Funktion generiert das HTML für alle Tutorial-Gruppen:</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">JavaScript</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">function generateTutorialButtons(category) {
+    const subcategories = {};
+
+    // 1. Sammle alle Unterkategorien dieser Kategorie
+    Object.keys(TUTORIAL_ORDER).forEach(key =&gt; {
+        if (key.startsWith(`tutorials/${category}/`)) {
+            const parts = key.split('/');
+            const subcategoryName = parts[2]; // z.B. "css-basics"
+
+            if (!subcategories[subcategoryName]) {
+                subcategories[subcategoryName] = [];
+            }
+
+            // 2. Hole die Tutorials dieser Unterkategorie
+            const tutorials = getOrderedTutorials(key);
+            subcategories[subcategoryName].push(...tutorials);
+        }
+    });
+
+    let html = '';
+
+    // 3. Generiere HTML für jede Gruppe
+    Object.keys(subcategories).forEach(subcategoryName =&gt; {
+        const tutorials = subcategories[subcategoryName];
+        if (tutorials.length === 0) return;
+
+        // 4. Gruppentitel mit korrekter Kapitalisierung
+        const displayName = capitalizeWithAcronyms(subcategoryName);
+
+        html += `
+    &lt;div id="${subcategoryName}" class="tutorial-group"&gt;
+        &lt;h3 class="tutorial-group-title"&gt;${displayName}&lt;/h3&gt;
+        &lt;div class="tutorial-group-buttons"&gt;`;
+
+        // 5. Button für jedes Tutorial
+        tutorials.forEach(tutorial =&gt; {
+            html += `
+            &lt;a href="${tutorial.url}" class="tutorial-button"&gt;${tutorial.title}&lt;/a&gt;`;
+        });
+
+        html += `
+        &lt;/div&gt;
+    &lt;/div&gt;`;
+    });
+
+    return html;
+}</code></pre>
                         </div>
                     </section>
 
                     <!-- Reihenfolge -->
                     <section class="tutorials-content">
-                        <h2 id="reihenfolge-der-gruppen-und-buttons">Reihenfolge der Gruppen und Buttons</h2>
-                        <p>Die Reihenfolge wird aus <code class="inline">manualOrder</code> übernommen:</p>
+                        <h2 id="reihenfolge">Reihenfolge der Gruppen und Buttons</h2>
+                        <p>Die Reihenfolge wird aus <code class="inline">TUTORIAL_ORDER</code> übernommen:</p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Gruppen-Reihenfolge:</strong> Wie sie in <code class="inline">manualOrder</code>
-                                stehen</li>
-                            <li><strong>Button-Reihenfolge:</strong> Wie die Dateien im Array sortiert sind</li>
-                            <li><strong>Button-Titel:</strong> Aus <code class="inline">customTitles</code> (falls
-                                vorhanden) oder automatisch formatiert</li>
+                            <li><strong>Gruppen-Reihenfolge:</strong> Wie die Keys in <code class="inline">TUTORIAL_ORDER</code> definiert sind</li>
+                            <li><strong>Button-Reihenfolge:</strong> Wie die Dateien im jeweiligen Array sortiert sind
+                            </li>
+                            <li><strong>Button-Titel:</strong> Aus <code class="inline">CUSTOM_TITLES</code> (falls
+                                vorhanden) oder aus der H1-Überschrift</li>
                         </ul>
                     </section>
 
                     <!-- Neues Tutorial hinzufügen -->
                     <section class="tutorials-content">
-                        <h2 id="neues-tutorial-zur-liste-hinzufuegen">Neues Tutorial zur Liste hinzufügen</h2>
-                        <ol class="grid-2col-bg">
+                        <h2 id="neues-tutorial-hinzufuegen">Neues Tutorial hinzufügen</h2>
+                        <ol class="grid-2col-bg pl-md">
                             <li>Erstelle das neue Tutorial (z.B. <code class="inline">css-grid.html</code>)</li>
                             <li>Öffne <code class="inline">generate-navigation.js</code></li>
-                            <li>Füge die Datei in <code class="inline">manualOrder</code> an der gewünschten Position
-                                ein:
-                            </li>
+                            <li>Füge die Datei in <code class="inline">TUTORIAL_ORDER</code> an der gewünschten Position
+                                ein:</li>
                         </ol>
 
                         <div class="code-block">
@@ -410,15 +491,14 @@ const manualOrder = {
                             </div>
                             <pre><code class="language-javascript">'tutorials/css/css-basics': [
     'css-einbinden.html',
-    'css-color-units.html',
-    'css-variables.html',
-    'css-grid.html',  // &lt;-- Neues Tutorial hier einfügen
-    'css-typografie.html'
+    'css-grundlagen.html',
+    'css-grid.html',  // ← Neues Tutorial
+    'css-color-units.html'
 ]</code></pre>
                         </div>
 
-                        <ol class="grid-2col-bg" start="4">
-                            <li>Optional: Custom Title in <code class="inline">customTitles</code> hinzufügen:</li>
+                        <ol class="grid-2col-bg pl-md" start="4">
+                            <li>Optional: Custom Title in <code class="inline">CUSTOM_TITLES</code> hinzufügen:</li>
                         </ol>
 
                         <div class="code-block">
@@ -431,29 +511,26 @@ const manualOrder = {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">const customTitles = {
-    'tutorials/css/css-basics/css-grid.html': 'CSS Grid Layout',
+                            <pre><code class="language-javascript">const CUSTOM_TITLES = {
+    'css-grid.html': 'CSS Grid Layout',
     // ...
 };</code></pre>
                         </div>
 
-                        <ol class="grid-2col-bg" start="5">
-                            <li>Führe <code class="inline">npm run generate</code> aus</li>
-                            <li>Das neue Tutorial erscheint automatisch in der Button-Liste auf
-                                <code class="inline">/tutorials/css/index.html</code>
-                            </li>
+                        <ol class="grid-2col-bg pl-md" start="5">
+                            <li>Führe <code class="inline">npm run build</code> aus</li>
                         </ol>
                     </section>
 
                     <!-- Neue Gruppe hinzufügen -->
                     <section class="tutorials-content">
-                        <h2 id="neue-tutorial-gruppe-hinzufuegen">Neue Tutorial-Gruppe hinzufügen</h2>
-                        <p>Um eine komplett neue Untergruppe zu erstellen (z.B. "CSS Specials"):</p>
+                        <h2 id="neue-gruppe-hinzufuegen">Neue Tutorial-Gruppe hinzufügen</h2>
+                        <p>Um eine neue Unterkategorie zu erstellen (z.B. "CSS Layouts"):</p>
 
-                        <ol class="grid-2col-bg">
-                            <li>Erstelle den Ordner: <code class="inline">/tutorials/css/css-specials/</code></li>
+                        <ol class="grid-2col-bg pl-md">
+                            <li>Erstelle den Ordner: <code class="inline">/tutorials/css/css-layouts/</code></li>
                             <li>Erstelle Tutorials in diesem Ordner</li>
-                            <li>Füge die Gruppe in <code class="inline">manualOrder</code> hinzu:</li>
+                            <li>Füge die Gruppe in <code class="inline">TUTORIAL_ORDER</code> hinzu:</li>
                         </ol>
 
                         <div class="code-block">
@@ -466,200 +543,39 @@ const manualOrder = {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-javascript">const manualOrder = {
+                            <pre><code class="language-javascript">const TUTORIAL_ORDER = {
     'tutorials/css/css-basics': [
-        'css-einbinden.html',
         // ...
     ],
     'tutorials/css/css-advanced': [
-        'css-positioning.html',
         // ...
     ],
-    'tutorials/css/css-specials': [  // &lt;-- Neue Gruppe
-        'css-custom-fonts.html',
-        'css-animations.html'
+    'tutorials/css/css-layouts': [  // ← Neue Gruppe
+        'css-flexbox.html',
+        'css-grid.html'
+    ],
+    'tutorials/css/css-specials': [
+        // ...
     ]
 };</code></pre>
                         </div>
 
-                        <ol class="grid-2col-bg" start="4">
-                            <li>Führe <code class="inline">npm run generate</code> aus</li>
-                            <li>Die neue Gruppe erscheint automatisch auf der Kategorieseite</li>
+                        <ol class="grid-2col-bg pl-md" start="4">
+                            <li>Führe <code class="inline">npm run build</code> aus</li>
                         </ol>
+
+                        <p>Die neue Gruppe erscheint automatisch auf der Kategorieseite und in der Main Navigation.</p>
                     </section>
 
-                    <!-- Gruppentitel anpassen -->
+                    <!-- Gruppentitel -->
                     <section class="tutorials-content">
-                        <h2 id="gruppentitel-anpassen">Gruppentitel anpassen</h2>
-                        <p>Gruppentitel werden automatisch aus dem Verzeichnisnamen generiert:</p>
-                        <ul class="arrow-list grid-2col-bg">
-                            <li><code class="inline">css-basics</code> → <strong>CSS Basics</strong></li>
-                            <li><code class="inline">css-advanced</code> → <strong>CSS Advanced</strong></li>
-                            <li><code class="inline">javascript-projects</code> → <strong>JavaScript Projects</strong>
-                            </li>
-                        </ul>
+                        <h2 id="gruppentitel">Gruppentitel und Akronyme</h2>
+                        <p>Gruppentitel werden mit <code class="inline">capitalizeWithAcronyms()</code> formatiert.
+                            Diese Funktion berücksichtigt bekannte Akronyme:</p>
 
-                        <p>Die Funktion <code class="inline">fileNameToTitle()</code> wandelt Bindestriche in
-                            Leerzeichen um
-                            und macht jeden Wortanfang groß.</p>
-
-                        <!-- Vollständiger Code -->
-                        <details>
-                            <summary>
-                                Vollständiger JavaScript-Code
-                            </summary>
-                            <div class="toggle-detail">
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span class="code-lang">JavaScript</span>
-                                        <button class="code-copy">
-                                            <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
-                                            </span>
-                                            <span class="copy-text">Kopieren</span>
-                                        </button>
-                                    </div>
-                                    <pre><code class="language-javascript">// ============================================================================
-// TUTORIAL-LISTEN (für Kategorieseiten)
-// ============================================================================
-
-/**
- * Sammelt alle Tutorials einer Kategorie, gruppiert nach Unterordnern
- */
-function getTutorialsByCategory(category) {
-    const tutorials = {};
-
-    // Durchsuche manualOrder nach der Kategorie
-    for (const [folder, files] of Object.entries(manualOrder)) {
-        if (folder.includes(category)) {
-            const subFolder = folder.split('/').pop(); // z.B. "html-basics"
-
-            tutorials[subFolder] = files.map(file =&gt; {
-                const fullPath = `${folder}/${file}`;
-                return {
-                    title: customTitles[fullPath] || fileNameToTitle(file),
-                    url: fullPath,
-                    fileName: file
-                };
-            });
-        }
-    }
-
-    return tutorials;
-}
-
-/**
- * Generiert HTML für Tutorial-Buttons
- */
-function generateTutorialButtonsHTML(tutorials, currentFile) {
-    let html = '';
-
-    // Sortiere die Gruppen nach der Reihenfolge in manualOrder (nicht alphabetisch!)
-    const groupOrder = Object.keys(manualOrder)
-        .filter(folder =&gt; Object.keys(tutorials).some(group =&gt; folder.endsWith(group)))
-        .map(folder =&gt; folder.split('/').pop());
-
-    const sortedGroups = Object.keys(tutorials).sort((a, b) =&gt; {
-        const indexA = groupOrder.indexOf(a);
-        const indexB = groupOrder.indexOf(b);
-        return indexA - indexB;
-    });
-
-    sortedGroups.forEach(group =&gt; {
-        // Gruppe-Überschrift
-        const groupTitle = fileNameToTitle(group);
-        html += `\n                    &lt;div class="tutorial-group"&gt;\n`;
-        html += `                        &lt;h3 class="tutorial-group-title"&gt;${groupTitle}&lt;/h3&gt;\n`;
-        html += `                        &lt;div class="tutorial-group-buttons"&gt;\n`;
-
-        // Buttons für diese Gruppe
-        tutorials[group].forEach(tutorial =&gt; {
-            // Verwende absolute Pfade ab Root (statt relative)
-            const absolutePath = '/' + tutorial.url;
-            html += `                            &lt;a href="${absolutePath}" class="tutorial-button"&gt;${tutorial.title}&lt;/a&gt;\n`;
-        });
-
-        html += `                        &lt;/div&gt;\n`;
-        html += `                    &lt;/div&gt;`;
-    });
-
-    return html;
-}
-
-/**
- * Aktualisiert Tutorial-Listen auf Kategorieseiten
- */
-function updateTutorialLists(files) {
-    let updatedCount = 0;
-
-    files.forEach(file =&gt; {
-        const filePath = path.join(BASE_DIR, file);
-        let content = fs.readFileSync(filePath, 'utf8');
-
-        // Suche nach dem öffnenden Tag mit data-category
-        const startTagRegex = /&lt;div\s+id=["']tutorialButtons["']\s+class=["']tutorial-buttons["']\s+data-category=["']([^"']+)["'][^&gt;]*&gt;/;
-        const startMatch = content.match(startTagRegex);
-
-        if (startMatch) {
-            const category = startMatch[1]; // z.B. "html", "css", etc.
-            const tutorials = getTutorialsByCategory(category);
-
-            if (Object.keys(tutorials).length &gt; 0) {
-                const buttonsHTML = generateTutorialButtonsHTML(tutorials, file);
-
-                // Finde die Position des öffnenden und schließenden Tags
-                const startIndex = content.indexOf(startMatch[0]) + startMatch[0].length;
-                const endTag = '&lt;/div&gt;';
-
-                // Finde das passende schließende div (zähle opening/closing tags)
-                let depth = 1;
-                let endIndex = startIndex;
-
-                while (depth &gt; 0 &amp;&amp; endIndex &lt; content.length) {
-                    const nextOpen = content.indexOf('&lt;div', endIndex);
-                    const nextClose = content.indexOf('&lt;/div&gt;', endIndex);
-
-                    if (nextClose === -1) break;
-
-                    if (nextOpen !== -1 &amp;&amp; nextOpen &lt; nextClose) {
-                        depth++;
-                        endIndex = nextOpen + 4;
-                    } else {
-                        depth--;
-                        if (depth === 0) {
-                            endIndex = nextClose;
-                        } else {
-                            endIndex = nextClose + 6;
-                        }
-                    }
-                }
-
-                // Ersetze nur den Inhalt zwischen den Tags
-                const before = content.substring(0, startIndex);
-                const after = content.substring(endIndex);
-
-                content = before + buttonsHTML + '\n                ' + after;
-
-                fs.writeFileSync(filePath, content, 'utf8');
-                updatedCount++;
-            }
-        }
-    });
-
-    console.log(`✅ Tutorial-Listen aktualisiert in ${updatedCount} Dateien`);
-}</code></pre>
-                                </div>
-                            </div>
-                        </details>
-                    </section>
-
-                    <!-- npm run generate -->
-                    <section class="tutorials-content">
-                        <h2 id="ausfuehren">Ausführen</h2>
-                        <p>Nach allen Änderungen ausführen:</p>
                         <div class="code-block">
                             <div class="code-header">
-                                <span class="code-lang">Plain Text</span>
+                                <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
                                         <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
@@ -667,9 +583,67 @@ function updateTutorialLists(files) {
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-text">npm run generate</code></pre>
+                            <pre><code class="language-javascript">const ACRONYMS = {
+    'html': 'HTML',
+    'css': 'CSS',
+    'php': 'PHP',
+    'js': 'JS',
+    'javascript': 'JavaScript',
+    'seo': 'SEO',
+    'ftp': 'FTP',
+    'devpaniczone': 'DevPanicZone'
+};
+
+function capitalizeWithAcronyms(text) {
+    return text.split('-')
+        .map(word =&gt; {
+            const lower = word.toLowerCase();
+            if (ACRONYMS[lower]) {
+                return ACRONYMS[lower];
+            }
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(' ');
+}</code></pre>
+                        </div>
+
+                        <p><strong>Beispiele:</strong></p>
+                        <div class="grid-2col grid-2col-bg">
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">css-basics</code> → <strong>CSS Basics</strong></li>
+                                    <li><code class="inline">html-advanced</code> → <strong>HTML Advanced</strong></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="arrow-list">
+                                    <li><code class="inline">javascript-projects</code> → <strong>JavaScript
+                                            Projects</strong></li>
+                                    <li><code class="inline">seo-optimization</code> → <strong>SEO Optimization</strong>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
+
+                    <!-- Ausführen -->
+                    <section class="tutorials-content">
+                        <h2 id="ausfuehren">Ausführen</h2>
+                        <p>Nach Änderungen an <code class="inline">TUTORIAL_ORDER</code> oder <code class="inline">CUSTOM_TITLES</code>:</p>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Bash</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-bash">npm run build</code></pre>
+                        </div>
+                    </section>
+
 
                     <!-- Prev/Next Navigation -->
 
@@ -728,6 +702,8 @@ function updateTutorialLists(files) {
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
+
+
 
     
 
