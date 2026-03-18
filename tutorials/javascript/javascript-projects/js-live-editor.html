@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="index, follow">
+        <meta name="description"
+            content="Live Code Editor: Schreibe HTML, CSS und JavaScript und sieh das Ergebnis sofort. Interaktives Tool für Webentwicklung auf DevPanicZone.">
+        <meta name="keywords"
+            content="Live Code Editor, HTML Editor, CSS Editor, JavaScript Editor, Online Editor, Webentwicklung Tool, DevPanicZone">
+        <meta name="author" content="DevPanicZone">
+        <title>Live Code Editor | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/tutorials.css">
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
+        <link rel="stylesheet" href="/assets/css/js-live-editor.css">
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <!-- Header-Start -->
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline"> Cheatsheets.</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- Header-End -->
+
+        <main class="site-main">
+
+            <!-- Hero -->
+            <section class="hero tutorial-hero">
+                <div class="container">
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"></nav>
+                    <h1 class="hero-title">Live Code Editor</h1>
+                    <p class="hero-subtitle">Schreibe HTML, CSS und JavaScript – und sieh das Ergebnis sofort.</p>
+                </div>
+            </section>
+
+            <!-- Floating Button Links (Sidebar) -->
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
+                <span class="toggle-icon">☰</span>
+            </button>
+
+            <!-- Floating Button Rechts (Tutorial Navigation) -->
+            <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
+                <span class="toggle-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                </span>
+            </button>
+
+            <!-- Sidebar Overlay für Mobile -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Tutorial Layout -->
+            <div class="tutorial-layout">
+
+                <!-- Linke Sidebar (Floating Panel) -->
+                <aside class="tutorial-sidebar" id="tutorialSidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+                    <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
+                        <ul class="toc-list">
+                            <!-- Sidebar-Anchor-Start -->
+                            <li class="toc-level-1"><a href="#editor">Editor</a></li>
+                            <li class="toc-level-1"><a href="#anleitung">Anleitung</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
+                            <!-- Sidebar-Anchor-End -->
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Rechte Sidebar (Floating Panel) -->
+                <aside class="tutorial-related">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title no-toc">Tutorials</h3>
+                        <button class="sidebar-close" id="tutorialNavClose" aria-label="Schließen">
+                            <span>×</span>
+                        </button>
+                    </div>
+                    <div class="sidebar-nav">
+                        <ul class="sidebar-nav-list">
+                            <li class="sidebar-group-title">JavaScript Basics</li>
+                            <li><a href="/tutorials/javascript/javascript-basics/was-ist-javascript.html">Was ist
+                                    JavaScript eigentlich?</a></li>
+                            <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a>
+                            </li>
+                            <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript
+                                    Sicherheit</a></li>
+                            <li><a href="/tutorials/javascript/javascript-basics/js-variables.html">JavaScript
+                                    Variables</a></li>
+                            <li class="sidebar-group-title">JavaScript Projects</li>
+                            <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript:
+                                    HTML-Code Escaper</a></li>
+                            <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity
+                                    Encoder</a></li>
+                            <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit
+                                    JavaScript</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Wrapper .container -->
+                <div class="container">
+
+                    <!-- Editor Section -->
+                    <section class="tutorials-content" id="editor">
+                        <h2>Editor</h2>
+
+                        <!-- Panel-Toggles: welche Sprachen aktiv? -->
+                        <div class="editor-toggles" role="group" aria-label="Aktive Panels">
+                            <span class="editor-toggles-label">Panels:</span>
+                            <button class="editor-toggle-btn active" id="toggleHtml" aria-pressed="true"
+                                data-panel="html">HTML</button>
+                            <button class="editor-toggle-btn active" id="toggleCss" aria-pressed="true"
+                                data-panel="css">CSS</button>
+                            <button class="editor-toggle-btn" id="toggleJs" aria-pressed="false"
+                                data-panel="js">JS</button>
+                        </div>
+
+                        <!-- Editor-Panels + Preview -->
+                        <div class="editor-layout" id="editorLayout">
+
+                            <!-- Editor-Panels (links) -->
+                            <div class="editor-panels" id="editorPanels">
+
+                                <!-- HTML Panel -->
+                                <div class="editor-panel" id="panelHtml">
+                                    <div class="panel-header">
+                                        <span class="panel-lang">HTML</span>
+                                    </div>
+                                    <textarea class="panel-textarea" id="inputHtml" aria-label="HTML eingeben"
+                                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"
+                                        placeholder="<!-- HTML hier eingeben -->">&lt;h1&gt;Hello, World!&lt;/h1&gt;
+                    &lt;p&gt;Schreib deinen HTML-Code hier.&lt;/p&gt;</textarea>
+                                </div>
+
+                                <!-- CSS Panel -->
+                                <div class="editor-panel" id="panelCss">
+                                    <div class="panel-header">
+                                        <span class="panel-lang">CSS</span>
+                                    </div>
+                                    <textarea class="panel-textarea" id="inputCss" aria-label="CSS eingeben"
+                                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"
+                                        placeholder="/* CSS hier eingeben */">body {
+                      font-family: sans-serif;
+                      padding: 1rem;
+                    }
+                     
+                    h1 {
+                      color: #518fc9;
+                    }</textarea>
+                                </div>
+
+                                <!-- JS Panel -->
+                                <div class="editor-panel hidden" id="panelJs">
+                                    <div class="panel-header">
+                                        <span class="panel-lang">JavaScript</span>
+                                    </div>
+                                    <textarea class="panel-textarea" id="inputJs" aria-label="JavaScript eingeben"
+                                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"
+                                        placeholder="// JavaScript hier eingeben"></textarea>
+                                </div>
+
+                            </div><!-- /editor-panels -->
+
+                            <!-- Preview (rechts / unten auf Mobile) -->
+                            <div class="editor-preview" id="editorPreview">
+                                <div class="preview-header">
+                                    <span class="preview-label">Preview</span>
+                                    <button class="btn btn-secondary btn-sm" id="btnRun" aria-label="Code ausführen">
+                                        &#9654; Run
+                                    </button>
+                                </div>
+                                <iframe id="previewFrame" title="Code Preview" sandbox="allow-scripts"
+                                    aria-label="Vorschau des eingegebenen Codes"></iframe>
+                            </div>
+
+                        </div><!-- /editor-layout -->
+
+                        <div class="editor-fullscreen-bar">
+                            <a href="/tutorials/javascript/javascript-projects/js-live-editor.html?fullscreen=true"
+                                target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+                                &#60;/&#62; Editor in neuem Tab öffnen
+                            </a>
+                        </div>
+
+                    </section>
+
+                    <!-- Anleitung Section -->
+                    <section class="tutorials-content" id="anleitung">
+                        <h2 id="anleitung">Anleitung</h2>
+                        <p>Der Live Code Editor erlaubt es dir, HTML, CSS und JavaScript direkt im Browser zu testen,
+                            ohne eine eigene Datei anlegen zu müssen.</p>
+                        <ul class="arrow-list">
+                            <li>Wähle mit den <strong>Panel-Toggles</strong> oben aus, welche Sprachen du verwenden
+                                möchtest – mindestens ein Panel bleibt immer aktiv.</li>
+                            <li>Schreibe deinen Code in die jeweiligen Textfelder.</li>
+                            <li>Klicke auf <strong>▶ Run</strong>, um den Code auszuführen.</li>
+                            <li>Der Code läuft in einer isolierten Umgebung (<abbr
+                                    title="Das sandbox-Attribut schränkt ein, was der Code im iframe darf">sandboxed
+                                    iframe</abbr>) – er hat keinen Zugriff auf die restliche Seite.</li>
+                        </ul>
+                    </section>
+
+                    <!-- Latest Tutorials -->
+                    <!-- Latest-Tutorials-Start -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="javascript">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
+
+                    <!-- Prev/Next Navigation -->
+                    <section class="tutorials-content">
+                        <nav class="tutorial-nav"></nav>
+                    </section>
+
+                </div><!-- /container -->
+
+            </div><!-- /tutorial-layout -->
+
+        </main>
+
+        <!-- Footer-Start -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <!-- <script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
+<script src="/assets/js/scroll-spy.js" defer></script>
+<script src="/assets/js/latest-tutorials.js" defer></script> -->
+        <!-- Footer-End -->
+
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/sidebar.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <script src="/assets/vendor/prism/prism.js" defer></script>
+        <script src="/assets/js/js-live-editor.js" defer></script>
+
+    </body>
+
+</html>
