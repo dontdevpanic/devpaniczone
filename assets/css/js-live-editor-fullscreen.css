@@ -1,0 +1,150 @@
+/* ===============================================================================
+   LIVE-EDITOR-FULLSCREEN.CSS - DevPanicZone
+   ===============================================================================
+   Standalone Fullscreen-Layout für den Live Code Editor.
+   Kein DPZ-Header/Footer – nur Editor + Preview über 100vh.
+   =============================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+}
+
+/* ---- Layout: Panels + Toolbar + Preview als Spalte über 100vh ---- */
+
+.fs-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* ---- Panels (oben, feste Höhe) ---- */
+
+.fs-panels {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    flex: 0 0 40%;
+    min-height: 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.fs-panel {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+}
+
+.fs-panel:last-child {
+    border-right: none;
+}
+
+.fs-panel-header {
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 0.75rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.fs-panel-lang {
+    font-family: var(--font-code);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.fs-textarea {
+    flex: 1;
+    width: 100%;
+    font-family: var(--font-code);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border: none;
+    resize: none;
+    outline: none;
+    tab-size: 2;
+}
+
+.fs-textarea:focus {
+    background-color: var(--bg-secondary);
+}
+
+.fs-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* ---- Toolbar (Run-Button + Branding) ---- */
+
+.fs-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 1rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.fs-brand {
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.fs-btn-run {
+    font-family: var(--font-code);
+    font-size: 0.875rem;
+    padding: 0.3rem 1rem;
+    background-color: var(--accent-blue);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+}
+
+.fs-btn-run:hover {
+    background-color: var(--accent-blue-hover);
+}
+
+.fs-btn-run:active {
+    transform: scale(0.97);
+}
+
+/* ---- Preview (füllt den Rest) ---- */
+
+.fs-preview {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+#fsPreviewFrame {
+    flex: 1;
+    width: 100%;
+    border: none;
+    display: block;
+}

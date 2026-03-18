@@ -239,7 +239,7 @@ const TUTORIAL_ORDER = {
         'js-code-escaper.html',
         'js-entity-encoder.html',
         'js-to-do-app.html',
-        'js-live-editor'
+        'js-live-editor.html'
         // 'js-modal.html'
     ],
     'tutorials/php/php-basics': [
@@ -315,6 +315,7 @@ const CUSTOM_TITLES = {
     'css-color-units.html': 'CSS Farben & Einheiten',
     'css-typografie.html': 'CSS Typografie',
     'js-code-escaper.html': 'JavaScript: HTML-Code Escaper',
+    'js-live-editor.html': 'Live Code Editor',
     'devpaniczone-tutorial-template.html': 'Tutorial Template',
     'header-test.html': 'Header Test',
     'devpaniczone-automation.html': 'Automatisches Generieren der Navigationen',

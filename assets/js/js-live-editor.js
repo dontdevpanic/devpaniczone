@@ -6,36 +6,42 @@
    - Panel-Toggles: HTML / CSS / JS ein- und ausblenden
    - Run-Button: Code aus allen aktiven Panels zusammenführen
      und sicher im sandboxed iframe ausführen
+   - Fullscreen-Button: speichert aktuellen Code in localStorage,
+     öffnet live-editor-fullscreen.html im neuen Tab
    =============================================================================== */
 
 (function () {
 
     'use strict';
 
+    /* ---- Storage Key ---- */
+    /* Einheitlicher Key für localStorage – muss in live-editor-fullscreen.js gleich sein */
+    var STORAGE_KEY = 'dpz_live_editor';
+
     /* ---- Elemente ---- */
-    const btnRun = document.getElementById('btnRun');
-    const previewFrame = document.getElementById('previewFrame');
-    const editorLayout = document.getElementById('editorLayout');
+    var btnRun = document.getElementById('btnRun');
+    var previewFrame = document.getElementById('previewFrame');
 
-    const inputHtml = document.getElementById('inputHtml');
-    const inputCss = document.getElementById('inputCss');
-    const inputJs = document.getElementById('inputJs');
+    var inputHtml = document.getElementById('inputHtml');
+    var inputCss = document.getElementById('inputCss');
+    var inputJs = document.getElementById('inputJs');
 
-    const panelHtml = document.getElementById('panelHtml');
-    const panelCss = document.getElementById('panelCss');
-    const panelJs = document.getElementById('panelJs');
+    var panelHtml = document.getElementById('panelHtml');
+    var panelCss = document.getElementById('panelCss');
+    var panelJs = document.getElementById('panelJs');
 
-    const toggleBtns = document.querySelectorAll('.editor-toggle-btn');
+    var toggleBtns = document.querySelectorAll('.editor-toggle-btn');
+    var btnFullscreen = document.getElementById('btnFullscreen');
 
     /* ---- Panel-Toggles ---- */
 
     toggleBtns.forEach(function (btn) {
         btn.addEventListener('click', function () {
-            const panel = btn.dataset.panel;
-            const isActive = btn.classList.contains('active');
+            var panel = btn.dataset.panel;
+            var isActive = btn.classList.contains('active');
 
             /* Mindestens ein Panel muss aktiv bleiben */
-            const activeCount = document.querySelectorAll('.editor-toggle-btn.active').length;
+            var activeCount = document.querySelectorAll('.editor-toggle-btn.active').length;
             if (isActive && activeCount <= 1) {
                 return;
             }
@@ -50,18 +56,30 @@
         });
     });
 
+    /* ---- Slash-Fix: Browser-Schnellsuche unterdrücken ---- */
+    /* Firefox und einige andere Browser fangen '/' als Shortcut ab.
+       stopPropagation verhindert das, ohne das Zeichen zu blockieren. */
+
+    [inputHtml, inputCss, inputJs].forEach(function (textarea) {
+        textarea.addEventListener('keydown', function (e) {
+            if (e.key === '/') {
+                e.stopPropagation();
+            }
+        });
+    });
+
     /* ---- Run-Button: Code ausführen ---- */
 
     btnRun.addEventListener('click', runCode);
 
     function runCode() {
 
-        const html = inputHtml.value;
-        const css = inputCss.value;
-        const js = inputJs.value;
+        var html = inputHtml.value;
+        var css = inputCss.value;
+        var js = inputJs.value;
 
         /* Vollständiges HTML-Dokument für srcdoc zusammenbauen */
-        const doc = [
+        var doc = [
             '<!DOCTYPE html>',
             '<html lang="de">',
             '<head>',
@@ -81,68 +99,30 @@
 
         /* srcdoc setzt den Inhalt des iframe neu – kein src, kein externes Request */
         previewFrame.srcdoc = doc;
-
-        /* Preview-Höhe dynamisch an Editor-Panels anpassen */
-        syncPreviewHeight();
     }
 
-    /* ---- Preview-Höhe synchronisieren ---- */
+    /* ---- Fullscreen-Button: Code in localStorage speichern, neuen Tab öffnen ---- */
 
-    function syncPreviewHeight() {
-        const panels = document.getElementById('editorPanels');
-        /* Mindesthöhe 300px, sonst Höhe der Panels-Spalte */
-        const targetHeight = Math.max(panels.offsetHeight, 300);
-        previewFrame.style.minHeight = targetHeight + 'px';
-    }
+    if (btnFullscreen) {
+        btnFullscreen.addEventListener('click', function () {
 
-    /* Höhe neu berechnen wenn Textareas manuell resized werden */
-    window.addEventListener('resize', syncPreviewHeight);
+            /* Aktuellen Stand aller Panels speichern */
+            var data = {
+                html: inputHtml.value,
+                css: inputCss.value,
+                js: inputJs.value
+            };
 
-    /* ---- Fullscreen-Modus ---- */
-    /* Wird aktiviert wenn URL den Parameter ?fullscreen=true enthält.
-       Blendet Header, Footer, Hero, Sidebar-Buttons und Anleitung aus.
-       Der Editor bekommt die volle Viewport-Höhe. */
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (e) {
+                /* localStorage nicht verfügbar – trotzdem öffnen, Textareas bleiben leer */
+                console.warn('DPZ Live Editor: localStorage nicht verfügbar.', e);
+            }
 
-    function initFullscreen() {
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('fullscreen') !== 'true') {
-            return;
-        }
-
-        /* Elemente ausblenden */
-        const hide = [
-            '.site-header',
-            '.site-footer',
-            '.hero',
-            '.sidebar-toggle',
-            '.tutorial-nav-toggle',
-            '#scrollTopBtn',
-            '#anleitung',
-            '.categories',
-            '.tutorial-nav'
-        ];
-
-        hide.forEach(function (selector) {
-            const el = document.querySelector(selector);
-            if (el) { el.style.display = 'none'; }
+            window.open('/tutorials/javascript/javascript-projects/js-live-editor-fullscreen.html', '_blank');
         });
-
-        /* Editor-Layout auf volle Viewport-Höhe setzen */
-        const layout = document.getElementById('editorLayout');
-        if (layout) {
-            layout.style.height = '100vh';
-        }
-
-        /* iframe Höhe ebenfalls anpassen */
-        if (previewFrame) {
-            previewFrame.style.minHeight = 'calc(100vh - 40px)';
-        }
-
-        /* body: kein Scrollen im Fullscreen */
-        document.body.style.overflow = 'hidden';
     }
-
-    initFullscreen();
 
     /* ---- Beim Laden: initiale Preview anzeigen ---- */
     runCode();
