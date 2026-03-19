@@ -22,6 +22,11 @@ body {
     font-family: var(--font-body);
 }
 
+body {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
 /* ---- Layout: Panels + Toolbar + Preview als Spalte über 100vh ---- */
 
 .fs-layout {
@@ -47,6 +52,10 @@ body {
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--border-color);
+}
+
+.fs-panel.hidden {
+    display: none;
 }
 
 .fs-panel:last-child {
@@ -112,6 +121,56 @@ body {
     color: var(--text-muted);
 }
 
+.fs-toggle-btn {
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.85rem;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.fs-toggle-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--text-primary);
+}
+
+.fs-toggle-btn.active {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+}
+
+.fs-toolbar-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.fs-btn-clear {
+    font-family: var(--font-code);
+    font-size: 0.875rem;
+    padding: 0.3rem 1rem;
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.fs-btn-clear:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+.fs-btn-clear:active {
+    transform: scale(0.97);
+}
+
 .fs-btn-run {
     font-family: var(--font-code);
     font-size: 0.875rem;
@@ -139,7 +198,6 @@ body {
     min-height: 0;
     display: flex;
     flex-direction: column;
-    background-color: white;
 }
 
 #fsPreviewFrame {
