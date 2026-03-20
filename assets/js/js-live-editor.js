@@ -14,6 +14,9 @@
 
     'use strict';
 
+    /* ---- Abbruch wenn Editor-Elemente nicht im DOM ---- */
+    if (!document.getElementById('btnFullscreen')) { return; }
+
     /* ---- Storage Key ---- */
     /* Einheitlicher Key für localStorage – muss in live-editor-fullscreen.js gleich sein */
     var STORAGE_KEY = 'dpz_live_editor';
@@ -61,11 +64,18 @@
        stopPropagation verhindert das, ohne das Zeichen zu blockieren. */
 
     [inputHtml, inputCss, inputJs].forEach(function (textarea) {
+        if (!textarea) { return; }
         textarea.addEventListener('keydown', function (e) {
             if (e.key === '/') {
                 e.stopPropagation();
             }
         });
+    });
+
+    /* ---- Live-Preview: bei jeder Eingabe automatisch ausführen ---- */
+    [inputHtml, inputCss, inputJs].forEach(function (textarea) {
+        if (!textarea) { return; }
+        textarea.addEventListener('input', runCode);
     });
 
     /* ---- Run-Button: Code ausführen ---- */

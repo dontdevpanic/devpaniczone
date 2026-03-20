@@ -145,6 +145,12 @@
         });
     });
 
+    /* ---- Live-Preview: bei jeder Eingabe automatisch ausführen ---- */
+    [inputHtml, inputCss, inputJs].forEach(function (textarea) {
+        if (!textarea) { return; }
+        textarea.addEventListener('input', runCode);
+    });
+
     /* ---- Event Listener ---- */
     btnRun.addEventListener('click', runCode);
     btnClear.addEventListener('click', clearEditor);
@@ -156,4 +162,22 @@
     }
     runCode();
 
+    var btnNewTab = document.getElementById('fsBtnNewTab');
+    if (btnNewTab) {
+        btnNewTab.addEventListener('click', function () {
+            var data = {
+                html: inputHtml.value,
+                css: inputCss.value,
+                js: inputJs.value
+            };
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (e) {
+                console.warn('DPZ Live Editor: localStorage nicht verfügbar.', e);
+            }
+            /* window.open nicht nötig – target="_blank" übernimmt das */
+        });
+    }
+
 })();
+
