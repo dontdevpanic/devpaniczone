@@ -5,7 +5,7 @@
   "scripts": {
     "generate-nav": "NODE_OPTIONS='--max-old-space-size=8192' node scripts/generate-navigation.js",
     "generate-search": "node scripts/generate-search-index.js",
-    "build": "npm run generate-nav && npm run generate-search",
+    "build": "npm run generate-nav && npm run generate-search && npx prettier --write \"tutorials/**/*.html\" \"*.html\"",
     "watch": "nodemon scripts/generate-navigation.js"
   },
   "keywords": [
@@ -19,6 +19,7 @@
     "jsdom": "^23.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.0"
+    "nodemon": "^3.0.0",
+    "prettier": "^3.0.0"
   }
 }

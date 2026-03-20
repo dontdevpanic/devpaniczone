@@ -703,7 +703,9 @@ function getAllTutorialsFlat(category) {
 // HILFSFUNKTION: Boolean-Attribute bereinigen
 // ============================================
 // JSDOM serialisiert Boolean-Attribute im XHTML-Style (defer="")
-// Diese Funktion bereinigt sie zu HTML5-Standard (defer)
+// Diese Funktion wird nicht mehr für addIdsToHeadingsAndGenerateSidebar benötigt,
+// da wir dort kein dom.serialize() mehr verwenden.
+// Sie bleibt hier für eventuelle zukünftige Verwendung erhalten.
 function cleanBooleanAttributes(html) {
     return html.replace(
         /(\s(?:defer|async|hidden|checked|disabled|selected|readonly|required|multiple|novalidate|formnovalidate|autofocus|autoplay|controls|loop|muted))=""/g,
@@ -726,8 +728,11 @@ function updateHeader(html) {
         return html;
     }
 
-    const before = html.substring(0, startIndex + headerStartMarker.length);
-    const after = html.substring(endIndex);
+    // Alles VOR dem Start-Marker, dann bis zur letzten Zeilenschaltung trimmen
+    // so dass kein Whitespace-Müll vor dem Header hängt
+    const before = html.substring(0, startIndex + headerStartMarker.length).trimEnd();
+    // Alles NACH dem End-Marker, führende Leerzeichen/Zeilenumbrüche entfernen
+    const after = html.substring(endIndex).trimStart();
 
     return before + '\n' + HEADER_TEMPLATE + '\n' + after;
 }
@@ -743,8 +748,11 @@ function updateFooter(html) {
         return html;
     }
 
-    const before = html.substring(0, startIndex + footerStartMarker.length);
-    const after = html.substring(endIndex);
+    // Alles VOR dem Start-Marker, dann bis zur letzten Zeilenschaltung trimmen
+    // so dass kein Whitespace-Müll vor dem Footer hängt
+    const before = html.substring(0, startIndex + footerStartMarker.length).trimEnd();
+    // Alles NACH dem End-Marker, führende Leerzeichen/Zeilenumbrüche entfernen
+    const after = html.substring(endIndex).trimStart();
 
     return before + '\n' + FOOTER_TEMPLATE + '\n' + after;
 }
@@ -1034,6 +1042,14 @@ function generatePrevNextNav(filePath) {
     return navHtml;
 }
 
+// ============================================
+// GEÄNDERT in v2.2 (Bugfix Formatierung):
+// Verwendet kein dom.serialize() mehr, um die originale
+// HTML-Formatierung des Dokuments zu erhalten.
+// JSDOM wird nur noch zum LESEN der Headings genutzt.
+// Die ID-Attribute werden direkt per String-Replace ins
+// Original-HTML eingefügt.
+// ============================================
 function addIdsToHeadingsAndGenerateSidebar(html, filename) {
     const dom = new JSDOM(html);
     const doc = dom.window.document;
@@ -1041,11 +1057,14 @@ function addIdsToHeadingsAndGenerateSidebar(html, filename) {
 
     const anchors = [];
     const usedIds = new Set();
+    // Sammle nur die nötigen Änderungen (Headings ohne ID)
+    const idChanges = [];
 
     headings.forEach(heading => {
         if (heading.classList.contains('no-toc')) return;
 
         let id = heading.id;
+        let wasGenerated = false;
 
         // ID generieren wenn keine vorhanden
         if (!id) {
@@ -1064,13 +1083,21 @@ function addIdsToHeadingsAndGenerateSidebar(html, filename) {
                 finalId = `${id}-${counter}`;
                 counter++;
             }
-
-            // ID ins Heading einfügen!
-            heading.id = finalId;
             id = finalId;
+            wasGenerated = true;
         }
 
         usedIds.add(id);
+
+        // Merke welche Headings eine ID brauchen (nur neu generierte)
+        if (wasGenerated) {
+            idChanges.push({
+                // outerHTML aus JSDOM – wird als Suchbegriff im Original-HTML genutzt
+                originalOuterHTML: heading.outerHTML,
+                id: id,
+                tagName: heading.tagName.toLowerCase()
+            });
+        }
 
         const level = heading.tagName === 'H2' ? 'toc-level-1' : 'toc-level-2';
 
@@ -1087,8 +1114,28 @@ function addIdsToHeadingsAndGenerateSidebar(html, filename) {
         anchors.push(`<li class="${level}"><a href="#${id}">${displayTitle}</a></li>`);
     });
 
+    // IDs direkt ins Original-HTML einfügen – KEIN dom.serialize()!
+    // So bleibt die gesamte Formatierung des Dokuments erhalten.
+    idChanges.forEach(change => {
+        // Escape den outerHTML-String für die Verwendung in einem Regex
+        const escapedOuter = change.originalOuterHTML
+            .replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+        // Ersetze das erste Vorkommen des Tag-Strings im Original-HTML
+        // und füge das id-Attribut direkt nach dem öffnenden Tag-Namen ein
+        html = html.replace(
+            new RegExp(escapedOuter),
+            match => match.replace(
+                new RegExp(`^<${change.tagName}`),
+                `<${change.tagName} id="${change.id}"`
+            )
+        );
+    });
+
+    // Gibt das (weitgehend) unveränderte Original-HTML zurück,
+    // nur mit den neu eingefügten id-Attributen
     return {
-        html: cleanBooleanAttributes(dom.serialize()),
+        html: html,
         anchors: anchors.join('\n                    ')
     };
 }
