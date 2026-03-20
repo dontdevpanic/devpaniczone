@@ -1,9 +1,14 @@
-<!DOCTYPE html><html lang="de"><head>
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Wie du Lucide Icons als SVG Sprite lokal einbindest - schlank, DSGVO-konform und ohne externe Abhängigkeiten. Vergleich mit Bootstrap Icons und Font Awesome.">
-        <meta name="keywords" content="Lucide Icons, SVG Sprite, Icons einbinden, Bootstrap Icons Alternative, Font Awesome Alternative, DSGVO konform, self-hosted icons, SVG Icons Tutorial">
+        <meta name="description"
+            content="Wie du Lucide Icons als SVG Sprite lokal einbindest - schlank, DSGVO-konform und ohne externe Abhängigkeiten. Vergleich mit Bootstrap Icons und Font Awesome.">
+        <meta name="keywords"
+            content="Lucide Icons, SVG Sprite, Icons einbinden, Bootstrap Icons Alternative, Font Awesome Alternative, DSGVO konform, self-hosted icons, SVG Icons Tutorial">
         <meta name="author" content="DevPanicZone">
         <title>Lucide Icons - Schlanke SVG Icons lokal einbinden | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -16,149 +21,151 @@
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline"> Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
 
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/css/" class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Lucide Icons - Schlanke SVG Icons lokal einbinden</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
+                            class="breadcrumb-separator">›</span><a href="/tutorials/css/"
+                            class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span
+                            class="breadcrumb-current">Lucide Icons - Schlanke SVG Icons lokal einbinden</span></nav>
                     <h1 class="hero-title">Lucide Icons - Schlanke SVG Icons lokal einbinden</h1>
                     <p class="hero-subtitle">Warum Lucide eine gute Wahl ist und wie du Icons als SVG Sprite
                         DSGVO-konform nutzt.</p>
@@ -166,7 +173,8 @@
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
                 <span class="toggle-icon">☰</span>
             </button>
 
@@ -186,7 +194,7 @@
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar">
                     <div class="sidebar-header">
-                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <h2 class="sidebar-title no-toc">Auf dieser Seite</h2>
                         <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
                             <span>×</span>
                         </button>
@@ -195,28 +203,32 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#warum-lucide">Warum Lucide Icons?</a></li>
-                    <li class="toc-level-2"><a href="#groessenvergleich">Größenvergleich (Self-Hosted)</a></li>
-                    <li class="toc-level-2"><a href="#vorteile-lucide">Vorteile von Lucide</a></li>
-                    <li class="toc-level-1"><a href="#was-ist-svg-sprite">Was ist ein SVG Sprite?</a></li>
-                    <li class="toc-level-2"><a href="#sprite-aufbau">Aufbau eines Sprites</a></li>
-                    <li class="toc-level-2"><a href="#icon-abrufen">Icons aus dem Sprite abrufen</a></li>
-                    <li class="toc-level-2"><a href="#sprite-vs-andere">Funktioniert das auch mit Bootstrap/Font Awesome?</a></li>
-                    <li class="toc-level-1"><a href="#lucide-einbinden">Lucide Icons einbinden</a></li>
-                    <li class="toc-level-2"><a href="#methode-1-javascript">Methode 1: Per JavaScript laden (empfohlen)</a></li>
-                    <li class="toc-level-2"><a href="#methode-2-inline">Methode 2: Direkt im HTML</a></li>
-                    <li class="toc-level-2"><a href="#methode-3-include">Methode 3: Server-Side Include (PHP)</a></li>
-                    <li class="toc-level-1"><a href="#sprite-erstellen">Die Sprite-Datei erstellen</a></li>
-                    <li class="toc-level-2"><a href="#icons-erweitern">Weitere Icons hinzufügen</a></li>
-                    <li class="toc-level-1"><a href="#icons-verwenden">Icons verwenden</a></li>
-                    <li class="toc-level-2"><a href="#basis-syntax">Basis-Syntax</a></li>
-                    <li class="toc-level-2"><a href="#farben-aendern">Farben ändern</a></li>
-                    <li class="toc-level-2"><a href="#groesse-aendern">Größe ändern</a></li>
-                    <li class="toc-level-1"><a href="#accessibility">Barrierefreiheit (Accessibility)</a></li>
-                    <li class="toc-level-1"><a href="#praxisbeispiel">Praxisbeispiel: Info-Box mit Lucide</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#warum-lucide">Warum Lucide Icons?</a></li>
+                            <li class="toc-level-2"><a href="#groessenvergleich">Größenvergleich (Self-Hosted)</a></li>
+                            <li class="toc-level-2"><a href="#vorteile-lucide">Vorteile von Lucide</a></li>
+                            <li class="toc-level-1"><a href="#was-ist-svg-sprite">Was ist ein SVG Sprite?</a></li>
+                            <li class="toc-level-2"><a href="#sprite-aufbau">Aufbau eines Sprites</a></li>
+                            <li class="toc-level-2"><a href="#icon-abrufen">Icons aus dem Sprite abrufen</a></li>
+                            <li class="toc-level-2"><a href="#sprite-vs-andere">Funktioniert das auch mit Bootstrap/Font
+                                    Awesome?</a></li>
+                            <li class="toc-level-1"><a href="#lucide-einbinden">Lucide Icons einbinden</a></li>
+                            <li class="toc-level-2"><a href="#methode-1-javascript">Methode 1: Per JavaScript laden
+                                    (empfohlen)</a></li>
+                            <li class="toc-level-2"><a href="#methode-2-inline">Methode 2: Direkt im HTML</a></li>
+                            <li class="toc-level-2"><a href="#methode-3-include">Methode 3: Server-Side Include
+                                    (PHP)</a></li>
+                            <li class="toc-level-1"><a href="#sprite-erstellen">Die Sprite-Datei erstellen</a></li>
+                            <li class="toc-level-2"><a href="#icons-erweitern">Weitere Icons hinzufügen</a></li>
+                            <li class="toc-level-1"><a href="#icons-verwenden">Icons verwenden</a></li>
+                            <li class="toc-level-2"><a href="#basis-syntax">Basis-Syntax</a></li>
+                            <li class="toc-level-2"><a href="#farben-aendern">Farben ändern</a></li>
+                            <li class="toc-level-2"><a href="#groesse-aendern">Größe ändern</a></li>
+                            <li class="toc-level-1"><a href="#accessibility">Barrierefreiheit (Accessibility)</a></li>
+                            <li class="toc-level-1"><a href="#praxisbeispiel">Praxisbeispiel: Info-Box mit Lucide</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -232,16 +244,18 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">CSS Basics</li>
-                    <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-grundlagen.html">CSS Grundlagen</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-datei-strukturieren.html">CSS Datei strukturieren</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-navigation-states.html">CSS Navigation States</a></li>
-                    <li class="sidebar-group-title">CSS Specials</li>
-                    <li><a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a></li>
-                </ul>
+                            <li class="sidebar-group-title">CSS Basics</li>
+                            <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-grundlagen.html">CSS Grundlagen</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-datei-strukturieren.html">CSS Datei
+                                    strukturieren</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-navigation-states.html">CSS Navigation States</a>
+                            </li>
+                            <li class="sidebar-group-title">CSS Specials</li>
+                            <li><a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a></li>
+                        </ul>
                     </div>
                 </aside>
 
@@ -419,16 +433,20 @@
                                 </div>
                                 <div class="pt-lg pl-md">
                                     <ul class="arrow-list pt-sm pb-0">
-                                        <li><strong>Lucide</strong> - Ideal, dafür gemacht <svg class="icon icon--inline icon-green ml-sm">
+                                        <li><strong>Lucide</strong> - Ideal, dafür gemacht <svg
+                                                class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
                                             </svg></li>
-                                        <li><strong>Feather Icons</strong> - Lucides Vorgänger <svg class="icon icon--inline icon-green ml-sm">
+                                        <li><strong>Feather Icons</strong> - Lucides Vorgänger <svg
+                                                class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
                                             </svg></li>
-                                        <li><strong>Heroicons</strong> - Ähnliches Konzept <svg class="icon icon--inline icon-green ml-sm">
+                                        <li><strong>Heroicons</strong> - Ähnliches Konzept <svg
+                                                class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
                                             </svg></li>
-                                        <li><strong>Eigene SVGs</strong> - Alles was SVG ist <svg class="icon icon--inline icon-green ml-sm">
+                                        <li><strong>Eigene SVGs</strong> - Alles was SVG ist <svg
+                                                class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
                                             </svg></li>
                                     </ul>
@@ -443,11 +461,13 @@
                                 </div>
                                 <div class="pt-lg pl-md">
                                     <ul class="arrow-list pt-sm">
-                                        <li><strong>Font Awesome</strong> - Primär als Icon-Font konzipiert <svg class="icon icon--inline icon-red-light ml-sm">
+                                        <li><strong>Font Awesome</strong> - Primär als Icon-Font konzipiert <svg
+                                                class="icon icon--inline icon-red-light ml-sm">
                                                 <use href="#dpz-minus-inline"></use>
                                             </svg>
                                         </li>
-                                        <li><strong>Bootstrap Icons</strong> - Font oder einzelne SVGs <svg class="icon icon--inline icon-red-light ml-sm">
+                                        <li><strong>Bootstrap Icons</strong> - Font oder einzelne SVGs <svg
+                                                class="icon icon--inline icon-red-light ml-sm">
                                                 <use href="#dpz-minus-inline"></use>
                                             </svg></li>
                                     </ul>
@@ -641,12 +661,15 @@ fetch('/assets/icons/lucide-sprite.svg')
 
                         <h3 id="icons-erweitern">Weitere Icons hinzufügen</h3>
 
-                        <p>Du findest alle Lucide Icons auf <a href="https://lucide.dev/icons" target="_blank" rel="noopener">lucide.dev/icons</a>. Um ein neues Icon hinzuzufügen:</p>
+                        <p>Du findest alle Lucide Icons auf <a href="https://lucide.dev/icons" target="_blank"
+                                rel="noopener">lucide.dev/icons</a>. Um ein neues Icon hinzuzufügen:</p>
 
                         <ol class="grid-2col-bg">
-                            <li>Gehe zu <a href="https://lucide.dev/icons" target="_blank" rel="noopener">lucide.dev/icons</a></li>
+                            <li>Gehe zu <a href="https://lucide.dev/icons" target="_blank"
+                                    rel="noopener">lucide.dev/icons</a></li>
                             <li>Suche dein Icon und klicke "Copy SVG"</li>
-                            <li>Wandle das <code class="inline">&lt;svg&gt;</code> in ein <code class="inline">&lt;symbol&gt;</code> um</li>
+                            <li>Wandle das <code class="inline">&lt;svg&gt;</code> in ein <code
+                                    class="inline">&lt;symbol&gt;</code> um</li>
                             <li>Füge es in deine Sprite-Datei ein</li>
                         </ol>
 
@@ -681,7 +704,8 @@ fetch('/assets/icons/lucide-sprite.svg')
                             <ul class="arrow-list">
                                 <li><code class="inline">&lt;svg&gt;</code> → <code class="inline">&lt;symbol&gt;</code>
                                 </li>
-                                <li><code class="inline">xmlns</code>, <code class="inline">width</code>, <code class="inline">height</code> entfernen</li>
+                                <li><code class="inline">xmlns</code>, <code class="inline">width</code>, <code
+                                        class="inline">height</code> entfernen</li>
                                 <li><code class="inline">id="lucide-NAME"</code> hinzufügen</li>
                                 <li><code class="inline">viewBox</code> behalten!</li>
                             </ul>
@@ -787,14 +811,17 @@ fetch('/assets/icons/lucide-sprite.svg')
                             <p>Lucide Icons sind <strong>stroke-basiert</strong> (Linien), nicht fill-basiert (Flächen).
                                 Deshalb:</p>
                             <ul class="arrow-list">
-                                <li><code class="inline">color: red</code> → <svg class="icon icon--inline icon-green mx-sm">
+                                <li><code class="inline">color: red</code> → <svg
+                                        class="icon icon--inline icon-green mx-sm">
                                         <use href="#dpz-check-inline"></use>
                                     </svg>
                                     funktioniert</li>
-                                <li><code class="inline">fill: red</code> → <svg class="icon icon--inline icon-red mx-sm">
+                                <li><code class="inline">fill: red</code> → <svg
+                                        class="icon icon--inline icon-red mx-sm">
                                         <use href="#dpz-cross-inline"></use>
                                     </svg> funktioniert nicht</li>
-                                <li><code class="inline">stroke: red</code> → <svg class="icon icon--inline icon-red mx-sm">
+                                <li><code class="inline">stroke: red</code> → <svg
+                                        class="icon icon--inline icon-red mx-sm">
                                         <use href="#dpz-cross-inline"></use>
                                     </svg> wird von currentColor überschrieben</li>
                             </ul>
@@ -870,7 +897,8 @@ fetch('/assets/icons/lucide-sprite.svg')
                             <ul class="arrow-list">
                                 <li><strong>Icon + Text:</strong> <code class="inline">aria-hidden="true"</code> auf dem
                                     Icon</li>
-                                <li><strong>Nur Icon:</strong> <code class="inline">role="img" aria-label="Beschreibung"</code></li>
+                                <li><strong>Nur Icon:</strong> <code
+                                        class="inline">role="img" aria-label="Beschreibung"</code></li>
                                 <li><strong>Icon-Button:</strong> <code class="inline">aria-label</code> auf dem Button,
                                     nicht dem Icon</li>
                             </ul>
@@ -932,13 +960,16 @@ fetch('/assets/icons/lucide-sprite.svg')
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Sprite-Datei:</strong> <code class="inline">/assets/icons/lucide-sprite.svg</code></li>
+                                <li><strong>Sprite-Datei:</strong> <code
+                                        class="inline">/assets/icons/lucide-sprite.svg</code></li>
                                 <li><strong>Laden:</strong> Per JavaScript, Inline oder PHP Include</li>
-                                <li><strong>Verwenden:</strong> <code class="inline">&lt;svg class="icon"&gt;&lt;use href="#lucide-NAME"/&gt;&lt;/svg&gt;</code>
+                                <li><strong>Verwenden:</strong> <code
+                                        class="inline">&lt;svg class="icon"&gt;&lt;use href="#lucide-NAME"/&gt;&lt;/svg&gt;</code>
                                 </li>
                                 <li><strong>Farbe:</strong> CSS <code class="inline">color</code> Property (nicht fill!)
                                 </li>
-                                <li><strong>Größe:</strong> CSS <code class="inline">width</code> / <code class="inline">height</code></li>
+                                <li><strong>Größe:</strong> CSS <code class="inline">width</code> / <code
+                                        class="inline">height</code></li>
                                 <li><strong>Erweitern:</strong> Neues <code class="inline">&lt;symbol&gt;</code> in
                                     Sprite einfügen</li>
                             </ul>
@@ -983,14 +1014,14 @@ fetch('/assets/icons/lucide-sprite.svg')
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-css">Mehr aus CSS</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-css">Mehr aus CSS</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav"></nav>
@@ -1003,23 +1034,24 @@ fetch('/assets/icons/lucide-sprite.svg')
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
@@ -1031,6 +1063,8 @@ fetch('/assets/icons/lucide-sprite.svg')
 
 
 
-    
 
-</body></html>
+
+    </body>
+
+</html>

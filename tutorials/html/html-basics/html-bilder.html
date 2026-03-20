@@ -1,9 +1,14 @@
-<!DOCTYPE html><html lang="de"><head>
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="HTML Bilder richtig einbinden: Das img-Element, Bildformate (WebP, AVIF, SVG), responsive Bilder mit picture und srcset, Alt-Texte für Barrierefreiheit, Lazy Loading und Performance-Optimierung.">
-        <meta name="keywords" content="HTML Bilder, img Tag, picture Element, srcset, responsive Bilder, WebP, AVIF, SVG, Alt-Text, Barrierefreiheit, Lazy Loading, figure figcaption, Bildoptimierung">
+        <meta name="description"
+            content="HTML Bilder richtig einbinden: Das img-Element, Bildformate (WebP, AVIF, SVG), responsive Bilder mit picture und srcset, Alt-Texte für Barrierefreiheit, Lazy Loading und Performance-Optimierung.">
+        <meta name="keywords"
+            content="HTML Bilder, img Tag, picture Element, srcset, responsive Bilder, WebP, AVIF, SVG, Alt-Text, Barrierefreiheit, Lazy Loading, figure figcaption, Bildoptimierung">
         <meta name="author" content="DevPanicZone">
         <title>HTML Bilder | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -16,149 +21,151 @@
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline"> Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
 
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Bilder</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
+                            class="breadcrumb-separator">›</span><a href="/tutorials/html/"
+                            class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span
+                            class="breadcrumb-current">HTML Bilder</span></nav>
                     <h1 class="hero-title">HTML Bilder</h1>
                     <p class="hero-subtitle">Bilder bringen Leben auf deine Webseite. Hier erfährst du alles Wichtige
                         über
@@ -168,7 +175,8 @@
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
                 <span class="toggle-icon">☰</span>
             </button>
 
@@ -188,7 +196,7 @@
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar">
                     <div class="sidebar-header">
-                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <h2 class="sidebar-title no-toc">Auf dieser Seite</h2>
                         <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
                             <span>×</span>
                         </button>
@@ -197,30 +205,44 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#bilder-in-html">Bilder in HTML</a></li>
-                    <li class="toc-level-1"><a href="#das-img-element">Das &lt;img&gt;-Element</a></li>
-                    <li class="toc-level-1"><a href="#bildformate-und-einsatzbereiche">Bildformate und Einsatzbereiche</a></li>
-                    <li class="toc-level-1"><a href="#responsive-bilder-unterschiedliche-formate">Responsive Bilder &amp; unterschiedliche
-                            Formate</a></li>
-                    <li class="toc-level-1"><a href="#srcset-und-sizes">srcset und sizes - Bilder für verschiedene Auflösungen</a></li>
-                    <li class="toc-level-2"><a href="#srcset-fuer-verschiedene-pixeldichten">srcset für verschiedene Pixeldichten (Retina)</a></li>
-                    <li class="toc-level-2"><a href="#srcset-mit-breiten-deskriptoren">srcset mit Breiten-Deskriptoren</a></li>
-                    <li class="toc-level-1"><a href="#bilder-mit-beschriftung">Bilder mit Beschriftung - figure und
-                            figcaption</a></li>
-                    <li class="toc-level-2"><a href="#figure-mit-mehreren-bildern">figure mit mehreren Bildern</a></li>
-                    <li class="toc-level-1"><a href="#bilder-als-hintergrund">Bilder als Hintergrund</a></li>
-                    <li class="toc-level-1"><a href="#positionierung-im-text">Positionierung im Text</a></li>
-                    <li class="toc-level-1"><a href="#alt-texte-und-barrierefreiheit">Alt-Texte und Barrierefreiheit</a></li>
-                    <li class="toc-level-2"><a href="#gute-alt-texte-schreiben">Gute Alt-Texte schreiben</a></li>
-                    <li class="toc-level-2"><a href="#wann-leerer-alt-text">Wann ein leerer Alt-Text sinnvoll ist</a></li>
-                    <li class="toc-level-1"><a href="#performance-optimierung">Performance-Optimierung für Bilder</a></li>
-                    <li class="toc-level-2"><a href="#lazy-loading">Lazy Loading - Bilder erst bei Bedarf laden</a></li>
-                    <li class="toc-level-2"><a href="#width-height-fuer-cls">Width und Height gegen Layout-Shifts</a></li>
-                    <li class="toc-level-2"><a href="#fetchpriority">fetchpriority für wichtige Bilder</a></li>
-                    <li class="toc-level-2"><a href="#decoding-async">decoding=&quot;async&quot; für flüssiges Rendering</a></li>
-                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler bei HTML-Bildern</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#bilder-in-html">Bilder in HTML</a></li>
+                            <li class="toc-level-1"><a href="#das-img-element">Das &lt;img&gt;-Element</a></li>
+                            <li class="toc-level-1"><a href="#bildformate-und-einsatzbereiche">Bildformate und
+                                    Einsatzbereiche</a></li>
+                            <li class="toc-level-1"><a href="#responsive-bilder-unterschiedliche-formate">Responsive
+                                    Bilder &amp; unterschiedliche
+                                    Formate</a></li>
+                            <li class="toc-level-1"><a href="#srcset-und-sizes">srcset und sizes - Bilder für
+                                    verschiedene Auflösungen</a></li>
+                            <li class="toc-level-2"><a href="#srcset-fuer-verschiedene-pixeldichten">srcset für
+                                    verschiedene Pixeldichten (Retina)</a></li>
+                            <li class="toc-level-2"><a href="#srcset-mit-breiten-deskriptoren">srcset mit
+                                    Breiten-Deskriptoren</a></li>
+                            <li class="toc-level-1"><a href="#bilder-mit-beschriftung">Bilder mit Beschriftung - figure
+                                    und
+                                    figcaption</a></li>
+                            <li class="toc-level-2"><a href="#figure-mit-mehreren-bildern">figure mit mehreren
+                                    Bildern</a></li>
+                            <li class="toc-level-1"><a href="#bilder-als-hintergrund">Bilder als Hintergrund</a></li>
+                            <li class="toc-level-1"><a href="#positionierung-im-text">Positionierung im Text</a></li>
+                            <li class="toc-level-1"><a href="#alt-texte-und-barrierefreiheit">Alt-Texte und
+                                    Barrierefreiheit</a></li>
+                            <li class="toc-level-2"><a href="#gute-alt-texte-schreiben">Gute Alt-Texte schreiben</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#wann-leerer-alt-text">Wann ein leerer Alt-Text sinnvoll
+                                    ist</a></li>
+                            <li class="toc-level-1"><a href="#performance-optimierung">Performance-Optimierung für
+                                    Bilder</a></li>
+                            <li class="toc-level-2"><a href="#lazy-loading">Lazy Loading - Bilder erst bei Bedarf
+                                    laden</a></li>
+                            <li class="toc-level-2"><a href="#width-height-fuer-cls">Width und Height gegen
+                                    Layout-Shifts</a></li>
+                            <li class="toc-level-2"><a href="#fetchpriority">fetchpriority für wichtige Bilder</a></li>
+                            <li class="toc-level-2"><a href="#decoding-async">decoding=&quot;async&quot; für flüssiges
+                                    Rendering</a></li>
+                            <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler bei HTML-Bildern</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -236,27 +258,33 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">HTML Basics</li>
-                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-navigation-accessibility.html">HTML Navigation Accessibility</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-bilder.html" class="active">HTML Bilder</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
-                    <li class="sidebar-group-title">HTML Advanced</li>
-                    <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-svg-sprites.html">SVG Sprites - Eigene Icons effizient einbinden</a></li>
-                </ul>
+                            <li class="sidebar-group-title">HTML Basics</li>
+                            <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level
+                                    Navigation</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a>
+                            </li>
+                            <li><a href="/tutorials/html/html-basics/html-navigation-accessibility.html">HTML Navigation
+                                    Accessibility</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-bilder.html" class="active">HTML Bilder</a>
+                            </li>
+                            <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                            <li class="sidebar-group-title">HTML Advanced</li>
+                            <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                            <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                            <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a>
+                            </li>
+                            <li><a href="/tutorials/html/html-advanced/html-svg-sprites.html">SVG Sprites - Eigene Icons
+                                    effizient einbinden</a></li>
+                        </ul>
                     </div>
                 </aside>
 
@@ -278,7 +306,8 @@
                         <h2 id="das-img-element">Das <code>&lt;img&gt;</code>-Element</h2>
                         <p>Das Standard-HTML-Tag für Bilder ist <code class="inline">&lt;img&gt;</code> (image). Es wird
                             ohne
-                            schließendes Tag geschrieben und benötigt mindestens das Attribut <code class="inline">src</code> (source /
+                            schließendes Tag geschrieben und benötigt mindestens das Attribut <code
+                                class="inline">src</code> (source /
                             Bildquelle)
                             und <code class="inline">alt</code> (alternativer Text).
 
@@ -392,7 +421,9 @@ img {
 
                         <p>Manchmal möchtest du unterschiedliche Bildformate oder -größen abhängig vom Gerät oder
                             Browser
-                            nutzen. Moderne Browser unterstützen Formate wie <code class="inline">WebP</code> oder <code class="inline">AVIF</code>, die kleiner und schneller laden als klassische <code class="inline">JPG</code> oder <code class="inline">PNG</code>. Für Browser, die diese
+                            nutzen. Moderne Browser unterstützen Formate wie <code class="inline">WebP</code> oder <code
+                                class="inline">AVIF</code>, die kleiner und schneller laden als klassische <code
+                                class="inline">JPG</code> oder <code class="inline">PNG</code>. Für Browser, die diese
                             Formate nicht kennen, solltest du immer ein Fallback-Bild angeben.</p>
 
                         <p>Das erreichst du mit dem <code class="inline">&lt;picture&gt;</code>-Element:</p>
@@ -466,7 +497,9 @@ img {
                     <section class="tutorials-content">
                         <h2 id="srcset-und-sizes">srcset und sizes - Bilder für verschiedene Auflösungen</h2>
                         <p>Neben dem <code class="inline">&lt;picture&gt;</code>-Element gibt es eine weitere
-                            Möglichkeit, responsive Bilder bereitzustellen: die Attribute <code class="inline">srcset</code> und <code class="inline">sizes</code> direkt am <code class="inline">&lt;img&gt;</code>-Tag.</p>
+                            Möglichkeit, responsive Bilder bereitzustellen: die Attribute <code
+                                class="inline">srcset</code> und <code class="inline">sizes</code> direkt am <code
+                                class="inline">&lt;img&gt;</code>-Tag.</p>
 
                         <h3 id="srcset-fuer-verschiedene-pixeldichten">srcset für verschiedene Pixeldichten (Retina)
                         </h3>
@@ -535,7 +568,8 @@ img {
                                     nimmt es 50% ein</li>
                                 <li><code class="inline">800px</code> - Standardfall: Das Bild ist 800px breit</li>
                             </ul>
-                            <p>Der Browser wählt dann automatisch die passende Bildgröße aus <code class="inline">srcset</code>.</p>
+                            <p>Der Browser wählt dann automatisch die passende Bildgröße aus <code
+                                    class="inline">srcset</code>.</p>
                         </div>
                     </section>
 
@@ -598,7 +632,8 @@ img {
                                 <li><code class="inline">&lt;figure&gt;</code> ist für eigenständige Inhalte gedacht,
                                     die vom Haupttext referenziert werden</li>
                                 <li><code class="inline">&lt;figcaption&gt;</code> kann am Anfang oder Ende stehen</li>
-                                <li>Der <code class="inline">alt</code>-Text beschreibt das Bild, die <code class="inline">figcaption</code> gibt Kontext</li>
+                                <li>Der <code class="inline">alt</code>-Text beschreibt das Bild, die <code
+                                        class="inline">figcaption</code> gibt Kontext</li>
                                 <li>Screenreader lesen beides - vermeide Wiederholungen</li>
                             </ul>
                         </div>
@@ -647,7 +682,8 @@ img.left {
 }
 &lt;/style&gt;</code></pre>
                         </div>
-                        <p>Text umfließt das Bild. Alternativ: <code class="inline">display: flex;</code> oder <code class="inline">grid</code>.</p>
+                        <p>Text umfließt das Bild. Alternativ: <code class="inline">display: flex;</code> oder <code
+                                class="inline">grid</code>.</p>
                     </section>
 
                     <!-- Alt-Texte und Barrierefreiheit -->
@@ -691,7 +727,8 @@ img.left {
                                         <li><code class="inline">alt="Bild"</code> - Zu unspezifisch</li>
                                         <li><code class="inline">alt="hund.jpg"</code> - Dateiname ist kein Alt-Text
                                         </li>
-                                        <li><code class="inline">alt="Bild von einem Hund der im Park spielt und einen Ball fängt während die Sonne scheint..."</code>
+                                        <li><code
+                                                class="inline">alt="Bild von einem Hund der im Park spielt und einen Ball fängt während die Sonne scheint..."</code>
                                             - Zu lang</li>
                                     </ul>
                                 </div>
@@ -731,7 +768,8 @@ img.left {
                                 </svg>
                             </strong>
                             <p><strong>Niemals</strong> das <code class="inline">alt</code>-Attribut weglassen! Ein
-                                fehlendes <code class="inline">alt</code> ist nicht das Gleiche wie <code class="inline">alt=""</code>. Ohne Attribut lesen manche Screenreader den Dateinamen
+                                fehlendes <code class="inline">alt</code> ist nicht das Gleiche wie <code
+                                    class="inline">alt=""</code>. Ohne Attribut lesen manche Screenreader den Dateinamen
                                 vor.</p>
                         </div>
 
@@ -900,7 +938,8 @@ img {
                                     <li>Immer <code class="inline">alt</code> angeben (leer für Deko)</li>
                                     <li>Bilder optimieren und komprimieren</li>
                                     <li>width/height für Platzreservierung</li>
-                                    <li>Hero: <code class="inline">loading="eager"</code> + <code class="inline">fetchpriority="high"</code></li>
+                                    <li>Hero: <code class="inline">loading="eager"</code> + <code
+                                            class="inline">fetchpriority="high"</code></li>
                                     <li>Format nach Inhalt wählen (WebP, SVG)</li>
                                     <li>Bilder lokal hosten für Kontrolle</li>
                                 </ul>
@@ -912,30 +951,32 @@ img {
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/html/html-basics/html-links.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">HTML Links & Anker</span>
-                <span class="tutorial-nav-category">HTML Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/html/html-basics/html-tabellen.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">HTML Tabellen</span>
-                <span class="tutorial-nav-category">HTML Basics</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/html/html-basics/html-links.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">HTML Links & Anker</span>
+                                    <span class="tutorial-nav-category">HTML Basics</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/html/html-basics/html-tabellen.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">HTML Tabellen</span>
+                                    <span class="tutorial-nav-category">HTML Basics</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
 
                 </div> <!-- Wrapper .container -->
@@ -945,23 +986,24 @@ img {
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
@@ -975,6 +1017,8 @@ img {
 
 
 
-    
 
-</body></html>
+
+    </body>
+
+</html>

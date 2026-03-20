@@ -1,9 +1,14 @@
-<!DOCTYPE html><html lang="de"><head>
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
-        <meta name="description" content="Dokumentation zur automatischen Generierung der Prev/Next Navigation auf DevPanicZone. Tutorial-Navigation über Unterkategorien hinweg.">
-        <meta name="keywords" content="Prev Next, Navigation, Tutorial, generate-navigation.js, DevPanicZone, Automatisierung, TUTORIAL_ORDER">
+        <meta name="description"
+            content="Dokumentation zur automatischen Generierung der Prev/Next Navigation auf DevPanicZone. Tutorial-Navigation über Unterkategorien hinweg.">
+        <meta name="keywords"
+            content="Prev Next, Navigation, Tutorial, generate-navigation.js, DevPanicZone, Automatisierung, TUTORIAL_ORDER">
         <meta name="author" content="DevPanicZone">
         <title>Prev / Next Buttons | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
@@ -16,151 +21,154 @@
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline"> Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript
+                                                    Projects</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
+                                </svg>
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche">
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
 
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Prev / Next Buttons in den Tutorials</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
+                            class="breadcrumb-separator">›</span><a href="/tutorials/documentation/"
+                            class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span
+                            class="breadcrumb-current">Prev / Next Buttons in den Tutorials</span></nav>
                     <h1 class="hero-title">Prev / Next Buttons in den Tutorials</h1>
-                    <p class="hero-subtitle">Die Prev/Next Navigation wird automatisch durch <code class="inline">generate-navigation.js</code>
+                    <p class="hero-subtitle">Die Prev/Next Navigation wird automatisch durch <code
+                            class="inline">generate-navigation.js</code>
                         basierend auf der manuellen Reihenfolge in <code class="inline">manualOrder</code> generiert.
                     </p>
 
@@ -168,7 +176,8 @@
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
                 <span class="toggle-icon">☰</span>
             </button>
 
@@ -188,7 +197,7 @@
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar">
                     <div class="sidebar-header">
-                        <h3 class="sidebar-title no-toc">Auf dieser Seite</h3>
+                        <h2 class="sidebar-title no-toc">Auf dieser Seite</h2>
                         <button class="sidebar-close" id="sidebarClose" aria-label="Schließen">
                             <span>×</span>
                         </button>
@@ -197,20 +206,24 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#tutorial-navigation">Tutorial Navigation</a></li>
-                    <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
-                    <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
-                    <li class="toc-level-1"><a href="#beispiel-generierte-navigation">Beispiel: Generierte Navigation</a></li>
-                    <li class="toc-level-2"><a href="#html-elemente-erklaert">HTML-Elemente erklärt</a></li>
-                    <li class="toc-level-1"><a href="#tutorial-order-konfiguration">TUTORIAL_ORDER Konfiguration</a></li>
-                    <li class="toc-level-1"><a href="#neues-tutorial-hinzufuegen">Neues Tutorial hinzufügen</a></li>
-                    <li class="toc-level-1"><a href="#button-titel-anpassen">Button-Titel anpassen</a></li>
-                    <li class="toc-level-1"><a href="#generateprevnextnav">generatePrevNextNav()</a></li>
-                    <li class="toc-level-2"><a href="#ablauf-schritt-fuer-schritt">Ablauf Schritt für Schritt</a></li>
-                    <li class="toc-level-1"><a href="#edge-cases">Edge Cases</a></li>
-                    <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#tutorial-navigation">Tutorial Navigation</a></li>
+                            <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
+                            <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
+                            <li class="toc-level-1"><a href="#beispiel-generierte-navigation">Beispiel: Generierte
+                                    Navigation</a></li>
+                            <li class="toc-level-2"><a href="#html-elemente-erklaert">HTML-Elemente erklärt</a></li>
+                            <li class="toc-level-1"><a href="#tutorial-order-konfiguration">TUTORIAL_ORDER
+                                    Konfiguration</a></li>
+                            <li class="toc-level-1"><a href="#neues-tutorial-hinzufuegen">Neues Tutorial hinzufügen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#button-titel-anpassen">Button-Titel anpassen</a></li>
+                            <li class="toc-level-1"><a href="#generateprevnextnav">generatePrevNextNav()</a></li>
+                            <li class="toc-level-2"><a href="#ablauf-schritt-fuer-schritt">Ablauf Schritt für
+                                    Schritt</a></li>
+                            <li class="toc-level-1"><a href="#edge-cases">Edge Cases</a></li>
+                            <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -226,19 +239,31 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">Documentation</li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One Cheatsheet für meine Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html">Was macht generate-navigation.js</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">Main Navigation im Header</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">Wie funktionieren die Sidebars?</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">Hero Breadcrumbs</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html" class="active">Prev / Next Buttons in den Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">Tutorial Buttons</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">Toggle Night Mode</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">currentYear im Footer</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">Latest Tutorials Section</a></li>
-                </ul>
+                            <li class="sidebar-group-title">Documentation</li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches
+                                    Generieren der Navigationen</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One
+                                    Cheatsheet für meine Tutorials</a></li>
+                            <li><a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html">Was
+                                    macht generate-navigation.js</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">Main
+                                    Navigation im Header</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">Wie
+                                    funktionieren die Sidebars?</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">Hero
+                                    Breadcrumbs</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html"
+                                    class="active">Prev / Next Buttons in den Tutorials</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">Tutorial
+                                    Buttons</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">Toggle
+                                    Night Mode</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">currentYear
+                                    im Footer</a></li>
+                            <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">Latest
+                                    Tutorials Section</a></li>
+                        </ul>
                     </div>
                 </aside>
 
@@ -256,7 +281,8 @@
                     <!-- Wie funktioniert's -->
                     <section class="tutorials-content">
                         <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
-                        <p>Das Script <code class="inline">generate-navigation.js</code> nutzt <code class="inline">getAllTutorialsFlat()</code>, um alle Tutorials einer Kategorie als
+                        <p>Das Script <code class="inline">generate-navigation.js</code> nutzt <code
+                                class="inline">getAllTutorialsFlat()</code>, um alle Tutorials einer Kategorie als
                             sortierte Liste zu holen:</p>
 
                         <div class="grid-2col">
@@ -370,7 +396,8 @@
                     <!-- TUTORIAL_ORDER Konfiguration -->
                     <section class="tutorials-content">
                         <h2 id="tutorial-order-konfiguration">TUTORIAL_ORDER Konfiguration</h2>
-                        <p>Die Reihenfolge wird in <code class="inline">generate-navigation.js</code> unter <code class="inline">TUTORIAL_ORDER</code> definiert:</p>
+                        <p>Die Reihenfolge wird in <code class="inline">generate-navigation.js</code> unter <code
+                                class="inline">TUTORIAL_ORDER</code> definiert:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
@@ -403,7 +430,8 @@
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Die Prev/Next Navigation folgt der Reihenfolge in <code class="inline">TUTORIAL_ORDER</code>:</p>
+                            <p>Die Prev/Next Navigation folgt der Reihenfolge in <code
+                                    class="inline">TUTORIAL_ORDER</code>:</p>
                             <ul class="arrow-list">
                                 <li>Erst alle Tutorials aus <code class="inline">css-basics</code> (in der angegebenen
                                     Reihenfolge)</li>
@@ -533,7 +561,8 @@ const CUSTOM_TITLES = {
                             <ol class="pl-md">
                                 <li><strong>Kategorie ermitteln:</strong> Aus dem Dateipfad wird die Hauptkategorie
                                     extrahiert (z.B. "css")</li>
-                                <li><strong>Alle Tutorials holen:</strong> <code class="inline">getAllTutorialsFlat()</code> gibt alle Tutorials der Kategorie
+                                <li><strong>Alle Tutorials holen:</strong> <code
+                                        class="inline">getAllTutorialsFlat()</code> gibt alle Tutorials der Kategorie
                                     als sortierte Liste zurück</li>
                                 <li><strong>Position finden:</strong> Das aktuelle Tutorial wird in der Liste gesucht
                                 </li>
@@ -574,7 +603,8 @@ const CUSTOM_TITLES = {
                     <!-- Ausführen -->
                     <section class="tutorials-content">
                         <h2 id="ausfuehren">Ausführen</h2>
-                        <p>Nach Änderungen an <code class="inline">TUTORIAL_ORDER</code> oder <code class="inline">CUSTOM_TITLES</code>:</p>
+                        <p>Nach Änderungen an <code class="inline">TUTORIAL_ORDER</code> oder <code
+                                class="inline">CUSTOM_TITLES</code>:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Bash</span>
@@ -592,30 +622,32 @@ const CUSTOM_TITLES = {
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Hero Breadcrumbs</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Tutorial Buttons</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Hero Breadcrumbs</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">Tutorial Buttons</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
 
                 </div> <!-- Wrapper .container -->
@@ -625,28 +657,31 @@ const CUSTOM_TITLES = {
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
 
-    
 
-</body></html>
+
+    </body>
+
+</html>
