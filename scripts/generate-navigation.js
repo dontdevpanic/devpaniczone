@@ -180,6 +180,7 @@ const TUTORIAL_ORDER = {
         'html-semantik.html',
         'html-formulare.html',
         'html-audio-video.html',
+        'html-quellcode-sichtbar-machen.html',
         'html-svg-sprites.html'
     ],
     'tutorials/css/css-basics': [
