@@ -1,179 +1,208 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="CSS-Duplikate in VS Code finden: Dateien vergleichen, doppelten Code innerhalb einer CSS-Datei erkennen und Styles sauber zusammenführen - ohne zusätzliche Tools.">
-        <meta name="keywords" content="VS Code CSS vergleichen, CSS Duplikate finden, CSS Refactoring VS Code, CSS Diff, Duplicate CSS Code, CSS aufräumen, VS Code Compare Files">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="CSS-Duplikate in VS Code finden: Dateien vergleichen, doppelten Code innerhalb einer CSS-Datei erkennen und Styles sauber zusammenführen - ohne zusätzliche Tools."
+        />
+        <meta
+            name="keywords"
+            content="VS Code CSS vergleichen, CSS Duplikate finden, CSS Refactoring VS Code, CSS Diff, Duplicate CSS Code, CSS aufräumen, VS Code Compare Files"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>CSS-Duplikate in VS Code finden | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">CSS-Duplikate finden &amp; vergleichen in VS Code</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">CSS-Duplikate finden &amp; vergleichen in VS Code</span>
+                    </nav>
                     <h1 class="hero-title">CSS-Duplikate finden &amp; vergleichen in VS Code</h1>
-                    <p class="hero-subtitle">CSS-Dateien vergleichen, doppelten Code erkennen und Styles sauber
-                        zusammenführen - direkt in VS Code.</p>
+                    <p class="hero-subtitle">
+                        CSS-Dateien vergleichen, doppelten Code erkennen und Styles sauber zusammenführen - direkt in VS
+                        Code.
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -182,7 +211,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -195,38 +223,81 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#warum-dieses-tutorial">Warum dieses Tutorial?</a></li>
-                    <li class="toc-level-1"><a href="#begriffe-kurz-erklaert">Begriffe kurz erklärt</a></li>
-                    <li class="toc-level-1"><a href="#wann-lohnt-sich-ein-vergleich">Wann lohnt sich ein Vergleich?</a></li>
-                    <li class="toc-level-1"><a href="#zwei-css-dateien-miteinander-vergleichen-diff">Zwei CSS-Dateien miteinander vergleichen
-                            (Diff)</a></li>
-                    <li class="toc-level-2"><a href="#vorgehen">Vorgehen</a></li>
-                    <li class="toc-level-2"><a href="#alternative-compare-ueber-die-command-palette">Alternative: Compare über die Command
-                            Palette</a></li>
-                    <li class="toc-level-1"><a href="#css-bloecke-gezielt-vergleichen-partial-diff">CSS-Blöcke gezielt vergleichen (Partial
-                            Diff)</a></li>
-                    <li class="toc-level-2"><a href="#mit-der-extension-partial-diff">Mit der Extension „Partial Diff“</a></li>
-                    <li class="toc-level-1"><a href="#duplikate-innerhalb-einer-einzigen-css-datei-finden">Duplikate innerhalb einer einzigen
-                            CSS-Datei finden</a></li>
-                    <li class="toc-level-2"><a href="#variante-a-datei-mit-sich-selbst-vergleichen">Variante A: Datei mit sich selbst vergleichen (Hidden Trick)</a></li>
-                    <li class="toc-level-2"><a href="#variante-b-block-vs-block-innerhalb-der-datei-empfohlen">Variante
-                                B: Block-vs.-Block innerhalb der Datei (empfohlen)</a></li>
-                    <li class="toc-level-2"><a href="#variante-c-muster-suche-nach-typischen-properties">Variante C:
-                                Muster-Suche nach typischen Properties</a></li>
-                    <li class="toc-level-2"><a href="#variante-d-alle-gleichen-stellen-markieren">Variante D: Alle
-                                gleichen Stellen markieren</a></li>
-                    <li class="toc-level-1"><a href="#wann-duplikate-bewusst-beibehalten">Wann Duplikate bewusst beibehalten?</a></li>
-                    <li class="toc-level-1"><a href="#temporaerer-kommentar-workflow-refactor-hilfe">Temporärer Kommentar-Workflow
-                            (Refactor-Hilfe)</a></li>
-                    <li class="toc-level-1"><a href="#praktisches-beispiel-css-bloecke-zusammenfuehren">Praktisches Beispiel: CSS-Blöcke
-                            zusammenführen</a></li>
-                    <li class="toc-level-2"><a href="#vorher-doppelter-code">Vorher: Doppelter Code</a></li>
-                    <li class="toc-level-2"><a href="#nachher-refactored">Nachher: Refactored</a></li>
-                    <li class="toc-level-1"><a href="#extensions-fuer-groessere-css-projekte">Extensions für größere CSS-Projekte</a></li>
-                    <li class="toc-level-1"><a href="#checkliste-built-in-vs-extension">Checkliste: Built-in vs. Extension</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#warum-dieses-tutorial">Warum dieses Tutorial?</a></li>
+                            <li class="toc-level-1"><a href="#begriffe-kurz-erklaert">Begriffe kurz erklärt</a></li>
+                            <li class="toc-level-1">
+                                <a href="#wann-lohnt-sich-ein-vergleich">Wann lohnt sich ein Vergleich?</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#zwei-css-dateien-miteinander-vergleichen-diff">
+                                    Zwei CSS-Dateien miteinander vergleichen (Diff)
+                                </a>
+                            </li>
+                            <li class="toc-level-2"><a href="#vorgehen">Vorgehen</a></li>
+                            <li class="toc-level-2">
+                                <a href="#alternative-compare-ueber-die-command-palette">
+                                    Alternative: Compare über die Command Palette
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#css-bloecke-gezielt-vergleichen-partial-diff">
+                                    CSS-Blöcke gezielt vergleichen (Partial Diff)
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#mit-der-extension-partial-diff">Mit der Extension „Partial Diff“</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#duplikate-innerhalb-einer-einzigen-css-datei-finden">
+                                    Duplikate innerhalb einer einzigen CSS-Datei finden
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#variante-a-datei-mit-sich-selbst-vergleichen">
+                                    Variante A: Datei mit sich selbst vergleichen (Hidden Trick)
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#variante-b-block-vs-block-innerhalb-der-datei-empfohlen">
+                                    Variante B: Block-vs.-Block innerhalb der Datei (empfohlen)
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#variante-c-muster-suche-nach-typischen-properties">
+                                    Variante C: Muster-Suche nach typischen Properties
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#variante-d-alle-gleichen-stellen-markieren">
+                                    Variante D: Alle gleichen Stellen markieren
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#wann-duplikate-bewusst-beibehalten">Wann Duplikate bewusst beibehalten?</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#temporaerer-kommentar-workflow-refactor-hilfe">
+                                    Temporärer Kommentar-Workflow (Refactor-Hilfe)
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#praktisches-beispiel-css-bloecke-zusammenfuehren">
+                                    Praktisches Beispiel: CSS-Blöcke zusammenführen
+                                </a>
+                            </li>
+                            <li class="toc-level-2"><a href="#vorher-doppelter-code">Vorher: Doppelter Code</a></li>
+                            <li class="toc-level-2"><a href="#nachher-refactored">Nachher: Refactored</a></li>
+                            <li class="toc-level-1">
+                                <a href="#extensions-fuer-groessere-css-projekte">
+                                    Extensions für größere CSS-Projekte
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#checkliste-built-in-vs-extension">Checkliste: Built-in vs. Extension</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -242,54 +313,81 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">SEO Optimization</li>
-                    <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content verstehen & vermeiden</a></li>
-                    <li class="sidebar-group-title">Tools</li>
-                    <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
-                    <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html" class="active">CSS-Duplikate finden & vergleichen in VS Code</a></li>
-                    <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
-                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
-                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale Versionskontrolle</a></li>
-                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
-                    <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla FTP-Client einrichten</a></li>
-                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
-                    <li class="sidebar-group-title">Web</li>
-                    <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
-                </ul>
+                            <li class="sidebar-group-title">SEO Optimization</li>
+                            <li>
+                                <a href="/tutorials/misc/seo-optimization/duplicate-content.html">
+                                    Duplicate Content verstehen & vermeiden
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Tools</li>
+                            <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html" class="active">
+                                    CSS-Duplikate finden & vergleichen in VS Code
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
+                            <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/git-versionskontrolle.html">
+                                    Git - Lokale Versionskontrolle
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/ftp-client-filezilla.html">
+                                    FileZilla FTP-Client einrichten
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
+                                    Globale Änderungen an HTML-Dateien
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Web</li>
+                            <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Warum dieses Tutorial? -->
                     <section class="tutorials-content">
                         <h2 id="warum-dieses-tutorial">Warum dieses Tutorial?</h2>
-                        <p>Kennst du das? Wenn CSS-Dateien wachsen - z. B. durch mehrere Navigation-, Footer- oder
-                            Sidebar-Demos -
-                            schleichen sich fast automatisch doppelte Regeln ein. VS Code bringt dafür überraschend
-                            viele Bordmittel mit.</p>
-                        <p>Ein hilfreicher Grundsatz beim Aufräumen:
-                            Jede Zeile Code sollte einen Zweck erfüllen.
-                            Was nichts mehr beiträgt, darf - nach kurzer Prüfung - auch gehen.</p>
-                        <p>Dieses Tutorial zeigt dir <strong>praxisnah und ohne Zusatz-Tools</strong>:</p>
+                        <p>
+                            Kennst du das? Wenn CSS-Dateien wachsen - z. B. durch mehrere Navigation-, Footer- oder
+                            Sidebar-Demos - schleichen sich fast automatisch doppelte Regeln ein. VS Code bringt dafür
+                            überraschend viele Bordmittel mit.
+                        </p>
+                        <p>
+                            Ein hilfreicher Grundsatz beim Aufräumen: Jede Zeile Code sollte einen Zweck erfüllen. Was
+                            nichts mehr beiträgt, darf - nach kurzer Prüfung - auch gehen.
+                        </p>
+                        <p>
+                            Dieses Tutorial zeigt dir
+                            <strong>praxisnah und ohne Zusatz-Tools</strong>
+                            :
+                        </p>
                         <ul class="arrow-list grid-2col-bg">
                             <li>wie du zwei CSS-Dateien miteinander mit VS Code vergleichst (Diff-Ansicht)</li>
                             <li>wie du Duplikate innerhalb einer einzelnen Datei erkennst</li>
                             <li>welche Workflows sich besonders fürs Refactoring eignen (ohne Build-Tools)</li>
                         </ul>
                         <div class="info-box">
-                            <strong class="box-title no-toc">Bedenke
+                            <strong class="box-title no-toc">
+                                Bedenke
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
-                                
                             </strong>
-                            <p>Nicht jedes Duplikat ist ein Fehler - aber jedes unerkannte Duplikat
-                                führt vielleicht früher oder später zu einem Fehler.</p>
+                            <p>
+                                Nicht jedes Duplikat ist ein Fehler - aber jedes unerkannte Duplikat führt vielleicht
+                                früher oder später zu einem Fehler.
+                            </p>
                         </div>
-
-
                     </section>
 
                     <!-- Begriffe kurz erklärt -->
@@ -297,14 +395,23 @@
                         <h2 id="begriffe-kurz-erklaert">Begriffe kurz erklärt</h2>
 
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Vergleich:</strong> Allgemeiner Begriff dafür, zwei Code-Stände
-                                gegenüberzustellen, um Gemeinsamkeiten und Unterschiede zu erkennen.</li>
+                            <li>
+                                <strong>Vergleich:</strong>
+                                Allgemeiner Begriff dafür, zwei Code-Stände gegenüberzustellen, um Gemeinsamkeiten und
+                                Unterschiede zu erkennen.
+                            </li>
 
-                            <li><strong>Diff:</strong> Die konkrete Ansicht in VS Code, die Unterschiede
-                                zwischen zwei Dateien oder Textständen zeilenweise darstellt.</li>
+                            <li>
+                                <strong>Diff:</strong>
+                                Die konkrete Ansicht in VS Code, die Unterschiede zwischen zwei Dateien oder Textständen
+                                zeilenweise darstellt.
+                            </li>
 
-                            <li><strong>Block-Vergleich:</strong> Ein gezielter Vergleich ausgewählter
-                                Codeabschnitte, z. B. einzelner CSS-Blöcke, unabhängig von der restlichen Datei.</li>
+                            <li>
+                                <strong>Block-Vergleich:</strong>
+                                Ein gezielter Vergleich ausgewählter Codeabschnitte, z. B. einzelner CSS-Blöcke,
+                                unabhängig von der restlichen Datei.
+                            </li>
                         </ul>
 
                         <p>Im weiteren Verlauf des Tutorials werden diese Begriffe entsprechend verwendet.</p>
@@ -317,54 +424,86 @@
                         <ul class="arrow-list grid-2col-bg">
                             <li>alte und neue Styles existieren parallel</li>
                             <li>ähnliche Komponenten (Nav, Footer, Sidebar) wurden unabhängig entwickelt</li>
-                            <li>oder in meinem Fall: mehrere Demo-Styles sollen in <strong>eine CSS-Datei</strong></li>
+                            <li>
+                                oder in meinem Fall: mehrere Demo-Styles sollen in
+                                <strong>eine CSS-Datei</strong>
+                            </li>
                         </ul>
-                        <p>Wenn du dich dabei öfter fragst: <q>Moment… das habe ich doch schon irgendwo definiert?</q>
+                        <p>
+                            Wenn du dich dabei öfter fragst:
+                            <q>Moment… das habe ich doch schon irgendwo definiert?</q>
                             <strong>Dann ist es Zeit für einen Vergleich.</strong>
                         </p>
                     </section>
 
                     <!-- Zwei CSS-Dateien miteinander vergleichen (Diff) -->
                     <section class="tutorials-content">
-                        <h2 id="zwei-css-dateien-miteinander-vergleichen-diff">Zwei CSS-Dateien miteinander vergleichen
-                            (Diff)</h2>
-                        <p>VS Code hat dafür bereits alles eingebaut - <strong>keine Extension nötig</strong>.</p>
+                        <h2 id="zwei-css-dateien-miteinander-vergleichen-diff">
+                            Zwei CSS-Dateien miteinander vergleichen (Diff)
+                        </h2>
+                        <p>
+                            VS Code hat dafür bereits alles eingebaut -
+                            <strong>keine Extension nötig</strong>
+                            .
+                        </p>
 
                         <h3 id="vorgehen">Vorgehen</h3>
                         <ol class="grid-2col-bg ml-0 pl-0">
                             <li>Öffne beide CSS-Dateien</li>
-                            <li>Rechtsklick auf <strong>Datei A</strong> → <strong>Select for Compare</strong></li>
-                            <li>Rechtsklick auf <strong>Datei B</strong> → <strong>Compare with Selected</strong>
+                            <li>
+                                Rechtsklick auf
+                                <strong>Datei A</strong>
+                                →
+                                <strong>Select for Compare</strong>
+                            </li>
+                            <li>
+                                Rechtsklick auf
+                                <strong>Datei B</strong>
+                                →
+                                <strong>Compare with Selected</strong>
                             </li>
                         </ol>
 
-                        <p>VS Code öffnet eine <strong>Diff-Ansicht</strong>:</p>
+                        <p>
+                            VS Code öffnet eine
+                            <strong>Diff-Ansicht</strong>
+                            :
+                        </p>
                         <ul class="arrow-list grid-2col-bg">
                             <li>links: ursprüngliche Datei</li>
                             <li>rechts: Vergleichsdatei</li>
                             <li>Unterschiede sind farblich markiert</li>
                         </ul>
 
-                        <p><strong>Identische Codezeilen bleiben unmarkiert</strong> - ideal, um Duplikate sofort zu
-                            erkennen.</p>
+                        <p>
+                            <strong>Identische Codezeilen bleiben unmarkiert</strong>
+                            - ideal, um Duplikate sofort zu erkennen.
+                        </p>
 
-                        <h3 id="alternative-compare-ueber-die-command-palette">Alternative: Compare über die Command
-                            Palette</h3>
+                        <h3 id="alternative-compare-ueber-die-command-palette">
+                            Alternative: Compare über die Command Palette
+                        </h3>
                         <ol class="grid-2col-bg ml-0 pl-0">
-                            <li><kbd>Cmd + Shift + P</kbd> / <kbd>Strg + Shift + P</kbd></li>
-                            <li>Compare Active File With…</li>
-                            <li>zweite CSS-Datei auswählen
+                            <li>
+                                <kbd>Cmd + Shift + P</kbd>
+                                /
+                                <kbd>Strg + Shift + P</kbd>
                             </li>
+                            <li>Compare Active File With…</li>
+                            <li>zweite CSS-Datei auswählen</li>
                         </ol>
                         <p>Funktioniert identisch, nur ohne Kontextmenü.</p>
                     </section>
 
                     <!-- CSS-Blöcke gezielt vergleichen (Partial Diff) -->
                     <section class="tutorials-content mt-xl">
-                        <h2 id="css-bloecke-gezielt-vergleichen-partial-diff">CSS-Blöcke gezielt vergleichen (Partial
-                            Diff)</h2>
-                        <p>Gerade bei Navigationen oder Komponenten ist es oft sinnvoller, nur bestimmte Blöcke zu
-                            vergleichen.</p>
+                        <h2 id="css-bloecke-gezielt-vergleichen-partial-diff">
+                            CSS-Blöcke gezielt vergleichen (Partial Diff)
+                        </h2>
+                        <p>
+                            Gerade bei Navigationen oder Komponenten ist es oft sinnvoller, nur bestimmte Blöcke zu
+                            vergleichen.
+                        </p>
 
                         <!-- Mit der Extension „Partial Diff“ -->
                         <div>
@@ -372,9 +511,15 @@
                             <h4>Workflow</h4>
                             <ol class="grid-2col-bg ml-0 pl-0">
                                 <li>Markiere einen CSS-Block, z. B. komplette Navigation</li>
-                                <li>Rechtsklick → <strong>Compare Selected Text</strong></li>
+                                <li>
+                                    Rechtsklick →
+                                    <strong>Compare Selected Text</strong>
+                                </li>
                                 <li>Markiere einen zweiten Block</li>
-                                <li>Rechtsklick → <strong>Compare Selected Text</strong></li>
+                                <li>
+                                    Rechtsklick →
+                                    <strong>Compare Selected Text</strong>
+                                </li>
                             </ol>
                             <div class="grid-2col pt-xl">
                                 <div class="grid-2col-bg">
@@ -388,41 +533,62 @@
                                 <div class="grid-2col-bg">
                                     <p><strong>Perfekt für</strong></p>
                                     <ul class="arrow-list">
-                                        <li><code>nav</code>, <code>.nav ul</code>, <code>.nav a</code> etc.</li>
+                                        <li>
+                                            <code>nav</code>
+                                            ,
+                                            <code>.nav ul</code>
+                                            ,
+                                            <code>.nav a</code>
+                                            etc.
+                                        </li>
                                         <li>identische Properties fallen sofort auf</li>
                                         <li>Unterschiede sind klar isoliert</li>
                                     </ul>
                                 </div>
                             </div>
-                            <p><strong>Hinweis:</strong> Diese Methode nutzt die VS-Code-Extension
-                                <strong>Partial Diff</strong>. Ohne diese Extension steht der Menüpunkt
-                                <em>Compare Selected Text</em> nicht zur Verfügung.
+                            <p>
+                                <strong>Hinweis:</strong>
+                                Diese Methode nutzt die VS-Code-Extension
+                                <strong>Partial Diff</strong>
+                                . Ohne diese Extension steht der Menüpunkt
+                                <em>Compare Selected Text</em>
+                                nicht zur Verfügung.
                             </p>
                         </div>
                     </section>
 
                     <!-- Duplikate innerhalb einer einzigen CSS-Datei finden -->
                     <section class="tutorials-content mt-xl">
-                        <h2 id="duplikate-innerhalb-einer-einzigen-css-datei-finden">Duplikate innerhalb einer einzigen
-                            CSS-Datei finden</h2>
-                        <p>Jetzt zum spannenden Teil - besonders relevant, wenn ähnliche oder wiederkehrende
-                            Styles innerhalb einer Datei zusammengeführt werden sollen.</p>
+                        <h2 id="duplikate-innerhalb-einer-einzigen-css-datei-finden">
+                            Duplikate innerhalb einer einzigen CSS-Datei finden
+                        </h2>
+                        <p>
+                            Jetzt zum spannenden Teil - besonders relevant, wenn ähnliche oder wiederkehrende Styles
+                            innerhalb einer Datei zusammengeführt werden sollen.
+                        </p>
 
                         <!-- Variante A: Datei mit sich selbst vergleichen (Hidden Trick) -->
                         <div>
                             <h3 class="mt-xl pt-xxl" id="variante-a-datei-mit-sich-selbst-vergleichen">
-                                Variante A: Datei mit sich selbst vergleichen (Hidden Trick)</h3>
+                                Variante A: Datei mit sich selbst vergleichen (Hidden Trick)
+                            </h3>
                             <p>Ja, das geht wirklich.</p>
                             <ol class="grid-2col-bg ml-0 pl-0">
                                 <li>Öffne die CSS-Datei</li>
-                                <li>Rechtsklick im VSC Explorer → <strong>Select for Compare</strong></li>
-                                <li>Rechtsklick auf dieselbe Datei → <strong>Compare with Selected</strong>
+                                <li>
+                                    Rechtsklick im VSC Explorer →
+                                    <strong>Select for Compare</strong>
+                                </li>
+                                <li>
+                                    Rechtsklick auf dieselbe Datei →
+                                    <strong>Compare with Selected</strong>
                                 </li>
                             </ol>
                             <p>VS Code öffnet eine Diff-Ansicht derselben Datei.</p>
                             <ul class="arrow-list grid-2col-bg">
                                 <li>gleiche oder sehr ähnliche Blöcke lassen sich visuell vergleichen</li>
-                                <li>besonders hilfreich bei langen Stylesheets, wenn die Snippets weit auseinander
+                                <li>
+                                    besonders hilfreich bei langen Stylesheets, wenn die Snippets weit auseinander
                                     liegen
                                 </li>
                             </ul>
@@ -431,32 +597,47 @@
                         <!-- Variante B: Block-vs.-Block innerhalb der Datei (empfohlen) -->
                         <div>
                             <h3 class="mt-xl pt-xxl" id="variante-b-block-vs-block-innerhalb-der-datei-empfohlen">
-                                Variante
-                                B: Block-vs.-Block innerhalb der Datei (empfohlen)</h3>
-                            <p>Mit <strong>Partial Diff</strong> kannst du auch innerhalb derselben Datei arbeiten:</p>
+                                Variante B: Block-vs.-Block innerhalb der Datei (empfohlen)
+                            </h3>
+                            <p>
+                                Mit
+                                <strong>Partial Diff</strong>
+                                kannst du auch innerhalb derselben Datei arbeiten:
+                            </p>
                             <ol class="grid-2col-bg ml-0 pl-0">
                                 <li>Markiere einen zusammenhängenden CSS-Block (inkl. Selektor und Properties)</li>
-                                <li>Rechtsklick → <strong>Compare Selected Text</strong></li>
+                                <li>
+                                    Rechtsklick →
+                                    <strong>Compare Selected Text</strong>
+                                </li>
                                 <li>Markiere einen zweiten CSS-Block</li>
-                                <li>Rechtsklick → <strong>Compare Selected Text</strong></li>
+                                <li>
+                                    Rechtsklick →
+                                    <strong>Compare Selected Text</strong>
+                                </li>
                             </ol>
-                            <p>Kommentare können zur Orientierung dienen, verglichen wird jedoch immer
-                                der tatsächlich markierte Code.</p>
+                            <p>
+                                Kommentare können zur Orientierung dienen, verglichen wird jedoch immer der tatsächlich
+                                markierte Code.
+                            </p>
 
                             <p>So erkennst du schnell:</p>
                             <ul class="arrow-list grid-2col-bg">
                                 <li>identische Regeln → zusammenführen oder entfernen</li>
                                 <li>abweichende Regeln → gezielt getrennt beibehalten</li>
                             </ul>
-                            <p><strong>Warum das sinnvoll ist:</strong> Partial Diff eignet sich besonders,
-                                um ähnliche CSS-Blöcke direkt miteinander zu vergleichen, ohne komplette Dateien
-                                öffnen oder durchsuchen zu müssen.</p>
+                            <p>
+                                <strong>Warum das sinnvoll ist:</strong>
+                                Partial Diff eignet sich besonders, um ähnliche CSS-Blöcke direkt miteinander zu
+                                vergleichen, ohne komplette Dateien öffnen oder durchsuchen zu müssen.
+                            </p>
                         </div>
 
                         <!-- Variante C: Muster-Suche nach typischen Properties -->
                         <div>
-                            <h3 class="mt-xl pt-xxl" id="variante-c-muster-suche-nach-typischen-properties">Variante C:
-                                Muster-Suche nach typischen Properties</h3>
+                            <h3 class="mt-xl pt-xxl" id="variante-c-muster-suche-nach-typischen-properties">
+                                Variante C: Muster-Suche nach typischen Properties
+                            </h3>
                             <p>Oft wiederholen sich in CSS immer dieselben Zeilen:</p>
                             <div class="grid-2col">
                                 <div class="grid-2col-bg">
@@ -473,8 +654,13 @@
                                     </ul>
                                 </div>
                             </div>
-                            <p>Mit <kbd>Cmd + Shift + F</kbd> / <kbd>Strg + Shift + F</kbd> und Scope auf **nur diese
-                                Datei** siehst du sofort:</p>
+                            <p>
+                                Mit
+                                <kbd>Cmd + Shift + F</kbd>
+                                /
+                                <kbd>Strg + Shift + F</kbd>
+                                und Scope auf **nur diese Datei** siehst du sofort:
+                            </p>
                             <ul class="arrow-list grid-2col-bg">
                                 <li>wie oft etwas vorkommt</li>
                                 <li>wo sich Auslagerungen lohnen</li>
@@ -483,17 +669,28 @@
 
                         <!-- Variante D: Alle gleichen Stellen markieren -->
                         <div>
-                            <h3 class="mt-xl pt-xxl" id="variante-d-alle-gleichen-stellen-markieren">Variante D: Alle
-                                gleichen Stellen markieren</h3>
+                            <h3 class="mt-xl pt-xxl" id="variante-d-alle-gleichen-stellen-markieren">
+                                Variante D: Alle gleichen Stellen markieren
+                            </h3>
                             <p>Sehr nützlich beim manuellen Refactoring:</p>
                             <ol class="grid-2col-bg ml-0 pl-0">
-                                <li>Cursor auf eine Property setzen, z. B. <code>list-style</code></li>
-                                <li><kbd>Cmd + Shift + L</kbd> / <kbd>Strg + Shift + L</kbd></li>
+                                <li>
+                                    Cursor auf eine Property setzen, z. B.
+                                    <code>list-style</code>
+                                </li>
+                                <li>
+                                    <kbd>Cmd + Shift + L</kbd>
+                                    /
+                                    <kbd>Strg + Shift + L</kbd>
+                                </li>
                                 <li>Alle Vorkommen werden markiert</li>
                             </ol>
                             <p>Jetzt kannst du bewusst entscheiden:</p>
                             <ul class="arrow-list grid-2col-bg">
-                                <li>rausziehen in z. B. <code>.nav-base</code></li>
+                                <li>
+                                    rausziehen in z. B.
+                                    <code>.nav-base</code>
+                                </li>
                                 <li>oder bewusst getrennt lassen</li>
                             </ul>
                         </div>
@@ -502,14 +699,20 @@
                     <!-- Wann Duplikate bewusst beibehalten? -->
                     <section class="tutorials-content">
                         <h2 id="wann-duplikate-bewusst-beibehalten">Wann Duplikate bewusst beibehalten?</h2>
-                        <p>Nicht jeder doppelte Code sollte zusammengeführt werden. Manchmal ist Separation sinnvoller:
+                        <p>
+                            Nicht jeder doppelte Code sollte zusammengeführt werden. Manchmal ist Separation sinnvoller:
                         </p>
 
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <p><strong>Zusammenführen sinnvoll bei:</strong></p>
                                 <ul class="arrow-list">
-                                    <li>Identische Reset-Styles (<code>list-style: none</code>, <code>margin: 0</code>)
+                                    <li>
+                                        Identische Reset-Styles (
+                                        <code>list-style: none</code>
+                                        ,
+                                        <code>margin: 0</code>
+                                        )
                                     </li>
                                     <li>Wiederholte Layout-Patterns (Flexbox-Container)</li>
                                     <li>Gemeinsame Basis-Styles für ähnliche Komponenten</li>
@@ -526,29 +729,35 @@
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Faustregel
+                            <strong class="box-title no-toc">
+                                Faustregel
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Wenn du eine Änderung an <strong>beiden Stellen gleichzeitig</strong> vornehmen müsstest,
-                                ist das ein Zeichen für sinnvolles Zusammenführen. Wenn die Stellen sich
-                                <strong>unabhängig voneinander entwickeln</strong> können, lass sie getrennt.
+                            <p>
+                                Wenn du eine Änderung an
+                                <strong>beiden Stellen gleichzeitig</strong>
+                                vornehmen müsstest, ist das ein Zeichen für sinnvolles Zusammenführen. Wenn die Stellen
+                                sich
+                                <strong>unabhängig voneinander entwickeln</strong>
+                                können, lass sie getrennt.
                             </p>
                         </div>
                     </section>
 
                     <!-- Temporärer Kommentar-Workflow (Refactor-Hilfe) -->
                     <section class="tutorials-content">
-                        <h2 id="temporaerer-kommentar-workflow-refactor-hilfe">Temporärer Kommentar-Workflow
-                            (Refactor-Hilfe)</h2>
+                        <h2 id="temporaerer-kommentar-workflow-refactor-hilfe">
+                            Temporärer Kommentar-Workflow (Refactor-Hilfe)
+                        </h2>
                         <p>Gerade bei größeren oder gewachsenen Stylesheets bewährt:</p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -579,8 +788,9 @@ nav.demo-2 ul {
 
                     <!-- Praktisches Beispiel: CSS-Blöcke zusammenführen -->
                     <section class="tutorials-content">
-                        <h2 id="praktisches-beispiel-css-bloecke-zusammenfuehren">Praktisches Beispiel: CSS-Blöcke
-                            zusammenführen</h2>
+                        <h2 id="praktisches-beispiel-css-bloecke-zusammenfuehren">
+                            Praktisches Beispiel: CSS-Blöcke zusammenführen
+                        </h2>
                         <p>Hier ein konkretes Vorher-Nachher-Beispiel:</p>
 
                         <h3 id="vorher-doppelter-code">Vorher: Doppelter Code</h3>
@@ -589,7 +799,7 @@ nav.demo-2 ul {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -619,7 +829,7 @@ nav.demo-2 ul {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -637,8 +847,11 @@ nav.demo-1 ul { gap: 1rem; }
 nav.demo-2 ul { gap: 1.5rem; }</code></pre>
                         </div>
 
-                        <p>Ergebnis: <strong>5 Zeilen statt 14</strong> – und Änderungen an der Basis wirken automatisch
-                            überall.</p>
+                        <p>
+                            Ergebnis:
+                            <strong>5 Zeilen statt 14</strong>
+                            – und Änderungen an der Basis wirken automatisch überall.
+                        </p>
                     </section>
 
                     <!-- Extensions zum Finden doppelten Codes -->
@@ -650,13 +863,17 @@ nav.demo-2 ul { gap: 1.5rem; }</code></pre>
                             <li>CodeMetrics</li>
                         </ul>
                         <div class="info-box">
-                            <strong class="box-title no-toc">Hinweis
+                            <strong class="box-title no-toc">
+                                Hinweis
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Diese Extensions arbeiten meist <strong>zeilenbasiert</strong>, nicht semantisch. Für CSS
-                                okay, aber kein Ersatz für manuelles Refactoring.</p>
+                            <p>
+                                Diese Extensions arbeiten meist
+                                <strong>zeilenbasiert</strong>
+                                , nicht semantisch. Für CSS okay, aber kein Ersatz für manuelles Refactoring.
+                            </p>
                         </div>
                     </section>
 
@@ -670,9 +887,17 @@ nav.demo-2 ul { gap: 1.5rem; }</code></pre>
                                 <ul class="arrow-list">
                                     <li>Dateien vergleichen (Select for Compare)</li>
                                     <li>Diff-Ansicht mit farblich markierten Unterschieden</li>
-                                    <li>Suche innerhalb einer Datei <kbd>Cmd/Strg + F</kbd></li>
-                                    <li>Projektweite Suche <kbd>Cmd/Strg + Shift + F</kbd></li>
-                                    <li>Alle gleichen Vorkommen markieren <br>
+                                    <li>
+                                        Suche innerhalb einer Datei
+                                        <kbd>Cmd/Strg + F</kbd>
+                                    </li>
+                                    <li>
+                                        Projektweite Suche
+                                        <kbd>Cmd/Strg + Shift + F</kbd>
+                                    </li>
+                                    <li>
+                                        Alle gleichen Vorkommen markieren
+                                        <br />
                                         <kbd>Cmd/Strg + Shift + L</kbd>
                                     </li>
                                 </ul>
@@ -682,7 +907,10 @@ nav.demo-2 ul { gap: 1.5rem; }</code></pre>
                                 <p><strong>Benötigt eine Extension</strong></p>
                                 <ul class="arrow-list">
                                     <li>Block-vs.-Block-Vergleiche</li>
-                                    <li><strong>Compare Selected Text</strong> (Partial Diff)</li>
+                                    <li>
+                                        <strong>Compare Selected Text</strong>
+                                        (Partial Diff)
+                                    </li>
                                     <li>Erkennung ähnlicher Codeblöcke</li>
                                     <li>automatische Duplikat-Reports</li>
                                 </ul>
@@ -690,16 +918,19 @@ nav.demo-2 ul { gap: 1.5rem; }</code></pre>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Merke
+                            <strong class="box-title no-toc">
+                                Merke
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>VS Code kann ganze Dateien von Haus aus vergleichen
-                                (Diff-Ansicht). Für gezielte Vergleiche einzelner Codeblöcke ist eine Extension
-                                wie <em>Partial Diff</em> erforderlich.</p>
+                            <p>
+                                VS Code kann ganze Dateien von Haus aus vergleichen (Diff-Ansicht). Für gezielte
+                                Vergleiche einzelner Codeblöcke ist eine Extension wie
+                                <em>Partial Diff</em>
+                                erforderlich.
+                            </p>
                         </div>
-
                     </section>
 
                     <!-- Zusammenfassung -->
@@ -740,69 +971,73 @@ nav.demo-2 ul { gap: 1.5rem; }</code></pre>
                                 </ul>
                             </div>
                         </div> -->
-                        <p>Gerade bei wachsenden Stylesheets ist ein bewusster Vergleich oft effektiver
-                            als automatisches Aufräumen.</p>
+                        <p>
+                            Gerade bei wachsenden Stylesheets ist ein bewusster Vergleich oft effektiver als
+                            automatisches Aufräumen.
+                        </p>
                     </section>
-
 
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/misc/tools/vs-code.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">VS Code für HTML & CSS</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/misc/tools/browser-dev-tools.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Browser DevTools</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/misc/tools/vs-code.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">VS Code für HTML & CSS</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/misc/tools/browser-dev-tools.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">Browser DevTools</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-    
-
-</body></html>
+    </body>
+</html>

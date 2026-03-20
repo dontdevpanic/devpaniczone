@@ -1,182 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex, follow" />
+        <meta name="description" content="Suchergebnisse | DevPanicZone" />
+        <meta
+            name="keywords"
+            content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials"
+        />
+        <meta name="author" content="DevPanicZone" />
+        <title>Suche | DevPanicZone</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, follow">
-    <meta name="description" content="Suchergebnisse | DevPanicZone">
-    <meta name="keywords" content="HTML, CSS, JavaScript, PHP, Bootstrap, Webentwicklung, DevPanicZone, Tutorials">
-    <meta name="author" content="DevPanicZone">
-    <title>Suche | DevPanicZone</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/tutorials.css">
-</head>
+    <body>
+        <!-- @manual - Do not modify via generator -->
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">DevPanicZone! Cheatsheets.</span>
+                        </a>
+                    </div>
 
-<body>
-    <!-- @manual - Do not modify via generator -->
-    <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <div class="brand">
-                    <a href="/" class="brand-link">
-                        <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                        <span class="brand-name">DevPanicZone! Cheatsheets.</span>
-                    </a>
-                </div>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
 
-                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                    <span class="theme-icon">
-                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                    </span>
-                </button>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
 
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                    <span class="hamburger"></span>
-                </button>
-
-                <nav class="main-nav" id="mainNav">
-                    <ul class="nav-list">
-                        <li><a href="/" class="nav-link">Home</a></li>
-                        <li class="nav-item-dropdown">
-                            <button class="nav-link dropdown-toggle" aria-expanded="false">
-                                Tutorials
-                                <span class="dropdown-icon">▾</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <!-- Main-Nav-Start -->
-                                <li><a href="/tutorials/html/">HTML</a></li>
-                                <li><a href="/tutorials/css/">CSS</a></li>
-                                <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
-                                <li><a href="/tutorials/javascript/">JavaScript</a></li>
-                                <li><a href="/tutorials/php/">PHP</a></li>
-                                <li><a href="/tutorials/misc/">Verschiedenes</a></li>
-                                <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
-                                <!-- Main-Nav-End -->
-                            </ul>
-                        </li>
-                        <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-
-                        <!-- Search Toggle -->
-                        <li>
-                            <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                                <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                    <path
-                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
-                                </svg>
-                            </button>
-                        </li>
-                    </ul>
-
-                    <!-- Search Dropdown -->
-                    <div class="search-dropdown" id="searchDropdown" hidden>
-                        <div class="search-input-group">
-                            <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                                <path
-                                    d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
-                            </svg>
-                            <input type="search" id="globalSearch" class="search-input"
-                                placeholder="Tutorials durchsuchen..." aria-label="Suche">
-                            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
-                        </div>
-
-                        <div class="search-results" id="searchResults" hidden>
-                            <div class="search-results-list" id="searchResultsList"></div>
-                            <div class="search-results-footer">
-                                <button class="search-view-all" id="searchViewAll">
-                                    Alle Ergebnisse anzeigen →
+                    <nav class="main-nav" id="mainNav">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
                                 </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li><a href="/tutorials/html/">HTML</a></li>
+                                    <li><a href="/tutorials/css/">CSS</a></li>
+                                    <li><a href="/tutorials/bootstrap/">Bootstrap</a></li>
+                                    <li><a href="/tutorials/javascript/">JavaScript</a></li>
+                                    <li><a href="/tutorials/php/">PHP</a></li>
+                                    <li><a href="/tutorials/misc/">Verschiedenes</a></li>
+                                    <li><a href="/tutorials/documentation/">DevPanicZone!</a></li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                        <path
+                                            d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                        />
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero tutorial-hero">
-        <div class="container">
-            <nav class="breadcrumbs">
-                <a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><span
-                    class="breadcrumb-current">Search</span>
-            </nav>
-            <h1 class="hero-title">Suchergebnisse für <span class="search-query" id="displayQuery"></span></h1>
-            <p class="hero-subtitle search-count" id="searchCount"></p>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="site-main">
-        <div class="container">
-            <section class="search-results-page">
-
-                <div class="search-results-grid" id="fullSearchResults">
-                    <!-- JavaScript füllt Ergebnisse hier ein -->
-                </div>
-
-                <div class="search-no-results-full" id="noResults" hidden>
-                    <h2>Keine Ergebnisse gefunden</h2>
-                    <p>Versuche es mit anderen Suchbegriffen oder durchstöbere unsere Kategorien:</p>
-
-                    <nav class="keyboard-nav" aria-label="Schnellnavigation">
-                        <a href="/">
-                            <kbd class="key-active">Home ↵</kbd>
-                        </a>
-                        <a href="/tutorials/html/">
-                            <kbd class="key-active">HTML ↵</kbd>
-                        </a>
-                        <a href="/tutorials/css/">
-                            <kbd class="key-active">CSS ↵</kbd>
-                        </a>
-                        <a href="/tutorials/javascript/">
-                            <kbd class="key-active">JavaScript ↵</kbd>
-                        </a>
-                        <a href="/tutorials/php/">
-                            <kbd class="key-active">PHP ↵</kbd>
-                        </a>
-                        <a href="/tutorials/misc/">
-                            <kbd class="key-active">Tools ↵</kbd>
-                        </a>
-                        <a href="/glossary.html">
-                            <kbd class="key-active">Glossar ↵</kbd>
-                        </a>
                     </nav>
-
-                    <section class="categories">
-                        <h2>Beliebte Themen</h2>
-                        <div id="latestTutorials" class="tutorials-grid">
-                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                            <p class="text-muted">Tutorials werden geladen...</p>
-                        </div>
-                    </section>
-
                 </div>
-
-            </section>
-        </div>
-    </main>
-
-    <!-- @manual - Do not modify via generator -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-text">© <span id="currentYear"></span> DevPanicZone. Alle Rechte vorbehalten.</p>
-                <nav class="footer-nav">
-                    <a href="/impressum.html">Impressum</a>
-                    <a href="/datenschutzerklaerung.html">Datenschutz</a>
-                </nav>
             </div>
-        </div>
-    </footer>
+        </header>
 
-    <button id="scrollTopBtn" title="Nach oben">↑</button>
-    <script src="/assets/js/main.js" defer></script>
-    <script src="/assets/js/search.js" defer></script>
-    <script src="/assets/js/search-results-page.js" defer></script>
-    <script src="/assets/js/latest-tutorials.js" defer></script>
-</body>
+        <!-- Hero -->
+        <section class="hero tutorial-hero">
+            <div class="container">
+                <nav class="breadcrumbs">
+                    <a href="/" class="breadcrumb-link">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-current">Search</span>
+                </nav>
+                <h1 class="hero-title">
+                    Suchergebnisse für
+                    <span class="search-query" id="displayQuery"></span>
+                </h1>
+                <p class="hero-subtitle search-count" id="searchCount"></p>
+            </div>
+        </section>
 
+        <!-- Main Content -->
+        <main class="site-main">
+            <div class="container">
+                <section class="search-results-page">
+                    <div class="search-results-grid" id="fullSearchResults">
+                        <!-- JavaScript füllt Ergebnisse hier ein -->
+                    </div>
+
+                    <div class="search-no-results-full" id="noResults" hidden>
+                        <h2>Keine Ergebnisse gefunden</h2>
+                        <p>Versuche es mit anderen Suchbegriffen oder durchstöbere unsere Kategorien:</p>
+
+                        <nav class="keyboard-nav" aria-label="Schnellnavigation">
+                            <a href="/">
+                                <kbd class="key-active">Home ↵</kbd>
+                            </a>
+                            <a href="/tutorials/html/">
+                                <kbd class="key-active">HTML ↵</kbd>
+                            </a>
+                            <a href="/tutorials/css/">
+                                <kbd class="key-active">CSS ↵</kbd>
+                            </a>
+                            <a href="/tutorials/javascript/">
+                                <kbd class="key-active">JavaScript ↵</kbd>
+                            </a>
+                            <a href="/tutorials/php/">
+                                <kbd class="key-active">PHP ↵</kbd>
+                            </a>
+                            <a href="/tutorials/misc/">
+                                <kbd class="key-active">Tools ↵</kbd>
+                            </a>
+                            <a href="/glossary.html">
+                                <kbd class="key-active">Glossar ↵</kbd>
+                            </a>
+                        </nav>
+
+                        <section class="categories">
+                            <h2>Beliebte Themen</h2>
+                            <div id="latestTutorials" class="tutorials-grid">
+                                <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                                <p class="text-muted">Tutorials werden geladen...</p>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- @manual - Do not modify via generator -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear"></span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/search-results-page.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+    </body>
 </html>

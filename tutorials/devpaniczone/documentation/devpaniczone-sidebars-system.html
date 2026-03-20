@@ -1,187 +1,208 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description"
-            content="Dokumentation zum Sidebar-System auf DevPanicZone. Linke Sidebar (TOC) und rechte Sidebar (Tutorial-Navigation), ScrollSpy und automatische Generierung.">
-        <meta name="keywords"
-            content="Sidebar, TOC, Inhaltsverzeichnis, ScrollSpy, Navigation, Tutorial, JavaScript, CSS, generate-navigation.js, DevPanicZone">
-        <meta name="author" content="DevPanicZone">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="Dokumentation zum Sidebar-System auf DevPanicZone. Linke Sidebar (TOC) und rechte Sidebar (Tutorial-Navigation), ScrollSpy und automatische Generierung."
+        />
+        <meta
+            name="keywords"
+            content="Sidebar, TOC, Inhaltsverzeichnis, ScrollSpy, Navigation, Tutorial, JavaScript, CSS, generate-navigation.js, DevPanicZone"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>Sidebar-System erklärt | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
-                            class="breadcrumb-separator">›</span><a href="/tutorials/documentation/"
-                            class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span
-                            class="breadcrumb-current">Wie funktionieren die Sidebars?</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Wie funktionieren die Sidebars?</span>
+                    </nav>
                     <h1 class="hero-title">Sidebar-System - So funktioniert's</h1>
-                    <p class="hero-subtitle">Eine verständliche Erklärung, wie die beiden Sidebars arbeiten, wie sie
-                        generiert werden und wie ScrollSpy den aktiven Abschnitt hervorhebt.</p>
+                    <p class="hero-subtitle">
+                        Eine verständliche Erklärung, wie die beiden Sidebars arbeiten, wie sie generiert werden und wie
+                        ScrollSpy den aktiven Abschnitt hervorhebt.
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
-                title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -190,7 +211,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -203,47 +223,102 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#das-sidebar-system-im-ueberblick">Das Sidebar-System im Überblick</a></li>
-                    <li class="toc-level-1"><a href="#architektur-zusammenspiel">Architektur &amp; Zusammenspiel</a></li>
-                    <li class="toc-level-2"><a href="#die-beteiligten-dateien">Die beteiligten Dateien</a></li>
-                    <li class="toc-level-2"><a href="#ablauf-von-der-generierung-bis-zur-anzeige">Ablauf: Von der Generierung bis zur
-                                Anzeige</a></li>
-                    <li class="toc-level-1"><a href="#linke-sidebar-toc-inhaltsverzeichnis">Linke Sidebar (TOC) - Inhaltsverzeichnis</a></li>
-                    <li class="toc-level-2"><a href="#1-generierung-generate-navigationjs">1. Generierung (generate-navigation.js)</a></li>
-                    <li class="toc-level-2"><a href="#2-html-struktur">2. HTML-Struktur</a></li>
-                    <li class="toc-level-2"><a href="#3-interaktivitaet-sidebarjs">3. Interaktivität (sidebar.js)</a></li>
-                    <li class="toc-level-2"><a href="#4-smooth-scroll-mit-offset">4. Smooth Scroll mit Offset</a></li>
-                    <li class="toc-level-1"><a href="#scrollspy-aktiven-link-hervorheben">ScrollSpy - Aktiven Link hervorheben</a></li>
-                    <li class="toc-level-2"><a href="#wie-funktioniert-scrollspy">Wie funktioniert ScrollSpy?</a></li>
-                    <li class="toc-level-2"><a href="#schritt-fuer-schritt-erklaert">Schritt für Schritt erklärt</a></li>
-                    <li class="toc-level-2"><a href="#edge-cases">Edge Cases</a></li>
-                    <li class="toc-level-1"><a href="#rechte-sidebar-tutorial-nav">Rechte Sidebar (Tutorial-Nav)</a></li>
-                    <li class="toc-level-2"><a href="#1-generierung-generate-navigationjs-1">1. Generierung (generate-navigation.js)</a></li>
-                    <li class="toc-level-2"><a href="#2-html-struktur-1">2. HTML-Struktur</a></li>
-                    <li class="toc-level-2"><a href="#3-interaktivitaet-sidebarjs-1">3. Interaktivität (sidebar.js)</a></li>
-                    <li class="toc-level-1"><a href="#das-zusammenspiel-aller-komponenten">Das Zusammenspiel aller Komponenten</a></li>
-                    <li class="toc-level-2"><a href="#phase-1-build-zeit-npm-run-build">Phase 1: Build-Zeit (npm run build)</a></li>
-                    <li class="toc-level-2"><a href="#phase-2-seite-laedt-im-browser">Phase 2: Seite lädt im Browser</a></li>
-                    <li class="toc-level-2"><a href="#phase-3-user-interaktion">Phase 3: User-Interaktion</a></li>
-                    <li class="toc-level-1"><a href="#css-architektur">CSS-Architektur</a></li>
-                    <li class="toc-level-2"><a href="#positionierung-fixed">Positionierung (Fixed)</a></li>
-                    <li class="toc-level-2"><a href="#open-state">Open-State</a></li>
-                    <li class="toc-level-2"><a href="#responsive-design">Responsive Design</a></li>
-                    <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
-                    <li class="toc-level-2"><a href="#1-ids-fuer-ueberschriften">1. IDs für Überschriften</a></li>
-                    <li class="toc-level-2"><a href="#2-no-toc-klasse">2. no-toc Klasse</a></li>
-                    <li class="toc-level-2"><a href="#3-tutorial-reihenfolge">3. Tutorial-Reihenfolge</a></li>
-                    <li class="toc-level-2"><a href="#4-performance">4. Performance</a></li>
-                    <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
-                    <li class="toc-level-2"><a href="#problem-sidebar-links-fuehren-nirgends-hin">Problem: Sidebar-Links führen nirgends
-                                hin</a></li>
-                    <li class="toc-level-2"><a href="#problem-scrollspy-funktioniert-nicht">Problem: ScrollSpy funktioniert nicht</a></li>
-                    <li class="toc-level-2"><a href="#problem-rechte-sidebar-zeigt-falsche-tutorials">Problem: Rechte Sidebar zeigt
-                                falsche Tutorials</a></li>
-                    <li class="toc-level-2"><a href="#problem-sidebar-oeffnet-sich-nicht">Problem: Sidebar öffnet sich nicht</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1">
+                                <a href="#das-sidebar-system-im-ueberblick">Das Sidebar-System im Überblick</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#architektur-zusammenspiel">Architektur &amp; Zusammenspiel</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#die-beteiligten-dateien">Die beteiligten Dateien</a></li>
+                            <li class="toc-level-2">
+                                <a href="#ablauf-von-der-generierung-bis-zur-anzeige">
+                                    Ablauf: Von der Generierung bis zur Anzeige
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#linke-sidebar-toc-inhaltsverzeichnis">
+                                    Linke Sidebar (TOC) - Inhaltsverzeichnis
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#1-generierung-generate-navigationjs">
+                                    1. Generierung (generate-navigation.js)
+                                </a>
+                            </li>
+                            <li class="toc-level-2"><a href="#2-html-struktur">2. HTML-Struktur</a></li>
+                            <li class="toc-level-2">
+                                <a href="#3-interaktivitaet-sidebarjs">3. Interaktivität (sidebar.js)</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#4-smooth-scroll-mit-offset">4. Smooth Scroll mit Offset</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#scrollspy-aktiven-link-hervorheben">ScrollSpy - Aktiven Link hervorheben</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#wie-funktioniert-scrollspy">Wie funktioniert ScrollSpy?</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#schritt-fuer-schritt-erklaert">Schritt für Schritt erklärt</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#edge-cases">Edge Cases</a></li>
+                            <li class="toc-level-1">
+                                <a href="#rechte-sidebar-tutorial-nav">Rechte Sidebar (Tutorial-Nav)</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#1-generierung-generate-navigationjs-1">
+                                    1. Generierung (generate-navigation.js)
+                                </a>
+                            </li>
+                            <li class="toc-level-2"><a href="#2-html-struktur-1">2. HTML-Struktur</a></li>
+                            <li class="toc-level-2">
+                                <a href="#3-interaktivitaet-sidebarjs-1">3. Interaktivität (sidebar.js)</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#das-zusammenspiel-aller-komponenten">Das Zusammenspiel aller Komponenten</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#phase-1-build-zeit-npm-run-build">Phase 1: Build-Zeit (npm run build)</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#phase-2-seite-laedt-im-browser">Phase 2: Seite lädt im Browser</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#phase-3-user-interaktion">Phase 3: User-Interaktion</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#css-architektur">CSS-Architektur</a></li>
+                            <li class="toc-level-2"><a href="#positionierung-fixed">Positionierung (Fixed)</a></li>
+                            <li class="toc-level-2"><a href="#open-state">Open-State</a></li>
+                            <li class="toc-level-2"><a href="#responsive-design">Responsive Design</a></li>
+                            <li class="toc-level-1"><a href="#best-practices">Best Practices</a></li>
+                            <li class="toc-level-2">
+                                <a href="#1-ids-fuer-ueberschriften">1. IDs für Überschriften</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#2-no-toc-klasse">2. no-toc Klasse</a></li>
+                            <li class="toc-level-2"><a href="#3-tutorial-reihenfolge">3. Tutorial-Reihenfolge</a></li>
+                            <li class="toc-level-2"><a href="#4-performance">4. Performance</a></li>
+                            <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
+                            <li class="toc-level-2">
+                                <a href="#problem-sidebar-links-fuehren-nirgends-hin">
+                                    Problem: Sidebar-Links führen nirgends hin
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#problem-scrollspy-funktioniert-nicht">
+                                    Problem: ScrollSpy funktioniert nicht
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#problem-rechte-sidebar-zeigt-falsche-tutorials">
+                                    Problem: Rechte Sidebar zeigt falsche Tutorials
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#problem-sidebar-oeffnet-sich-nicht">Problem: Sidebar öffnet sich nicht</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -259,90 +334,189 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">Documentation</li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One Cheatsheet für meine Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html">Was macht generate-navigation.js</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">Main Navigation im Header</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html" class="active">Wie funktionieren die Sidebars?</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">Hero Breadcrumbs</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">Prev / Next Buttons in den Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">Tutorial Buttons</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">Toggle Night Mode</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">currentYear im Footer</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">Latest Tutorials Section</a></li>
-                </ul>
+                            <li class="sidebar-group-title">Documentation</li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">
+                                    Automatisches Generieren der Navigationen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">
+                                    All-in-One Cheatsheet für meine Tutorials
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html"
+                                >
+                                    Was macht generate-navigation.js
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">
+                                    Main Navigation im Header
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html"
+                                    class="active"
+                                >
+                                    Wie funktionieren die Sidebars?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">
+                                    Hero Breadcrumbs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">
+                                    Prev / Next Buttons in den Tutorials
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">
+                                    Tutorial Buttons
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">
+                                    Toggle Night Mode
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">
+                                    currentYear im Footer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">
+                                    Latest Tutorials Section
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Überblick -->
                     <section class="tutorials-content">
                         <h2 id="das-sidebar-system-im-ueberblick">Das Sidebar-System im Überblick</h2>
-                        <p>DevPanicZone hat ein ausgeklügeltes Sidebar-System mit <strong>zwei unabhängigen
-                                Sidebars</strong>, die unterschiedlich funktionieren:</p>
+                        <p>
+                            DevPanicZone hat ein ausgeklügeltes Sidebar-System mit
+                            <strong>zwei unabhängigen Sidebars</strong>
+                            , die unterschiedlich funktionieren:
+                        </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Linke Sidebar (TOC)
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="30" height="30"
-                                    class="icon-success" fill="#969696" aria-hidden="true">
-                                    <path d="M3 6h18M3 12h18M3 18h18" stroke="#969696" stroke-width="2"
-                                        stroke-linecap="round"></path>
+                            <strong class="box-title no-toc">
+                                Linke Sidebar (TOC)
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 30.5 30.5"
+                                    width="30"
+                                    height="30"
+                                    class="icon-success"
+                                    fill="#969696"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M3 6h18M3 12h18M3 18h18"
+                                        stroke="#969696"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                    ></path>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Inhalt:</strong> Inhaltsverzeichnis der aktuellen Seite</li>
-                                <li><strong>Generierung:</strong> Server-seitig via <code
-                                        class="inline">generate-navigation.js</code>
+                                <li>
+                                    <strong>Inhalt:</strong>
+                                    Inhaltsverzeichnis der aktuellen Seite
                                 </li>
-                                <li><strong>Basis:</strong> <code class="inline">h2</code> &amp; <code
-                                        class="inline">h3</code> Überschriften</li>
-                                <li><strong>Features:</strong> ScrollSpy, Smooth Scroll</li>
+                                <li>
+                                    <strong>Generierung:</strong>
+                                    Server-seitig via
+                                    <code class="inline">generate-navigation.js</code>
+                                </li>
+                                <li>
+                                    <strong>Basis:</strong>
+                                    <code class="inline">h2</code>
+                                    &amp;
+                                    <code class="inline">h3</code>
+                                    Überschriften
+                                </li>
+                                <li>
+                                    <strong>Features:</strong>
+                                    ScrollSpy, Smooth Scroll
+                                </li>
                             </ul>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Rechte Sidebar (Tutorial-Nav)
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.5 30.5" width="25" height="25"
-                                    fill="currentColor" aria-hidden="true">
+                            <strong class="box-title no-toc">
+                                Rechte Sidebar (Tutorial-Nav)
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 30.5 30.5"
+                                    width="25"
+                                    height="25"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                >
                                     <path
-                                        d="M32.34,2.98L17.75.04c-.46-.09-.94-.03-1.36.19L2.49,7.24c-.1.05-.62.35-.68.43-.21.16-.46.29-.74.57-.51.51-1.07,1.39-1.07,2.72s.74,2.29,1.49,2.82c-.55.4-1.49,1.32-1.49,2.96,0,1.33.68,2.23,1.4,2.77-.56.43-1.4,1.33-1.4,2.89,0,2.06,1.64,3.09,2.5,3.34.02,0,.03,0,.05.01l15.88,3.56c.05.01.1.02.16.02.12,0,.24-.03.35-.09l13.14-7.44c.36-.2.5-.66.3-1.03-.19-.37-.64-.51-1-.31l-12.9,7.3-15.58-3.5c-.18-.06-1.42-.53-1.42-1.87,0-1.26.68-1.69.91-1.85.23-.16.43-.26.64-.34l15.4,3.46c.05.01.1.02.16.02.12,0,.24-.03.35-.09l13.14-7.44c.36-.2.5-.66.3-1.03-.19-.37-.64-.51-1-.31l-12.9,7.3-15.58-3.5c-.18-.06-1.42-.53-1.42-1.87,0-1.26.68-1.69.91-1.85.3-.22.56-.31.84-.42l15.2,3.41c.05.01.1.02.16.02.12,0,.24-.03.35-.09l13.14-7.44c.36-.2.5-.66.3-1.03-.19-.37-.64-.51-1-.31l-12.9,7.3-15.58-3.5c-.18-.06-1.42-.53-1.42-1.87,0-.7.22-1.19.48-1.46.22-.22.49-.47.93-.62.59-.17.98-.09,1.54.02.03,0,.14.02.17.03l13.5,2.93c.05.01.1.02.15.02.12,0,.23-.03.34-.08l13.95-7.38c.28-.15.44-.46.39-.79-.04-.32-.28-.58-.59-.64ZM21.64,6.21l-6.27-1.34,2.78-1.38,6.49,1.3-2.99,1.42Z">
-                                    </path>
+                                        d="M32.34,2.98L17.75.04c-.46-.09-.94-.03-1.36.19L2.49,7.24c-.1.05-.62.35-.68.43-.21.16-.46.29-.74.57-.51.51-1.07,1.39-1.07,2.72s.74,2.29,1.49,2.82c-.55.4-1.49,1.32-1.49,2.96,0,1.33.68,2.23,1.4,2.77-.56.43-1.4,1.33-1.4,2.89,0,2.06,1.64,3.09,2.5,3.34.02,0,.03,0,.05.01l15.88,3.56c.05.01.1.02.16.02.12,0,.24-.03.35-.09l13.14-7.44c.36-.2.5-.66.3-1.03-.19-.37-.64-.51-1-.31l-12.9,7.3-15.58-3.5c-.18-.06-1.42-.53-1.42-1.87,0-1.26.68-1.69.91-1.85.23-.16.43-.26.64-.34l15.4,3.46c.05.01.1.02.16.02.12,0,.24-.03.35-.09l13.14-7.44c.36-.2.5-.66.3-1.03-.19-.37-.64-.51-1-.31l-12.9,7.3-15.58-3.5c-.18-.06-1.42-.53-1.42-1.87,0-1.26.68-1.69.91-1.85.3-.22.56-.31.84-.42l15.2,3.41c.05.01.1.02.16.02.12,0,.24-.03.35-.09l13.14-7.44c.36-.2.5-.66.3-1.03-.19-.37-.64-.51-1-.31l-12.9,7.3-15.58-3.5c-.18-.06-1.42-.53-1.42-1.87,0-.7.22-1.19.48-1.46.22-.22.49-.47.93-.62.59-.17.98-.09,1.54.02.03,0,.14.02.17.03l13.5,2.93c.05.01.1.02.15.02.12,0,.23-.03.34-.08l13.95-7.38c.28-.15.44-.46.39-.79-.04-.32-.28-.58-.59-.64ZM21.64,6.21l-6.27-1.34,2.78-1.38,6.49,1.3-2.99,1.42Z"
+                                    ></path>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Inhalt:</strong> Alle Tutorials der Kategorie, gruppiert nach
-                                    Unterkategorie</li>
-                                <li><strong>Generierung:</strong> Server-seitig via <code
-                                        class="inline">generate-navigation.js</code></li>
-                                <li><strong>Basis:</strong> <code class="inline">TUTORIAL_ORDER</code> + <code
-                                        class="inline">getAllTutorialsForCategory()</code></li>
-                                <li><strong>Features:</strong> Active-Link Highlighting, Gruppenüberschriften</li>
+                                <li>
+                                    <strong>Inhalt:</strong>
+                                    Alle Tutorials der Kategorie, gruppiert nach Unterkategorie
+                                </li>
+                                <li>
+                                    <strong>Generierung:</strong>
+                                    Server-seitig via
+                                    <code class="inline">generate-navigation.js</code>
+                                </li>
+                                <li>
+                                    <strong>Basis:</strong>
+                                    <code class="inline">TUTORIAL_ORDER</code>
+                                    +
+                                    <code class="inline">getAllTutorialsForCategory()</code>
+                                </li>
+                                <li>
+                                    <strong>Features:</strong>
+                                    Active-Link Highlighting, Gruppenüberschriften
+                                </li>
                             </ul>
                         </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Wichtig: Server-seitig vs. Browser-seitig
+                            <strong class="box-title notice no-toc">
+                                Wichtig: Server-seitig vs. Browser-seitig
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <strong>Beide Sidebars werden server-seitig generiert!</strong>
                             <ul class="arrow-list">
-                                <li class="mt-sm"><strong>Server-seitig:</strong> HTML wird beim <code
-                                        class="inline">npm run build</code>
-                                    erstellt und
-                                    in die Datei geschrieben</li>
-                                <li><strong>Browser-seitig:</strong> JavaScript würde im Browser HTML erstellen
-                                    (langsamer,
-                                    fehleranfällig)</li>
+                                <li class="mt-sm">
+                                    <strong>Server-seitig:</strong>
+                                    HTML wird beim
+                                    <code class="inline">npm run build</code>
+                                    erstellt und in die Datei geschrieben
+                                </li>
+                                <li>
+                                    <strong>Browser-seitig:</strong>
+                                    JavaScript würde im Browser HTML erstellen (langsamer, fehleranfällig)
+                                </li>
                             </ul>
-                            <p class="mt-sm">Das bedeutet: Wenn du die Seite öffnest, ist das HTML schon da! JavaScript
-                                ist
-                                nur für
-                                Interaktionen (Öffnen/Schließen, ScrollSpy) zuständig.</p>
+                            <p class="mt-sm">
+                                Das bedeutet: Wenn du die Seite öffnest, ist das HTML schon da! JavaScript ist nur für
+                                Interaktionen (Öffnen/Schließen, ScrollSpy) zuständig.
+                            </p>
                         </div>
                     </section>
 
@@ -359,8 +533,12 @@
                                     <span class="code-lang">Plain Text</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -380,41 +558,59 @@ assets/
 
                         <!-- Ablauf: Von der Generierung bis zur Anzeige -->
                         <div>
-                            <h3 id="ablauf-von-der-generierung-bis-zur-anzeige">Ablauf: Von der Generierung bis zur
-                                Anzeige
+                            <h3 id="ablauf-von-der-generierung-bis-zur-anzeige">
+                                Ablauf: Von der Generierung bis zur Anzeige
                             </h3>
                             <div class="grid-2col-bg">
                                 <ol class="pl-md">
-                                    <li><strong>Build-Zeit:</strong> <code class="inline">generate-navigation.js</code>
-                                        erstellt
-                                        HTML für beide
-                                        Sidebars</li>
-                                    <li><strong>HTML-Datei:</strong> Sidebar-HTML ist fest im HTML eingebettet</li>
-                                    <li><strong>Seite lädt:</strong> Browser rendert die Sidebars (noch nicht sichtbar)
+                                    <li>
+                                        <strong>Build-Zeit:</strong>
+                                        <code class="inline">generate-navigation.js</code>
+                                        erstellt HTML für beide Sidebars
                                     </li>
-                                    <li><strong>JavaScript lädt:</strong> <code class="inline">sidebar.js</code> und
+                                    <li>
+                                        <strong>HTML-Datei:</strong>
+                                        Sidebar-HTML ist fest im HTML eingebettet
+                                    </li>
+                                    <li>
+                                        <strong>Seite lädt:</strong>
+                                        Browser rendert die Sidebars (noch nicht sichtbar)
+                                    </li>
+                                    <li>
+                                        <strong>JavaScript lädt:</strong>
+                                        <code class="inline">sidebar.js</code>
+                                        und
                                         <code class="inline">scroll-spy.js</code>
                                         werden aktiv
                                     </li>
-                                    <li><strong>User-Interaktion:</strong> Klick auf Button → Sidebar öffnet sich</li>
-                                    <li><strong>Scrollen:</strong> ScrollSpy hebt aktiven Link hervor</li>
+                                    <li>
+                                        <strong>User-Interaktion:</strong>
+                                        Klick auf Button → Sidebar öffnet sich
+                                    </li>
+                                    <li>
+                                        <strong>Scrollen:</strong>
+                                        ScrollSpy hebt aktiven Link hervor
+                                    </li>
                                 </ol>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Linke Sidebar -->
                     <section class="tutorials-content">
                         <h2 id="linke-sidebar-toc-inhaltsverzeichnis">Linke Sidebar (TOC) - Inhaltsverzeichnis</h2>
-                        <p>Die linke Sidebar zeigt ein Inhaltsverzeichnis der aktuellen Seite. Sie wird aus den
-                            Überschriften generiert.</p>
+                        <p>
+                            Die linke Sidebar zeigt ein Inhaltsverzeichnis der aktuellen Seite. Sie wird aus den
+                            Überschriften generiert.
+                        </p>
 
                         <!-- 1. Generierung (generate-navigation.js) -->
                         <div>
                             <h3 id="1-generierung-generate-navigationjs">1. Generierung (generate-navigation.js)</h3>
-                            <p>Die Funktion <code class="inline">addIdsToHeadingsAndGenerateSidebar()</code> macht
-                                folgendes:
+                            <p>
+                                Die Funktion
+                                <code class="inline">addIdsToHeadingsAndGenerateSidebar()</code>
+                                macht folgendes:
                             </p>
 
                             <div class="code-block">
@@ -422,8 +618,12 @@ assets/
                                     <span class="code-lang">JavaScript</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -486,16 +686,28 @@ assets/
                             <h4>Schritt für Schritt</h4>
                             <div class="grid-2col-bg">
                                 <ol class="pl-md">
-                                    <li>Finde alle <code class="inline">&lt;h2&gt;</code> und <code
-                                            class="inline">&lt;h3&gt;</code> Überschriften</li>
-                                    <li>Überspringe Überschriften mit <code class="inline">class="no-toc"</code></li>
-                                    <li>Generiere eine ID aus dem Überschriften-Text (z.B. "Was ist CSS?" →
+                                    <li>
+                                        Finde alle
+                                        <code class="inline">&lt;h2&gt;</code>
+                                        und
+                                        <code class="inline">&lt;h3&gt;</code>
+                                        Überschriften
+                                    </li>
+                                    <li>
+                                        Überspringe Überschriften mit
+                                        <code class="inline">class="no-toc"</code>
+                                    </li>
+                                    <li>
+                                        Generiere eine ID aus dem Überschriften-Text (z.B. "Was ist CSS?" →
                                         "was-ist-css")
                                     </li>
-                                    <li>Füge die ID direkt in die Überschrift ein: <code
-                                            class="inline">&lt;h2 id="was-ist-css"&gt;</code></li>
-                                    <li>Erstelle einen Link: <code
-                                            class="inline">&lt;a href="#was-ist-css"&gt;Was ist CSS?&lt;/a&gt;</code>
+                                    <li>
+                                        Füge die ID direkt in die Überschrift ein:
+                                        <code class="inline">&lt;h2 id="was-ist-css"&gt;</code>
+                                    </li>
+                                    <li>
+                                        Erstelle einen Link:
+                                        <code class="inline">&lt;a href="#was-ist-css"&gt;Was ist CSS?&lt;/a&gt;</code>
                                     </li>
                                     <li>Gib sowohl das modifizierte HTML als auch die Links zurück</li>
                                 </ol>
@@ -512,8 +724,12 @@ assets/
                                     <span class="code-lang">HTML</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -538,16 +754,21 @@ assets/
                             </div>
 
                             <div class="info-box">
-                                <strong class="box-title no-toc">CSS-Klassen erklärt
+                                <strong class="box-title no-toc">
+                                    CSS-Klassen erklärt
                                     <svg class="icon-ui">
                                         <use href="#dpz-info-circle"></use>
                                     </svg>
                                 </strong>
                                 <ul class="arrow-list">
-                                    <li><code class="inline">.toc-level-1</code> → h2-Überschriften (Hauptabschnitte)
+                                    <li>
+                                        <code class="inline">.toc-level-1</code>
+                                        → h2-Überschriften (Hauptabschnitte)
                                     </li>
-                                    <li><code class="inline">.toc-level-2</code> → h3-Überschriften (Unterabschnitte,
-                                        eingerückt)</li>
+                                    <li>
+                                        <code class="inline">.toc-level-2</code>
+                                        → h3-Überschriften (Unterabschnitte, eingerückt)
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -555,15 +776,23 @@ assets/
                         <!-- 3. Interaktivität (sidebar.js) -->
                         <div>
                             <h3 id="3-interaktivitaet-sidebarjs">3. Interaktivität (sidebar.js)</h3>
-                            <p>Das <code class="inline">sidebar.js</code> Script steuert das Öffnen und Schließen:</p>
+                            <p>
+                                Das
+                                <code class="inline">sidebar.js</code>
+                                Script steuert das Öffnen und Schließen:
+                            </p>
 
                             <div class="code-block">
                                 <div class="code-header">
                                     <span class="code-lang">JavaScript</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -611,7 +840,11 @@ assets/
                             <h4>Was passiert beim Öffnen?</h4>
                             <div class="grid-2col-bg">
                                 <ol class="pl-md">
-                                    <li>Klasse <code class="inline">.is-open</code> wird zur Sidebar hinzugefügt</li>
+                                    <li>
+                                        Klasse
+                                        <code class="inline">.is-open</code>
+                                        wird zur Sidebar hinzugefügt
+                                    </li>
                                     <li>CSS transform bewegt die Sidebar ins Sichtfeld</li>
                                     <li>Overlay wird sichtbar (dunkler Hintergrund)</li>
                                     <li>Body-Scrolling wird deaktiviert</li>
@@ -622,7 +855,8 @@ assets/
                         <!-- 4. Smooth Scroll mit Offset -->
                         <div>
                             <h3 id="4-smooth-scroll-mit-offset">4. Smooth Scroll mit Offset</h3>
-                            <p>Wenn du auf einen TOC-Link klickst, scrollt die Seite sanft zur Überschrift - mit einem
+                            <p>
+                                Wenn du auf einen TOC-Link klickst, scrollt die Seite sanft zur Überschrift - mit einem
                                 Offset:
                             </p>
 
@@ -631,8 +865,12 @@ assets/
                                     <span class="code-lang">JavaScript</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -666,30 +904,37 @@ assets/
                                 </ul>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- ScrollSpy -->
                     <section class="tutorials-content">
                         <h2 id="scrollspy-aktiven-link-hervorheben">ScrollSpy - Aktiven Link hervorheben</h2>
-                        <p>ScrollSpy ist ein System, das beim Scrollen den aktuell sichtbaren Abschnitt in der Sidebar
-                            hervorhebt.</p>
+                        <p>
+                            ScrollSpy ist ein System, das beim Scrollen den aktuell sichtbaren Abschnitt in der Sidebar
+                            hervorhebt.
+                        </p>
 
                         <!-- Wie funktioniert ScrollSpy? -->
                         <div>
                             <h3 id="wie-funktioniert-scrollspy">Wie funktioniert ScrollSpy?</h3>
-                            <p>Das <code class="inline">scroll-spy.js</code> Script trackt deine Scroll-Position und
-                                vergleicht
-                                sie mit den
-                                Positionen der Überschriften:</p>
+                            <p>
+                                Das
+                                <code class="inline">scroll-spy.js</code>
+                                Script trackt deine Scroll-Position und vergleicht sie mit den Positionen der
+                                Überschriften:
+                            </p>
 
                             <div class="code-block">
                                 <div class="code-header">
                                     <span class="code-lang">JavaScript</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -793,7 +1038,11 @@ new ScrollSpy();</code></pre>
                                 <p>Beim Laden der Seite:</p>
                                 <div class="grid-2col-bg">
                                     <ol class="pl-md">
-                                        <li>Finde alle Links in der TOC (<code class="inline">.toc-list a</code>)</li>
+                                        <li>
+                                            Finde alle Links in der TOC (
+                                            <code class="inline">.toc-list a</code>
+                                            )
+                                        </li>
                                         <li>Für jeden Link: Finde die zugehörige Überschrift via ID</li>
                                         <li>Speichere Link + Überschrift zusammen in einem Array</li>
                                     </ol>
@@ -803,8 +1052,12 @@ new ScrollSpy();</code></pre>
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                    height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -828,31 +1081,33 @@ new ScrollSpy();</code></pre>
                                     <ol class="pl-md">
                                         <li>Hole aktuelle Scroll-Position + 100px Offset</li>
                                         <li>Durchlaufe alle Überschriften von oben nach unten</li>
-                                        <li>Finde die Überschrift, die gerade sichtbar ist (scrollPosition &gt;=
+                                        <li>
+                                            Finde die Überschrift, die gerade sichtbar ist (scrollPosition &gt;=
                                             headingTop)
                                         </li>
                                         <li>Das ist der aktive Abschnitt!</li>
                                     </ol>
                                 </div>
                                 <div class="info-box">
-                                    <strong class="box-title no-toc">Warum 100px Offset?
+                                    <strong class="box-title no-toc">
+                                        Warum 100px Offset?
                                         <svg class="icon-ui">
                                             <use href="#dpz-info-circle"></use>
                                         </svg>
                                     </strong>
-                                    <p>Der Header ist sticky und nimmt Platz ein. Mit 100px Offset wird eine Überschrift
-                                        als
-                                        "aktiv"
-                                        markiert, wenn sie ca. unter dem Header ist - nicht erst wenn sie ganz oben am
-                                        Viewport
-                                        klebt.</p>
+                                    <p>
+                                        Der Header ist sticky und nimmt Platz ein. Mit 100px Offset wird eine
+                                        Überschrift als "aktiv" markiert, wenn sie ca. unter dem Header ist - nicht erst
+                                        wenn sie ganz oben am Viewport klebt.
+                                    </p>
                                 </div>
                             </div>
 
                             <!-- 3. Performance-Optimierung (Throttling) -->
                             <div>
                                 <h4 class="no-toc">3. Performance-Optimierung (Throttling)</h4>
-                                <p>Das Scroll-Event wird SEHR oft gefeuert (bei jedem Pixel!). Um die Performance zu
+                                <p>
+                                    Das Scroll-Event wird SEHR oft gefeuert (bei jedem Pixel!). Um die Performance zu
                                     schonen:
                                 </p>
 
@@ -861,8 +1116,12 @@ new ScrollSpy();</code></pre>
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                    height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -881,11 +1140,15 @@ new ScrollSpy();</code></pre>
                                 <p><strong>Was passiert hier?</strong></p>
                                 <div class="grid-2col-bg">
                                     <ul class="arrow-list">
-                                        <li><code class="inline">requestAnimationFrame</code> wartet bis zum nächsten
-                                            Browser-Repaint
+                                        <li>
+                                            <code class="inline">requestAnimationFrame</code>
+                                            wartet bis zum nächsten Browser-Repaint
                                         </li>
                                         <li>Dadurch läuft die Funktion maximal 60x pro Sekunde (statt 1000x!)</li>
-                                        <li><code class="inline">ticking</code> Flag verhindert mehrfache Aufrufe</li>
+                                        <li>
+                                            <code class="inline">ticking</code>
+                                            Flag verhindert mehrfache Aufrufe
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -896,8 +1159,16 @@ new ScrollSpy();</code></pre>
                                 <p>Wenn der aktive Abschnitt sich ändert:</p>
                                 <div class="grid-2col-bg">
                                     <ol class="pl-md">
-                                        <li>Entferne <code class="inline">.active</code> von ALLEN TOC-Links</li>
-                                        <li>Füge <code class="inline">.active</code> zum aktiven Link hinzu</li>
+                                        <li>
+                                            Entferne
+                                            <code class="inline">.active</code>
+                                            von ALLEN TOC-Links
+                                        </li>
+                                        <li>
+                                            Füge
+                                            <code class="inline">.active</code>
+                                            zum aktiven Link hinzu
+                                        </li>
                                         <li>CSS hebt den Link hervor (z.B. blaue Farbe, fetter Text)</li>
                                     </ol>
                                 </div>
@@ -906,8 +1177,12 @@ new ScrollSpy();</code></pre>
                                         <span class="code-lang">CSS</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                    height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -923,7 +1198,6 @@ new ScrollSpy();</code></pre>
 }</code></pre>
                                 </div>
                             </div>
-
                         </div>
 
                         <!-- Edge Cases -->
@@ -935,17 +1209,22 @@ new ScrollSpy();</code></pre>
                             <p>Wenn keine Überschrift im Viewport ist → Erste Überschrift wird aktiv</p>
 
                             <h4 class="no-toc">Ganz unten auf der Seite</h4>
-                            <p>Wenn du am Ende der Seite bist → Letzte Überschrift wird aktiv (auch wenn sie nicht mehr
-                                sichtbar
-                                ist)</p>
+                            <p>
+                                Wenn du am Ende der Seite bist → Letzte Überschrift wird aktiv (auch wenn sie nicht mehr
+                                sichtbar ist)
+                            </p>
 
                             <div class="code-block">
                                 <div class="code-header">
                                     <span class="code-lang">JavaScript</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -956,29 +1235,38 @@ if ((window.innerHeight + window.scrollY) &gt;= document.body.offsetHeight - 10)
 }</code></pre>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Rechte Sidebar -->
                     <section class="tutorials-content">
                         <h2 id="rechte-sidebar-tutorial-nav">Rechte Sidebar (Tutorial-Nav)</h2>
-                        <p>Die rechte Sidebar zeigt alle Tutorials der aktuellen Kategorie. Sie wird ebenfalls
-                            server-seitig
-                            generiert!</p>
+                        <p>
+                            Die rechte Sidebar zeigt alle Tutorials der aktuellen Kategorie. Sie wird ebenfalls
+                            server-seitig generiert!
+                        </p>
 
                         <!-- 1. Generierung (generate-navigation.js) -->
                         <div>
                             <h3 id="1-generierung-generate-navigationjs-1">1. Generierung (generate-navigation.js)</h3>
-                            <p>Die Funktion <code class="inline">generateSidebarNavList()</code> erstellt die
-                                Tutorial-Liste, <strong>gruppiert nach Unterkategorien</strong>:</p>
+                            <p>
+                                Die Funktion
+                                <code class="inline">generateSidebarNavList()</code>
+                                erstellt die Tutorial-Liste,
+                                <strong>gruppiert nach Unterkategorien</strong>
+                                :
+                            </p>
 
                             <div class="code-block">
                                 <div class="code-header">
                                     <span class="code-lang">JavaScript</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1015,44 +1303,75 @@ if ((window.innerHeight + window.scrollY) &gt;= document.body.offsetHeight - 10)
                             <h4>Schritt für Schritt:</h4>
                             <div class="grid-2col-bg">
                                 <ol class="pl-md">
-                                    <li>Ermittle die <strong>Hauptkategorie</strong> aus dem Dateipfad (z.B. "css")</li>
-                                    <li>Hole <strong>alle Tutorials</strong> dieser Kategorie via <code
-                                            class="inline">getAllTutorialsForCategory()</code></li>
-                                    <li>Iteriere durch alle <strong>Unterkategorien</strong> (z.B. "css-basics",
-                                        "css-advanced")</li>
-                                    <li>Füge eine <strong>Gruppenüberschrift</strong> mit <code
-                                            class="inline">.sidebar-group-title</code> ein</li>
+                                    <li>
+                                        Ermittle die
+                                        <strong>Hauptkategorie</strong>
+                                        aus dem Dateipfad (z.B. "css")
+                                    </li>
+                                    <li>
+                                        Hole
+                                        <strong>alle Tutorials</strong>
+                                        dieser Kategorie via
+                                        <code class="inline">getAllTutorialsForCategory()</code>
+                                    </li>
+                                    <li>
+                                        Iteriere durch alle
+                                        <strong>Unterkategorien</strong>
+                                        (z.B. "css-basics", "css-advanced")
+                                    </li>
+                                    <li>
+                                        Füge eine
+                                        <strong>Gruppenüberschrift</strong>
+                                        mit
+                                        <code class="inline">.sidebar-group-title</code>
+                                        ein
+                                    </li>
                                     <li>Erstelle Links für alle Tutorials der Gruppe</li>
-                                    <li>Das aktuelle Tutorial bekommt <code class="inline">class="active"</code></li>
+                                    <li>
+                                        Das aktuelle Tutorial bekommt
+                                        <code class="inline">class="active"</code>
+                                    </li>
                                 </ol>
                             </div>
 
                             <div class="info-box info">
-                                <strong class="box-title info no-toc">Unterschied zur alten Version
+                                <strong class="box-title info no-toc">
+                                    Unterschied zur alten Version
                                     <svg class="icon-ui">
                                         <use href="#dpz-info-circle"></use>
                                     </svg>
                                 </strong>
-                                <p>Früher zeigte die rechte Sidebar nur Tutorials der <strong>aktuellen
-                                        Unterkategorie</strong>. Jetzt zeigt sie <strong>alle Tutorials der
-                                        Hauptkategorie</strong>, gruppiert nach Unterkategorien. So kannst du direkt
-                                    zwischen "CSS Basics" und "CSS Advanced" wechseln.</p>
+                                <p>
+                                    Früher zeigte die rechte Sidebar nur Tutorials der
+                                    <strong>aktuellen Unterkategorie</strong>
+                                    . Jetzt zeigt sie
+                                    <strong>alle Tutorials der Hauptkategorie</strong>
+                                    , gruppiert nach Unterkategorien. So kannst du direkt zwischen "CSS Basics" und "CSS
+                                    Advanced" wechseln.
+                                </p>
                             </div>
                         </div>
 
                         <!-- 2. HTML-Struktur -->
                         <div>
                             <h3 id="2-html-struktur-1">2. HTML-Struktur</h3>
-                            <p>Das generierte HTML enthält jetzt <strong>Gruppenüberschriften</strong> für jede
-                                Unterkategorie:</p>
+                            <p>
+                                Das generierte HTML enthält jetzt
+                                <strong>Gruppenüberschriften</strong>
+                                für jede Unterkategorie:
+                            </p>
 
                             <div class="code-block">
                                 <div class="code-header">
                                     <span class="code-lang">HTML</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1085,15 +1404,21 @@ if ((window.innerHeight + window.scrollY) &gt;= document.body.offsetHeight - 10)
                             </div>
 
                             <div class="info-box">
-                                <strong class="box-title no-toc">CSS-Klassen erklärt
+                                <strong class="box-title no-toc">
+                                    CSS-Klassen erklärt
                                     <svg class="icon-ui">
                                         <use href="#dpz-info-circle"></use>
                                     </svg>
                                 </strong>
                                 <ul class="arrow-list">
-                                    <li><code class="inline">.sidebar-group-title</code> → Überschrift für eine
-                                        Unterkategorie (nicht klickbar)</li>
-                                    <li><code class="inline">.active</code> → Das aktuell angezeigte Tutorial</li>
+                                    <li>
+                                        <code class="inline">.sidebar-group-title</code>
+                                        → Überschrift für eine Unterkategorie (nicht klickbar)
+                                    </li>
+                                    <li>
+                                        <code class="inline">.active</code>
+                                        → Das aktuell angezeigte Tutorial
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -1108,8 +1433,12 @@ if ((window.innerHeight + window.scrollY) &gt;= document.body.offsetHeight - 10)
                                     <span class="code-lang">JavaScript</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1132,7 +1461,6 @@ function closeTutorialNav() {
 tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Zusammenspiel -->
@@ -1144,9 +1472,13 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <div>
                             <h3 id="phase-1-build-zeit-npm-run-build">Phase 1: Build-Zeit (npm run build)</h3>
                             <ol class="grid-2col-bg">
-                                <li><code class="inline">generate-navigation.js</code> wird ausgeführt</li>
+                                <li>
+                                    <code class="inline">generate-navigation.js</code>
+                                    wird ausgeführt
+                                </li>
                                 <li>Es findet alle HTML-Dateien</li>
-                                <li>Für jede Datei:
+                                <li>
+                                    Für jede Datei:
                                     <ul class="arrow-list">
                                         <li class="mt-sm">Findet h2/h3 Überschriften</li>
                                         <li>Generiert IDs und fügt sie zu Überschriften hinzu</li>
@@ -1157,7 +1489,6 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 </li>
                                 <li>Ergebnis: HTML-Dateien mit fertigem Sidebar-HTML</li>
                             </ol>
-
                         </div>
 
                         <!-- Phase 2: Seite lädt im Browser -->
@@ -1165,22 +1496,39 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                             <h3 id="phase-2-seite-laedt-im-browser">Phase 2: Seite lädt im Browser</h3>
                             <ol class="grid-2col-bg">
                                 <li>Browser lädt HTML-Datei</li>
-                                <li>Beide Sidebars sind im HTML, aber nicht sichtbar (CSS:
-                                    <code class="inline">transform: translateX(-100%)</code>)
+                                <li>
+                                    Beide Sidebars sind im HTML, aber nicht sichtbar (CSS:
+                                    <code class="inline">transform: translateX(-100%)</code>
+                                    )
                                 </li>
-                                <li>CSS-Dateien laden:
+                                <li>
+                                    CSS-Dateien laden:
                                     <ul class="arrow-list">
-                                        <li class="mt-sm"><code class="inline">style.css</code> → Basis-Styling
+                                        <li class="mt-sm">
+                                            <code class="inline">style.css</code>
+                                            → Basis-Styling
                                         </li>
-                                        <li><code class="inline">sidebar.css</code> → Sidebar-Styling</li>
+                                        <li>
+                                            <code class="inline">sidebar.css</code>
+                                            → Sidebar-Styling
+                                        </li>
                                     </ul>
                                 </li>
-                                <li>JavaScript-Dateien laden:
+                                <li>
+                                    JavaScript-Dateien laden:
                                     <ul class="arrow-list">
-                                        <li class="mt-sm"><code class="inline">main.js</code> → Header, Theme
-                                            Toggle</li>
-                                        <li><code class="inline">sidebar.js</code> → Sidebar-Interaktionen</li>
-                                        <li><code class="inline">scroll-spy.js</code> → Active-Link-Tracking</li>
+                                        <li class="mt-sm">
+                                            <code class="inline">main.js</code>
+                                            → Header, Theme Toggle
+                                        </li>
+                                        <li>
+                                            <code class="inline">sidebar.js</code>
+                                            → Sidebar-Interaktionen
+                                        </li>
+                                        <li>
+                                            <code class="inline">scroll-spy.js</code>
+                                            → Active-Link-Tracking
+                                        </li>
                                     </ul>
                                 </li>
                             </ol>
@@ -1194,10 +1542,12 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                     <h4 class="no-toc pt-0">User klickt auf Sidebar-Button</h4>
                                     <ol class="pl-md">
                                         <li>Button-Click Event</li>
-                                        <li><code class="inline">sidebar.js</code> fügt <code
-                                                class="inline">.is-open</code>
-                                            Klasse
-                                            hinzu</li>
+                                        <li>
+                                            <code class="inline">sidebar.js</code>
+                                            fügt
+                                            <code class="inline">.is-open</code>
+                                            Klasse hinzu
+                                        </li>
                                         <li>CSS Transition schiebt Sidebar ins Sichtfeld</li>
                                         <li>Overlay wird sichtbar</li>
                                     </ol>
@@ -1206,10 +1556,15 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                     <h4 class="no-toc pt-0">User scrollt auf der Seite</h4>
                                     <ol class="pl-md">
                                         <li>Scroll Event</li>
-                                        <li><code class="inline">scroll-spy.js</code> prüft Scroll-Position</li>
+                                        <li>
+                                            <code class="inline">scroll-spy.js</code>
+                                            prüft Scroll-Position
+                                        </li>
                                         <li>Findet aktive Überschrift</li>
-                                        <li>Fügt <code class="inline">.active</code> Klasse zum passenden TOC-Link
-                                            hinzu
+                                        <li>
+                                            Fügt
+                                            <code class="inline">.active</code>
+                                            Klasse zum passenden TOC-Link hinzu
                                         </li>
                                         <li>CSS hebt den Link hervor</li>
                                     </ol>
@@ -1218,16 +1573,20 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                     <h4 class="no-toc pt-0">User klickt auf TOC-Link</h4>
                                     <ol class="pl-md">
                                         <li>Link-Click Event</li>
-                                        <li><code class="inline">sidebar.js</code> verhindert Standard-Verhalten
+                                        <li>
+                                            <code class="inline">sidebar.js</code>
+                                            verhindert Standard-Verhalten
                                         </li>
                                         <li>Smooth Scroll zur Überschrift (mit 100px Offset)</li>
                                         <li>Sidebar schließt sich automatisch</li>
-                                        <li><code class="inline">scroll-spy.js</code> aktualisiert aktiven Link</li>
+                                        <li>
+                                            <code class="inline">scroll-spy.js</code>
+                                            aktualisiert aktiven Link
+                                        </li>
                                     </ol>
                                 </div>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- CSS-Architektur -->
@@ -1243,8 +1602,12 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                     <span class="code-lang">CSS</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1263,13 +1626,24 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 }</code></pre>
                             </div>
 
-                            <p><strong>Warum <code class="inline">transform</code> statt <code
-                                        class="inline">left</code>?</strong></p>
+                            <p>
+                                <strong>
+                                    Warum
+                                    <code class="inline">transform</code>
+                                    statt
+                                    <code class="inline">left</code>
+                                    ?
+                                </strong>
+                            </p>
                             <ul class="arrow-list grid-2col-bg">
-                                <li><code class="inline">transform</code> nutzt GPU-Beschleunigung → butterweiche
-                                    Animation
+                                <li>
+                                    <code class="inline">transform</code>
+                                    nutzt GPU-Beschleunigung → butterweiche Animation
                                 </li>
-                                <li><code class="inline">left</code> triggert Reflow → langsamer und ruckelig</li>
+                                <li>
+                                    <code class="inline">left</code>
+                                    triggert Reflow → langsamer und ruckelig
+                                </li>
                             </ul>
                         </div>
 
@@ -1281,8 +1655,12 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                     <span class="code-lang">CSS</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1301,8 +1679,12 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                     <span class="code-lang">CSS</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1327,7 +1709,11 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                     <ul class="arrow-list">
                                         <li>Sidebars sind dauerhaft sichtbar</li>
                                         <li>Floating Buttons werden ausgeblendet</li>
-                                        <li>Sidebars scrollen mit (<code class="inline">position: sticky</code>)</li>
+                                        <li>
+                                            Sidebars scrollen mit (
+                                            <code class="inline">position: sticky</code>
+                                            )
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="grid-2col-bg">
@@ -1340,7 +1726,6 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 </div>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Best Practices -->
@@ -1361,7 +1746,10 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 <div class="grid-2col-bg">
                                     <ul class="arrow-list">
                                         <li>Vermeide Sonderzeichen</li>
-                                        <li>Beispiel: <code class="inline">id="was-ist-css"</code></li>
+                                        <li>
+                                            Beispiel:
+                                            <code class="inline">id="was-ist-css"</code>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1370,16 +1758,22 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <!-- 2. no-toc Klasse -->
                         <div>
                             <h3 id="2-no-toc-klasse">2. no-toc Klasse</h3>
-                            <p>Nutze <code class="inline">class="no-toc"</code> für Überschriften, die NICHT im
-                                Inhaltsverzeichnis erscheinen
-                                sollen:</p>
+                            <p>
+                                Nutze
+                                <code class="inline">class="no-toc"</code>
+                                für Überschriften, die NICHT im Inhaltsverzeichnis erscheinen sollen:
+                            </p>
                             <div class="code-block">
                                 <div class="code-header">
                                     <span class="code-lang">HTML</span>
                                     <button class="code-copy">
                                         <span class="copy-icon">
-                                            <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                height="16">
+                                            <img
+                                                src="/assets/icons/clipboard.svg"
+                                                alt="Copy Icon"
+                                                width="16"
+                                                height="16"
+                                            />
                                         </span>
                                         <span class="copy-text">Kopieren</span>
                                     </button>
@@ -1391,11 +1785,19 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                         <!-- 3. Tutorial-Reihenfolge -->
                         <div>
                             <h3 id="3-tutorial-reihenfolge">3. Tutorial-Reihenfolge</h3>
-                            <p>Halte <code class="inline">TUTORIAL_ORDER</code> immer aktuell:</p>
+                            <p>
+                                Halte
+                                <code class="inline">TUTORIAL_ORDER</code>
+                                immer aktuell:
+                            </p>
                             <ul class="arrow-list grid-2col-bg">
                                 <li>Neue Tutorials sofort eintragen</li>
                                 <li>Reihenfolge logisch gestalten (Basics → Advanced)</li>
-                                <li>Nach Änderungen <code class="inline">npm run build</code> ausführen</li>
+                                <li>
+                                    Nach Änderungen
+                                    <code class="inline">npm run build</code>
+                                    ausführen
+                                </li>
                             </ul>
                         </div>
 
@@ -1413,7 +1815,10 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 <div class="grid-2col-bg">
                                     <ul class="arrow-list">
                                         <li>CSS Transforms für Animationen</li>
-                                        <li><code class="inline">passive: true</code> für Scroll-Events</li>
+                                        <li>
+                                            <code class="inline">passive: true</code>
+                                            für Scroll-Events
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1426,8 +1831,8 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 
                         <!-- Problem: Sidebar-Links führen nirgends hin -->
                         <div>
-                            <h3 id="problem-sidebar-links-fuehren-nirgends-hin">Problem: Sidebar-Links führen nirgends
-                                hin
+                            <h3 id="problem-sidebar-links-fuehren-nirgends-hin">
+                                Problem: Sidebar-Links führen nirgends hin
                             </h3>
                             <div class="grid-2col">
                                 <div class="grid-2col-bg">
@@ -1439,10 +1844,16 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 <div class="grid-2col-bg">
                                     <p><strong>Lösung:</strong></p>
                                     <ul class="arrow-list">
-                                        <li>Führe <code class="inline">npm run build</code> aus</li>
+                                        <li>
+                                            Führe
+                                            <code class="inline">npm run build</code>
+                                            aus
+                                        </li>
                                         <li>Prüfe ob Überschriften jetzt IDs haben</li>
-                                        <li>Falls nicht: Überprüfe <code
-                                                class="inline">addIdsToHeadingsAndGenerateSidebar()</code></li>
+                                        <li>
+                                            Falls nicht: Überprüfe
+                                            <code class="inline">addIdsToHeadingsAndGenerateSidebar()</code>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1461,7 +1872,11 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                 <div class="grid-2col-bg">
                                     <p><strong>Lösung:</strong></p>
                                     <ul class="arrow-list">
-                                        <li>Prüfe ob <code class="inline">scroll-spy.js</code> eingebunden ist</li>
+                                        <li>
+                                            Prüfe ob
+                                            <code class="inline">scroll-spy.js</code>
+                                            eingebunden ist
+                                        </li>
                                         <li>Öffne Browser-Konsole auf Fehler prüfen</li>
                                         <li>Prüfe ob Überschriften IDs haben</li>
                                     </ul>
@@ -1471,27 +1886,39 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
 
                         <!-- Problem: Rechte Sidebar zeigt falsche Tutorials -->
                         <div>
-                            <h3 id="problem-rechte-sidebar-zeigt-falsche-tutorials">Problem: Rechte Sidebar zeigt
-                                falsche Tutorials</h3>
+                            <h3 id="problem-rechte-sidebar-zeigt-falsche-tutorials">
+                                Problem: Rechte Sidebar zeigt falsche Tutorials
+                            </h3>
 
                             <div class="grid-2col">
                                 <div class="grid-2col-bg">
                                     <p><strong>Ursache:</strong></p>
                                     <ul class="arrow-list">
-                                        <li>Falsche Unterkategorie oder <code class="inline">TUTORIAL_ORDER</code> fehlt
+                                        <li>
+                                            Falsche Unterkategorie oder
+                                            <code class="inline">TUTORIAL_ORDER</code>
+                                            fehlt
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="grid-2col-bg">
                                     <p><strong>Lösung:</strong></p>
                                     <ul class="arrow-list">
-                                        <li>Prüfe ob Unterkategorie in <code class="inline">TUTORIAL_ORDER</code>
+                                        <li>
+                                            Prüfe ob Unterkategorie in
+                                            <code class="inline">TUTORIAL_ORDER</code>
                                             existiert
                                         </li>
-                                        <li>Prüfe Ordnerstruktur (z.B. <code
-                                                class="inline">/tutorials/css/css-basics/</code>)
+                                        <li>
+                                            Prüfe Ordnerstruktur (z.B.
+                                            <code class="inline">/tutorials/css/css-basics/</code>
+                                            )
                                         </li>
-                                        <li>Führe <code class="inline">npm run build</code> aus</li>
+                                        <li>
+                                            Führe
+                                            <code class="inline">npm run build</code>
+                                            aus
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1512,9 +1939,18 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                                     <ul class="arrow-list">
                                         <li>Öffne Browser-Konsole</li>
                                         <li>Prüfe auf Fehler</li>
-                                        <li>Prüfe ob <code class="inline">sidebar.js</code> geladen ist</li>
-                                        <li>Prüfe HTML-IDs: <code class="inline">tutorialSidebar</code>, <code
-                                                class="inline">sidebarToggle</code>, etc.</li>
+                                        <li>
+                                            Prüfe ob
+                                            <code class="inline">sidebar.js</code>
+                                            geladen ist
+                                        </li>
+                                        <li>
+                                            Prüfe HTML-IDs:
+                                            <code class="inline">tutorialSidebar</code>
+                                            ,
+                                            <code class="inline">sidebarToggle</code>
+                                            , etc.
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1530,28 +1966,52 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                             <div class="grid-2col-bg">
                                 <strong class="box-title no-toc">Linke Sidebar (TOC)</strong>
                                 <ul class="arrow-list">
-                                    <li><strong>Generierung:</strong> <code class="inline">generate-navigation.js</code>
+                                    <li>
+                                        <strong>Generierung:</strong>
+                                        <code class="inline">generate-navigation.js</code>
                                     </li>
-                                    <li><strong>Basis:</strong> h2/h3 Überschriften</li>
-                                    <li><strong>Features:</strong> ScrollSpy, Smooth Scroll</li>
-                                    <li><strong>Interaktion:</strong> <code class="inline">sidebar.js</code></li>
+                                    <li>
+                                        <strong>Basis:</strong>
+                                        h2/h3 Überschriften
+                                    </li>
+                                    <li>
+                                        <strong>Features:</strong>
+                                        ScrollSpy, Smooth Scroll
+                                    </li>
+                                    <li>
+                                        <strong>Interaktion:</strong>
+                                        <code class="inline">sidebar.js</code>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <strong class="box-title no-toc">Rechte Sidebar (Tutorial-Nav)</strong>
                                 <ul class="arrow-list">
-                                    <li><strong>Generierung:</strong> <code class="inline">generate-navigation.js</code>
+                                    <li>
+                                        <strong>Generierung:</strong>
+                                        <code class="inline">generate-navigation.js</code>
                                     </li>
-                                    <li><strong>Basis:</strong> <code class="inline">TUTORIAL_ORDER</code> + <code
-                                            class="inline">getAllTutorialsForCategory()</code></li>
-                                    <li><strong>Features:</strong> Active-Link, Gruppenüberschriften</li>
-                                    <li><strong>Interaktion:</strong> <code class="inline">sidebar.js</code></li>
+                                    <li>
+                                        <strong>Basis:</strong>
+                                        <code class="inline">TUTORIAL_ORDER</code>
+                                        +
+                                        <code class="inline">getAllTutorialsForCategory()</code>
+                                    </li>
+                                    <li>
+                                        <strong>Features:</strong>
+                                        Active-Link, Gruppenüberschriften
+                                    </li>
+                                    <li>
+                                        <strong>Interaktion:</strong>
+                                        <code class="inline">sidebar.js</code>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="info-box info-box notice">
-                            <strong class="box-title notice no-toc">Das Wichtigste
+                            <strong class="box-title notice no-toc">
+                                Das Wichtigste
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1560,15 +2020,28 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Beide Sidebars werden <strong>server-seitig</strong> generiert</li>
-                                        <li>JavaScript ist nur für <strong>Interaktionen</strong> zuständig</li>
-
+                                        <li>
+                                            Beide Sidebars werden
+                                            <strong>server-seitig</strong>
+                                            generiert
+                                        </li>
+                                        <li>
+                                            JavaScript ist nur für
+                                            <strong>Interaktionen</strong>
+                                            zuständig
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>ScrollSpy tracked die <strong>Scroll-Position</strong></li>
-                                        <li>Alles ist <strong>responsive</strong> und
+                                        <li>
+                                            ScrollSpy tracked die
+                                            <strong>Scroll-Position</strong>
+                                        </li>
+                                        <li>
+                                            Alles ist
+                                            <strong>responsive</strong>
+                                            und
                                             <strong>performance-optimiert</strong>
                                         </li>
                                     </ul>
@@ -1580,65 +2053,64 @@ tutorialNavToggle.addEventListener('click', openTutorialNav);</code></pre>
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Main Navigation im Header</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Hero Breadcrumbs</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Main Navigation im Header</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">Hero Breadcrumbs</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
     </body>
-
 </html>

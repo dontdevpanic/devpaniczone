@@ -1,178 +1,207 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="PHP Sicherheit: Wie du deine PHP-Anwendungen gegen die häufigsten Angriffe schützt - XSS, SQL Injection, CSRF, Session-Hijacking und mehr. Praktische Beispiele mit sicherem Code.">
-        <meta name="keywords" content="PHP Sicherheit, PHP Security, XSS, Cross-Site Scripting, SQL Injection, CSRF, Cross-Site Request Forgery, Session Hijacking, htmlspecialchars, Prepared Statements, PDO, password_hash, OWASP, sichere Webentwicklung, PHP Angriffe abwehren, Security Headers, File Upload Sicherheit">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="PHP Sicherheit: Wie du deine PHP-Anwendungen gegen die häufigsten Angriffe schützt - XSS, SQL Injection, CSRF, Session-Hijacking und mehr. Praktische Beispiele mit sicherem Code."
+        />
+        <meta
+            name="keywords"
+            content="PHP Sicherheit, PHP Security, XSS, Cross-Site Scripting, SQL Injection, CSRF, Cross-Site Request Forgery, Session Hijacking, htmlspecialchars, Prepared Statements, PDO, password_hash, OWASP, sichere Webentwicklung, PHP Angriffe abwehren, Security Headers, File Upload Sicherheit"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>PHP Sicherheit - Angriffe verstehen und abwehren | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/php/" class="breadcrumb-link">PHP</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">PHP Sicherheit</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/php/" class="breadcrumb-link">PHP</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">PHP Sicherheit</span>
+                    </nav>
                     <h1 class="hero-title">PHP Sicherheit</h1>
-                    <p class="hero-subtitle">Schütze deine Anwendungen vor den häufigsten Angriffen. Verstehen,
-                        erkennen, abwehren.</p>
+                    <p class="hero-subtitle">
+                        Schütze deine Anwendungen vor den häufigsten Angriffen. Verstehen, erkennen, abwehren.
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -181,7 +210,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -194,68 +222,137 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#warum-ist-php-sicherheit-so-wichtig">Warum ist PHP-Sicherheit so wichtig?</a></li>
-                    <li class="toc-level-2"><a href="#die-owasp-top-10">Die OWASP Top 10</a></li>
-                    <li class="toc-level-1"><a href="#cross-site-scripting-xss">Cross-Site Scripting (XSS)</a></li>
-                    <li class="toc-level-2"><a href="#wie-funktioniert-xss">Wie funktioniert XSS?</a></li>
-                    <li class="toc-level-2"><a href="#schutz-vor-xss-htmlspecialchars">Schutz vor XSS: htmlspecialchars()</a></li>
-                    <li class="toc-level-2"><a href="#was-macht-htmlspecialchars">Was macht htmlspecialchars()?</a></li>
-                    <li class="toc-level-2"><a href="#helper-funktion-fuer-schnelleren-zugriff">Helper-Funktion für schnelleren Zugriff</a></li>
-                    <li class="toc-level-2"><a href="#xss-in-verschiedenen-kontexten">XSS in verschiedenen Kontexten</a></li>
-                    <li class="toc-level-2"><a href="#content-security-policy-csp">Content Security Policy (CSP)</a></li>
-                    <li class="toc-level-1"><a href="#sql-injection-der-klassiker">SQL Injection - Der Klassiker</a></li>
-                    <li class="toc-level-2"><a href="#wie-funktioniert-sql-injection">Wie funktioniert SQL Injection?</a></li>
-                    <li class="toc-level-2"><a href="#schutz-vor-sql-injection-prepared-statements">Schutz vor SQL Injection: Prepared
-                            Statements</a></li>
-                    <li class="toc-level-2"><a href="#verschiedene-bind-methoden">Verschiedene Bind-Methoden</a></li>
-                    <li class="toc-level-2"><a href="#was-du-nicht-mit-prepared-statements-machen-kannst">Was du NICHT mit Prepared Statements
-                            machen kannst</a></li>
-                    <li class="toc-level-2"><a href="#connection-setup-in-separater-datei">Connection-Setup in separater Datei</a></li>
-                    <li class="toc-level-1"><a href="#cross-site-request-forgery-csrf">Cross-Site Request Forgery (CSRF)</a></li>
-                    <li class="toc-level-2"><a href="#wie-funktioniert-csrf">Wie funktioniert CSRF?</a></li>
-                    <li class="toc-level-2"><a href="#schutz-vor-csrf-tokens">Schutz vor CSRF: Tokens</a></li>
-                    <li class="toc-level-2"><a href="#zusaetzlicher-schutz-samesite-cookie-attribut">Zusätzlicher Schutz:
-                            SameSite-Cookie-Attribut</a></li>
-                    <li class="toc-level-1"><a href="#session-sicherheit">Session-Sicherheit</a></li>
-                    <li class="toc-level-2"><a href="#session-hijacking">Session Hijacking</a></li>
-                    <li class="toc-level-2"><a href="#sichere-session-konfiguration">Sichere Session-Konfiguration</a></li>
-                    <li class="toc-level-2"><a href="#komplettes-login-system-mit-security">Komplettes Login-System mit Security</a></li>
-                    <li class="toc-level-2"><a href="#session-validieren-bei-jedem-request">Session validieren bei jedem Request</a></li>
-                    <li class="toc-level-2"><a href="#sicherer-logout">Sicherer Logout</a></li>
-                    <li class="toc-level-1"><a href="#passwort-sicherheit">Passwort-Sicherheit</a></li>
-                    <li class="toc-level-2"><a href="#passwoerter-niemals-im-klartext-speichern">Passwörter NIEMALS im Klartext speichern</a></li>
-                    <li class="toc-level-2"><a href="#passwoerter-richtig-hashen">Passwörter richtig hashen</a></li>
-                    <li class="toc-level-2"><a href="#passwort-verifikation">Passwort-Verifikation</a></li>
-                    <li class="toc-level-2"><a href="#passwort-anforderungen">Passwort-Anforderungen</a></li>
-                    <li class="toc-level-2"><a href="#brute-force-schutz-rate-limiting">Brute-Force-Schutz: Rate Limiting</a></li>
-                    <li class="toc-level-1"><a href="#file-upload-sicherheit">File Upload Sicherheit</a></li>
-                    <li class="toc-level-2"><a href="#die-gefahren">Die Gefahren</a></li>
-                    <li class="toc-level-2"><a href="#sicherer-file-upload">Sicherer File-Upload</a></li>
-                    <li class="toc-level-2"><a href="#upload-verzeichnis-schuetzen">Upload-Verzeichnis schützen</a></li>
-                    <li class="toc-level-2"><a href="#zusaetzliche-sicherheitsmassnahmen">Zusätzliche Sicherheitsmaßnahmen</a></li>
-                    <li class="toc-level-1"><a href="#error-handling-und-information-disclosure">Error Handling und Information Disclosure</a></li>
-                    <li class="toc-level-2"><a href="#was-du-nicht-tun-solltest">Was du NICHT tun solltest</a></li>
-                    <li class="toc-level-2"><a href="#richtige-fehlerbehandlung">Richtige Fehlerbehandlung</a></li>
-                    <li class="toc-level-2"><a href="#custom-error-handler">Custom Error Handler</a></li>
-                    <li class="toc-level-2"><a href="#login-fehler-richtig-machen">Login-Fehler richtig machen</a></li>
-                    <li class="toc-level-1"><a href="#security-headers">Security Headers</a></li>
-                    <li class="toc-level-2"><a href="#wichtige-security-headers">Wichtige Security Headers</a></li>
-                    <li class="toc-level-2"><a href="#header-bedeutungen-im-detail">Header-Bedeutungen im Detail</a></li>
-                    <li class="toc-level-1"><a href="#security-checkliste">Security-Checkliste</a></li>
-                    <li class="toc-level-2"><a href="#input-validierung-output-encoding">Input-Validierung &amp; Output-Encoding</a></li>
-                    <li class="toc-level-2"><a href="#authentication-sessions">Authentication &amp; Sessions</a></li>
-                    <li class="toc-level-2"><a href="#csrf-schutz">CSRF-Schutz</a></li>
-                    <li class="toc-level-2"><a href="#file-uploads">File Uploads</a></li>
-                    <li class="toc-level-2"><a href="#configuration">Configuration</a></li>
-                    <li class="toc-level-2"><a href="#database">Database</a></li>
-                    <li class="toc-level-2"><a href="#best-practices">Best Practices</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <li class="toc-level-2"><a href="#die-haeufigsten-fehler">Die häufigsten
-                                        Fehler</a></li>
-                    <li class="toc-level-2"><a href="#das-security-mindset">Das
-                                        Security-Mindset</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-php">Mehr aus PHP</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1">
+                                <a href="#warum-ist-php-sicherheit-so-wichtig">Warum ist PHP-Sicherheit so wichtig?</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#die-owasp-top-10">Die OWASP Top 10</a></li>
+                            <li class="toc-level-1">
+                                <a href="#cross-site-scripting-xss">Cross-Site Scripting (XSS)</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#wie-funktioniert-xss">Wie funktioniert XSS?</a></li>
+                            <li class="toc-level-2">
+                                <a href="#schutz-vor-xss-htmlspecialchars">Schutz vor XSS: htmlspecialchars()</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#was-macht-htmlspecialchars">Was macht htmlspecialchars()?</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#helper-funktion-fuer-schnelleren-zugriff">
+                                    Helper-Funktion für schnelleren Zugriff
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#xss-in-verschiedenen-kontexten">XSS in verschiedenen Kontexten</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#content-security-policy-csp">Content Security Policy (CSP)</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#sql-injection-der-klassiker">SQL Injection - Der Klassiker</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#wie-funktioniert-sql-injection">Wie funktioniert SQL Injection?</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#schutz-vor-sql-injection-prepared-statements">
+                                    Schutz vor SQL Injection: Prepared Statements
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#verschiedene-bind-methoden">Verschiedene Bind-Methoden</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#was-du-nicht-mit-prepared-statements-machen-kannst">
+                                    Was du NICHT mit Prepared Statements machen kannst
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#connection-setup-in-separater-datei">Connection-Setup in separater Datei</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#cross-site-request-forgery-csrf">Cross-Site Request Forgery (CSRF)</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#wie-funktioniert-csrf">Wie funktioniert CSRF?</a></li>
+                            <li class="toc-level-2"><a href="#schutz-vor-csrf-tokens">Schutz vor CSRF: Tokens</a></li>
+                            <li class="toc-level-2">
+                                <a href="#zusaetzlicher-schutz-samesite-cookie-attribut">
+                                    Zusätzlicher Schutz: SameSite-Cookie-Attribut
+                                </a>
+                            </li>
+                            <li class="toc-level-1"><a href="#session-sicherheit">Session-Sicherheit</a></li>
+                            <li class="toc-level-2"><a href="#session-hijacking">Session Hijacking</a></li>
+                            <li class="toc-level-2">
+                                <a href="#sichere-session-konfiguration">Sichere Session-Konfiguration</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#komplettes-login-system-mit-security">Komplettes Login-System mit Security</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#session-validieren-bei-jedem-request">Session validieren bei jedem Request</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#sicherer-logout">Sicherer Logout</a></li>
+                            <li class="toc-level-1"><a href="#passwort-sicherheit">Passwort-Sicherheit</a></li>
+                            <li class="toc-level-2">
+                                <a href="#passwoerter-niemals-im-klartext-speichern">
+                                    Passwörter NIEMALS im Klartext speichern
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#passwoerter-richtig-hashen">Passwörter richtig hashen</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#passwort-verifikation">Passwort-Verifikation</a></li>
+                            <li class="toc-level-2"><a href="#passwort-anforderungen">Passwort-Anforderungen</a></li>
+                            <li class="toc-level-2">
+                                <a href="#brute-force-schutz-rate-limiting">Brute-Force-Schutz: Rate Limiting</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#file-upload-sicherheit">File Upload Sicherheit</a></li>
+                            <li class="toc-level-2"><a href="#die-gefahren">Die Gefahren</a></li>
+                            <li class="toc-level-2"><a href="#sicherer-file-upload">Sicherer File-Upload</a></li>
+                            <li class="toc-level-2">
+                                <a href="#upload-verzeichnis-schuetzen">Upload-Verzeichnis schützen</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#zusaetzliche-sicherheitsmassnahmen">Zusätzliche Sicherheitsmaßnahmen</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#error-handling-und-information-disclosure">
+                                    Error Handling und Information Disclosure
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#was-du-nicht-tun-solltest">Was du NICHT tun solltest</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#richtige-fehlerbehandlung">Richtige Fehlerbehandlung</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#custom-error-handler">Custom Error Handler</a></li>
+                            <li class="toc-level-2">
+                                <a href="#login-fehler-richtig-machen">Login-Fehler richtig machen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#security-headers">Security Headers</a></li>
+                            <li class="toc-level-2">
+                                <a href="#wichtige-security-headers">Wichtige Security Headers</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#header-bedeutungen-im-detail">Header-Bedeutungen im Detail</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#security-checkliste">Security-Checkliste</a></li>
+                            <li class="toc-level-2">
+                                <a href="#input-validierung-output-encoding">Input-Validierung &amp; Output-Encoding</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#authentication-sessions">Authentication &amp; Sessions</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#csrf-schutz">CSRF-Schutz</a></li>
+                            <li class="toc-level-2"><a href="#file-uploads">File Uploads</a></li>
+                            <li class="toc-level-2"><a href="#configuration">Configuration</a></li>
+                            <li class="toc-level-2"><a href="#database">Database</a></li>
+                            <li class="toc-level-2"><a href="#best-practices">Best Practices</a></li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                            <li class="toc-level-2"><a href="#die-haeufigsten-fehler">Die häufigsten Fehler</a></li>
+                            <li class="toc-level-2"><a href="#das-security-mindset">Das Security-Mindset</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-php">Mehr aus PHP</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -271,25 +368,28 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">PHP Basics</li>
-                    <li><a href="/tutorials/php/php-basics/php-basics.html">PHP Basics - Die Grundlagen</a></li>
-                    <li><a href="/tutorials/php/php-basics/php-security.html" class="active">PHP Sicherheit</a></li>
-                </ul>
+                            <li class="sidebar-group-title">PHP Basics</li>
+                            <li><a href="/tutorials/php/php-basics/php-basics.html">PHP Basics - Die Grundlagen</a></li>
+                            <li>
+                                <a href="/tutorials/php/php-basics/php-security.html" class="active">PHP Sicherheit</a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Intro  -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="warum-ist-php-sicherheit-so-wichtig">Warum ist PHP-Sicherheit so wichtig?</h2>
-                        <p>PHP-Anwendungen sind ein beliebtes Ziel für Angreifer - nicht weil PHP unsicher ist, sondern
-                            weil
-                            es so weit verbreitet ist und viele Entwickler Sicherheitsaspekte unterschätzen oder nicht
-                            kennen.</p>
+                        <p>
+                            PHP-Anwendungen sind ein beliebtes Ziel für Angreifer - nicht weil PHP unsicher ist, sondern
+                            weil es so weit verbreitet ist und viele Entwickler Sicherheitsaspekte unterschätzen oder
+                            nicht kennen.
+                        </p>
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Die Realität
+                            <strong class="box-title warning no-toc">
+                                Die Realität
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -302,21 +402,30 @@
                                 <li>Deine Server zu übernehmen</li>
                                 <li>Malware zu verbreiten</li>
                             </ul>
-                            <p class="pt-md"><strong>Sicherheit ist kein Feature - es ist eine
-                                    Grundvoraussetzung.</strong>
+                            <p class="pt-md">
+                                <strong>Sicherheit ist kein Feature - es ist eine Grundvoraussetzung.</strong>
                             </p>
                         </div>
 
                         <h3 id="die-owasp-top-10">Die OWASP Top 10</h3>
-                        <p>Die <strong>Open Web Application Security Project (OWASP)</strong> veröffentlicht regelmäßig
-                            die
-                            häufigsten Sicherheitsprobleme. In diesem Tutorial behandeln wir die wichtigsten davon:</p>
+                        <p>
+                            Die
+                            <strong>Open Web Application Security Project (OWASP)</strong>
+                            veröffentlicht regelmäßig die häufigsten Sicherheitsprobleme. In diesem Tutorial behandeln
+                            wir die wichtigsten davon:
+                        </p>
 
                         <div class="grid-2col grid-2col-bg">
                             <div>
                                 <ul class="arrow-list">
-                                    <li><strong>Injection</strong> (SQL Injection, Command Injection)</li>
-                                    <li><strong>Broken Authentication</strong> (Session-Management, Passwörter)</li>
+                                    <li>
+                                        <strong>Injection</strong>
+                                        (SQL Injection, Command Injection)
+                                    </li>
+                                    <li>
+                                        <strong>Broken Authentication</strong>
+                                        (Session-Management, Passwörter)
+                                    </li>
                                     <li><strong>Cross-Site Scripting (XSS)</strong></li>
                                     <li><strong>Insecure Direct Object References</strong></li>
                                 </ul>
@@ -331,25 +440,28 @@
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Security-Mindset
+                            <strong class="box-title no-toc">
+                                Security-Mindset
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p><strong>Vertraue niemals Nutzereingaben!</strong> Das ist die goldene Regel. Alles, was
-                                von
-                                außen kommt - Formulare, URLs, Cookies, HTTP-Header - kann manipuliert sein. Immer
-                                validieren, immer bereinigen, immer überprüfen.</p>
+                            <p>
+                                <strong>Vertraue niemals Nutzereingaben!</strong>
+                                Das ist die goldene Regel. Alles, was von außen kommt - Formulare, URLs, Cookies,
+                                HTTP-Header - kann manipuliert sein. Immer validieren, immer bereinigen, immer
+                                überprüfen.
+                            </p>
                         </div>
-
                     </section>
 
                     <!-- XSS -->
                     <section class="tutorials-content">
                         <h2 id="cross-site-scripting-xss">Cross-Site Scripting (XSS)</h2>
-                        <p>XSS ist einer der häufigsten Angriffe. Dabei schleust ein Angreifer schädlichen
-                            JavaScript-Code
-                            in deine Website ein, der dann im Browser anderer Nutzer ausgeführt wird.</p>
+                        <p>
+                            XSS ist einer der häufigsten Angriffe. Dabei schleust ein Angreifer schädlichen
+                            JavaScript-Code in deine Website ein, der dann im Browser anderer Nutzer ausgeführt wird.
+                        </p>
 
                         <h3 id="wie-funktioniert-xss">Wie funktioniert XSS?</h3>
                         <p>Stell dir vor, du hast ein Kommentarfeld ohne Sicherheitsmaßnahmen:</p>
@@ -396,7 +508,8 @@ echo "&lt;p&gt;" . $kommentar . "&lt;/p&gt;";
                         </div>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="wichtig">Was kann ein Angreifer mit XSS machen?
+                            <strong class="box-title danger no-toc" id="wichtig">
+                                Was kann ein Angreifer mit XSS machen?
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -411,14 +524,18 @@ echo "&lt;p&gt;" . $kommentar . "&lt;/p&gt;";
                         </div>
 
                         <h3 id="schutz-vor-xss-htmlspecialchars">Schutz vor XSS: htmlspecialchars()</h3>
-                        <p>Die Lösung ist einfach, aber <strong>du musst sie konsequent anwenden</strong>:</p>
+                        <p>
+                            Die Lösung ist einfach, aber
+                            <strong>du musst sie konsequent anwenden</strong>
+                            :
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -438,7 +555,7 @@ echo "&lt;p&gt;" . htmlspecialchars($kommentar, ENT_QUOTES, 'UTF-8') . "&lt;/p&g
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -452,15 +569,21 @@ echo htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Die drei Parameter im Detail
+                            <strong class="box-title no-toc">
+                                Die drei Parameter im Detail
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><code>ENT_QUOTES</code> - Wandelt auch einfache und doppelte Anführungszeichen um
+                                <li>
+                                    <code>ENT_QUOTES</code>
+                                    - Wandelt auch einfache und doppelte Anführungszeichen um
                                 </li>
-                                <li><code>'UTF-8'</code> - Encoding (wichtig für Umlaute, Emojis etc.)</li>
+                                <li>
+                                    <code>'UTF-8'</code>
+                                    - Encoding (wichtig für Umlaute, Emojis etc.)
+                                </li>
                                 <li>Diese Kombination ist der Standard für sichere Ausgabe</li>
                             </ul>
                         </div>
@@ -472,7 +595,7 @@ echo htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -494,7 +617,8 @@ echo esc($name);
                         <h4>In HTML-Attributen</h4>
                         <div>
                             <div class="code-block">
-                                <div class="code-header"><span class="code-lang">PHP</span>
+                                <div class="code-header">
+                                    <span class="code-lang">PHP</span>
                                     <svg class="icon-ui icon-green">
                                         <use href="#dpz-check-circle"></use>
                                     </svg>
@@ -526,7 +650,8 @@ $username = $_SESSION['username'] ?? 'Gast';
 echo "&lt;script&gt;var user = '$username';&lt;/script&gt;";
 
 ?&gt;</code></pre>
-                            </div> <!-- Flasch -->
+                            </div>
+                            <!-- Flasch -->
                         </div>
 
                         <!-- Richtig -->
@@ -543,19 +668,19 @@ $username = $_SESSION['username'] ?? 'Gast';
 // BESSER: JSON-Encoding nutzen
 echo '&lt;script&gt;var user = ' . json_encode($username, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';&lt;/script&gt;';
 ?&gt;</code></pre>
-
-                        </div> <!-- Richtig -->
+                        </div>
+                        <!-- Richtig -->
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">Wichtig: htmlspecialchars() reicht
-                                nicht in
-                                JavaScript!
+                            <strong class="box-title danger no-toc" id="achtung">
+                                Wichtig: htmlspecialchars() reicht nicht in JavaScript!
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
-                                </svg></strong>
-                            <p>Wenn du PHP-Werte in JavaScript brauchst, nutze Data-Attribute und lies sie mit JS aus.
+                                </svg>
+                            </strong>
+                            <p>
+                                Wenn du PHP-Werte in JavaScript brauchst, nutze Data-Attribute und lies sie mit JS aus.
                             </p>
-
                         </div>
 
                         <h3 id="content-security-policy-csp">Content Security Policy (CSP)</h3>
@@ -565,7 +690,7 @@ echo '&lt;script&gt;var user = ' . json_encode($username, JSON_HEX_TAG | JSON_HE
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -582,7 +707,7 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self'");
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -595,9 +720,10 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self'");
                     <!-- SQL Injection -->
                     <section class="tutorials-content">
                         <h2 id="sql-injection-der-klassiker">SQL Injection - Der Klassiker</h2>
-                        <p>SQL Injection ist eine der gefährlichsten Angriffsmethoden. Dabei manipuliert ein Angreifer
-                            deine
-                            Datenbankabfragen, um Daten zu stehlen, zu ändern oder zu löschen.</p>
+                        <p>
+                            SQL Injection ist eine der gefährlichsten Angriffsmethoden. Dabei manipuliert ein Angreifer
+                            deine Datenbankabfragen, um Daten zu stehlen, zu ändern oder zu löschen.
+                        </p>
 
                         <h3 id="wie-funktioniert-sql-injection">Wie funktioniert SQL Injection?</h3>
                         <p>Stell dir vor, du hast diesen Code:</p>
@@ -640,12 +766,17 @@ $result = mysqli_query($connection, $query);
                             </div>
                             <pre><code class="language-bash">SELECT * FROM users WHERE username = 'admin' OR '1'='1' AND password = ''</code></pre>
                         </div>
-                        <p>Da <code>'1'='1'</code> immer wahr ist, gibt diese Abfrage <strong>alle Nutzer</strong>
-                            zurück -
-                            ohne Passwort!</p>
+                        <p>
+                            Da
+                            <code>'1'='1'</code>
+                            immer wahr ist, gibt diese Abfrage
+                            <strong>alle Nutzer</strong>
+                            zurück - ohne Passwort!
+                        </p>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">Noch schlimmer:
+                            <strong class="box-title danger no-toc" id="achtung">
+                                Noch schlimmer:
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -655,10 +786,13 @@ $result = mysqli_query($connection, $query);
                             <p>Das würde deine gesamte User-Tabelle löschen!</p>
                         </div>
 
-                        <h3 id="schutz-vor-sql-injection-prepared-statements">Schutz vor SQL Injection: Prepared
-                            Statements
+                        <h3 id="schutz-vor-sql-injection-prepared-statements">
+                            Schutz vor SQL Injection: Prepared Statements
                         </h3>
-                        <p>Die Lösung: <strong>Prepared Statements mit PDO</strong> <svg class="icon-ui">
+                        <p>
+                            Die Lösung:
+                            <strong>Prepared Statements mit PDO</strong>
+                            <svg class="icon-ui">
                                 <use href="#dpz-info-circle"></use>
                             </svg>
                         </p>
@@ -670,7 +804,7 @@ $result = mysqli_query($connection, $query);
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -718,16 +852,24 @@ try {
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum sind Prepared Statements sicher?
+                            <strong class="box-title no-toc">
+                                Warum sind Prepared Statements sicher?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li>SQL-Query und Daten werden <strong>getrennt</strong> zum Datenbankserver geschickt
+                                <li>
+                                    SQL-Query und Daten werden
+                                    <strong>getrennt</strong>
+                                    zum Datenbankserver geschickt
                                 </li>
                                 <li>Die Datenbank weiß genau: "Das ist Code, das sind Daten"</li>
-                                <li>Nutzereingaben können die SQL-Struktur <strong>nicht</strong> verändern</li>
+                                <li>
+                                    Nutzereingaben können die SQL-Struktur
+                                    <strong>nicht</strong>
+                                    verändern
+                                </li>
                                 <li>Kein manuelles Escaping nötig - passiert automatisch</li>
                             </ul>
                         </div>
@@ -740,7 +882,7 @@ try {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -760,7 +902,7 @@ $stmt-&gt;execute([
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -771,19 +913,33 @@ $stmt-&gt;execute([$email, $age]);
 ?&gt;</code></pre>
                         </div>
 
-                        <h3 id="was-du-nicht-mit-prepared-statements-machen-kannst">Was du NICHT mit Prepared Statements
-                            machen kannst</h3>
-                        <p>Prepared Statements funktionieren nur für <strong>Werte</strong>, nicht für:</p>
+                        <h3 id="was-du-nicht-mit-prepared-statements-machen-kannst">
+                            Was du NICHT mit Prepared Statements machen kannst
+                        </h3>
+                        <p>
+                            Prepared Statements funktionieren nur für
+                            <strong>Werte</strong>
+                            , nicht für:
+                        </p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li>Tabellennamen <svg class="icon icon--inline icon-red ml-sm">
+                            <li>
+                                Tabellennamen
+                                <svg class="icon icon--inline icon-red ml-sm">
                                     <use href="#dpz-cross-inline"></use>
-                                </svg></li>
-                            <li>Spaltennamen <svg class="icon icon--inline icon-red ml-sm">
+                                </svg>
+                            </li>
+                            <li>
+                                Spaltennamen
+                                <svg class="icon icon--inline icon-red ml-sm">
                                     <use href="#dpz-cross-inline"></use>
-                                </svg></li>
-                            <li>SQL-Keywords (ORDER BY, ASC/DESC, etc.) <svg class="icon icon--inline icon-red ml-sm">
+                                </svg>
+                            </li>
+                            <li>
+                                SQL-Keywords (ORDER BY, ASC/DESC, etc.)
+                                <svg class="icon icon--inline icon-red ml-sm">
                                     <use href="#dpz-cross-inline"></use>
-                                </svg></li>
+                                </svg>
+                            </li>
                         </ul>
 
                         <h4>Beispiel: Dynamische Sortierung</h4>
@@ -792,7 +948,7 @@ $stmt-&gt;execute([$email, $age]);
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -817,22 +973,34 @@ $stmt-&gt;execute();
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Wichtig bei dynamischen Queries
+                            <strong class="box-title warning no-toc">
+                                Wichtig bei dynamischen Queries
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p>Wenn du Tabellen- oder Spaltennamen dynamisch nutzen musst:</p>
                             <ul class="arrow-list">
-                                <li>Nutze <strong>immer</strong> eine Whitelist erlaubter Werte <svg class="icon icon--inline icon-green ml-sm">
+                                <li>
+                                    Nutze
+                                    <strong>immer</strong>
+                                    eine Whitelist erlaubter Werte
+                                    <svg class="icon icon--inline icon-green ml-sm">
                                         <use href="#dpz-check-inline"></use>
-                                    </svg></li>
-                                <li>Validiere die Eingabe streng <svg class="icon icon--inline icon-green ml-sm">
+                                    </svg>
+                                </li>
+                                <li>
+                                    Validiere die Eingabe streng
+                                    <svg class="icon icon--inline icon-green ml-sm">
                                         <use href="#dpz-check-inline"></use>
-                                    </svg></li>
-                                <li>Niemals direkte Nutzereingaben in SQL-Struktur einfügen <svg class="icon icon--inline icon-green ml-sm">
+                                    </svg>
+                                </li>
+                                <li>
+                                    Niemals direkte Nutzereingaben in SQL-Struktur einfügen
+                                    <svg class="icon icon--inline icon-green ml-sm">
                                         <use href="#dpz-check-inline"></use>
-                                    </svg></li>
+                                    </svg>
+                                </li>
                             </ul>
                         </div>
 
@@ -844,7 +1012,7 @@ $stmt-&gt;execute();
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -880,20 +1048,22 @@ function getDB(): PDO {
 // $pdo = getDB();
 ?&gt;</code></pre>
                         </div>
-
                     </section>
 
                     <!-- CSRF -->
                     <section class="tutorials-content">
                         <h2 id="cross-site-request-forgery-csrf">Cross-Site Request Forgery (CSRF)</h2>
 
-                        <p>Bei CSRF-Angriffen wird ein eingeloggter Nutzer dazu gebracht, ungewollt Aktionen auf deiner
-                            Website auszuführen - ohne dass er es merkt.</p>
+                        <p>
+                            Bei CSRF-Angriffen wird ein eingeloggter Nutzer dazu gebracht, ungewollt Aktionen auf deiner
+                            Website auszuführen - ohne dass er es merkt.
+                        </p>
 
                         <h3 id="wie-funktioniert-csrf">Wie funktioniert CSRF?</h3>
-                        <p>Szenario: Du bist bei deiner Bank eingeloggt. Ein Angreifer schickt dir eine E-Mail mit
-                            diesem
-                            unsichtbaren Bild:</p>
+                        <p>
+                            Szenario: Du bist bei deiner Bank eingeloggt. Ein Angreifer schickt dir eine E-Mail mit
+                            diesem unsichtbaren Bild:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -904,17 +1074,21 @@ function getDB(): PDO {
                             </div>
                             <pre><code class="language-html">&lt;img src="https://bank.de/transfer.php?to=angreifer&amp;amount=10000" width="0" height="0"&gt;</code></pre>
                         </div>
-                        <p>Wenn du die E-Mail öffnest, lädt dein Browser automatisch das "Bild" - und führt die
-                            Überweisung
-                            aus, weil du ja eingeloggt bist!</p>
+                        <p>
+                            Wenn du die E-Mail öffnest, lädt dein Browser automatisch das "Bild" - und führt die
+                            Überweisung aus, weil du ja eingeloggt bist!
+                        </p>
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc">CSRF kann auch mit POST funktionieren
+                            <strong class="box-title danger no-toc">
+                                CSRF kann auch mit POST funktionieren
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Ein Angreifer kann ein unsichtbares Formular auf einer fremden Seite einbauen, das
-                                automatisch abgeschickt wird:</p>
+                            <p>
+                                Ein Angreifer kann ein unsichtbares Formular auf einer fremden Seite einbauen, das
+                                automatisch abgeschickt wird:
+                            </p>
                             <div class="code-block">
                                 <pre><code class="language-html">&lt;form action="https://deine-seite.de/delete-account.php" method="post" id="csrf"&gt;
     &lt;input type="hidden" name="confirm" value="yes"&gt;
@@ -924,10 +1098,14 @@ function getDB(): PDO {
                         </div>
 
                         <h3 id="schutz-vor-csrf-tokens">Schutz vor CSRF: Tokens</h3>
-                        <p>Die Lösung: <strong>CSRF-Tokens</strong> - zufällige, einmalige Werte, die bei jedem Formular
-                            mitgeschickt werden. <svg class="icon icon--inline icon-green ml-sm">
+                        <p>
+                            Die Lösung:
+                            <strong>CSRF-Tokens</strong>
+                            - zufällige, einmalige Werte, die bei jedem Formular mitgeschickt werden.
+                            <svg class="icon icon--inline icon-green ml-sm">
                                 <use href="#dpz-check-inline"></use>
-                            </svg></p>
+                            </svg>
+                        </p>
 
                         <h4>CSRF-Token generieren und prüfen</h4>
                         <div class="code-block">
@@ -935,7 +1113,7 @@ function getDB(): PDO {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -979,7 +1157,7 @@ function csrfField(): string {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1008,7 +1186,7 @@ session_start();
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1036,26 +1214,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?&gt;</code></pre>
                         </div>
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum hash_equals()?
+                            <strong class="box-title no-toc">
+                                Warum hash_equals()?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Normales <code>===</code> ist anfällig für <strong>Timing-Attacks</strong> (ein Angreifer
-                                könnte am Zeitunterschied erkennen, wie viele Zeichen richtig sind).
-                                <code>hash_equals()</code> vergleicht in konstanter Zeit und ist daher sicher.
+                            <p>
+                                Normales
+                                <code>===</code>
+                                ist anfällig für
+                                <strong>Timing-Attacks</strong>
+                                (ein Angreifer könnte am Zeitunterschied erkennen, wie viele Zeichen richtig sind).
+                                <code>hash_equals()</code>
+                                vergleicht in konstanter Zeit und ist daher sicher.
                             </p>
                         </div>
 
-                        <h3 id="zusaetzlicher-schutz-samesite-cookie-attribut">Zusätzlicher Schutz:
-                            SameSite-Cookie-Attribut
+                        <h3 id="zusaetzlicher-schutz-samesite-cookie-attribut">
+                            Zusätzlicher Schutz: SameSite-Cookie-Attribut
                         </h3>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1075,40 +1259,58 @@ session_start();
 ?&gt;</code></pre>
                         </div>
                         <div class="info-box">
-                            <strong class="box-title no-toc">SameSite-Werte
+                            <strong class="box-title no-toc">
+                                SameSite-Werte
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><code>Strict</code> - Cookie wird nur bei Requests von gleicher Domain gesendet (am
-                                    sichersten)</li>
-                                <li><code>Lax</code> - Cookie wird bei Top-Level-Navigation gesendet (z.B. Link-Klicks)
+                                <li>
+                                    <code>Strict</code>
+                                    - Cookie wird nur bei Requests von gleicher Domain gesendet (am sichersten)
                                 </li>
-                                <li><code>None</code> - Cookie wird immer gesendet (nur mit Secure-Flag)</li>
+                                <li>
+                                    <code>Lax</code>
+                                    - Cookie wird bei Top-Level-Navigation gesendet (z.B. Link-Klicks)
+                                </li>
+                                <li>
+                                    <code>None</code>
+                                    - Cookie wird immer gesendet (nur mit Secure-Flag)
+                                </li>
                             </ul>
                         </div>
-
                     </section>
 
                     <!-- Session Security -->
                     <section class="tutorials-content">
                         <h2 id="session-sicherheit">Session-Sicherheit</h2>
-                        <p>Sessions sind super praktisch, um Nutzer eingeloggt zu halten - aber auch ein beliebtes
-                            Angriffsziel.</p>
+                        <p>
+                            Sessions sind super praktisch, um Nutzer eingeloggt zu halten - aber auch ein beliebtes
+                            Angriffsziel.
+                        </p>
 
                         <h3 id="session-hijacking">Session Hijacking</h3>
-                        <p>Bei Session Hijacking stiehlt ein Angreifer die Session-ID eines Nutzers und gibt sich als
-                            dieser
-                            aus.</p>
+                        <p>
+                            Bei Session Hijacking stiehlt ein Angreifer die Session-ID eines Nutzers und gibt sich als
+                            dieser aus.
+                        </p>
 
                         <h4>Angriffsvektoren</h4>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>XSS:</strong> JavaScript stiehlt Session-Cookie <code>document.cookie</code>
+                            <li>
+                                <strong>XSS:</strong>
+                                JavaScript stiehlt Session-Cookie
+                                <code>document.cookie</code>
                             </li>
-                            <li><strong>Network Sniffing:</strong> Session-ID wird über unverschlüsselte Verbindung
-                                abgefangen</li>
-                            <li><strong>Session Fixation:</strong> Angreifer setzt Session-ID des Opfers</li>
+                            <li>
+                                <strong>Network Sniffing:</strong>
+                                Session-ID wird über unverschlüsselte Verbindung abgefangen
+                            </li>
+                            <li>
+                                <strong>Session Fixation:</strong>
+                                Angreifer setzt Session-ID des Opfers
+                            </li>
                         </ul>
 
                         <h3 id="sichere-session-konfiguration">Sichere Session-Konfiguration</h3>
@@ -1117,7 +1319,7 @@ session_start();
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1158,7 +1360,7 @@ function regenerateSession(): void {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1217,14 +1419,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?&gt;</code></pre>
                         </div>
 
-
                         <h3 id="session-validieren-bei-jedem-request">Session validieren bei jedem Request</h3>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1277,7 +1478,7 @@ function requireLogin(): void {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1313,16 +1514,21 @@ exit;
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Häufiger Fehler
+                            <strong class="box-title warning no-toc">
+                                Häufiger Fehler
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Viele Entwickler vergessen <code>session_regenerate_id()</code> nach dem Login. Das macht
-                                dich anfällig für <strong>Session Fixation</strong>-Angriffe. Immer die Session-ID nach
-                                Privilege-Changes (Login, Logout, Rollenwechsel) regenerieren!</p>
+                            <p>
+                                Viele Entwickler vergessen
+                                <code>session_regenerate_id()</code>
+                                nach dem Login. Das macht dich anfällig für
+                                <strong>Session Fixation</strong>
+                                -Angriffe. Immer die Session-ID nach Privilege-Changes (Login, Logout, Rollenwechsel)
+                                regenerieren!
+                            </p>
                         </div>
-
                     </section>
 
                     <!-- Passwort-Sicherheit -->
@@ -1350,7 +1556,8 @@ $stmt-&gt;execute([
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum nicht?
+                            <strong class="box-title no-toc">
+                                Warum nicht?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -1369,7 +1576,7 @@ $stmt-&gt;execute([
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1396,7 +1603,7 @@ $stmt-&gt;execute([
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1426,16 +1633,24 @@ if ($user &amp;&amp; password_verify($inputPassword, $user['password_hash'])) {
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Was macht password_hash()?
+                            <strong class="box-title no-toc">
+                                Was macht password_hash()?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
                                 <li>Nutzt aktuell bcrypt (sicher und bewährt)</li>
-                                <li>Generiert automatisch ein <strong>Salt</strong> (zufällige Daten)</li>
+                                <li>
+                                    Generiert automatisch ein
+                                    <strong>Salt</strong>
+                                    (zufällige Daten)
+                                </li>
                                 <li>Salt wird im Hash gespeichert - kein Extra-Feld nötig</li>
-                                <li>Mit <code>PASSWORD_DEFAULT</code> nutzt PHP immer den besten verfügbaren Algorithmus
+                                <li>
+                                    Mit
+                                    <code>PASSWORD_DEFAULT</code>
+                                    nutzt PHP immer den besten verfügbaren Algorithmus
                                 </li>
                             </ul>
                         </div>
@@ -1446,7 +1661,7 @@ if ($user &amp;&amp; password_verify($inputPassword, $user['password_hash'])) {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1495,7 +1710,8 @@ if (!empty($errors)) {
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Zu strikte Regeln können kontraproduktiv sein!
+                            <strong class="box-title warning no-toc">
+                                Zu strikte Regeln können kontraproduktiv sein!
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -1515,7 +1731,7 @@ if (!empty($errors)) {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1571,7 +1787,7 @@ recordLoginAttempt($email, $loginSuccess);
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1585,23 +1801,34 @@ recordLoginAttempt($email, $loginSuccess);
     INDEX idx_email_time (email, attempted_at)
 );</code></pre>
                         </div>
-
                     </section>
 
                     <!-- File Upload Security -->
                     <section class="tutorials-content">
                         <h2 id="file-upload-sicherheit">File Upload Sicherheit</h2>
-                        <p>File-Uploads sind extrem gefährlich, wenn nicht richtig abgesichert. Ein Angreifer könnte
-                            PHP-Dateien hochladen und ausführen!</p>
+                        <p>
+                            File-Uploads sind extrem gefährlich, wenn nicht richtig abgesichert. Ein Angreifer könnte
+                            PHP-Dateien hochladen und ausführen!
+                        </p>
 
                         <h3 id="die-gefahren">Die Gefahren</h3>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Remote Code Execution:</strong> Angreifer lädt PHP-Shell hoch und führt
-                                beliebigen
-                                Code aus</li>
-                            <li><strong>Path Traversal:</strong> Angreifer überschreibt kritische System-Dateien</li>
-                            <li><strong>XSS via SVG/HTML:</strong> Schädliche Scripts in Bildern</li>
-                            <li><strong>DoS:</strong> Riesige Dateien füllen Server-Speicher</li>
+                            <li>
+                                <strong>Remote Code Execution:</strong>
+                                Angreifer lädt PHP-Shell hoch und führt beliebigen Code aus
+                            </li>
+                            <li>
+                                <strong>Path Traversal:</strong>
+                                Angreifer überschreibt kritische System-Dateien
+                            </li>
+                            <li>
+                                <strong>XSS via SVG/HTML:</strong>
+                                Schädliche Scripts in Bildern
+                            </li>
+                            <li>
+                                <strong>DoS:</strong>
+                                Riesige Dateien füllen Server-Speicher
+                            </li>
                         </ul>
 
                         <h3 id="sicherer-file-upload">Sicherer File-Upload</h3>
@@ -1610,7 +1837,7 @@ recordLoginAttempt($email, $loginSuccess);
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1694,7 +1921,7 @@ echo 'Upload erfolgreich!';
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1738,13 +1965,17 @@ exit;
                         </div>
 
                         <h4>Option 2: .htaccess (wenn Web-Root nötig)</h4>
-                        <p>In <code>/uploads/.htaccess</code>:</p>
+                        <p>
+                            In
+                            <code>/uploads/.htaccess</code>
+                            :
+                        </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1773,7 +2004,7 @@ php_flag engine off
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1807,7 +2038,7 @@ if (!isValidImage($file['tmp_name'])) {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1827,7 +2058,8 @@ function sanitizeFilename(string $filename): string {
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Kritische Punkte bei File-Uploads
+                            <strong class="box-title warning no-toc">
+                                Kritische Punkte bei File-Uploads
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -1840,12 +2072,12 @@ function sanitizeFilename(string $filename): string {
                                 <li>Bei Bildern: getimagesize() nutzen, nicht nur MIME-Type</li>
                             </ul>
                         </div>
-
                     </section>
 
                     <!-- Error Handling -->
                     <section class="tutorials-content">
-                        <h2 id="error-handling-und-information-disclosure">Error Handling und Information Disclosure
+                        <h2 id="error-handling-und-information-disclosure">
+                            Error Handling und Information Disclosure
                         </h2>
 
                         <p>Zu detaillierte Fehlermeldungen können Angreifern wertvolle Informationen liefern.</p>
@@ -1872,12 +2104,15 @@ try {
                         <h3 id="richtige-fehlerbehandlung">Richtige Fehlerbehandlung</h3>
                         <div class="code-block">
                             <div class="code-header">
-                                <span class="code-lang"><svg class="icon-ui icon-green icon-va-y-6">
+                                <span class="code-lang">
+                                    <svg class="icon-ui icon-green icon-va-y-6">
                                         <use href="#dpz-check-circle"></use>
-                                    </svg> PHP</span>
+                                    </svg>
+                                    PHP
+                                </span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1915,7 +2150,7 @@ try {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1950,16 +2185,29 @@ set_error_handler('customErrorHandler');
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Was verrät zu viel?
+                            <strong class="box-title no-toc">
+                                Was verrät zu viel?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Datenbankfehler:</strong> Tabellennamen, Spaltennamen, SQL-Queries</li>
-                                <li><strong>PHP-Fehler:</strong> Dateipfade, Server-Konfiguration</li>
-                                <li><strong>Login-Fehler:</strong> "Email nicht gefunden" vs. "Falsches Passwort"</li>
-                                <li><strong>Stack Traces:</strong> Code-Struktur, verwendete Libraries</li>
+                                <li>
+                                    <strong>Datenbankfehler:</strong>
+                                    Tabellennamen, Spaltennamen, SQL-Queries
+                                </li>
+                                <li>
+                                    <strong>PHP-Fehler:</strong>
+                                    Dateipfade, Server-Konfiguration
+                                </li>
+                                <li>
+                                    <strong>Login-Fehler:</strong>
+                                    "Email nicht gefunden" vs. "Falsches Passwort"
+                                </li>
+                                <li>
+                                    <strong>Stack Traces:</strong>
+                                    Code-Struktur, verwendete Libraries
+                                </li>
                             </ul>
                         </div>
 
@@ -1996,15 +2244,16 @@ if (!$userExists) {
 }
 ?&gt;</code></pre>
                         </div>
-
                     </section>
 
                     <!-- Headers -->
                     <section class="tutorials-content">
                         <h2 id="security-headers">Security Headers</h2>
 
-                        <p>HTTP-Security-Headers sind eine zusätzliche Schutzebene. Sie werden vom Server an den Browser
-                            gesendet.</p>
+                        <p>
+                            HTTP-Security-Headers sind eine zusätzliche Schutzebene. Sie werden vom Server an den
+                            Browser gesendet.
+                        </p>
 
                         <h3 id="wichtige-security-headers">Wichtige Security Headers</h3>
                         <div class="code-block">
@@ -2012,7 +2261,7 @@ if (!$userExists) {
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -2052,7 +2301,7 @@ header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -2074,8 +2323,14 @@ header("Content-Security-Policy:
                         <h4>X-Frame-Options</h4>
                         <p>Verhindert, dass deine Seite in iframes eingebettet wird (Clickjacking-Schutz):</p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><code>DENY</code> - Keine iframes erlaubt</li>
-                            <li><code>SAMEORIGIN</code> - Nur eigene Domain darf einbetten</li>
+                            <li>
+                                <code>DENY</code>
+                                - Keine iframes erlaubt
+                            </li>
+                            <li>
+                                <code>SAMEORIGIN</code>
+                                - Nur eigene Domain darf einbetten
+                            </li>
                         </ul>
 
                         <h4>Strict-Transport-Security (HSTS)</h4>
@@ -2085,7 +2340,7 @@ header("Content-Security-Policy:
                                 <span class="code-lang">PHP</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -2096,18 +2351,20 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
 ?&gt;</code></pre>
                         </div>
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">HSTS Vorsicht!
+                            <strong class="box-title warning no-toc">
+                                HSTS Vorsicht!
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Setze HSTS nur, wenn du <strong>sicher bist</strong>, dass deine Seite immer über HTTPS
-                                läuft. Mit <code>preload</code> wird deine Domain in Browser-Listen eingetragen -
-                                Rückgängig
-                                machen kann Monate dauern!</p>
+                            <p>
+                                Setze HSTS nur, wenn du
+                                <strong>sicher bist</strong>
+                                , dass deine Seite immer über HTTPS läuft. Mit
+                                <code>preload</code>
+                                wird deine Domain in Browser-Listen eingetragen - Rückgängig machen kann Monate dauern!
+                            </p>
                         </div>
-
-
                     </section>
 
                     <!-- Security-Checkliste -->
@@ -2118,7 +2375,11 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                             <div>
                                 <h3 id="input-validierung-output-encoding">Input-Validierung &amp; Output-Encoding</h3>
                                 <ul class="arrow-list grid-2col-bg">
-                                    <li>Alle Nutzereingaben mit <code>htmlspecialchars()</code> ausgeben</li>
+                                    <li>
+                                        Alle Nutzereingaben mit
+                                        <code>htmlspecialchars()</code>
+                                        ausgeben
+                                    </li>
                                     <li>SQL-Queries nur mit Prepared Statements</li>
                                     <li>Formulardaten validieren (Typ, Länge, Format)</li>
                                     <li>Whitelists statt Blacklists verwenden</li>
@@ -2127,7 +2388,11 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                             <div>
                                 <h3 id="authentication-sessions">Authentication &amp; Sessions</h3>
                                 <ul class="check-list grid-2col-bg">
-                                    <li>Passwörter mit <code>password_hash()</code> hashen</li>
+                                    <li>
+                                        Passwörter mit
+                                        <code>password_hash()</code>
+                                        hashen
+                                    </li>
                                     <li>Session-ID nach Login regenerieren</li>
                                     <li>Secure, HttpOnly, SameSite Cookie-Flags setzen</li>
                                     <li>Rate Limiting für Login-Versuche</li>
@@ -2141,7 +2406,10 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                                 <h3 id="csrf-schutz">CSRF-Schutz</h3>
                                 <ul class="check-list grid-2col-bg">
                                     <li>CSRF-Tokens in allen Formularen</li>
-                                    <li>Token-Validierung mit <code>hash_equals()</code></li>
+                                    <li>
+                                        Token-Validierung mit
+                                        <code>hash_equals()</code>
+                                    </li>
                                     <li>SameSite-Cookie-Attribut nutzen</li>
                                 </ul>
                             </div>
@@ -2152,7 +2420,11 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                                     <li>Dateigröße limitieren</li>
                                     <li>Sichere Dateinamen generieren</li>
                                     <li>Upload-Verzeichnis außerhalb Web-Root oder PHP-Ausführung deaktivieren</li>
-                                    <li>Bei Bildern: <code>getimagesize()</code> nutzen</li>
+                                    <li>
+                                        Bei Bildern:
+                                        <code>getimagesize()</code>
+                                        nutzen
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -2161,7 +2433,10 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                             <div>
                                 <h3 id="configuration">Configuration</h3>
                                 <ul class="check-list grid-2col-bg">
-                                    <li><code>display_errors = Off</code> in Produktion</li>
+                                    <li>
+                                        <code>display_errors = Off</code>
+                                        in Produktion
+                                    </li>
                                     <li>Fehler in Log-Datei schreiben</li>
                                     <li>HTTPS verwenden (Let's Encrypt ist kostenlos!)</li>
                                     <li>Security Headers setzen</li>
@@ -2181,7 +2456,10 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
 
                         <h3 id="best-practices">Best Practices</h3>
                         <ul class="check-list grid-2col-bg">
-                            <li><code>declare(strict_types=1)</code> nutzen</li>
+                            <li>
+                                <code>declare(strict_types=1)</code>
+                                nutzen
+                            </li>
                             <li>Nie Nutzereingaben vertrauen</li>
                             <li>Principle of Least Privilege (minimale Rechte)</li>
                             <li>Defense in Depth (mehrere Schutzebenen)</li>
@@ -2189,17 +2467,35 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                         </ul>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Ressourcen für weitere Infos
+                            <strong class="box-title no-toc">
+                                Ressourcen für weitere Infos
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>OWASP Top 10:</strong> <a href="https://owasp.org/www-project-top-ten/" target="_blank">owasp.org/www-project-top-ten/</a></li>
-                                <li><strong>PHP Security Guide:</strong> <a href="https://phptherightway.com/#security" target="_blank">phptherightway.com/#security</a></li>
-                                <li><strong>Security Headers:</strong> <a href="https://securityheaders.com" target="_blank">securityheaders.com</a> (zum Testen)</li>
-                                <li><strong>Have I Been Pwned:</strong> <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>
-                                    (Passwort-Leaks prüfen)</li>
+                                <li>
+                                    <strong>OWASP Top 10:</strong>
+                                    <a href="https://owasp.org/www-project-top-ten/" target="_blank">
+                                        owasp.org/www-project-top-ten/
+                                    </a>
+                                </li>
+                                <li>
+                                    <strong>PHP Security Guide:</strong>
+                                    <a href="https://phptherightway.com/#security" target="_blank">
+                                        phptherightway.com/#security
+                                    </a>
+                                </li>
+                                <li>
+                                    <strong>Security Headers:</strong>
+                                    <a href="https://securityheaders.com" target="_blank">securityheaders.com</a>
+                                    (zum Testen)
+                                </li>
+                                <li>
+                                    <strong>Have I Been Pwned:</strong>
+                                    <a href="https://haveibeenpwned.com">haveibeenpwned.com</a>
+                                    (Passwort-Leaks prüfen)
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -2208,36 +2504,44 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                     <section class="tutorials-content">
                         <h2 id="zusammenfassung">Zusammenfassung</h2>
 
-                        <p>Sicherheit ist kein einmaliges Feature, sondern ein fortlaufender Prozess. Die wichtigsten
-                            Takeaways:</p>
+                        <p>
+                            Sicherheit ist kein einmaliges Feature, sondern ein fortlaufender Prozess. Die wichtigsten
+                            Takeaways:
+                        </p>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Die goldene Regel
+                            <strong class="box-title warning no-toc">
+                                Die goldene Regel
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p class="text-lg">VERTRAUE NIEMALS NUTZEREINGABEN!</p>
-                            <p>Alles, was von außen kommt, ist potentiell gefährlich. Validiere, bereinige, escape -
-                                immer
-                                und überall.</p>
+                            <p>
+                                Alles, was von außen kommt, ist potentiell gefährlich. Validiere, bereinige, escape -
+                                immer und überall.
+                            </p>
                         </div>
-
 
                         <div class="grid-2col-cards pb-lg">
                             <div class="code-block">
                                 <div class="code-header">
-                                    <h3 class="code-lang pt-xs mb-0 text-md" id="die-haeufigsten-fehler">Die häufigsten
-                                        Fehler</h3>
+                                    <h3 class="code-lang pt-xs mb-0 text-md" id="die-haeufigsten-fehler">
+                                        Die häufigsten Fehler
+                                    </h3>
                                     <svg class="icon-ui icon-red-light">
                                         <use href="#dpz-cross-circle"></use>
                                     </svg>
                                 </div>
 
-
                                 <div class="pt-lg pb-0 mb-0 px-md">
                                     <ul class="cross-list">
-                                        <li>Direkte Ausgabe von <code>$_GET</code>, <code>$_POST</code> ohne Bereinigung
+                                        <li>
+                                            Direkte Ausgabe von
+                                            <code>$_GET</code>
+                                            ,
+                                            <code>$_POST</code>
+                                            ohne Bereinigung
                                         </li>
                                         <li>SQL-Queries mit String-Concatenation statt Prepared Statements</li>
                                         <li>Fehlende CSRF-Tokens in Formularen</li>
@@ -2250,8 +2554,8 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                             </div>
                             <div class="code-block">
                                 <div class="code-header">
-                                    <h3 class="code-lang pt-xs mb-0 text-md" id="das-security-mindset">Das
-                                        Security-Mindset
+                                    <h3 class="code-lang pt-xs mb-0 text-md" id="das-security-mindset">
+                                        Das Security-Mindset
                                     </h3>
                                     <svg class="icon-ui icon-green">
                                         <use href="#dpz-check-circle"></use>
@@ -2259,7 +2563,11 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                                 </div>
                                 <div class="pt-lg pb-0 mb-0 px-md">
                                     <ul class="arrow-list">
-                                        <li>Was passiert, wenn ich hier <code>&lt;script&gt;</code> eingebe?</li>
+                                        <li>
+                                            Was passiert, wenn ich hier
+                                            <code>&lt;script&gt;</code>
+                                            eingebe?
+                                        </li>
                                         <li>Kann ich mit manipulierten URLs auf fremde Daten zugreifen?</li>
                                         <li>Was passiert, wenn ich riesige Dateien hochlade?</li>
                                         <li>Kann ich SQL-Befehle in dieses Feld eingeben?</li>
@@ -2271,7 +2579,8 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Nächste Schritte
+                            <strong class="box-title no-toc">
+                                Nächste Schritte
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -2279,73 +2588,87 @@ header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload'
                             <p>Sicherheit ist ein weites Feld. Weitere wichtige Themen:</p>
                             <ul class="arrow-list">
                                 <li><strong>Two-Factor Authentication (2FA)</strong></li>
-                                <li><strong>OAuth &amp; JWT</strong> für moderne APIs</li>
-                                <li><strong>Security Testing</strong> (Penetration Testing, Vulnerability Scanning)</li>
-                                <li><strong>Logging &amp; Monitoring</strong> für Angriffserkennnung</li>
-                                <li><strong>Dependency Management</strong> (Composer, npm) - Updates!</li>
+                                <li>
+                                    <strong>OAuth &amp; JWT</strong>
+                                    für moderne APIs
+                                </li>
+                                <li>
+                                    <strong>Security Testing</strong>
+                                    (Penetration Testing, Vulnerability Scanning)
+                                </li>
+                                <li>
+                                    <strong>Logging &amp; Monitoring</strong>
+                                    für Angriffserkennnung
+                                </li>
+                                <li>
+                                    <strong>Dependency Management</strong>
+                                    (Composer, npm) - Updates!
+                                </li>
                             </ul>
                         </div>
 
-                        <p>Sichere Programmierung ist keine Raketenwissenschaft, aber sie erfordert Aufmerksamkeit und
+                        <p>
+                            Sichere Programmierung ist keine Raketenwissenschaft, aber sie erfordert Aufmerksamkeit und
                             Disziplin. Die hier vorgestellten Methoden decken die wichtigsten Angriffsvektoren ab. Nutze
-                            sie
-                            konsequent, und deine Anwendungen werden deutlich sicherer sein!</p>
+                            sie konsequent, und deine Anwendungen werden deutlich sicherer sein!
+                        </p>
                     </section>
 
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-php">Mehr aus PHP</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="php">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-php">Mehr aus PHP</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="php">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/php/php-basics/php-basics.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">PHP Basics - Die Grundlagen</span>
-                <span class="tutorial-nav-category">PHP Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next"></div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/php/php-basics/php-basics.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">PHP Basics - Die Grundlagen</span>
+                                    <span class="tutorial-nav-category">PHP Basics</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next"></div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-    
-
-</body></html>
+    </body>
+</html>

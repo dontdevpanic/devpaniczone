@@ -1,186 +1,205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description"
-            content="Dokumentation zur automatischen Aktualisierung des Jahres im Footer auf DevPanicZone. JavaScript currentYear mit Fallback">
-        <meta name="keywords" content="currentYear, Footer, JavaScript, Copyright, Jahr, Automatisierung, DevPanicZone">
-        <meta name="author" content="DevPanicZone">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="Dokumentation zur automatischen Aktualisierung des Jahres im Footer auf DevPanicZone. JavaScript currentYear mit Fallback"
+        />
+        <meta
+            name="keywords"
+            content="currentYear, Footer, JavaScript, Copyright, Jahr, Automatisierung, DevPanicZone"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>currentYear im Footer | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
-                            class="breadcrumb-separator">›</span><a href="/tutorials/documentation/"
-                            class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span
-                            class="breadcrumb-current">currentYear im Footer</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">currentYear im Footer</span>
+                    </nav>
                     <h1 class="hero-title">currentYear im Footer</h1>
                     <p class="hero-subtitle">Automatische Aktualisierung des aktuellen Jahres mit JavaScript.</p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
-                title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -189,7 +208,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -202,14 +220,19 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#current-year-footer">currentYear im Footer</a></li>
-                    <li class="toc-level-1"><a href="#html-struktur-im-footer">HTML-Struktur im Footer</a></li>
-                    <li class="toc-level-1"><a href="#javascript-code">JavaScript-Code</a></li>
-                    <li class="toc-level-1"><a href="#alternative-inline-script-im-footer">Alternative: Inline Script im Footer</a></li>
-                    <li class="toc-level-1"><a href="#erweiterung-zeitraum-anzeigen-zb-2023-2025">Erweiterung: Zeitraum anzeigen (z.B.
-                            2023-2025)</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#current-year-footer">currentYear im Footer</a></li>
+                            <li class="toc-level-1"><a href="#html-struktur-im-footer">HTML-Struktur im Footer</a></li>
+                            <li class="toc-level-1"><a href="#javascript-code">JavaScript-Code</a></li>
+                            <li class="toc-level-1">
+                                <a href="#alternative-inline-script-im-footer">Alternative: Inline Script im Footer</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#erweiterung-zeitraum-anzeigen-zb-2023-2025">
+                                    Erweiterung: Zeitraum anzeigen (z.B. 2023-2025)
+                                </a>
+                            </li>
+                            <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -225,46 +248,101 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">Documentation</li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One Cheatsheet für meine Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html">Was macht generate-navigation.js</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">Main Navigation im Header</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">Wie funktionieren die Sidebars?</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">Hero Breadcrumbs</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">Prev / Next Buttons in den Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">Tutorial Buttons</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">Toggle Night Mode</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html" class="active">currentYear im Footer</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">Latest Tutorials Section</a></li>
-                </ul>
+                            <li class="sidebar-group-title">Documentation</li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">
+                                    Automatisches Generieren der Navigationen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">
+                                    All-in-One Cheatsheet für meine Tutorials
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html"
+                                >
+                                    Was macht generate-navigation.js
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">
+                                    Main Navigation im Header
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">
+                                    Wie funktionieren die Sidebars?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">
+                                    Hero Breadcrumbs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">
+                                    Prev / Next Buttons in den Tutorials
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">
+                                    Tutorial Buttons
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">
+                                    Toggle Night Mode
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html"
+                                    class="active"
+                                >
+                                    currentYear im Footer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">
+                                    Latest Tutorials Section
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <section class="tutorials-content">
                         <h2 id="current-year-footer">currentYear im Footer</h2>
-                        <p>Das aktuelle Jahr im Footer ist nicht direkt Teil der automatischen Generierung, das HTML
-                            hierzu ist aber im Script <code class="inline">generate-navigation.js</code> hinterlegt und
-                            erscheint bei der Ausführung.
-                            Das JavaScript für das aktuelle Jahr selbst ist Teil der <code class="inline">main.js</code>
+                        <p>
+                            Das aktuelle Jahr im Footer ist nicht direkt Teil der automatischen Generierung, das HTML
+                            hierzu ist aber im Script
+                            <code class="inline">generate-navigation.js</code>
+                            hinterlegt und erscheint bei der Ausführung. Das JavaScript für das aktuelle Jahr selbst ist
+                            Teil der
+                            <code class="inline">main.js</code>
                         </p>
                     </section>
 
                     <!-- HTML-Struktur -->
                     <section class="tutorials-content">
                         <h2 id="html-struktur-im-footer">HTML-Struktur im Footer</h2>
-                        <p>Im <code class="inline">FOOTER_TEMPLATE</code> in <code
-                                class="inline">generate-navigation.js</code> ist das Jahr bereits mit Fallback-Wert
-                            eingebaut:</p>
+                        <p>
+                            Im
+                            <code class="inline">FOOTER_TEMPLATE</code>
+                            in
+                            <code class="inline">generate-navigation.js</code>
+                            ist das Jahr bereits mit Fallback-Wert eingebaut:
+                        </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -281,22 +359,31 @@
     &lt;/div&gt;
 &lt;/footer&gt;</code></pre>
                         </div>
-                        <p>Der Fallback-Wert <code class="inline">2025</code> wird angezeigt, falls JavaScript
-                            deaktiviert ist. Das JavaScript überschreibt ihn mit dem aktuellen Jahr.</p>
+                        <p>
+                            Der Fallback-Wert
+                            <code class="inline">2025</code>
+                            wird angezeigt, falls JavaScript deaktiviert ist. Das JavaScript überschreibt ihn mit dem
+                            aktuellen Jahr.
+                        </p>
                     </section>
 
                     <!-- JavaScript-Code -->
                     <section class="tutorials-content">
                         <h2 id="javascript-code">JavaScript-Code</h2>
-                        <p>In <code class="inline">main.js</code> ist die Funktion <code
-                                class="inline">setCurrentYear()</code> definiert:</p>
+                        <p>
+                            In
+                            <code class="inline">main.js</code>
+                            ist die Funktion
+                            <code class="inline">setCurrentYear()</code>
+                            definiert:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -315,22 +402,27 @@ function setCurrentYear() {
 setCurrentYear();</code></pre>
                         </div>
 
-                        <p>Die Funktion wird innerhalb des <code class="inline">DOMContentLoaded</code> Events
-                            aufgerufen, sodass das Element garantiert existiert.</p>
+                        <p>
+                            Die Funktion wird innerhalb des
+                            <code class="inline">DOMContentLoaded</code>
+                            Events aufgerufen, sodass das Element garantiert existiert.
+                        </p>
                     </section>
 
                     <!-- Alternative: Inline Script -->
                     <section class="tutorials-content">
                         <h2 id="alternative-inline-script-im-footer">Alternative: Inline Script im Footer</h2>
-                        <p>Falls du es nicht in einer separaten JavaScript-Datei haben möchtest, kannst du es auch
-                            direkt im Footer einfügen:</p>
+                        <p>
+                            Falls du es nicht in einer separaten JavaScript-Datei haben möchtest, kannst du es auch
+                            direkt im Footer einfügen:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -352,8 +444,10 @@ setCurrentYear();</code></pre>
 &lt;/script&gt;</code></pre>
                         </div>
 
-                        <p>Ich würde aber möglichst auf Inline Scripts verzichten. Schau dir dazu auch das Tutorial
-                            JavaScript Sicherheit an:</p>
+                        <p>
+                            Ich würde aber möglichst auf Inline Scripts verzichten. Schau dir dazu auch das Tutorial
+                            JavaScript Sicherheit an:
+                        </p>
                         <div>
                             <a href="/tutorials/javascript/javascript-basics/js-security.html" target="_blank">
                                 <kbd class="key-active">Zum Tutorial JavaScript Sicherheit ↵</kbd>
@@ -387,7 +481,8 @@ setCurrentYear();</code></pre>
                     <!-- Warum automatisch? -->
                     <section class="tutorials-content">
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum automatisch?
+                            <strong class="box-title no-toc">
+                                Warum automatisch?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -404,8 +499,8 @@ setCurrentYear();</code></pre>
 
                     <!-- Erweiterung: Zeitraum anzeigen -->
                     <section class="tutorials-content">
-                        <h2 id="erweiterung-zeitraum-anzeigen-zb-2023-2025">Erweiterung: Zeitraum anzeigen (z.B.
-                            2023-2025)
+                        <h2 id="erweiterung-zeitraum-anzeigen-zb-2023-2025">
+                            Erweiterung: Zeitraum anzeigen (z.B. 2023-2025)
                         </h2>
                         <p>Wenn deine Website seit 2023 besteht, kannst du einen Zeitraum anzeigen:</p>
 
@@ -414,7 +509,7 @@ setCurrentYear();</code></pre>
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -429,7 +524,7 @@ setCurrentYear();</code></pre>
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -455,71 +550,83 @@ if (yearElement) {
 
                         <p><strong>Ergebnis:</strong></p>
                         <ul class="arrow-list">
-                            <li>2023: <code class="inline">© 2023 DevPanicZone</code></li>
-                            <li>2024: <code class="inline">© 2023-2024 DevPanicZone</code></li>
-                            <li>2025: <code class="inline">© 2023-2025 DevPanicZone</code></li>
+                            <li>
+                                2023:
+                                <code class="inline">© 2023 DevPanicZone</code>
+                            </li>
+                            <li>
+                                2024:
+                                <code class="inline">© 2023-2024 DevPanicZone</code>
+                            </li>
+                            <li>
+                                2025:
+                                <code class="inline">© 2023-2025 DevPanicZone</code>
+                            </li>
                         </ul>
-
-                    </section> <!-- currentYear Footer -->
+                    </section>
+                    <!-- currentYear Footer -->
 
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Toggle Night Mode</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Latest Tutorials Section</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Toggle Night Mode</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">Latest Tutorials Section</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
     </body>
-
 </html>

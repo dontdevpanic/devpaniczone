@@ -1,187 +1,205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description"
-            content="Dokumentation zur automatischen Generierung der Breadcrumbs auf DevPanicZone. Brotkrumen-Navigation für bessere Orientierung.">
-        <meta name="keywords"
-            content="Breadcrumbs, Navigation, Brotkrumen, generate-navigation.js, DevPanicZone, Tutorial, Automatisierung">
-        <meta name="author" content="DevPanicZone">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="Dokumentation zur automatischen Generierung der Breadcrumbs auf DevPanicZone. Brotkrumen-Navigation für bessere Orientierung."
+        />
+        <meta
+            name="keywords"
+            content="Breadcrumbs, Navigation, Brotkrumen, generate-navigation.js, DevPanicZone, Tutorial, Automatisierung"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>Die Breadcrumbs | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
-                            class="breadcrumb-separator">›</span><a href="/tutorials/documentation/"
-                            class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span
-                            class="breadcrumb-current">Hero Breadcrumbs</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Hero Breadcrumbs</span>
+                    </nav>
                     <h1 class="hero-title">Hero Breadcrumbs</h1>
                     <p class="hero-subtitle">Automatisierte Brotkrumen-Navigation</p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
-                title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -190,7 +208,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -203,20 +220,28 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#hero-breadcrumbs">Hero Breadcrumbs</a></li>
-                    <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
-                    <li class="toc-level-1"><a href="#zwei-varianten">Zwei Varianten</a></li>
-                    <li class="toc-level-1"><a href="#beispiel-generierte-breadcrumbs">Beispiel: Generierte Breadcrumbs</a></li>
-                    <li class="toc-level-2"><a href="#kategorieseite">Kategorieseite</a></li>
-                    <li class="toc-level-2"><a href="#tutorial-seite">Tutorial-Seite</a></li>
-                    <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
-                    <li class="toc-level-1"><a href="#category-names">Kategorie-Namen aus CATEGORY_NAMES</a></li>
-                    <li class="toc-level-1"><a href="#tutorial-titel">Tutorial-Titel aus CUSTOM_TITLES oder H1</a></li>
-                    <li class="toc-level-1"><a href="#css-klassen">CSS-Klassen</a></li>
-                    <li class="toc-level-1"><a href="#neue-kategorie-hinzufuegen">Neue Kategorie hinzufügen</a></li>
-                    <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#hero-breadcrumbs">Hero Breadcrumbs</a></li>
+                            <li class="toc-level-1"><a href="#html-struktur">HTML-Struktur</a></li>
+                            <li class="toc-level-1"><a href="#zwei-varianten">Zwei Varianten</a></li>
+                            <li class="toc-level-1">
+                                <a href="#beispiel-generierte-breadcrumbs">Beispiel: Generierte Breadcrumbs</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#kategorieseite">Kategorieseite</a></li>
+                            <li class="toc-level-2"><a href="#tutorial-seite">Tutorial-Seite</a></li>
+                            <li class="toc-level-1"><a href="#wie-funktionierts">Wie funktioniert&#39;s?</a></li>
+                            <li class="toc-level-1">
+                                <a href="#category-names">Kategorie-Namen aus CATEGORY_NAMES</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#tutorial-titel">Tutorial-Titel aus CUSTOM_TITLES oder H1</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#css-klassen">CSS-Klassen</a></li>
+                            <li class="toc-level-1">
+                                <a href="#neue-kategorie-hinzufuegen">Neue Kategorie hinzufügen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#ausfuehren">Ausführen</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -232,45 +257,98 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">Documentation</li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One Cheatsheet für meine Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html">Was macht generate-navigation.js</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">Main Navigation im Header</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">Wie funktionieren die Sidebars?</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html" class="active">Hero Breadcrumbs</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">Prev / Next Buttons in den Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">Tutorial Buttons</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">Toggle Night Mode</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">currentYear im Footer</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">Latest Tutorials Section</a></li>
-                </ul>
+                            <li class="sidebar-group-title">Documentation</li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">
+                                    Automatisches Generieren der Navigationen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">
+                                    All-in-One Cheatsheet für meine Tutorials
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html"
+                                >
+                                    Was macht generate-navigation.js
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">
+                                    Main Navigation im Header
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">
+                                    Wie funktionieren die Sidebars?
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html"
+                                    class="active"
+                                >
+                                    Hero Breadcrumbs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">
+                                    Prev / Next Buttons in den Tutorials
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">
+                                    Tutorial Buttons
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html">
+                                    Toggle Night Mode
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">
+                                    currentYear im Footer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">
+                                    Latest Tutorials Section
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Hero Breadcrumbs -->
                     <section class="tutorials-content">
                         <h2 id="hero-breadcrumbs">Hero Breadcrumbs</h2>
-                        <p>Breadcrumbs (Brotkrumen-Navigation) zeigen den Pfad zur aktuellen Seite. Sie werden
-                            automatisch durch <code class="inline">generate-navigation.js</code> generiert und helfen
-                            bei der Orientierung.</p>
+                        <p>
+                            Breadcrumbs (Brotkrumen-Navigation) zeigen den Pfad zur aktuellen Seite. Sie werden
+                            automatisch durch
+                            <code class="inline">generate-navigation.js</code>
+                            generiert und helfen bei der Orientierung.
+                        </p>
                     </section>
 
                     <!-- HTML-Struktur -->
                     <section class="tutorials-content">
                         <h2 id="html-struktur">HTML-Struktur</h2>
-                        <p>Die Breadcrumbs werden in der Hero-Section platziert. Das Script sucht nach dem <code
-                                class="inline">&lt;nav class="breadcrumbs"&gt;</code> Element und ersetzt dessen Inhalt:
+                        <p>
+                            Die Breadcrumbs werden in der Hero-Section platziert. Das Script sucht nach dem
+                            <code class="inline">&lt;nav class="breadcrumbs"&gt;</code>
+                            Element und ersetzt dessen Inhalt:
                         </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -295,25 +373,41 @@
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc pt-0">Kategorieseiten (index.html)</h3>
-                                <p>Pfad: <code class="inline">/tutorials/css/index.html</code></p>
-                                <p><strong>Ergebnis:</strong> Home › CSS</p>
+                                <p>
+                                    Pfad:
+                                    <code class="inline">/tutorials/css/index.html</code>
+                                </p>
+                                <p>
+                                    <strong>Ergebnis:</strong>
+                                    Home › CSS
+                                </p>
                             </div>
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc pt-0">Tutorial-Seiten</h3>
-                                <p>Pfad: <code class="inline">/tutorials/css/css-basics/css-einbinden.html</code></p>
-                                <p><strong>Ergebnis:</strong> Home › CSS › CSS einbinden</p>
+                                <p>
+                                    Pfad:
+                                    <code class="inline">/tutorials/css/css-basics/css-einbinden.html</code>
+                                </p>
+                                <p>
+                                    <strong>Ergebnis:</strong>
+                                    Home › CSS › CSS einbinden
+                                </p>
                             </div>
                         </div>
 
                         <div class="info-box info">
-                            <strong class="box-title info no-toc">Hinweis
+                            <strong class="box-title info no-toc">
+                                Hinweis
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Die Unterkategorie (z.B. "CSS Basics") wird <strong>nicht</strong> in den Breadcrumbs
-                                angezeigt. Die Navigation bleibt dadurch kompakt: Home → Hauptkategorie → aktuelles
-                                Tutorial.</p>
+                            <p>
+                                Die Unterkategorie (z.B. "CSS Basics") wird
+                                <strong>nicht</strong>
+                                in den Breadcrumbs angezeigt. Die Navigation bleibt dadurch kompakt: Home →
+                                Hauptkategorie → aktuelles Tutorial.
+                            </p>
                         </div>
                     </section>
 
@@ -322,13 +416,17 @@
                         <h2 id="beispiel-generierte-breadcrumbs">Beispiel: Generierte Breadcrumbs</h2>
 
                         <h3 id="kategorieseite">Kategorieseite</h3>
-                        <p>Für <code class="inline">/tutorials/css/index.html</code>:</p>
+                        <p>
+                            Für
+                            <code class="inline">/tutorials/css/index.html</code>
+                            :
+                        </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -341,13 +439,17 @@
                         </div>
 
                         <h3 id="tutorial-seite">Tutorial-Seite</h3>
-                        <p>Für <code class="inline">/tutorials/css/css-basics/css-einbinden.html</code>:</p>
+                        <p>
+                            Für
+                            <code class="inline">/tutorials/css/css-basics/css-einbinden.html</code>
+                            :
+                        </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -365,15 +467,30 @@
                     <!-- Wie funktioniert's -->
                     <section class="tutorials-content">
                         <h2 id="wie-funktionierts">Wie funktioniert's?</h2>
-                        <p>Die Funktion <code class="inline">generateBreadcrumbs()</code> nutzt zwei Informationen:</p>
+                        <p>
+                            Die Funktion
+                            <code class="inline">generateBreadcrumbs()</code>
+                            nutzt zwei Informationen:
+                        </p>
 
                         <div class="grid-2col-bg">
                             <ol class="pl-md">
-                                <li><strong>Kategorie</strong> aus dem Dateipfad via <code
-                                        class="inline">getCategoryFromPath()</code></li>
-                                <li><strong>Kategorie-Name</strong> aus <code class="inline">CATEGORY_NAMES</code></li>
-                                <li><strong>Tutorial-Titel</strong> aus <code class="inline">CUSTOM_TITLES</code> oder
-                                    der H1-Überschrift</li>
+                                <li>
+                                    <strong>Kategorie</strong>
+                                    aus dem Dateipfad via
+                                    <code class="inline">getCategoryFromPath()</code>
+                                </li>
+                                <li>
+                                    <strong>Kategorie-Name</strong>
+                                    aus
+                                    <code class="inline">CATEGORY_NAMES</code>
+                                </li>
+                                <li>
+                                    <strong>Tutorial-Titel</strong>
+                                    aus
+                                    <code class="inline">CUSTOM_TITLES</code>
+                                    oder der H1-Überschrift
+                                </li>
                             </ol>
                         </div>
 
@@ -382,7 +499,7 @@
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -412,15 +529,18 @@
                     <!-- CATEGORY_NAMES -->
                     <section class="tutorials-content">
                         <h2 id="category-names">Kategorie-Namen aus CATEGORY_NAMES</h2>
-                        <p>Die Anzeigenamen der Kategorien werden aus der <code class="inline">CATEGORY_NAMES</code>
-                            Konfiguration geholt:</p>
+                        <p>
+                            Die Anzeigenamen der Kategorien werden aus der
+                            <code class="inline">CATEGORY_NAMES</code>
+                            Konfiguration geholt:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -440,17 +560,32 @@
                         <div class="grid-2col grid-2col-bg">
                             <div>
                                 <ul class="arrow-list">
-                                    <li>Ordner <code class="inline">css</code> → Anzeige <strong>CSS</strong></li>
-                                    <li>Ordner <code class="inline">javascript</code> → Anzeige
+                                    <li>
+                                        Ordner
+                                        <code class="inline">css</code>
+                                        → Anzeige
+                                        <strong>CSS</strong>
+                                    </li>
+                                    <li>
+                                        Ordner
+                                        <code class="inline">javascript</code>
+                                        → Anzeige
                                         <strong>JavaScript</strong>
                                     </li>
                                 </ul>
                             </div>
                             <div>
                                 <ul class="arrow-list">
-                                    <li>Ordner <code class="inline">misc</code> → Anzeige <strong>Verschiedenes</strong>
+                                    <li>
+                                        Ordner
+                                        <code class="inline">misc</code>
+                                        → Anzeige
+                                        <strong>Verschiedenes</strong>
                                     </li>
-                                    <li>Ordner <code class="inline">devpaniczone</code> → Anzeige
+                                    <li>
+                                        Ordner
+                                        <code class="inline">devpaniczone</code>
+                                        → Anzeige
                                         <strong>DevPanicZone!</strong>
                                     </li>
                                 </ul>
@@ -465,9 +600,16 @@
 
                         <div class="grid-2col-bg">
                             <ol class="pl-md">
-                                <li>Prüfe ob ein Eintrag in <code class="inline">CUSTOM_TITLES</code> existiert</li>
-                                <li>Falls nicht: Extrahiere den Text aus der <code class="inline">&lt;h1&gt;</code>
-                                    Überschrift</li>
+                                <li>
+                                    Prüfe ob ein Eintrag in
+                                    <code class="inline">CUSTOM_TITLES</code>
+                                    existiert
+                                </li>
+                                <li>
+                                    Falls nicht: Extrahiere den Text aus der
+                                    <code class="inline">&lt;h1&gt;</code>
+                                    Überschrift
+                                </li>
                             </ol>
                         </div>
 
@@ -476,7 +618,7 @@
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -494,15 +636,18 @@ const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);</code></pre>
                         </div>
 
                         <div class="info-box info">
-                            <strong class="box-title info no-toc">Wann CUSTOM_TITLES nutzen?
+                            <strong class="box-title info no-toc">
+                                Wann CUSTOM_TITLES nutzen?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
                                 <li>Wenn die H1 zu lang ist für die Navigation</li>
-                                <li>Wenn du eine andere Schreibweise bevorzugst (z.B. "CSS einbinden" statt "CSS
-                                    Einbinden")</li>
+                                <li>
+                                    Wenn du eine andere Schreibweise bevorzugst (z.B. "CSS einbinden" statt "CSS
+                                    Einbinden")
+                                </li>
                                 <li>Wenn die H1 Sonderzeichen enthält, die problematisch sein könnten</li>
                             </ul>
                         </div>
@@ -516,15 +661,26 @@ const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);</code></pre>
                         <div class="grid-2col grid-2col-bg">
                             <div>
                                 <ul class="arrow-list">
-                                    <li><code class="inline">.breadcrumbs</code> → Container (nav-Element)</li>
-                                    <li><code class="inline">.breadcrumb-link</code> → Klickbare Links</li>
+                                    <li>
+                                        <code class="inline">.breadcrumbs</code>
+                                        → Container (nav-Element)
+                                    </li>
+                                    <li>
+                                        <code class="inline">.breadcrumb-link</code>
+                                        → Klickbare Links
+                                    </li>
                                 </ul>
                             </div>
                             <div>
                                 <ul class="arrow-list">
-                                    <li><code class="inline">.breadcrumb-separator</code> → Trennzeichen (›)</li>
-                                    <li><code class="inline">.breadcrumb-current</code> → Aktuelle Seite (nicht
-                                        klickbar)</li>
+                                    <li>
+                                        <code class="inline">.breadcrumb-separator</code>
+                                        → Trennzeichen (›)
+                                    </li>
+                                    <li>
+                                        <code class="inline">.breadcrumb-current</code>
+                                        → Aktuelle Seite (nicht klickbar)
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -537,8 +693,16 @@ const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);</code></pre>
 
                         <div class="grid-2col-bg">
                             <ol class="pl-md">
-                                <li>Füge die Kategorie zu <code class="inline">CATEGORY_NAMES</code> hinzu</li>
-                                <li>Führe <code class="inline">npm run build</code> aus</li>
+                                <li>
+                                    Füge die Kategorie zu
+                                    <code class="inline">CATEGORY_NAMES</code>
+                                    hinzu
+                                </li>
+                                <li>
+                                    Führe
+                                    <code class="inline">npm run build</code>
+                                    aus
+                                </li>
                             </ol>
                         </div>
 
@@ -547,7 +711,7 @@ const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);</code></pre>
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -560,8 +724,11 @@ const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);</code></pre>
 };</code></pre>
                         </div>
 
-                        <p>Die Breadcrumbs nutzen dieselbe <code class="inline">CATEGORY_NAMES</code> Konfiguration wie
-                            die Main Navigation – eine Änderung wirkt sich auf beide aus.</p>
+                        <p>
+                            Die Breadcrumbs nutzen dieselbe
+                            <code class="inline">CATEGORY_NAMES</code>
+                            Konfiguration wie die Main Navigation – eine Änderung wirkt sich auf beide aus.
+                        </p>
                     </section>
 
                     <!-- Ausführen -->
@@ -573,7 +740,7 @@ const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);</code></pre>
                                 <span class="code-lang">Bash</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -585,61 +752,64 @@ const currentTitle = CUSTOM_TITLES[basename] || extractTitle(html);</code></pre>
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Wie funktionieren die Sidebars?</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Prev / Next Buttons in den Tutorials</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Wie funktionieren die Sidebars?</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">Prev / Next Buttons in den Tutorials</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
     </body>
-
 </html>

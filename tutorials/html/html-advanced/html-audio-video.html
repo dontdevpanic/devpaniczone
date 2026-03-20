@@ -1,180 +1,209 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="HTML5 Audio und Video einbinden: Formate, Attribute, Untertitel, Hintergrundvideos und barrierefreie Medieneinbettung mit Praxisbeispielen.">
-        <meta name="keywords" content="HTML5 audio, HTML5 video, video einbinden, audio tag, video tag, MP4 WebM, autoplay muted, video poster, track subtitles, iframe YouTube, Hintergrundvideo HTML">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="HTML5 Audio und Video einbinden: Formate, Attribute, Untertitel, Hintergrundvideos und barrierefreie Medieneinbettung mit Praxisbeispielen."
+        />
+        <meta
+            name="keywords"
+            content="HTML5 audio, HTML5 video, video einbinden, audio tag, video tag, MP4 WebM, autoplay muted, video poster, track subtitles, iframe YouTube, Hintergrundvideo HTML"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>HTML Audio &amp; Video - Medien einbinden &amp; steuern | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Audio &amp; Video</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/html/" class="breadcrumb-link">HTML</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">HTML Audio &amp; Video</span>
+                    </nav>
                     <h1 class="hero-title">HTML Audio &amp; Video</h1>
-                    <p class="hero-subtitle">HTML5 ermöglicht es, Audio- und Videodateien ohne Plugins direkt im Browser
-                        abzuspielen. Du kannst eigene Medien einbinden, steuern und sogar als Hintergrundvideos oder
-                        dynamische Inhalte nutzen.</p>
+                    <p class="hero-subtitle">
+                        HTML5 ermöglicht es, Audio- und Videodateien ohne Plugins direkt im Browser abzuspielen. Du
+                        kannst eigene Medien einbinden, steuern und sogar als Hintergrundvideos oder dynamische Inhalte
+                        nutzen.
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -183,7 +212,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -196,18 +224,26 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#audio-in-html">Audio in HTML</a></li>
-                    <li class="toc-level-1"><a href="#video-in-html">Video in HTML</a></li>
-                    <li class="toc-level-1"><a href="#hintergrundvideos">Hintergrundvideos</a></li>
-                    <li class="toc-level-1"><a href="#responsive-videos">Responsive Videos</a></li>
-                    <li class="toc-level-2"><a href="#methode-1-css-width">Methode 1: CSS width</a></li>
-                    <li class="toc-level-2"><a href="#methode-2-aspect-ratio">Methode 2: Aspect Ratio Container</a></li>
-                    <li class="toc-level-1"><a href="#performance-lazy-loading">Performance &amp; Lazy Loading</a></li>
-                    <li class="toc-level-1"><a href="#barrierefreiheit-bei-medien">Barrierefreiheit bei Medien</a></li>
-                    <li class="toc-level-2"><a href="#webvtt-untertitel">WebVTT-Format für Untertitel</a></li>
-                    <li class="toc-level-1"><a href="#externe-plattformen-einbinden">Externe Plattformen einbinden</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#audio-in-html">Audio in HTML</a></li>
+                            <li class="toc-level-1"><a href="#video-in-html">Video in HTML</a></li>
+                            <li class="toc-level-1"><a href="#hintergrundvideos">Hintergrundvideos</a></li>
+                            <li class="toc-level-1"><a href="#responsive-videos">Responsive Videos</a></li>
+                            <li class="toc-level-2"><a href="#methode-1-css-width">Methode 1: CSS width</a></li>
+                            <li class="toc-level-2">
+                                <a href="#methode-2-aspect-ratio">Methode 2: Aspect Ratio Container</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#performance-lazy-loading">Performance &amp; Lazy Loading</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#barrierefreiheit-bei-medien">Barrierefreiheit bei Medien</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#webvtt-untertitel">WebVTT-Format für Untertitel</a></li>
+                            <li class="toc-level-1">
+                                <a href="#externe-plattformen-einbinden">Externe Plattformen einbinden</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -223,40 +259,65 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">HTML Basics</li>
-                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-navigation-accessibility.html">HTML Navigation Accessibility</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
-                    <li class="sidebar-group-title">HTML Advanced</li>
-                    <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html" class="active">HTML Audio & Video</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-quellcode-sichtbar-machen.html">Quellcode sichtbar machen</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-svg-sprites.html">SVG Sprites - Eigene Icons effizient einbinden</a></li>
-                </ul>
+                            <li class="sidebar-group-title">HTML Basics</li>
+                            <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
+                            <li>
+                                <a href="/tutorials/html/html-basics/html-multi-level-navigation.html">
+                                    HTML Multi-Level Navigation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/html/html-basics/html-navigation-accessibility.html">
+                                    HTML Navigation Accessibility
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-bilder.html">HTML Bilder</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                            <li class="sidebar-group-title">HTML Advanced</li>
+                            <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                            <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                            <li>
+                                <a href="/tutorials/html/html-advanced/html-audio-video.html" class="active">
+                                    HTML Audio & Video
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/html/html-advanced/html-quellcode-sichtbar-machen.html">
+                                    Quellcode sichtbar machen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/html/html-advanced/html-svg-sprites.html">
+                                    SVG Sprites - Eigene Icons effizient einbinden
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Audio in HTML -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="audio-in-html">Audio in HTML</h2>
-                        <p>Mit dem <code class="inline">&lt;audio&gt;</code>-Tag kannst du Musik, Sprachaufnahmen oder
-                            Soundeffekte direkt im Browser abspielen. Standardmäßig wird ein Player mit Play/Pause
-                            angezeigt, wenn du das Attribut <code class="inline">controls</code> verwendest.
+                        <p>
+                            Mit dem
+                            <code class="inline">&lt;audio&gt;</code>
+                            -Tag kannst du Musik, Sprachaufnahmen oder Soundeffekte direkt im Browser abspielen.
+                            Standardmäßig wird ein Player mit Play/Pause angezeigt, wenn du das Attribut
+                            <code class="inline">controls</code>
+                            verwendest.
                         </p>
 
                         <div class="code-block">
@@ -264,7 +325,7 @@
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -279,20 +340,31 @@
                         <h3 class="no-toc">Wichtige Attribute</h3>
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><code class="inline">controls</code> - zeigt die Steuerelemente (Play, Pause,
-                                    Lautstärke)
+                                <li>
+                                    <code class="inline">controls</code>
+                                    - zeigt die Steuerelemente (Play, Pause, Lautstärke)
                                 </li>
-                                <li><code class="inline">autoplay</code> - startet das Audio automatisch (funktioniert
-                                    oft
-                                    nur
-                                    ohne
-                                    Ton oder mit
-                                    User-Interaktion)</li>
-                                <li><code class="inline">loop</code> - spielt das Audio in Endlosschleife</li>
-                                <li><code class="inline">muted</code> - startet stumm (z. B. für Hintergrundsounds)</li>
-                                <li><code class="inline">preload</code> - bestimmt, ob und wie viel geladen wird:
-                                    <code class="inline">none</code>,
-                                    <code class="inline">metadata</code> oder <code class="inline">auto</code>
+                                <li>
+                                    <code class="inline">autoplay</code>
+                                    - startet das Audio automatisch (funktioniert oft nur ohne Ton oder mit
+                                    User-Interaktion)
+                                </li>
+                                <li>
+                                    <code class="inline">loop</code>
+                                    - spielt das Audio in Endlosschleife
+                                </li>
+                                <li>
+                                    <code class="inline">muted</code>
+                                    - startet stumm (z. B. für Hintergrundsounds)
+                                </li>
+                                <li>
+                                    <code class="inline">preload</code>
+                                    - bestimmt, ob und wie viel geladen wird:
+                                    <code class="inline">none</code>
+                                    ,
+                                    <code class="inline">metadata</code>
+                                    oder
+                                    <code class="inline">auto</code>
                                 </li>
                             </ul>
                         </div>
@@ -329,8 +401,13 @@
                     <!-- Video in HTML -->
                     <section class="tutorials-content">
                         <h2 id="video-in-html">Video in HTML</h2>
-                        <p>Das <code class="inline">&lt;video&gt;</code>-Tag funktioniert ähnlich wie <code class="inline">&lt;audio&gt;</code> - nur mit
-                            zusätzlicher Anzeige eines Bildes. Du kannst Videos lokal einbinden oder über URLs laden.
+                        <p>
+                            Das
+                            <code class="inline">&lt;video&gt;</code>
+                            -Tag funktioniert ähnlich wie
+                            <code class="inline">&lt;audio&gt;</code>
+                            - nur mit zusätzlicher Anzeige eines Bildes. Du kannst Videos lokal einbinden oder über URLs
+                            laden.
                         </p>
 
                         <div class="code-block">
@@ -338,7 +415,7 @@
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -353,16 +430,31 @@
                         <h3 class="no-toc">Wichtige Attribute</h3>
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><code class="inline">controls</code> - zeigt die Steuerleiste an</li>
-                                <li><code class="inline">autoplay</code> - startet das Video automatisch (oft nur mit
-                                    <code class="inline">muted</code>)
+                                <li>
+                                    <code class="inline">controls</code>
+                                    - zeigt die Steuerleiste an
                                 </li>
-                                <li><code class="inline">loop</code> - wiederholt das Video endlos</li>
-                                <li><code class="inline">muted</code> - startet das Video ohne Ton</li>
-                                <li><code class="inline">poster</code> - zeigt ein Vorschaubild vor dem Start</li>
-                                <li><code class="inline">playsinline</code> - wichtig für mobile Geräte, damit das Video
-                                    nicht im
-                                    Vollbild startet
+                                <li>
+                                    <code class="inline">autoplay</code>
+                                    - startet das Video automatisch (oft nur mit
+                                    <code class="inline">muted</code>
+                                    )
+                                </li>
+                                <li>
+                                    <code class="inline">loop</code>
+                                    - wiederholt das Video endlos
+                                </li>
+                                <li>
+                                    <code class="inline">muted</code>
+                                    - startet das Video ohne Ton
+                                </li>
+                                <li>
+                                    <code class="inline">poster</code>
+                                    - zeigt ein Vorschaubild vor dem Start
+                                </li>
+                                <li>
+                                    <code class="inline">playsinline</code>
+                                    - wichtig für mobile Geräte, damit das Video nicht im Vollbild startet
                                 </li>
                             </ul>
                         </div>
@@ -399,15 +491,17 @@
                     <!-- Hintergrundvideos -->
                     <section class="tutorials-content">
                         <h2 id="hintergrundvideos">Hintergrundvideos</h2>
-                        <p>Ein beliebter Effekt auf modernen Websites sind Videos im Hintergrund, meist stumm und in
-                            Dauerschleife.</p>
+                        <p>
+                            Ein beliebter Effekt auf modernen Websites sind Videos im Hintergrund, meist stumm und in
+                            Dauerschleife.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -418,22 +512,26 @@
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Tipp
+                            <strong class="box-title no-toc">
+                                Tipp
                                 <svg class="icon-ui">
                                     <use href="#dpz-bulb-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Achte auf die Dateigröße und Performance. Ein Hintergrundvideo sollte klein und dezent
-                                sein,
-                                sonst beeinträchtigt es Ladezeiten und Lesbarkeit.</p>
+                            <p>
+                                Achte auf die Dateigröße und Performance. Ein Hintergrundvideo sollte klein und dezent
+                                sein, sonst beeinträchtigt es Ladezeiten und Lesbarkeit.
+                            </p>
                         </div>
                     </section>
 
                     <!-- Responsive Videos -->
                     <section class="tutorials-content">
                         <h2 id="responsive-videos">Responsive Videos</h2>
-                        <p>Videos sollten sich an verschiedene Bildschirmgrößen anpassen. Hier sind die gängigsten
-                            Methoden:</p>
+                        <p>
+                            Videos sollten sich an verschiedene Bildschirmgrößen anpassen. Hier sind die gängigsten
+                            Methoden:
+                        </p>
 
                         <h3 id="methode-1-css-width">Methode 1: CSS width</h3>
                         <p>Die einfachste Lösung für responsive Videos:</p>
@@ -443,7 +541,7 @@
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -463,7 +561,7 @@
                                 <span class="code-lang">HTML + CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -491,21 +589,29 @@
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Browser-Support
+                            <strong class="box-title no-toc">
+                                Browser-Support
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p><code class="inline">aspect-ratio</code> wird von allen modernen Browsern unterstützt.
-                                Für ältere Browser gibt es den klassischen Padding-Hack mit <code class="inline">padding-bottom: 56.25%</code> (für 16:9).</p>
+                            <p>
+                                <code class="inline">aspect-ratio</code>
+                                wird von allen modernen Browsern unterstützt. Für ältere Browser gibt es den klassischen
+                                Padding-Hack mit
+                                <code class="inline">padding-bottom: 56.25%</code>
+                                (für 16:9).
+                            </p>
                         </div>
                     </section>
 
                     <!-- Performance & Lazy Loading -->
                     <section class="tutorials-content">
                         <h2 id="performance-lazy-loading">Performance &amp; Lazy Loading</h2>
-                        <p>Videos sind oft die größten Dateien auf einer Website. Mit diesen Techniken optimierst du die
-                            Ladezeit:</p>
+                        <p>
+                            Videos sind oft die größten Dateien auf einer Website. Mit diesen Techniken optimierst du
+                            die Ladezeit:
+                        </p>
 
                         <h3 class="no-toc">Preload-Strategien</h3>
                         <table class="ref-table">
@@ -540,7 +646,7 @@
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -558,21 +664,40 @@
 
                         <h3 class="no-toc">Komprimierung &amp; Formate</h3>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>WebM:</strong> Kleiner als MP4, gute Qualität - als erste <code class="inline">&lt;source&gt;</code> angeben</li>
-                            <li><strong>MP4 (H.264):</strong> Universell kompatibel - als Fallback</li>
-                            <li><strong>Auflösung:</strong> Biete verschiedene Qualitätsstufen an (720p, 1080p)</li>
-                            <li><strong>Tools:</strong> FFmpeg, HandBrake für Komprimierung</li>
+                            <li>
+                                <strong>WebM:</strong>
+                                Kleiner als MP4, gute Qualität - als erste
+                                <code class="inline">&lt;source&gt;</code>
+                                angeben
+                            </li>
+                            <li>
+                                <strong>MP4 (H.264):</strong>
+                                Universell kompatibel - als Fallback
+                            </li>
+                            <li>
+                                <strong>Auflösung:</strong>
+                                Biete verschiedene Qualitätsstufen an (720p, 1080p)
+                            </li>
+                            <li>
+                                <strong>Tools:</strong>
+                                FFmpeg, HandBrake für Komprimierung
+                            </li>
                         </ul>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Autoplay-Einschränkungen
+                            <strong class="box-title warning no-toc">
+                                Autoplay-Einschränkungen
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Browser blockieren Autoplay mit Ton aus UX-Gründen. <code class="inline">autoplay</code>
-                                funktioniert nur zuverlässig mit <code class="inline">muted</code>. Für Videos mit Ton
-                                muss der User erst interagieren (Klick, Scrollen).</p>
+                            <p>
+                                Browser blockieren Autoplay mit Ton aus UX-Gründen.
+                                <code class="inline">autoplay</code>
+                                funktioniert nur zuverlässig mit
+                                <code class="inline">muted</code>
+                                . Für Videos mit Ton muss der User erst interagieren (Klick, Scrollen).
+                            </p>
                         </div>
                     </section>
 
@@ -582,13 +707,24 @@
 
                         <div class="mb-lg">
                             <ul class="arrow-list grid-2col-bg">
-                                <li>Füge immer <strong>Alternativtexte</strong> oder Beschreibungen hinzu.</li>
-                                <li>Untertitel <code class="inline">&lt;track kind="subtitles"&gt;</code> helfen
-                                    hörgeschädigten
-                                    Nutzern.</li>
+                                <li>
+                                    Füge immer
+                                    <strong>Alternativtexte</strong>
+                                    oder Beschreibungen hinzu.
+                                </li>
+                                <li>
+                                    Untertitel
+                                    <code class="inline">&lt;track kind="subtitles"&gt;</code>
+                                    helfen hörgeschädigten Nutzern.
+                                </li>
                                 <li>Stelle Transkripte für Audios bereit, wenn möglich.</li>
-                                <li>Verwende <code class="inline">aria-label</code> oder <code class="inline">aria-describedby</code> bei eingebetteten Medien zur
-                                    Erklärung des Inhalts.</li>
+                                <li>
+                                    Verwende
+                                    <code class="inline">aria-label</code>
+                                    oder
+                                    <code class="inline">aria-describedby</code>
+                                    bei eingebetteten Medien zur Erklärung des Inhalts.
+                                </li>
                             </ul>
                         </div>
                         <div class="code-block">
@@ -596,7 +732,7 @@
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -608,14 +744,18 @@
                         </div>
 
                         <h3 id="webvtt-untertitel">WebVTT-Format für Untertitel</h3>
-                        <p>Das <code class="inline">.vtt</code>-Format ist der Standard für Untertitel im Web:</p>
+                        <p>
+                            Das
+                            <code class="inline">.vtt</code>
+                            -Format ist der Standard für Untertitel im Web:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">VTT</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -637,7 +777,7 @@ Beginnen wir mit dem &lt;audio&gt;-Element...</code></pre>
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -693,16 +833,19 @@ Beginnen wir mit dem &lt;audio&gt;-Element...</code></pre>
                     <!-- Externe Plattformen einbinden -->
                     <section class="tutorials-content">
                         <h2 id="externe-plattformen-einbinden">Externe Plattformen einbinden</h2>
-                        <p>Statt lokale Dateien kannst du auch Inhalte von YouTube, Vimeo oder SoundCloud einbinden.
-                            Dazu
-                            nutzt du meist ein <code class="inline">&lt;iframe&gt;</code>:</p>
+                        <p>
+                            Statt lokale Dateien kannst du auch Inhalte von YouTube, Vimeo oder SoundCloud einbinden.
+                            Dazu nutzt du meist ein
+                            <code class="inline">&lt;iframe&gt;</code>
+                            :
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -716,86 +859,77 @@ Beginnen wir mit dem &lt;audio&gt;-Element...</code></pre>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Tipp
+                            <strong class="box-title no-toc">
+                                Tipp
                                 <svg class="icon-ui">
                                     <use href="#dpz-bulb-circle"></use>
                                 </svg>
                             </strong>
                             <p>Prüfe DSGVO-Hinweise, da externe Plattformen Cookies setzen können.</p>
                         </div>
-
                     </section>
 
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/html/html-advanced/html-formulare.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">HTML Formulare</span>
-                <span class="tutorial-nav-category">HTML Advanced</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/html/html-advanced/html-quellcode-sichtbar-machen.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Quellcode sichtbar machen</span>
-                <span class="tutorial-nav-category">HTML Advanced</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/html/html-advanced/html-formulare.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">HTML Formulare</span>
+                                    <span class="tutorial-nav-category">HTML Advanced</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/html/html-advanced/html-quellcode-sichtbar-machen.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">Quellcode sichtbar machen</span>
+                                    <span class="tutorial-nav-category">HTML Advanced</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-</body></html>
+    </body>
+</html>

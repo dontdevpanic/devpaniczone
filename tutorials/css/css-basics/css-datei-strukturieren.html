@@ -1,180 +1,208 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="Grundlagen der CSS Struktur - Formatierungsregeln, Vererbung, Kaskade, CSS-Eigenschaften">
-        <meta name="keywords" content="CSS Struktur, style.css aufbauen, CSS Reset, CSS Base Styles, CSS Layout, CSS Komponenten, CSS Utilities, CSS Reihenfolge">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="Grundlagen der CSS Struktur - Formatierungsregeln, Vererbung, Kaskade, CSS-Eigenschaften"
+        />
+        <meta
+            name="keywords"
+            content="CSS Struktur, style.css aufbauen, CSS Reset, CSS Base Styles, CSS Layout, CSS Komponenten, CSS Utilities, CSS Reihenfolge"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>CSS Struktur | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/css/" class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">CSS einbinden</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/css/" class="breadcrumb-link">CSS</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">CSS einbinden</span>
+                    </nav>
                     <h1 class="hero-title">CSS Datei strukturieren</h1>
-                    <p class="hero-subtitle">Ein erster Überblick über die Grundlagen der CSS Struktur -
-                        Formatierungsregeln, Vererbung, Kaskade, CSS-Eigenschaften.
+                    <p class="hero-subtitle">
+                        Ein erster Überblick über die Grundlagen der CSS Struktur - Formatierungsregeln, Vererbung,
+                        Kaskade, CSS-Eigenschaften.
                     </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -183,7 +211,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -196,17 +223,23 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#warum-struktur-wichtig-ist">Warum Struktur wichtig ist</a></li>
-                    <li class="toc-level-1"><a href="#reset-normalize">1. Reset / Normalize</a></li>
-                    <li class="toc-level-1"><a href="#base-styles">2. Base Styles</a></li>
-                    <li class="toc-level-1"><a href="#layout">3. Layout</a></li>
-                    <li class="toc-level-1"><a href="#components">4. Components (Inhaltselemente)</a></li>
-                    <li class="toc-level-1"><a href="#typography">5. Typography</a></li>
-                    <li class="toc-level-1"><a href="#utilities">6. Utilities (Hilfsklassen)</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung: Empfohlene Reihenfolge</a></li>
-                    <li class="toc-level-2"><a href="#wann-aufteilen">Wann auf mehrere Dateien aufteilen?</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1">
+                                <a href="#warum-struktur-wichtig-ist">Warum Struktur wichtig ist</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#reset-normalize">1. Reset / Normalize</a></li>
+                            <li class="toc-level-1"><a href="#base-styles">2. Base Styles</a></li>
+                            <li class="toc-level-1"><a href="#layout">3. Layout</a></li>
+                            <li class="toc-level-1"><a href="#components">4. Components (Inhaltselemente)</a></li>
+                            <li class="toc-level-1"><a href="#typography">5. Typography</a></li>
+                            <li class="toc-level-1"><a href="#utilities">6. Utilities (Hilfsklassen)</a></li>
+                            <li class="toc-level-1">
+                                <a href="#zusammenfassung">Zusammenfassung: Empfohlene Reihenfolge</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#wann-aufteilen">Wann auf mehrere Dateien aufteilen?</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -222,49 +255,71 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">CSS Basics</li>
-                    <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-grundlagen.html">CSS Grundlagen</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-datei-strukturieren.html" class="active">CSS Datei strukturieren</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-navigation-states.html">CSS Navigation States</a></li>
-                    <li class="sidebar-group-title">CSS Specials</li>
-                    <li><a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a></li>
-                </ul>
+                            <li class="sidebar-group-title">CSS Basics</li>
+                            <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-grundlagen.html">CSS Grundlagen</a></li>
+                            <li>
+                                <a href="/tutorials/css/css-basics/css-datei-strukturieren.html" class="active">
+                                    CSS Datei strukturieren
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
+                            <li>
+                                <a href="/tutorials/css/css-basics/css-navigation-states.html">CSS Navigation States</a>
+                            </li>
+                            <li class="sidebar-group-title">CSS Specials</li>
+                            <li><a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a></li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper -->
                 <div class="container">
-
                     <!-- Intro -->
                     <section class="tutorials-content">
                         <h2 id="warum-struktur-wichtig-ist">Warum Struktur wichtig ist</h2>
-                        <p>Eine CSS-Datei kann schnell hunderte oder tausende Zeilen lang werden. Ohne klare Struktur
+                        <p>
+                            Eine CSS-Datei kann schnell hunderte oder tausende Zeilen lang werden. Ohne klare Struktur
                             verlierst du den Überblick: Wo war nochmal der Button-Style? Warum überschreibt sich hier
-                            etwas?</p>
+                            etwas?
+                        </p>
 
                         <p>Eine logische Reihenfolge hilft dir:</p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Schneller finden:</strong> Du weißt sofort, wo welche Styles stehen</li>
-                            <li><strong>Weniger Konflikte:</strong> Allgemeine Regeln zuerst, spezifische später</li>
-                            <li><strong>Einfacher erweitern:</strong> Neue Styles passen logisch ins System</li>
-                            <li><strong>Bessere Teamarbeit:</strong> Andere verstehen deinen Code</li>
+                            <li>
+                                <strong>Schneller finden:</strong>
+                                Du weißt sofort, wo welche Styles stehen
+                            </li>
+                            <li>
+                                <strong>Weniger Konflikte:</strong>
+                                Allgemeine Regeln zuerst, spezifische später
+                            </li>
+                            <li>
+                                <strong>Einfacher erweitern:</strong>
+                                Neue Styles passen logisch ins System
+                            </li>
+                            <li>
+                                <strong>Bessere Teamarbeit:</strong>
+                                Andere verstehen deinen Code
+                            </li>
                         </ul>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Die goldene Regel
+                            <strong class="box-title no-toc">
+                                Die goldene Regel
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p><strong>Von allgemein zu spezifisch.</strong> Beginne mit globalen Styles (Reset, Base),
-                                dann Layout-Strukturen, dann Komponenten, und am Ende Utilities, die alles überschreiben
-                                können.</p>
+                            <p>
+                                <strong>Von allgemein zu spezifisch.</strong>
+                                Beginne mit globalen Styles (Reset, Base), dann Layout-Strukturen, dann Komponenten, und
+                                am Ende Utilities, die alles überschreiben können.
+                            </p>
                         </div>
-
-                    </section> <!-- Intro -->
+                    </section>
+                    <!-- Intro -->
 
                     <!-- 1 Reset / Normalize -->
                     <section class="tutorials-content">
@@ -275,16 +330,17 @@
                             anlegen.</p>
                         <p>Zu Beginn setzt du Browser-Standardstile zurück oder gleichst sie an.</p> -->
 
-                        <p>Browser haben eigene Standardstyles - und die sind nicht einheitlich. Ein Reset setzt diese
-                            zurück, damit du von einer sauberen Basis startest.</p>
-
+                        <p>
+                            Browser haben eigene Standardstyles - und die sind nicht einheitlich. Ein Reset setzt diese
+                            zurück, damit du von einer sauberen Basis startest.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -302,27 +358,43 @@
 }</code></pre>
                         </div>
 
-                        <p>Mit <code class="inline">box-sizing: border-box</code> werden Padding und Border in die
-                            Breite eingerechnet - das macht Layouts viel berechenbarer. Der Reset auf <code class="inline">margin</code> und <code class="inline">padding</code> entfernt die
-                            unterschiedlichen Browser-Abstände bei Elementen wie <code class="inline">&lt;p&gt;</code>,
-                            <code class="inline">&lt;ul&gt;</code> oder <code class="inline">&lt;h1&gt;</code>.
+                        <p>
+                            Mit
+                            <code class="inline">box-sizing: border-box</code>
+                            werden Padding und Border in die Breite eingerechnet - das macht Layouts viel berechenbarer.
+                            Der Reset auf
+                            <code class="inline">margin</code>
+                            und
+                            <code class="inline">padding</code>
+                            entfernt die unterschiedlichen Browser-Abstände bei Elementen wie
+                            <code class="inline">&lt;p&gt;</code>
+                            ,
+                            <code class="inline">&lt;ul&gt;</code>
+                            oder
+                            <code class="inline">&lt;h1&gt;</code>
+                            .
                         </p>
-
-                    </section> <!-- 1 Reset / Normalize -->
+                    </section>
+                    <!-- 1 Reset / Normalize -->
 
                     <!-- 2. Base Styles -->
                     <section class="tutorials-content">
                         <h2 id="base-styles">2. Base Styles</h2>
 
-                        <p>Die Grundeinstellungen für <code class="inline">html</code> und <code class="inline">body</code> - hier definierst du Schriftart, Farben und grundlegendes
-                            Verhalten für die gesamte Seite.</p>
+                        <p>
+                            Die Grundeinstellungen für
+                            <code class="inline">html</code>
+                            und
+                            <code class="inline">body</code>
+                            - hier definierst du Schriftart, Farben und grundlegendes Verhalten für die gesamte Seite.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -347,28 +419,45 @@ body {
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum font-size auf html?
+                            <strong class="box-title no-toc">
+                                Warum font-size auf html?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Die <code class="inline">font-size</code> auf <code class="inline">html</code> ist die
-                                Basis für alle <code class="inline">rem</code>-Einheiten. Mit <code class="inline">16px</code> entspricht <code class="inline">1rem = 16px</code>, <code class="inline">1.5rem = 24px</code> usw.</p>
+                            <p>
+                                Die
+                                <code class="inline">font-size</code>
+                                auf
+                                <code class="inline">html</code>
+                                ist die Basis für alle
+                                <code class="inline">rem</code>
+                                -Einheiten. Mit
+                                <code class="inline">16px</code>
+                                entspricht
+                                <code class="inline">1rem = 16px</code>
+                                ,
+                                <code class="inline">1.5rem = 24px</code>
+                                usw.
+                            </p>
                         </div>
-                    </section> <!-- 2. Base Styles -->
+                    </section>
+                    <!-- 2. Base Styles -->
 
                     <!-- 3 Layout -->
                     <section class="tutorials-content">
                         <h2 id="layout">3. Layout</h2>
-                        <p>Die großen Strukturelemente deiner Seite: Header, Navigation, Main-Bereich, Footer. Hier
-                            definierst du das Grundgerüst.</p>
+                        <p>
+                            Die großen Strukturelemente deiner Seite: Header, Navigation, Main-Bereich, Footer. Hier
+                            definierst du das Grundgerüst.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -402,20 +491,23 @@ footer {
     padding: 0 1rem;
 }</code></pre>
                         </div>
-                    </section> <!-- 3 Layout -->
+                    </section>
+                    <!-- 3 Layout -->
 
                     <!-- 4 Components -->
                     <section class="tutorials-content">
                         <h2 id="components">4. Components (Inhaltselemente)</h2>
-                        <p>Wiederverwendbare UI-Bausteine wie Buttons, Cards, Navigation, Formulare. Diese Styles kannst
-                            du überall auf der Seite einsetzen.</p>
+                        <p>
+                            Wiederverwendbare UI-Bausteine wie Buttons, Cards, Navigation, Formulare. Diese Styles
+                            kannst du überall auf der Seite einsetzen.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -469,7 +561,8 @@ footer {
     padding: 1.5rem;
 }</code></pre>
                         </div>
-                    </section> <!-- 4 Components -->
+                    </section>
+                    <!-- 4 Components -->
 
                     <!-- 5 Typography -->
                     <section class="tutorials-content">
@@ -481,7 +574,7 @@ footer {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -514,20 +607,23 @@ a:hover {
     text-decoration: underline;
 }</code></pre>
                         </div>
-                    </section> <!-- 5 Typography -->
+                    </section>
+                    <!-- 5 Typography -->
 
                     <!-- 6 Utilities / Hilfsklassen -->
                     <section class="tutorials-content">
                         <h2 id="utilities">6. Utilities (Hilfsklassen)</h2>
-                        <p>Kleine, einzweckige Klassen für schnelle Anpassungen. Sie stehen am Ende, weil sie andere
-                            Styles überschreiben sollen.</p>
+                        <p>
+                            Kleine, einzweckige Klassen für schnelle Anpassungen. Sie stehen am Ende, weil sie andere
+                            Styles überschreiben sollen.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -566,16 +662,22 @@ a:hover {
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Utility-First?
+                            <strong class="box-title no-toc">
+                                Utility-First?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Frameworks wie <strong>Tailwind CSS</strong> setzen komplett auf Utility-Klassen. Für
-                                eigene Projekte ist ein Mix aus Komponenten und Utilities oft praktischer - Komponenten
-                                für komplexe, wiederkehrende Elemente, Utilities für schnelle Anpassungen.</p>
+                            <p>
+                                Frameworks wie
+                                <strong>Tailwind CSS</strong>
+                                setzen komplett auf Utility-Klassen. Für eigene Projekte ist ein Mix aus Komponenten und
+                                Utilities oft praktischer - Komponenten für komplexe, wiederkehrende Elemente, Utilities
+                                für schnelle Anpassungen.
+                            </p>
                         </div>
-                    </section> <!-- 8 Utilities / Hilfsklassen -->
+                    </section>
+                    <!-- 8 Utilities / Hilfsklassen -->
 
                     <!-- Zusammenfassung -->
                     <section class="tutorials-content">
@@ -588,7 +690,7 @@ a:hover {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -625,25 +727,47 @@ a:hover {
                         </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Warum diese Reihenfolge?
+                            <strong class="box-title notice no-toc">
+                                Warum diese Reihenfolge?
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Reset zuerst:</strong> Saubere Basis ohne Browser-Unterschiede</li>
-                                <li><strong>Base danach:</strong> Globale Einstellungen, die überall gelten</li>
-                                <li><strong>Layout:</strong> Grundgerüst der Seite</li>
-                                <li><strong>Components:</strong> Wiederverwendbare UI-Elemente</li>
-                                <li><strong>Typography:</strong> Kann Komponenten ergänzen</li>
-                                <li><strong>Utilities am Ende:</strong> Höchste Priorität, überschreiben alles andere
+                                <li>
+                                    <strong>Reset zuerst:</strong>
+                                    Saubere Basis ohne Browser-Unterschiede
+                                </li>
+                                <li>
+                                    <strong>Base danach:</strong>
+                                    Globale Einstellungen, die überall gelten
+                                </li>
+                                <li>
+                                    <strong>Layout:</strong>
+                                    Grundgerüst der Seite
+                                </li>
+                                <li>
+                                    <strong>Components:</strong>
+                                    Wiederverwendbare UI-Elemente
+                                </li>
+                                <li>
+                                    <strong>Typography:</strong>
+                                    Kann Komponenten ergänzen
+                                </li>
+                                <li>
+                                    <strong>Utilities am Ende:</strong>
+                                    Höchste Priorität, überschreiben alles andere
                                 </li>
                             </ul>
                         </div>
 
                         <h3 id="wann-aufteilen">Wann auf mehrere Dateien aufteilen?</h3>
-                        <p>Solange deine <code class="inline">style.css</code> überschaubar bleibt (unter 500 Zeilen),
-                            reicht eine Datei. Wenn es mehr wird, kannst du aufteilen:</p>
+                        <p>
+                            Solange deine
+                            <code class="inline">style.css</code>
+                            überschaubar bleibt (unter 500 Zeilen), reicht eine Datei. Wenn es mehr wird, kannst du
+                            aufteilen:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
@@ -659,87 +783,80 @@ a:hover {
 └── utilities.css</code></pre>
                         </div>
 
-                        <p>Mehr dazu im Tutorial <a href="/tutorials/css/css-specials/css-organization.html">CSS
-                                Organisation</a>.</p>
+                        <p>
+                            Mehr dazu im Tutorial
+                            <a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a>
+                            .
+                        </p>
 
                         <div class="cta-content">
-                            <a href="/tutorials/css/css-specials/css-organization.html" class="btn btn-secondary">Weiter: CSS Organisation</a>
+                            <a href="/tutorials/css/css-specials/css-organization.html" class="btn btn-secondary">
+                                Weiter: CSS Organisation
+                            </a>
                         </div>
                     </section>
 
                     <!-- Prev/Next -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-css">Mehr aus CSS</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-css">Mehr aus CSS</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/css/css-basics/css-grundlagen.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">CSS Grundlagen</span>
-                <span class="tutorial-nav-category">CSS Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/css/css-basics/css-color-units.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">CSS Farben & Einheiten</span>
-                <span class="tutorial-nav-category">CSS Basics</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/css/css-basics/css-grundlagen.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">CSS Grundlagen</span>
+                                    <span class="tutorial-nav-category">CSS Basics</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/css/css-basics/css-color-units.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">CSS Farben & Einheiten</span>
+                                    <span class="tutorial-nav-category">CSS Basics</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-
-
-
-                </div> <!-- Wrapper -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-</body></html>
+    </body>
+</html>

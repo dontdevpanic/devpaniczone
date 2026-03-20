@@ -1,178 +1,205 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="FileZilla FTP-Client einrichten: Verbindung zu All-Inkl konfigurieren, Dateifilter für node_modules erstellen und Dateien sicher per SFTP hochladen.">
-        <meta name="keywords" content="FileZilla, FTP, SFTP, All-Inkl, Webserver, Dateiübertragung, FTP-Client, Servermanager, Dateifilter">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="FileZilla FTP-Client einrichten: Verbindung zu All-Inkl konfigurieren, Dateifilter für node_modules erstellen und Dateien sicher per SFTP hochladen."
+        />
+        <meta
+            name="keywords"
+            content="FileZilla, FTP, SFTP, All-Inkl, Webserver, Dateiübertragung, FTP-Client, Servermanager, Dateifilter"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>FTP-Client FileZilla einrichten | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">FileZilla anhand des Beispiels All-Inkl</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">FileZilla anhand des Beispiels All-Inkl</span>
+                    </nav>
                     <h1 class="hero-title">FileZilla FTP-Client einrichten</h1>
                     <p class="hero-subtitle">Dateien sicher auf deinen Webserver übertragen – am Beispiel All-Inkl.</p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -181,7 +208,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -194,29 +220,46 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#warum-filezilla">Warum FileZilla?</a></li>
-                    <li class="toc-level-1"><a href="#schnelluebersicht">Schnellübersicht: Die wichtigsten Einstellungen</a></li>
-                    <li class="toc-level-1"><a href="#filezilla-installieren">FileZilla installieren</a></li>
-                    <li class="toc-level-2"><a href="#installation">Installation</a></li>
-                    <li class="toc-level-1"><a href="#all-inkl-zugangsdaten-finden">All-Inkl Zugangsdaten finden</a></li>
-                    <li class="toc-level-2"><a href="#option-1-ftp-einfach">Option 1: FTP (einfach)</a></li>
-                    <li class="toc-level-2"><a href="#option-2-sftp-sicher-aber-etwas-komplizierter">Option 2: SFTP (sicher, aber etwas
-                            komplizierter)</a></li>
-                    <li class="toc-level-2"><a href="#wann-ist-welches-protokoll-sinnvoll">Wann ist welches Protokoll sinnvoll?</a></li>
-                    <li class="toc-level-1"><a href="#servermanager-einrichten">Servermanager einrichten</a></li>
-                    <li class="toc-level-2"><a href="#verbindungseinstellungen">Verbindungseinstellungen</a></li>
-                    <li class="toc-level-1"><a href="#standard-verzeichnisse-festlegen">Standard-Verzeichnisse festlegen</a></li>
-                    <li class="toc-level-1"><a href="#dateifilter-einrichten">Dateifilter einrichten</a></li>
-                    <li class="toc-level-2"><a href="#so-funktionieren-filter">So funktionieren Filter</a></li>
-                    <li class="toc-level-2"><a href="#empfohlene-filterregeln">Empfohlene Filterregeln</a></li>
-                    <li class="toc-level-1"><a href="#dateien-uebertragen">Dateien übertragen</a></li>
-                    <li class="toc-level-1"><a href="#verzeichnisse-vergleichen">Verzeichnisse vergleichen</a></li>
-                    <li class="toc-level-1"><a href="#typischer-workflow">Typischer Workflow</a></li>
-                    <li class="toc-level-1"><a href="#tastenkuerzel">Nützliche Tastenkürzel</a></li>
-                    <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
-                    <li class="toc-level-1"><a href="#sicherheitstipps">Sicherheitstipps</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#warum-filezilla">Warum FileZilla?</a></li>
+                            <li class="toc-level-1">
+                                <a href="#schnelluebersicht">Schnellübersicht: Die wichtigsten Einstellungen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#filezilla-installieren">FileZilla installieren</a></li>
+                            <li class="toc-level-2"><a href="#installation">Installation</a></li>
+                            <li class="toc-level-1">
+                                <a href="#all-inkl-zugangsdaten-finden">All-Inkl Zugangsdaten finden</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#option-1-ftp-einfach">Option 1: FTP (einfach)</a></li>
+                            <li class="toc-level-2">
+                                <a href="#option-2-sftp-sicher-aber-etwas-komplizierter">
+                                    Option 2: SFTP (sicher, aber etwas komplizierter)
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#wann-ist-welches-protokoll-sinnvoll">Wann ist welches Protokoll sinnvoll?</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#servermanager-einrichten">Servermanager einrichten</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#verbindungseinstellungen">Verbindungseinstellungen</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#standard-verzeichnisse-festlegen">Standard-Verzeichnisse festlegen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#dateifilter-einrichten">Dateifilter einrichten</a></li>
+                            <li class="toc-level-2"><a href="#so-funktionieren-filter">So funktionieren Filter</a></li>
+                            <li class="toc-level-2"><a href="#empfohlene-filterregeln">Empfohlene Filterregeln</a></li>
+                            <li class="toc-level-1"><a href="#dateien-uebertragen">Dateien übertragen</a></li>
+                            <li class="toc-level-1">
+                                <a href="#verzeichnisse-vergleichen">Verzeichnisse vergleichen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#typischer-workflow">Typischer Workflow</a></li>
+                            <li class="toc-level-1"><a href="#tastenkuerzel">Nützliche Tastenkürzel</a></li>
+                            <li class="toc-level-1"><a href="#haeufige-probleme">Häufige Probleme</a></li>
+                            <li class="toc-level-1"><a href="#sicherheitstipps">Sicherheitstipps</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -232,50 +275,78 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">SEO Optimization</li>
-                    <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content verstehen & vermeiden</a></li>
-                    <li class="sidebar-group-title">Tools</li>
-                    <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
-                    <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">CSS-Duplikate finden & vergleichen in VS Code</a></li>
-                    <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
-                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
-                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale Versionskontrolle</a></li>
-                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
-                    <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html" class="active">FileZilla FTP-Client einrichten</a></li>
-                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
-                    <li class="sidebar-group-title">Web</li>
-                    <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
-                </ul>
+                            <li class="sidebar-group-title">SEO Optimization</li>
+                            <li>
+                                <a href="/tutorials/misc/seo-optimization/duplicate-content.html">
+                                    Duplicate Content verstehen & vermeiden
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Tools</li>
+                            <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">
+                                    CSS-Duplikate finden & vergleichen in VS Code
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
+                            <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/git-versionskontrolle.html">
+                                    Git - Lokale Versionskontrolle
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/ftp-client-filezilla.html" class="active">
+                                    FileZilla FTP-Client einrichten
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
+                                    Globale Änderungen an HTML-Dateien
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Web</li>
+                            <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Warum FileZilla? -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="warum-filezilla">Warum FileZilla?</h2>
-                        <p>FileZilla ist seit über 20 Jahren der Standard für FTP-Transfers: Open Source, kostenlos,
+                        <p>
+                            FileZilla ist seit über 20 Jahren der Standard für FTP-Transfers: Open Source, kostenlos,
                             zuverlässig und auf allen Plattformen verfügbar. Es unterstützt FTP, FTPS und SFTP
-                            (verschlüsselt) und ist perfekt für die Arbeit mit Webhostern wie All-Inkl geeignet.</p>
-                        <p>Der Workflow ist simpel: Du entwickelst lokal in VS Code, testest mit Live Server, und wenn
-                            alles passt, lädst du die Dateien mit FileZilla auf den Server hoch.</p>
-                        <p>Ich selbst hoste bei All-Inkl, daher nutze ich das hier als Beispiel. Bei anderen Hostern
-                            funktioniert es genauso - nur die Zugangsdaten findest du an anderer Stelle.</p>
+                            (verschlüsselt) und ist perfekt für die Arbeit mit Webhostern wie All-Inkl geeignet.
+                        </p>
+                        <p>
+                            Der Workflow ist simpel: Du entwickelst lokal in VS Code, testest mit Live Server, und wenn
+                            alles passt, lädst du die Dateien mit FileZilla auf den Server hoch.
+                        </p>
+                        <p>
+                            Ich selbst hoste bei All-Inkl, daher nutze ich das hier als Beispiel. Bei anderen Hostern
+                            funktioniert es genauso - nur die Zugangsdaten findest du an anderer Stelle.
+                        </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum nicht direkt aus VS Code?
+                            <strong class="box-title no-toc">
+                                Warum nicht direkt aus VS Code?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>
                                 Es gibt zwar SFTP-Extensions für VS Code, aber deren Sicherheit scheint lt. Bewertungen
-                                fragwürdig: Passwörter
-                                werden in Klartext-Dateien gespeichert, die versehentlich hochgeladen oder ins
-                                Repository
-                                committed werden können.</p>
-                            <p>Bei eigenständiger Software wie FileZilla hast du mehr Kontrolle und bewährte
+                                fragwürdig: Passwörter werden in Klartext-Dateien gespeichert, die versehentlich
+                                hochgeladen oder ins Repository committed werden können.
+                            </p>
+                            <p>
+                                Bei eigenständiger Software wie FileZilla hast du mehr Kontrolle und bewährte
                                 Sicherheitsmechanismen.
                             </p>
                         </div>
@@ -286,7 +357,8 @@
                         <h2 id="schnelluebersicht">Schnellübersicht: Die wichtigsten Einstellungen</h2>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">TL;DR – FileZilla in 5 Minuten
+                            <strong class="box-title notice no-toc">
+                                TL;DR – FileZilla in 5 Minuten
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -295,91 +367,172 @@
                                 <div>
                                     <h4 class="no-toc pt-sm">FTP-Verbindung</h4>
                                     <ul class="arrow-list">
-                                        <li><strong>Server:</strong> deine-domain.de</li>
-                                        <li><strong>Port:</strong> 21</li>
-                                        <li><strong>Protokoll:</strong> FTP</li>
+                                        <li>
+                                            <strong>Server:</strong>
+                                            deine-domain.de
+                                        </li>
+                                        <li>
+                                            <strong>Port:</strong>
+                                            21
+                                        </li>
+                                        <li>
+                                            <strong>Protokoll:</strong>
+                                            FTP
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <h4 class="no-toc pt-sm">SFTP-Verbindung</h4>
                                     <ul class="arrow-list">
-                                        <li><strong>Server:</strong> deine-hauptdomain.de</li>
-                                        <li><strong>Port:</strong> 22</li>
-                                        <li><strong>Protokoll:</strong> SFTP</li>
+                                        <li>
+                                            <strong>Server:</strong>
+                                            deine-hauptdomain.de
+                                        </li>
+                                        <li>
+                                            <strong>Port:</strong>
+                                            22
+                                        </li>
+                                        <li>
+                                            <strong>Protokoll:</strong>
+                                            SFTP
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
-                            <p class="pt-md"><strong>Wichtigste Filter:</strong> <code class="inline">.git</code>, <code class="inline">node_modules</code>, <code class="inline">.DS_Store</code>, <code class="inline">.vscode</code></p>
+                            <p class="pt-md">
+                                <strong>Wichtigste Filter:</strong>
+                                <code class="inline">.git</code>
+                                ,
+                                <code class="inline">node_modules</code>
+                                ,
+                                <code class="inline">.DS_Store</code>
+                                ,
+                                <code class="inline">.vscode</code>
+                            </p>
                         </div>
                     </section>
 
                     <!-- FileZilla installieren -->
                     <section class="tutorials-content">
                         <h2 id="filezilla-installieren">FileZilla installieren</h2>
-                        <p>Lade FileZilla von der <a href="https://filezilla-project.org" target="_blank" rel="noopener">offiziellen Website</a> herunter. Achte darauf, den <strong>FileZilla
-                                Client</strong> zu wählen (nicht den Server).</p>
+                        <p>
+                            Lade FileZilla von der
+                            <a href="https://filezilla-project.org" target="_blank" rel="noopener">
+                                offiziellen Website
+                            </a>
+                            herunter. Achte darauf, den
+                            <strong>FileZilla Client</strong>
+                            zu wählen (nicht den Server).
+                        </p>
 
-                        <p><strong>Wichtig beim Download:</strong> Die Website versucht, dir zusätzliche Software
-                            unterzujubeln. Wähle immer die Option ohne Zusatzsoftware oder lade die "plain" Version
-                            direkt
-                            von der Download-Seite.</p>
+                        <p>
+                            <strong>Wichtig beim Download:</strong>
+                            Die Website versucht, dir zusätzliche Software unterzujubeln. Wähle immer die Option ohne
+                            Zusatzsoftware oder lade die "plain" Version direkt von der Download-Seite.
+                        </p>
 
                         <h3 id="installation">Installation</h3>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>macOS</strong>: DMG öffnen, FileZilla in den Programme-Ordner ziehen</li>
-                            <li><strong>Windows</strong>: Installer ausführen, Zusatzsoftware abwählen</li>
+                            <li>
+                                <strong>macOS</strong>
+                                : DMG öffnen, FileZilla in den Programme-Ordner ziehen
+                            </li>
+                            <li>
+                                <strong>Windows</strong>
+                                : Installer ausführen, Zusatzsoftware abwählen
+                            </li>
                         </ul>
                     </section>
 
                     <!-- All-Inkl Zugangsdaten finden -->
                     <section class="tutorials-content">
                         <h2 id="all-inkl-zugangsdaten-finden">All-Inkl Zugangsdaten finden</h2>
-                        <p>Bevor du FileZilla einrichtest, brauchst du deine FTP-Zugangsdaten aus dem All-Inkl KAS
-                            (Kundenadministrationssystem).</p>
+                        <p>
+                            Bevor du FileZilla einrichtest, brauchst du deine FTP-Zugangsdaten aus dem All-Inkl KAS
+                            (Kundenadministrationssystem).
+                        </p>
 
-
-                        <p>Bei All-Inkl hast du zwei Möglichkeiten: <strong>FTP</strong> (einfacher) oder
-                            <strong>SFTP</strong> (sicherer). Beide funktionieren, du kannst selbst wählen.
+                        <p>
+                            Bei All-Inkl hast du zwei Möglichkeiten:
+                            <strong>FTP</strong>
+                            (einfacher) oder
+                            <strong>SFTP</strong>
+                            (sicherer). Beide funktionieren, du kannst selbst wählen.
                         </p>
 
                         <h3 id="option-1-ftp-einfach">Option 1: FTP (einfach)</h3>
-                        <p>FTP ist schnell eingerichtet und funktioniert direkt über deinen Domain-spezifischen Account.
+                        <p>
+                            FTP ist schnell eingerichtet und funktioniert direkt über deinen Domain-spezifischen
+                            Account.
                         </p>
 
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <h4 class="box-title no-toc pt-sm">So findest du die FTP-Daten</h4>
                                 <ol class="pl-md">
-                                    <li>Logge dich ins <a href="https://kas.all-inkl.com" target="_blank" rel="noopener">All-Inkl
-                                            KAS</a> ein</li>
-                                    <li>Navigiere zu <strong>FTP</strong> → <strong>FTP-Benutzer</strong></li>
+                                    <li>
+                                        Logge dich ins
+                                        <a href="https://kas.all-inkl.com" target="_blank" rel="noopener">
+                                            All-Inkl KAS
+                                        </a>
+                                        ein
+                                    </li>
+                                    <li>
+                                        Navigiere zu
+                                        <strong>FTP</strong>
+                                        →
+                                        <strong>FTP-Benutzer</strong>
+                                    </li>
                                     <li>Dort findest du alle benötigten Informationen</li>
                                 </ol>
                             </div>
                             <div class="grid-2col-bg pb-lg">
                                 <h4 class="box-title no-toc pt-sm">Diese Daten brauchst du für FTP</h4>
                                 <ul class="arrow-list">
-                                    <li><strong>Protokoll</strong>: FTP</li>
-                                    <li><strong>Server/Host</strong>: Deine Domain (z.B. <code class="inline">devpaniczone.de</code>)</li>
-                                    <li><strong>Benutzername</strong>: Steht in der FTP-Benutzer-Liste</li>
-                                    <li><strong>Passwort</strong>: Kannst du im KAS neu setzen</li>
-                                    <li><strong>Port</strong>: 21</li>
+                                    <li>
+                                        <strong>Protokoll</strong>
+                                        : FTP
+                                    </li>
+                                    <li>
+                                        <strong>Server/Host</strong>
+                                        : Deine Domain (z.B.
+                                        <code class="inline">devpaniczone.de</code>
+                                        )
+                                    </li>
+                                    <li>
+                                        <strong>Benutzername</strong>
+                                        : Steht in der FTP-Benutzer-Liste
+                                    </li>
+                                    <li>
+                                        <strong>Passwort</strong>
+                                        : Kannst du im KAS neu setzen
+                                    </li>
+                                    <li>
+                                        <strong>Port</strong>
+                                        : 21
+                                    </li>
                                 </ul>
                             </div>
                         </div>
 
-                        <h3 id="option-2-sftp-sicher-aber-etwas-komplizierter">Option 2: SFTP (sicher, aber etwas
-                            komplizierter)</h3>
-                        <p>SFTP ist verschlüsselt und sicherer. Bei All-Inkl funktioniert es - zumindest bei meinem
-                            Paket -
-                            aber nur über den <strong>Hauptaccount</strong>, nicht über Domain-spezifische FTP-Accounts.
+                        <h3 id="option-2-sftp-sicher-aber-etwas-komplizierter">
+                            Option 2: SFTP (sicher, aber etwas komplizierter)
+                        </h3>
+                        <p>
+                            SFTP ist verschlüsselt und sicherer. Bei All-Inkl funktioniert es - zumindest bei meinem
+                            Paket - aber nur über den
+                            <strong>Hauptaccount</strong>
+                            , nicht über Domain-spezifische FTP-Accounts.
                         </p>
 
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <h4 class="box-title no-toc pt-sm">So findest du die SFTP-Daten</h4>
                                 <ol class="pl-md">
-                                    <li>Im KAS zu <strong>Technische Verwaltung</strong> oder
+                                    <li>
+                                        Im KAS zu
+                                        <strong>Technische Verwaltung</strong>
+                                        oder
                                         <strong>SSH/Shell-Zugang</strong>
                                     </li>
                                     <li>Dort findest du den SSH-Benutzernamen (oft anders als FTP!)</li>
@@ -389,31 +542,55 @@
                             <div class="grid-2col-bg pb-lg">
                                 <h4 class="box-title no-toc pt-sm">Diese Daten brauchst du für SFTP</h4>
                                 <ul class="arrow-list">
-                                    <li><strong>Protokoll</strong>: SFTP</li>
-                                    <li><strong>Server/Host</strong>: Deine <strong>Hauptdomain</strong></li>
-                                    <li><strong>Benutzername</strong>: SSH-Username, z.B. <code class="inline">ssh-w123456</code></li>
-                                    <li><strong>Passwort</strong>: SSH-Passwort</li>
-                                    <li><strong>Port</strong>: 22</li>
+                                    <li>
+                                        <strong>Protokoll</strong>
+                                        : SFTP
+                                    </li>
+                                    <li>
+                                        <strong>Server/Host</strong>
+                                        : Deine
+                                        <strong>Hauptdomain</strong>
+                                    </li>
+                                    <li>
+                                        <strong>Benutzername</strong>
+                                        : SSH-Username, z.B.
+                                        <code class="inline">ssh-w123456</code>
+                                    </li>
+                                    <li>
+                                        <strong>Passwort</strong>
+                                        : SSH-Passwort
+                                    </li>
+                                    <li>
+                                        <strong>Port</strong>
+                                        : 22
+                                    </li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Wichtig bei SFTP!
+                            <strong class="box-title no-toc">
+                                Wichtig bei SFTP!
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Bei SFTP musst du im <strong>Servermanager unter "Erweitert"</strong> das
+                            <p>
+                                Bei SFTP musst du im
+                                <strong>Servermanager unter "Erweitert"</strong>
+                                das
                                 <strong>Standard-Verzeichnis (Server)</strong>
-                                auf deine Subdomain setzen, z.B. <code class="inline">/www/htdocs/w123456/devpaniczone.de</code> -
-                                sonst landest du im Root-Verzeichnis deines Hauptaccounts, wo mehrere Domains liegen
+                                auf deine Subdomain setzen, z.B.
+                                <code class="inline">/www/htdocs/w123456/devpaniczone.de</code>
+                                - sonst landest du im Root-Verzeichnis deines Hauptaccounts, wo mehrere Domains liegen
                                 könnten!
                             </p>
                         </div>
 
-                        <p>Für den Anfang reicht FTP - es ist einfacher. Wenn du mehr
-                            Sicherheit willst und Zugriff auf den Hauptaccount hast, nimm SFTP.</p>
+                        <p>
+                            Für den Anfang reicht FTP - es ist einfacher. Wenn du mehr Sicherheit willst und Zugriff auf
+                            den Hauptaccount hast, nimm SFTP.
+                        </p>
 
                         <h3 id="wann-ist-welches-protokoll-sinnvoll">Wann ist welches Protokoll sinnvoll?</h3>
 
@@ -436,16 +613,16 @@
                             </div>
                         </div>
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Das Risiko bei FTP
+                            <strong class="box-title warning no-toc">
+                                Das Risiko bei FTP
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p> Dein Passwort und alle Daten werden unverschlüsselt übertragen.
-                                Im eigenen Heimnetzwerk ist das Risiko gering. In öffentlichen WLANs könnten andere
-                                Nutzer
-                                theoretisch mit einfachen Tools (Wireshark) deinen Traffic mitlesen und dein Passwort
-                                abfangen.
+                            <p>
+                                Dein Passwort und alle Daten werden unverschlüsselt übertragen. Im eigenen Heimnetzwerk
+                                ist das Risiko gering. In öffentlichen WLANs könnten andere Nutzer theoretisch mit
+                                einfachen Tools (Wireshark) deinen Traffic mitlesen und dein Passwort abfangen.
                             </p>
                         </div>
                     </section>
@@ -453,17 +630,29 @@
                     <!-- Servermanager einrichten -->
                     <section class="tutorials-content">
                         <h2 id="servermanager-einrichten">Servermanager einrichten</h2>
-                        <p>Der Servermanager speichert deine Verbindungsdaten, sodass du dich mit einem Klick verbinden
-                            kannst.</p>
+                        <p>
+                            Der Servermanager speichert deine Verbindungsdaten, sodass du dich mit einem Klick verbinden
+                            kannst.
+                        </p>
                         <h3 class="box-title no-toc">Neue Verbindung anlegen</h3>
                         <div class="grid-2col-bg mb-lg">
                             <ol class="pl-md">
                                 <li>Öffne FileZilla</li>
-                                <li><strong>Datei</strong> → <strong>Servermanager</strong> oder
-                                    <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>
-                                    + <kbd>S</kbd>
+                                <li>
+                                    <strong>Datei</strong>
+                                    →
+                                    <strong>Servermanager</strong>
+                                    oder
+                                    <kbd>Cmd</kbd>
+                                    /
+                                    <kbd>Ctrl</kbd>
+                                    +
+                                    <kbd>S</kbd>
                                 </li>
-                                <li>Klick auf <strong>"Neuer Server"</strong></li>
+                                <li>
+                                    Klick auf
+                                    <strong>"Neuer Server"</strong>
+                                </li>
                                 <li>Gib einen Namen ein (z.B. "All-Inkl DevPanicZone")</li>
                             </ol>
                         </div>
@@ -473,38 +662,74 @@
                             <div class="grid-2col-bg mb-md">
                                 <h4 class="pt-md">Für FTP:</h4>
                                 <ul class="arrow-list">
-                                    <li><strong>Protokoll</strong>: FTP - File Transfer Protocol</li>
-                                    <li><strong>Server</strong>: deine-domain.de</li>
-                                    <li><strong>Port</strong>: 21</li>
-                                    <li><strong>Benutzer</strong>: dein FTP-Benutzername</li>
-                                    <li><strong>Passwort</strong>: dein FTP-Passwort</li>
+                                    <li>
+                                        <strong>Protokoll</strong>
+                                        : FTP - File Transfer Protocol
+                                    </li>
+                                    <li>
+                                        <strong>Server</strong>
+                                        : deine-domain.de
+                                    </li>
+                                    <li>
+                                        <strong>Port</strong>
+                                        : 21
+                                    </li>
+                                    <li>
+                                        <strong>Benutzer</strong>
+                                        : dein FTP-Benutzername
+                                    </li>
+                                    <li>
+                                        <strong>Passwort</strong>
+                                        : dein FTP-Passwort
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg mb-md">
                                 <h4 class="pt-md">Für SFTP:</h4>
                                 <ul class="arrow-list">
-                                    <li><strong>Protokoll</strong>: SFTP - SSH File Transfer Protocol</li>
-                                    <li><strong>Server</strong>: deine-hauptdomain.de</li>
-                                    <li><strong>Port</strong>: 22</li>
-                                    <li><strong>Benutzer</strong>: dein SSH-Benutzername</li>
-                                    <li><strong>Passwort</strong>: dein SSH-Passwort</li>
+                                    <li>
+                                        <strong>Protokoll</strong>
+                                        : SFTP - SSH File Transfer Protocol
+                                    </li>
+                                    <li>
+                                        <strong>Server</strong>
+                                        : deine-hauptdomain.de
+                                    </li>
+                                    <li>
+                                        <strong>Port</strong>
+                                        : 22
+                                    </li>
+                                    <li>
+                                        <strong>Benutzer</strong>
+                                        : dein SSH-Benutzername
+                                    </li>
+                                    <li>
+                                        <strong>Passwort</strong>
+                                        : dein SSH-Passwort
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        <p>Klicke auf <strong>"Verbinden"</strong> zum Testen oder <strong>"OK"</strong> zum Speichern.
+                        <p>
+                            Klicke auf
+                            <strong>"Verbinden"</strong>
+                            zum Testen oder
+                            <strong>"OK"</strong>
+                            zum Speichern.
                         </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Passwort speichern?
+                            <strong class="box-title no-toc">
+                                Passwort speichern?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>
-                                FileZilla fragt, ob du das Passwort speichern
-                                willst. Das ist komfortabel, aber speichert das Passwort im Klartext. Für mehr
-                                Sicherheit: Unter <strong>Bearbeiten → Einstellungen → Oberfläche</strong> kannst du ein
-                                Master-Passwort aktivieren.
+                                FileZilla fragt, ob du das Passwort speichern willst. Das ist komfortabel, aber
+                                speichert das Passwort im Klartext. Für mehr Sicherheit: Unter
+                                <strong>Bearbeiten → Einstellungen → Oberfläche</strong>
+                                kannst du ein Master-Passwort aktivieren.
                             </p>
                         </div>
                     </section>
@@ -512,45 +737,65 @@
                     <!-- Standard-Verzeichnisse festlegen -->
                     <section class="tutorials-content">
                         <h2 id="standard-verzeichnisse-festlegen">Standard-Verzeichnisse festlegen</h2>
-                        <p>Damit du nicht jedes Mal zum richtigen Ordner navigieren musst, kannst du
-                            Standard-Verzeichnisse
-                            für lokal und Server festlegen.</p>
+                        <p>
+                            Damit du nicht jedes Mal zum richtigen Ordner navigieren musst, kannst du
+                            Standard-Verzeichnisse für lokal und Server festlegen.
+                        </p>
 
                         <h3 class="no-toc">Im Servermanager einstellen</h3>
                         <ol class="grid-2col-bg pt-0 pb-0 mb-md">
-                            <li>Öffne den Servermanager - <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>S</kbd></li>
+                            <li>
+                                Öffne den Servermanager -
+                                <kbd>Cmd</kbd>
+                                /
+                                <kbd>Ctrl</kbd>
+                                +
+                                <kbd>S</kbd>
+                            </li>
                             <li>Wähle deine Verbindung aus</li>
-                            <li>Wechsle zum Tab <strong>"Erweitert"</strong></li>
-                            <li>Setze die Verzeichnisse:
+                            <li>
+                                Wechsle zum Tab
+                                <strong>"Erweitert"</strong>
+                            </li>
+                            <li>
+                                Setze die Verzeichnisse:
                                 <ul class="arrow-list">
-                                    <li><strong>Standard-Verzeichnis (lokal)</strong>:
+                                    <li>
+                                        <strong>Standard-Verzeichnis (lokal)</strong>
+                                        :
                                         <code class="inline">/Users/deinname/projekte/dein-projekt</code>
                                     </li>
-                                    <li><strong>Standard-Verzeichnis (Server)</strong>:
+                                    <li>
+                                        <strong>Standard-Verzeichnis (Server)</strong>
+                                        :
                                         <code class="inline">/www/htdocs/dein-account/deine-domain.de</code>
                                     </li>
                                 </ul>
                             </li>
-                            <li>Aktiviere <strong>"Synchronisierten Verzeichniswechsel verwenden"</strong></li>
+                            <li>
+                                Aktiviere
+                                <strong>"Synchronisierten Verzeichniswechsel verwenden"</strong>
+                            </li>
                         </ol>
-                        <p class="pt-sm"><strong>Synchronisierten Verzeichniswechsel verwenden</strong> ist super
-                            praktisch:
-                            Wenn du lokal
-                            in einen Ordner
-                            wechselst, wechselt FileZilla automatisch in den gleichen Ordner auf dem Server.</p>
+                        <p class="pt-sm">
+                            <strong>Synchronisierten Verzeichniswechsel verwenden</strong>
+                            ist super praktisch: Wenn du lokal in einen Ordner wechselst, wechselt FileZilla automatisch
+                            in den gleichen Ordner auf dem Server.
+                        </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Wichtig bei SFTP!
+                            <strong class="box-title no-toc">
+                                Wichtig bei SFTP!
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>
-                                Bei SFTP über den Hauptaccount <strong>musst</strong> du das Standard-Verzeichnis
-                                (Server)
-                                setzen!
-                                Sonst landest du im Root-Verzeichnis mit allen deinen Domains.
-                                Den genauen Pfad findest du im KAS unter "FTP" → "FTP-Benutzer" bei deiner Domain.
+                                Bei SFTP über den Hauptaccount
+                                <strong>musst</strong>
+                                du das Standard-Verzeichnis (Server) setzen! Sonst landest du im Root-Verzeichnis mit
+                                allen deinen Domains. Den genauen Pfad findest du im KAS unter "FTP" → "FTP-Benutzer"
+                                bei deiner Domain.
                             </p>
                         </div>
                     </section>
@@ -558,16 +803,20 @@
                     <!-- Dateifilter einrichten -->
                     <section class="tutorials-content">
                         <h2 id="dateifilter-einrichten">Dateifilter einrichten</h2>
-                        <p>Genau wie <code class="inline">.gitignore</code> bei Git kannst du in FileZilla Filter
-                            erstellen,
-                            die bestimmte Dateien vom Transfer ausschließen.</p>
+                        <p>
+                            Genau wie
+                            <code class="inline">.gitignore</code>
+                            bei Git kannst du in FileZilla Filter erstellen, die bestimmte Dateien vom Transfer
+                            ausschließen.
+                        </p>
 
                         <h3 id="so-funktionieren-filter">So funktionieren Filter</h3>
-                        <p>Die gefilterten Dateien werden <strong>in der FileZilla-Ansicht ausgeblendet</strong>
+                        <p>
+                            Die gefilterten Dateien werden
+                            <strong>in der FileZilla-Ansicht ausgeblendet</strong>
                             - sowohl lokal (links) als auch auf dem Server (rechts). Du siehst sie nicht mehr und kannst
-                            sie
-                            dadurch
-                            gar nicht erst hochladen.</p>
+                            sie dadurch gar nicht erst hochladen.
+                        </p>
 
                         <!-- <div class="info-box">
                         <strong class="box-title no-toc">Wichtig!
@@ -581,92 +830,149 @@
                     </div> -->
 
                         <h3 class="no-toc">1. Filter-Dialog öffnen</h3>
-                        <div class=" grid-2col-bg pb-sm">
-                            <p><strong>Ansicht</strong> → <strong>Datei-/Verzeichnisfilter</strong> - oder
-                                <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>
-                                + <kbd>I</kbd>
+                        <div class="grid-2col-bg pb-sm">
+                            <p>
+                                <strong>Ansicht</strong>
+                                →
+                                <strong>Datei-/Verzeichnisfilter</strong>
+                                - oder
+                                <kbd>Ctrl</kbd>
+                                /
+                                <kbd>Cmd</kbd>
+                                +
+                                <kbd>I</kbd>
                             </p>
                         </div>
 
                         <h3 class="no-toc">2. Neuen Filter erstellen</h3>
                         <ol class="grid-2col-bg pl-md">
-                            <li>Klick auf <strong>"Filter bearbeiten"</strong></li>
-                            <li>Klick auf <strong>"Neu"</strong></li>
+                            <li>
+                                Klick auf
+                                <strong>"Filter bearbeiten"</strong>
+                            </li>
+                            <li>
+                                Klick auf
+                                <strong>"Neu"</strong>
+                            </li>
                             <li>Name eingeben: z.B. "DevPanicZone" oder "Web-Projekt"</li>
                             <li>Filterregeln hinzufügen</li>
                         </ol>
 
                         <h3 class="no-toc">3. Filterbedingung wählen (WICHTIG!)</h3>
-                        <p><strong>Ganz oben im Filter-Dialog siehst du 4 Optionen.</strong> Wähle die
-                            <strong>zweite</strong>:
+                        <p>
+                            <strong>Ganz oben im Filter-Dialog siehst du 4 Optionen.</strong>
+                            Wähle die
+                            <strong>zweite</strong>
+                            :
                         </p>
 
                         <div class="grid-2col-bg">
-                            <pre class="bg-secondary pl-0 ml-0"><code class="no-border">⚪ Objekte ausfiltern, die alle Folgenden erfüllen
+                            <pre
+                                class="bg-secondary pl-0 ml-0"
+                            ><code class="no-border">⚪ Objekte ausfiltern, die alle Folgenden erfüllen
 <strong>🔘 Objekte ausfiltern, die beliebige der Folgenden erfüllen</strong> ← Diese!
 ⚪ Objekte ausfiltern, die keine der Folgenden erfüllen
 ⚪ Objekte ausfiltern, die nicht alle der Folgenden erfüllen</code></pre>
                         </div>
                         <div class="pt-md pb-sm">
                             <strong>Warum "beliebige der Folgenden"?</strong>
-                            <p></p>Damit wird <em>jede einzelne</em> deiner Regeln
-                            separat angewendet. Wenn eine Datei oder ein Ordner den Namen <code class="inline">.DS_Store</code>
-                            <strong>oder</strong> <code class="inline">.git</code> <strong>oder</strong> <code class="inline">node_modules</code> hat,
-                            wird sie/er gefiltert - egal ob Datei oder Verzeichnis.<p></p>
+                            <p></p>
+                            Damit wird
+                            <em>jede einzelne</em>
+                            deiner Regeln separat angewendet. Wenn eine Datei oder ein Ordner den Namen
+                            <code class="inline">.DS_Store</code>
+                            <strong>oder</strong>
+                            <code class="inline">.git</code>
+                            <strong>oder</strong>
+                            <code class="inline">node_modules</code>
+                            hat, wird sie/er gefiltert - egal ob Datei oder Verzeichnis.
+                            <p></p>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Wichtig: Dateien UND Verzeichnisse
+                            <strong class="box-title no-toc">
+                                Wichtig: Dateien UND Verzeichnisse
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>
-                                In FileZilla ist "Dateiname" etwas irreführend - es meint <strong>den Namen von Dateien
-                                    UND
-                                    Verzeichnissen</strong>.
-                                Wenn du also <code class="inline">node_modules</code> filterst, wird sowohl eine
-                                <em>Datei</em> namens <code class="inline">node_modules</code> als auch der
+                                In FileZilla ist "Dateiname" etwas irreführend - es meint
+                                <strong>den Namen von Dateien UND Verzeichnissen</strong>
+                                . Wenn du also
+                                <code class="inline">node_modules</code>
+                                filterst, wird sowohl eine
+                                <em>Datei</em>
+                                namens
+                                <code class="inline">node_modules</code>
+                                als auch der
                                 <em>Ordner</em>
-                                <code class="inline">node_modules</code> (samt Inhalt) ausgeschlossen.
+                                <code class="inline">node_modules</code>
+                                (samt Inhalt) ausgeschlossen.
                             </p>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Häufiger Fehler!
+                            <strong class="box-title no-toc">
+                                Häufiger Fehler!
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>
                                 Wenn du die falsche Option wählst (z.B. "alle Folgenden erfüllen"), funktioniert der
-                                Filter
-                                nicht!
-                                Das ist der häufigste Grund, warum trotz Filterregeln alle Dateien hochgeladen werden.
+                                Filter nicht! Das ist der häufigste Grund, warum trotz Filterregeln alle Dateien
+                                hochgeladen werden.
                             </p>
                         </div>
 
                         <h3 class="no-toc">4. Filterregeln hinzufügen</h3>
-                        <p>Jetzt fügst du die einzelnen Regeln hinzu. Für jede Datei/jeden Ordner, den du ausschließen
-                            willst:</p>
+                        <p>
+                            Jetzt fügst du die einzelnen Regeln hinzu. Für jede Datei/jeden Ordner, den du ausschließen
+                            willst:
+                        </p>
 
                         <ol class="grid-2col-bg pl-md">
-                            <li>Im Bereich <strong>"Bedingungen"</strong> findest du Dropdown-Menüs</li>
-                            <li>Wähle: <strong>Dateiname</strong> → <strong>ist gleich</strong> → <code class="inline">.DS_Store</code></li>
-                            <li>Klick auf das <strong>Plus-Symbol</strong> oder <strong>"Hinzufügen"</strong></li>
+                            <li>
+                                Im Bereich
+                                <strong>"Bedingungen"</strong>
+                                findest du Dropdown-Menüs
+                            </li>
+                            <li>
+                                Wähle:
+                                <strong>Dateiname</strong>
+                                →
+                                <strong>ist gleich</strong>
+                                →
+                                <code class="inline">.DS_Store</code>
+                            </li>
+                            <li>
+                                Klick auf das
+                                <strong>Plus-Symbol</strong>
+                                oder
+                                <strong>"Hinzufügen"</strong>
+                            </li>
                             <li>Wiederhole das für alle Dateien/Ordner, die du ausschließen willst</li>
                         </ol>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Wichtige Einstellungen für jede Regel
+                            <strong class="box-title no-toc">
+                                Wichtige Einstellungen für jede Regel
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Filter anwenden auf:</strong> Beide Häkchen setzen bei
-                                    ☑️ <strong>Dateien</strong> und ☑️ <strong>Verzeichnisse</strong></li>
-                                <li><strong>Groß-/Kleinschreibung berücksichtigen:</strong> Häkchen
+                                <li>
+                                    <strong>Filter anwenden auf:</strong>
+                                    Beide Häkchen setzen bei ☑️
+                                    <strong>Dateien</strong>
+                                    und ☑️
+                                    <strong>Verzeichnisse</strong>
+                                </li>
+                                <li>
+                                    <strong>Groß-/Kleinschreibung berücksichtigen:</strong>
+                                    Häkchen
                                     <strong>NICHT</strong>
                                     setzen - dann filtert die Regel auch Varianten wie "Node_Modules" oder
                                     "NODE_MODULES"
@@ -674,52 +980,102 @@
                             </ul>
                         </div>
 
-                        <p><strong>Beispiel:</strong> Die Regel <code class="inline">node_modules</code> filtert dann:
+                        <p>
+                            <strong>Beispiel:</strong>
+                            Die Regel
+                            <code class="inline">node_modules</code>
+                            filtert dann:
                         </p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li>Den Ordner <code class="inline">node_modules/</code> (samt kompletten Inhalt)</li>
-                            <li>Eine Datei namens <code class="inline">node_modules</code> (falls sie existiert)</li>
-                            <li>Egal wo sie liegen: <code class="inline">/node_modules</code>, <code class="inline">/projekt/node_modules</code>,
+                            <li>
+                                Den Ordner
+                                <code class="inline">node_modules/</code>
+                                (samt kompletten Inhalt)
+                            </li>
+                            <li>
+                                Eine Datei namens
+                                <code class="inline">node_modules</code>
+                                (falls sie existiert)
+                            </li>
+                            <li>
+                                Egal wo sie liegen:
+                                <code class="inline">/node_modules</code>
+                                ,
+                                <code class="inline">/projekt/node_modules</code>
+                                ,
                                 <code class="inline">/deep/nested/node_modules</code>
                             </li>
                         </ul>
 
                         <h3 id="empfohlene-filterregeln">Empfohlene Filterregeln</h3>
-                        <p>Füge diese Regeln entsprechend deines Projekts hinzu (jeweils "Bedingung erfüllt" →
-                            "Ausschließen"). In meinem Fall nehme ich:</p>
+                        <p>
+                            Füge diese Regeln entsprechend deines Projekts hinzu (jeweils "Bedingung erfüllt" →
+                            "Ausschließen"). In meinem Fall nehme ich:
+                        </p>
 
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li>Dateiname ist gleich <code class="inline">.DS_Store</code> (nur Mac)</li>
-                                    <li>Dateiname ist gleich <code class="inline">.gitignore</code></li>
-                                    <li>Dateiname ist gleich <code class="inline">node_modules</code></li>
-                                    <li>Dateiname ist gleich <code class="inline">.git</code></li>
+                                    <li>
+                                        Dateiname ist gleich
+                                        <code class="inline">.DS_Store</code>
+                                        (nur Mac)
+                                    </li>
+                                    <li>
+                                        Dateiname ist gleich
+                                        <code class="inline">.gitignore</code>
+                                    </li>
+                                    <li>
+                                        Dateiname ist gleich
+                                        <code class="inline">node_modules</code>
+                                    </li>
+                                    <li>
+                                        Dateiname ist gleich
+                                        <code class="inline">.git</code>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li>Dateiname ist gleich <code class="inline">.vscode</code></li>
-                                    <li>Dateiname ist gleich <code class="inline">package-lock.json</code></li>
-                                    <li>Dateiname ist gleich <code class="inline">package.json</code></li>
-                                    <li>Eigene Ordner, z.B. Dateiname ist gleich <code class="inline">noupload</code>
+                                    <li>
+                                        Dateiname ist gleich
+                                        <code class="inline">.vscode</code>
+                                    </li>
+                                    <li>
+                                        Dateiname ist gleich
+                                        <code class="inline">package-lock.json</code>
+                                    </li>
+                                    <li>
+                                        Dateiname ist gleich
+                                        <code class="inline">package.json</code>
+                                    </li>
+                                    <li>
+                                        Eigene Ordner, z.B. Dateiname ist gleich
+                                        <code class="inline">noupload</code>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Wichtig
+                            <strong class="box-title no-toc">
+                                Wichtig
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Verwende immer <strong>"Dateiname"</strong>, nicht "Pfad"! "Dateiname" filtert
-                                die Datei/den Ordner <em>überall</em>, egal in welchem Unterordner sie liegt.</p>
+                            <p>
+                                Verwende immer
+                                <strong>"Dateiname"</strong>
+                                , nicht "Pfad"! "Dateiname" filtert die Datei/den Ordner
+                                <em>überall</em>
+                                , egal in welchem Unterordner sie liegt.
+                            </p>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">node_modules ausschließen
+                            <strong class="box-title no-toc">
+                                node_modules ausschließen
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -731,78 +1087,125 @@
                         </div>
 
                         <h3 class="no-toc">5. Filter speichern</h3>
-                        <p>Klick auf <strong>"OK"</strong> im Filter-Bearbeiten-Dialog, um den Filter zu speichern.</p>
-
+                        <p>
+                            Klick auf
+                            <strong>"OK"</strong>
+                            im Filter-Bearbeiten-Dialog, um den Filter zu speichern.
+                        </p>
 
                         <h3 class="no-toc">6. Filter aktivieren</h3>
-                        <p>Zurück im Filter-Dialog: Setze die Häkchen bei deinem Filter - sowohl in der Spalte
-                            <strong>"Lokale Filter"</strong> als auch <strong>"Server-Filter"</strong>.
+                        <p>
+                            Zurück im Filter-Dialog: Setze die Häkchen bei deinem Filter - sowohl in der Spalte
+                            <strong>"Lokale Filter"</strong>
+                            als auch
+                            <strong>"Server-Filter"</strong>
+                            .
                         </p>
-                        <p>Klick auf <strong>"Anwenden"</strong>, erst dann ist der Filter aktiv! Dann
+                        <p>
+                            Klick auf
+                            <strong>"Anwenden"</strong>
+                            , erst dann ist der Filter aktiv! Dann
                             <strong>"OK"</strong>
                             und du bist zurück in der Anwendung.
                         </p>
 
                         <h3 class="no-toc">7. Testen, ob es funktioniert</h3>
-                        <p>Schau in die <strong>linke Spalte</strong> (dein lokaler Computer) in FileZilla: </p>
                         <p>
-                            Siehst du <code class="inline">.DS_Store</code>, <code class="inline">.git</code> etc. noch?
-                            <strong>Nein?</strong> Perfekt, der Filter funktioniert! <svg class="icon icon--inline icon-green ml-sm">
+                            Schau in die
+                            <strong>linke Spalte</strong>
+                            (dein lokaler Computer) in FileZilla:
+                        </p>
+                        <p>
+                            Siehst du
+                            <code class="inline">.DS_Store</code>
+                            ,
+                            <code class="inline">.git</code>
+                            etc. noch?
+                            <strong>Nein?</strong>
+                            Perfekt, der Filter funktioniert!
+                            <svg class="icon icon--inline icon-green ml-sm">
                                 <use href="#dpz-check-inline"></use>
                             </svg>
                         </p>
-                        <p><strong>Du siehst sie noch?</strong> Dann ist der Filter nicht aktiv oder die Filterbedingung
-                            ist falsch gewählt. <svg class="icon icon--inline icon-red ml-sm">
+                        <p>
+                            <strong>Du siehst sie noch?</strong>
+                            Dann ist der Filter nicht aktiv oder die Filterbedingung ist falsch gewählt.
+                            <svg class="icon icon--inline icon-red ml-sm">
                                 <use href="#dpz-cross-inline"></use>
-                            </svg></p>
+                            </svg>
+                        </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Filter löscht nichts!
+                            <strong class="box-title no-toc">
+                                Filter löscht nichts!
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>
-                                Der Filter blendet Dateien nur in der <strong>Ansicht</strong> aus. Wenn auf dem Server
-                                schon <code class="inline">.git</code> oder <code class="inline">node_modules</code>
-                                etc.
-                                liegen, musst du sie <strong>manuell löschen</strong>: Filter temporär deaktivieren →
-                                Dateien auswählen → Löschen.
+                                Der Filter blendet Dateien nur in der
+                                <strong>Ansicht</strong>
+                                aus. Wenn auf dem Server schon
+                                <code class="inline">.git</code>
+                                oder
+                                <code class="inline">node_modules</code>
+                                etc. liegen, musst du sie
+                                <strong>manuell löschen</strong>
+                                : Filter temporär deaktivieren → Dateien auswählen → Löschen.
                             </p>
                         </div>
-
                     </section>
 
                     <!-- Dateien übertragen -->
                     <section class="tutorials-content">
                         <h2 id="dateien-uebertragen">Dateien übertragen</h2>
-                        <p>Nach erfolgreicher Verbindung siehst du links deine lokalen Dateien und rechts die Dateien
-                            auf
-                            dem Server.</p>
+                        <p>
+                            Nach erfolgreicher Verbindung siehst du links deine lokalen Dateien und rechts die Dateien
+                            auf dem Server.
+                        </p>
 
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Hochladen</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Drag &amp; Drop</strong>: Dateien von links nach rechts ziehen</li>
-                                    <li><strong>Rechtsklick</strong>: Datei auswählen → "Hochladen"</li>
-                                    <li><strong>Doppelklick</strong>: Auf eine lokale Datei doppelklicken</li>
+                                    <li>
+                                        <strong>Drag &amp; Drop</strong>
+                                        : Dateien von links nach rechts ziehen
+                                    </li>
+                                    <li>
+                                        <strong>Rechtsklick</strong>
+                                        : Datei auswählen → "Hochladen"
+                                    </li>
+                                    <li>
+                                        <strong>Doppelklick</strong>
+                                        : Auf eine lokale Datei doppelklicken
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Herunterladen</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Drag &amp; Drop</strong>: Dateien von rechts nach links ziehen</li>
-                                    <li><strong>Rechtsklick</strong>: Datei auswählen → "Herunterladen"</li>
-                                    <li><strong>Doppelklick</strong>: Auf eine Server-Datei doppelklicken</li>
+                                    <li>
+                                        <strong>Drag &amp; Drop</strong>
+                                        : Dateien von rechts nach links ziehen
+                                    </li>
+                                    <li>
+                                        <strong>Rechtsklick</strong>
+                                        : Datei auswählen → "Herunterladen"
+                                    </li>
+                                    <li>
+                                        <strong>Doppelklick</strong>
+                                        : Auf eine Server-Datei doppelklicken
+                                    </li>
                                 </ul>
                             </div>
                         </div>
 
                         <h3 class="no-toc">Ganze Ordner übertragen</h3>
-                        <p>Das funktioniert genauso - einfach den Ordner ziehen oder per Rechtsklick hochladen.
-                            FileZilla
-                            überträgt alle Unterordner und Dateien automatisch.</p>
+                        <p>
+                            Das funktioniert genauso - einfach den Ordner ziehen oder per Rechtsklick hochladen.
+                            FileZilla überträgt alle Unterordner und Dateien automatisch.
+                        </p>
                     </section>
 
                     <!-- Verzeichnisse vergleichen -->
@@ -813,27 +1216,45 @@
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Aktivieren</h3>
-                                <p><strong>Ansicht</strong> → <strong>Verzeichnisvergleich</strong> →
+                                <p>
+                                    <strong>Ansicht</strong>
+                                    →
+                                    <strong>Verzeichnisvergleich</strong>
+                                    →
                                     <strong>Aktivieren</strong>
                                 </p>
 
                                 <p>Wähle dann den Vergleichsmodus:</p>
                                 <ul class="arrow-list">
-                                    <li><strong>Nach Änderungsdatum</strong>: Zeigt neuere/ältere Dateien</li>
-                                    <li><strong>Nach Dateigröße</strong>: Zeigt Größenunterschiede</li>
+                                    <li>
+                                        <strong>Nach Änderungsdatum</strong>
+                                        : Zeigt neuere/ältere Dateien
+                                    </li>
+                                    <li>
+                                        <strong>Nach Dateigröße</strong>
+                                        : Zeigt Größenunterschiede
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Farbcodes</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Gelb</strong>: Datei existiert nur auf einer Seite</li>
-                                    <li><strong>Grün</strong>: Datei ist neuer als auf der anderen Seite</li>
-                                    <li><strong>Rot</strong>: Datei ist älter als auf der anderen Seite</li>
+                                    <li>
+                                        <strong>Gelb</strong>
+                                        : Datei existiert nur auf einer Seite
+                                    </li>
+                                    <li>
+                                        <strong>Grün</strong>
+                                        : Datei ist neuer als auf der anderen Seite
+                                    </li>
+                                    <li>
+                                        <strong>Rot</strong>
+                                        : Datei ist älter als auf der anderen Seite
+                                    </li>
                                 </ul>
                                 <p class="pt-sm">So siehst du auf einen Blick, welche Dateien du hochladen musst.</p>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Typischer Workflow -->
@@ -842,15 +1263,21 @@
                         <p>So könnte dein Alltag mit VS Code, Git und FileZilla aussehen:</p>
 
                         <ol class="grid-2col-bg">
-                            <li><strong>Entwickeln</strong>: In VS Code arbeiten, mit Live Server testen</li>
-                            <li><strong>Versionieren</strong>: Änderungen mit Git committen</li>
+                            <li>
+                                <strong>Entwickeln</strong>
+                                : In VS Code arbeiten, mit Live Server testen
+                            </li>
+                            <li>
+                                <strong>Versionieren</strong>
+                                : Änderungen mit Git committen
+                            </li>
                         </ol>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">Bash</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -860,17 +1287,25 @@ git commit -m "Navigation erweitert"
 git push</code></pre>
                         </div>
                         <ol class="grid-2col-bg" start="3">
-                            <li><strong>Deployen</strong>: Mit FileZilla auf den Server hochladen</li>
-                            <li><strong>Prüfen</strong>: Live-Website im Browser testen</li>
+                            <li>
+                                <strong>Deployen</strong>
+                                : Mit FileZilla auf den Server hochladen
+                            </li>
+                            <li>
+                                <strong>Prüfen</strong>
+                                : Live-Website im Browser testen
+                            </li>
                         </ol>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Git ≠ FTP
+                            <strong class="box-title no-toc">
+                                Git ≠ FTP
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Git pusht zu GitHub (Backup + Versionskontrolle), FileZilla lädt auf den Webserver
+                            <p>
+                                Git pusht zu GitHub (Backup + Versionskontrolle), FileZilla lädt auf den Webserver
                                 (Live-Website). Das sind zwei verschiedene Dinge!
                             </p>
                         </div>
@@ -885,20 +1320,71 @@ git push</code></pre>
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Navigation</h3>
                                 <ul class="arrow-list">
-                                    <li><kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>S</kbd> – Servermanager öffnen</li>
-                                    <li><kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>I</kbd> – Dateifilter öffnen</li>
-                                    <li><kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>R</kbd> – Verbinden/Neu verbinden</li>
-                                    <li><kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>D</kbd> – Verbindung trennen</li>
+                                    <li>
+                                        <kbd>Cmd</kbd>
+                                        /
+                                        <kbd>Ctrl</kbd>
+                                        +
+                                        <kbd>S</kbd>
+                                        – Servermanager öffnen
+                                    </li>
+                                    <li>
+                                        <kbd>Cmd</kbd>
+                                        /
+                                        <kbd>Ctrl</kbd>
+                                        +
+                                        <kbd>I</kbd>
+                                        – Dateifilter öffnen
+                                    </li>
+                                    <li>
+                                        <kbd>Cmd</kbd>
+                                        /
+                                        <kbd>Ctrl</kbd>
+                                        +
+                                        <kbd>R</kbd>
+                                        – Verbinden/Neu verbinden
+                                    </li>
+                                    <li>
+                                        <kbd>Cmd</kbd>
+                                        /
+                                        <kbd>Ctrl</kbd>
+                                        +
+                                        <kbd>D</kbd>
+                                        – Verbindung trennen
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Dateioperationen</h3>
                                 <ul class="arrow-list">
-                                    <li><kbd>F5</kbd> / <kbd>fn</kbd> + <kbd>F5</kbd> – Ansicht aktualisieren (Mac:
-                                        fn-Taste halten)</li>
-                                    <li><kbd>F2</kbd> / <kbd>fn</kbd> + <kbd>F2</kbd> – Datei/Ordner umbenennen</li>
-                                    <li><kbd>Entf</kbd> – Ausgewählte Datei löschen</li>
-                                    <li><kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>A</kbd> – Alle auswählen</li>
+                                    <li>
+                                        <kbd>F5</kbd>
+                                        /
+                                        <kbd>fn</kbd>
+                                        +
+                                        <kbd>F5</kbd>
+                                        – Ansicht aktualisieren (Mac: fn-Taste halten)
+                                    </li>
+                                    <li>
+                                        <kbd>F2</kbd>
+                                        /
+                                        <kbd>fn</kbd>
+                                        +
+                                        <kbd>F2</kbd>
+                                        – Datei/Ordner umbenennen
+                                    </li>
+                                    <li>
+                                        <kbd>Entf</kbd>
+                                        – Ausgewählte Datei löschen
+                                    </li>
+                                    <li>
+                                        <kbd>Cmd</kbd>
+                                        /
+                                        <kbd>Ctrl</kbd>
+                                        +
+                                        <kbd>A</kbd>
+                                        – Alle auswählen
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -912,20 +1398,30 @@ git push</code></pre>
                             <div class="grid-2col-bg mb-lg">
                                 <h3 class="no-toc">Verbindung fehlgeschlagen</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Falscher Port</strong>: SFTP braucht Port 22, nicht 21</li>
-                                    <li><strong>Falsches Protokoll</strong>: Prüfe, ob "SFTP" ausgewählt ist</li>
-                                    <li><strong>Firewall</strong>: Deine Firewall blockiert eventuell ausgehende
-                                        Verbindungen
+                                    <li>
+                                        <strong>Falscher Port</strong>
+                                        : SFTP braucht Port 22, nicht 21
+                                    </li>
+                                    <li>
+                                        <strong>Falsches Protokoll</strong>
+                                        : Prüfe, ob "SFTP" ausgewählt ist
+                                    </li>
+                                    <li>
+                                        <strong>Firewall</strong>
+                                        : Deine Firewall blockiert eventuell ausgehende Verbindungen
                                     </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg mb-lg">
                                 <h3 class="no-toc">Zugriff verweigert (Permission denied)</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Falscher Pfad</strong>: Du versuchst, außerhalb deines Webspace zu
-                                        schreiben
+                                    <li>
+                                        <strong>Falscher Pfad</strong>
+                                        : Du versuchst, außerhalb deines Webspace zu schreiben
                                     </li>
-                                    <li><strong>Dateirechte</strong>: Die Datei auf dem Server hat keine Schreibrechte
+                                    <li>
+                                        <strong>Dateirechte</strong>
+                                        : Die Datei auf dem Server hat keine Schreibrechte
                                     </li>
                                 </ul>
                             </div>
@@ -935,21 +1431,28 @@ git push</code></pre>
                             <div class="grid-2col-bg mb-lg">
                                 <h3 class="no-toc">Filter funktionieren nicht</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Filterbedingung falsch</strong>: Muss "beliebige der Folgenden erfüllen"
-                                        sein</li>
-                                    <li><strong>Filter nicht aktiviert</strong>: Häkchen in "Lokale Filter" UND
-                                        "Entfernte
-                                        Filter"?</li>
-                                    <li><strong>Falsche Regel</strong>: "Dateiname ist gleich" verwenden, nicht "Pfad"
+                                    <li>
+                                        <strong>Filterbedingung falsch</strong>
+                                        : Muss "beliebige der Folgenden erfüllen" sein
+                                    </li>
+                                    <li>
+                                        <strong>Filter nicht aktiviert</strong>
+                                        : Häkchen in "Lokale Filter" UND "Entfernte Filter"?
+                                    </li>
+                                    <li>
+                                        <strong>Falsche Regel</strong>
+                                        : "Dateiname ist gleich" verwenden, nicht "Pfad"
                                     </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg mb-lg">
                                 <h3 class="no-toc">Verbindungsabbrüche / ECONNREFUSED</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Zu viele parallele Verbindungen</strong>: Bearbeiten → Einstellungen →
-                                        Übertragungen →
-                                        "Maximale Anzahl simultaner Übertragungen" auf 1-2 reduzieren</li>
+                                    <li>
+                                        <strong>Zu viele parallele Verbindungen</strong>
+                                        : Bearbeiten → Einstellungen → Übertragungen → "Maximale Anzahl simultaner
+                                        Übertragungen" auf 1-2 reduzieren
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -957,22 +1460,30 @@ git push</code></pre>
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Timeout bei großen Transfers</h3>
-                                <p><strong>Bearbeiten</strong> → <strong>Einstellungen</strong> →
-                                    <strong>Verbindung</strong> →
-                                    Timeout erhöhen (z.B. auf 60 Sekunden)
+                                <p>
+                                    <strong>Bearbeiten</strong>
+                                    →
+                                    <strong>Einstellungen</strong>
+                                    →
+                                    <strong>Verbindung</strong>
+                                    → Timeout erhöhen (z.B. auf 60 Sekunden)
                                 </p>
                             </div>
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Zeichenkodierung kaputt</h3>
-                                <p>Bei Umlauten und Sonderzeichen: <strong>Bearbeiten</strong> →
-                                    <strong>Einstellungen</strong> →
-                                    <strong>Transfers</strong> → <strong>Dateitypen</strong> → "Behandle Dateien ohne
-                                    Erweiterung
-                                    als ASCII"
+                                <p>
+                                    Bei Umlauten und Sonderzeichen:
+                                    <strong>Bearbeiten</strong>
+                                    →
+                                    <strong>Einstellungen</strong>
+                                    →
+                                    <strong>Transfers</strong>
+                                    →
+                                    <strong>Dateitypen</strong>
+                                    → "Behandle Dateien ohne Erweiterung als ASCII"
                                 </p>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Sicherheitstipps -->
@@ -980,95 +1491,115 @@ git push</code></pre>
                         <h2 id="sicherheitstipps">Sicherheitstipps</h2>
 
                         <h3 class="no-toc">Master-Passwort aktivieren</h3>
-                        <p>FileZilla speichert Passwörter standardmäßig im Klartext. Mit einem Master-Passwort werden
-                            sie
-                            verschlüsselt:</p>
-                        <p class="grid-2col-bg"><strong>Bearbeiten</strong> → <strong>Einstellungen</strong> →
-                            <strong>Oberfläche</strong> →
-                            <strong>Passwörter</strong> → <strong>"Passwörter mit Master-Passwort schützen"</strong>
+                        <p>
+                            FileZilla speichert Passwörter standardmäßig im Klartext. Mit einem Master-Passwort werden
+                            sie verschlüsselt:
+                        </p>
+                        <p class="grid-2col-bg">
+                            <strong>Bearbeiten</strong>
+                            →
+                            <strong>Einstellungen</strong>
+                            →
+                            <strong>Oberfläche</strong>
+                            →
+                            <strong>Passwörter</strong>
+                            →
+                            <strong>"Passwörter mit Master-Passwort schützen"</strong>
                         </p>
 
                         <h3 class="no-toc">Immer SFTP verwenden</h3>
-                        <p>Normales FTP überträgt Passwörter unverschlüsselt - jeder im gleichen Netzwerk könnte sie
-                            mitlesen. SFTP ist immer die bessere Wahl.</p>
+                        <p>
+                            Normales FTP überträgt Passwörter unverschlüsselt - jeder im gleichen Netzwerk könnte sie
+                            mitlesen. SFTP ist immer die bessere Wahl.
+                        </p>
 
                         <h3 class="no-toc">Öffentliche Netzwerke meiden</h3>
-                        <p>Vermeide FTP-Transfers in öffentlichen WLANs (Café, Flughafen). Falls nötig, nutze ein VPN.
+                        <p>
+                            Vermeide FTP-Transfers in öffentlichen WLANs (Café, Flughafen). Falls nötig, nutze ein VPN.
                         </p>
 
                         <h3 class="no-toc">Backup vor großen Änderungen</h3>
-                        <p>Bevor du viele Dateien auf dem Server überschreibst: Lade dir eine Kopie des aktuellen Stands
-                            herunter. FileZilla hat keine "Undo"-Funktion – einmal überschrieben ist überschrieben.</p>
+                        <p>
+                            Bevor du viele Dateien auf dem Server überschreibst: Lade dir eine Kopie des aktuellen
+                            Stands herunter. FileZilla hat keine "Undo"-Funktion – einmal überschrieben ist
+                            überschrieben.
+                        </p>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Kein Undo bei FileZilla!
+                            <strong class="box-title warning no-toc">
+                                Kein Undo bei FileZilla!
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Anders als bei Git gibt es bei FTP kein Zurück. Wenn du eine Datei auf dem Server
-                                überschreibst, ist die alte Version weg. Mach vorher ein Backup!</p>
+                            <p>
+                                Anders als bei Git gibt es bei FTP kein Zurück. Wenn du eine Datei auf dem Server
+                                überschreibst, ist die alte Version weg. Mach vorher ein Backup!
+                            </p>
                         </div>
                     </section>
 
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/misc/tools/github-remote.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">GitHub - Dein Code in der Cloud</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Globale Änderungen an HTML-Dateien</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/misc/tools/github-remote.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">GitHub - Dein Code in der Cloud</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">Globale Änderungen an HTML-Dateien</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-    
-
-</body></html>
+    </body>
+</html>

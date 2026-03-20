@@ -1,181 +1,209 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="HTML Bilder richtig einbinden: Das img-Element, Bildformate (WebP, AVIF, SVG), responsive Bilder mit picture und srcset, Alt-Texte für Barrierefreiheit, Lazy Loading und Performance-Optimierung.">
-        <meta name="keywords" content="HTML Bilder, img Tag, picture Element, srcset, responsive Bilder, WebP, AVIF, SVG, Alt-Text, Barrierefreiheit, Lazy Loading, figure figcaption, Bildoptimierung">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="HTML Bilder richtig einbinden: Das img-Element, Bildformate (WebP, AVIF, SVG), responsive Bilder mit picture und srcset, Alt-Texte für Barrierefreiheit, Lazy Loading und Performance-Optimierung."
+        />
+        <meta
+            name="keywords"
+            content="HTML Bilder, img Tag, picture Element, srcset, responsive Bilder, WebP, AVIF, SVG, Alt-Text, Barrierefreiheit, Lazy Loading, figure figcaption, Bildoptimierung"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>HTML Bilder | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/html/" class="breadcrumb-link">HTML</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">HTML Bilder</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/html/" class="breadcrumb-link">HTML</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">HTML Bilder</span>
+                    </nav>
                     <h1 class="hero-title">HTML Bilder</h1>
-                    <p class="hero-subtitle">Bilder bringen Leben auf deine Webseite. Hier erfährst du alles Wichtige
-                        über
-                        Formate, Einbindung, Alt-Texte, Hintergrundbilder, responsive Darstellung, Float, Caption und
-                        Performance-Tipps.</p>
+                    <p class="hero-subtitle">
+                        Bilder bringen Leben auf deine Webseite. Hier erfährst du alles Wichtige über Formate,
+                        Einbindung, Alt-Texte, Hintergrundbilder, responsive Darstellung, Float, Caption und
+                        Performance-Tipps.
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -184,7 +212,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -197,30 +224,60 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#bilder-in-html">Bilder in HTML</a></li>
-                    <li class="toc-level-1"><a href="#das-img-element">Das &lt;img&gt;-Element</a></li>
-                    <li class="toc-level-1"><a href="#bildformate-und-einsatzbereiche">Bildformate und Einsatzbereiche</a></li>
-                    <li class="toc-level-1"><a href="#responsive-bilder-unterschiedliche-formate">Responsive Bilder &amp; unterschiedliche
-                            Formate</a></li>
-                    <li class="toc-level-1"><a href="#srcset-und-sizes">srcset und sizes - Bilder für verschiedene Auflösungen</a></li>
-                    <li class="toc-level-2"><a href="#srcset-fuer-verschiedene-pixeldichten">srcset für verschiedene Pixeldichten (Retina)</a></li>
-                    <li class="toc-level-2"><a href="#srcset-mit-breiten-deskriptoren">srcset mit Breiten-Deskriptoren</a></li>
-                    <li class="toc-level-1"><a href="#bilder-mit-beschriftung">Bilder mit Beschriftung - figure und
-                            figcaption</a></li>
-                    <li class="toc-level-2"><a href="#figure-mit-mehreren-bildern">figure mit mehreren Bildern</a></li>
-                    <li class="toc-level-1"><a href="#bilder-als-hintergrund">Bilder als Hintergrund</a></li>
-                    <li class="toc-level-1"><a href="#positionierung-im-text">Positionierung im Text</a></li>
-                    <li class="toc-level-1"><a href="#alt-texte-und-barrierefreiheit">Alt-Texte und Barrierefreiheit</a></li>
-                    <li class="toc-level-2"><a href="#gute-alt-texte-schreiben">Gute Alt-Texte schreiben</a></li>
-                    <li class="toc-level-2"><a href="#wann-leerer-alt-text">Wann ein leerer Alt-Text sinnvoll ist</a></li>
-                    <li class="toc-level-1"><a href="#performance-optimierung">Performance-Optimierung für Bilder</a></li>
-                    <li class="toc-level-2"><a href="#lazy-loading">Lazy Loading - Bilder erst bei Bedarf laden</a></li>
-                    <li class="toc-level-2"><a href="#width-height-fuer-cls">Width und Height gegen Layout-Shifts</a></li>
-                    <li class="toc-level-2"><a href="#fetchpriority">fetchpriority für wichtige Bilder</a></li>
-                    <li class="toc-level-2"><a href="#decoding-async">decoding=&quot;async&quot; für flüssiges Rendering</a></li>
-                    <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler bei HTML-Bildern</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#bilder-in-html">Bilder in HTML</a></li>
+                            <li class="toc-level-1"><a href="#das-img-element">Das &lt;img&gt; -Element</a></li>
+                            <li class="toc-level-1">
+                                <a href="#bildformate-und-einsatzbereiche">Bildformate und Einsatzbereiche</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#responsive-bilder-unterschiedliche-formate">
+                                    Responsive Bilder &amp; unterschiedliche Formate
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#srcset-und-sizes">srcset und sizes - Bilder für verschiedene Auflösungen</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#srcset-fuer-verschiedene-pixeldichten">
+                                    srcset für verschiedene Pixeldichten (Retina)
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#srcset-mit-breiten-deskriptoren">srcset mit Breiten-Deskriptoren</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#bilder-mit-beschriftung">Bilder mit Beschriftung - figure und figcaption</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#figure-mit-mehreren-bildern">figure mit mehreren Bildern</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#bilder-als-hintergrund">Bilder als Hintergrund</a></li>
+                            <li class="toc-level-1"><a href="#positionierung-im-text">Positionierung im Text</a></li>
+                            <li class="toc-level-1">
+                                <a href="#alt-texte-und-barrierefreiheit">Alt-Texte und Barrierefreiheit</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#gute-alt-texte-schreiben">Gute Alt-Texte schreiben</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#wann-leerer-alt-text">Wann ein leerer Alt-Text sinnvoll ist</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#performance-optimierung">Performance-Optimierung für Bilder</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#lazy-loading">Lazy Loading - Bilder erst bei Bedarf laden</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#width-height-fuer-cls">Width und Height gegen Layout-Shifts</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#fetchpriority">fetchpriority für wichtige Bilder</a></li>
+                            <li class="toc-level-2">
+                                <a href="#decoding-async">decoding=&quot;async&quot; für flüssiges Rendering</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#haeufige-fehler">Häufige Fehler bei HTML-Bildern</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -236,60 +293,89 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">HTML Basics</li>
-                    <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-multi-level-navigation.html">HTML Multi-Level Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-navigation-accessibility.html">HTML Navigation Accessibility</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-bilder.html" class="active">HTML Bilder</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
-                    <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
-                    <li class="sidebar-group-title">HTML Advanced</li>
-                    <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-quellcode-sichtbar-machen.html">Quellcode sichtbar machen</a></li>
-                    <li><a href="/tutorials/html/html-advanced/html-svg-sprites.html">SVG Sprites - Eigene Icons effizient einbinden</a></li>
-                </ul>
+                            <li class="sidebar-group-title">HTML Basics</li>
+                            <li><a href="/tutorials/html/html-basics/html-grundlagen.html">HTML Grundlagen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-grundgeruest.html">HTML Grundgerüst</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-typografie.html">HTML Typografie</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-navigation.html">HTML Navigation</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-breadcrumbs.html">HTML Breadcrumbs</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-dropdown.html">HTML Dropdown-Menüs</a></li>
+                            <li>
+                                <a href="/tutorials/html/html-basics/html-multi-level-navigation.html">
+                                    HTML Multi-Level Navigation
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/html/html-basics/html-mobile-navigation.html">Mobile Navigation</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/html/html-basics/html-navigation-accessibility.html">
+                                    HTML Navigation Accessibility
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/html/html-basics/html-listen.html">HTML Listen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-links.html">HTML Links & Anker</a></li>
+                            <li>
+                                <a href="/tutorials/html/html-basics/html-bilder.html" class="active">HTML Bilder</a>
+                            </li>
+                            <li><a href="/tutorials/html/html-basics/html-tabellen.html">HTML Tabellen</a></li>
+                            <li><a href="/tutorials/html/html-basics/html-meta-tags.html">HTML Meta-Tags</a></li>
+                            <li class="sidebar-group-title">HTML Advanced</li>
+                            <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
+                            <li><a href="/tutorials/html/html-advanced/html-formulare.html">HTML Formulare</a></li>
+                            <li>
+                                <a href="/tutorials/html/html-advanced/html-audio-video.html">HTML Audio & Video</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/html/html-advanced/html-quellcode-sichtbar-machen.html">
+                                    Quellcode sichtbar machen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/html/html-advanced/html-svg-sprites.html">
+                                    SVG Sprites - Eigene Icons effizient einbinden
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Bilder in HTML -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="bilder-in-html">Bilder in HTML</h2>
-                        <p>Bilder sind ein zentrales Gestaltungselement auf Webseiten. Sie können zur Illustration, als
+                        <p>
+                            Bilder sind ein zentrales Gestaltungselement auf Webseiten. Sie können zur Illustration, als
                             Designelement oder zur visuellen Unterstützung von Inhalten dienen. HTML bietet mehrere
                             Möglichkeiten, um Bilder einzubinden und zu steuern - vom klassischen
-                            <code class="inline">&lt;img&gt;</code>-Tag bis hin zu CSS-Hintergrundbildern.
+                            <code class="inline">&lt;img&gt;</code>
+                            -Tag bis hin zu CSS-Hintergrundbildern.
                         </p>
                     </section>
 
                     <!-- Das <img>-Element -->
                     <section class="tutorials-content">
-                        <h2 id="das-img-element">Das <code>&lt;img&gt;</code>-Element</h2>
-                        <p>Das Standard-HTML-Tag für Bilder ist <code class="inline">&lt;img&gt;</code> (image). Es wird
-                            ohne
-                            schließendes Tag geschrieben und benötigt mindestens das Attribut <code class="inline">src</code> (source /
-                            Bildquelle)
-                            und <code class="inline">alt</code> (alternativer Text).
-
+                        <h2 id="das-img-element">
+                            Das
+                            <code>&lt;img&gt;</code>
+                            -Element
+                        </h2>
+                        <p>
+                            Das Standard-HTML-Tag für Bilder ist
+                            <code class="inline">&lt;img&gt;</code>
+                            (image). Es wird ohne schließendes Tag geschrieben und benötigt mindestens das Attribut
+                            <code class="inline">src</code>
+                            (source / Bildquelle) und
+                            <code class="inline">alt</code>
+                            (alternativer Text).
                         </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -298,23 +384,33 @@
                         </div>
 
                         <ul class="arrow-list grid-2col-bg">
-                            <li><code class="inline">src</code> - Bilddatei oder URL.</li>
-                            <li><code class="inline">alt</code> - angezeigt, wenn Bild nicht geladen wird; wichtig für
-                                Screenreader.</li>
-                            <li><code class="inline">title</code> - Tooltip beim Mouseover (optional).</li>
-                            <li><code class="inline">width</code> / <code class="inline">height</code> - Größe in Pixeln
-                                oder
-                                Prozent (optional,
-                                besser per CSS).</li>
+                            <li>
+                                <code class="inline">src</code>
+                                - Bilddatei oder URL.
+                            </li>
+                            <li>
+                                <code class="inline">alt</code>
+                                - angezeigt, wenn Bild nicht geladen wird; wichtig für Screenreader.
+                            </li>
+                            <li>
+                                <code class="inline">title</code>
+                                - Tooltip beim Mouseover (optional).
+                            </li>
+                            <li>
+                                <code class="inline">width</code>
+                                /
+                                <code class="inline">height</code>
+                                - Größe in Pixeln oder Prozent (optional, besser per CSS).
+                            </li>
                         </ul>
                     </section>
 
                     <!-- Bildformate und Einsatzbereiche -->
                     <section class="tutorials-content">
                         <h2 id="bildformate-und-einsatzbereiche">Bildformate und Einsatzbereiche</h2>
-                        <p>Die Wahl des richtigen Formats hängt vom Bildinhalt, Transparenzbedarf und gewünschter
-                            Qualität
-                            ab.
+                        <p>
+                            Die Wahl des richtigen Formats hängt vom Bildinhalt, Transparenzbedarf und gewünschter
+                            Qualität ab.
                         </p>
                         <table class="ref-table">
                             <thead>
@@ -368,8 +464,8 @@
 
                     <!-- Responsive Bilder -->
                     <section class="tutorials-content">
-                        <h2 id="responsive-bilder-unterschiedliche-formate">Responsive Bilder &amp; unterschiedliche
-                            Formate
+                        <h2 id="responsive-bilder-unterschiedliche-formate">
+                            Responsive Bilder &amp; unterschiedliche Formate
                         </h2>
                         <p>Bilder sollten auf allen Geräten gut aussehen. Die einfachste Lösung:</p>
 
@@ -378,7 +474,7 @@
                                 <span class="code-lang">html</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -391,19 +487,31 @@ img {
 &lt;/style&gt;</code></pre>
                         </div>
 
-                        <p>Manchmal möchtest du unterschiedliche Bildformate oder -größen abhängig vom Gerät oder
-                            Browser
-                            nutzen. Moderne Browser unterstützen Formate wie <code class="inline">WebP</code> oder <code class="inline">AVIF</code>, die kleiner und schneller laden als klassische <code class="inline">JPG</code> oder <code class="inline">PNG</code>. Für Browser, die diese
-                            Formate nicht kennen, solltest du immer ein Fallback-Bild angeben.</p>
+                        <p>
+                            Manchmal möchtest du unterschiedliche Bildformate oder -größen abhängig vom Gerät oder
+                            Browser nutzen. Moderne Browser unterstützen Formate wie
+                            <code class="inline">WebP</code>
+                            oder
+                            <code class="inline">AVIF</code>
+                            , die kleiner und schneller laden als klassische
+                            <code class="inline">JPG</code>
+                            oder
+                            <code class="inline">PNG</code>
+                            . Für Browser, die diese Formate nicht kennen, solltest du immer ein Fallback-Bild angeben.
+                        </p>
 
-                        <p>Das erreichst du mit dem <code class="inline">&lt;picture&gt;</code>-Element:</p>
+                        <p>
+                            Das erreichst du mit dem
+                            <code class="inline">&lt;picture&gt;</code>
+                            -Element:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">html</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -416,39 +524,45 @@ img {
                         </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Merke
+                            <strong class="box-title notice no-toc">
+                                Merke
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><code class="inline">&lt;picture&gt;</code> erlaubt es, unterschiedliche Bildquellen
-                                    zu
-                                    definieren.
+                                <li>
+                                    <code class="inline">&lt;picture&gt;</code>
+                                    erlaubt es, unterschiedliche Bildquellen zu definieren.
                                 </li>
-                                <li><code class="inline">&lt;source&gt;</code> bestimmt, welche Datei bei welchem Format
-                                    oder
-                                    Gerät geladen
-                                    wird.</li>
-                                <li>Das <code class="inline">&lt;img&gt;</code>-Tag am Ende dient als Fallback, falls
-                                    der
-                                    Browser kein
-                                    modernes Format unterstützt.</li>
-                                <li>So sparst du Ladezeit, Bandbreite und stellst sicher, dass alle Nutzer ein Bild
+                                <li>
+                                    <code class="inline">&lt;source&gt;</code>
+                                    bestimmt, welche Datei bei welchem Format oder Gerät geladen wird.
+                                </li>
+                                <li>
+                                    Das
+                                    <code class="inline">&lt;img&gt;</code>
+                                    -Tag am Ende dient als Fallback, falls der Browser kein modernes Format unterstützt.
+                                </li>
+                                <li>
+                                    So sparst du Ladezeit, Bandbreite und stellst sicher, dass alle Nutzer ein Bild
                                     sehen.
                                 </li>
                             </ul>
                         </div>
 
-                        <p>Du kannst zusätzlich <code class="inline">media</code>-Attribute verwenden, um Bilder für
-                            bestimmte Bildschirmgrößen zu laden:</p>
+                        <p>
+                            Du kannst zusätzlich
+                            <code class="inline">media</code>
+                            -Attribute verwenden, um Bilder für bestimmte Bildschirmgrößen zu laden:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -466,20 +580,33 @@ img {
                     <!-- srcset und sizes -->
                     <section class="tutorials-content">
                         <h2 id="srcset-und-sizes">srcset und sizes - Bilder für verschiedene Auflösungen</h2>
-                        <p>Neben dem <code class="inline">&lt;picture&gt;</code>-Element gibt es eine weitere
-                            Möglichkeit, responsive Bilder bereitzustellen: die Attribute <code class="inline">srcset</code> und <code class="inline">sizes</code> direkt am <code class="inline">&lt;img&gt;</code>-Tag.</p>
+                        <p>
+                            Neben dem
+                            <code class="inline">&lt;picture&gt;</code>
+                            -Element gibt es eine weitere Möglichkeit, responsive Bilder bereitzustellen: die Attribute
+                            <code class="inline">srcset</code>
+                            und
+                            <code class="inline">sizes</code>
+                            direkt am
+                            <code class="inline">&lt;img&gt;</code>
+                            -Tag.
+                        </p>
 
-                        <h3 id="srcset-fuer-verschiedene-pixeldichten">srcset für verschiedene Pixeldichten (Retina)
+                        <h3 id="srcset-fuer-verschiedene-pixeldichten">
+                            srcset für verschiedene Pixeldichten (Retina)
                         </h3>
-                        <p>Moderne Displays haben unterschiedliche Pixeldichten. Mit <code class="inline">srcset</code>
-                            kannst du hochauflösende Varianten für Retina-Displays bereitstellen:</p>
+                        <p>
+                            Moderne Displays haben unterschiedliche Pixeldichten. Mit
+                            <code class="inline">srcset</code>
+                            kannst du hochauflösende Varianten für Retina-Displays bereitstellen:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -496,15 +623,19 @@ img {
                         </div>
 
                         <h3 id="srcset-mit-breiten-deskriptoren">srcset mit Breiten-Deskriptoren</h3>
-                        <p>Für Content-Bilder, die ihre Größe je nach Viewport ändern, verwendest du
-                            Breiten-Deskriptoren (<code class="inline">w</code>):</p>
+                        <p>
+                            Für Content-Bilder, die ihre Größe je nach Viewport ändern, verwendest du
+                            Breiten-Deskriptoren (
+                            <code class="inline">w</code>
+                            ):
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -522,34 +653,56 @@ img {
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">sizes erklärt
+                            <strong class="box-title no-toc">
+                                sizes erklärt
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Das <code class="inline">sizes</code>-Attribut teilt dem Browser mit, wie breit das Bild
-                                im Layout sein wird:</p>
+                            <p>
+                                Das
+                                <code class="inline">sizes</code>
+                                -Attribut teilt dem Browser mit, wie breit das Bild im Layout sein wird:
+                            </p>
                             <ul class="arrow-list">
-                                <li><code class="inline">(max-width: 600px) 100vw</code> - Bei Viewports bis 600px nimmt
-                                    das Bild 100% der Breite ein</li>
-                                <li><code class="inline">(max-width: 1200px) 50vw</code> - Bei Viewports bis 1200px
-                                    nimmt es 50% ein</li>
-                                <li><code class="inline">800px</code> - Standardfall: Das Bild ist 800px breit</li>
+                                <li>
+                                    <code class="inline">(max-width: 600px) 100vw</code>
+                                    - Bei Viewports bis 600px nimmt das Bild 100% der Breite ein
+                                </li>
+                                <li>
+                                    <code class="inline">(max-width: 1200px) 50vw</code>
+                                    - Bei Viewports bis 1200px nimmt es 50% ein
+                                </li>
+                                <li>
+                                    <code class="inline">800px</code>
+                                    - Standardfall: Das Bild ist 800px breit
+                                </li>
                             </ul>
-                            <p>Der Browser wählt dann automatisch die passende Bildgröße aus <code class="inline">srcset</code>.</p>
+                            <p>
+                                Der Browser wählt dann automatisch die passende Bildgröße aus
+                                <code class="inline">srcset</code>
+                                .
+                            </p>
                         </div>
                     </section>
 
                     <!-- Bilder mit Beschriftung -->
                     <section class="tutorials-content">
-                        <h2 id="bilder-mit-beschriftung">Bilder mit Beschriftung - <code>figure</code> und
+                        <h2 id="bilder-mit-beschriftung">
+                            Bilder mit Beschriftung -
+                            <code>figure</code>
+                            und
                             <code>figcaption</code>
                         </h2>
+                        <p></p>
                         <p>
+                            Das
+                            <code class="inline">&lt;figure&gt;</code>
+                            -Element ist ein semantischer Container für Bilder, Diagramme, Code-Beispiele oder andere
+                            Medien, die eine Beschriftung benötigen. Die Beschriftung wird mit
+                            <code class="inline">&lt;figcaption&gt;</code>
+                            hinzugefügt.
                         </p>
-                        <p>Das <code class="inline">&lt;figure&gt;</code>-Element ist ein semantischer Container für
-                            Bilder, Diagramme, Code-Beispiele oder andere Medien, die eine Beschriftung benötigen. Die
-                            Beschriftung wird mit <code class="inline">&lt;figcaption&gt;</code> hinzugefügt.</p>
                         <p></p>
 
                         <div class="code-block">
@@ -557,7 +710,7 @@ img {
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -569,7 +722,10 @@ img {
                         </div>
 
                         <h3 id="figure-mit-mehreren-bildern">figure mit mehreren Bildern</h3>
-                        <p>Ein <code class="inline">&lt;figure&gt;</code>-Element kann auch mehrere Bilder enthalten:
+                        <p>
+                            Ein
+                            <code class="inline">&lt;figure&gt;</code>
+                            -Element kann auch mehrere Bilder enthalten:
                         </p>
 
                         <div class="code-block">
@@ -577,7 +733,7 @@ img {
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -590,16 +746,28 @@ img {
                         </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Semantik beachten
+                            <strong class="box-title notice no-toc">
+                                Semantik beachten
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><code class="inline">&lt;figure&gt;</code> ist für eigenständige Inhalte gedacht,
-                                    die vom Haupttext referenziert werden</li>
-                                <li><code class="inline">&lt;figcaption&gt;</code> kann am Anfang oder Ende stehen</li>
-                                <li>Der <code class="inline">alt</code>-Text beschreibt das Bild, die <code class="inline">figcaption</code> gibt Kontext</li>
+                                <li>
+                                    <code class="inline">&lt;figure&gt;</code>
+                                    ist für eigenständige Inhalte gedacht, die vom Haupttext referenziert werden
+                                </li>
+                                <li>
+                                    <code class="inline">&lt;figcaption&gt;</code>
+                                    kann am Anfang oder Ende stehen
+                                </li>
+                                <li>
+                                    Der
+                                    <code class="inline">alt</code>
+                                    -Text beschreibt das Bild, die
+                                    <code class="inline">figcaption</code>
+                                    gibt Kontext
+                                </li>
                                 <li>Screenreader lesen beides - vermeide Wiederholungen</li>
                             </ul>
                         </div>
@@ -613,7 +781,7 @@ img {
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -636,7 +804,7 @@ img {
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -648,15 +816,24 @@ img.left {
 }
 &lt;/style&gt;</code></pre>
                         </div>
-                        <p>Text umfließt das Bild. Alternativ: <code class="inline">display: flex;</code> oder <code class="inline">grid</code>.</p>
+                        <p>
+                            Text umfließt das Bild. Alternativ:
+                            <code class="inline">display: flex;</code>
+                            oder
+                            <code class="inline">grid</code>
+                            .
+                        </p>
                     </section>
 
                     <!-- Alt-Texte und Barrierefreiheit -->
                     <section class="tutorials-content">
                         <h2 id="alt-texte-und-barrierefreiheit">Alt-Texte und Barrierefreiheit</h2>
-                        <p>Das <code class="inline">alt</code>-Attribut ist eines der wichtigsten Attribute für Bilder.
-                            Es wird von Screenreadern vorgelesen, erscheint wenn das Bild nicht lädt, und hilft
-                            Suchmaschinen beim Verstehen des Bildinhalts.
+                        <p>
+                            Das
+                            <code class="inline">alt</code>
+                            -Attribut ist eines der wichtigsten Attribute für Bilder. Es wird von Screenreadern
+                            vorgelesen, erscheint wenn das Bild nicht lädt, und hilft Suchmaschinen beim Verstehen des
+                            Bildinhalts.
                         </p>
 
                         <h3 id="gute-alt-texte-schreiben">Gute Alt-Texte schreiben</h3>
@@ -671,11 +848,14 @@ img.left {
                                 </div>
                                 <div class="pt-lg pb-0 mb-0 px-md">
                                     <ul class="arrow-list">
-                                        <li><code class="inline">alt="Golden Retriever spielt mit Ball im Park"</code>
+                                        <li>
+                                            <code class="inline">alt="Golden Retriever spielt mit Ball im Park"</code>
                                         </li>
-                                        <li><code class="inline">alt="Balkendiagramm: Umsatz 2024 nach Quartalen"</code>
+                                        <li>
+                                            <code class="inline">alt="Balkendiagramm: Umsatz 2024 nach Quartalen"</code>
                                         </li>
-                                        <li><code class="inline">alt="Screenshot: Einstellungen-Menü in Firefox"</code>
+                                        <li>
+                                            <code class="inline">alt="Screenshot: Einstellungen-Menü in Firefox"</code>
                                         </li>
                                     </ul>
                                 </div>
@@ -689,26 +869,38 @@ img.left {
                                 </div>
                                 <div class="pt-lg pb-0 mb-0 px-md">
                                     <ul class="arrow-list">
-                                        <li><code class="inline">alt="Bild"</code> - Zu unspezifisch</li>
-                                        <li><code class="inline">alt="hund.jpg"</code> - Dateiname ist kein Alt-Text
+                                        <li>
+                                            <code class="inline">alt="Bild"</code>
+                                            - Zu unspezifisch
                                         </li>
-                                        <li><code class="inline">alt="Bild von einem Hund der im Park spielt und einen Ball fängt während die Sonne scheint..."</code>
-                                            - Zu lang</li>
+                                        <li>
+                                            <code class="inline">alt="hund.jpg"</code>
+                                            - Dateiname ist kein Alt-Text
+                                        </li>
+                                        <li>
+                                            <code class="inline">
+                                                alt="Bild von einem Hund der im Park spielt und einen Ball fängt während
+                                                die Sonne scheint..."
+                                            </code>
+                                            - Zu lang
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         <h3 id="wann-leerer-alt-text">Wann ein leerer Alt-Text sinnvoll ist</h3>
-                        <p>Dekorative Bilder, die keine Information vermitteln, erhalten einen leeren Alt-Text. So
-                            überspringen Screenreader sie:</p>
+                        <p>
+                            Dekorative Bilder, die keine Information vermitteln, erhalten einen leeren Alt-Text. So
+                            überspringen Screenreader sie:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -726,34 +918,46 @@ img.left {
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Wichtig
+                            <strong class="box-title warning no-toc">
+                                Wichtig
                                 <svg class="icon-ui icon-gray">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p><strong>Niemals</strong> das <code class="inline">alt</code>-Attribut weglassen! Ein
-                                fehlendes <code class="inline">alt</code> ist nicht das Gleiche wie <code class="inline">alt=""</code>. Ohne Attribut lesen manche Screenreader den Dateinamen
-                                vor.</p>
+                            <p>
+                                <strong>Niemals</strong>
+                                das
+                                <code class="inline">alt</code>
+                                -Attribut weglassen! Ein fehlendes
+                                <code class="inline">alt</code>
+                                ist nicht das Gleiche wie
+                                <code class="inline">alt=""</code>
+                                . Ohne Attribut lesen manche Screenreader den Dateinamen vor.
+                            </p>
                         </div>
-
                     </section>
 
                     <!-- Performance-Optimierung -->
                     <section class="tutorials-content">
                         <h2 id="performance-optimierung">Performance-Optimierung für Bilder</h2>
-                        <p>Bilder sind oft der größte Anteil am Seitengewicht. Mit ein paar Techniken kannst du die
-                            Ladezeit drastisch verbessern.</p>
+                        <p>
+                            Bilder sind oft der größte Anteil am Seitengewicht. Mit ein paar Techniken kannst du die
+                            Ladezeit drastisch verbessern.
+                        </p>
 
                         <h3 id="lazy-loading">Lazy Loading - Bilder erst bei Bedarf laden</h3>
-                        <p>Mit <code class="inline">loading="lazy"</code> werden Bilder erst geladen, wenn sie in den
-                            sichtbaren Bereich scrollen:</p>
+                        <p>
+                            Mit
+                            <code class="inline">loading="lazy"</code>
+                            werden Bilder erst geladen, wenn sie in den sichtbaren Bereich scrollen:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -774,15 +978,20 @@ img.left {
                         </div>
 
                         <h3 id="width-height-fuer-cls">Width und Height gegen Layout-Shifts</h3>
-                        <p>Gib immer <code class="inline">width</code> und <code class="inline">height</code> an - so
-                            reserviert der Browser Platz und verhindert Layoutsprünge (CLS):</p>
+                        <p>
+                            Gib immer
+                            <code class="inline">width</code>
+                            und
+                            <code class="inline">height</code>
+                            an - so reserviert der Browser Platz und verhindert Layoutsprünge (CLS):
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -805,15 +1014,18 @@ img {
                         </div>
 
                         <h3 id="fetchpriority">fetchpriority für wichtige Bilder</h3>
-                        <p>Das <code class="inline">fetchpriority</code>-Attribut teilt dem Browser mit, welche Bilder
-                            priorisiert geladen werden sollen:</p>
+                        <p>
+                            Das
+                            <code class="inline">fetchpriority</code>
+                            -Attribut teilt dem Browser mit, welche Bilder priorisiert geladen werden sollen:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -833,15 +1045,18 @@ img {
                         </div>
 
                         <h3 id="decoding-async">decoding="async" für flüssiges Rendering</h3>
-                        <p>Mit <code class="inline">decoding="async"</code> blockiert das Dekodieren des Bildes nicht
-                            das Rendering der Seite:</p>
+                        <p>
+                            Mit
+                            <code class="inline">decoding="async"</code>
+                            blockiert das Dekodieren des Bildes nicht das Rendering der Seite:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -854,7 +1069,8 @@ img {
                         </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Performance-Checkliste
+                            <strong class="box-title notice no-toc">
+                                Performance-Checkliste
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -862,10 +1078,20 @@ img {
                             <ul class="check-list">
                                 <li>Moderne Formate nutzen (WebP, AVIF mit Fallback)</li>
                                 <li>Bilder komprimieren (TinyPNG, Squoosh, ImageOptim)</li>
-                                <li><code class="inline">loading="lazy"</code> für Bilder below the fold</li>
-                                <li><code class="inline">width</code> und <code class="inline">height</code> immer
-                                    angeben</li>
-                                <li><code class="inline">fetchpriority="high"</code> für Hero/LCP-Bilder</li>
+                                <li>
+                                    <code class="inline">loading="lazy"</code>
+                                    für Bilder below the fold
+                                </li>
+                                <li>
+                                    <code class="inline">width</code>
+                                    und
+                                    <code class="inline">height</code>
+                                    immer angeben
+                                </li>
+                                <li>
+                                    <code class="inline">fetchpriority="high"</code>
+                                    für Hero/LCP-Bilder
+                                </li>
                                 <li>Bilder in passender Größe ausliefern (nicht 4000px für 400px-Anzeige)</li>
                             </ul>
                         </div>
@@ -877,7 +1103,8 @@ img {
 
                         <div class="grid-2col">
                             <div class="info-box danger">
-                                <strong class="box-title danger no-toc">✗ Fehler
+                                <strong class="box-title danger no-toc">
+                                    ✗ Fehler
                                     <svg class="icon-ui">
                                         <use href="#dpz-x-circle"></use>
                                     </svg>
@@ -886,22 +1113,36 @@ img {
                                     <li>Alt-Attribut weglassen</li>
                                     <li>Riesige Bilder ohne Kompression</li>
                                     <li>Keine width/height → Layout-Shifts</li>
-                                    <li>Alle Bilder mit <code class="inline">loading="lazy"</code> (auch Hero)</li>
+                                    <li>
+                                        Alle Bilder mit
+                                        <code class="inline">loading="lazy"</code>
+                                        (auch Hero)
+                                    </li>
                                     <li>Nur JPG für alles verwenden</li>
                                     <li>Absolute URLs zu externen Bildern</li>
                                 </ul>
                             </div>
                             <div class="info-box notice">
-                                <strong class="box-title notice no-toc">✓ Best Practices
+                                <strong class="box-title notice no-toc">
+                                    ✓ Best Practices
                                     <svg class="icon-ui">
                                         <use href="#dpz-check-circle"></use>
                                     </svg>
                                 </strong>
                                 <ul class="arrow-list">
-                                    <li>Immer <code class="inline">alt</code> angeben (leer für Deko)</li>
+                                    <li>
+                                        Immer
+                                        <code class="inline">alt</code>
+                                        angeben (leer für Deko)
+                                    </li>
                                     <li>Bilder optimieren und komprimieren</li>
                                     <li>width/height für Platzreservierung</li>
-                                    <li>Hero: <code class="inline">loading="eager"</code> + <code class="inline">fetchpriority="high"</code></li>
+                                    <li>
+                                        Hero:
+                                        <code class="inline">loading="eager"</code>
+                                        +
+                                        <code class="inline">fetchpriority="high"</code>
+                                    </li>
                                     <li>Format nach Inhalt wählen (WebP, SVG)</li>
                                     <li>Bilder lokal hosten für Kontrolle</li>
                                 </ul>
@@ -909,75 +1150,67 @@ img {
                         </div>
                     </section>
 
-
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-html">Mehr aus HTML</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-html">Mehr aus HTML</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="html">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/html/html-basics/html-links.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">HTML Links & Anker</span>
-                <span class="tutorial-nav-category">HTML Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/html/html-basics/html-tabellen.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">HTML Tabellen</span>
-                <span class="tutorial-nav-category">HTML Basics</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/html/html-basics/html-links.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">HTML Links & Anker</span>
+                                    <span class="tutorial-nav-category">HTML Basics</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/html/html-basics/html-tabellen.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">HTML Tabellen</span>
+                                    <span class="tutorial-nav-category">HTML Basics</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
-
-
-
-
-
-
-    
-
-</body></html>
+    </body>
+</html>

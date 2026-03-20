@@ -1,181 +1,209 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="CSS Navigation States: Active, Hover, Focus und Visited stylen. Mit interaktiven Demos, aria-current für Accessibility und der richtigen LVHFA-Reihenfolge.">
-        <meta name="keywords" content="CSS Navigation States, :hover :focus :active, aria-current page, CSS Link States, focus-visible, animierte Unterstreichung CSS, LVHFA Reihenfolge">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="CSS Navigation States: Active, Hover, Focus und Visited stylen. Mit interaktiven Demos, aria-current für Accessibility und der richtigen LVHFA-Reihenfolge."
+        />
+        <meta
+            name="keywords"
+            content="CSS Navigation States, :hover :focus :active, aria-current page, CSS Link States, focus-visible, animierte Unterstreichung CSS, LVHFA Reihenfolge"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>CSS Navigation States - Active, Hover, Focus &amp; Visited | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/tutorial-css-navigation-states.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/tutorial-css-navigation-states.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/css/" class="breadcrumb-link">CSS</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">CSS Navigation States</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/css/" class="breadcrumb-link">CSS</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">CSS Navigation States</span>
+                    </nav>
                     <h1 class="hero-title">CSS Navigation States</h1>
-                    <p class="hero-subtitle">Active, Hover, Focus und Visited - so gestaltest du interaktive
-                        Navigations-Links.</p>
+                    <p class="hero-subtitle">
+                        Active, Hover, Focus und Visited - so gestaltest du interaktive Navigations-Links.
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -184,7 +212,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -197,22 +224,48 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#was-sind-navigation-states">Was sind Navigation States?</a></li>
-                    <li class="toc-level-1"><a href="#active-state-aktuelle-seite-markieren">Active State - Aktuelle Seite markieren</a></li>
-                    <li class="toc-level-2"><a href="#variante-1-mit-css-klasse">Variante 1: Mit CSS-Klasse</a></li>
-                    <li class="toc-level-2"><a href="#variante-2-mit-aria-current-empfohlen">Variante 2: Mit aria-current (empfohlen)</a></li>
-                    <li class="toc-level-2"><a href="#styling-varianten-fuer-active-state">Styling-Varianten für Active State</a></li>
-                    <li class="toc-level-1"><a href="#hover-states-interaktives-feedback">Hover States - Interaktives Feedback</a></li>
-                    <li class="toc-level-2"><a href="#verschiedene-hover-effekte">Verschiedene Hover-Effekte</a></li>
-                    <li class="toc-level-1"><a href="#hover-auf-touch-geraeten">Hover auf Touch-Geräten</a></li>
-                    <li class="toc-level-1"><a href="#focus-states-tastatur-navigation">Focus States - Tastatur-Navigation</a></li>
-                    <li class="toc-level-2"><a href="#verschiedene-focus-styles">Verschiedene Focus-Styles</a></li>
-                    <li class="toc-level-2"><a href="#focus-vs-focus-visible">:focus vs :focus-visible</a></li>
-                    <li class="toc-level-1"><a href="#visited-state-besuchte-links">Visited State - Besuchte Links</a></li>
-                    <li class="toc-level-1"><a href="#alles-zusammen-komplettes-beispiel">Alles zusammen: Komplettes Beispiel</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1">
+                                <a href="#was-sind-navigation-states">Was sind Navigation States?</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#active-state-aktuelle-seite-markieren">
+                                    Active State - Aktuelle Seite markieren
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#variante-1-mit-css-klasse">Variante 1: Mit CSS-Klasse</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#variante-2-mit-aria-current-empfohlen">
+                                    Variante 2: Mit aria-current (empfohlen)
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#styling-varianten-fuer-active-state">Styling-Varianten für Active State</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#hover-states-interaktives-feedback">Hover States - Interaktives Feedback</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#verschiedene-hover-effekte">Verschiedene Hover-Effekte</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#hover-auf-touch-geraeten">Hover auf Touch-Geräten</a></li>
+                            <li class="toc-level-1">
+                                <a href="#focus-states-tastatur-navigation">Focus States - Tastatur-Navigation</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#verschiedene-focus-styles">Verschiedene Focus-Styles</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#focus-vs-focus-visible">:focus vs :focus-visible</a></li>
+                            <li class="toc-level-1">
+                                <a href="#visited-state-besuchte-links">Visited State - Besuchte Links</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#alles-zusammen-komplettes-beispiel">Alles zusammen: Komplettes Beispiel</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-css">Mehr aus CSS</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -228,43 +281,68 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">CSS Basics</li>
-                    <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-grundlagen.html">CSS Grundlagen</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-datei-strukturieren.html">CSS Datei strukturieren</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
-                    <li><a href="/tutorials/css/css-basics/css-navigation-states.html" class="active">CSS Navigation States</a></li>
-                    <li class="sidebar-group-title">CSS Specials</li>
-                    <li><a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a></li>
-                </ul>
+                            <li class="sidebar-group-title">CSS Basics</li>
+                            <li><a href="/tutorials/css/css-basics/css-einbinden.html">CSS einbinden</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-grundlagen.html">CSS Grundlagen</a></li>
+                            <li>
+                                <a href="/tutorials/css/css-basics/css-datei-strukturieren.html">
+                                    CSS Datei strukturieren
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/css/css-basics/css-color-units.html">CSS Farben & Einheiten</a></li>
+                            <li><a href="/tutorials/css/css-basics/css-mobile-first.html">Mobile First Design</a></li>
+                            <li>
+                                <a href="/tutorials/css/css-basics/css-navigation-states.html" class="active">
+                                    CSS Navigation States
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">CSS Specials</li>
+                            <li><a href="/tutorials/css/css-specials/css-organization.html">CSS Organisation</a></li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Intro -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="was-sind-navigation-states">Was sind Navigation States?</h2>
-                        <p>Links in einer Navigation haben verschiedene <strong>Zustände (States)</strong>, die du
-                            visuell unterschiedlich gestalten kannst. Das hilft Nutzern zu verstehen, wo sie sind
-                            und was sie tun können.</p>
+                        <p>
+                            Links in einer Navigation haben verschiedene
+                            <strong>Zustände (States)</strong>
+                            , die du visuell unterschiedlich gestalten kannst. Das hilft Nutzern zu verstehen, wo sie
+                            sind und was sie tun können.
+                        </p>
 
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Die vier States</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Normal</strong> - Standardzustand</li>
-                                    <li><strong>Hover</strong> - Maus darüber</li>
-                                    <li><strong>Focus</strong> - Per Tastatur ausgewählt</li>
-                                    <li><strong>Active/Current</strong> - Aktuelle Seite</li>
+                                    <li>
+                                        <strong>Normal</strong>
+                                        - Standardzustand
+                                    </li>
+                                    <li>
+                                        <strong>Hover</strong>
+                                        - Maus darüber
+                                    </li>
+                                    <li>
+                                        <strong>Focus</strong>
+                                        - Per Tastatur ausgewählt
+                                    </li>
+                                    <li>
+                                        <strong>Active/Current</strong>
+                                        - Aktuelle Seite
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Bonus-State</h3>
                                 <ul class="arrow-list">
-                                    <li><strong>Visited</strong> - Bereits besucht</li>
+                                    <li>
+                                        <strong>Visited</strong>
+                                        - Bereits besucht
+                                    </li>
                                     <li>Seltener verwendet in Navigationen</li>
                                     <li>Nützlicher bei Link-Listen/Suchergebnissen</li>
                                 </ul>
@@ -272,7 +350,8 @@
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">CSS-Reihenfolge beachten: LVHFA
+                            <strong class="box-title no-toc">
+                                CSS-Reihenfolge beachten: LVHFA
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -292,9 +371,14 @@ a:active { }    /* A - Wird gerade geklickt */</code></pre>
                     <!-- Active State -->
                     <section class="tutorials-content">
                         <h2 id="active-state-aktuelle-seite-markieren">Active State - Aktuelle Seite markieren</h2>
-                        <p>Der Active State zeigt dem Nutzer: <strong>"Du bist hier!"</strong>. Es gibt zwei Ansätze:
-                            Eine CSS-Klasse <code class="inline">.active</code> oder das ARIA-Attribut
-                            <code class="inline">aria-current="page"</code>.
+                        <p>
+                            Der Active State zeigt dem Nutzer:
+                            <strong>"Du bist hier!"</strong>
+                            . Es gibt zwei Ansätze: Eine CSS-Klasse
+                            <code class="inline">.active</code>
+                            oder das ARIA-Attribut
+                            <code class="inline">aria-current="page"</code>
+                            .
                         </p>
 
                         <h3 id="variante-1-mit-css-klasse">Variante 1: Mit CSS-Klasse</h3>
@@ -305,7 +389,7 @@ a:active { }    /* A - Wird gerade geklickt */</code></pre>
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -327,7 +411,7 @@ a:active { }    /* A - Wird gerade geklickt */</code></pre>
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -346,7 +430,7 @@ a:active { }    /* A - Wird gerade geklickt */</code></pre>
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -371,7 +455,6 @@ nav a[aria-current="page"] {
                         <!-- Demo: Background -->
                         <h4>Background-Farbe</h4>
                         <div class="states-demo-container">
-
                             <ul class="states-demo-nav active-demo-bg">
                                 <li><a href="#active-state">Home</a></li>
                                 <li><a href="#active-state" class="active">Über uns</a></li>
@@ -384,7 +467,7 @@ nav a[aria-current="page"] {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -410,7 +493,7 @@ nav a[aria-current="page"] {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -433,7 +516,7 @@ nav a.active::after {
                         <!-- Demo: Border Left -->
                         <h4>Border links (gut für Sidebar-Navs)</h4>
                         <div class="states-demo-container">
-                            <ul class="states-demo-nav active-demo-border" style="flex-direction: column; gap: 0.5rem;">
+                            <ul class="states-demo-nav active-demo-border" style="flex-direction: column; gap: 0.5rem">
                                 <li><a href="#active-state">Home</a></li>
                                 <li><a href="#active-state" class="active">Über uns</a></li>
                                 <li><a href="#active-state">Kontakt</a></li>
@@ -445,7 +528,7 @@ nav a.active::after {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -472,7 +555,7 @@ nav a.active::after {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -484,14 +567,19 @@ nav a.active::after {
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Vorsicht bei font-weight!
+                            <strong class="box-title warning no-toc">
+                                Vorsicht bei font-weight!
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Wenn du <code class="inline">font-weight</code> änderst, kann sich die Breite des Links
-                                ändern und die Navigation "springt". Lösung: Feste Breite oder
-                                <code class="inline">letter-spacing</code> anpassen.
+                            <p>
+                                Wenn du
+                                <code class="inline">font-weight</code>
+                                änderst, kann sich die Breite des Links ändern und die Navigation "springt". Lösung:
+                                Feste Breite oder
+                                <code class="inline">letter-spacing</code>
+                                anpassen.
                             </p>
                         </div>
                     </section>
@@ -499,8 +587,11 @@ nav a.active::after {
                     <!-- Hover States -->
                     <section class="tutorials-content">
                         <h2 id="hover-states-interaktives-feedback">Hover States - Interaktives Feedback</h2>
-                        <p>Hover-Effekte zeigen dem Nutzer: <strong>"Das ist klickbar!"</strong>. Sie sollten
-                            subtil sein, aber deutlich genug, um wahrgenommen zu werden.</p>
+                        <p>
+                            Hover-Effekte zeigen dem Nutzer:
+                            <strong>"Das ist klickbar!"</strong>
+                            . Sie sollten subtil sein, aber deutlich genug, um wahrgenommen zu werden.
+                        </p>
 
                         <h3 id="verschiedene-hover-effekte">Verschiedene Hover-Effekte</h3>
 
@@ -519,7 +610,7 @@ nav a.active::after {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -549,7 +640,7 @@ nav a:hover {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -581,7 +672,7 @@ nav a:hover {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -624,7 +715,7 @@ nav a:hover::after {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -654,7 +745,7 @@ nav a:hover {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -670,30 +761,41 @@ nav a:hover {
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Performance-Tipp
+                            <strong class="box-title no-toc">
+                                Performance-Tipp
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Für flüssige Animationen: Nutze <code class="inline">transform</code> und
-                                <code class="inline">opacity</code> statt <code class="inline">width</code>,
-                                <code class="inline">height</code> oder <code class="inline">margin</code>. Diese
-                                Properties können von der GPU beschleunigt werden.
+                            <p>
+                                Für flüssige Animationen: Nutze
+                                <code class="inline">transform</code>
+                                und
+                                <code class="inline">opacity</code>
+                                statt
+                                <code class="inline">width</code>
+                                ,
+                                <code class="inline">height</code>
+                                oder
+                                <code class="inline">margin</code>
+                                . Diese Properties können von der GPU beschleunigt werden.
                             </p>
                         </div>
                     </section>
 
                     <section class="tutorials-content">
                         <h2 id="hover-auf-touch-geraeten">Hover auf Touch-Geräten</h2>
-                        <p>Auf Touch-Geräten gibt es keine echte Hover-Funktion. Das kann zu Problemen führen, wenn
-                            wichtige Informationen nur bei Hover sichtbar werden.</p>
+                        <p>
+                            Auf Touch-Geräten gibt es keine echte Hover-Funktion. Das kann zu Problemen führen, wenn
+                            wichtige Informationen nur bei Hover sichtbar werden.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -721,17 +823,29 @@ nav a:hover {
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Media Query Erklärung
+                            <strong class="box-title no-toc">
+                                Media Query Erklärung
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><code class="inline">hover: hover</code> - Gerät unterstützt echtes Hovern</li>
-                                <li><code class="inline">pointer: fine</code> - Präzises Zeigegerät (Maus, Trackpad)
+                                <li>
+                                    <code class="inline">hover: hover</code>
+                                    - Gerät unterstützt echtes Hovern
                                 </li>
-                                <li><code class="inline">hover: none</code> - Kein echtes Hovern möglich (Touch)</li>
-                                <li><code class="inline">pointer: coarse</code> - Unpräzises Zeigegerät (Finger)</li>
+                                <li>
+                                    <code class="inline">pointer: fine</code>
+                                    - Präzises Zeigegerät (Maus, Trackpad)
+                                </li>
+                                <li>
+                                    <code class="inline">hover: none</code>
+                                    - Kein echtes Hovern möglich (Touch)
+                                </li>
+                                <li>
+                                    <code class="inline">pointer: coarse</code>
+                                    - Unpräzises Zeigegerät (Finger)
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -739,13 +853,19 @@ nav a:hover {
                     <!-- Focus States -->
                     <section class="tutorials-content">
                         <h2 id="focus-states-tastatur-navigation">Focus States - Tastatur-Navigation</h2>
-                        <p>Focus-Styles zeigen Tastatur-Nutzern, welches Element gerade ausgewählt ist. Sie müssen
-                            <strong>deutlich sichtbar</strong> sein - das ist keine Option, sondern Pflicht für
-                            Accessibility!
+                        <p>
+                            Focus-Styles zeigen Tastatur-Nutzern, welches Element gerade ausgewählt ist. Sie müssen
+                            <strong>deutlich sichtbar</strong>
+                            sein - das ist keine Option, sondern Pflicht für Accessibility!
                         </p>
 
                         <h3 id="verschiedene-focus-styles">Verschiedene Focus-Styles</h3>
-                        <p><strong>Demo:</strong> Tabbe <kbd>Tab ⇥</kbd> durch die Links, um den Focus zu sehen:</p>
+                        <p>
+                            <strong>Demo:</strong>
+                            Tabbe
+                            <kbd>Tab ⇥</kbd>
+                            durch die Links, um den Focus zu sehen:
+                        </p>
 
                         <!-- Demo: Outline -->
                         <h4>Outline (Standard, verbessert)</h4>
@@ -762,7 +882,7 @@ nav a:hover {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -775,10 +895,14 @@ nav a:hover {
 
                         <!-- Demo: Box Shadow -->
                         <h4>Box-Shadow (folgt dem border-radius)</h4>
-                        <p class="mt-sm">Tipp: <code class="inline">outline</code>
+                        <p class="mt-sm">
+                            Tipp:
+                            <code class="inline">outline</code>
                             ignoriert
-                            <code class="inline">border-radius</code> und bleibt eckig.
-                            <code class="inline">box-shadow</code> passt sich der Form an.
+                            <code class="inline">border-radius</code>
+                            und bleibt eckig.
+                            <code class="inline">box-shadow</code>
+                            passt sich der Form an.
                         </p>
                         <div class="states-demo-container pb-0">
                             <ul class="states-demo-nav focus-demo-shadow">
@@ -786,7 +910,6 @@ nav a:hover {
                                 <li><a href="#focus-states">Über uns</a></li>
                                 <li><a href="#focus-states">Kontakt</a></li>
                             </ul>
-
                         </div>
 
                         <div class="code-block">
@@ -794,7 +917,7 @@ nav a:hover {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -820,7 +943,7 @@ nav a:hover {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -833,15 +956,18 @@ nav a:hover {
                         </div>
 
                         <h3 id="focus-vs-focus-visible">:focus vs :focus-visible</h3>
-                        <p>Mit <code class="inline">:focus-visible</code> zeigst du den Focus-Ring nur bei
-                            Tastatur-Navigation, nicht bei Mausklicks:</p>
+                        <p>
+                            Mit
+                            <code class="inline">:focus-visible</code>
+                            zeigst du den Focus-Ring nur bei Tastatur-Navigation, nicht bei Mausklicks:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -868,16 +994,20 @@ nav a:focus:not(:focus-visible) {
                     <!-- Visited State -->
                     <section class="tutorials-content">
                         <h2 id="visited-state-besuchte-links">Visited State - Besuchte Links</h2>
-                        <p>Der <code class="inline">:visited</code>-State zeigt an, welche Links bereits besucht wurden.
-                            In Navigationen ist das <strong>selten sinnvoll</strong>, aber bei Link-Listen oder
-                            Suchergebnissen sehr hilfreich.</p>
+                        <p>
+                            Der
+                            <code class="inline">:visited</code>
+                            -State zeigt an, welche Links bereits besucht wurden. In Navigationen ist das
+                            <strong>selten sinnvoll</strong>
+                            , aber bei Link-Listen oder Suchergebnissen sehr hilfreich.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -895,13 +1025,17 @@ a:visited::before {
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Sicherheits-Einschränkungen
+                            <strong class="box-title warning no-toc">
+                                Sicherheits-Einschränkungen
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Aus Datenschutzgründen sind <code class="inline">:visited</code>-Styles stark
-                                eingeschränkt. Du kannst nur diese Properties ändern:</p>
+                            <p>
+                                Aus Datenschutzgründen sind
+                                <code class="inline">:visited</code>
+                                -Styles stark eingeschränkt. Du kannst nur diese Properties ändern:
+                            </p>
 
                             <div class="grid-2col mt-sm mb-lg">
                                 <div>
@@ -918,11 +1052,20 @@ a:visited::before {
                                 </div>
                             </div>
 
-                            <p class="mt-sm">Keine <code class="inline">content</code>, <code class="inline">background-image</code>
-                                oder andere Properties - das würde erlauben, die Browsing-History auszulesen!</p>
+                            <p class="mt-sm">
+                                Keine
+                                <code class="inline">content</code>
+                                ,
+                                <code class="inline">background-image</code>
+                                oder andere Properties - das würde erlauben, die Browsing-History auszulesen!
+                            </p>
                         </div>
 
-                        <h3 class="no-toc">Wann <code>:visited</code> verwenden?</h3>
+                        <h3 class="no-toc">
+                            Wann
+                            <code>:visited</code>
+                            verwenden?
+                        </h3>
 
                         <div class="grid-2col-cards pb-lg">
                             <div class="code-block">
@@ -942,8 +1085,9 @@ a:visited::before {
                             </div>
                             <div class="code-block">
                                 <div class="code-header">
-                                    <span class="code-lang"><strong class="gray">:visited nicht
-                                            verwenden</strong></span>
+                                    <span class="code-lang">
+                                        <strong class="gray">:visited nicht verwenden</strong>
+                                    </span>
                                     <svg class="icon-ui icon-red-light">
                                         <use href="#dpz-cross-circle"></use>
                                     </svg>
@@ -956,7 +1100,6 @@ a:visited::before {
                                 </div>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Alles zusammen -->
@@ -966,7 +1109,10 @@ a:visited::before {
 
                         <!-- Combined Demo -->
                         <div class="states-demo-container">
-                            <p class="demo-label"><strong>Demo:</strong> Hover, Focus (Tab) und Active kombiniert</p>
+                            <p class="demo-label">
+                                <strong>Demo:</strong>
+                                Hover, Focus (Tab) und Active kombiniert
+                            </p>
                             <ul class="states-demo-nav combined-demo">
                                 <li><a href="#alles-zusammen">Home</a></li>
                                 <li><a href="#alles-zusammen" class="active" aria-current="page">Über uns</a></li>
@@ -980,7 +1126,7 @@ a:visited::before {
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1076,7 +1222,8 @@ nav a[aria-current="page"]::after {
                         </table>
 
                         <div class="info-box notice mt-md">
-                            <strong class="box-title notice no-toc">Best Practices
+                            <strong class="box-title notice no-toc">
+                                Best Practices
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1084,28 +1231,49 @@ nav a[aria-current="page"]::after {
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Immer <code class="inline">transition</code> für sanfte Übergänge <svg class="icon icon--inline icon-green ml-sm">
+                                        <li>
+                                            Immer
+                                            <code class="inline">transition</code>
+                                            für sanfte Übergänge
+                                            <svg class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
-                                            </svg></li>
-                                        <li>Focus-Style nie entfernen, nur ersetzen <svg class="icon icon--inline icon-green ml-sm">
+                                            </svg>
+                                        </li>
+                                        <li>
+                                            Focus-Style nie entfernen, nur ersetzen
+                                            <svg class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
-                                            </svg></li>
-                                        <li><code class="inline">aria-current="page"</code> für Accessibility <svg class="icon icon--inline icon-green ml-sm">
+                                            </svg>
+                                        </li>
+                                        <li>
+                                            <code class="inline">aria-current="page"</code>
+                                            für Accessibility
+                                            <svg class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
-                                            </svg></li>
+                                            </svg>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Hover und Focus ähnlich stylen (beide = "ausgewählt") <svg class="icon icon--inline icon-green ml-sm">
+                                        <li>
+                                            Hover und Focus ähnlich stylen (beide = "ausgewählt")
+                                            <svg class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
-                                            </svg></li>
-                                        <li>Active State deutlich anders als Hover <svg class="icon icon--inline icon-green ml-sm">
+                                            </svg>
+                                        </li>
+                                        <li>
+                                            Active State deutlich anders als Hover
+                                            <svg class="icon icon--inline icon-green ml-sm">
                                                 <use href="#dpz-check-inline"></use>
-                                            </svg></li>
-                                        <li>Nicht zu viele verschiedene Effekte kombinieren <svg class="icon icon--inline icon-red ml-sm">
+                                            </svg>
+                                        </li>
+                                        <li>
+                                            Nicht zu viele verschiedene Effekte kombinieren
+                                            <svg class="icon icon--inline icon-red ml-sm">
                                                 <use href="#dpz-cross-inline"></use>
-                                            </svg></li>
+                                            </svg>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1115,69 +1283,64 @@ nav a[aria-current="page"]::after {
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-css">Mehr aus CSS</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-css">Mehr aus CSS</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="css">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/css/css-basics/css-mobile-first.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Mobile First Design</span>
-                <span class="tutorial-nav-category">CSS Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/css/css-specials/css-organization.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">CSS Organisation</span>
-                <span class="tutorial-nav-category is-new">CSS Specials</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/css/css-basics/css-mobile-first.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Mobile First Design</span>
+                                    <span class="tutorial-nav-category">CSS Basics</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/css/css-specials/css-organization.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">CSS Organisation</span>
+                                    <span class="tutorial-nav-category is-new">CSS Specials</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
-
-
-
-
-    
-
-</body></html>
+    </body>
+</html>

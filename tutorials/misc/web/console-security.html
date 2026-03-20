@@ -1,179 +1,207 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="Console Security &amp; Self-XSS: Wie Console-Scams funktionieren, warum sie gefährlich sind und wie du dich schützt. Mit Console-Warnung für deine eigene Website.">
-        <meta name="keywords" content="Self-XSS, Console Security, XSS, Browser Console, Scam, Social Engineering, JavaScript Sicherheit, Console Warnung">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="Console Security &amp; Self-XSS: Wie Console-Scams funktionieren, warum sie gefährlich sind und wie du dich schützt. Mit Console-Warnung für deine eigene Website."
+        />
+        <meta
+            name="keywords"
+            content="Self-XSS, Console Security, XSS, Browser Console, Scam, Social Engineering, JavaScript Sicherheit, Console Warnung"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>Console Security &amp; Self-XSS | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Console Security &amp; Self-XSS</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Console Security &amp; Self-XSS</span>
+                    </nav>
                     <h1 class="hero-title">Console Security &amp; Self-XSS</h1>
-                    <p class="hero-subtitle">Wie Console-Scams funktionieren und wie du dich und deine Website schützt.
+                    <p class="hero-subtitle">
+                        Wie Console-Scams funktionieren und wie du dich und deine Website schützt.
                     </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -182,7 +210,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -195,28 +222,59 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#was-ist-self-xss">Was ist Self-XSS?</a></li>
-                    <li class="toc-level-2"><a href="#warum-heisst-es-self-xss">Warum heißt es &quot;Self&quot;-XSS?</a></li>
-                    <li class="toc-level-1"><a href="#wie-funktioniert-der-angriff">Wie funktioniert der Angriff?</a></li>
-                    <li class="toc-level-2"><a href="#typische-scam-szenarien">Typische Scam-Szenarien</a></li>
-                    <li class="toc-level-1"><a href="#warum-zum-teufel-faellt-man-darauf-rein">Warum zum Teufel fällt man darauf rein?</a></li>
-                    <li class="toc-level-2"><a href="#psychologische-tricks">Psychologische Tricks</a></li>
-                    <li class="toc-level-2"><a href="#warnsignale-erkennen">Warnsignale erkennen</a></li>
-                    <li class="toc-level-1"><a href="#wie-schuetze-ich-mich-user-perspektive">Wie schütze ich mich? (User-Perspektive)</a></li>
-                    <li class="toc-level-2"><a href="#was-tun-wenn-es-passiert-ist">Was tun wenn es passiert ist?</a></li>
-                    <li class="toc-level-1"><a href="#wie-schuetze-ich-meine-website-developer-perspektive">Wie schütze ich meine Website?
-                            (Developer-Perspektive)</a></li>
-                    <li class="toc-level-2"><a href="#console-warnung-implementieren">Console-Warnung implementieren</a></li>
-                    <li class="toc-level-2"><a href="#implementierungs-optionen">Implementierungs-Optionen</a></li>
-                    <li class="toc-level-2"><a href="#zusaetzliche-schutzmassnahmen">Zusätzliche Schutzmaßnahmen</a></li>
-                    <li class="toc-level-1"><a href="#xss-allgemein-verstehen">XSS allgemein verstehen</a></li>
-                    <li class="toc-level-2"><a href="#typen-von-xss">Typen von XSS</a></li>
-                    <li class="toc-level-2"><a href="#xss-verhindern-entwickler-checkliste">XSS verhindern - Entwickler-Checkliste</a></li>
-                    <li class="toc-level-1"><a href="#best-practices-zusammenfassung">Best Practices - Zusammenfassung</a></li>
-                    <li class="toc-level-1"><a href="#weitere-ressourcen-links">Weitere Ressourcen &amp; Links</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#was-ist-self-xss">Was ist Self-XSS?</a></li>
+                            <li class="toc-level-2">
+                                <a href="#warum-heisst-es-self-xss">Warum heißt es &quot;Self&quot;-XSS?</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#wie-funktioniert-der-angriff">Wie funktioniert der Angriff?</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#typische-scam-szenarien">Typische Scam-Szenarien</a></li>
+                            <li class="toc-level-1">
+                                <a href="#warum-zum-teufel-faellt-man-darauf-rein">
+                                    Warum zum Teufel fällt man darauf rein?
+                                </a>
+                            </li>
+                            <li class="toc-level-2"><a href="#psychologische-tricks">Psychologische Tricks</a></li>
+                            <li class="toc-level-2"><a href="#warnsignale-erkennen">Warnsignale erkennen</a></li>
+                            <li class="toc-level-1">
+                                <a href="#wie-schuetze-ich-mich-user-perspektive">
+                                    Wie schütze ich mich? (User-Perspektive)
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#was-tun-wenn-es-passiert-ist">Was tun wenn es passiert ist?</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#wie-schuetze-ich-meine-website-developer-perspektive">
+                                    Wie schütze ich meine Website? (Developer-Perspektive)
+                                </a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#console-warnung-implementieren">Console-Warnung implementieren</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#implementierungs-optionen">Implementierungs-Optionen</a>
+                            </li>
+                            <li class="toc-level-2">
+                                <a href="#zusaetzliche-schutzmassnahmen">Zusätzliche Schutzmaßnahmen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#xss-allgemein-verstehen">XSS allgemein verstehen</a></li>
+                            <li class="toc-level-2"><a href="#typen-von-xss">Typen von XSS</a></li>
+                            <li class="toc-level-2">
+                                <a href="#xss-verhindern-entwickler-checkliste">
+                                    XSS verhindern - Entwickler-Checkliste
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#best-practices-zusammenfassung">Best Practices - Zusammenfassung</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#weitere-ressourcen-links">Weitere Ressourcen &amp; Links</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -232,38 +290,68 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">SEO Optimization</li>
-                    <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content verstehen & vermeiden</a></li>
-                    <li class="sidebar-group-title">Tools</li>
-                    <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
-                    <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">CSS-Duplikate finden & vergleichen in VS Code</a></li>
-                    <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
-                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
-                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale Versionskontrolle</a></li>
-                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
-                    <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla FTP-Client einrichten</a></li>
-                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
-                    <li class="sidebar-group-title">Web</li>
-                    <li><a href="/tutorials/misc/web/console-security.html" class="active">Console Security & Self-XSS</a></li>
-                </ul>
+                            <li class="sidebar-group-title">SEO Optimization</li>
+                            <li>
+                                <a href="/tutorials/misc/seo-optimization/duplicate-content.html">
+                                    Duplicate Content verstehen & vermeiden
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Tools</li>
+                            <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">
+                                    CSS-Duplikate finden & vergleichen in VS Code
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
+                            <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/git-versionskontrolle.html">
+                                    Git - Lokale Versionskontrolle
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/ftp-client-filezilla.html">
+                                    FileZilla FTP-Client einrichten
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
+                                    Globale Änderungen an HTML-Dateien
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Web</li>
+                            <li>
+                                <a href="/tutorials/misc/web/console-security.html" class="active">
+                                    Console Security & Self-XSS
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Intro -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="was-ist-self-xss">Was ist Self-XSS?</h2>
-                        <p><strong>Self-XSS</strong> (Self Cross-Site Scripting) ist ein Social Engineering Angriff, bei
-                            dem
-                            Betrüger dich dazu bringen, bösartigen JavaScript-Code in deine eigene Browser-Console zu
-                            kopieren und auszuführen.</p>
-                        <p>Der Trick: Du führst den Schadcode selbst aus - die Angreifer müssen nicht mal deine Website
-                            hacken. Sie manipulieren einfach DICH!</p>
+                        <p>
+                            <strong>Self-XSS</strong>
+                            (Self Cross-Site Scripting) ist ein Social Engineering Angriff, bei dem Betrüger dich dazu
+                            bringen, bösartigen JavaScript-Code in deine eigene Browser-Console zu kopieren und
+                            auszuführen.
+                        </p>
+                        <p>
+                            Der Trick: Du führst den Schadcode selbst aus - die Angreifer müssen nicht mal deine Website
+                            hacken. Sie manipulieren einfach DICH!
+                        </p>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="gefahr">Die Gefahr in Kürze
+                            <strong class="box-title danger no-toc" id="gefahr">
+                                Die Gefahr in Kürze
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -279,9 +367,12 @@
                         </div>
 
                         <h3 id="warum-heisst-es-self-xss">Warum heißt es "Self"-XSS?</h3>
-                        <p>Bei normalem XSS schmuggeln Angreifer Code in eine Website. Bei <strong>Self-XSS bist DU
-                                derjenige</strong>, der den Code ausführt - in deinem eigenen Browser, in deiner eigenen
-                            Session. Egal, auf welcher Seite.</p>
+                        <p>
+                            Bei normalem XSS schmuggeln Angreifer Code in eine Website. Bei
+                            <strong>Self-XSS bist DU derjenige</strong>
+                            , der den Code ausführt - in deinem eigenen Browser, in deiner eigenen Session. Egal, auf
+                            welcher Seite.
+                        </p>
 
                         <h4>Unterschied zu klassischem XSS</h4>
 
@@ -317,17 +408,23 @@
                     <section class="tutorials-content">
                         <h2 id="wie-funktioniert-der-angriff">Wie funktioniert der Angriff?</h2>
 
-                        <p>Die Angreifer nutzen verschiedene Maschen, um Leute dazu zu bringen, Code in die Console zu
-                            kopieren. Hier sind die häufigsten Szenarien:</p>
+                        <p>
+                            Die Angreifer nutzen verschiedene Maschen, um Leute dazu zu bringen, Code in die Console zu
+                            kopieren. Hier sind die häufigsten Szenarien:
+                        </p>
 
                         <h3 id="typische-scam-szenarien">Typische Scam-Szenarien</h3>
 
                         <details>
                             <summary>Szenario 1: "Gratis Features freischalten"</summary>
                             <div class="details-content">
-                                <p><strong>Versprechen:</strong> "Bekomme Facebook/Instagram Premium Features gratis!"
+                                <p>
+                                    <strong>Versprechen:</strong>
+                                    "Bekomme Facebook/Instagram Premium Features gratis!"
                                 </p>
-                                <p><strong>Anleitung:</strong> "Drücke F12, gehe zur Console, kopiere diesen Code..."
+                                <p>
+                                    <strong>Anleitung:</strong>
+                                    "Drücke F12, gehe zur Console, kopiere diesen Code..."
                                 </p>
 
                                 <div class="code-block">
@@ -372,7 +469,10 @@ alert('Premium Features aktiviert! ✓');</code></pre>
                         <details>
                             <summary>Szenario 2: "Followers/Likes multiplizieren"</summary>
                             <div class="details-content">
-                                <p><strong>Versprechen:</strong> "Bekomme 10.000 Follower in 5 Minuten!"</p>
+                                <p>
+                                    <strong>Versprechen:</strong>
+                                    "Bekomme 10.000 Follower in 5 Minuten!"
+                                </p>
 
                                 <div class="code-block">
                                     <div class="code-header">
@@ -415,7 +515,9 @@ fetch('/api/post', {
                         <details>
                             <summary>Szenario 3: "Account-Bug fixen"</summary>
                             <div class="details-content">
-                                <p><strong>Versprechen:</strong> "Dein Account hat einen Bug! Fixe ihn mit diesem Code."
+                                <p>
+                                    <strong>Versprechen:</strong>
+                                    "Dein Account hat einen Bug! Fixe ihn mit diesem Code."
                                 </p>
                                 <p>Diese Masche nutzt Angst statt Gier - besonders effektiv!</p>
 
@@ -452,8 +554,10 @@ alert('✓ Sicherheitslücke geschlossen!');</code></pre>
                         <details>
                             <summary>Szenario 4: "Geheime Developer-Tools"</summary>
                             <div class="details-content">
-                                <p><strong>Versprechen:</strong> "Aktiviere versteckte Funktionen, die nur Entwickler
-                                    kennen!"</p>
+                                <p>
+                                    <strong>Versprechen:</strong>
+                                    "Aktiviere versteckte Funktionen, die nur Entwickler kennen!"
+                                </p>
                                 <p>Zielt auf technikaffine User ab, die denken, sie wissen was sie tun.</p>
 
                                 <div class="code-block">
@@ -495,15 +599,17 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
                     <section class="tutorials-content">
                         <h2 id="warum-zum-teufel-faellt-man-darauf-rein">Warum zum Teufel fällt man darauf rein?</h2>
 
-                        <p>Self-XSS ist so effektiv, weil es psychologische Tricks nutzt. Die Angreifer wissen genau,
-                            wie
-                            sie Menschen manipulieren.</p>
+                        <p>
+                            Self-XSS ist so effektiv, weil es psychologische Tricks nutzt. Die Angreifer wissen genau,
+                            wie sie Menschen manipulieren.
+                        </p>
 
                         <h3 id="psychologische-tricks">Psychologische Tricks</h3>
 
                         <div class="grid-2col">
                             <div class="info-box danger">
-                                <strong class="box-title danger no-toc">1. Versprechen von Belohnungen
+                                <strong class="box-title danger no-toc">
+                                    1. Versprechen von Belohnungen
                                     <svg class="icon-ui">
                                         <use href="#dpz-warning-circle"></use>
                                     </svg>
@@ -516,7 +622,8 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
                             </div>
 
                             <div class="info-box danger">
-                                <strong class="box-title danger no-toc">2. Autoritätsprinzip
+                                <strong class="box-title danger no-toc">
+                                    2. Autoritätsprinzip
                                     <svg class="icon-ui">
                                         <use href="#dpz-warning-circle"></use>
                                     </svg>
@@ -531,7 +638,8 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
 
                         <div class="grid-2col">
                             <div class="info-box danger">
-                                <strong class="box-title danger no-toc">3. Social Proof
+                                <strong class="box-title danger no-toc">
+                                    3. Social Proof
                                     <svg class="icon-ui">
                                         <use href="#dpz-warning-circle"></use>
                                     </svg>
@@ -544,7 +652,8 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
                             </div>
 
                             <div class="info-box danger">
-                                <strong class="box-title danger no-toc">4. Dringlichkeit &amp; Angst
+                                <strong class="box-title danger no-toc">
+                                    4. Dringlichkeit &amp; Angst
                                     <svg class="icon-ui">
                                         <use href="#dpz-warning-circle"></use>
                                     </svg>
@@ -559,7 +668,8 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
                         </div>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc">5. Technische Unkenntnis
+                            <strong class="box-title danger no-toc">
+                                5. Technische Unkenntnis
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -574,23 +684,40 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
                         <h3 id="warnsignale-erkennen">Warnsignale erkennen</h3>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">🚩 Red Flags - Diese Dinge sind IMMER
-                                verdächtig:
+                            <strong class="box-title danger no-toc" id="achtung">
+                                🚩 Red Flags - Diese Dinge sind IMMER verdächtig:
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Jemand bittet dich, Code in die Console zu kopieren</strong> - Niemals
-                                    legitim!
+                                <li>
+                                    <strong>Jemand bittet dich, Code in die Console zu kopieren</strong>
+                                    - Niemals legitim!
                                 </li>
-                                <li><strong>Zu gut um wahr zu sein</strong> - Gratis Premium, unbegrenzte Features, etc.
+                                <li>
+                                    <strong>Zu gut um wahr zu sein</strong>
+                                    - Gratis Premium, unbegrenzte Features, etc.
                                 </li>
-                                <li><strong>Zeitdruck</strong> - "Nur heute!", "Bevor es zu spät ist!"</li>
-                                <li><strong>Rechtschreibfehler</strong> - Echte Unternehmen haben Lektoren</li>
-                                <li><strong>Verdächtige URLs</strong> - faceb00k.com statt facebook.com</li>
-                                <li><strong>Unprofessionelles Design</strong> - Sieht billig gemacht aus</li>
-                                <li><strong>Keine offizielle Quelle</strong> - YouTube-Video statt offizieller Website
+                                <li>
+                                    <strong>Zeitdruck</strong>
+                                    - "Nur heute!", "Bevor es zu spät ist!"
+                                </li>
+                                <li>
+                                    <strong>Rechtschreibfehler</strong>
+                                    - Echte Unternehmen haben Lektoren
+                                </li>
+                                <li>
+                                    <strong>Verdächtige URLs</strong>
+                                    - faceb00k.com statt facebook.com
+                                </li>
+                                <li>
+                                    <strong>Unprofessionelles Design</strong>
+                                    - Sieht billig gemacht aus
+                                </li>
+                                <li>
+                                    <strong>Keine offizielle Quelle</strong>
+                                    - YouTube-Video statt offizieller Website
                                 </li>
                             </ul>
                         </div>
@@ -602,23 +729,32 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
                         <p>Als normaler User kannst du dich mit einfachen Regeln schützen:</p>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Goldene Regeln
+                            <strong class="box-title notice no-toc">
+                                Goldene Regeln
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>NIEMALS fremden Code in die Console kopieren</strong> - Egal was versprochen
-                                    wird!</li>
-                                <li><strong>Keine "Hacks" oder "Tricks"</strong> - Wenn es zu gut klingt, ist es das
-                                    auch
+                                <li>
+                                    <strong>NIEMALS fremden Code in die Console kopieren</strong>
+                                    - Egal was versprochen wird!
                                 </li>
-                                <li><strong>Offizielle Kanäle nutzen</strong> - Nur Infos von offiziellen Websites
-                                    vertrauen
+                                <li>
+                                    <strong>Keine "Hacks" oder "Tricks"</strong>
+                                    - Wenn es zu gut klingt, ist es das auch
                                 </li>
-                                <li><strong>Im Zweifel NICHT machen</strong> - Lieber eine Chance verpassen als gehackt
-                                    werden</li>
-                                <li><strong>Freunde warnen</strong> - Wenn du so eine Nachricht bekommst, warne andere
+                                <li>
+                                    <strong>Offizielle Kanäle nutzen</strong>
+                                    - Nur Infos von offiziellen Websites vertrauen
+                                </li>
+                                <li>
+                                    <strong>Im Zweifel NICHT machen</strong>
+                                    - Lieber eine Chance verpassen als gehackt werden
+                                </li>
+                                <li>
+                                    <strong>Freunde warnen</strong>
+                                    - Wenn du so eine Nachricht bekommst, warne andere
                                 </li>
                             </ul>
                         </div>
@@ -626,21 +762,45 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
                         <h3 id="was-tun-wenn-es-passiert-ist">Was tun wenn es passiert ist?</h3>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">Sofortmaßnahmen bei Verdacht:
+                            <strong class="box-title danger no-toc" id="achtung">
+                                Sofortmaßnahmen bei Verdacht:
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <ol class="pl-md">
-                                <li><strong>Passwort sofort ändern</strong> - Von einem anderen Gerät aus!</li>
-                                <li><strong>Alle aktiven Sessions beenden</strong> - "Überall abmelden" in Einstellungen
+                                <li>
+                                    <strong>Passwort sofort ändern</strong>
+                                    - Von einem anderen Gerät aus!
                                 </li>
-                                <li><strong>Two-Factor Authentication aktivieren</strong> (2FA/MFA)</li>
-                                <li><strong>E-Mail-Adresse prüfen</strong> - Wurde sie geändert?</li>
-                                <li><strong>Benachrichtigungen prüfen</strong> - Verdächtige Aktivitäten?</li>
-                                <li><strong>Browser-Daten löschen</strong> - Cookies, LocalStorage, Cache</li>
-                                <li><strong>Malware-Scan durchführen</strong> - Könnte mehr installiert worden sein</li>
-                                <li><strong>Support kontaktieren</strong> - Melde den Vorfall der Platform</li>
+                                <li>
+                                    <strong>Alle aktiven Sessions beenden</strong>
+                                    - "Überall abmelden" in Einstellungen
+                                </li>
+                                <li>
+                                    <strong>Two-Factor Authentication aktivieren</strong>
+                                    (2FA/MFA)
+                                </li>
+                                <li>
+                                    <strong>E-Mail-Adresse prüfen</strong>
+                                    - Wurde sie geändert?
+                                </li>
+                                <li>
+                                    <strong>Benachrichtigungen prüfen</strong>
+                                    - Verdächtige Aktivitäten?
+                                </li>
+                                <li>
+                                    <strong>Browser-Daten löschen</strong>
+                                    - Cookies, LocalStorage, Cache
+                                </li>
+                                <li>
+                                    <strong>Malware-Scan durchführen</strong>
+                                    - Könnte mehr installiert worden sein
+                                </li>
+                                <li>
+                                    <strong>Support kontaktieren</strong>
+                                    - Melde den Vorfall der Platform
+                                </li>
                             </ol>
                         </div>
 
@@ -666,7 +826,6 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
 4. Beide Checkboxen aktivieren
 5. "Leeren" klicken</code></pre>
                             </div>
-
                         </div>
                         <!-- via DevTools -->
                         <div class="code-block">
@@ -679,15 +838,18 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
 
                     <!-- Wie schütze ich meine Website? -->
                     <section class="tutorials-content">
-                        <h2 id="wie-schuetze-ich-meine-website-developer-perspektive">Wie schütze ich meine Website?
-                            (Developer-Perspektive)</h2>
-                        <p>Als Web-Developer kannst du deine User durch eine Console-Warnung schützen. Das verhindert
-                            zwar
-                            nicht technisch die Code-Ausführung, aber es schreckt ab und klärt auf.</p>
+                        <h2 id="wie-schuetze-ich-meine-website-developer-perspektive">
+                            Wie schütze ich meine Website? (Developer-Perspektive)
+                        </h2>
+                        <p>
+                            Als Web-Developer kannst du deine User durch eine Console-Warnung schützen. Das verhindert
+                            zwar nicht technisch die Code-Ausführung, aber es schreckt ab und klärt auf.
+                        </p>
 
                         <h3 id="console-warnung-implementieren">Console-Warnung implementieren</h3>
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum eine Console-Warnung?
+                            <strong class="box-title no-toc">
+                                Warum eine Console-Warnung?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -708,8 +870,7 @@ console.log('✓ Developer Mode aktiviert!');</code></pre>
                             <div class="details-content">
                                 <div class="code-block">
                                     <div class="code-header">
-                                        <div class="box-title"><strong>main.js (am Anfang einfügen)
-                                                nötig</strong></div>
+                                        <div class="box-title"><strong>main.js (am Anfang einfügen) nötig</strong></div>
                                     </div>
                                     <pre><code class="language-javascript">// Console Security Warning
 console.log(
@@ -732,8 +893,14 @@ console.log(
     'color: #999; font-size: 11px;'
 );</code></pre>
                                 </div>
-                                <p><strong>Vorteile:</strong> Simpel, direkt, immer sichtbar</p>
-                                <p><strong>Nachteile:</strong> Erscheint bei jedem Reload (könnte nerven)</p>
+                                <p>
+                                    <strong>Vorteile:</strong>
+                                    Simpel, direkt, immer sichtbar
+                                </p>
+                                <p>
+                                    <strong>Nachteile:</strong>
+                                    Erscheint bei jedem Reload (könnte nerven)
+                                </p>
                             </div>
                         </details>
 
@@ -742,8 +909,7 @@ console.log(
                             <div class="details-content">
                                 <div class="code-block">
                                     <div class="code-header">
-                                        <div class="box-title"><strong>main.js (am Anfang einfügen)
-                                                nötig</strong></div>
+                                        <div class="box-title"><strong>main.js (am Anfang einfügen) nötig</strong></div>
                                     </div>
                                     <pre><code class="language-javascript">// Console Security Warning (nur einmal pro Session)
 if (!sessionStorage.getItem('consoleWarningShown')) {
@@ -776,8 +942,14 @@ if (!sessionStorage.getItem('consoleWarningShown')) {
 // Hier kommt dein normaler Code / Begrüßung
 console.log('Willkommen bei MeineWebsite.com! 👋');</code></pre>
                                 </div>
-                                <p><strong>Vorteile:</strong> Nervt nicht bei jedem Reload, trotzdem effektiv</p>
-                                <p><strong>Nachteile:</strong> Verschwindet nach Browser-Schließung (Session endet)</p>
+                                <p>
+                                    <strong>Vorteile:</strong>
+                                    Nervt nicht bei jedem Reload, trotzdem effektiv
+                                </p>
+                                <p>
+                                    <strong>Nachteile:</strong>
+                                    Verschwindet nach Browser-Schließung (Session endet)
+                                </p>
                             </div>
                         </details>
 
@@ -817,8 +989,14 @@ console.log('Willkommen bei MeineWebsite.com! 👋');</code></pre>
                                 <p><strong>Im HTML dann einbinden (vor main.js):</strong></p>
                                 <pre><code class="language-html">&lt;script src="/assets/js/console-security.js"&gt;&lt;/script&gt;
 &lt;script src="/assets/js/main.js" defer&gt;&lt;/script&gt;</code></pre>
-                                <p><strong>Vorteile:</strong> Sehr auffällig, professionell, separater Code</p>
-                                <p><strong>Nachteile:</strong> Extra Datei, mehr Aufwand</p>
+                                <p>
+                                    <strong>Vorteile:</strong>
+                                    Sehr auffällig, professionell, separater Code
+                                </p>
+                                <p>
+                                    <strong>Nachteile:</strong>
+                                    Extra Datei, mehr Aufwand
+                                </p>
                             </div>
                         </details>
 
@@ -859,29 +1037,49 @@ console.log('%c📫 hello@devpaniczone.de',
     'color: #f38181; font-size: 11px;');</code></pre>
                                 </div>
 
-
-                                <p><strong>Vorteile:</strong> Sicherheit UND Persönlichkeit, alles an einem Ort</p>
-                                <p><strong>Tipp:</strong> Warnung immer ZUERST, damit sie nicht übersehen wird!</p>
+                                <p>
+                                    <strong>Vorteile:</strong>
+                                    Sicherheit UND Persönlichkeit, alles an einem Ort
+                                </p>
+                                <p>
+                                    <strong>Tipp:</strong>
+                                    Warnung immer ZUERST, damit sie nicht übersehen wird!
+                                </p>
                             </div>
                         </details>
 
                         <h3 id="zusaetzliche-schutzmassnahmen">Zusätzliche Schutzmaßnahmen</h3>
                         <div class="info-box">
-                            <strong class="box-title no-toc">Weitere Best Practices
+                            <strong class="box-title no-toc">
+                                Weitere Best Practices
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>CSP Headers:</strong> Content Security Policy kann XSS-Angriffe erschweren
-                                    <pre class="mt-sm"><code class="language-plaintext">Content-Security-Policy: default-src 'self'; script-src 'self'</code></pre>
+                                <li>
+                                    <strong>CSP Headers:</strong>
+                                    Content Security Policy kann XSS-Angriffe erschweren
+                                    <pre
+                                        class="mt-sm"
+                                    ><code class="language-plaintext">Content-Security-Policy: default-src 'self'; script-src 'self'</code></pre>
                                 </li>
-                                <li><strong>HttpOnly Cookies:</strong> Session-Cookies sollten HttpOnly-Flag haben
-                                    (nicht
-                                    via JS auslesbar)</li>
-                                <li><strong>HTTPS only:</strong> Immer HTTPS nutzen, verhindert Man-in-the-Middle</li>
-                                <li><strong>SameSite Cookies:</strong> CSRF-Schutz durch SameSite-Attribut</li>
-                                <li><strong>Regular Security Audits:</strong> Prüfe regelmäßig auf Schwachstellen</li>
+                                <li>
+                                    <strong>HttpOnly Cookies:</strong>
+                                    Session-Cookies sollten HttpOnly-Flag haben (nicht via JS auslesbar)
+                                </li>
+                                <li>
+                                    <strong>HTTPS only:</strong>
+                                    Immer HTTPS nutzen, verhindert Man-in-the-Middle
+                                </li>
+                                <li>
+                                    <strong>SameSite Cookies:</strong>
+                                    CSRF-Schutz durch SameSite-Attribut
+                                </li>
+                                <li>
+                                    <strong>Regular Security Audits:</strong>
+                                    Prüfe regelmäßig auf Schwachstellen
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -890,38 +1088,57 @@ console.log('%c📫 hello@devpaniczone.de',
                     <section class="tutorials-content">
                         <h2 id="xss-allgemein-verstehen">XSS allgemein verstehen</h2>
 
-                        <p>Self-XSS ist nur eine Variante von Cross-Site Scripting (XSS). Lass uns kurz die
-                            verschiedenen
-                            Arten anschauen:</p>
+                        <p>
+                            Self-XSS ist nur eine Variante von Cross-Site Scripting (XSS). Lass uns kurz die
+                            verschiedenen Arten anschauen:
+                        </p>
 
                         <h3 id="typen-von-xss">Typen von XSS</h3>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">1. Reflected XSS (Reflektiertes XSS)
+                            <strong class="box-title no-toc">
+                                1. Reflected XSS (Reflektiertes XSS)
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Schadcode wird über URL-Parameter eingefügt und direkt zurückgegeben:</p>
                             <pre><code class="language-plaintext">https://example.com/search?q=&lt;script&gt;alert('XSS')&lt;/script&gt;</code></pre>
-                            <p><strong>Angriff:</strong> Opfer klickt auf präparierte URL</p>
-                            <p><strong>Schutz:</strong> Input-Validierung, Output-Encoding</p>
+                            <p>
+                                <strong>Angriff:</strong>
+                                Opfer klickt auf präparierte URL
+                            </p>
+                            <p>
+                                <strong>Schutz:</strong>
+                                Input-Validierung, Output-Encoding
+                            </p>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">2. Stored XSS (Persistentes XSS)
+                            <strong class="box-title no-toc">
+                                2. Stored XSS (Persistentes XSS)
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>Schadcode wird in Datenbank gespeichert und bei jedem Abruf ausgegeben:</p>
-                            <p><strong>Beispiel:</strong> Kommentarfeld, Forenposts, Profilbeschreibungen</p>
-                            <p><strong>Gefahr:</strong> Betrifft alle User, die den Content sehen</p>
-                            <p><strong>Schutz:</strong> Strenge Input-Validierung, Sanitization, Output-Encoding</p>
+                            <p>
+                                <strong>Beispiel:</strong>
+                                Kommentarfeld, Forenposts, Profilbeschreibungen
+                            </p>
+                            <p>
+                                <strong>Gefahr:</strong>
+                                Betrifft alle User, die den Content sehen
+                            </p>
+                            <p>
+                                <strong>Schutz:</strong>
+                                Strenge Input-Validierung, Sanitization, Output-Encoding
+                            </p>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">3. DOM-based XSS
+                            <strong class="box-title no-toc">
+                                3. DOM-based XSS
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -932,23 +1149,35 @@ document.getElementById('output').innerHTML = userInput;
 
 // Sicher:
 document.getElementById('output').textContent = userInput;</code></pre>
-                            <p><strong>Schutz:</strong> Keine <abbr title="ungeprüft/ungefiltert - Daten direkt vom User ohne Sicherheitsprüfung">unsanitized</abbr>
-                                Daten ins DOM, textContent statt innerHTML</p>
+                            <p>
+                                <strong>Schutz:</strong>
+                                Keine
+                                <abbr title="ungeprüft/ungefiltert - Daten direkt vom User ohne Sicherheitsprüfung">
+                                    unsanitized
+                                </abbr>
+                                Daten ins DOM, textContent statt innerHTML
+                            </p>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">4. Self-XSS (Social Engineering)
+                            <strong class="box-title no-toc">
+                                4. Self-XSS (Social Engineering)
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <p>User führt Code selbst aus (das haben wir gerade gelernt!)</p>
-                            <p><strong>Besonderheit:</strong> Keine technische Schwachstelle, sondern Manipulation</p>
-                            <p><strong>Schutz:</strong> Aufklärung, Console-Warnung, User-Education</p>
+                            <p>
+                                <strong>Besonderheit:</strong>
+                                Keine technische Schwachstelle, sondern Manipulation
+                            </p>
+                            <p>
+                                <strong>Schutz:</strong>
+                                Aufklärung, Console-Warnung, User-Education
+                            </p>
                         </div>
 
                         <h3 id="xss-verhindern-entwickler-checkliste">XSS verhindern - Entwickler-Checkliste</h3>
-
 
                         <div class="code-block">
                             <div class="code-header">
@@ -997,7 +1226,8 @@ element.innerHTML = sanitized;</code></pre>
                         </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">XSS-Schutz Checkliste
+                            <strong class="box-title notice no-toc">
+                                XSS-Schutz Checkliste
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1009,12 +1239,22 @@ element.innerHTML = sanitized;</code></pre>
                                         <li>✓ HTML-Entities escapen bei Output</li>
                                         <li>✓ Content Security Policy (CSP) Headers setzen</li>
                                         <li>✓ HttpOnly-Flag bei Session-Cookies</li>
-                                        <li>✓ <code class="inline">textContent</code> statt <code class="inline">innerHTML</code> nutzen</li>
+                                        <li>
+                                            ✓
+                                            <code class="inline">textContent</code>
+                                            statt
+                                            <code class="inline">innerHTML</code>
+                                            nutzen
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>✓ Niemals <code class="inline">eval()</code> mit User-Input</li>
+                                        <li>
+                                            ✓ Niemals
+                                            <code class="inline">eval()</code>
+                                            mit User-Input
+                                        </li>
                                         <li>✓ Template-Engines mit Auto-Escaping nutzen</li>
                                         <li>✓ DOMPurify oder ähnliche Libraries für HTML-Sanitization</li>
                                         <li>✓ Regular Security Audits &amp; Penetration Tests</li>
@@ -1023,14 +1263,14 @@ element.innerHTML = sanitized;</code></pre>
                                 </div>
                             </div>
                         </div>
-
                     </section>
 
                     <section class="tutorials-content">
                         <h2 id="best-practices-zusammenfassung">Best Practices - Zusammenfassung</h2>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Für User
+                            <strong class="box-title no-toc">
+                                Für User
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -1038,7 +1278,10 @@ element.innerHTML = sanitized;</code></pre>
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><strong>Niemals</strong> fremden Code in die Console kopieren</li>
+                                        <li>
+                                            <strong>Niemals</strong>
+                                            fremden Code in die Console kopieren
+                                        </li>
                                         <li>Lerne die Basics: Was ist die Console? Wofür ist sie da?</li>
                                         <li>Sei skeptisch bei "zu gut um wahr zu sein"-Angeboten</li>
                                         <li>Two-Factor Authentication (2FA) aktivieren</li>
@@ -1055,16 +1298,18 @@ element.innerHTML = sanitized;</code></pre>
                             </div>
                         </div>
 
-
                         <div class="info-box">
-                            <strong class="box-title no-toc">Für Entwickler
+                            <strong class="box-title no-toc">
+                                Für Entwickler
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Console-Warnung implementieren</strong> - auch wenn deine Site (noch) keine
-                                    Login hat</li>
+                                <li>
+                                    <strong>Console-Warnung implementieren</strong>
+                                    - auch wenn deine Site (noch) keine Login hat
+                                </li>
                             </ul>
                             <div class="grid-2col">
                                 <div>
@@ -1073,7 +1318,12 @@ element.innerHTML = sanitized;</code></pre>
                                         <li>HttpOnly &amp; Secure Flags bei Cookies</li>
                                         <li>Alle Inputs validieren &amp; sanitizen</li>
                                         <li>Output-Encoding konsequent anwenden</li>
-                                        <li><code class="inline">innerHTML</code> meiden, <code class="inline">textContent</code> nutzen</li>
+                                        <li>
+                                            <code class="inline">innerHTML</code>
+                                            meiden,
+                                            <code class="inline">textContent</code>
+                                            nutzen
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
@@ -1087,9 +1337,9 @@ element.innerHTML = sanitized;</code></pre>
                             </div>
                         </div>
 
-
                         <div class="info-box">
-                            <strong class="box-title no-toc">Für Website-Betreiber
+                            <strong class="box-title no-toc">
+                                Für Website-Betreiber
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -1112,7 +1362,6 @@ element.innerHTML = sanitized;</code></pre>
                                 </div>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Weitere Ressourcen -->
@@ -1120,17 +1369,43 @@ element.innerHTML = sanitized;</code></pre>
                         <h2 id="weitere-ressourcen-links">Weitere Ressourcen &amp; Links</h2>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Zum Weiterlesen
+                            <strong class="box-title no-toc">
+                                Zum Weiterlesen
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Wikipedia Self-XSS:</strong> <a href="https://de.wikipedia.org/wiki/Self-XSS" target="_blank">de.wikipedia.org/wiki/Self-XSS</a></li>
-                                <li><strong>OWASP XSS:</strong> <a href="https://owasp.org/www-community/attacks/xss/" target="_blank">owasp.org/www-community/attacks/xss/</a></li>
-                                <li><strong>MDN Web Security:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/Security" target="_blank">developer.mozilla.org/en-US/docs/Web/Security</a></li>
-                                <li><strong>Content Security Policy:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank">developer.mozilla.org/en-US/docs/Web/HTTP/CSP</a></li>
-                                <li><strong>DOMPurify (Sanitization Library):</strong> <a href="https://github.com/cure53/DOMPurify" target="_blank">github.com/cure53/DOMPurify</a></li>
+                                <li>
+                                    <strong>Wikipedia Self-XSS:</strong>
+                                    <a href="https://de.wikipedia.org/wiki/Self-XSS" target="_blank">
+                                        de.wikipedia.org/wiki/Self-XSS
+                                    </a>
+                                </li>
+                                <li>
+                                    <strong>OWASP XSS:</strong>
+                                    <a href="https://owasp.org/www-community/attacks/xss/" target="_blank">
+                                        owasp.org/www-community/attacks/xss/
+                                    </a>
+                                </li>
+                                <li>
+                                    <strong>MDN Web Security:</strong>
+                                    <a href="https://developer.mozilla.org/en-US/docs/Web/Security" target="_blank">
+                                        developer.mozilla.org/en-US/docs/Web/Security
+                                    </a>
+                                </li>
+                                <li>
+                                    <strong>Content Security Policy:</strong>
+                                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank">
+                                        developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+                                    </a>
+                                </li>
+                                <li>
+                                    <strong>DOMPurify (Sanitization Library):</strong>
+                                    <a href="https://github.com/cure53/DOMPurify" target="_blank">
+                                        github.com/cure53/DOMPurify
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
@@ -1149,32 +1424,47 @@ element.innerHTML = sanitized;</code></pre>
                     <section class="tutorials-content">
                         <h2 id="zusammenfassung">Zusammenfassung</h2>
 
-                        <p><strong>Self-XSS</strong> ist ein Social Engineering Angriff, bei dem du durch Manipulation
-                            dazu
-                            gebracht wirst, bösartigen Code selbst auszuführen. Die Konsequenzen können gravierend sein:
-                            Account-Übernahme, Datenverlust, Spam-Versand in deinem Namen.</p>
+                        <p>
+                            <strong>Self-XSS</strong>
+                            ist ein Social Engineering Angriff, bei dem du durch Manipulation dazu gebracht wirst,
+                            bösartigen Code selbst auszuführen. Die Konsequenzen können gravierend sein:
+                            Account-Übernahme, Datenverlust, Spam-Versand in deinem Namen.
+                        </p>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Das Wichtigste in Kürze
+                            <strong class="box-title warning no-toc">
+                                Das Wichtigste in Kürze
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Goldene Regel:</strong> NIEMALS fremden Code in die Browser-Console
-                                    kopieren!
+                                <li>
+                                    <strong>Goldene Regel:</strong>
+                                    NIEMALS fremden Code in die Browser-Console kopieren!
                                 </li>
-                                <li><strong>Warnsignale:</strong> Zu-gut-Versprechen, Zeitdruck, "geheime Tricks"</li>
-                                <li><strong>Schutz als User:</strong> Skeptisch sein, 2FA nutzen, Freunde warnen</li>
-                                <li><strong>Schutz als Developer:</strong> Console-Warnung implementieren, Security Best
-                                    Practices</li>
-                                <li><strong>Bei Verdacht:</strong> Sofort Passwort ändern, Sessions beenden, Support
-                                    kontaktieren</li>
+                                <li>
+                                    <strong>Warnsignale:</strong>
+                                    Zu-gut-Versprechen, Zeitdruck, "geheime Tricks"
+                                </li>
+                                <li>
+                                    <strong>Schutz als User:</strong>
+                                    Skeptisch sein, 2FA nutzen, Freunde warnen
+                                </li>
+                                <li>
+                                    <strong>Schutz als Developer:</strong>
+                                    Console-Warnung implementieren, Security Best Practices
+                                </li>
+                                <li>
+                                    <strong>Bei Verdacht:</strong>
+                                    Sofort Passwort ändern, Sessions beenden, Support kontaktieren
+                                </li>
                             </ul>
                         </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Nächste Schritte
+                            <strong class="box-title notice no-toc">
+                                Nächste Schritte
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1189,13 +1479,15 @@ element.innerHTML = sanitized;</code></pre>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Fazit
+                            <strong class="box-title no-toc">
+                                Fazit
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Self-XSS funktioniert, weil es Menschen manipuliert, nicht Computer.
-                                Aufklärung ist der beste Schutz. Teile dein Wissen und hilf anderen, sich zu schützen!
+                            <p>
+                                Self-XSS funktioniert, weil es Menschen manipuliert, nicht Computer. Aufklärung ist der
+                                beste Schutz. Teile dein Wissen und hilf anderen, sich zu schützen!
                             </p>
                         </div>
                     </section>
@@ -1203,55 +1495,58 @@ element.innerHTML = sanitized;</code></pre>
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Globale Änderungen an HTML-Dateien</span>
-                <span class="tutorial-nav-category is-new">Tools</span>
-            </a>
-        </div><div class="tutorial-nav-next"></div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Globale Änderungen an HTML-Dateien</span>
+                                    <span class="tutorial-nav-category is-new">Tools</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next"></div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-    
-
-</body></html>
+    </body>
+</html>

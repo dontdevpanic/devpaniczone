@@ -1,179 +1,207 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="VS Code für HTML &amp; CSS einrichten: Projekt-Setup, Emmet, Live Server, Profile anlegen und die wichtigsten Shortcuts. Praktisches Tutorial für deinen Workflow.">
-        <meta name="keywords" content="VS Code, HTML, CSS, Emmet, Live Server, VS Code Profile, Shortcuts, Webentwicklung, Code Editor, VS Code Extensions">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="VS Code für HTML &amp; CSS einrichten: Projekt-Setup, Emmet, Live Server, Profile anlegen und die wichtigsten Shortcuts. Praktisches Tutorial für deinen Workflow."
+        />
+        <meta
+            name="keywords"
+            content="VS Code, HTML, CSS, Emmet, Live Server, VS Code Profile, Shortcuts, Webentwicklung, Code Editor, VS Code Extensions"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>VS Code für HTML &amp; CSS einrichten | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">VS Code für HTML &amp; CSS</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">VS Code für HTML &amp; CSS</span>
+                    </nav>
                     <h1 class="hero-title">VS Code für HTML &amp; CSS</h1>
-                    <p class="hero-subtitle">Projekt-Setup, Profile, Emmet und die wichtigsten Shortcuts für deinen
-                        Workflow.</p>
+                    <p class="hero-subtitle">
+                        Projekt-Setup, Profile, Emmet und die wichtigsten Shortcuts für deinen Workflow.
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -182,7 +210,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -195,27 +222,33 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#code-editor-vs-code">Code-Editor VS Code</a></li>
-                    <li class="toc-level-1"><a href="#projekt-einrichten">Projekt einrichten</a></li>
-                    <li class="toc-level-2"><a href="#projekt-in-vs-code-oeffnen">Projekt in VS Code öffnen</a></li>
-                    <li class="toc-level-1"><a href="#grundlagen-vscode">Wichtige Bereiche in VS Code</a></li>
-                    <li class="toc-level-1"><a href="#emmet">Emmet richtig nutzen</a></li>
-                    <li class="toc-level-2"><a href="#beispiele">Beispiele</a></li>
-                    <li class="toc-level-1"><a href="#live-server">Live Server</a></li>
-                    <li class="toc-level-1"><a href="#formatieren">Code automatisch formatieren</a></li>
-                    <li class="toc-level-1"><a href="#terminal">Terminal öffnen</a></li>
-                    <li class="toc-level-1"><a href="#sprache-einstellen">Sprache einstellen</a></li>
-                    <li class="toc-level-1"><a href="#plugins">Plugins</a></li>
-                    <li class="toc-level-1"><a href="#vs-code-profile">VS Code Profile anlegen</a></li>
-                    <li class="toc-level-2"><a href="#profil-erstellen">Neues Profil erstellen</a></li>
-                    <li class="toc-level-2"><a href="#profil-html-css-einrichten">Empfohlenes HTML/CSS Profil</a></li>
-                    <li class="toc-level-2"><a href="#profil-wechseln">Zwischen Profilen wechseln</a></li>
-                    <li class="toc-level-2"><a href="#bestehende-projekte">Bei bestehenden Projekten</a></li>
-                    <li class="toc-level-2"><a href="#profil-exportieren">Profile exportieren &amp; teilen</a></li>
-                    <li class="toc-level-2"><a href="#workspace-settings">Projekt-spezifische Settings</a></li>
-                    <li class="toc-level-1"><a href="#weiterer-abschnitt">Praktische Shortcuts</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#code-editor-vs-code">Code-Editor VS Code</a></li>
+                            <li class="toc-level-1"><a href="#projekt-einrichten">Projekt einrichten</a></li>
+                            <li class="toc-level-2">
+                                <a href="#projekt-in-vs-code-oeffnen">Projekt in VS Code öffnen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#grundlagen-vscode">Wichtige Bereiche in VS Code</a></li>
+                            <li class="toc-level-1"><a href="#emmet">Emmet richtig nutzen</a></li>
+                            <li class="toc-level-2"><a href="#beispiele">Beispiele</a></li>
+                            <li class="toc-level-1"><a href="#live-server">Live Server</a></li>
+                            <li class="toc-level-1"><a href="#formatieren">Code automatisch formatieren</a></li>
+                            <li class="toc-level-1"><a href="#terminal">Terminal öffnen</a></li>
+                            <li class="toc-level-1"><a href="#sprache-einstellen">Sprache einstellen</a></li>
+                            <li class="toc-level-1"><a href="#plugins">Plugins</a></li>
+                            <li class="toc-level-1"><a href="#vs-code-profile">VS Code Profile anlegen</a></li>
+                            <li class="toc-level-2"><a href="#profil-erstellen">Neues Profil erstellen</a></li>
+                            <li class="toc-level-2">
+                                <a href="#profil-html-css-einrichten">Empfohlenes HTML/CSS Profil</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#profil-wechseln">Zwischen Profilen wechseln</a></li>
+                            <li class="toc-level-2"><a href="#bestehende-projekte">Bei bestehenden Projekten</a></li>
+                            <li class="toc-level-2">
+                                <a href="#profil-exportieren">Profile exportieren &amp; teilen</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#workspace-settings">Projekt-spezifische Settings</a></li>
+                            <li class="toc-level-1"><a href="#weiterer-abschnitt">Praktische Shortcuts</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-verschiedenes">Mehr aus Verschiedenes</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -231,38 +264,58 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">SEO Optimization</li>
-                    <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content verstehen & vermeiden</a></li>
-                    <li class="sidebar-group-title">Tools</li>
-                    <li><a href="/tutorials/misc/tools/vs-code.html" class="active">VS Code für HTML & CSS</a></li>
-                    <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">CSS-Duplikate finden & vergleichen in VS Code</a></li>
-                    <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
-                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
-                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale Versionskontrolle</a></li>
-                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
-                    <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla FTP-Client einrichten</a></li>
-                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
-                    <li class="sidebar-group-title">Web</li>
-                    <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
-                </ul>
+                            <li class="sidebar-group-title">SEO Optimization</li>
+                            <li>
+                                <a href="/tutorials/misc/seo-optimization/duplicate-content.html">
+                                    Duplicate Content verstehen & vermeiden
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Tools</li>
+                            <li>
+                                <a href="/tutorials/misc/tools/vs-code.html" class="active">VS Code für HTML & CSS</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">
+                                    CSS-Duplikate finden & vergleichen in VS Code
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/misc/tools/browser-dev-tools.html">Browser DevTools</a></li>
+                            <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/git-versionskontrolle.html">
+                                    Git - Lokale Versionskontrolle
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/ftp-client-filezilla.html">
+                                    FileZilla FTP-Client einrichten
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
+                                    Globale Änderungen an HTML-Dateien
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Web</li>
+                            <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- INTRO -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="code-editor-vs-code">Code-Editor VS Code</h2>
                         <p>
                             Visual Studio Code (VS Code) ist ein extrem flexibler und schneller Code-Editor, der perfekt
-                            für
-                            Frontend-Projekte geeignet ist - besonders für HTML, CSS und JavaScript. Du kannst damit
+                            für Frontend-Projekte geeignet ist - besonders für HTML, CSS und JavaScript. Du kannst damit
                             kleine Übungsdateien, komplette Websites oder sogar komplexe Projekte verwalten.
                         </p>
-                        <p>
-                            VS Code bietet dir:
-                        </p>
+                        <p>VS Code bietet dir:</p>
                         <ul class="arrow-list grid-2col-bg">
                             <li>Syntax-Highlighting für HTML, CSS, JS und viele weitere Sprachen</li>
                             <li>Extrem viele kostenlose Erweiterungen (Plugins)</li>
@@ -282,9 +335,9 @@
                         <h2 id="projekt-einrichten">Projekt einrichten</h2>
                         <p>
                             Für ein sauberes Setup legst du zuerst einen Projektordner an. In VS Code arbeitest du immer
-                            innerhalb eines <strong>Root-Verzeichnisses</strong>, damit alle Dateien, Bilder und Styles
-                            logisch
-                            zusammengefasst sind.
+                            innerhalb eines
+                            <strong>Root-Verzeichnisses</strong>
+                            , damit alle Dateien, Bilder und Styles logisch zusammengefasst sind.
                         </p>
 
                         <h3 class="no-toc">Beispiel-Ordnerstruktur</h3>
@@ -301,7 +354,10 @@ projektname/
 
                         <h3 class="mt-lg" id="projekt-in-vs-code-oeffnen">Projekt in VS Code öffnen</h3>
                         <p>
-                            <kbd>Cmd ⌘ + O</kbd> oder <kbd>File → Open Folder</kbd><br>
+                            <kbd>Cmd ⌘ + O</kbd>
+                            oder
+                            <kbd>File → Open Folder</kbd>
+                            <br />
                             → Ordner auswählen → öffnen.
                         </p>
 
@@ -316,12 +372,30 @@ projektname/
                         <h2 id="grundlagen-vscode">Wichtige Bereiche in VS Code</h2>
 
                         <ul class="arrow-list grid-2col-bg">
-                            <li><b>Explorer</b> - Verwaltet deine Dateien und Ordner.</li>
-                            <li><b>Editor</b> - Hier schreibst du deinen Code.</li>
-                            <li><b>Statusleiste</b> - Zeigt Sprache, Formatierung, Git-Status, Encoding usw.</li>
-                            <li><b>Command Palette</b> - Zentrale Steuerung für alle Befehle (siehe Shortcut).</li>
-                            <li><b>Extensions</b> - Installiere Plugins, um VS Code zu erweitern.</li>
-                            <li><b>Terminal</b> - Eingebautes Terminal für Node, Git etc.</li>
+                            <li>
+                                <b>Explorer</b>
+                                - Verwaltet deine Dateien und Ordner.
+                            </li>
+                            <li>
+                                <b>Editor</b>
+                                - Hier schreibst du deinen Code.
+                            </li>
+                            <li>
+                                <b>Statusleiste</b>
+                                - Zeigt Sprache, Formatierung, Git-Status, Encoding usw.
+                            </li>
+                            <li>
+                                <b>Command Palette</b>
+                                - Zentrale Steuerung für alle Befehle (siehe Shortcut).
+                            </li>
+                            <li>
+                                <b>Extensions</b>
+                                - Installiere Plugins, um VS Code zu erweitern.
+                            </li>
+                            <li>
+                                <b>Terminal</b>
+                                - Eingebautes Terminal für Node, Git etc.
+                            </li>
                         </ul>
 
                         <p>
@@ -334,49 +408,78 @@ projektname/
                     <section class="tutorials-content">
                         <h2 id="emmet">Emmet richtig nutzen</h2>
                         <p>
-                            Emmet ist bereits in VS Code integriert. Sobald du eine <code>.html</code>- oder
-                            <code>.css</code>-Datei nutzt, kannst du extrem schnell Code generieren.
+                            Emmet ist bereits in VS Code integriert. Sobald du eine
+                            <code>.html</code>
+                            - oder
+                            <code>.css</code>
+                            -Datei nutzt, kannst du extrem schnell Code generieren.
                         </p>
 
                         <h3 class="mt-lg" id="beispiele">Beispiele</h3>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><code>!</code> → drückt <kbd>Enter</kbd> → komplette HTML-Grundstruktur</li>
-                            <li><code>ul&gt;li*5</code> → drückt <kbd>Enter</kbd> → erzeugt Liste mit 5 li</li>
-                            <li><code>.box</code> → drückt <kbd>Enter</kbd> → erzeugt
+                            <li>
+                                <code>!</code>
+                                → drückt
+                                <kbd>Enter</kbd>
+                                → komplette HTML-Grundstruktur
+                            </li>
+                            <li>
+                                <code>ul&gt;li*5</code>
+                                → drückt
+                                <kbd>Enter</kbd>
+                                → erzeugt Liste mit 5 li
+                            </li>
+                            <li>
+                                <code>.box</code>
+                                → drückt
+                                <kbd>Enter</kbd>
+                                → erzeugt
                                 <code>&lt;div class="box"&gt;</code>
                             </li>
-                            <li><code>p.red.big</code> → <code>&lt;p class="red big"&gt;</code></li>
+                            <li>
+                                <code>p.red.big</code>
+                                →
+                                <code>&lt;p class="red big"&gt;</code>
+                            </li>
                         </ul>
 
-                        <p>
-                            Emmet funktioniert auch in CSS:
-                        </p>
+                        <p>Emmet funktioniert auch in CSS:</p>
 
                         <ul class="arrow-list grid-2col-bg">
-                            <li><code>m10</code> → <code>margin: 10px;</code></li>
-                            <li><code>p20-10</code> → <code>padding: 20px 10px;</code></li>
+                            <li>
+                                <code>m10</code>
+                                →
+                                <code>margin: 10px;</code>
+                            </li>
+                            <li>
+                                <code>p20-10</code>
+                                →
+                                <code>padding: 20px 10px;</code>
+                            </li>
                         </ul>
                     </section>
 
                     <!-- Live Server -->
                     <section class="tutorials-content">
                         <h2 id="live-server">Live Server</h2>
-                        <p>
-                            Mit Live Server siehst du deine Änderungen sofort im Browser, ohne manuell neu zu laden.
-                        </p>
+                        <p>Mit Live Server siehst du deine Änderungen sofort im Browser, ohne manuell neu zu laden.</p>
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Starten</h3>
                                 <p><kbd>Rechtsklick → Open with Live Server</kbd></p>
 
                                 <p>
-                                    VS Code öffnet eine Adresse wie <code>http://127.0.0.1:5500</code>.
+                                    VS Code öffnet eine Adresse wie
+                                    <code>http://127.0.0.1:5500</code>
+                                    .
                                 </p>
                             </div>
                             <div class="grid-2col-bg">
                                 <h3 class="no-toc">Automatisches Reload</h3>
                                 <p>
-                                    Sobald du speicherst <kbd>Cmd ⌘ + S</kbd>, wird die Seite automatisch aktualisiert.
+                                    Sobald du speicherst
+                                    <kbd>Cmd ⌘ + S</kbd>
+                                    , wird die Seite automatisch aktualisiert.
                                 </p>
                             </div>
                         </div>
@@ -385,15 +488,19 @@ projektname/
                     <!-- Code automatisch formatieren -->
                     <section class="tutorials-content">
                         <h2 id="formatieren">Code automatisch formatieren</h2>
-                        <p>
-                            VS Code kann deinen Code automatisch einrücken und formatieren.
-                        </p>
+                        <p>VS Code kann deinen Code automatisch einrücken und formatieren.</p>
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
-                                <p><kbd>Shift + Opt ⌥ + F</kbd> (macOS)</p>
+                                <p>
+                                    <kbd>Shift + Opt ⌥ + F</kbd>
+                                    (macOS)
+                                </p>
                             </div>
                             <div class="grid-2col-bg">
-                                <p><kbd>Shift + Alt + F</kbd> (Windows/Linux)</p>
+                                <p>
+                                    <kbd>Shift + Alt + F</kbd>
+                                    (Windows/Linux)
+                                </p>
                             </div>
                         </div>
                         <p class="pt-md">
@@ -405,15 +512,16 @@ projektname/
                     <!-- Terminal öffnen -->
                     <section class="tutorials-content">
                         <h2 id="terminal">Terminal öffnen</h2>
+                        <p>Wenn du später mit Node.js oder Git arbeitest, brauchst du das integrierte Terminal.</p>
+
                         <p>
-                            Wenn du später mit Node.js oder Git arbeitest, brauchst du das integrierte Terminal.
+                            <kbd>Ctrl + `</kbd>
+                            (macOS &amp; Windows)
                         </p>
 
-                        <p><kbd>Ctrl + `</kbd> (macOS &amp; Windows)</p>
-
                         <p>
-                            Falls deine Tastatur kein „Ctrl“ besitzt (Mac):
-                            → <b>View → Terminal</b>
+                            Falls deine Tastatur kein „Ctrl“ besitzt (Mac): →
+                            <b>View → Terminal</b>
                         </p>
                     </section>
 
@@ -421,12 +529,16 @@ projektname/
                     <section class="tutorials-content">
                         <h2 id="sprache-einstellen">Sprache einstellen</h2>
                         <kbd>Cmd ⌘ + Shift + P</kbd>
-                        <p class="pt-lg"> → "language" eingeben → gewünschte Sprache auswählen. Danach muss
-                            VS Code neu gestartet werden.</p>
-                        <p>Solltest du eine andere Tastaturbelegung haben, die dir diesen Shortcut nicht erlaubt, kannst
-                            du aber ganz oben in das Suchfeld klicken (dort, wo der Name deines Root-Verzeichnisses
-                            steht), dann "&gt;" → "language" eintippen, wodurch die "richtige" Suche in den
-                            Einstellungen geöffnet wird..</p>
+                        <p class="pt-lg">
+                            → "language" eingeben → gewünschte Sprache auswählen. Danach muss VS Code neu gestartet
+                            werden.
+                        </p>
+                        <p>
+                            Solltest du eine andere Tastaturbelegung haben, die dir diesen Shortcut nicht erlaubt,
+                            kannst du aber ganz oben in das Suchfeld klicken (dort, wo der Name deines
+                            Root-Verzeichnisses steht), dann "&gt;" → "language" eintippen, wodurch die "richtige" Suche
+                            in den Einstellungen geöffnet wird..
+                        </p>
                     </section>
 
                     <!-- Plugins -->
@@ -435,20 +547,60 @@ projektname/
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" content="index, nofollow">Live Server </a>von
-                                        Ritwick Dey</li>
-                                    <li><a href="https://marketplace.visualstudio.com/items?itemName=FallenMax.mithril-emmet" target="_blank" content="index, nofollow">Mithril Emmet </a>von
-                                        FallenMax</li>
-                                    <li><a href="https://marketplace.visualstudio.com/items?itemName=ysemeniuk.emmet-live" target="_blank" content="index, nofollow">Emmet Live </a>von
-                                        Yurii Semeniuk</li>
+                                    <li>
+                                        <a
+                                            href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
+                                            target="_blank"
+                                            content="index, nofollow"
+                                        >
+                                            Live Server
+                                        </a>
+                                        von Ritwick Dey
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://marketplace.visualstudio.com/items?itemName=FallenMax.mithril-emmet"
+                                            target="_blank"
+                                            content="index, nofollow"
+                                        >
+                                            Mithril Emmet
+                                        </a>
+                                        von FallenMax
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://marketplace.visualstudio.com/items?itemName=ysemeniuk.emmet-live"
+                                            target="_blank"
+                                            content="index, nofollow"
+                                        >
+                                            Emmet Live
+                                        </a>
+                                        von Yurii Semeniuk
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li><a href="https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap" target="_blank" content="index, nofollow">htmltagwrap </a>von
-                                        Brad Gashler</li>
-                                    <li><a href="https://marketplace.visualstudio.com/items?itemName=grahammkelly.wordwrap-status" target="_blank" content="index, nofollow">Wordwrap status </a>von
-                                        rahammkelly</li>
+                                    <li>
+                                        <a
+                                            href="https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap"
+                                            target="_blank"
+                                            content="index, nofollow"
+                                        >
+                                            htmltagwrap
+                                        </a>
+                                        von Brad Gashler
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://marketplace.visualstudio.com/items?itemName=grahammkelly.wordwrap-status"
+                                            target="_blank"
+                                            content="index, nofollow"
+                                        >
+                                            Wordwrap status
+                                        </a>
+                                        von rahammkelly
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -463,29 +615,41 @@ projektname/
                             unübersichtlich machen.
                         </p>
                         <p>
-                            <strong>Profile</strong> lösen dieses Problem: Du erstellst separate Arbeitsumgebungen mit
-                            jeweils nur den Extensions und Einstellungen, die du für eine bestimmte Aufgabe brauchst.
+                            <strong>Profile</strong>
+                            lösen dieses Problem: Du erstellst separate Arbeitsumgebungen mit jeweils nur den Extensions
+                            und Einstellungen, die du für eine bestimmte Aufgabe brauchst.
                         </p>
 
                         <h3 id="profil-erstellen">Neues Profil erstellen</h3>
                         <p>
-                            <kbd>Cmd ⌘ + Shift + P</kbd> (Mac) oder <kbd>Strg + Shift + P</kbd> (Windows)<br>
+                            <kbd>Cmd ⌘ + Shift + P</kbd>
+                            (Mac) oder
+                            <kbd>Strg + Shift + P</kbd>
+                            (Windows)
+                            <br />
                             → "Profiles: Create Profile" eingeben → Enter
                         </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Optionen beim Erstellen
+                            <strong class="box-title no-toc">
+                                Optionen beim Erstellen
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Create an Empty Profile</strong> - Startet komplett leer, du installierst
-                                    alles neu</li>
-                                <li><strong>Copy from Current Profile</strong> - Übernimmt deine aktuellen Extensions
-                                    und Settings</li>
-                                <li><strong>Use Template</strong> - VS Code bietet vorgefertigte Templates (z.B. "Doc
-                                    Writer")</li>
+                                <li>
+                                    <strong>Create an Empty Profile</strong>
+                                    - Startet komplett leer, du installierst alles neu
+                                </li>
+                                <li>
+                                    <strong>Copy from Current Profile</strong>
+                                    - Übernimmt deine aktuellen Extensions und Settings
+                                </li>
+                                <li>
+                                    <strong>Use Template</strong>
+                                    - VS Code bietet vorgefertigte Templates (z.B. "Doc Writer")
+                                </li>
                             </ul>
                         </div>
 
@@ -493,57 +657,90 @@ projektname/
                         <p>Für ein schlankes Frontend-Profil brauchst du nur diese Extensions:</p>
 
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Live Server</strong> - Auto-Reload im Browser</li>
-                            <li><strong>Prettier</strong> - Code-Formatierung</li>
-                            <li><strong>Auto Rename Tag</strong> - Ändert öffnende/schließende Tags gleichzeitig</li>
-                            <li><strong>CSS Peek</strong> - Klick auf Klasse → springt zur CSS-Definition</li>
-                            <li><strong>HTML CSS Support</strong> - Autocomplete für CSS-Klassen in HTML</li>
+                            <li>
+                                <strong>Live Server</strong>
+                                - Auto-Reload im Browser
+                            </li>
+                            <li>
+                                <strong>Prettier</strong>
+                                - Code-Formatierung
+                            </li>
+                            <li>
+                                <strong>Auto Rename Tag</strong>
+                                - Ändert öffnende/schließende Tags gleichzeitig
+                            </li>
+                            <li>
+                                <strong>CSS Peek</strong>
+                                - Klick auf Klasse → springt zur CSS-Definition
+                            </li>
+                            <li>
+                                <strong>HTML CSS Support</strong>
+                                - Autocomplete für CSS-Klassen in HTML
+                            </li>
                         </ul>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Tipp
+                            <strong class="box-title notice no-toc">
+                                Tipp
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Emmet ist in VS Code eingebaut und braucht keine Extension - es funktioniert in jedem
-                                Profil automatisch!</p>
+                            <p>
+                                Emmet ist in VS Code eingebaut und braucht keine Extension - es funktioniert in jedem
+                                Profil automatisch!
+                            </p>
                         </div>
 
                         <h3 id="profil-wechseln">Zwischen Profilen wechseln</h3>
                         <p>
-                            Klicke unten links auf das <strong>Zahnrad-Icon</strong> → <strong>Profiles</strong> →
-                            Profil auswählen.
+                            Klicke unten links auf das
+                            <strong>Zahnrad-Icon</strong>
+                            →
+                            <strong>Profiles</strong>
+                            → Profil auswählen.
                         </p>
                         <p>
-                            Oder per Shortcut: <kbd>Cmd ⌘ + Shift + P</kbd> → "Profiles: Switch Profile"
+                            Oder per Shortcut:
+                            <kbd>Cmd ⌘ + Shift + P</kbd>
+                            → "Profiles: Switch Profile"
                         </p>
 
                         <h3 id="bestehende-projekte">Bei bestehenden Projekten</h3>
-                        <p>
-                            Wenn du ein Profil wechselst, passiert Folgendes:
-                        </p>
+                        <p>Wenn du ein Profil wechselst, passiert Folgendes:</p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Deine Dateien bleiben unverändert</strong> - Profile betreffen nur VS Code,
-                                nicht dein Projekt</li>
-                            <li><strong>Extensions werden getauscht</strong> - Nur die zum Profil gehörenden Extensions
-                                sind aktiv</li>
-                            <li><strong>Settings werden getauscht</strong> - Jedes Profil kann eigene Einstellungen
-                                haben</li>
-                            <li><strong>Workspace-Settings bleiben</strong> - Falls du
-                                <code>.vscode/settings.json</code> im Projekt hast, gilt diese weiterhin
+                            <li>
+                                <strong>Deine Dateien bleiben unverändert</strong>
+                                - Profile betreffen nur VS Code, nicht dein Projekt
+                            </li>
+                            <li>
+                                <strong>Extensions werden getauscht</strong>
+                                - Nur die zum Profil gehörenden Extensions sind aktiv
+                            </li>
+                            <li>
+                                <strong>Settings werden getauscht</strong>
+                                - Jedes Profil kann eigene Einstellungen haben
+                            </li>
+                            <li>
+                                <strong>Workspace-Settings bleiben</strong>
+                                - Falls du
+                                <code>.vscode/settings.json</code>
+                                im Projekt hast, gilt diese weiterhin
                             </li>
                         </ul>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Wichtig
+                            <strong class="box-title warning no-toc">
+                                Wichtig
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Extensions, die du im alten Profil installiert hattest, sind im neuen Profil
-                                <strong>nicht automatisch verfügbar</strong>. Du musst sie für jedes Profil separat
-                                installieren oder beim Erstellen "Copy from Current Profile" wählen.
+                            <p>
+                                Extensions, die du im alten Profil installiert hattest, sind im neuen Profil
+                                <strong>nicht automatisch verfügbar</strong>
+                                . Du musst sie für jedes Profil separat installieren oder beim Erstellen "Copy from
+                                Current Profile" wählen.
                             </p>
                         </div>
 
@@ -553,8 +750,8 @@ projektname/
                             importieren:
                         </p>
                         <p>
-                            <kbd>Cmd ⌘ + Shift + P</kbd> → "Profiles: Export Profile" → Als Datei speichern oder GitHub
-                            Gist
+                            <kbd>Cmd ⌘ + Shift + P</kbd>
+                            → "Profiles: Export Profile" → Als Datei speichern oder GitHub Gist
                         </p>
 
                         <h3 id="workspace-settings">Projekt-spezifische Settings</h3>
@@ -568,7 +765,7 @@ projektname/
                                 <span class="code-lang">JSON</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -586,7 +783,6 @@ projektname/
                         <p>
                             Diese Settings gelten nur für dieses Projekt und überschreiben deine globalen Einstellungen.
                         </p>
-
                     </section>
 
                     <!-- Praktische Shortcuts -->
@@ -622,7 +818,11 @@ projektname/
                                     <td><kbd>Shift + Alt + ↓ / ↑</kbd></td>
                                 </tr>
                                 <tr>
-                                    <td>Tag setzen - wird mit <code>&lt;p&gt;</code>-Tag umschlossen - markieren →</td>
+                                    <td>
+                                        Tag setzen - wird mit
+                                        <code>&lt;p&gt;</code>
+                                        -Tag umschlossen - markieren →
+                                    </td>
                                     <td><kbd>Opt ⌥ + w</kbd></td>
                                     <td><kbd>Alt + w</kbd></td>
                                 </tr>
@@ -662,11 +862,20 @@ projektname/
                                     <td><kbd>Strg + Shift + L</kbd></td>
                                 </tr>
                                 <tr>
-                                    <td>Mehrere Elemente auf einmal generieren <br>
-                                        gewünschtes Element ohne &lt; &gt; eintippen, z. B.: </td>
-                                    <td>li*Anzahl <br> <kbd>enter ↵</kbd><br>
+                                    <td>
+                                        Mehrere Elemente auf einmal generieren
+                                        <br />
+                                        gewünschtes Element ohne &lt; &gt; eintippen, z. B.:
                                     </td>
-                                    <td>li*Anzahl<br>
+                                    <td>
+                                        li*Anzahl
+                                        <br />
+                                        <kbd>enter ↵</kbd>
+                                        <br />
+                                    </td>
+                                    <td>
+                                        li*Anzahl
+                                        <br />
                                         <kbd>enter ↵</kbd>
                                     </td>
                                 </tr>
@@ -692,65 +901,64 @@ projektname/
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-verschiedenes">Mehr aus Verschiedenes</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="misc">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/misc/seo-optimization/duplicate-content.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Duplicate Content verstehen & vermeiden</span>
-                <span class="tutorial-nav-category is-new">SEO Optimization</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">CSS-Duplikate finden & vergleichen in VS Code</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/misc/seo-optimization/duplicate-content.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Duplicate Content verstehen & vermeiden</span>
+                                    <span class="tutorial-nav-category is-new">SEO Optimization</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">CSS-Duplikate finden & vergleichen in VS Code</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-
-
-    
-
-</body></html>
+    </body>
+</html>

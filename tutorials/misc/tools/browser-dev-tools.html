@@ -1,178 +1,205 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="Die Browser DevTools: Inspektor, Console, Debugger, Network-Tab und Lighthouse. Lerne Debugging, Live-Editing und Performance-Analyse für deine Webentwicklung.">
-        <meta name="keywords" content="Browser DevTools, Chrome DevTools, Firefox Inspektor, Console Debugging, JavaScript Debugger, Network Tab, Lighthouse, Responsive Design, Webentwicklung Tools">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="Die Browser DevTools: Inspektor, Console, Debugger, Network-Tab und Lighthouse. Lerne Debugging, Live-Editing und Performance-Analyse für deine Webentwicklung."
+        />
+        <meta
+            name="keywords"
+            content="Browser DevTools, Chrome DevTools, Firefox Inspektor, Console Debugging, JavaScript Debugger, Network Tab, Lighthouse, Responsive Design, Webentwicklung Tools"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>Browser DevTools - Debugging &amp; Performance | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">Browser DevTools</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/misc/" class="breadcrumb-link">Verschiedenes</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Browser DevTools</span>
+                    </nav>
                     <h1 class="hero-title">Browser DevTools</h1>
                     <p class="hero-subtitle">Inspektor, Console, Debugger &amp; mehr - dein Röntgenblick ins Web.</p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -181,7 +208,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -194,27 +220,42 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#was-sind-browser-devtools">Was sind Browser DevTools?</a></li>
-                    <li class="toc-level-2"><a href="#devtools-oeffnen">DevTools öffnen</a></li>
-                    <li class="toc-level-1"><a href="#elements-inspektor">Elements / Inspektor</a></li>
-                    <li class="toc-level-2"><a href="#was-du-hier-machen-kannst">Was du hier machen kannst</a></li>
-                    <li class="toc-level-2"><a href="#praktische-features">Praktische Features</a></li>
-                    <li class="toc-level-2"><a href="#typische-anwendungsfaelle">Typische Anwendungsfälle</a></li>
-                    <li class="toc-level-1"><a href="#console">Console</a></li>
-                    <li class="toc-level-2"><a href="#was-die-console-kann">Was die Console kann</a></li>
-                    <li class="toc-level-2"><a href="#bonus-custom-begruessungstext-in-der-console">Bonus: Custom Begrüßungstext in der
-                            Console</a></li>
-                    <li class="toc-level-1"><a href="#sources-debugger">Sources / Debugger</a></li>
-                    <li class="toc-level-1"><a href="#network-netzwerkanalyse">Network / Netzwerkanalyse</a></li>
-                    <li class="toc-level-1"><a href="#performance">Performance</a></li>
-                    <li class="toc-level-1"><a href="#application-speicher">Application / Speicher</a></li>
-                    <li class="toc-level-1"><a href="#lighthouse">Lighthouse</a></li>
-                    <li class="toc-level-1"><a href="#responsive-design-mode">Responsive Design Mode</a></li>
-                    <li class="toc-level-1"><a href="#weitere-nuetzliche-features">Weitere nützliche Features</a></li>
-                    <li class="toc-level-1"><a href="#best-practices-tipps">Best Practices &amp; Tipps</a></li>
-                    <li class="toc-level-1"><a href="#wichtige-tastenkombinationen">Wichtige Tastenkombinationen</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1">
+                                <a href="#was-sind-browser-devtools">Was sind Browser DevTools?</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#devtools-oeffnen">DevTools öffnen</a></li>
+                            <li class="toc-level-1"><a href="#elements-inspektor">Elements / Inspektor</a></li>
+                            <li class="toc-level-2">
+                                <a href="#was-du-hier-machen-kannst">Was du hier machen kannst</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#praktische-features">Praktische Features</a></li>
+                            <li class="toc-level-2">
+                                <a href="#typische-anwendungsfaelle">Typische Anwendungsfälle</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#console">Console</a></li>
+                            <li class="toc-level-2"><a href="#was-die-console-kann">Was die Console kann</a></li>
+                            <li class="toc-level-2">
+                                <a href="#bonus-custom-begruessungstext-in-der-console">
+                                    Bonus: Custom Begrüßungstext in der Console
+                                </a>
+                            </li>
+                            <li class="toc-level-1"><a href="#sources-debugger">Sources / Debugger</a></li>
+                            <li class="toc-level-1">
+                                <a href="#network-netzwerkanalyse">Network / Netzwerkanalyse</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#performance">Performance</a></li>
+                            <li class="toc-level-1"><a href="#application-speicher">Application / Speicher</a></li>
+                            <li class="toc-level-1"><a href="#lighthouse">Lighthouse</a></li>
+                            <li class="toc-level-1"><a href="#responsive-design-mode">Responsive Design Mode</a></li>
+                            <li class="toc-level-1">
+                                <a href="#weitere-nuetzliche-features">Weitere nützliche Features</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#best-practices-tipps">Best Practices &amp; Tipps</a></li>
+                            <li class="toc-level-1">
+                                <a href="#wichtige-tastenkombinationen">Wichtige Tastenkombinationen</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -230,52 +271,95 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">SEO Optimization</li>
-                    <li><a href="/tutorials/misc/seo-optimization/duplicate-content.html">Duplicate Content verstehen & vermeiden</a></li>
-                    <li class="sidebar-group-title">Tools</li>
-                    <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
-                    <li><a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">CSS-Duplikate finden & vergleichen in VS Code</a></li>
-                    <li><a href="/tutorials/misc/tools/browser-dev-tools.html" class="active">Browser DevTools</a></li>
-                    <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
-                    <li><a href="/tutorials/misc/tools/git-versionskontrolle.html">Git - Lokale Versionskontrolle</a></li>
-                    <li><a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a></li>
-                    <li><a href="/tutorials/misc/tools/ftp-client-filezilla.html">FileZilla FTP-Client einrichten</a></li>
-                    <li><a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">Globale Änderungen an HTML-Dateien</a></li>
-                    <li class="sidebar-group-title">Web</li>
-                    <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
-                </ul>
+                            <li class="sidebar-group-title">SEO Optimization</li>
+                            <li>
+                                <a href="/tutorials/misc/seo-optimization/duplicate-content.html">
+                                    Duplicate Content verstehen & vermeiden
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Tools</li>
+                            <li><a href="/tutorials/misc/tools/vs-code.html">VS Code für HTML & CSS</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">
+                                    CSS-Duplikate finden & vergleichen in VS Code
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/browser-dev-tools.html" class="active">
+                                    Browser DevTools
+                                </a>
+                            </li>
+                            <li><a href="/tutorials/misc/tools/bash-terminal.html">Terminal & Bash Basics</a></li>
+                            <li>
+                                <a href="/tutorials/misc/tools/git-versionskontrolle.html">
+                                    Git - Lokale Versionskontrolle
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/github-remote.html">GitHub - Dein Code in der Cloud</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/ftp-client-filezilla.html">
+                                    FileZilla FTP-Client einrichten
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/misc/tools/globale-aenderungen-an-HTML-Dateien.html">
+                                    Globale Änderungen an HTML-Dateien
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">Web</li>
+                            <li><a href="/tutorials/misc/web/console-security.html">Console Security & Self-XSS</a></li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Einführung -->
                     <section class="tutorials-content mt-xl">
                         <h2 id="was-sind-browser-devtools">Was sind Browser DevTools?</h2>
 
-                        <p>Die Browser Developer Tools (kurz: DevTools) sind ein eingebautes Werkzeugset in jedem
+                        <p>
+                            Die Browser Developer Tools (kurz: DevTools) sind ein eingebautes Werkzeugset in jedem
                             modernen Browser. Sie sind quasi dein "Röntgenblick" ins Web - damit siehst du, wie
                             Webseiten aufgebaut sind, kannst live Code ändern, Fehler finden und die Performance
-                            analysieren.</p>
+                            analysieren.
+                        </p>
 
-                        <p>Ehrlich gesagt: Ohne DevTools wäre Webentwicklung wie im Dunkeln programmieren. Sie sind dein
-                            wichtigstes Tool überhaupt!</p>
+                        <p>
+                            Ehrlich gesagt: Ohne DevTools wäre Webentwicklung wie im Dunkeln programmieren. Sie sind
+                            dein wichtigstes Tool überhaupt!
+                        </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum DevTools so wichtig sind
+                            <strong class="box-title no-toc">
+                                Warum DevTools so wichtig sind
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Debugging:</strong> Finde Fehler in HTML, CSS und JavaScript</li>
-                                <li><strong>Live-Editing:</strong> Teste Änderungen direkt im Browser, bevor du sie im
-                                    Code umsetzt</li>
-                                <li><strong>Performance:</strong> Analysiere, warum deine Seite langsam lädt</li>
-                                <li><strong>Lernen:</strong> Schau dir an, wie andere Websites gebaut sind</li>
-                                <li><strong>Responsive Testing:</strong> Prüfe, wie deine Seite auf verschiedenen
-                                    Geräten aussieht</li>
+                                <li>
+                                    <strong>Debugging:</strong>
+                                    Finde Fehler in HTML, CSS und JavaScript
+                                </li>
+                                <li>
+                                    <strong>Live-Editing:</strong>
+                                    Teste Änderungen direkt im Browser, bevor du sie im Code umsetzt
+                                </li>
+                                <li>
+                                    <strong>Performance:</strong>
+                                    Analysiere, warum deine Seite langsam lädt
+                                </li>
+                                <li>
+                                    <strong>Lernen:</strong>
+                                    Schau dir an, wie andere Websites gebaut sind
+                                </li>
+                                <li>
+                                    <strong>Responsive Testing:</strong>
+                                    Prüfe, wie deine Seite auf verschiedenen Geräten aussieht
+                                </li>
                             </ul>
                         </div>
 
@@ -287,7 +371,7 @@
                                 <span class="code-lang">plain text</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -301,22 +385,29 @@ Strg + Shift + J       → Console öffnen (Windows/Linux)
 Cmd + Option + J       → Console öffnen (Mac)</code></pre>
                         </div>
 
-                        <p><strong>Alternative:</strong> Rechtsklick auf ein Element → "Untersuchen" / "Inspect"</p>
+                        <p>
+                            <strong>Alternative:</strong>
+                            Rechtsklick auf ein Element → "Untersuchen" / "Inspect"
+                        </p>
                     </section>
 
                     <!-- Elements/Inspektor -->
                     <section class="tutorials-content">
                         <h2 id="elements-inspektor">Elements / Inspektor</h2>
 
-                        <p>Der Elements-Tab (bei Firefox: "Inspektor") zeigt dir die komplette HTML-Struktur und
-                            CSS-Styles
-                            deiner Seite. Das ist der Tab, den du vermutlich am häufigsten verwendest.</p>
+                        <p>
+                            Der Elements-Tab (bei Firefox: "Inspektor") zeigt dir die komplette HTML-Struktur und
+                            CSS-Styles deiner Seite. Das ist der Tab, den du vermutlich am häufigsten verwendest.
+                        </p>
 
                         <h3 id="was-du-hier-machen-kannst">Was du hier machen kannst</h3>
-                        <p><strong>Wichtig:</strong> Alle Änderungen sind temporär und verschwinden beim Neuladen!
+                        <p>
+                            <strong>Wichtig:</strong>
+                            Alle Änderungen sind temporär und verschwinden beim Neuladen!
                         </p>
                         <div class="info-box">
-                            <strong class="box-title no-toc">HTML-Struktur untersuchen
+                            <strong class="box-title no-toc">
+                                HTML-Struktur untersuchen
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -330,7 +421,8 @@ Cmd + Option + J       → Console öffnen (Mac)</code></pre>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Live-Editing
+                            <strong class="box-title no-toc">
+                                Live-Editing
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -344,7 +436,8 @@ Cmd + Option + J       → Console öffnen (Mac)</code></pre>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">CSS-Styles untersuchen und ändern
+                            <strong class="box-title no-toc">
+                                CSS-Styles untersuchen und ändern
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -355,7 +448,10 @@ Cmd + Option + J       → Console öffnen (Mac)</code></pre>
                                 <li>Durchgestrichene Regeln wurden überschrieben</li>
                                 <li>Klick in ein Feld → Werte direkt ändern</li>
                                 <li>Checkbox an/aus → Style aktivieren/deaktivieren</li>
-                                <li><code class="inline">element.style</code> → Inline-Styles (höchste Priorität)</li>
+                                <li>
+                                    <code class="inline">element.style</code>
+                                    → Inline-Styles (höchste Priorität)
+                                </li>
                             </ul>
                         </div>
 
@@ -366,7 +462,7 @@ Cmd + Option + J       → Console öffnen (Mac)</code></pre>
                                 <span class="code-lang">plain text</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -389,7 +485,8 @@ Hovere dort über die Zahlen → sieht die Bereiche auf der Seite</code></pre>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Computed Styles
+                            <strong class="box-title no-toc">
+                                Computed Styles
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -425,8 +522,9 @@ Hovere dort über die Zahlen → sieht die Bereiche auf der Seite</code></pre>
                                     <li>Schau dir HTML-Struktur und CSS an</li>
                                     <li>Kopiere interessante Techniken für eigene Projekte</li>
                                 </ol>
-                                <p><strong>💡 Tipp:</strong> So lernt man super viel! Einfach coole Websites
-                                    inspizieren.
+                                <p>
+                                    <strong>💡 Tipp:</strong>
+                                    So lernt man super viel! Einfach coole Websites inspizieren.
                                 </p>
                             </div>
                         </details>
@@ -436,9 +534,12 @@ Hovere dort über die Zahlen → sieht die Bereiche auf der Seite</code></pre>
                     <section class="tutorials-content">
                         <h2 id="console">Console</h2>
 
-                        <p>Die Console ist dein direkter Draht zu JavaScript. Hier siehst du Fehlermeldungen, kannst
-                            Code
-                            ausführen und mit <code class="inline">console.log()</code> debuggen.</p>
+                        <p>
+                            Die Console ist dein direkter Draht zu JavaScript. Hier siehst du Fehlermeldungen, kannst
+                            Code ausführen und mit
+                            <code class="inline">console.log()</code>
+                            debuggen.
+                        </p>
 
                         <h3 id="was-die-console-kann">Was die Console kann</h3>
 
@@ -448,7 +549,7 @@ Hovere dort über die Zahlen → sieht die Bereiche auf der Seite</code></pre>
                                 <span class="code-lang">javascript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -476,7 +577,6 @@ console.time('Ladezeit');
 console.timeEnd('Ladezeit'); // Zeigt Millisekunden an</code></pre>
                         </div>
 
-
                         <h4>JavaScript direkt ausführen</h4>
                         <p>Du kannst direkt in der Console JavaScript-Code eingeben und ausführen:</p>
                         <div class="code-block">
@@ -484,7 +584,7 @@ console.timeEnd('Ladezeit'); // Zeigt Millisekunden an</code></pre>
                                 <span class="code-lang">javascript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -506,14 +606,13 @@ function greet(name) {
 greet('Bianca');</code></pre>
                         </div>
 
-
                         <h4>Praktische Console-Helfer</h4>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">javascript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -538,11 +637,11 @@ getEventListeners($('button'))
 clear()  // oder Ctrl+L / Cmd+K</code></pre>
                         </div>
 
-
-                        <h3 id="bonus-custom-begruessungstext-in-der-console">Bonus: Custom Begrüßungstext in der
-                            Console
+                        <h3 id="bonus-custom-begruessungstext-in-der-console">
+                            Bonus: Custom Begrüßungstext in der Console
                         </h3>
-                        <p>Du möchtest einen coolen Begrüßungstext anzeigen, wenn jemand die Console öffnet? So geht's!
+                        <p>
+                            Du möchtest einen coolen Begrüßungstext anzeigen, wenn jemand die Console öffnet? So geht's!
                         </p>
 
                         <!-- Basis-Begrüßung -->
@@ -552,7 +651,7 @@ clear()  // oder Ctrl+L / Cmd+K</code></pre>
                                 <span class="code-lang">javascript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -563,7 +662,6 @@ console.log('Du schaust dir den Code an? Sehr gut! 👀');
 console.log('Fragen? Schreib mir: hello@devpaniczone.de');</code></pre>
                         </div>
 
-
                         <!-- Mit Styling -->
                         <h4>Mit Styling</h4>
                         <div class="code-block">
@@ -571,7 +669,7 @@ console.log('Fragen? Schreib mir: hello@devpaniczone.de');</code></pre>
                                 <span class="code-lang">javascript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -605,7 +703,7 @@ console.log(
                                 <span class="code-lang">javascript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -633,12 +731,10 @@ console.log('%c⚡ Pro-Tipp: Drück Escape um diese Messages zu minimieren',
     'color: #999; font-size: 11px; font-style: italic;');</code></pre>
                         </div>
 
-
-
                         <!-- Warnung vor Scamming -->
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung"><span class="red">Warnung vor Scamming
-                                    - Wichtig für Live-Sites!</span>
+                            <strong class="box-title danger no-toc" id="achtung">
+                                <span class="red">Warnung vor Scamming - Wichtig für Live-Sites!</span>
                                 <svg class="icon-ui icon-red-light">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -663,46 +759,76 @@ console.log('Weitere Infos: https://de.wikipedia.org/wiki/Self-XSS');</code></pr
                         </div>
 
                         <div class="cta-content">
-                            <a href="/tutorials/misc/web/console-security.html" target="_blank" class="btn btn-secondary">Mehr zu Console
-                                Security</a>
+                            <a
+                                href="/tutorials/misc/web/console-security.html"
+                                target="_blank"
+                                class="btn btn-secondary"
+                            >
+                                Mehr zu Console Security
+                            </a>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Wo die Begrüßung einfügen?
+                            <strong class="box-title no-toc">
+                                Wo die Begrüßung einfügen?
                                 <svg class="icon-ui">
                                     <use href="#dpz-bulb-circle"></use>
                                 </svg>
                             </strong>
                             <p>Du hast mehrere Optionen:</p>
                             <ul class="arrow-list">
-                                <li><strong>In main.js:</strong> Füge den Code am Anfang deiner main.js ein</li>
-                                <li><strong>Eigene Datei:</strong> Erstelle <code class="inline">console-greeting.js</code>
-                                    und binde
-                                    sie
-                                    im HTML ein:<br>
-                                    <code class="inline">&lt;script src="/assets/js/console-greeting.js"&gt;&lt;/script&gt;</code>
+                                <li>
+                                    <strong>In main.js:</strong>
+                                    Füge den Code am Anfang deiner main.js ein
                                 </li>
-                                <li><strong>Direkt im HTML:</strong> Im <code class="inline">&lt;head&gt;</code> oder
-                                    vor
-                                    <code class="inline">&lt;/body&gt;</code> in einem <code class="inline">&lt;script&gt;</code>-Tag
+                                <li>
+                                    <strong>Eigene Datei:</strong>
+                                    Erstelle
+                                    <code class="inline">console-greeting.js</code>
+                                    und binde sie im HTML ein:
+                                    <br />
+                                    <code class="inline">
+                                        &lt;script src="/assets/js/console-greeting.js"&gt;&lt;/script&gt;
+                                    </code>
+                                </li>
+                                <li>
+                                    <strong>Direkt im HTML:</strong>
+                                    Im
+                                    <code class="inline">&lt;head&gt;</code>
+                                    oder vor
+                                    <code class="inline">&lt;/body&gt;</code>
+                                    in einem
+                                    <code class="inline">&lt;script&gt;</code>
+                                    -Tag
                                 </li>
                             </ul>
                         </div>
-
 
                         <h3 class="no-toc">Console-Filter nutzen</h3>
                         <p>Oben in der Console kannst du filtern nach:</p>
                         <div class="grid-2col grid-2col-bg">
                             <div>
                                 <ul class="arrow-list">
-                                    <li><strong>Errors:</strong> Nur Fehler anzeigen</li>
-                                    <li><strong>Warnings:</strong> Nur Warnungen</li>
+                                    <li>
+                                        <strong>Errors:</strong>
+                                        Nur Fehler anzeigen
+                                    </li>
+                                    <li>
+                                        <strong>Warnings:</strong>
+                                        Nur Warnungen
+                                    </li>
                                 </ul>
                             </div>
                             <div>
                                 <ul class="arrow-list">
-                                    <li><strong>Info/Verbose:</strong> Detaillierte Logs</li>
-                                    <li><strong>Text-Suche:</strong> Nach bestimmten Nachrichten suchen</li>
+                                    <li>
+                                        <strong>Info/Verbose:</strong>
+                                        Detaillierte Logs
+                                    </li>
+                                    <li>
+                                        <strong>Text-Suche:</strong>
+                                        Nach bestimmten Nachrichten suchen
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -711,13 +837,16 @@ console.log('Weitere Infos: https://de.wikipedia.org/wiki/Self-XSS');</code></pr
                     <!-- Sources / Debugger -->
                     <section class="tutorials-content">
                         <h2 id="sources-debugger">Sources / Debugger</h2>
-                        <p>Im Sources-Tab (bei Firefox: "Debugger") siehst du alle Dateien deiner Website und kannst
-                            JavaScript im Detail debuggen.</p>
+                        <p>
+                            Im Sources-Tab (bei Firefox: "Debugger") siehst du alle Dateien deiner Website und kannst
+                            JavaScript im Detail debuggen.
+                        </p>
 
                         <h3 class="no-toc">Was du hier findest</h3>
                         <!-- Datei-Übersicht -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Datei-Übersicht
+                            <strong class="box-title no-toc">
+                                Datei-Übersicht
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -738,10 +867,11 @@ console.log('Weitere Infos: https://de.wikipedia.org/wiki/Self-XSS');</code></pr
                             </div>
                         </div>
 
-
                         <h3 class="no-toc">Breakpoints setzen</h3>
-                        <p>Breakpoints sind dein wichtigstes Debugging-Tool. Sie pausieren die Code-Ausführung an einer
-                            bestimmten Stelle.</p>
+                        <p>
+                            Breakpoints sind dein wichtigstes Debugging-Tool. Sie pausieren die Code-Ausführung an einer
+                            bestimmten Stelle.
+                        </p>
 
                         <!-- So setzt du Breakpoints -->
                         <h4>So setzt du Breakpoints</h4>
@@ -759,14 +889,26 @@ console.log('Weitere Infos: https://de.wikipedia.org/wiki/Self-XSS');</code></pr
                         <p>Wenn der Code pausiert ist, hast du folgende Buttons:</p>
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><strong>▶️ Resume:</strong> Code weiterlaufen lassen bis zum nächsten Breakpoint
+                                <li>
+                                    <strong>▶️ Resume:</strong>
+                                    Code weiterlaufen lassen bis zum nächsten Breakpoint
                                 </li>
-                                <li><strong>⤵️ Step Over:</strong> Nächste Zeile ausführen (Funktionen werden
-                                    übersprungen)
+                                <li>
+                                    <strong>⤵️ Step Over:</strong>
+                                    Nächste Zeile ausführen (Funktionen werden übersprungen)
                                 </li>
-                                <li><strong>⬇️ Step Into:</strong> In eine Funktion hineinspringen</li>
-                                <li><strong>⬆️ Step Out:</strong> Aus aktueller Funktion herausspringen</li>
-                                <li><strong>⏭️ Step:</strong> Zeile für Zeile durchgehen</li>
+                                <li>
+                                    <strong>⬇️ Step Into:</strong>
+                                    In eine Funktion hineinspringen
+                                </li>
+                                <li>
+                                    <strong>⬆️ Step Out:</strong>
+                                    Aus aktueller Funktion herausspringen
+                                </li>
+                                <li>
+                                    <strong>⏭️ Step:</strong>
+                                    Zeile für Zeile durchgehen
+                                </li>
                             </ul>
                         </div>
 
@@ -776,7 +918,7 @@ console.log('Weitere Infos: https://de.wikipedia.org/wiki/Self-XSS');</code></pr
                                 <span class="code-lang">Javascript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -797,15 +939,22 @@ if (shouldDebug) {
 }</code></pre>
                         </div>
 
-
                         <!-- Watch & Scope -->
                         <h3 class="no-toc">Watch &amp; Scope</h3>
                         <p>Während der Code pausiert ist, siehst du rechts:</p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Scope:</strong> Alle verfügbaren Variablen im aktuellen Kontext</li>
-                            <li><strong>Watch:</strong> Füge eigene Ausdrücke hinzu, die du beobachten willst</li>
-                            <li><strong>Call Stack:</strong> Die komplette Aufruf-Kette (welche Funktion hat welche
-                                aufgerufen)</li>
+                            <li>
+                                <strong>Scope:</strong>
+                                Alle verfügbaren Variablen im aktuellen Kontext
+                            </li>
+                            <li>
+                                <strong>Watch:</strong>
+                                Füge eigene Ausdrücke hinzu, die du beobachten willst
+                            </li>
+                            <li>
+                                <strong>Call Stack:</strong>
+                                Die komplette Aufruf-Kette (welche Funktion hat welche aufgerufen)
+                            </li>
                         </ul>
                     </section>
 
@@ -813,14 +962,17 @@ if (shouldDebug) {
                     <section class="tutorials-content">
                         <h2 id="network-netzwerkanalyse">Network / Netzwerkanalyse</h2>
 
-                        <p>Der Network-Tab zeigt dir alles, was deine Seite lädt: HTML, CSS, JavaScript, Bilder, Fonts,
-                            API-Calls - einfach alles!</p>
+                        <p>
+                            Der Network-Tab zeigt dir alles, was deine Seite lädt: HTML, CSS, JavaScript, Bilder, Fonts,
+                            API-Calls - einfach alles!
+                        </p>
 
                         <h3 class="no-toc">Was du hier siehst</h3>
 
                         <!-- Request-Liste -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Request-Liste
+                            <strong class="box-title no-toc">
+                                Request-Liste
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -829,17 +981,34 @@ if (shouldDebug) {
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><strong>Name:</strong> Dateiname oder URL</li>
-                                        <li><strong>Status:</strong> HTTP-Status (200 = OK, 404 = Not Found, etc.)</li>
-                                        <li><strong>Type:</strong> Dateityp (document, stylesheet, script, image, etc.)
+                                        <li>
+                                            <strong>Name:</strong>
+                                            Dateiname oder URL
+                                        </li>
+                                        <li>
+                                            <strong>Status:</strong>
+                                            HTTP-Status (200 = OK, 404 = Not Found, etc.)
+                                        </li>
+                                        <li>
+                                            <strong>Type:</strong>
+                                            Dateityp (document, stylesheet, script, image, etc.)
                                         </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><strong>Size:</strong> Dateigröße</li>
-                                        <li><strong>Time:</strong> Ladezeit</li>
-                                        <li><strong>Waterfall:</strong> Zeitstrahl wann was geladen wurde</li>
+                                        <li>
+                                            <strong>Size:</strong>
+                                            Dateigröße
+                                        </li>
+                                        <li>
+                                            <strong>Time:</strong>
+                                            Ladezeit
+                                        </li>
+                                        <li>
+                                            <strong>Waterfall:</strong>
+                                            Zeitstrahl wann was geladen wurde
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -863,22 +1032,36 @@ if (shouldDebug) {
 
                         <div class="grid-2col">
                             <div class="info-box">
-                                <strong class="box-title no-toc">Request-Details ansehen
+                                <strong class="box-title no-toc">
+                                    Request-Details ansehen
                                     <svg class="icon-ui">
                                         <use href="#dpz-info-circle"></use>
                                     </svg>
                                 </strong>
                                 <p>Klick auf einen Request → siehst du Details:</p>
                                 <ul class="arrow-list">
-                                    <li><strong>Headers:</strong> HTTP-Header (Request + Response)</li>
-                                    <li><strong>Preview:</strong> Vorschau der Daten</li>
-                                    <li><strong>Response:</strong> Rohe Antwort vom Server</li>
-                                    <li><strong>Timing:</strong> Detaillierte Ladezeiten</li>
+                                    <li>
+                                        <strong>Headers:</strong>
+                                        HTTP-Header (Request + Response)
+                                    </li>
+                                    <li>
+                                        <strong>Preview:</strong>
+                                        Vorschau der Daten
+                                    </li>
+                                    <li>
+                                        <strong>Response:</strong>
+                                        Rohe Antwort vom Server
+                                    </li>
+                                    <li>
+                                        <strong>Timing:</strong>
+                                        Detaillierte Ladezeiten
+                                    </li>
                                 </ul>
                             </div>
 
                             <div class="info-box">
-                                <strong class="box-title no-toc">⚡ Performance prüfen
+                                <strong class="box-title no-toc">
+                                    ⚡ Performance prüfen
                                     <svg class="icon-ui">
                                         <use href="#dpz-info-circle"></use>
                                     </svg>
@@ -893,7 +1076,9 @@ if (shouldDebug) {
                         </div>
 
                         <h4>API-Calls filtern (Fetch/XHR)</h4>
-                        <p>Wenn du mit APIs arbeitest und nur die Daten-Requests sehen willst (keine Bilder, CSS, etc.):
+                        <p>
+                            Wenn du mit APIs arbeitest und nur die Daten-Requests sehen willst (keine Bilder, CSS,
+                            etc.):
                         </p>
                         <ol class="grid-2col-bg">
                             <li>Klick oben im Network-Tab auf "Fetch/XHR"</li>
@@ -901,12 +1086,12 @@ if (shouldDebug) {
                             <li>Super für Backend-Debugging – welche Daten werden gesendet/empfangen?</li>
                         </ol>
 
-
                         <h3 class="no-toc">Netzwerk-Bedingungen simulieren</h3>
                         <p>Teste, wie deine Seite bei langsamer Verbindung lädt:</p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Throttling (Drosselung)
+                            <strong class="box-title no-toc">
+                                Throttling (Drosselung)
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
@@ -951,16 +1136,16 @@ if (shouldDebug) {
                                 </ol>
                             </div>
                         </div>
-
                     </section>
 
                     <!-- Performance -->
                     <section class="tutorials-content">
                         <h2 id="performance">Performance</h2>
 
-                        <p>Der Performance-Tab (oder "Leistung") zeigt dir im Detail, was beim Laden und Ausführen
-                            deiner
-                            Seite passiert - Frame für Frame.</p>
+                        <p>
+                            Der Performance-Tab (oder "Leistung") zeigt dir im Detail, was beim Laden und Ausführen
+                            deiner Seite passiert - Frame für Frame.
+                        </p>
 
                         <h3 class="no-toc">Recording starten</h3>
 
@@ -977,7 +1162,8 @@ if (shouldDebug) {
 
                         <!-- Was du hier siehst -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Was du hier siehst
+                            <strong class="box-title no-toc">
+                                Was du hier siehst
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -985,17 +1171,30 @@ if (shouldDebug) {
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><strong>Screenshots:</strong> Visuelle Timeline wie die Seite aufgebaut wird
+                                        <li>
+                                            <strong>Screenshots:</strong>
+                                            Visuelle Timeline wie die Seite aufgebaut wird
                                         </li>
-                                        <li><strong>FPS-Graph:</strong> Frames per Second (sollte bei 60 fps liegen)
+                                        <li>
+                                            <strong>FPS-Graph:</strong>
+                                            Frames per Second (sollte bei 60 fps liegen)
                                         </li>
-                                        <li><strong>CPU-Auslastung:</strong> Wo die CPU-Zeit hingeht</li>
+                                        <li>
+                                            <strong>CPU-Auslastung:</strong>
+                                            Wo die CPU-Zeit hingeht
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><strong>Network:</strong> Wann welche Dateien geladen wurden</li>
-                                        <li><strong>Frames:</strong> Einzelne Render-Frames</li>
+                                        <li>
+                                            <strong>Network:</strong>
+                                            Wann welche Dateien geladen wurden
+                                        </li>
+                                        <li>
+                                            <strong>Frames:</strong>
+                                            Einzelne Render-Frames
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1016,35 +1215,38 @@ if (shouldDebug) {
                                     <li>Lange Ladezeiten → zu viele/große Ressourcen</li>
                                 </ul>
                             </div>
-
                         </div>
 
                         <!-- Tipp -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Tipp
+                            <strong class="box-title no-toc">
+                                Tipp
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Für die meisten Projekte reicht der Network-Tab. Performance-Profiling
-                                brauchst du erst bei komplexeren Apps oder wenn du merkst, dass was ruckelt.</p>
+                            <p>
+                                Für die meisten Projekte reicht der Network-Tab. Performance-Profiling brauchst du erst
+                                bei komplexeren Apps oder wenn du merkst, dass was ruckelt.
+                            </p>
                         </div>
-
                     </section>
 
                     <!-- Application / Storage -->
                     <section class="tutorials-content">
                         <h2 id="application-speicher">Application / Speicher</h2>
 
-                        <p>Der Application-Tab zeigt dir alle gespeicherten Daten im Browser: Cookies, LocalStorage,
-                            Session
-                            Storage, Cache und mehr.</p>
+                        <p>
+                            Der Application-Tab zeigt dir alle gespeicherten Daten im Browser: Cookies, LocalStorage,
+                            Session Storage, Cache und mehr.
+                        </p>
 
                         <h3 class="no-toc">Was du hier findest</h3>
 
                         <!-- Cookies -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Cookies
+                            <strong class="box-title no-toc">
+                                Cookies
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1069,7 +1271,8 @@ if (shouldDebug) {
 
                         <!-- Local Storage & Session Storage -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Local Storage &amp; Session Storage
+                            <strong class="box-title no-toc">
+                                Local Storage &amp; Session Storage
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1088,7 +1291,8 @@ sessionStorage.getItem('temp');</code></pre>
 
                         <!-- Cache Storage -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Cache Storage
+                            <strong class="box-title no-toc">
+                                Cache Storage
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1115,26 +1319,41 @@ sessionStorage.getItem('temp');</code></pre>
                     <section class="tutorials-content">
                         <h2 id="lighthouse">Lighthouse</h2>
 
-                        <p>Lighthouse ist ein automatisches Audit-Tool, das deine Website bewertet und
-                            Verbesserungsvorschläge macht.</p>
+                        <p>
+                            Lighthouse ist ein automatisches Audit-Tool, das deine Website bewertet und
+                            Verbesserungsvorschläge macht.
+                        </p>
 
                         <h3 class="no-toc">Was Lighthouse prüft</h3>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Die 5 Kategorien
+                            <strong class="box-title no-toc">
+                                Die 5 Kategorien
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Performance:</strong> Ladezeiten, First Contentful Paint, Time to
-                                    Interactive
+                                <li>
+                                    <strong>Performance:</strong>
+                                    Ladezeiten, First Contentful Paint, Time to Interactive
                                 </li>
-                                <li><strong>Accessibility:</strong> Barrierefreiheit (Kontraste, Alt-Texte, ARIA-Labels)
+                                <li>
+                                    <strong>Accessibility:</strong>
+                                    Barrierefreiheit (Kontraste, Alt-Texte, ARIA-Labels)
                                 </li>
-                                <li><strong>Best Practices:</strong> HTTPS, Console-Errors, deprecated APIs</li>
-                                <li><strong>SEO:</strong> Meta-Tags, robots.txt, strukturierte Daten</li>
-                                <li><strong>PWA:</strong> Progressive Web App Features (Service Worker, Manifest)</li>
+                                <li>
+                                    <strong>Best Practices:</strong>
+                                    HTTPS, Console-Errors, deprecated APIs
+                                </li>
+                                <li>
+                                    <strong>SEO:</strong>
+                                    Meta-Tags, robots.txt, strukturierte Daten
+                                </li>
+                                <li>
+                                    <strong>PWA:</strong>
+                                    Progressive Web App Features (Service Worker, Manifest)
+                                </li>
                             </ul>
                         </div>
 
@@ -1157,23 +1376,34 @@ sessionStorage.getItem('temp');</code></pre>
                             </div>
                         </div>
 
-
                         <h3 class="no-toc">Score verstehen</h3>
                         <p>Jede Kategorie bekommt einen Score von 0-100:</p>
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><strong>90-100:</strong> 🟢 Grün - Sehr gut!</li>
-                                <li><strong>50-89:</strong> 🟡 Orange - Verbesserungsbedarf</li>
-                                <li><strong>0-49:</strong> 🔴 Rot - Dringend überarbeiten</li>
+                                <li>
+                                    <strong>90-100:</strong>
+                                    🟢 Grün - Sehr gut!
+                                </li>
+                                <li>
+                                    <strong>50-89:</strong>
+                                    🟡 Orange - Verbesserungsbedarf
+                                </li>
+                                <li>
+                                    <strong>0-49:</strong>
+                                    🔴 Rot - Dringend überarbeiten
+                                </li>
                             </ul>
                         </div>
-                        <p class="mt-md"><strong>Realität:</strong> 100 Punkte zu erreichen ist schwer und oft
-                            auch nicht nötig. 90+
-                            ist ein guter Wert für reale Projekte!</p>
+                        <p class="mt-md">
+                            <strong>Realität:</strong>
+                            100 Punkte zu erreichen ist schwer und oft auch nicht nötig. 90+ ist ein guter Wert für
+                            reale Projekte!
+                        </p>
 
                         <h3 class="no-toc">Praktische Tipps</h3>
                         <ul class="arrow-list grid-2col-bg">
-                            <li>Führe Lighthouse im Inkognito-Modus aus (keine Browser-Extensions, die stören könnten)
+                            <li>
+                                Führe Lighthouse im Inkognito-Modus aus (keine Browser-Extensions, die stören könnten)
                             </li>
                             <li>Mobile-Tests sind strenger als Desktop</li>
                             <li>Klick auf jeden Punkt → bekommst genaue Erklärungen und Lösungsvorschläge</li>
@@ -1184,7 +1414,8 @@ sessionStorage.getItem('temp');</code></pre>
                     <!-- Responsive Design Mode -->
                     <section class="tutorials-content">
                         <h2 id="responsive-design-mode">Responsive Design Mode</h2>
-                        <p>Teste, wie deine Website auf verschiedenen Geräten aussieht - ohne 20 echte Geräte zu haben!
+                        <p>
+                            Teste, wie deine Website auf verschiedenen Geräten aussieht - ohne 20 echte Geräte zu haben!
                         </p>
 
                         <div class="code-block">
@@ -1201,7 +1432,8 @@ Oder: Klick auf Handy/Tablet-Icon oben links in DevTools</code></pre>
 
                         <!-- Geräte-Presets -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Geräte-Presets
+                            <strong class="box-title no-toc">
+                                Geräte-Presets
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1226,7 +1458,8 @@ Oder: Klick auf Handy/Tablet-Icon oben links in DevTools</code></pre>
 
                         <!-- Zusätzliche Optionen -->
                         <div class="info-box">
-                            <strong class="box-title no-toc">Zusätzliche Optionen
+                            <strong class="box-title no-toc">
+                                Zusätzliche Optionen
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1234,15 +1467,30 @@ Oder: Klick auf Handy/Tablet-Icon oben links in DevTools</code></pre>
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><strong>Rotation:</strong> Portrait ↔ Landscape</li>
-                                        <li><strong>Device Pixel Ratio:</strong> Retina/High-DPI simulieren</li>
-                                        <li><strong>User Agent:</strong> Als anderes Gerät ausgeben</li>
+                                        <li>
+                                            <strong>Rotation:</strong>
+                                            Portrait ↔ Landscape
+                                        </li>
+                                        <li>
+                                            <strong>Device Pixel Ratio:</strong>
+                                            Retina/High-DPI simulieren
+                                        </li>
+                                        <li>
+                                            <strong>User Agent:</strong>
+                                            Als anderes Gerät ausgeben
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><strong>Touch:</strong> Touch-Events simulieren</li>
-                                        <li><strong>Show media queries:</strong> Deine Breakpoints visualisieren</li>
+                                        <li>
+                                            <strong>Touch:</strong>
+                                            Touch-Events simulieren
+                                        </li>
+                                        <li>
+                                            <strong>Show media queries:</strong>
+                                            Deine Breakpoints visualisieren
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -1257,15 +1505,17 @@ Oder: Klick auf Handy/Tablet-Icon oben links in DevTools</code></pre>
                         </ol>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Wichtig
+                            <strong class="box-title warning no-toc">
+                                Wichtig
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Die Simulation ist gut, aber nicht perfekt. Echte Geräte können sich
-                                unterschiedlich verhalten. Teste wichtige Features auf echten Geräten!</p>
+                            <p>
+                                Die Simulation ist gut, aber nicht perfekt. Echte Geräte können sich unterschiedlich
+                                verhalten. Teste wichtige Features auf echten Geräten!
+                            </p>
                         </div>
-
                     </section>
 
                     <!-- Weitere nützliche Features -->
@@ -1303,9 +1553,18 @@ Oder im Device-Toolbar: "Show rulers" Option</code></pre>
                                     <li>Wähle:</li>
                                 </ol>
                                 <ul class="arrow-list pt-sm">
-                                    <li><strong>Capture screenshot:</strong> Aktueller Viewport</li>
-                                    <li><strong>Capture full size screenshot:</strong> Komplette Seite</li>
-                                    <li><strong>Capture node screenshot:</strong> Nur ausgewähltes Element</li>
+                                    <li>
+                                        <strong>Capture screenshot:</strong>
+                                        Aktueller Viewport
+                                    </li>
+                                    <li>
+                                        <strong>Capture full size screenshot:</strong>
+                                        Komplette Seite
+                                    </li>
+                                    <li>
+                                        <strong>Capture node screenshot:</strong>
+                                        Nur ausgewähltes Element
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
@@ -1329,9 +1588,18 @@ Dann einfach tippen was du suchst:
                         <h3 class="no-toc">Sensors simulieren</h3>
                         <p>Im "Sensors" Tab kannst du simulieren:</p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Location:</strong> GPS-Position (für Geolocation-APIs)</li>
-                            <li><strong>Orientation:</strong> Gerät drehen/neigen</li>
-                            <li><strong>Touch:</strong> Touch-Events</li>
+                            <li>
+                                <strong>Location:</strong>
+                                GPS-Position (für Geolocation-APIs)
+                            </li>
+                            <li>
+                                <strong>Orientation:</strong>
+                                Gerät drehen/neigen
+                            </li>
+                            <li>
+                                <strong>Touch:</strong>
+                                Touch-Events
+                            </li>
                         </ul>
 
                         <h3 class="no-toc">Recorder (Chrome)</h3>
@@ -1349,75 +1617,121 @@ Dann einfach tippen was du suchst:
 
                         <!-- <div class="grid-2col"> -->
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Do
+                            <strong class="box-title notice no-toc">
+                                Do
                                 <svg class="icon-ui icon-green">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>DevTools immer offen haben</strong> beim Entwickeln - du siehst Fehler
-                                    sofort
+                                <li>
+                                    <strong>DevTools immer offen haben</strong>
+                                    beim Entwickeln - du siehst Fehler sofort
                                 </li>
-                                <li><strong>Console-Logs entfernen</strong> vor dem Live-Gang (oder über Build-Tools)
+                                <li>
+                                    <strong>Console-Logs entfernen</strong>
+                                    vor dem Live-Gang (oder über Build-Tools)
                                 </li>
-                                <li><strong>Network-Tab checken</strong> bevor du deployest - keine 404s, alles lädt?
+                                <li>
+                                    <strong>Network-Tab checken</strong>
+                                    bevor du deployest - keine 404s, alles lädt?
                                 </li>
-                                <li><strong>Lighthouse regelmäßig laufen lassen</strong> - fang früh an zu optimieren
+                                <li>
+                                    <strong>Lighthouse regelmäßig laufen lassen</strong>
+                                    - fang früh an zu optimieren
                                 </li>
-                                <li><strong>Mobile-Testing nicht vergessen</strong> - die meisten User sind mobil!</li>
-                                <li><strong>Breakpoints statt console.log</strong> für komplexes Debugging</li>
-                                <li><strong>DevTools-Einstellungen erkunden</strong> - es gibt SO viel zu entdecken!
+                                <li>
+                                    <strong>Mobile-Testing nicht vergessen</strong>
+                                    - die meisten User sind mobil!
+                                </li>
+                                <li>
+                                    <strong>Breakpoints statt console.log</strong>
+                                    für komplexes Debugging
+                                </li>
+                                <li>
+                                    <strong>DevTools-Einstellungen erkunden</strong>
+                                    - es gibt SO viel zu entdecken!
                                 </li>
                             </ul>
                         </div>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc">Don't
+                            <strong class="box-title danger no-toc">
+                                Don't
                                 <svg class="icon-ui icon-red-light">
                                     <use href="#dpz-cross-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="arrow-list">
-                                <li><strong>Nicht zu viele Tabs offen lassen</strong> - kann Browser verlangsamen</li>
-                                <li><strong>Keine sensiblen Daten in Console loggen</strong> (Passwörter, Tokens)</li>
-                                <li><strong>Cache nicht immer deaktiviert lassen</strong> - beeinflusst
-                                    Performance-Tests
+                                <li>
+                                    <strong>Nicht zu viele Tabs offen lassen</strong>
+                                    - kann Browser verlangsamen
                                 </li>
-                                <li><strong>Lighthouse nicht als absolut betrachten</strong> - es sind Vorschläge, keine
-                                    Gesetze</li>
-                                <li><strong>Nicht nur auf Simulationen verlassen</strong> - echte Geräte testen ist
-                                    wichtig
+                                <li>
+                                    <strong>Keine sensiblen Daten in Console loggen</strong>
+                                    (Passwörter, Tokens)
+                                </li>
+                                <li>
+                                    <strong>Cache nicht immer deaktiviert lassen</strong>
+                                    - beeinflusst Performance-Tests
+                                </li>
+                                <li>
+                                    <strong>Lighthouse nicht als absolut betrachten</strong>
+                                    - es sind Vorschläge, keine Gesetze
+                                </li>
+                                <li>
+                                    <strong>Nicht nur auf Simulationen verlassen</strong>
+                                    - echte Geräte testen ist wichtig
                                 </li>
                             </ul>
                         </div>
                         <!-- </div> -->
 
-
                         <div class="info-box">
-                            <strong class="box-title no-toc">Lern-Tipps
+                            <strong class="box-title no-toc">
+                                Lern-Tipps
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
                             <ol class="pl-md">
-                                <li><strong>Experimentiere!</strong> Die DevTools sind ein Playground - du kannst nichts
-                                    kaputt
-                                    machen (Änderungen verschwinden beim Reload)</li>
-                                <li><strong>Schau dir coole Websites an:</strong> Inspiziere Seiten, die du toll
-                                    findest.
-                                    Wie
-                                    haben die das gemacht?</li>
-                                <li><strong>Nutze die Docs:</strong>
+                                <li>
+                                    <strong>Experimentiere!</strong>
+                                    Die DevTools sind ein Playground - du kannst nichts kaputt machen (Änderungen
+                                    verschwinden beim Reload)
+                                </li>
+                                <li>
+                                    <strong>Schau dir coole Websites an:</strong>
+                                    Inspiziere Seiten, die du toll findest. Wie haben die das gemacht?
+                                </li>
+                                <li>
+                                    <strong>Nutze die Docs:</strong>
                                     <ul>
-                                        <li>Chrome: <a href="https://developer.chrome.com/docs/devtools/" target="_blank">developer.chrome.com/docs/devtools/</a></li>
-                                        <li>Firefox: <a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank">firefox-source-docs.mozilla.org/devtools-user/</a></li>
+                                        <li>
+                                            Chrome:
+                                            <a href="https://developer.chrome.com/docs/devtools/" target="_blank">
+                                                developer.chrome.com/docs/devtools/
+                                            </a>
+                                        </li>
+                                        <li>
+                                            Firefox:
+                                            <a
+                                                href="https://firefox-source-docs.mozilla.org/devtools-user/"
+                                                target="_blank"
+                                            >
+                                                firefox-source-docs.mozilla.org/devtools-user/
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li><strong>Keyboard Shortcuts lernen:</strong> Macht dich viel schneller!</li>
-                                <li><strong>Ein Feature pro Woche:</strong> Lerne jede Woche ein neues DevTools-Feature
-                                    -
-                                    nach
-                                    ein paar Monaten bist du Profi!</li>
+                                <li>
+                                    <strong>Keyboard Shortcuts lernen:</strong>
+                                    Macht dich viel schneller!
+                                </li>
+                                <li>
+                                    <strong>Ein Feature pro Woche:</strong>
+                                    Lerne jede Woche ein neues DevTools-Feature - nach ein paar Monaten bist du Profi!
+                                </li>
                             </ol>
                         </div>
                     </section>
@@ -1432,7 +1746,9 @@ Dann einfach tippen was du suchst:
                                 <div class="code-header">
                                     <div class="box-title"><strong>Allgemeine Shortcuts</strong></div>
                                 </div>
-                                <pre class="pb-md"><code class="language-text">╔═══════════════════════════════════════════════════════════╗
+                                <pre
+                                    class="pb-md"
+                                ><code class="language-text">╔═══════════════════════════════════════════════════════════╗
 ║  Aktion              │  Mac            │  Windows/Linux   ║
 ╠═══════════════════════════════════════════════════════════╣
 ║  DevTools öffnen     │  Cmd+Option+I   │  F12             ║
@@ -1479,15 +1795,18 @@ Ctrl+/       → Zeile kommentieren</code></pre>
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Pro-Tipp
+                            <strong class="box-title no-toc">
+                                Pro-Tipp
                                 <svg class="icon-ui">
                                     <use href="#dpz-bulb-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Drück <kbd>?</kbd> in den DevTools, um alle Shortcuts zu sehen!</p>
+                            <p>
+                                Drück
+                                <kbd>?</kbd>
+                                in den DevTools, um alle Shortcuts zu sehen!
+                            </p>
                         </div>
-
-
                     </section>
 
                     <!-- Zusammenfassung -->
@@ -1498,20 +1817,38 @@ Ctrl+/       → Zeile kommentieren</code></pre>
 
                         <div class="info-box">
                             <ul class="arrow-list">
-                                <li><strong>HTML &amp; CSS zu verstehen</strong> - Inspiziere, experimentiere, lerne
+                                <li>
+                                    <strong>HTML &amp; CSS zu verstehen</strong>
+                                    - Inspiziere, experimentiere, lerne
                                 </li>
-                                <li><strong>Fehler zu finden</strong> - Console, Debugger, Breakpoints</li>
-                                <li><strong>Performance zu optimieren</strong> - Network, Lighthouse, Performance-Tab
+                                <li>
+                                    <strong>Fehler zu finden</strong>
+                                    - Console, Debugger, Breakpoints
                                 </li>
-                                <li><strong>Responsive zu testen</strong> - Device Toolbar, verschiedene Screens</li>
-                                <li><strong>Design zu verfeinern</strong> - Live CSS-Editing, Color Picker</li>
-                                <li><strong>Von anderen zu lernen</strong> - Inspiziere Websites, die du bewunderst</li>
+                                <li>
+                                    <strong>Performance zu optimieren</strong>
+                                    - Network, Lighthouse, Performance-Tab
+                                </li>
+                                <li>
+                                    <strong>Responsive zu testen</strong>
+                                    - Device Toolbar, verschiedene Screens
+                                </li>
+                                <li>
+                                    <strong>Design zu verfeinern</strong>
+                                    - Live CSS-Editing, Color Picker
+                                </li>
+                                <li>
+                                    <strong>Von anderen zu lernen</strong>
+                                    - Inspiziere Websites, die du bewunderst
+                                </li>
                             </ul>
                         </div>
 
-                        <p><strong>Mein Rat:</strong> Hab die DevTools immer offen beim Entwickeln. Nach einer Weile
-                            werden
-                            sie zur zweiten Natur und du fragst dich, wie du jemals ohne sie ausgekommen bist!</p>
+                        <p>
+                            <strong>Mein Rat:</strong>
+                            Hab die DevTools immer offen beim Entwickeln. Nach einer Weile werden sie zur zweiten Natur
+                            und du fragst dich, wie du jemals ohne sie ausgekommen bist!
+                        </p>
 
                         <h3 class="no-toc">Nächste Schritte</h3>
                         <div class="info-box">
@@ -1529,52 +1866,53 @@ Ctrl+/       → Zeile kommentieren</code></pre>
                     <!-- Prev/Next Navigation -->
                     <section class="tutorial-section">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">CSS-Duplikate finden & vergleichen in VS Code</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/misc/tools/bash-terminal.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Terminal & Bash Basics</span>
-                <span class="tutorial-nav-category">Tools</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/misc/tools/vs-code-dateien-vergleichen.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">CSS-Duplikate finden & vergleichen in VS Code</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/misc/tools/bash-terminal.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">Terminal & Bash Basics</span>
+                                    <span class="tutorial-nav-category">Tools</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-    
-
-</body></html>
+    </body>
+</html>

@@ -1,180 +1,208 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="JavaScript ToDo-App: Aufgaben mit localStorage speichern, filtern, suchen und sortieren. Mit Prioritäten, Tags, Drag &amp; Drop und Schritt-für-Schritt Code-Erklärung.">
-        <meta name="keywords" content="JavaScript ToDo App, localStorage Tutorial, DOM Manipulation, JavaScript Projekt, Array filter sort, Drag and Drop JavaScript, JavaScript Anfänger Projekt">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="JavaScript ToDo-App: Aufgaben mit localStorage speichern, filtern, suchen und sortieren. Mit Prioritäten, Tags, Drag &amp; Drop und Schritt-für-Schritt Code-Erklärung."
+        />
+        <meta
+            name="keywords"
+            content="JavaScript ToDo App, localStorage Tutorial, DOM Manipulation, JavaScript Projekt, Array filter sort, Drag and Drop JavaScript, JavaScript Anfänger Projekt"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>ToDo-App mit JavaScript - DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/js-to-do-app.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/js-to-do-app.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">ToDo-App mit JavaScript</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">ToDo-App mit JavaScript</span>
+                    </nav>
                     <h1 class="hero-title">ToDo-App mit JavaScript</h1>
-                    <p class="hero-subtitle">Aufgaben speichern, filtern, suchen und sortieren – komplett im Browser,
-                        ohne Backend.</p>
+                    <p class="hero-subtitle">
+                        Aufgaben speichern, filtern, suchen und sortieren – komplett im Browser, ohne Backend.
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -183,7 +211,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -196,34 +223,44 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#projektueberblick">Projektüberblick</a></li>
-                    <li class="toc-level-1"><a href="#app-ausprobieren">App ausprobieren</a></li>
-                    <li class="toc-level-2"><a href="#meine-aufgaben">Meine Aufgaben</a></li>
-                    <li class="toc-level-1"><a href="#code-verstehen">Code verstehen</a></li>
-                    <li class="toc-level-2"><a href="#was-ist-localstorage">Was ist localStorage?</a></li>
-                    <li class="toc-level-2"><a href="#render-todos">renderTodos() - Das Herzstück der App</a></li>
-                    <li class="toc-level-2"><a href="#daten-speichern-laden">Daten speichern und laden</a></li>
-                    <li class="toc-level-2"><a href="#aufgabe-hinzufuegen">Aufgabe hinzufügen</a></li>
-                    <li class="toc-level-2"><a href="#prioritaeten">Prioritäten und Sortierung</a></li>
-                    <li class="toc-level-2"><a href="#filter-funktion">Filter-Funktion</a></li>
-                    <li class="toc-level-2"><a href="#aufgabe-bearbeiten">Aufgabe bearbeiten (Modal)</a></li>
-                    <li class="toc-level-2"><a href="#alle-loeschen">Alle Aufgaben löschen (Reset)</a></li>
-                    <li class="toc-level-2"><a href="#statistik">Statistik berechnen</a></li>
-                    <li class="toc-level-2"><a href="#sicherheit-textcontent">Sicherheit: textContent vs innerHTML</a></li>
-                    <li class="toc-level-2"><a href="#css-wortumbruch">CSS: Lange Wörter umbrechen</a></li>
-                    <li class="toc-level-2"><a href="#originaler-index">Problem: Filter und Original-Index</a></li>
-                    <li class="toc-level-2"><a href="#suche-funktion">Suche mit Debounce</a></li>
-                    <li class="toc-level-2"><a href="#suche-hervorheben">Suchbegriff hervorheben (sicher!)</a></li>
-                    <li class="toc-level-2"><a href="#regex-escapen">Regex-Sonderzeichen escapen</a></li>
-                    <li class="toc-level-2"><a href="#weitere-hilfsfunktionen">Weitere Hilfsfunktionen</a></li>
-                    <li class="toc-level-2"><a href="#tags-system">Tags: Flexible Kategorisierung</a></li>
-                    <li class="toc-level-2"><a href="#prioritaets-filter">Erweiterter Filter: Prioritäten</a></li>
-                    <li class="toc-level-2"><a href="#drag-and-drop">Drag &amp; Drop Sortierung</a></li>
-                    <li class="toc-level-2"><a href="#migration">Migration: Bestehende Daten erweitern</a></li>
-                    <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
-                    <li class="toc-level-1"><a href="#vollstaendiger-code">Vollständiger Code</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#projektueberblick">Projektüberblick</a></li>
+                            <li class="toc-level-1"><a href="#app-ausprobieren">App ausprobieren</a></li>
+                            <li class="toc-level-2"><a href="#meine-aufgaben">Meine Aufgaben</a></li>
+                            <li class="toc-level-1"><a href="#code-verstehen">Code verstehen</a></li>
+                            <li class="toc-level-2"><a href="#was-ist-localstorage">Was ist localStorage?</a></li>
+                            <li class="toc-level-2">
+                                <a href="#render-todos">renderTodos() - Das Herzstück der App</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#daten-speichern-laden">Daten speichern und laden</a></li>
+                            <li class="toc-level-2"><a href="#aufgabe-hinzufuegen">Aufgabe hinzufügen</a></li>
+                            <li class="toc-level-2"><a href="#prioritaeten">Prioritäten und Sortierung</a></li>
+                            <li class="toc-level-2"><a href="#filter-funktion">Filter-Funktion</a></li>
+                            <li class="toc-level-2"><a href="#aufgabe-bearbeiten">Aufgabe bearbeiten (Modal)</a></li>
+                            <li class="toc-level-2"><a href="#alle-loeschen">Alle Aufgaben löschen (Reset)</a></li>
+                            <li class="toc-level-2"><a href="#statistik">Statistik berechnen</a></li>
+                            <li class="toc-level-2">
+                                <a href="#sicherheit-textcontent">Sicherheit: textContent vs innerHTML</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#css-wortumbruch">CSS: Lange Wörter umbrechen</a></li>
+                            <li class="toc-level-2">
+                                <a href="#originaler-index">Problem: Filter und Original-Index</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#suche-funktion">Suche mit Debounce</a></li>
+                            <li class="toc-level-2">
+                                <a href="#suche-hervorheben">Suchbegriff hervorheben (sicher!)</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#regex-escapen">Regex-Sonderzeichen escapen</a></li>
+                            <li class="toc-level-2"><a href="#weitere-hilfsfunktionen">Weitere Hilfsfunktionen</a></li>
+                            <li class="toc-level-2"><a href="#tags-system">Tags: Flexible Kategorisierung</a></li>
+                            <li class="toc-level-2">
+                                <a href="#prioritaets-filter">Erweiterter Filter: Prioritäten</a>
+                            </li>
+                            <li class="toc-level-2"><a href="#drag-and-drop">Drag &amp; Drop Sortierung</a></li>
+                            <li class="toc-level-2"><a href="#migration">Migration: Bestehende Daten erweitern</a></li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
+                            <li class="toc-level-1"><a href="#vollstaendiger-code">Vollständiger Code</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -239,28 +276,61 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">JavaScript Basics</li>
-                    <li><a href="/tutorials/javascript/javascript-basics/was-ist-javascript.html">Was ist JavaScript eigentlich?</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-security.html">JavaScript Sicherheit</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-variables.html">JavaScript Variables</a></li>
-                    <li class="sidebar-group-title">JavaScript Projects</li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript: HTML-Code Escaper</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity Encoder</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html" class="active">ToDo-App mit JavaScript</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-live-editor.html">Live Code Editor</a></li>
-                </ul>
+                            <li class="sidebar-group-title">JavaScript Basics</li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-basics/was-ist-javascript.html">
+                                    Was ist JavaScript eigentlich?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-basics/js-security.html">
+                                    JavaScript Sicherheit
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-basics/js-variables.html">
+                                    JavaScript Variables
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">JavaScript Projects</li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">
+                                    JavaScript: HTML-Code Escaper
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">
+                                    HTML Entity Encoder
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-projects/js-to-do-app.html" class="active">
+                                    ToDo-App mit JavaScript
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-projects/js-live-editor.html">
+                                    Live Code Editor
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <div class="container">
                     <div class="content-wrapper">
-
                         <section class="tutorials-content">
                             <h2 id="projektueberblick">Projektüberblick</h2>
-                            <p>In diesem Tutorial erstellst du eine kleine <strong>ToDo-App</strong> mit HTML, CSS und
-                                JavaScript.
-                                Sie läuft komplett im Browser und speichert deine Aufgaben im <code class="inline">localStorage</code>.
+                            <p>
+                                In diesem Tutorial erstellst du eine kleine
+                                <strong>ToDo-App</strong>
+                                mit HTML, CSS und JavaScript. Sie läuft komplett im Browser und speichert deine Aufgaben
+                                im
+                                <code class="inline">localStorage</code>
+                                .
                             </p>
 
                             <h3 id="features" class="no-toc">Was du bauen wirst</h3>
@@ -285,11 +355,32 @@
 
                             <h3 id="was-du-lernst" class="no-toc">Was du dabei lernst</h3>
                             <ul class="arrow-list grid-2col-bg">
-                                <li><code class="inline">localStorage</code> – Daten im Browser speichern</li>
-                                <li><code class="inline">JSON.stringify()</code> / <code class="inline">JSON.parse()</code> – Objekte in Text umwandeln</li>
-                                <li><code class="inline">Array.filter()</code> / <code class="inline">Array.sort()</code> – Daten filtern und sortieren</li>
-                                <li>DOM-Manipulation mit <code class="inline">createElement()</code> und <code class="inline">textContent</code></li>
-                                <li>Event Handling mit <code class="inline">addEventListener()</code></li>
+                                <li>
+                                    <code class="inline">localStorage</code>
+                                    – Daten im Browser speichern
+                                </li>
+                                <li>
+                                    <code class="inline">JSON.stringify()</code>
+                                    /
+                                    <code class="inline">JSON.parse()</code>
+                                    – Objekte in Text umwandeln
+                                </li>
+                                <li>
+                                    <code class="inline">Array.filter()</code>
+                                    /
+                                    <code class="inline">Array.sort()</code>
+                                    – Daten filtern und sortieren
+                                </li>
+                                <li>
+                                    DOM-Manipulation mit
+                                    <code class="inline">createElement()</code>
+                                    und
+                                    <code class="inline">textContent</code>
+                                </li>
+                                <li>
+                                    Event Handling mit
+                                    <code class="inline">addEventListener()</code>
+                                </li>
                                 <li>HTML5 Drag &amp; Drop API</li>
                             </ul>
                         </section>
@@ -304,11 +395,24 @@
 
                                 <!-- Eingabefeld mit Priorität -->
                                 <div class="todo-input">
-                                    <svg class="todo-search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="currentColor" aria-hidden="true">
-                                        <path d="M13.449,5.949l-4.097.018c-.166,0-.301-.134-.301-.3V1.619c0-.717-.456-1.393-1.151-1.568-1.027-.258-1.951.515-1.951,1.501l.018,4.097c0,.166-.134.301-.3.301H1.619c-.717,0-1.393.456-1.568,1.151-.258,1.027.515,1.951,1.501,1.951l4.097-.019c.166,0,.301.134.301.3v4.05c0,.717.456,1.393,1.151,1.568,1.027.258,1.951-.515,1.951-1.501l-.019-4.097c0-.166.134-.301.3-.301h4.05c.717,0,1.393-.456,1.568-1.151.258-1.027-.515-1.951-1.501-1.951Z">
-                                        </path>
+                                    <svg
+                                        class="todo-search-icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="15"
+                                        height="15"
+                                        viewBox="0 0 15 15"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M13.449,5.949l-4.097.018c-.166,0-.301-.134-.301-.3V1.619c0-.717-.456-1.393-1.151-1.568-1.027-.258-1.951.515-1.951,1.501l.018,4.097c0,.166-.134.301-.3.301H1.619c-.717,0-1.393.456-1.568,1.151-.258,1.027.515,1.951,1.501,1.951l4.097-.019c.166,0,.301.134.301.3v4.05c0,.717.456,1.393,1.151,1.568,1.027.258,1.951-.515,1.951-1.501l-.019-4.097c0-.166.134-.301.3-.301h4.05c.717,0,1.393-.456,1.568-1.151.258-1.027-.515-1.951-1.501-1.951Z"
+                                        ></path>
                                     </svg>
-                                    <input type="text" id="todoInput" placeholder="Neue Aufgabe hinzufügen... (#tag für Tags)">
+                                    <input
+                                        type="text"
+                                        id="todoInput"
+                                        placeholder="Neue Aufgabe hinzufügen... (#tag für Tags)"
+                                    />
                                     <select id="todoPriority" title="Priorität wählen">
                                         <option value="low" selected>🟢 Normal</option>
                                         <option value="medium">🟡 Wichtig</option>
@@ -319,12 +423,28 @@
 
                                 <!-- Suchfeld -->
                                 <div class="todo-search">
-                                    <svg class="todo-search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="currentColor" aria-hidden="true">
-                                        <path d="M14.633,12.86l-3.179-3.182c-.081-.082-.093-.206-.033-.304.778-1.27,1.072-2.779.81-4.302C11.778,2.443,9.569.364,6.921.046,2.916-.436-.457,2.952.051,6.96c.335,2.639,2.418,4.83,5.041,5.271,1.519.255,3.021-.038,4.284-.812.098-.06.223-.048.305.033l3.178,3.18c.236.237.551.368.887.368s.651-.131.887-.367c.237-.236.368-.551.368-.888,0-.334-.131-.649-.367-.886ZM9.817,6.16c0,2.015-1.64,3.654-3.655,3.654s-3.654-1.639-3.654-3.654,1.639-3.653,3.654-3.653,3.655,1.639,3.655,3.653Z">
-                                        </path>
+                                    <svg
+                                        class="todo-search-icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="15"
+                                        height="15"
+                                        viewBox="0 0 15 15"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M14.633,12.86l-3.179-3.182c-.081-.082-.093-.206-.033-.304.778-1.27,1.072-2.779.81-4.302C11.778,2.443,9.569.364,6.921.046,2.916-.436-.457,2.952.051,6.96c.335,2.639,2.418,4.83,5.041,5.271,1.519.255,3.021-.038,4.284-.812.098-.06.223-.048.305.033l3.178,3.18c.236.237.551.368.887.368s.651-.131.887-.367c.237-.236.368-.551.368-.888,0-.334-.131-.649-.367-.886ZM9.817,6.16c0,2.015-1.64,3.654-3.655,3.654s-3.654-1.639-3.654-3.654,1.639-3.653,3.654-3.653,3.655,1.639,3.655,3.653Z"
+                                        ></path>
                                     </svg>
-                                    <input type="text" id="todoSearch" placeholder="Aufgaben durchsuchen...">
-                                    <button type="button" class="todo-search-clear" id="searchClear" title="Suche leeren">✕</button>
+                                    <input type="text" id="todoSearch" placeholder="Aufgaben durchsuchen..." />
+                                    <button
+                                        type="button"
+                                        class="todo-search-clear"
+                                        id="searchClear"
+                                        title="Suche leeren"
+                                    >
+                                        ✕
+                                    </button>
                                 </div>
 
                                 <!-- Filter-Bereich -->
@@ -358,15 +478,27 @@
 
                                 <!-- Reset-Bereich -->
                                 <div class="todo-reset-section">
-                                    <button id="resetTodos"><svg xmlns="http://www.w3.org/2000/svg" width="11.46" height="15" viewBox="0 0 11.46 15" fill="#fff" class="icon-va-y-2 mr-sm" aria-hidden="true">
-                                            <path d="M10.856,3.38H.604c-.124,0-.221.106-.21.229l.897,10.425c.046.546.503.966,1.051.966h6.775c.548,0,1.005-.42,1.051-.966l.897-10.425c.01-.123-.087-.229-.21-.229ZM6.687,9.226l1.554,1.554c.231.231.231.606,0,.837-.231.231-.606.231-.837,0l-1.554-1.554c-.066-.066-.173-.066-.24,0l-1.554,1.554c-.231.231-.606.231-.837,0h0c-.231-.231-.231-.606,0-.837l1.554-1.554c.066-.066.066-.173,0-.24l-1.554-1.554c-.231-.231-.231-.606,0-.837h0c.231-.231.606-.231.837,0l1.554,1.554c.066.066.174.066.24,0l1.554-1.554c.231-.231.606-.231.837,0,.231.231.231.606,0,.837l-1.554,1.554c-.066.066-.066.173,0,.24Z">
-                                            </path>
-                                            <path d="M10.562,1.33h-2.715v-.141c0-.656-.534-1.19-1.189-1.19h-1.8c-.656,0-1.189.534-1.189,1.19v.141H.899c-.497,0-.899.402-.899.899v.323c0,.117.094.211.211.211h11.038c.116,0,.211-.094.211-.211v-.323c0-.496-.402-.899-.899-.899ZM7.284,1.33h-3.054v-.141c0-.346.281-.627.627-.627h1.8c.346,0,.627.281.627.627v.141Z">
-                                            </path>
-                                        </svg> Alle Aufgaben löschen</button>
+                                    <button id="resetTodos">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="11.46"
+                                            height="15"
+                                            viewBox="0 0 11.46 15"
+                                            fill="#fff"
+                                            class="icon-va-y-2 mr-sm"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M10.856,3.38H.604c-.124,0-.221.106-.21.229l.897,10.425c.046.546.503.966,1.051.966h6.775c.548,0,1.005-.42,1.051-.966l.897-10.425c.01-.123-.087-.229-.21-.229ZM6.687,9.226l1.554,1.554c.231.231.231.606,0,.837-.231.231-.606.231-.837,0l-1.554-1.554c-.066-.066-.173-.066-.24,0l-1.554,1.554c-.231.231-.606.231-.837,0h0c-.231-.231-.231-.606,0-.837l1.554-1.554c.066-.066.066-.173,0-.24l-1.554-1.554c-.231-.231-.231-.606,0-.837h0c.231-.231.606-.231.837,0l1.554,1.554c.066.066.174.066.24,0l1.554-1.554c.231-.231.606-.231.837,0,.231.231.231.606,0,.837l-1.554,1.554c-.066.066-.066.173,0,.24Z"
+                                            ></path>
+                                            <path
+                                                d="M10.562,1.33h-2.715v-.141c0-.656-.534-1.19-1.189-1.19h-1.8c-.656,0-1.189.534-1.189,1.19v.141H.899c-.497,0-.899.402-.899.899v.323c0,.117.094.211.211.211h11.038c.116,0,.211-.094.211-.211v-.323c0-.496-.402-.899-.899-.899ZM7.284,1.33h-3.054v-.141c0-.346.281-.627.627-.627h1.8c.346,0,.627.281.627.627v.141Z"
+                                            ></path>
+                                        </svg>
+                                        Alle Aufgaben löschen
+                                    </button>
                                 </div>
                             </div>
-
                         </section>
 
                         <!-- Code verstehen -->
@@ -376,58 +508,79 @@
                             <!-- localStorage -->
                             <div>
                                 <h3 id="was-ist-localstorage">Was ist localStorage?</h3>
-                                <p><code class="inline">localStorage</code> ist eine eingebaute Browser-API - ein
-                                    kleiner
-                                    Speicher, den jeder Browser für jede Website bereitstellt. Stell es dir vor wie
-                                    einen
-                                    Notizblock, den der Browser für deine Seite aufbewahrt. Die Daten bleiben auch nach
-                                    dem
-                                    Schließen des Browsers erhalten.</p>
+                                <p>
+                                    <code class="inline">localStorage</code>
+                                    ist eine eingebaute Browser-API - ein kleiner Speicher, den jeder Browser für jede
+                                    Website bereitstellt. Stell es dir vor wie einen Notizblock, den der Browser für
+                                    deine Seite aufbewahrt. Die Daten bleiben auch nach dem Schließen des Browsers
+                                    erhalten.
+                                </p>
 
                                 <div class="info-box">
-                                    <strong class="box-title no-toc">Wichtig
+                                    <strong class="box-title no-toc">
+                                        Wichtig
                                         <svg class="icon-ui">
                                             <use href="#dpz-warning-circle"></use>
                                         </svg>
                                     </strong>
-                                    <p><code class="inline">localStorage</code> kann nur <em>Text</em> speichern, keine
-                                        JavaScript-Objekte oder Arrays. Deshalb brauchen wir <code class="inline">JSON.stringify()</code> und
-                                        <code class="inline">JSON.parse()</code> zur Umwandlung.
+                                    <p>
+                                        <code class="inline">localStorage</code>
+                                        kann nur
+                                        <em>Text</em>
+                                        speichern, keine JavaScript-Objekte oder Arrays. Deshalb brauchen wir
+                                        <code class="inline">JSON.stringify()</code>
+                                        und
+                                        <code class="inline">JSON.parse()</code>
+                                        zur Umwandlung.
                                     </p>
                                 </div>
 
                                 <div class="info-box">
-                                    <strong class="box-title no-toc">Sind meine Daten sicher?
+                                    <strong class="box-title no-toc">
+                                        Sind meine Daten sicher?
                                         <svg class="icon-ui">
                                             <use href="#dpz-lock-circle"></use>
                                         </svg>
                                     </strong>
-                                    <p>Ja! localStorage ist <em>100% privat</em>. Deine ToDos bleiben in <em>deinem</em>
-                                        Browser
-                                        auf <em>deinem</em> Gerät - sie werden niemals an den Server übertragen.
-                                        Außerdem gilt
-                                        die <strong>Same-Origin
-                                            Policy</strong>: Jede Website hat ihren eigenen, isolierten Speicher. Eine
-                                        andere
-                                        Website kann nicht auf die Daten dieser Seite zugreifen.</p>
-                                    <p><strong>Gut zu wissen:</strong> Die Daten existieren nur in diesem einen Browser.
-                                        Wenn du die Seite auf einem anderen Gerät oder in einem anderen Browser öffnest,
-                                        startest du mit einer leeren Liste.</p>
+                                    <p>
+                                        Ja! localStorage ist
+                                        <em>100% privat</em>
+                                        . Deine ToDos bleiben in
+                                        <em>deinem</em>
+                                        Browser auf
+                                        <em>deinem</em>
+                                        Gerät - sie werden niemals an den Server übertragen. Außerdem gilt die
+                                        <strong>Same-Origin Policy</strong>
+                                        : Jede Website hat ihren eigenen, isolierten Speicher. Eine andere Website kann
+                                        nicht auf die Daten dieser Seite zugreifen.
+                                    </p>
+                                    <p>
+                                        <strong>Gut zu wissen:</strong>
+                                        Die Daten existieren nur in diesem einen Browser. Wenn du die Seite auf einem
+                                        anderen Gerät oder in einem anderen Browser öffnest, startest du mit einer
+                                        leeren Liste.
+                                    </p>
                                 </div>
                             </div>
 
                             <!-- renderTodos() -->
                             <div>
                                 <h3 id="render-todos">renderTodos() - Das Herzstück der App</h3>
-                                <p>Diese Funktion wird bei jeder Änderung aufgerufen und baut die komplette Ansicht neu
-                                    auf.
-                                    Der Ablauf:</p>
+                                <p>
+                                    Diese Funktion wird bei jeder Änderung aufgerufen und baut die komplette Ansicht neu
+                                    auf. Der Ablauf:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -458,10 +611,12 @@
     updateStats();
 }</code></pre>
                                 </div>
-                                <p>Das Prinzip nennt sich <strong>"Re-Rendering"</strong>: Statt einzelne Elemente zu
-                                    ändern, wird die ganze Liste neu gezeichnet. Das ist bei kleinen Listen performant
-                                    genug und
-                                    macht den Code viel einfacher.</p>
+                                <p>
+                                    Das Prinzip nennt sich
+                                    <strong>"Re-Rendering"</strong>
+                                    : Statt einzelne Elemente zu ändern, wird die ganze Liste neu gezeichnet. Das ist
+                                    bei kleinen Listen performant genug und macht den Code viel einfacher.
+                                </p>
                             </div>
 
                             <!-- Daten speichern und laden -->
@@ -472,7 +627,12 @@
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -496,7 +656,12 @@ let todos = JSON.parse(localStorage.getItem("todos")) || [];
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -522,14 +687,22 @@ let todos = JSON.parse(localStorage.getItem("todos")) || [];
                             <!-- Prioritäten und Sortierung -->
                             <div>
                                 <h3 id="prioritaeten">Prioritäten und Sortierung</h3>
-                                <p>Jede Aufgabe bekommt eine Priorität (hoch/mittel/niedrig). Mit <code class="inline">Array.sort()</code>
-                                    sortieren wir die Aufgaben so, dass hohe Prioritäten oben erscheinen:</p>
+                                <p>
+                                    Jede Aufgabe bekommt eine Priorität (hoch/mittel/niedrig). Mit
+                                    <code class="inline">Array.sort()</code>
+                                    sortieren wir die Aufgaben so, dass hohe Prioritäten oben erscheinen:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -550,7 +723,12 @@ filteredTodos.sort((a, b) =&gt; {
                                         <span class="code-lang">CSS</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -570,14 +748,22 @@ filteredTodos.sort((a, b) =&gt; {
                             <!-- Filter-Funktion -->
                             <div>
                                 <h3 id="filter-funktion">Filter-Funktion</h3>
-                                <p>Mit <code class="inline">Array.filter()</code> können wir das Array nach bestimmten
-                                    Kriterien filtern:</p>
+                                <p>
+                                    Mit
+                                    <code class="inline">Array.filter()</code>
+                                    können wir das Array nach bestimmten Kriterien filtern:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -591,23 +777,34 @@ const filteredTodos = todos.filter(todo =&gt; {
 });</code></pre>
                                 </div>
 
-                                <p>Die <code class="inline">filter()</code>-Methode erstellt ein neues Array mit allen
-                                    Elementen, die den Test bestehen (also <code class="inline">true</code>
-                                    zurückgeben).</p>
+                                <p>
+                                    Die
+                                    <code class="inline">filter()</code>
+                                    -Methode erstellt ein neues Array mit allen Elementen, die den Test bestehen (also
+                                    <code class="inline">true</code>
+                                    zurückgeben).
+                                </p>
                             </div>
 
                             <!-- Aufgabe bearbeiten (Modal) -->
                             <div>
                                 <h3 id="aufgabe-bearbeiten">Aufgabe bearbeiten (Modal)</h3>
-                                <p>Statt eines einfachen <code class="inline">prompt()</code> nutzen wir ein
-                                    Modal-Dialog,
-                                    in dem Text und Priorität bearbeitet werden können:</p>
+                                <p>
+                                    Statt eines einfachen
+                                    <code class="inline">prompt()</code>
+                                    nutzen wir ein Modal-Dialog, in dem Text und Priorität bearbeitet werden können:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -643,15 +840,20 @@ const filteredTodos = todos.filter(todo =&gt; {
                                 </div>
 
                                 <div class="info-box">
-                                    <strong class="box-title no-toc">Warum ist das sicher?
+                                    <strong class="box-title no-toc">
+                                        Warum ist das sicher?
                                         <svg class="icon-ui">
                                             <use href="#dpz-info-circle"></use>
                                         </svg>
                                     </strong>
-                                    <p>Das Modal-HTML enthält nur statischen Code (Labels, Inputs) - keinen User-Input.
-                                        Der eigentliche Aufgabentext wird danach via <code class="inline">.value</code>
-                                        gesetzt,
-                                        was genauso sicher ist wie <code class="inline">textContent</code>.</p>
+                                    <p>
+                                        Das Modal-HTML enthält nur statischen Code (Labels, Inputs) - keinen User-Input.
+                                        Der eigentliche Aufgabentext wird danach via
+                                        <code class="inline">.value</code>
+                                        gesetzt, was genauso sicher ist wie
+                                        <code class="inline">textContent</code>
+                                        .
+                                    </p>
                                 </div>
                             </div>
 
@@ -663,7 +865,12 @@ const filteredTodos = todos.filter(todo =&gt; {
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -687,7 +894,12 @@ const filteredTodos = todos.filter(todo =&gt; {
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -705,54 +917,83 @@ const filteredTodos = todos.filter(todo =&gt; {
                             <!-- Sicherheit: textContent vs innerHTML -->
                             <div>
                                 <h3 id="sicherheit-textcontent">Sicherheit: textContent vs innerHTML</h3>
-                                <p>In der App nutzen wir <code class="inline">span.textContent = todo.text;</code> -
-                                    das ist wichtig für die <strong>Sicherheit</strong>!</p>
+                                <p>
+                                    In der App nutzen wir
+                                    <code class="inline">span.textContent = todo.text;</code>
+                                    - das ist wichtig für die
+                                    <strong>Sicherheit</strong>
+                                    !
+                                </p>
 
                                 <div class="info-box">
-                                    <strong class="box-title no-toc">Warum nicht innerHTML?
+                                    <strong class="box-title no-toc">
+                                        Warum nicht innerHTML?
                                         <svg class="icon-ui">
                                             <use href="#dpz-info-circle"></use>
                                         </svg>
                                     </strong>
-                                    <p><code class="inline">innerHTML</code> interpretiert HTML-Tags und führt sie aus.
-                                        Wenn jemand <code class="inline">&lt;script&gt;alert('böse')&lt;/script&gt;</code>
-                                        als
-                                        Aufgabe eingibt, würde der Code ausgeführt werden (XSS-Angriff).<br><br>
-                                        <code class="inline">textContent</code> hingegen behandelt alles als reinen Text
-                                        -
-                                        der HTML-Code wird harmlos angezeigt statt ausgeführt.
+                                    <p>
+                                        <code class="inline">innerHTML</code>
+                                        interpretiert HTML-Tags und führt sie aus. Wenn jemand
+                                        <code class="inline">&lt;script&gt;alert('böse')&lt;/script&gt;</code>
+                                        als Aufgabe eingibt, würde der Code ausgeführt werden (XSS-Angriff).
+                                        <br />
+                                        <br />
+                                        <code class="inline">textContent</code>
+                                        hingegen behandelt alles als reinen Text - der HTML-Code wird harmlos angezeigt
+                                        statt ausgeführt.
                                     </p>
                                 </div>
 
                                 <div class="info-box notice">
-                                    <strong class="box-title notice no-toc">Wann ist innerHTML trotzdem sicher?
+                                    <strong class="box-title notice no-toc">
+                                        Wann ist innerHTML trotzdem sicher?
                                         <svg class="icon-ui">
                                             <use href="#dpz-lock-circle"></use>
                                         </svg>
                                     </strong>
-                                    <p>Die goldene Regel: <code class="inline">innerHTML</code> ist nur gefährlich, wenn
-                                        du
-                                        <em>User-Input</em> damit einfügst. Für Inhalte, die <em>du selbst</em>
-                                        kontrollierst,
-                                        ist
-                                        es kein Problem:
+                                    <p>
+                                        Die goldene Regel:
+                                        <code class="inline">innerHTML</code>
+                                        ist nur gefährlich, wenn du
+                                        <em>User-Input</em>
+                                        damit einfügst. Für Inhalte, die
+                                        <em>du selbst</em>
+                                        kontrollierst, ist es kein Problem:
                                     </p>
                                     <ul class="arrow-list">
-                                        <li><code class="inline">todoList.innerHTML = "";</code> → <strong>Sicher<svg class="icon icon--inline icon-green ml-sm">
+                                        <li>
+                                            <code class="inline">todoList.innerHTML = "";</code>
+                                            →
+                                            <strong>
+                                                Sicher
+                                                <svg class="icon icon--inline icon-green ml-sm">
                                                     <use href="#dpz-check-inline"></use>
                                                 </svg>
-                                            </strong> nur ein leerer String</li>
-                                        <li><code class="inline">btn.innerHTML = '&lt;svg&gt;...&lt;/svg&gt;';</code> →
-                                            <strong>Sicher<svg class="icon icon--inline icon-green ml-sm">
-                                                    <use href="#dpz-check-inline"></use>
-                                                </svg>
-                                            </strong>dein eigener SVG-Code
+                                            </strong>
+                                            nur ein leerer String
                                         </li>
-                                        <li><code class="inline">div.innerHTML = todo.text;</code> →
-                                            <strong>Gefährlich<svg class="icon icon--inline icon-red ml-sm">
+                                        <li>
+                                            <code class="inline">btn.innerHTML = '&lt;svg&gt;...&lt;/svg&gt;';</code>
+                                            →
+                                            <strong>
+                                                Sicher
+                                                <svg class="icon icon--inline icon-green ml-sm">
+                                                    <use href="#dpz-check-inline"></use>
+                                                </svg>
+                                            </strong>
+                                            dein eigener SVG-Code
+                                        </li>
+                                        <li>
+                                            <code class="inline">div.innerHTML = todo.text;</code>
+                                            →
+                                            <strong>
+                                                Gefährlich
+                                                <svg class="icon icon--inline icon-red ml-sm">
                                                     <use href="#dpz-cross-inline"></use>
                                                 </svg>
-                                            </strong>User-Input!
+                                            </strong>
+                                            User-Input!
                                         </li>
                                     </ul>
                                 </div>
@@ -761,7 +1002,8 @@ const filteredTodos = todos.filter(todo =&gt; {
                             <!-- CSS: Lange Wörter umbrechen -->
                             <div>
                                 <h3 id="css-wortumbruch">CSS: Lange Wörter umbrechen</h3>
-                                <p>Damit sehr lange Wörter nicht aus dem Container laufen, nutzen wir diese
+                                <p>
+                                    Damit sehr lange Wörter nicht aus dem Container laufen, nutzen wir diese
                                     CSS-Eigenschaften:
                                 </p>
                                 <div class="code-block">
@@ -769,7 +1011,12 @@ const filteredTodos = todos.filter(todo =&gt; {
                                         <span class="code-lang">CSS</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -789,15 +1036,21 @@ const filteredTodos = todos.filter(todo =&gt; {
                             <!-- Problem: Filter und Original-Index -->
                             <div>
                                 <h3 id="originaler-index">Problem: Filter und Original-Index</h3>
-                                <p>Wenn wir filtern, stimmen die Indizes im gefilterten Array nicht mehr mit dem
-                                    Original
-                                    überein:</p>
+                                <p>
+                                    Wenn wir filtern, stimmen die Indizes im gefilterten Array nicht mehr mit dem
+                                    Original überein:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -817,16 +1070,23 @@ filteredTodos.forEach(todo =&gt; {
                             <!-- Suche mit Debounce -->
                             <div>
                                 <h3 id="suche-funktion">Suche mit Debounce</h3>
-                                <p>Die Suche filtert Aufgaben nach dem eingegebenen Text. Um nicht bei jedem Tastendruck
-                                    zu suchen (was bei vielen Aufgaben langsam wäre), nutzen wir
-                                    <strong>Debounce</strong>:
+                                <p>
+                                    Die Suche filtert Aufgaben nach dem eingegebenen Text. Um nicht bei jedem
+                                    Tastendruck zu suchen (was bei vielen Aufgaben langsam wäre), nutzen wir
+                                    <strong>Debounce</strong>
+                                    :
                                 </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -841,24 +1101,31 @@ todoSearch.addEventListener("input", e =&gt; {
     }, 300);                              // 300ms warten nach letztem Tippen
 });</code></pre>
                                 </div>
-                                <p>Das bedeutet: Die Suche startet erst 300ms nachdem der User aufgehört hat zu tippen.
+                                <p>
+                                    Das bedeutet: Die Suche startet erst 300ms nachdem der User aufgehört hat zu tippen.
                                 </p>
                             </div>
 
                             <!-- Suchbegriff hervorheben -->
                             <div>
                                 <h3 id="suche-hervorheben">Suchbegriff hervorheben (sicher!)</h3>
-                                <p>Beim Hervorheben des Suchbegriffs könnten wir <code class="inline">innerHTML</code>
+                                <p>
+                                    Beim Hervorheben des Suchbegriffs könnten wir
+                                    <code class="inline">innerHTML</code>
                                     nutzen - aber das wäre bei User-Input gefährlich. Stattdessen erstellen wir die
-                                    Elemente
-                                    sicher:
+                                    Elemente sicher:
                                 </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -878,21 +1145,31 @@ parts.forEach(part =&gt; {
     }
 });</code></pre>
                                 </div>
-                                <p>So bleibt die Hervorhebung sicher, auch wenn der User HTML-Code als Aufgabe eingibt.
+                                <p>
+                                    So bleibt die Hervorhebung sicher, auch wenn der User HTML-Code als Aufgabe eingibt.
                                 </p>
                             </div>
 
                             <!-- Regex-Sonderzeichen escapen -->
                             <div>
                                 <h3 id="regex-escapen">Regex-Sonderzeichen escapen</h3>
-                                <p>Wenn der User nach <code class="inline">.*</code> sucht, würde das als Regex
-                                    interpretiert werden und alles matchen. Deshalb escapen wir Sonderzeichen:</p>
+                                <p>
+                                    Wenn der User nach
+                                    <code class="inline">.*</code>
+                                    sucht, würde das als Regex interpretiert werden und alles matchen. Deshalb escapen
+                                    wir Sonderzeichen:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -915,7 +1192,12 @@ parts.forEach(part =&gt; {
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -957,25 +1239,33 @@ searchClear.addEventListener("click", () =&gt; {
     todoSearch.focus();              // Fokus zurück ins Suchfeld
 });</code></pre>
                                 </div>
-                                <p>Das Muster ist immer gleich: Daten ändern → <code class="inline">saveTodos()</code>
-                                    aufrufen → Ansicht wird automatisch aktualisiert.</p>
+                                <p>
+                                    Das Muster ist immer gleich: Daten ändern →
+                                    <code class="inline">saveTodos()</code>
+                                    aufrufen → Ansicht wird automatisch aktualisiert.
+                                </p>
                             </div>
 
                             <!-- Tags: Flexible Kategorisierung -->
                             <div>
                                 <h3 id="tags-system">Tags: Flexible Kategorisierung</h3>
-                                <p>Statt fester Kategorien können Aufgaben mit <code class="inline">#tags</code>
-                                    versehen
-                                    werden.
-                                    Die Tags werden direkt im Aufgabentext eingegeben (z.B. "Milch kaufen #einkaufen
-                                    #privat")
-                                    und automatisch erkannt:</p>
+                                <p>
+                                    Statt fester Kategorien können Aufgaben mit
+                                    <code class="inline">#tags</code>
+                                    versehen werden. Die Tags werden direkt im Aufgabentext eingegeben (z.B. "Milch
+                                    kaufen #einkaufen #privat") und automatisch erkannt:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -1005,15 +1295,21 @@ function getAllTags() {
     return [...allTags].sort();
 }</code></pre>
                                 </div>
-                                <p>Die Tag-Filter-Buttons werden dynamisch generiert - nur Tags, die tatsächlich
-                                    verwendet
-                                    werden, erscheinen als Filter:</p>
+                                <p>
+                                    Die Tag-Filter-Buttons werden dynamisch generiert - nur Tags, die tatsächlich
+                                    verwendet werden, erscheinen als Filter:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -1051,15 +1347,22 @@ function getAllTags() {
                             <!-- Erweiterter Filter: Prioritäten -->
                             <div>
                                 <h3 id="prioritaets-filter">Erweiterter Filter: Prioritäten</h3>
-                                <p>Zusätzlich zum Status-Filter (Alle/Offen/Erledigt) gibt es jetzt einen
-                                    Prioritäts-Filter.
-                                    Beide Filter können kombiniert werden - z.B. "nur offene dringende Aufgaben":</p>
+                                <p>
+                                    Zusätzlich zum Status-Filter (Alle/Offen/Erledigt) gibt es jetzt einen
+                                    Prioritäts-Filter. Beide Filter können kombiniert werden - z.B. "nur offene
+                                    dringende Aufgaben":
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -1104,15 +1407,21 @@ function renderTodos() {
                             <!-- Drag & Drop Sortierung -->
                             <div>
                                 <h3 id="drag-and-drop">Drag &amp; Drop Sortierung</h3>
-                                <p>Aufgaben können per Drag &amp; Drop innerhalb der gleichen Prioritätsstufe umsortiert
-                                    werden.
-                                    Das nutzt die native HTML5 Drag &amp; Drop API:</p>
+                                <p>
+                                    Aufgaben können per Drag &amp; Drop innerhalb der gleichen Prioritätsstufe
+                                    umsortiert werden. Das nutzt die native HTML5 Drag &amp; Drop API:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -1151,16 +1460,23 @@ function handleDrop(e) {
     saveTodos();
 }</code></pre>
                                 </div>
-                                <p>Die Sortierung verwendet ein <code class="inline">sortOrder</code>-Feld im
-                                    Todo-Objekt.
-                                    Das ermöglicht manuelle Reihenfolge innerhalb der automatischen
-                                    Prioritäts-Gruppierung:</p>
+                                <p>
+                                    Die Sortierung verwendet ein
+                                    <code class="inline">sortOrder</code>
+                                    -Feld im Todo-Objekt. Das ermöglicht manuelle Reihenfolge innerhalb der
+                                    automatischen Prioritäts-Gruppierung:
+                                </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -1179,35 +1495,43 @@ filteredTodos.sort((a, b) =&gt; {
                                 </div>
 
                                 <div class="info-box">
-                                    <strong class="box-title no-toc">Warum ID statt Index?
+                                    <strong class="box-title no-toc">
+                                        Warum ID statt Index?
                                         <svg class="icon-ui">
                                             <use href="#dpz-info-circle"></use>
                                         </svg>
                                     </strong>
-                                    <p>Bei Drag &amp; Drop dürfen wir nicht mit Array-Indizes arbeiten! Filter und
-                                        Sortierung
-                                        ändern die Positionen - der Index 2 im gefilterten Array ist nicht Index 2 im
-                                        Original.
-                                        Deshalb bekommt jedes Todo eine eindeutige <code class="inline">id</code>
-                                        (Timestamp),
-                                        über die wir es zuverlässig wiederfinden.</p>
+                                    <p>
+                                        Bei Drag &amp; Drop dürfen wir nicht mit Array-Indizes arbeiten! Filter und
+                                        Sortierung ändern die Positionen - der Index 2 im gefilterten Array ist nicht
+                                        Index 2 im Original. Deshalb bekommt jedes Todo eine eindeutige
+                                        <code class="inline">id</code>
+                                        (Timestamp), über die wir es zuverlässig wiederfinden.
+                                    </p>
                                 </div>
                             </div>
 
                             <!-- Migration -->
                             <div>
                                 <h3 id="migration">Migration: Bestehende Daten erweitern</h3>
-                                <p>Wenn User schon Aufgaben gespeichert haben (vor dem Update), fehlen die neuen Felder
-                                    <code class="inline">id</code> und <code class="inline">sortOrder</code>. Die
-                                    Migration
-                                    ergänzt diese automatisch beim Start:
+                                <p>
+                                    Wenn User schon Aufgaben gespeichert haben (vor dem Update), fehlen die neuen Felder
+                                    <code class="inline">id</code>
+                                    und
+                                    <code class="inline">sortOrder</code>
+                                    . Die Migration ergänzt diese automatisch beim Start:
                                 </p>
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -1233,10 +1557,11 @@ filteredTodos.sort((a, b) =&gt; {
 migrateTodos();
 renderTodos();</code></pre>
                                 </div>
-                                <p>So funktioniert das Update nahtlos - alte Aufgaben bekommen die neuen Felder,
-                                    ohne dass User etwas manuell tun müssen.</p>
+                                <p>
+                                    So funktioniert das Update nahtlos - alte Aufgaben bekommen die neuen Felder, ohne
+                                    dass User etwas manuell tun müssen.
+                                </p>
                             </div>
-
                         </section>
 
                         <section class="tutorials-content">
@@ -1244,20 +1569,37 @@ renderTodos();</code></pre>
                             <p>Du hast jetzt eine vollwertige ToDo-App gebaut! Die wichtigsten Konzepte waren:</p>
 
                             <div class="info-box notice">
-                                <strong class="box-title notice no-toc">Das hast du gelernt
+                                <strong class="box-title notice no-toc">
+                                    Das hast du gelernt
                                     <svg class="icon-ui">
                                         <use href="#dpz-check-circle"></use>
                                     </svg>
                                 </strong>
                                 <ul class="arrow-list">
-                                    <li><strong>localStorage:</strong> Daten im Browser speichern, die auch nach dem
-                                        Schließen erhalten bleiben</li>
-                                    <li><strong>Re-Rendering:</strong> Bei jeder Änderung die komplette Ansicht neu
-                                        aufbauen</li>
-                                    <li><strong>textContent statt innerHTML:</strong> User-Input sicher anzeigen</li>
-                                    <li><strong>Filter-Verkettung:</strong> Mehrere Filter nacheinander anwenden</li>
-                                    <li><strong>Debounce:</strong> Performance bei häufigen Events optimieren</li>
-                                    <li><strong>Migration:</strong> Bestehende Daten beim Update erweitern</li>
+                                    <li>
+                                        <strong>localStorage:</strong>
+                                        Daten im Browser speichern, die auch nach dem Schließen erhalten bleiben
+                                    </li>
+                                    <li>
+                                        <strong>Re-Rendering:</strong>
+                                        Bei jeder Änderung die komplette Ansicht neu aufbauen
+                                    </li>
+                                    <li>
+                                        <strong>textContent statt innerHTML:</strong>
+                                        User-Input sicher anzeigen
+                                    </li>
+                                    <li>
+                                        <strong>Filter-Verkettung:</strong>
+                                        Mehrere Filter nacheinander anwenden
+                                    </li>
+                                    <li>
+                                        <strong>Debounce:</strong>
+                                        Performance bei häufigen Events optimieren
+                                    </li>
+                                    <li>
+                                        <strong>Migration:</strong>
+                                        Bestehende Daten beim Update erweitern
+                                    </li>
                                 </ul>
                             </div>
 
@@ -1281,7 +1623,12 @@ renderTodos();</code></pre>
                                         <span class="code-lang">HTML</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -1373,7 +1720,12 @@ renderTodos();</code></pre>
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -2003,7 +2355,12 @@ renderTodos();</code></pre>
                                         <span class="code-lang">CSS</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -2552,7 +2909,6 @@ renderTodos();</code></pre>
 }</code></pre>
                                 </div>
                             </details>
-
                         </section>
 
                         <!-- <section class="tutorials-content">
@@ -2567,66 +2923,66 @@ renderTodos();</code></pre>
                         <!-- Prev/Next Navigation -->
 
                         <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="javascript">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                        <section class="categories">
+                            <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
+                            <div id="categoryLatestTutorials" class="tutorials-grid" data-category="javascript">
+                                <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                                <p class="text-muted">Tutorials werden geladen...</p>
+                            </div>
+                        </section>
+                        <!-- Latest-Tutorials-End -->
 
                         <section class="tutorials-content">
                             <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">HTML Entity Encoder</span>
-                <span class="tutorial-nav-category">JavaScript Projects</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/javascript/javascript-projects/js-live-editor.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">Live Code Editor</span>
-                <span class="tutorial-nav-category">JavaScript Projects</span>
-            </a>
-        </div></nav>
+                                <div class="tutorial-nav-prev">
+                                    <a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">
+                                        <span class="tutorial-nav-label">← Vorheriges</span>
+                                        <span class="tutorial-nav-link">HTML Entity Encoder</span>
+                                        <span class="tutorial-nav-category">JavaScript Projects</span>
+                                    </a>
+                                </div>
+                                <div class="tutorial-nav-next">
+                                    <a href="/tutorials/javascript/javascript-projects/js-live-editor.html">
+                                        <span class="tutorial-nav-label">Nächstes →</span>
+                                        <span class="tutorial-nav-link">Live Code Editor</span>
+                                        <span class="tutorial-nav-category">JavaScript Projects</span>
+                                    </a>
+                                </div>
+                            </nav>
                         </section>
-
-
-                    </div> <!-- container -->
-
-                </div> <!-- tutorial-layout -->
-
+                    </div>
+                    <!-- container -->
+                </div>
+                <!-- tutorial-layout -->
             </div>
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/js/js-to-do-app.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-
-
-    
-
-</body></html>
+    </body>
+</html>

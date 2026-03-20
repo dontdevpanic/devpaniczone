@@ -1,179 +1,208 @@
-<!DOCTYPE html><html lang="de"><head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description" content="JavaScript Sicherheit für Anfänger: Self-XSS, innerHTML vs textContent, Input Validation, CSP und DSGVO. Praktische Checkliste für sichere Webentwicklung.">
-        <meta name="keywords" content="JavaScript Sicherheit, XSS verhindern, Self-XSS, innerHTML sicher, textContent, Content Security Policy, CSP Tutorial, sichere Webentwicklung, DSGVO JavaScript">
-        <meta name="author" content="DevPanicZone">
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="JavaScript Sicherheit für Anfänger: Self-XSS, innerHTML vs textContent, Input Validation, CSP und DSGVO. Praktische Checkliste für sichere Webentwicklung."
+        />
+        <meta
+            name="keywords"
+            content="JavaScript Sicherheit, XSS verhindern, Self-XSS, innerHTML sicher, textContent, Content Security Policy, CSP Tutorial, sichere Webentwicklung, DSGVO JavaScript"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>JavaScript Sicherheit - XSS, CSP &amp; sichere Methoden | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span class="breadcrumb-separator">›</span><a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a><span class="breadcrumb-separator">›</span><span class="breadcrumb-current">JavaScript Sicherheit</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/javascript/" class="breadcrumb-link">JavaScript</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">JavaScript Sicherheit</span>
+                    </nav>
                     <h1 class="hero-title">JavaScript Sicherheit</h1>
-                    <p class="hero-subtitle">Ist JavaScript gefährlich? Was bedeutet die Warnung in der Console? Und wie
-                        schreibe ich sicheren Code?</p>
+                    <p class="hero-subtitle">
+                        Ist JavaScript gefährlich? Was bedeutet die Warnung in der Console? Und wie schreibe ich
+                        sicheren Code?
+                    </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen" title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -182,7 +211,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -195,23 +223,55 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#die-console-warnung-was-ist-self-xss">Die Console-Warnung: Was ist Self-XSS?</a></li>
-                    <li class="toc-level-1"><a href="#xss---cross-site-scripting">XSS - Cross-Site Scripting</a></li>
-                    <li class="toc-level-1"><a href="#innerhtml-vs-textcontent---der-unterschied-ist-wichtig">innerHTML vs. textContent - Der
-                            Unterschied ist wichtig!</a></li>
-                    <li class="toc-level-1"><a href="#input-validation---user-eingaben-ueberpruefen">Input Validation - User-Eingaben
-                            überprüfen</a></li>
-                    <li class="toc-level-1"><a href="#sichere-vs-unsichere-methoden">Sichere vs. Unsichere Methoden</a></li>
-                    <li class="toc-level-1"><a href="#best-practices-fuer-sicheres-javascript">Best Practices für sicheres JavaScript</a></li>
-                    <li class="toc-level-1"><a href="#content-security-policy-csp">Content Security Policy (CSP)</a></li>
-                    <li class="toc-level-1"><a href="#subresource-integrity-sri">Subresource Integrity (SRI)</a></li>
-                    <li class="toc-level-1"><a href="#same-origin-policy-und-cors">Same-Origin Policy und CORS</a></li>
-                    <li class="toc-level-1"><a href="#dsgvo-und-javascript">DSGVO und JavaScript</a></li>
-                    <li class="toc-level-1"><a href="#wann-muss-ich-mir-sorgen-machen">Wann muss ich mir Sorgen machen?</a></li>
-                    <li class="toc-level-1"><a href="#checkliste-fuer-jedes-projekt">Checkliste für jedes Projekt</a></li>
-                    <li class="toc-level-1"><a href="#fazit-keine-panik-aber-wachsam-bleiben">Fazit: Keine Panik, aber wachsam bleiben</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1">
+                                <a href="#die-console-warnung-was-ist-self-xss">
+                                    Die Console-Warnung: Was ist Self-XSS?
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#xss---cross-site-scripting">XSS - Cross-Site Scripting</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#innerhtml-vs-textcontent---der-unterschied-ist-wichtig">
+                                    innerHTML vs. textContent - Der Unterschied ist wichtig!
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#input-validation---user-eingaben-ueberpruefen">
+                                    Input Validation - User-Eingaben überprüfen
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#sichere-vs-unsichere-methoden">Sichere vs. Unsichere Methoden</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#best-practices-fuer-sicheres-javascript">
+                                    Best Practices für sicheres JavaScript
+                                </a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#content-security-policy-csp">Content Security Policy (CSP)</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#subresource-integrity-sri">Subresource Integrity (SRI)</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#same-origin-policy-und-cors">Same-Origin Policy und CORS</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#dsgvo-und-javascript">DSGVO und JavaScript</a></li>
+                            <li class="toc-level-1">
+                                <a href="#wann-muss-ich-mir-sorgen-machen">Wann muss ich mir Sorgen machen?</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#checkliste-fuer-jedes-projekt">Checkliste für jedes Projekt</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#fazit-keine-panik-aber-wachsam-bleiben">
+                                    Fazit: Keine Panik, aber wachsam bleiben
+                                </a>
+                            </li>
+                            <li class="toc-level-1"><a href="#mehr-aus-javascript">Mehr aus JavaScript</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -227,37 +287,66 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">JavaScript Basics</li>
-                    <li><a href="/tutorials/javascript/javascript-basics/was-ist-javascript.html">Was ist JavaScript eigentlich?</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-security.html" class="active">JavaScript Sicherheit</a></li>
-                    <li><a href="/tutorials/javascript/javascript-basics/js-variables.html">JavaScript Variables</a></li>
-                    <li class="sidebar-group-title">JavaScript Projects</li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">JavaScript: HTML-Code Escaper</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">HTML Entity Encoder</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">ToDo-App mit JavaScript</a></li>
-                    <li><a href="/tutorials/javascript/javascript-projects/js-live-editor.html">Live Code Editor</a></li>
-                </ul>
+                            <li class="sidebar-group-title">JavaScript Basics</li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-basics/was-ist-javascript.html">
+                                    Was ist JavaScript eigentlich?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-basics/js-basics.html">JavaScript Basics</a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-basics/js-security.html" class="active">
+                                    JavaScript Sicherheit
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-basics/js-variables.html">
+                                    JavaScript Variables
+                                </a>
+                            </li>
+                            <li class="sidebar-group-title">JavaScript Projects</li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-projects/js-code-escaper.html">
+                                    JavaScript: HTML-Code Escaper
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-projects/js-entity-encoder.html">
+                                    HTML Entity Encoder
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-projects/js-to-do-app.html">
+                                    ToDo-App mit JavaScript
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/javascript/javascript-projects/js-live-editor.html">
+                                    Live Code Editor
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Warum dieses Tutorial wichtig ist -->
                     <section class="tutorials-content">
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">Warum dieses Tutorial wichtig ist
+                            <strong class="box-title danger no-toc" id="achtung">
+                                Warum dieses Tutorial wichtig ist
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Als ich die DevTools zum ersten Mal geöffnet habe, stand da eine riesige Warnung mit
-                                "STOP!"
-                                - ziemlich beängstigend. Aber was bedeutet das eigentlich? Und wann muss ich mir als
-                                Entwickler Sorgen machen? Hier dokumentiere ich, was ich über JavaScript-Sicherheit
-                                gelernt
-                                habe - ohne unnötige Panik, aber mit den wichtigen Facts.
+                            <p>
+                                Als ich die DevTools zum ersten Mal geöffnet habe, stand da eine riesige Warnung mit
+                                "STOP!" - ziemlich beängstigend. Aber was bedeutet das eigentlich? Und wann muss ich mir
+                                als Entwickler Sorgen machen? Hier dokumentiere ich, was ich über JavaScript-Sicherheit
+                                gelernt habe - ohne unnötige Panik, aber mit den wichtigen Facts.
                             </p>
                         </div>
                     </section>
@@ -267,20 +356,27 @@
                         <h2 id="die-console-warnung-was-ist-self-xss">Die Console-Warnung: Was ist Self-XSS?</h2>
                         <p>Wenn du die Browser-Console öffnest (F12), siehst du oft eine Warnung wie diese:</p>
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">⚠️ STOP!
+                            <strong class="box-title danger no-toc" id="achtung">
+                                ⚠️ STOP!
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p><strong>"This is a browser feature intended for developers. If someone told you to copy
-                                    and paste something here to enable a feature or hack someone's account, it is a scam
-                                    and will give them access to your account."</strong></p>
+                            <p>
+                                <strong>
+                                    "This is a browser feature intended for developers. If someone told you to copy and
+                                    paste something here to enable a feature or hack someone's account, it is a scam and
+                                    will give them access to your account."
+                                </strong>
+                            </p>
                         </div>
 
                         <h3 class="no-toc">Was ist das?</h3>
-                        <p>Das ist eine Warnung vor <strong>Self-XSS</strong> (Self Cross-Site Scripting). Dabei werden
-                            Leute durch Social Engineering dazu gebracht, selbst bösartigen Code in die Console
-                            einzugeben.
+                        <p>
+                            Das ist eine Warnung vor
+                            <strong>Self-XSS</strong>
+                            (Self Cross-Site Scripting). Dabei werden Leute durch Social Engineering dazu gebracht,
+                            selbst bösartigen Code in die Console einzugeben.
                         </p>
 
                         <h3 class="no-toc">Wie funktioniert der Betrug?</h3>
@@ -299,105 +395,139 @@ fetch('https://boese-seite.com/steal', {
                         </div>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">Die Regel
+                            <strong class="box-title danger no-toc" id="achtung">
+                                Die Regel
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
-                            <p><strong>Füge NIE Code in die Browser-Console ein, den dir jemand geschickt hat - egal wie
+                            <p>
+                                <strong>
+                                    Füge NIE Code in die Browser-Console ein, den dir jemand geschickt hat - egal wie
                                     vertrauenswürdig die Person scheint. Selbst wenn es von einem "Facebook-Freund"
-                                    kommt
-                                    oder "gratis Features" verspricht.
-                                </strong></p>
+                                    kommt oder "gratis Features" verspricht.
+                                </strong>
+                            </p>
                         </div>
 
                         <h3 class="no-toc">Betrifft mich das als Entwickler?</h3>
-                        <p>Diese Warnung ist <strong>für die Nutzer deiner Website</strong>, nicht für dich als
-                            Entwickler. Du kannst die Console weiterhin normal zum Debuggen verwenden. Die Warnung soll
-                            verhindern, dass unwissende User ausgetrickst werden.</p>
+                        <p>
+                            Diese Warnung ist
+                            <strong>für die Nutzer deiner Website</strong>
+                            , nicht für dich als Entwickler. Du kannst die Console weiterhin normal zum Debuggen
+                            verwenden. Die Warnung soll verhindern, dass unwissende User ausgetrickst werden.
+                        </p>
                     </section>
 
                     <!-- Was kann JavaScript eigentlich? -->
                     <section class="tutorials-content">
                         <h2 class="no-toc">Was kann JavaScript eigentlich?</h2>
-                        <p>Um zu verstehen, wo Gefahren lauern, müssen wir wissen, was JavaScript kann und was nicht:
+                        <p>
+                            Um zu verstehen, wo Gefahren lauern, müssen wir wissen, was JavaScript kann und was nicht:
                         </p>
 
                         <h3 class="no-toc">Was JavaScript KANN:</h3>
 
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><strong>DOM manipulieren</strong> - Inhalte der aktuellen Seite ändern, hinzufügen,
-                                    löschen
+                                <li>
+                                    <strong>DOM manipulieren</strong>
+                                    - Inhalte der aktuellen Seite ändern, hinzufügen, löschen
                                 </li>
-                                <li><strong>Cookies lesen/schreiben</strong> - Session-Daten, Login-Tokens (wenn nicht
-                                    httpOnly)
+                                <li>
+                                    <strong>Cookies lesen/schreiben</strong>
+                                    - Session-Daten, Login-Tokens (wenn nicht httpOnly)
                                 </li>
-                                <li><strong>LocalStorage/SessionStorage</strong> - Daten im Browser speichern und lesen
+                                <li>
+                                    <strong>LocalStorage/SessionStorage</strong>
+                                    - Daten im Browser speichern und lesen
                                 </li>
-                                <li><strong>HTTP-Requests senden</strong> - Daten an Server schicken (fetch,
-                                    XMLHttpRequest)
+                                <li>
+                                    <strong>HTTP-Requests senden</strong>
+                                    - Daten an Server schicken (fetch, XMLHttpRequest)
                                 </li>
-                                <li><strong>Events abfangen</strong> - Tastatureingaben, Klicks aufzeichnen</li>
-                                <li><strong>Formulardaten lesen</strong> - Passwörter, Kreditkarten-Infos vor dem
-                                    Absenden
+                                <li>
+                                    <strong>Events abfangen</strong>
+                                    - Tastatureingaben, Klicks aufzeichnen
                                 </li>
-                                <li><strong>Redirects</strong> - Nutzer auf andere Seiten umleiten</li>
-                                <li><strong>Browser-Infos auslesen</strong> - User Agent, Bildschirmgröße, etc.</li>
+                                <li>
+                                    <strong>Formulardaten lesen</strong>
+                                    - Passwörter, Kreditkarten-Infos vor dem Absenden
+                                </li>
+                                <li>
+                                    <strong>Redirects</strong>
+                                    - Nutzer auf andere Seiten umleiten
+                                </li>
+                                <li>
+                                    <strong>Browser-Infos auslesen</strong>
+                                    - User Agent, Bildschirmgröße, etc.
+                                </li>
                             </ul>
                         </div>
-
 
                         <h3 class="no-toc">Was JavaScript NICHT KANN:</h3>
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><strong>Auf deine Dateien zugreifen</strong> - Keine Zugriff auf dein Dateisystem
-                                    (außer explizit hochgeladene Files)</li>
-                                <li><strong>Andere Tabs/Fenster kontrollieren</strong> - Nur das eigene Fenster
-                                    (Same-Origin
-                                    Policy)</li>
-                                <li><strong>Server-Code ausführen</strong> - Läuft nur im Browser, nicht auf dem Server
+                                <li>
+                                    <strong>Auf deine Dateien zugreifen</strong>
+                                    - Keine Zugriff auf dein Dateisystem (außer explizit hochgeladene Files)
                                 </li>
-                                <li><strong>Browser-Einstellungen ändern</strong> - Keine Kontrolle über
-                                    Browser-Konfiguration
+                                <li>
+                                    <strong>Andere Tabs/Fenster kontrollieren</strong>
+                                    - Nur das eigene Fenster (Same-Origin Policy)
                                 </li>
-                                <li><strong>Viren installieren</strong> - Kann keine Programme auf deinem Computer
-                                    installieren
+                                <li>
+                                    <strong>Server-Code ausführen</strong>
+                                    - Läuft nur im Browser, nicht auf dem Server
                                 </li>
-                                <li><strong>Cross-Domain Cookies lesen</strong> - Nur Cookies der eigenen Domain</li>
+                                <li>
+                                    <strong>Browser-Einstellungen ändern</strong>
+                                    - Keine Kontrolle über Browser-Konfiguration
+                                </li>
+                                <li>
+                                    <strong>Viren installieren</strong>
+                                    - Kann keine Programme auf deinem Computer installieren
+                                </li>
+                                <li>
+                                    <strong>Cross-Domain Cookies lesen</strong>
+                                    - Nur Cookies der eigenen Domain
+                                </li>
                             </ul>
                         </div>
 
-
                         <div class="info-box">
-                            <strong class="box-title no-toc">Meine Erkenntnis
+                            <strong class="box-title no-toc">
+                                Meine Erkenntnis
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>JavaScript läuft in einer "Sandbox" im Browser - es ist ziemlich eingeschränkt. Die
-                                Gefahr
-                                kommt meist durch falsche Verwendung oder Social Engineering, nicht durch JavaScript
-                                selbst.
+                            <p>
+                                JavaScript läuft in einer "Sandbox" im Browser - es ist ziemlich eingeschränkt. Die
+                                Gefahr kommt meist durch falsche Verwendung oder Social Engineering, nicht durch
+                                JavaScript selbst.
                             </p>
                         </div>
-
                     </section>
 
                     <!-- XSS - Cross-Site Scripting -->
                     <section class="tutorials-content">
                         <h2 id="xss---cross-site-scripting">XSS - Cross-Site Scripting</h2>
-                        <p>XSS ist die <strong>häufigste und gefährlichste Sicherheitslücke</strong> bei JavaScript.
-                            Dabei
-                            wird fremder Code auf deiner Website ausgeführt.</p>
+                        <p>
+                            XSS ist die
+                            <strong>häufigste und gefährlichste Sicherheitslücke</strong>
+                            bei JavaScript. Dabei wird fremder Code auf deiner Website ausgeführt.
+                        </p>
 
                         <h3 class="no-toc">Wie funktioniert XSS?</h3>
-                        <p>Ein Angreifer schafft es, eigenen JavaScript-Code in deine Website einzuschleusen - meist
-                            über
-                            User-Input, der nicht richtig überprüft wird.</p>
+                        <p>
+                            Ein Angreifer schafft es, eigenen JavaScript-Code in deine Website einzuschleusen - meist
+                            über User-Input, der nicht richtig überprüft wird.
+                        </p>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">Beispiel - UNSICHERE Kommentarfunktion
+                            <strong class="box-title danger no-toc" id="achtung">
+                                Beispiel - UNSICHERE Kommentarfunktion
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -407,17 +537,18 @@ let userComment = "&lt;script&gt;alert('Gehackt!')&lt;/script&gt;";
 document.getElementById("comments").innerHTML = userComment;
 
 // Der Script-Tag wird ausgeführt!</code></pre>
-                            <p><strong>Problem:</strong> Wenn ein User einen <code class="inline">&lt;script&gt;</code>-Tag
-                                in den
-                                Kommentar
-                                schreibt, wird dieser ausgeführt! Der Angreifer könnte Cookies stehlen, Formulardaten
-                                abfangen
-                                oder die Seite manipulieren.</p>
+                            <p>
+                                <strong>Problem:</strong>
+                                Wenn ein User einen
+                                <code class="inline">&lt;script&gt;</code>
+                                -Tag in den Kommentar schreibt, wird dieser ausgeführt! Der Angreifer könnte Cookies
+                                stehlen, Formulardaten abfangen oder die Seite manipulieren.
+                            </p>
                         </div>
 
-
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Beispiel - SICHERE Kommentarfunktion
+                            <strong class="box-title notice no-toc">
+                                Beispiel - SICHERE Kommentarfunktion
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -427,56 +558,71 @@ let userComment = "&lt;script&gt;alert('Gehackt!')&lt;/script&gt;";
 document.getElementById("comments").textContent = userComment;
 
 // Der Text wird angezeigt, aber NICHT als Code ausgeführt!</code></pre>
-                            <p><strong>Lösung:</strong> <code class="inline">textContent</code> statt <code class="inline">innerHTML</code> verwenden! Der
-                                Script-Tag wird als normaler Text angezeigt, nicht ausgeführt.</p>
+                            <p>
+                                <strong>Lösung:</strong>
+                                <code class="inline">textContent</code>
+                                statt
+                                <code class="inline">innerHTML</code>
+                                verwenden! Der Script-Tag wird als normaler Text angezeigt, nicht ausgeführt.
+                            </p>
                         </div>
 
                         <h3 class="no-toc">Arten von XSS</h3>
                         <div class="grid-2col-bg">
-                            <p><strong>1. Stored XSS (Persistent)</strong> - Bösartiger Code wird in der Datenbank
-                                gespeichert (z.B. in Kommentaren) und allen Usern angezeigt.</p>
-                            <p><strong>2. Reflected XSS</strong> - Code wird in der URL übergeben und sofort ausgeführt
-                                (z.B. <code class="inline">seite.html?search=&lt;script&gt;...&lt;/script&gt;</code>)
+                            <p>
+                                <strong>1. Stored XSS (Persistent)</strong>
+                                - Bösartiger Code wird in der Datenbank gespeichert (z.B. in Kommentaren) und allen
+                                Usern angezeigt.
                             </p>
-                            <p><strong>3. DOM-based XSS</strong> - Code manipuliert direkt das DOM, ohne
-                                Server-Beteiligung.
+                            <p>
+                                <strong>2. Reflected XSS</strong>
+                                - Code wird in der URL übergeben und sofort ausgeführt (z.B.
+                                <code class="inline">seite.html?search=&lt;script&gt;...&lt;/script&gt;</code>
+                                )
+                            </p>
+                            <p>
+                                <strong>3. DOM-based XSS</strong>
+                                - Code manipuliert direkt das DOM, ohne Server-Beteiligung.
                             </p>
                         </div>
-
                     </section>
 
                     <!-- innerHTML vs textContent -->
                     <section class="tutorials-content">
-                        <h2 id="innerhtml-vs-textcontent---der-unterschied-ist-wichtig">innerHTML vs. textContent - Der
-                            Unterschied ist wichtig!</h2>
+                        <h2 id="innerhtml-vs-textcontent---der-unterschied-ist-wichtig">
+                            innerHTML vs. textContent - Der Unterschied ist wichtig!
+                        </h2>
 
                         <div class="grid-2col">
                             <div class="info-box notice">
-                                <strong class="box-title notice no-toc">SICHER - textContent
+                                <strong class="box-title notice no-toc">
+                                    SICHER - textContent
                                     <svg class="icon-ui icon-green">
                                         <use href="#dpz-check-circle"></use>
                                     </svg>
                                 </strong>
                                 <pre><code class="language-javascript">// Zeigt nur Text, kein Code!
 element.textContent = userInput;</code></pre>
-                                <p><strong>Wann verwenden:</strong> Immer bei User-Input! Code wird nicht ausgeführt.
+                                <p>
+                                    <strong>Wann verwenden:</strong>
+                                    Immer bei User-Input! Code wird nicht ausgeführt.
                                 </p>
                             </div>
 
                             <div class="info-box danger">
-                                <strong class="box-title danger no-toc">UNSICHER - innerHTML
+                                <strong class="box-title danger no-toc">
+                                    UNSICHER - innerHTML
                                     <svg class="icon-ui icon-red-light">
                                         <use href="#dpz-cross-circle"></use>
                                     </svg>
                                 </strong>
                                 <pre><code class="language-javascript">// Führt HTML/JavaScript aus!
 element.innerHTML = userInput;</code></pre>
-                                <p><strong>Wann verwenden:</strong> Nur mit vertrauenswürdigen Daten, NIE mit
-                                    User-Input!
-
+                                <p>
+                                    <strong>Wann verwenden:</strong>
+                                    Nur mit vertrauenswürdigen Daten, NIE mit User-Input!
                                 </p>
                             </div>
-
                         </div>
 
                         <h3 class="no-toc">Praktisches Beispiel</h3>
@@ -485,7 +631,7 @@ element.innerHTML = userInput;</code></pre>
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -500,33 +646,52 @@ document.getElementById("greeting").textContent = "Hallo " + userName;</code></p
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Faustregel
+                            <strong class="box-title no-toc">
+                                Faustregel
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Wenn du User-Input anzeigst, verwende immer <code class="inline">textContent</code> oder
-                                <code class="inline">innerText</code>.
+                            <p>
+                                Wenn du User-Input anzeigst, verwende immer
+                                <code class="inline">textContent</code>
+                                oder
+                                <code class="inline">innerText</code>
+                                .
                             </p>
-                            <p><code class="inline">innerHTML</code> nur für deinen eigenen, kontrollierten
-                                HTML-Code!</p>
+                            <p>
+                                <code class="inline">innerHTML</code>
+                                nur für deinen eigenen, kontrollierten HTML-Code!
+                            </p>
                         </div>
                     </section>
 
                     <!-- Input Validation -->
                     <section class="tutorials-content">
-                        <h2 id="input-validation---user-eingaben-ueberpruefen">Input Validation - User-Eingaben
-                            überprüfen
+                        <h2 id="input-validation---user-eingaben-ueberpruefen">
+                            Input Validation - User-Eingaben überprüfen
                         </h2>
                         <p>Vertraue niemals blind auf User-Input - weder im Frontend noch im Backend!</p>
 
                         <h3 class="no-toc">Was sollte validiert werden?</h3>
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><strong>Datentyp</strong> - Ist es wirklich eine Zahl, E-Mail, URL?</li>
-                                <li><strong>Länge</strong> - Nicht zu kurz, nicht zu lang?</li>
-                                <li><strong>Format</strong> - Entspricht es dem erwarteten Muster?</li>
-                                <li><strong>Erlaubte Zeichen</strong> - Keine Script-Tags, SQL-Befehle, etc.</li>
+                                <li>
+                                    <strong>Datentyp</strong>
+                                    - Ist es wirklich eine Zahl, E-Mail, URL?
+                                </li>
+                                <li>
+                                    <strong>Länge</strong>
+                                    - Nicht zu kurz, nicht zu lang?
+                                </li>
+                                <li>
+                                    <strong>Format</strong>
+                                    - Entspricht es dem erwarteten Muster?
+                                </li>
+                                <li>
+                                    <strong>Erlaubte Zeichen</strong>
+                                    - Keine Script-Tags, SQL-Befehle, etc.
+                                </li>
                             </ul>
                         </div>
                         <h3 class="no-toc">Beispiel - E-Mail validieren</h3>
@@ -536,7 +701,7 @@ document.getElementById("greeting").textContent = "Hallo " + userName;</code></p
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -568,7 +733,7 @@ if (istGueltigeEmail(userEmail)) {
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -594,18 +759,18 @@ console.log(saubererText);  // "&amp;lt;script&amp;gt;alert('XSS')&amp;lt;/scrip
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Wichtig
+                            <strong class="box-title no-toc">
+                                Wichtig
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Validation im Frontend ist nur für die User Experience! Die <strong>echte
-                                    Sicherheitsprüfung
-                                    muss auf dem Server</strong> passieren. Frontend-Code kann immer umgangen werden
-                                (DevTools, Postman, etc.).
+                            <p>
+                                Validation im Frontend ist nur für die User Experience! Die
+                                <strong>echte Sicherheitsprüfung muss auf dem Server</strong>
+                                passieren. Frontend-Code kann immer umgangen werden (DevTools, Postman, etc.).
                             </p>
                         </div>
-
                     </section>
 
                     <!-- Sichere Methoden -->
@@ -614,7 +779,8 @@ console.log(saubererText);  // "&amp;lt;script&amp;gt;alert('XSS')&amp;lt;/scrip
                         <p>Eine Übersicht, welche JavaScript-Methoden sicher sind und welche Vorsicht erfordern:</p>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Grundsätzlich sicher
+                            <strong class="box-title notice no-toc">
+                                Grundsätzlich sicher
                                 <svg class="icon-ui icon-green">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -622,28 +788,42 @@ console.log(saubererText);  // "&amp;lt;script&amp;gt;alert('XSS')&amp;lt;/scrip
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><code class="inline">textContent</code> - Zeigt Text ohne HTML-Ausführung
+                                        <li>
+                                            <code class="inline">textContent</code>
+                                            - Zeigt Text ohne HTML-Ausführung
                                         </li>
-                                        <li><code class="inline">innerText</code> - Ähnlich wie textContent</li>
-                                        <li><code class="inline">setAttribute()</code> - Sicher für die meisten
-                                            Attribute
+                                        <li>
+                                            <code class="inline">innerText</code>
+                                            - Ähnlich wie textContent
+                                        </li>
+                                        <li>
+                                            <code class="inline">setAttribute()</code>
+                                            - Sicher für die meisten Attribute
                                         </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><code class="inline">classList.add/remove()</code> - Klassennamen sind
-                                            sicher
+                                        <li>
+                                            <code class="inline">classList.add/remove()</code>
+                                            - Klassennamen sind sicher
                                         </li>
-                                        <li><code class="inline">createElement()</code> - Erstellt Elemente sicher</li>
-                                        <li><code class="inline">console.log()</code> - Debugging ist sicher</li>
+                                        <li>
+                                            <code class="inline">createElement()</code>
+                                            - Erstellt Elemente sicher
+                                        </li>
+                                        <li>
+                                            <code class="inline">console.log()</code>
+                                            - Debugging ist sicher
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Mit Vorsicht verwenden
+                            <strong class="box-title warning no-toc">
+                                Mit Vorsicht verwenden
                                 <svg class="icon-ui icon-orange">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -651,31 +831,46 @@ console.log(saubererText);  // "&amp;lt;script&amp;gt;alert('XSS')&amp;lt;/scrip
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><code class="inline">innerHTML</code> - Nur mit vertrauenswürdigen Daten!
+                                        <li>
+                                            <code class="inline">innerHTML</code>
+                                            - Nur mit vertrauenswürdigen Daten!
                                         </li>
-                                        <li><code class="inline">outerHTML</code> - Gleiche Gefahr wie innerHTML</li>
-                                        <li><code class="inline">document.write()</code> - Veraltet und gefährlich</li>
-                                        <li><code class="inline">eval()</code> - Führt String als Code aus - NIEMALS mit
-                                            User-Input!</li>
+                                        <li>
+                                            <code class="inline">outerHTML</code>
+                                            - Gleiche Gefahr wie innerHTML
+                                        </li>
+                                        <li>
+                                            <code class="inline">document.write()</code>
+                                            - Veraltet und gefährlich
+                                        </li>
+                                        <li>
+                                            <code class="inline">eval()</code>
+                                            - Führt String als Code aus - NIEMALS mit User-Input!
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li><code class="inline">setTimeout/setInterval mit Strings</code> - Wie eval,
-                                            vermeiden!</li>
-                                        <li><code class="inline">new Function()</code> - Ähnlich wie eval</li>
-                                        <li><code class="inline">onclick-Attribute in HTML</code> - Trennung von
-                                            Struktur
-                                            und Verhalten
+                                        <li>
+                                            <code class="inline">setTimeout/setInterval mit Strings</code>
+                                            - Wie eval, vermeiden!
+                                        </li>
+                                        <li>
+                                            <code class="inline">new Function()</code>
+                                            - Ähnlich wie eval
+                                        </li>
+                                        <li>
+                                            <code class="inline">onclick-Attribute in HTML</code>
+                                            - Trennung von Struktur und Verhalten
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">NIEMALS verwenden (mit User-Input)
+                            <strong class="box-title danger no-toc" id="achtung">
+                                NIEMALS verwenden (mit User-Input)
                                 <svg class="icon-ui icon-red-light">
                                     <use href="#dpz-cross-circle"></use>
                                 </svg>
@@ -686,8 +881,6 @@ new Function(userInput)();                // Gleiche Gefahr
 setTimeout(userInput, 1000);              // String wird als Code ausgeführt
 element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</code></pre>
                         </div>
-
-
                     </section>
 
                     <!-- Best Practices -->
@@ -697,34 +890,57 @@ element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</cod
 
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><strong>Niemals User-Input vertrauen</strong> - Immer validieren, immer sanitizen
+                                <li>
+                                    <strong>Niemals User-Input vertrauen</strong>
+                                    - Immer validieren, immer sanitizen
                                 </li>
-                                <li><strong>textContent statt innerHTML</strong> - Bei User-generierten Inhalten</li>
-                                <li><strong>CSP verwenden</strong> - Content Security Policy im HTTP-Header</li>
-                                <li><strong>httpOnly Cookies</strong> - Session-Cookies sollten nicht von JavaScript
-                                    lesbar
-                                    sein</li>
-                                <li><strong>HTTPS verwenden</strong> - Verschlüsselte Verbindung immer</li>
-                                <li><strong>Bibliotheken aktuell halten</strong> - Alte Versionen haben oft
-                                    Sicherheitslücken</li>
-                                <li><strong>Passwörter niemals im Frontend speichern</strong> - Weder in Variables noch
-                                    LocalStorage</li>
-                                <li><strong>Sensitive Daten nicht loggen</strong> - Keine Passwörter in console.log()
+                                <li>
+                                    <strong>textContent statt innerHTML</strong>
+                                    - Bei User-generierten Inhalten
                                 </li>
-                                <li><strong>Event Listener statt Inline-Events</strong> - addEventListener() ist
-                                    sicherer
+                                <li>
+                                    <strong>CSP verwenden</strong>
+                                    - Content Security Policy im HTTP-Header
                                 </li>
-                                <li><strong>Same-Origin Policy beachten</strong> - CORS richtig konfigurieren</li>
+                                <li>
+                                    <strong>httpOnly Cookies</strong>
+                                    - Session-Cookies sollten nicht von JavaScript lesbar sein
+                                </li>
+                                <li>
+                                    <strong>HTTPS verwenden</strong>
+                                    - Verschlüsselte Verbindung immer
+                                </li>
+                                <li>
+                                    <strong>Bibliotheken aktuell halten</strong>
+                                    - Alte Versionen haben oft Sicherheitslücken
+                                </li>
+                                <li>
+                                    <strong>Passwörter niemals im Frontend speichern</strong>
+                                    - Weder in Variables noch LocalStorage
+                                </li>
+                                <li>
+                                    <strong>Sensitive Daten nicht loggen</strong>
+                                    - Keine Passwörter in console.log()
+                                </li>
+                                <li>
+                                    <strong>Event Listener statt Inline-Events</strong>
+                                    - addEventListener() ist sicherer
+                                </li>
+                                <li>
+                                    <strong>Same-Origin Policy beachten</strong>
+                                    - CORS richtig konfigurieren
+                                </li>
                             </ul>
                         </div>
-
                     </section>
 
                     <!-- Content Security Policy -->
                     <section class="tutorials-content">
                         <h2 id="content-security-policy-csp">Content Security Policy (CSP)</h2>
-                        <p>CSP ist ein HTTP-Header, der definiert, welche Ressourcen deine Website laden darf. Das
-                            verhindert viele XSS-Angriffe.</p>
+                        <p>
+                            CSP ist ein HTTP-Header, der definiert, welche Ressourcen deine Website laden darf. Das
+                            verhindert viele XSS-Angriffe.
+                        </p>
 
                         <h3 class="no-toc">Wie funktioniert CSP?</h3>
                         <p>Der Server sendet einen Header mit Regeln, z.B.:</p>
@@ -734,13 +950,14 @@ element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</cod
 
                         <p>Das bedeutet:</p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><code class="inline">default-src 'self'</code> - Alle Ressourcen nur von der eigenen
-                                Domain
+                            <li>
+                                <code class="inline">default-src 'self'</code>
+                                - Alle Ressourcen nur von der eigenen Domain
                             </li>
-                            <li><code class="inline">script-src 'self' https://trusted.cdn.com</code> - JavaScript nur
-                                von
-                                eigener Domain
-                                und diesem CDN</li>
+                            <li>
+                                <code class="inline">script-src 'self' https://trusted.cdn.com</code>
+                                - JavaScript nur von eigener Domain und diesem CDN
+                            </li>
                         </ul>
 
                         <h3 class="no-toc">Wichtige CSP-Direktiven:</h3>
@@ -749,7 +966,7 @@ element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</cod
                                 <span class="code-lang">http</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -765,20 +982,26 @@ element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</cod
                         </div>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">Vorsicht mit 'unsafe-inline'
+                            <strong class="box-title danger no-toc" id="achtung">
+                                Vorsicht mit 'unsafe-inline'
                                 <svg class="icon-ui icon-orange">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p>Das erlaubt Inline-JavaScript/CSS und schwächt die Sicherheit.</p>
-                            <p><strong>Besser:</strong> Externe Dateien verwenden und 'unsafe-inline' weglassen.</p>
+                            <p>
+                                <strong>Besser:</strong>
+                                Externe Dateien verwenden und 'unsafe-inline' weglassen.
+                            </p>
                         </div>
 
                         <h3 class="no-toc">Was bedeutet "inline" genau?</h3>
-                        <p>Das war mir am Anfang nicht ganz klar, hat es mit der *.js zu tun? Nein, genau das, was ich
-                            befürchtet hatte: "Inline" bedeutet, dass CSS oder JavaScript <strong>direkt im
-                                HTML-Dokument</strong> steht, statt in separaten Dateien.</p>
-
+                        <p>
+                            Das war mir am Anfang nicht ganz klar, hat es mit der *.js zu tun? Nein, genau das, was ich
+                            befürchtet hatte: "Inline" bedeutet, dass CSS oder JavaScript
+                            <strong>direkt im HTML-Dokument</strong>
+                            steht, statt in separaten Dateien.
+                        </p>
 
                         <h4>Inline CSS - Drei Varianten</h4>
                         <div class="code-block">
@@ -786,7 +1009,7 @@ element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</cod
                                 <span class="code-lang">html</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -805,9 +1028,10 @@ element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</cod
 &lt;link rel="stylesheet" href="css/style.css"&gt;</code></pre>
                         </div>
 
-                        <p>Puh. Nicht "mal eben" zurechtschubsen, wenn dir hier und da ein Pixel fehlt. Schade drum!
-                            Aber
-                            okay. Es macht sich ja auch nicht so schick. Na gut, dann wohl Augen zu und durch.</p>
+                        <p>
+                            Puh. Nicht "mal eben" zurechtschubsen, wenn dir hier und da ein Pixel fehlt. Schade drum!
+                            Aber okay. Es macht sich ja auch nicht so schick. Na gut, dann wohl Augen zu und durch.
+                        </p>
 
                         <h4>Inline JavaScript - Drei Varianten</h4>
                         <div class="code-block">
@@ -815,7 +1039,7 @@ element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</cod
                                 <span class="code-lang">html</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -840,35 +1064,65 @@ element.innerHTML = "&lt;img src='" + userInput + "'&gt;";  // XSS möglich</cod
 
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
-                                <p>...dann <strong>blockiert</strong> der Browser:</p>
+                                <p>
+                                    ...dann
+                                    <strong>blockiert</strong>
+                                    der Browser:
+                                </p>
                                 <ul class="cross-list">
-                                    <li>Alle <code class="inline">&lt;style&gt;</code>-Tags im HTML, auch im
-                                        <code class="inline">&lt;head&gt;</code> !
+                                    <li>
+                                        Alle
+                                        <code class="inline">&lt;style&gt;</code>
+                                        -Tags im HTML, auch im
+                                        <code class="inline">&lt;head&gt;</code>
+                                        !
                                     </li>
-                                    <li>Alle <code class="inline">style="..."</code> Attribute</li>
-                                    <li>Alle <code class="inline">&lt;script&gt;</code>-Tags im HTML</li>
-                                    <li>Alle <code class="inline">onclick="..."</code>, <code class="inline">onerror="..."</code> etc. Attribute</li>
+                                    <li>
+                                        Alle
+                                        <code class="inline">style="..."</code>
+                                        Attribute
+                                    </li>
+                                    <li>
+                                        Alle
+                                        <code class="inline">&lt;script&gt;</code>
+                                        -Tags im HTML
+                                    </li>
+                                    <li>
+                                        Alle
+                                        <code class="inline">onclick="..."</code>
+                                        ,
+                                        <code class="inline">onerror="..."</code>
+                                        etc. Attribute
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
-                                <p>Erlaubt sind <strong>nur</strong>:</p>
+                                <p>
+                                    Erlaubt sind
+                                    <strong>nur</strong>
+                                    :
+                                </p>
                                 <ul class="check-list">
-                                    <li><code class="inline">&lt;link rel="stylesheet" href="css/style.css"&gt;</code>
+                                    <li>
+                                        <code class="inline">&lt;link rel="stylesheet" href="css/style.css"&gt;</code>
                                     </li>
-                                    <li><code class="inline">&lt;script src="js/script.js"&gt;&lt;/script&gt;</code>
+                                    <li>
+                                        <code class="inline">&lt;script src="js/script.js"&gt;&lt;/script&gt;</code>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
                         <h4>Warum ist 'unsafe-inline' unsicher?</h4>
-                        <p>Wenn du <code class="inline">'unsafe-inline'</code> erlaubst, kann auch ein Angreifer
-                            inline-Code
-                            einschleusen:
+                        <p>
+                            Wenn du
+                            <code class="inline">'unsafe-inline'</code>
+                            erlaubst, kann auch ein Angreifer inline-Code einschleusen:
                         </p>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Ohne 'unsafe-inline' - Sicher
+                            <strong class="box-title notice no-toc">
+                                Ohne 'unsafe-inline' - Sicher
                                 <svg class="icon-ui icon-green">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -882,7 +1136,8 @@ element.innerHTML =
                         </div>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc">Mit 'unsafe-inline' - Angreifbar!
+                            <strong class="box-title danger no-toc">
+                                Mit 'unsafe-inline' - Angreifbar!
                                 <svg class="icon-ui icon-red-light">
                                     <use href="#dpz-cross-circle"></use>
                                 </svg>
@@ -896,46 +1151,66 @@ element.innerHTML =
                         </div>
 
                         <h4>Was heißt das jetzt - keine inline Styles?</h4>
-                        <p><strong>Meine Situation:</strong> Ich würde gerne in meinen Tutorials hier und da
+                        <p>
+                            <strong>Meine Situation:</strong>
+                            Ich würde gerne in meinen Tutorials hier und da
                             <code class="inline">&lt;style&gt;</code>
-                            im <code class="inline">&lt;head&gt;</code> für tutorial-spezifische Styles verwenden, AUCH
-                            damit es im
-                            Quellcode für jeden sofort sichtbar ist - ich teile ja gerne, was ich hier erarbeite. Das
-                            ist
-                            technisch "inline CSS".
+                            im
+                            <code class="inline">&lt;head&gt;</code>
+                            für tutorial-spezifische Styles verwenden, AUCH damit es im Quellcode für jeden sofort
+                            sichtbar ist - ich teile ja gerne, was ich hier erarbeite. Das ist technisch "inline CSS".
                         </p>
                         <div class="comparison-grid">
                             <div class="grid-2col-bg">
                                 <p><strong>Ist das ein Problem?</strong></p>
                                 <p>Bei mir: in den meisten Fällen nein. Aber beachte:</p>
                                 <ul class="arrow-list">
-                                    <li>Bei <strong>statischen Tutorials</strong> ohne User-Input: geringes Risiko</li>
-                                    <li>Bei <strong>interaktiven Seiten</strong> mit User-Input: sollte ausgelagert
-                                        werden
+                                    <li>
+                                        Bei
+                                        <strong>statischen Tutorials</strong>
+                                        ohne User-Input: geringes Risiko
+                                    </li>
+                                    <li>
+                                        Bei
+                                        <strong>interaktiven Seiten</strong>
+                                        mit User-Input: sollte ausgelagert werden
                                     </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <p><strong>Best Practice für Production:</strong></p>
                                 <ul class="arrow-list">
-                                    <li>Alle Styles in externe CSS-Dateien, z.B. <code class="inline">css/tutorial-demos.css</code></li>
-                                    <li>Alle Scripts in externe JS-Dateien</li>
-                                    <li>CSP ohne <code class="inline">'unsafe-inline'</code> konfigurieren</li>
-                                    <li>Niemals <code class="inline">onclick="..."</code> oder <code class="inline">style="..."</code> Attribute verwenden
+                                    <li>
+                                        Alle Styles in externe CSS-Dateien, z.B.
+                                        <code class="inline">css/tutorial-demos.css</code>
                                     </li>
-                                    <li>Immer <code class="inline">addEventListener()</code> in externen JS-Dateien
-                                        nutzen
+                                    <li>Alle Scripts in externe JS-Dateien</li>
+                                    <li>
+                                        CSP ohne
+                                        <code class="inline">'unsafe-inline'</code>
+                                        konfigurieren
+                                    </li>
+                                    <li>
+                                        Niemals
+                                        <code class="inline">onclick="..."</code>
+                                        oder
+                                        <code class="inline">style="..."</code>
+                                        Attribute verwenden
+                                    </li>
+                                    <li>
+                                        Immer
+                                        <code class="inline">addEventListener()</code>
+                                        in externen JS-Dateien nutzen
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="pt-md"><strong>Alternative mit Nonce:</strong> Wenn du aber wirklich inline-Code
-                            brauchst,
-                            kannst du
-                            statt
-                            <code class="inline">'unsafe-inline'</code> einen Nonce verwenden. Das ist ein einmaliger,
-                            zufälliger Wert, der
-                            vom Server generiert wird:
+                        <p class="pt-md">
+                            <strong>Alternative mit Nonce:</strong>
+                            Wenn du aber wirklich inline-Code brauchst, kannst du statt
+                            <code class="inline">'unsafe-inline'</code>
+                            einen Nonce verwenden. Das ist ein einmaliger, zufälliger Wert, der vom Server generiert
+                            wird:
                         </p>
 
                         <!-- Code Block language-html -->
@@ -944,7 +1219,7 @@ element.innerHTML =
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -963,37 +1238,41 @@ Content-Security-Policy: script-src 'nonce-abc123xyz'
     console.log('Blockiert!');
 &lt;/script&gt;</code></pre>
                         </div>
-                        <p>Das verhindert, dass Angreifer eigenen inline-Code einschleusen können, weil sie den
-                            zufälligen
-                            Nonce nicht kennen.</p>
+                        <p>
+                            Das verhindert, dass Angreifer eigenen inline-Code einschleusen können, weil sie den
+                            zufälligen Nonce nicht kennen.
+                        </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Meine Erfahrung
+                            <strong class="box-title no-toc">
+                                Meine Erfahrung
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>CSP kann am Anfang frustrierend sein, weil vieles nicht mehr
-                                funktioniert. Aber es ist eine der effektivsten Schutzmaßnahmen gegen XSS. Ich empfehle,
-                                CSP
-                                schon beim Projektstart zu aktivieren, nicht erst später. Ich halte mich jetzt strikt
-                                daran
-                                und räume meine Pixelschubser auf!</p>
+                            <p>
+                                CSP kann am Anfang frustrierend sein, weil vieles nicht mehr funktioniert. Aber es ist
+                                eine der effektivsten Schutzmaßnahmen gegen XSS. Ich empfehle, CSP schon beim
+                                Projektstart zu aktivieren, nicht erst später. Ich halte mich jetzt strikt daran und
+                                räume meine Pixelschubser auf!
+                            </p>
                         </div>
                     </section>
 
                     <!-- Subresource Integrity (SRI) -->
                     <section class="tutorials-content">
                         <h2 id="subresource-integrity-sri">Subresource Integrity (SRI)</h2>
-                        <p>Wenn du externe Scripts von CDNs lädst, kann SRI sicherstellen, dass die Datei nicht
-                            manipuliert wurde:</p>
+                        <p>
+                            Wenn du externe Scripts von CDNs lädst, kann SRI sicherstellen, dass die Datei nicht
+                            manipuliert wurde:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1012,28 +1291,33 @@ Content-Security-Policy: script-src 'nonce-abc123xyz'
                         <p>Der Browser prüft den Hash der Datei. Wurde sie verändert, wird sie nicht ausgeführt.</p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Wann SRI verwenden?
+                            <strong class="box-title no-toc">
+                                Wann SRI verwenden?
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>Bei allen externen Scripts und Stylesheets von CDNs. Viele CDNs liefern den SRI-Hash
-                                direkt mit - einfach kopieren!</p>
+                            <p>
+                                Bei allen externen Scripts und Stylesheets von CDNs. Viele CDNs liefern den SRI-Hash
+                                direkt mit - einfach kopieren!
+                            </p>
                         </div>
                     </section>
 
                     <!-- Same-Origin Policy und CORS -->
                     <section class="tutorials-content">
                         <h2 id="same-origin-policy-und-cors">Same-Origin Policy und CORS</h2>
-                        <p>Browser blockieren standardmäßig Requests zu anderen Domains - das ist die Same-Origin
-                            Policy.</p>
+                        <p>
+                            Browser blockieren standardmäßig Requests zu anderen Domains - das ist die Same-Origin
+                            Policy.
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1044,17 +1328,23 @@ fetch('https://api.andereseite.de/data')
 // → Wird blockiert, außer der Server erlaubt es via CORS</code></pre>
                         </div>
 
-                        <p><strong>CORS</strong> (Cross-Origin Resource Sharing) ist die kontrollierte Ausnahme: Der
-                            Server kann bestimmte Domains erlauben.</p>
+                        <p>
+                            <strong>CORS</strong>
+                            (Cross-Origin Resource Sharing) ist die kontrollierte Ausnahme: Der Server kann bestimmte
+                            Domains erlauben.
+                        </p>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Für dich als Frontend-Entwickler
+                            <strong class="box-title no-toc">
+                                Für dich als Frontend-Entwickler
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>CORS-Fehler bedeuten meist: Der Server muss konfiguriert werden, nicht dein JavaScript.
-                                Du kannst CORS nicht vom Frontend aus "umgehen" - das ist Absicht!</p>
+                            <p>
+                                CORS-Fehler bedeuten meist: Der Server muss konfiguriert werden, nicht dein JavaScript.
+                                Du kannst CORS nicht vom Frontend aus "umgehen" - das ist Absicht!
+                            </p>
                         </div>
                     </section>
 
@@ -1066,26 +1356,51 @@ fetch('https://api.andereseite.de/data')
                         <h3 class="no-toc">Was speichert JavaScript?</h3>
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><strong>Cookies</strong> - Können personenbezogene Daten enthalten</li>
-                                <li><strong>LocalStorage</strong> - Bleibt auch nach Browser-Schließung</li>
-                                <li><strong>SessionStorage</strong> - Nur für die aktuelle Session</li>
-                                <li><strong>IndexedDB</strong> - Große Datenmengen lokal speichern</li>
+                                <li>
+                                    <strong>Cookies</strong>
+                                    - Können personenbezogene Daten enthalten
+                                </li>
+                                <li>
+                                    <strong>LocalStorage</strong>
+                                    - Bleibt auch nach Browser-Schließung
+                                </li>
+                                <li>
+                                    <strong>SessionStorage</strong>
+                                    - Nur für die aktuelle Session
+                                </li>
+                                <li>
+                                    <strong>IndexedDB</strong>
+                                    - Große Datenmengen lokal speichern
+                                </li>
                             </ul>
                         </div>
                         <h3 class="no-toc">DSGVO-konforme Verwendung</h3>
                         <div class="grid-2col-bg">
                             <ul class="arrow-list">
-                                <li><strong>Consent einholen</strong> - Bevor Cookies/Tracking gesetzt werden</li>
-                                <li><strong>Notwendige vs. optionale Cookies trennen</strong> - Funktionale Cookies sind
-                                    ok,
-                                    Tracking braucht Zustimmung</li>
-                                <li><strong>Cookie-Banner implementieren</strong> - Mit echter Wahl, nicht "Akzeptieren
-                                    oder
-                                    gehen"</li>
-                                <li><strong>Daten minimieren</strong> - Nur speichern, was wirklich nötig ist</li>
-                                <li><strong>Keine personenbezogenen Daten ohne Consent</strong> - IP-Adressen, User IDs,
-                                    etc.</li>
-                                <li><strong>Löschung ermöglichen</strong> - User müssen ihre Daten löschen können</li>
+                                <li>
+                                    <strong>Consent einholen</strong>
+                                    - Bevor Cookies/Tracking gesetzt werden
+                                </li>
+                                <li>
+                                    <strong>Notwendige vs. optionale Cookies trennen</strong>
+                                    - Funktionale Cookies sind ok, Tracking braucht Zustimmung
+                                </li>
+                                <li>
+                                    <strong>Cookie-Banner implementieren</strong>
+                                    - Mit echter Wahl, nicht "Akzeptieren oder gehen"
+                                </li>
+                                <li>
+                                    <strong>Daten minimieren</strong>
+                                    - Nur speichern, was wirklich nötig ist
+                                </li>
+                                <li>
+                                    <strong>Keine personenbezogenen Daten ohne Consent</strong>
+                                    - IP-Adressen, User IDs, etc.
+                                </li>
+                                <li>
+                                    <strong>Löschung ermöglichen</strong>
+                                    - User müssen ihre Daten löschen können
+                                </li>
                             </ul>
                         </div>
 
@@ -1096,7 +1411,7 @@ fetch('https://api.andereseite.de/data')
                                 <span class="code-lang">javascript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -1116,15 +1431,16 @@ if (hatConsentFuerTracking()) {
                         </div>
 
                         <div class="info-box">
-                            <strong class="box-title no-toc">Warum ich das wichtig finde
+                            <strong class="box-title no-toc">
+                                Warum ich das wichtig finde
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle"></use>
                                 </svg>
                             </strong>
-                            <p>DSGVO ist nicht nur ein lästiges Gesetz - es
-                                schützt die Privatsphäre der User. Als Entwickler habe ich die Verantwortung, Daten
-                                respektvoll zu behandeln. Und es ist auch technisch interessant, Privacy by Design zu
-                                implementieren!
+                            <p>
+                                DSGVO ist nicht nur ein lästiges Gesetz - es schützt die Privatsphäre der User. Als
+                                Entwickler habe ich die Verantwortung, Daten respektvoll zu behandeln. Und es ist auch
+                                technisch interessant, Privacy by Design zu implementieren!
                             </p>
                         </div>
                     </section>
@@ -1135,7 +1451,8 @@ if (hatConsentFuerTracking()) {
                         <p>Zusammengefasst: In welchen Situationen ist besondere Vorsicht geboten?</p>
 
                         <div class="info-box danger">
-                            <strong class="box-title danger no-toc" id="achtung">Hohe Gefahr
+                            <strong class="box-title danger no-toc" id="achtung">
+                                Hohe Gefahr
                                 <svg class="icon-ui icon-red-light">
                                     <use href="#dpz-cross-circle"></use>
                                 </svg>
@@ -1143,18 +1460,37 @@ if (hatConsentFuerTracking()) {
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Du verwendest <strong>User-Input ohne Validierung</strong> in innerHTML</li>
-                                        <li>Du verwendest <strong>eval() mit externen Daten</strong></li>
-                                        <li>Du <strong>speicherst Passwörter/Tokens</strong> im Frontend</li>
+                                        <li>
+                                            Du verwendest
+                                            <strong>User-Input ohne Validierung</strong>
+                                            in innerHTML
+                                        </li>
+                                        <li>
+                                            Du verwendest
+                                            <strong>eval() mit externen Daten</strong>
+                                        </li>
+                                        <li>
+                                            Du
+                                            <strong>speicherst Passwörter/Tokens</strong>
+                                            im Frontend
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Deine Website hat <strong>keine CSP</strong></li>
-                                        <li>Du verwendest <strong>veraltete Bibliotheken</strong> mit bekannten Lücken
+                                        <li>
+                                            Deine Website hat
+                                            <strong>keine CSP</strong>
                                         </li>
-                                        <li>Du lädst <strong>externe Scripts</strong> von nicht vertrauenswürdigen
-                                            Quellen
+                                        <li>
+                                            Du verwendest
+                                            <strong>veraltete Bibliotheken</strong>
+                                            mit bekannten Lücken
+                                        </li>
+                                        <li>
+                                            Du lädst
+                                            <strong>externe Scripts</strong>
+                                            von nicht vertrauenswürdigen Quellen
                                         </li>
                                     </ul>
                                 </div>
@@ -1162,7 +1498,8 @@ if (hatConsentFuerTracking()) {
                         </div>
 
                         <div class="info-box warning">
-                            <strong class="box-title warning no-toc">Mittlere Gefahr
+                            <strong class="box-title warning no-toc">
+                                Mittlere Gefahr
                                 <svg class="icon-ui icon-orange">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -1170,24 +1507,41 @@ if (hatConsentFuerTracking()) {
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Du verwendest <strong>innerHTML mit teilweise kontrollierten Daten</strong>
+                                        <li>
+                                            Du verwendest
+                                            <strong>innerHTML mit teilweise kontrollierten Daten</strong>
                                         </li>
-                                        <li>Du hast <strong>keine HTTPS</strong>-Verbindung</li>
-                                        <li>Du <strong>validierst nur im Frontend</strong>, nicht auf dem Server</li>
+                                        <li>
+                                            Du hast
+                                            <strong>keine HTTPS</strong>
+                                            -Verbindung
+                                        </li>
+                                        <li>
+                                            Du
+                                            <strong>validierst nur im Frontend</strong>
+                                            , nicht auf dem Server
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Deine <strong>Session-Cookies sind nicht httpOnly</strong></li>
-                                        <li>Du verwendest <strong>Inline-JavaScript</strong> (onclick="...")</li>
-
+                                        <li>
+                                            Deine
+                                            <strong>Session-Cookies sind nicht httpOnly</strong>
+                                        </li>
+                                        <li>
+                                            Du verwendest
+                                            <strong>Inline-JavaScript</strong>
+                                            (onclick="...")
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Niedrige Gefahr / Sicher
+                            <strong class="box-title notice no-toc">
+                                Niedrige Gefahr / Sicher
                                 <svg class="icon-ui icon-green">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
@@ -1195,17 +1549,39 @@ if (hatConsentFuerTracking()) {
                             <div class="grid-2col">
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Du verwendest <strong>textContent für User-Input</strong></li>
-                                        <li>Du hast <strong>CSP aktiv</strong></li>
-                                        <li>Alle <strong>Eingaben werden validiert</strong> (Frontend UND Backend)</li>
-                                        <li>Du verwendest <strong>HTTPS</strong></li>
+                                        <li>
+                                            Du verwendest
+                                            <strong>textContent für User-Input</strong>
+                                        </li>
+                                        <li>
+                                            Du hast
+                                            <strong>CSP aktiv</strong>
+                                        </li>
+                                        <li>
+                                            Alle
+                                            <strong>Eingaben werden validiert</strong>
+                                            (Frontend UND Backend)
+                                        </li>
+                                        <li>
+                                            Du verwendest
+                                            <strong>HTTPS</strong>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
                                     <ul class="arrow-list">
-                                        <li>Du <strong>sanitizest HTML</strong> vor der Ausgabe</li>
-                                        <li>Deine <strong>Dependencies sind aktuell</strong></li>
-                                        <li>Du lädst <strong>externe Ressourcen von vertrauenswürdigen CDNs</strong>
+                                        <li>
+                                            Du
+                                            <strong>sanitizest HTML</strong>
+                                            vor der Ausgabe
+                                        </li>
+                                        <li>
+                                            Deine
+                                            <strong>Dependencies sind aktuell</strong>
+                                        </li>
+                                        <li>
+                                            Du lädst
+                                            <strong>externe Ressourcen von vertrauenswürdigen CDNs</strong>
                                         </li>
                                     </ul>
                                 </div>
@@ -1219,15 +1595,17 @@ if (hatConsentFuerTracking()) {
                         <p>Was ich bei meinen JavaScript-Projekt durchgehe</p>
 
                         <div class="info-box notice">
-                            <strong class="box-title notice no-toc">Vor dem Launch
+                            <strong class="box-title notice no-toc">
+                                Vor dem Launch
                                 <svg class="icon-ui">
                                     <use href="#dpz-check-circle"></use>
                                 </svg>
                             </strong>
                             <ul class="check-list">
-                                <li>Verwende ich irgendwo <code class="inline">innerHTML</code> mit User-Input? →
-                                    Ersetzen
-                                    durch
+                                <li>
+                                    Verwende ich irgendwo
+                                    <code class="inline">innerHTML</code>
+                                    mit User-Input? → Ersetzen durch
                                     <code class="inline">textContent</code>
                                 </li>
                                 <li>Habe ich User-Input validiert (Frontend UND Backend)?</li>
@@ -1236,7 +1614,11 @@ if (hatConsentFuerTracking()) {
                                 <li>Läuft die Seite über HTTPS?</li>
                                 <li>Sind Session-Cookies auf httpOnly gesetzt?</li>
                                 <li>Werden sensitive Daten (Passwörter, Tokens) nur auf dem Server verarbeitet?</li>
-                                <li>Sind alle NPM-Pakete aktuell? (<code class="inline">npm audit</code>)</li>
+                                <li>
+                                    Sind alle NPM-Pakete aktuell? (
+                                    <code class="inline">npm audit</code>
+                                    )
+                                </li>
                                 <li>Habe ich DSGVO-Consent für Cookies implementiert?</li>
                                 <li>Gibt es Inline-JavaScript, das ich in externe Dateien verschieben kann?</li>
                             </ul>
@@ -1265,21 +1647,30 @@ if (hatConsentFuerTracking()) {
                     <section class="tutorial-content" id="fazit">
                         <h2 id="fazit-keine-panik-aber-wachsam-bleiben">Fazit: Keine Panik, aber wachsam bleiben</h2>
 
-
                         <h3 class="no-toc">Was ich gelernt habe:</h3>
-                        <p>JavaScript ist <strong>nicht von Natur aus gefährlich</strong> - die Gefahr entsteht durch
-                            falsche Verwendung. Die Console-Warnung ist nicht für mich als Entwickler, sondern für
-                            unwissende User.</p>
+                        <p>
+                            JavaScript ist
+                            <strong>nicht von Natur aus gefährlich</strong>
+                            - die Gefahr entsteht durch falsche Verwendung. Die Console-Warnung ist nicht für mich als
+                            Entwickler, sondern für unwissende User.
+                        </p>
 
                         <p class="mb-md"><strong>Die wichtigsten Regeln sind simpel</strong></p>
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li>User-Input immer mit <code class="inline">textContent</code> ausgeben, nie mit
+                                    <li>
+                                        User-Input immer mit
+                                        <code class="inline">textContent</code>
+                                        ausgeben, nie mit
                                         <code class="inline">innerHTML</code>
                                     </li>
                                     <li>Input validieren - Frontend UND Backend</li>
-                                    <li>Niemals <code class="inline">eval()</code> mit User-Daten verwenden</li>
+                                    <li>
+                                        Niemals
+                                        <code class="inline">eval()</code>
+                                        mit User-Daten verwenden
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
@@ -1290,71 +1681,73 @@ if (hatConsentFuerTracking()) {
                                 </ul>
                             </div>
                         </div>
-                        <p>Das klingt nach viel, aber wenn man von Anfang an diese Prinzipien befolgt, wird es zur
+                        <p>
+                            Das klingt nach viel, aber wenn man von Anfang an diese Prinzipien befolgt, wird es zur
                             Gewohnheit. Und dann kann man JavaScript sicher und produktiv einsetzen - ohne DevPanic!
                         </p>
-
                     </section>
-
 
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="javascript">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-javascript">Mehr aus JavaScript</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="javascript">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/javascript/javascript-basics/js-basics.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">JavaScript Basics</span>
-                <span class="tutorial-nav-category">JavaScript Basics</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/javascript/javascript-basics/js-variables.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">JavaScript Variables</span>
-                <span class="tutorial-nav-category">JavaScript Basics</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/javascript/javascript-basics/js-basics.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">JavaScript Basics</span>
+                                    <span class="tutorial-nav-category">JavaScript Basics</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/javascript/javascript-basics/js-variables.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">JavaScript Variables</span>
+                                    <span class="tutorial-nav-category">JavaScript Basics</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
-    
-
-</body></html>
+    </body>
+</html>

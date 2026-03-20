@@ -1,188 +1,207 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="index, follow">
-        <meta name="description"
-            content="Dokumentation zum Theme-Toggle auf DevPanicZone. Dark/Light Mode wechseln mit Icon-Wechsel, localStorage-Persistenz und Tab-Synchronisation.">
-        <meta name="keywords"
-            content="Dark Mode, Light Mode, Theme Toggle, localStorage, JavaScript, CSS Variables, DevPanicZone, Accessibility">
-        <meta name="author" content="DevPanicZone">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta
+            name="description"
+            content="Dokumentation zum Theme-Toggle auf DevPanicZone. Dark/Light Mode wechseln mit Icon-Wechsel, localStorage-Persistenz und Tab-Synchronisation."
+        />
+        <meta
+            name="keywords"
+            content="Dark Mode, Light Mode, Theme Toggle, localStorage, JavaScript, CSS Variables, DevPanicZone, Accessibility"
+        />
+        <meta name="author" content="DevPanicZone" />
         <title>Toggle Dark / Light Mode | DevPanicZone</title>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-        <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-        <link rel="stylesheet" href="/assets/css/style.css">
-        <link rel="stylesheet" href="/assets/css/tutorials.css">
-        <link rel="stylesheet" href="/assets/css/sidebar.css">
-        <link rel="stylesheet" href="/assets/vendor/prism/prism.css">
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="stylesheet" href="/assets/css/tutorials.css" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css" />
+        <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     </head>
 
     <body>
         <!-- Header-Start -->
-<header class="site-header">
-    <div class="container">
-        <div class="header-content">
-            <div class="brand">
-                <a href="/" class="brand-link">
-                    <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
-                    <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                <span class="theme-icon">
-                    <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
-                </span>
-            </button>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
-                <span class="hamburger"></span>
-            </button>
-
-            <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
-                <ul class="nav-list">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item-dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Tutorials
-                            <span class="dropdown-icon">▾</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <!-- Main-Nav-Start -->
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/html/" class="nav-link">
-                            HTML
-                            <span class="submenu-icon">▸</span>
+        <header class="site-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <a href="/" class="brand-link">
+                            <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon" />
+                            <span class="brand-name">
+                                <span class="brand-name-main">DevPanicZone!</span>
+                                <span class="brand-name-tagline">Cheatsheets.</span>
+                            </span>
                         </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
-                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/css/" class="nav-link">
-                            CSS
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
-                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/javascript/" class="nav-link">
-                            JavaScript
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a></li>
-                            <li><a href="/tutorials/javascript/#javascript-projects">JavaScript Projects</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/php/" class="nav-link">
-                            PHP
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/misc/" class="nav-link">
-                            Verschiedenes
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
-                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
-                            <li><a href="/tutorials/misc/#web">Web</a></li>
-                        </ul>
-                    </li>
-                                <li class="nav-item-nested">
-                        <a href="/tutorials/devpaniczone/" class="nav-link">
-                            DevPanicZone!
-                            <span class="submenu-icon">▸</span>
-                        </a>
-                        <ul class="dropdown-submenu">
-                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
-                        </ul>
-                    </li>
-                                <!-- Main-Nav-End -->
-                        </ul>
-                    </li>
-                    <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
-                    
-                    <!-- Search Toggle -->
-                    <li>
-                        <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
-                            <svg class="search-icon-nav" aria-hidden="true">
-                                <use href="#dpz-search-stroke"></use>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-                
-                <!-- Search Dropdown -->
-                <div class="search-dropdown" id="searchDropdown" hidden>
-                    <div class="search-input-group">
-                        <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
-                            <path d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"/>
-                        </svg>
-                        <input 
-                            type="search" 
-                            id="globalSearch" 
-                            class="search-input" 
-                            placeholder="Tutorials durchsuchen..."
-                            aria-label="Suche">
-                        <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                     </div>
-                    
-                    <div class="search-results" id="searchResults" hidden>
-                        <div class="search-results-list" id="searchResultsList"></div>
-                        <div class="search-results-footer">
-                            <button class="search-view-all" id="searchViewAll">
-                                Alle Ergebnisse anzeigen →
-                            </button>
+
+                    <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                        <span class="theme-icon">
+                            <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20" />
+                        </span>
+                    </button>
+
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen">
+                        <span class="hamburger"></span>
+                    </button>
+
+                    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+                        <ul class="nav-list">
+                            <li><a href="/" class="nav-link">Home</a></li>
+                            <li class="nav-item-dropdown">
+                                <button class="nav-link dropdown-toggle" aria-expanded="false">
+                                    Tutorials
+                                    <span class="dropdown-icon">▾</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Main-Nav-Start -->
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/html/" class="nav-link">
+                                            HTML
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/html/#html-basics">HTML Basics</a></li>
+                                            <li><a href="/tutorials/html/#html-advanced">HTML Advanced</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/css/" class="nav-link">
+                                            CSS
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/css/#css-basics">CSS Basics</a></li>
+                                            <li><a href="/tutorials/css/#css-specials">CSS Specials</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/javascript/" class="nav-link">
+                                            JavaScript
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-basics">JavaScript Basics</a>
+                                            </li>
+                                            <li>
+                                                <a href="/tutorials/javascript/#javascript-projects">
+                                                    JavaScript Projects
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/php/" class="nav-link">
+                                            PHP
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/php/#php-basics">PHP Basics</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/misc/" class="nav-link">
+                                            Verschiedenes
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/misc/#seo-optimization">SEO Optimization</a></li>
+                                            <li><a href="/tutorials/misc/#tools">Tools</a></li>
+                                            <li><a href="/tutorials/misc/#web">Web</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item-nested">
+                                        <a href="/tutorials/devpaniczone/" class="nav-link">
+                                            DevPanicZone!
+                                            <span class="submenu-icon">▸</span>
+                                        </a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="/tutorials/devpaniczone/#documentation">Documentation</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Main-Nav-End -->
+                                </ul>
+                            </li>
+                            <li><a href="/glossary.html" class="nav-link">Glossar</a></li>
+
+                            <!-- Search Toggle -->
+                            <li>
+                                <button class="nav-link search-toggle" id="searchToggle" aria-label="Suche öffnen">
+                                    <svg class="search-icon-nav" aria-hidden="true">
+                                        <use href="#dpz-search-stroke"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Search Dropdown -->
+                        <div class="search-dropdown" id="searchDropdown" hidden>
+                            <div class="search-input-group">
+                                <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
+                                    <path
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
+                                    />
+                                </svg>
+                                <input
+                                    type="search"
+                                    id="globalSearch"
+                                    class="search-input"
+                                    placeholder="Tutorials durchsuchen..."
+                                    aria-label="Suche"
+                                />
+                                <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+                            </div>
+
+                            <div class="search-results" id="searchResults" hidden>
+                                <div class="search-results-list" id="searchResultsList"></div>
+                                <div class="search-results-footer">
+                                    <button class="search-view-all" id="searchViewAll">
+                                        Alle Ergebnisse anzeigen →
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header-End -->
+            </div>
+        </header>
+        <!-- Header-End -->
 
         <main class="site-main">
-
             <!-- Hero -->
             <section class="hero tutorial-hero">
                 <div class="container">
-                    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/" class="breadcrumb-link">Home</a><span
-                            class="breadcrumb-separator">›</span><a href="/tutorials/documentation/"
-                            class="breadcrumb-link">DevPanicZone!</a><span class="breadcrumb-separator">›</span><span
-                            class="breadcrumb-current">Toggle Night Mode</span></nav>
+                    <nav class="breadcrumbs" aria-label="Breadcrumb">
+                        <a href="/" class="breadcrumb-link">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="/tutorials/documentation/" class="breadcrumb-link">DevPanicZone!</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span class="breadcrumb-current">Toggle Night Mode</span>
+                    </nav>
                     <h1 class="hero-title">Toggle Night Mode</h1>
-                    <p class="hero-subtitle">Der Theme-Toggle ermöglicht das Wechseln zwischen Dark Mode und Light Mode.
+                    <p class="hero-subtitle">
+                        Der Theme-Toggle ermöglicht das Wechseln zwischen Dark Mode und Light Mode.
                     </p>
                 </div>
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
-                title="Auf dieser Seite">
+            <button
+                class="sidebar-toggle"
+                id="sidebarToggle"
+                aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite"
+            >
                 <span class="toggle-icon">☰</span>
             </button>
 
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon">
+                    <img src="/assets/icons/library.svg" alt="Library Icon" class="library-icon" />
                 </span>
             </button>
 
@@ -191,7 +210,6 @@
 
             <!-- Tutorial Layout -->
             <div class="tutorial-layout">
-
                 <!-- Linke Sidebar (Floating Panel) -->
                 <aside class="tutorial-sidebar" id="tutorialSidebar" aria-label="Inhaltsverzeichnis">
                     <div class="sidebar-header">
@@ -204,18 +222,26 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
-                    <li class="toc-level-1"><a href="#toggle-night-mode">Toggle Night Mode</a></li>
-                    <li class="toc-level-1"><a href="#button-platzierung-im-header">Button-Platzierung im Header</a></li>
-                    <li class="toc-level-1"><a href="#wie-funktioniert-das-theme-system">Wie funktioniert das Theme-System?</a></li>
-                    <li class="toc-level-1"><a href="#icon-logik-warum-wechselt-das-icon">Icon-Logik: Warum wechselt das Icon?</a></li>
-                    <li class="toc-level-1"><a href="#icon-pfade-definieren">Icon-Pfade definieren</a></li>
-                    <li class="toc-level-1"><a href="#eigene-icons-verwenden">Eigene Icons verwenden</a></li>
-                    <li class="toc-level-1"><a href="#theme-speicherung-persistenz">Theme-Speicherung &amp; Persistenz</a></li>
-                    <li class="toc-level-1"><a href="#standard-theme-aendern">Standard-Theme ändern</a></li>
-                    <li class="toc-level-1"><a href="#button-styling-anpassen">Button-Styling anpassen</a></li>
-                    <li class="toc-level-1"><a href="#icon-probleme-loesen">Icon-Probleme lösen</a></li>
-                    <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
-                    <!-- Sidebar-Anchor-End -->
+                            <li class="toc-level-1"><a href="#toggle-night-mode">Toggle Night Mode</a></li>
+                            <li class="toc-level-1">
+                                <a href="#button-platzierung-im-header">Button-Platzierung im Header</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#wie-funktioniert-das-theme-system">Wie funktioniert das Theme-System?</a>
+                            </li>
+                            <li class="toc-level-1">
+                                <a href="#icon-logik-warum-wechselt-das-icon">Icon-Logik: Warum wechselt das Icon?</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#icon-pfade-definieren">Icon-Pfade definieren</a></li>
+                            <li class="toc-level-1"><a href="#eigene-icons-verwenden">Eigene Icons verwenden</a></li>
+                            <li class="toc-level-1">
+                                <a href="#theme-speicherung-persistenz">Theme-Speicherung &amp; Persistenz</a>
+                            </li>
+                            <li class="toc-level-1"><a href="#standard-theme-aendern">Standard-Theme ändern</a></li>
+                            <li class="toc-level-1"><a href="#button-styling-anpassen">Button-Styling anpassen</a></li>
+                            <li class="toc-level-1"><a href="#icon-probleme-loesen">Icon-Probleme lösen</a></li>
+                            <li class="toc-level-1"><a href="#mehr-aus-devpaniczone">Mehr aus DevPanicZone!</a></li>
+                            <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
                 </aside>
@@ -231,32 +257,82 @@
 
                     <div class="sidebar-nav">
                         <ul class="sidebar-nav-list">
-                    <li class="sidebar-group-title">Documentation</li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">Automatisches Generieren der Navigationen</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">All-in-One Cheatsheet für meine Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html">Was macht generate-navigation.js</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">Main Navigation im Header</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">Wie funktionieren die Sidebars?</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">Hero Breadcrumbs</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">Prev / Next Buttons in den Tutorials</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">Tutorial Buttons</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html" class="active">Toggle Night Mode</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">currentYear im Footer</a></li>
-                    <li><a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">Latest Tutorials Section</a></li>
-                </ul>
+                            <li class="sidebar-group-title">Documentation</li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-automation.html">
+                                    Automatisches Generieren der Navigationen
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-code-snippets.html">
+                                    All-in-One Cheatsheet für meine Tutorials
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-generate-navigation-js.html"
+                                >
+                                    Was macht generate-navigation.js
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-main-navigation.html">
+                                    Main Navigation im Header
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-sidebars-system.html">
+                                    Wie funktionieren die Sidebars?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-breadcrumbs.html">
+                                    Hero Breadcrumbs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-prev-next.html">
+                                    Prev / Next Buttons in den Tutorials
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">
+                                    Tutorial Buttons
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/tutorials/devpaniczone/documentation/devpaniczone-toggle-night-mode.html"
+                                    class="active"
+                                >
+                                    Toggle Night Mode
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">
+                                    currentYear im Footer
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-latest-tutorials.html">
+                                    Latest Tutorials Section
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
 
                 <!-- Wrapper .container -->
                 <div class="container">
-
                     <!-- Toggle Night Mode Auto -->
                     <section class="tutorials-content">
                         <h2 id="toggle-night-mode">Toggle Night Mode</h2>
-                        <p>Der Theme-Toggle ermöglicht das Wechseln zwischen Dark Mode und Light Mode. Das gewählte
-                            Theme
-                            wird im <code class="inline">localStorage</code> gespeichert und über mehrere Tabs
-                            synchronisiert.</p>
+                        <p>
+                            Der Theme-Toggle ermöglicht das Wechseln zwischen Dark Mode und Light Mode. Das gewählte
+                            Theme wird im
+                            <code class="inline">localStorage</code>
+                            gespeichert und über mehrere Tabs synchronisiert.
+                        </p>
                     </section>
 
                     <!-- Button-Platzierung -->
@@ -268,7 +344,7 @@
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -300,19 +376,28 @@
                     <!-- Wie funktioniert's -->
                     <section class="tutorials-content">
                         <h2 id="wie-funktioniert-das-theme-system">Wie funktioniert das Theme-System?</h2>
-                        <p>Das Theme-System basiert auf dem <code class="inline">data-theme</code> Attribut am <code
-                                class="inline">&lt;html&gt;</code> Element:</p>
+                        <p>
+                            Das Theme-System basiert auf dem
+                            <code class="inline">data-theme</code>
+                            Attribut am
+                            <code class="inline">&lt;html&gt;</code>
+                            Element:
+                        </p>
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li><strong>Dark Mode:</strong> <code
-                                            class="inline">&lt;html data-theme="dark"&gt;</code></li>
+                                    <li>
+                                        <strong>Dark Mode:</strong>
+                                        <code class="inline">&lt;html data-theme="dark"&gt;</code>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li><strong>Light Mode:</strong> <code
-                                            class="inline">&lt;html data-theme="light"&gt;</code></li>
+                                    <li>
+                                        <strong>Light Mode:</strong>
+                                        <code class="inline">&lt;html data-theme="light"&gt;</code>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -323,7 +408,7 @@
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -347,31 +432,42 @@
                     <!-- Icon-Logik -->
                     <section class="tutorials-content">
                         <h2 id="icon-logik-warum-wechselt-das-icon">Icon-Logik: Warum wechselt das Icon?</h2>
-                        <p>Das Icon zeigt immer das <strong>andere</strong> Theme an (nicht das aktuelle!):</p>
+                        <p>
+                            Das Icon zeigt immer das
+                            <strong>andere</strong>
+                            Theme an (nicht das aktuelle!):
+                        </p>
                         <div class="grid-2col">
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li><strong>Im Dark Mode:</strong> Zeige Light-Icon → "Klick mich für Light Mode"
+                                    <li>
+                                        <strong>Im Dark Mode:</strong>
+                                        Zeige Light-Icon → "Klick mich für Light Mode"
                                     </li>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
                                 <ul class="arrow-list">
-                                    <li><strong>Im Light Mode:</strong> Zeige Dark-Icon → "Klick mich für Dark Mode"
+                                    <li>
+                                        <strong>Im Light Mode:</strong>
+                                        Zeige Dark-Icon → "Klick mich für Dark Mode"
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <p>Das ist intuitiver als ein Icon, das den aktuellen Zustand zeigt.</p>
                         <h3 class="no-toc">Wie funktioniert das technisch?</h3>
-                        <p>Die Magie passiert in der <code class="inline">updateThemeIcon()</code>-Funktion. Der
-                            entscheidende Trick ist diese Zeile:</p>
+                        <p>
+                            Die Magie passiert in der
+                            <code class="inline">updateThemeIcon()</code>
+                            -Funktion. Der entscheidende Trick ist diese Zeile:
+                        </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -379,15 +475,30 @@
                             <pre><code class="language-javascript">// Das "umgekehrte" Icon wählen:
 const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code></pre>
                         </div>
-                        <p>Der <a
+                        <p>
+                            Der
+                            <a
                                 href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Conditional_operator"
-                                target="_blank" rel="noopener">ternäre Operator</a> <code class="inline">? :</code>
-                            prüft:
-                            "Ist das aktuelle Theme <code class="inline">dark</code>? Dann nimm das <code
-                                class="inline">light</code>-Icon, sonst das <code class="inline">dark</code>-Icon."</p>
-                        <p>Die vollständige Funktion und wie sie mit dem Click-Event zusammenspielt, findest du weiter
-                            unten
-                            im <a href="#theme-speicherung-persistenz">vollständigen JavaScript-Code</a>.</p>
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                ternäre Operator
+                            </a>
+                            <code class="inline">? :</code>
+                            prüft: "Ist das aktuelle Theme
+                            <code class="inline">dark</code>
+                            ? Dann nimm das
+                            <code class="inline">light</code>
+                            -Icon, sonst das
+                            <code class="inline">dark</code>
+                            -Icon."
+                        </p>
+                        <p>
+                            Die vollständige Funktion und wie sie mit dem Click-Event zusammenspielt, findest du weiter
+                            unten im
+                            <a href="#theme-speicherung-persistenz">vollständigen JavaScript-Code</a>
+                            .
+                        </p>
                     </section>
 
                     <!-- Icon-Pfade -->
@@ -399,7 +510,7 @@ const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code><
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -415,7 +526,8 @@ const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code><
                     <section class="tutorials-content">
                         <h2 id="eigene-icons-verwenden">Eigene Icons verwenden</h2>
                         <div class="info-box">
-                            <strong class="box-title no-toc">Icon-Anforderungen
+                            <strong class="box-title no-toc">
+                                Icon-Anforderungen
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
@@ -424,13 +536,23 @@ const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code><
                                 <div>
                                     <p><strong>Wichtig bei der Auswahl eigener Icons:</strong></p>
                                     <ul class="arrow-list">
-                                        <li><strong>Form:</strong> Icons sollten <strong>quadratisch oder rund</strong>
-                                            sein
-                                            (1:1
-                                            Verhältnis)</li>
-                                        <li><strong>Größe:</strong> 20x20px oder 24x24px (viewBox anpassen)</li>
-                                        <li><strong>Format:</strong> SVG bevorzugt (für scharfe Darstellung)</li>
-                                        <li><strong>Style:</strong> Einfache, klare Symbole (Mond/Sonne, Toggle, etc.)
+                                        <li>
+                                            <strong>Form:</strong>
+                                            Icons sollten
+                                            <strong>quadratisch oder rund</strong>
+                                            sein (1:1 Verhältnis)
+                                        </li>
+                                        <li>
+                                            <strong>Größe:</strong>
+                                            20x20px oder 24x24px (viewBox anpassen)
+                                        </li>
+                                        <li>
+                                            <strong>Format:</strong>
+                                            SVG bevorzugt (für scharfe Darstellung)
+                                        </li>
+                                        <li>
+                                            <strong>Style:</strong>
+                                            Einfache, klare Symbole (Mond/Sonne, Toggle, etc.)
                                         </li>
                                     </ul>
                                 </div>
@@ -438,9 +560,10 @@ const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code><
                                     <p><strong>Probleme mit anderen Icon-Formen:</strong></p>
                                     <ul class="arrow-list">
                                         <li>Slider/Switch-Icons (rechteckig) passen nicht in den runden Button</li>
-                                        <li>Der Button hat eine <code class="inline">border-radius</code>, die bei
-                                            nicht-quadratischen
-                                            Icons stört
+                                        <li>
+                                            Der Button hat eine
+                                            <code class="inline">border-radius</code>
+                                            , die bei nicht-quadratischen Icons stört
                                         </li>
                                         <li>Rechteckige Icons werden gequetscht oder verzerrt</li>
                                     </ul>
@@ -451,9 +574,16 @@ const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code><
                         <!-- Eigene Icons einbinden -->
                         <p>Um eigene Icons zu verwenden:</p>
                         <ol class="grid-2col-bg pl-md">
-                            <li>Platziere deine Icons in <code class="inline">/assets/icons/</code></li>
-                            <li>Benenne sie z.B. <code class="inline">mond.svg</code> und <code
-                                    class="inline">sonne.svg</code></li>
+                            <li>
+                                Platziere deine Icons in
+                                <code class="inline">/assets/icons/</code>
+                            </li>
+                            <li>
+                                Benenne sie z.B.
+                                <code class="inline">mond.svg</code>
+                                und
+                                <code class="inline">sonne.svg</code>
+                            </li>
                             <li>Aktualisiere die Pfade im JavaScript:</li>
                         </ol>
                         <div class="code-block">
@@ -461,7 +591,7 @@ const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code><
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -476,31 +606,43 @@ const iconSrc = theme === 'dark' ? THEME_ICONS.light : THEME_ICONS.dark;</code><
                     <!-- localStorage & Persistenz -->
                     <section class="tutorials-content">
                         <h2 id="theme-speicherung-persistenz">Theme-Speicherung &amp; Persistenz</h2>
-                        <p>Das gewählte Theme wird automatisch im <code class="inline">localStorage</code> gespeichert:
+                        <p>
+                            Das gewählte Theme wird automatisch im
+                            <code class="inline">localStorage</code>
+                            gespeichert:
                         </p>
                         <ul class="arrow-list grid-2col-bg">
-                            <li><strong>Beim Laden:</strong> Das zuletzt gewählte Theme wird wiederhergestellt</li>
-                            <li><strong>Standard:</strong> Wenn kein Theme gespeichert ist, wird Dark Mode verwendet
+                            <li>
+                                <strong>Beim Laden:</strong>
+                                Das zuletzt gewählte Theme wird wiederhergestellt
                             </li>
-                            <li><strong>Tab-Synchronisation:</strong> Theme-Wechsel in einem Tab werden in allen anderen
-                                Tabs übernommen</li>
+                            <li>
+                                <strong>Standard:</strong>
+                                Wenn kein Theme gespeichert ist, wird Dark Mode verwendet
+                            </li>
+                            <li>
+                                <strong>Tab-Synchronisation:</strong>
+                                Theme-Wechsel in einem Tab werden in allen anderen Tabs übernommen
+                            </li>
                         </ul>
                     </section>
 
                     <!-- Vollständiger JavaScript-Code -->
                     <section class="tutorials-content">
                         <details>
-                            <summary>
-                                Vollständiger JavaScript-Code
-                            </summary>
+                            <summary>Vollständiger JavaScript-Code</summary>
                             <div class="toggle-detail">
                                 <div class="code-block">
                                     <div class="code-header">
                                         <span class="code-lang">JavaScript</span>
                                         <button class="code-copy">
                                             <span class="copy-icon">
-                                                <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16"
-                                                    height="16">
+                                                <img
+                                                    src="/assets/icons/clipboard.svg"
+                                                    alt="Copy Icon"
+                                                    width="16"
+                                                    height="16"
+                                                />
                                             </span>
                                             <span class="copy-text">Kopieren</span>
                                         </button>
@@ -573,7 +715,7 @@ window.addEventListener('storage', (e) =&gt; {
                                 <span class="code-lang">JavaScript</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -586,15 +728,17 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                     <!-- Button-Styling anpassen -->
                     <section class="tutorials-content">
                         <h2 id="button-styling-anpassen">Button-Styling anpassen</h2>
-                        <p>Das Styling des Theme-Toggle-Buttons findest du in <code class="inline">style.css</code>
-                            unter
-                            "Header &amp; Navigation":</p>
+                        <p>
+                            Das Styling des Theme-Toggle-Buttons findest du in
+                            <code class="inline">style.css</code>
+                            unter "Header &amp; Navigation":
+                        </p>
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -623,16 +767,19 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
 
                     <section class="tutorials-content">
                         <h2 id="icon-probleme-loesen">Icon-Probleme lösen</h2>
-                        <p>Wenn du <strong>Slider/Toggle-Icons</strong> (rechteckige Form, z.B. 40x20px) verwendest,
-                            wird
-                            oft nur eine Ecke angezeigt. Das liegt am CSS:</p>
+                        <p>
+                            Wenn du
+                            <strong>Slider/Toggle-Icons</strong>
+                            (rechteckige Form, z.B. 40x20px) verwendest, wird oft nur eine Ecke angezeigt. Das liegt am
+                            CSS:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -661,7 +808,7 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -683,7 +830,7 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -706,7 +853,7 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                                 <span class="code-lang">CSS</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -725,24 +872,30 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
 
                         <!-- Warum es trotzdem problematisch ist -->
                         <div class="info-box info-box danger">
-                            <strong class="box-title danger no-toc">Warum Slider-Icons trotzdem problematisch sind
+                            <strong class="box-title danger no-toc">
+                                Warum Slider-Icons trotzdem problematisch sind
                                 <svg class="icon-ui">
                                     <use href="#dpz-warning-circle"></use>
                                 </svg>
                             </strong>
                             <p><strong>Auch mit angepasstem CSS gibt es Probleme:</strong></p>
                             <ul class="arrow-list">
-                                <li><strong>Design-Inkonsistenz:</strong> Der Button wird rechteckig und passt nicht zu
-                                    den
-                                    anderen Buttons und Icons</li>
-                                <li><strong>Border-Radius stört:</strong> Die abgerundeten Ecken passen nicht zur
-                                    rechteckigen Icon-Form</li>
-                                <li><strong>Responsive Probleme:</strong> Auf mobilen Geräten nimmt der breitere Button
-                                    mehr
-                                    Platz weg</li>
-                                <li><strong>Visuelle Hierarchie:</strong> Ein breiterer Button zieht mehr Aufmerksamkeit
-                                    als
-                                    gewünscht</li>
+                                <li>
+                                    <strong>Design-Inkonsistenz:</strong>
+                                    Der Button wird rechteckig und passt nicht zu den anderen Buttons und Icons
+                                </li>
+                                <li>
+                                    <strong>Border-Radius stört:</strong>
+                                    Die abgerundeten Ecken passen nicht zur rechteckigen Icon-Form
+                                </li>
+                                <li>
+                                    <strong>Responsive Probleme:</strong>
+                                    Auf mobilen Geräten nimmt der breitere Button mehr Platz weg
+                                </li>
+                                <li>
+                                    <strong>Visuelle Hierarchie:</strong>
+                                    Ein breiterer Button zieht mehr Aufmerksamkeit als gewünscht
+                                </li>
                             </ul>
                         </div>
 
@@ -752,10 +905,12 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
 
                         <div class="grid-2col">
                             <div class="grid-2col-bg mb-sm">
-                                <p><strong>Gut: Mond/Sonne Icons</strong> <svg
-                                        class="icon icon--inline icon-green ml-sm">
+                                <p>
+                                    <strong>Gut: Mond/Sonne Icons</strong>
+                                    <svg class="icon icon--inline icon-green ml-sm">
                                         <use href="#dpz-check-inline"></use>
-                                    </svg></p>
+                                    </svg>
+                                </p>
                                 <ul class="arrow-list">
                                     <li>Quadratisch (z.B. 20x20px)</li>
                                     <li>Klare Symbole</li>
@@ -763,10 +918,12 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg mb-sm">
-                                <p><strong>Gut: Toggle-Kreis Icons</strong> <svg
-                                        class="icon icon--inline icon-green ml-sm">
+                                <p>
+                                    <strong>Gut: Toggle-Kreis Icons</strong>
+                                    <svg class="icon icon--inline icon-green ml-sm">
                                         <use href="#dpz-check-inline"></use>
-                                    </svg></p>
+                                    </svg>
+                                </p>
                                 <ul class="arrow-list">
                                     <li>Rund (Durchmesser 20px)</li>
                                     <li>Ein/Aus Symbol</li>
@@ -777,10 +934,12 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
 
                         <div class="grid-2col" style="padding-top: 0.75rem">
                             <div class="grid-2col-bg">
-                                <p><strong>Problematisch: Slider/Switch</strong> <svg
-                                        class="icon icon--inline icon-red ml-sm">
+                                <p>
+                                    <strong>Problematisch: Slider/Switch</strong>
+                                    <svg class="icon icon--inline icon-red ml-sm">
                                         <use href="#dpz-cross-inline"></use>
-                                    </svg></p>
+                                    </svg>
+                                </p>
                                 <ul class="arrow-list">
                                     <li>Rechteckig (z.B. 40x20px)</li>
                                     <li>Benötigt mehr Platz</li>
@@ -788,10 +947,12 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
                                 </ul>
                             </div>
                             <div class="grid-2col-bg">
-                                <p><strong>Problematisch: Text-Icons</strong> <svg
-                                        class="icon icon--inline icon-red ml-sm">
+                                <p>
+                                    <strong>Problematisch: Text-Icons</strong>
+                                    <svg class="icon icon--inline icon-red ml-sm">
                                         <use href="#dpz-cross-inline"></use>
-                                    </svg></p>
+                                    </svg>
+                                </p>
                                 <ul class="arrow-list">
                                     <li>Zu groß/breit</li>
                                     <li>Nicht responsive-freundlich</li>
@@ -802,15 +963,18 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
 
                         <!-- SVG viewBox Problem -->
                         <h4 class="no-toc">Bonus: SVG viewBox richtig einstellen</h4>
-                        <p>Wenn dein Icon trotz korrektem CSS abgeschnitten wird, prüfe den <code
-                                class="inline">viewBox</code> im SVG:</p>
+                        <p>
+                            Wenn dein Icon trotz korrektem CSS abgeschnitten wird, prüfe den
+                            <code class="inline">viewBox</code>
+                            im SVG:
+                        </p>
 
                         <div class="code-block">
                             <div class="code-header">
                                 <span class="code-lang">SVG</span>
                                 <button class="code-copy">
                                     <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
                                     </span>
                                     <span class="copy-text">Kopieren</span>
                                 </button>
@@ -826,69 +990,75 @@ const currentTheme = localStorage.getItem('theme') || 'light';</code></pre>
 &lt;/svg&gt;</code></pre>
                         </div>
 
-                        <p><strong>Regel:</strong> Der <code class="inline">viewBox</code> muss zur tatsächlichen
-                            Zeichenfläche des Icons passen!</p>
-
+                        <p>
+                            <strong>Regel:</strong>
+                            Der
+                            <code class="inline">viewBox</code>
+                            muss zur tatsächlichen Zeichenfläche des Icons passen!
+                        </p>
                     </section>
 
                     <!-- Prev/Next Navigation -->
 
                     <!-- Latest-Tutorials-Start -->
-                <section class="categories">
-                    <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
-                    <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
-                        <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
-                        <p class="text-muted">Tutorials werden geladen...</p>
-                    </div>
-                </section>
-                <!-- Latest-Tutorials-End -->
+                    <section class="categories">
+                        <h2 id="mehr-aus-devpaniczone">Mehr aus DevPanicZone!</h2>
+                        <div id="categoryLatestTutorials" class="tutorials-grid" data-category="devpaniczone">
+                            <!-- Wird per JavaScript aus /assets/data/tutorials.json geladen -->
+                            <p class="text-muted">Tutorials werden geladen...</p>
+                        </div>
+                    </section>
+                    <!-- Latest-Tutorials-End -->
 
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
-        <div class="tutorial-nav-prev">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">
-                <span class="tutorial-nav-label">← Vorheriges</span>
-                <span class="tutorial-nav-link">Tutorial Buttons</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div><div class="tutorial-nav-next">
-            <a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">
-                <span class="tutorial-nav-label">Nächstes →</span>
-                <span class="tutorial-nav-link">currentYear im Footer</span>
-                <span class="tutorial-nav-category">Documentation</span>
-            </a>
-        </div></nav>
+                            <div class="tutorial-nav-prev">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-tutorial-buttons.html">
+                                    <span class="tutorial-nav-label">← Vorheriges</span>
+                                    <span class="tutorial-nav-link">Tutorial Buttons</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                            <div class="tutorial-nav-next">
+                                <a href="/tutorials/devpaniczone/documentation/devpaniczone-current-year-footer.html">
+                                    <span class="tutorial-nav-label">Nächstes →</span>
+                                    <span class="tutorial-nav-link">currentYear im Footer</span>
+                                    <span class="tutorial-nav-category">Documentation</span>
+                                </a>
+                            </div>
+                        </nav>
                     </section>
-
-                </div> <!-- Wrapper .container -->
-
-            </div> <!-- Tutorial Layout -->
-
+                </div>
+                <!-- Wrapper .container -->
+            </div>
+            <!-- Tutorial Layout -->
         </main>
 
         <!-- Footer-Start -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <p class="footer-text">© <span id="currentYear">2025</span> DevPanicZone. Alle Rechte vorbehalten.</p>
-            <nav class="footer-nav" aria-label="Footer-Navigation">
-                <a href="/impressum.html">Impressum</a>
-                <a href="/datenschutzerklaerung.html">Datenschutz</a>
-            </nav>
-        </div>
-    </div>
-</footer>
-<button id="scrollTopBtn" title="Nach oben">↑</button>
-<script src="/assets/js/main.js" defer></script>
-<script src="/assets/js/search.js" defer></script>
-<script src="/assets/js/scroll-spy.js" defer></script>
-<script src="/assets/js/latest-tutorials.js" defer></script>
-<!-- Footer-End -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        ©
+                        <span id="currentYear">2025</span>
+                        DevPanicZone. Alle Rechte vorbehalten.
+                    </p>
+                    <nav class="footer-nav" aria-label="Footer-Navigation">
+                        <a href="/impressum.html">Impressum</a>
+                        <a href="/datenschutzerklaerung.html">Datenschutz</a>
+                    </nav>
+                </div>
+            </div>
+        </footer>
+        <button id="scrollTopBtn" title="Nach oben">↑</button>
+        <script src="/assets/js/main.js" defer></script>
+        <script src="/assets/js/search.js" defer></script>
+        <script src="/assets/js/scroll-spy.js" defer></script>
+        <script src="/assets/js/latest-tutorials.js" defer></script>
+        <!-- Footer-End -->
 
         <script src="/assets/js/code-copy.js" defer></script>
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
-
     </body>
-
 </html>
