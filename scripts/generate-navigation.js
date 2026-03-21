@@ -63,26 +63,11 @@ const HEADER_TEMPLATE = `<header class="site-header">
                 <a href="/" class="brand-link">
                     <img src="/assets/icons/logo.svg" alt="DevPanicZone Logo" class="logo-icon">
                     <span class="brand-name">
-    <span class="brand-name-main">DevPanicZone!</span>
-    <span class="brand-name-tagline"> Cheatsheets.</span>
-</span>
-                </a>
-            </div>
-
-            <div class="header-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
-                    <span class="theme-icon">
-                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                        <span class="brand-name-main">DevPanicZone!</span>
+                        <span class="brand-name-tagline"> Cheatsheets.</span>
                     </span>
-                </button>
-
-                <button class="mobile-menu-toggle" id="mobileMenuToggle"
-                        aria-label="Menü öffnen" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+                </a>
+            </div>            
 
             <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
                 <ul class="nav-list">
@@ -134,6 +119,21 @@ const HEADER_TEMPLATE = `<header class="site-header">
                     </div>
                 </div>
             </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Dark Mode umschalten">
+                    <span class="theme-icon">
+                        <img src="/assets/icons/dark-mode.svg" alt="Icon Dark Mode" width="20" height="20">
+                    </span>
+                </button>
+
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen"
+                    aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </div>
 </header>`;
