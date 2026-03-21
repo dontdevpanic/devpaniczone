@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('tutorialSidebar');
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebarClose = document.getElementById('sidebarClose');
-    
+
     // Overlay
     const overlay = document.createElement('div');
     overlay.className = 'sidebar-overlay';
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tutorialRelated = document.querySelector('.tutorial-related');
     const tutorialNavToggle = document.getElementById('tutorialNavToggle');
-    
+
     // Öffne rechte Sidebar
     function openTutorialNav() {
         if (tutorialRelated) {
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tutorialNavToggle.addEventListener('click', openTutorialNav);
     }
 
-    
+
 
     // ===================================
     // GEMEINSAME FUNKTIONEN
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            
+
             if (window.scrollY >= (sectionTop - 150)) {
                 current = section.getAttribute('id');
             }
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            
+
             const href = link.getAttribute('href');
             if (href === `#${current}`) {
                 link.classList.add('active');
@@ -139,12 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===================================
 
     tocLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const headerOffset = 100;
                 const elementPosition = targetSection.getBoundingClientRect().top;
