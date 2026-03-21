@@ -210,7 +210,9 @@
             <!-- Floating Button Rechts (Tutorial Navigation) -->
             <button class="tutorial-nav-toggle" id="tutorialNavToggle" aria-label="Tutorial Navigation öffnen">
                 <span class="toggle-icon">
-                    <svg class="library-icon" aria-hidden="true"><use href="#dpz-library"></use></svg>
+                    <svg class="library-icon" aria-hidden="true">
+                        <use href="#dpz-library"></use>
+                    </svg>
                 </span>
             </button>
 
@@ -280,6 +282,7 @@
                             <li class="toc-level-1">
                                 <a href="#zusammenfassung-navigationen">Zusammenfassung: Was wird wo generiert?</a>
                             </li>
+                            <li class="toc-level-1"><a href="#checkliste-ftp-upload">FTP Upload-Checkliste</a></li>
                             <li class="toc-level-1">
                                 <a href="#troubleshooting">Troubleshooting - Häufige Probleme</a>
                             </li>
@@ -2804,6 +2807,117 @@ git push</code></pre>
                         </div>
                     </section>
                     <!-- Zusammenfassung -->
+
+                    <!-- FTP Checkliste -->
+                    <section class="tutorials-content">
+                        <h2 id="checkliste-ftp-upload">FTP Upload-Checkliste</h2>
+
+                        <div class="grid-2col">
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Immer hochladen:</h3>
+                                <ul class="arrow-list">
+                                    <li>
+                                        <strong>Geänderte HTML-Dateien:</strong>
+                                        Alle bearbeiteten Tutorial- und Kategorieseiten
+                                    </li>
+                                    <li>
+                                        <strong>search-index.json:</strong>
+                                        <code class="inline">/assets/data/search-index.json</code>
+                                    </li>
+                                    <li>
+                                        <strong>tutorials.json:</strong>
+                                        <code class="inline">/assets/data/tutorials.json</code>
+                                    </li>
+                                    <li>
+                                        <strong>CSS-Änderungen:</strong>
+                                        <code class="inline">/assets/css/</code>
+                                        (style.css, tutorials.css, sidebar.css, components.css)
+                                    </li>
+                                    <li>
+                                        <strong>JS-Änderungen:</strong>
+                                        <code class="inline">/assets/js/</code>
+                                        (main.js, sidebar.js, search.js etc.)
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="grid-2col-bg">
+                                <h3 class="no-toc">Nach npm run build:</h3>
+                                <ul class="arrow-list">
+                                    <li>
+                                        <strong>Alle aktualisierten Tutorials:</strong>
+                                        Im Terminal sichtbar unter
+                                        <code class="inline">✓ Aktualisiere:</code>
+                                    </li>
+                                    <li>
+                                        <strong>Alle Kategorie-Index-Seiten:</strong>
+                                        z.B.
+                                        <code class="inline">tutorials/html/index.html</code>
+                                    </li>
+                                    <li>
+                                        <strong>search-index.json:</strong>
+                                        Wird neu generiert
+                                    </li>
+                                    <li>
+                                        <strong>tutorials.json:</strong>
+                                        Wird neu generiert
+                                    </li>
+                                    <li>
+                                        <strong>Startseite:</strong>
+                                        <code class="inline">index.html</code>
+                                        (falls Navigation aktualisiert)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-box info-box warning">
+                            <strong class="box-title warning no-toc">
+                                Niemals hochladen:
+                                <svg class="icon-ui">
+                                    <use href="#dpz-warning-circle"></use>
+                                </svg>
+                            </strong>
+                            <ul class="arrow-list">
+                                <li>
+                                    <strong>node_modules/</strong>
+                                    – wird lokal von npm verwaltet
+                                </li>
+                                <li>
+                                    <strong>scripts/</strong>
+                                    – Build-Scripts laufen nur lokal
+                                </li>
+                                <li>
+                                    <strong>package.json, package-lock.json</strong>
+                                    – nur für lokales npm
+                                </li>
+                                <li>
+                                    <strong>.git/, .gitignore</strong>
+                                    – Git-Verwaltung, nicht für den Server
+                                </li>
+                                <li>
+                                    <strong>.DS_Store, .vscode/</strong>
+                                    – macOS- und Editor-Dateien
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">
+                                Tipp: Terminal-Output als Kontrolle
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle"></use>
+                                </svg>
+                            </strong>
+                            <p>
+                                Nach
+                                <code class="inline">npm run build</code>
+                                zeigt das Terminal genau, welche Dateien aktualisiert wurden. Alle Zeilen mit
+                                <code class="inline">✓ Aktualisiere:</code>
+                                müssen auf den Server.
+                            </p>
+                        </div>
+                    </section>
+                    <!-- FTP Checkliste -->
 
                     <!-- Troubleshooting -->
                     <section class="tutorials-content">
