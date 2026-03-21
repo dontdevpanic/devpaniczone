@@ -117,18 +117,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // MOBILE MENU TOGGLE
     // ===================================
 
+    // const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    // const mainNav = document.getElementById('mainNav');
+
+    // if (mobileMenuToggle && mainNav) {
+    //     mobileMenuToggle.addEventListener('click', () => {
+    //         mainNav.classList.toggle('is-open');
+    //     });
+
+    // Schließe Menü bei Klick außerhalb
+    //     document.addEventListener('click', (e) => {
+    //         if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+    //             mainNav.classList.remove('is-open');
+    //         }
+    //     });
+    // }
+
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mainNav = document.getElementById('mainNav');
 
     if (mobileMenuToggle && mainNav) {
         mobileMenuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('is-open');
+            const isOpen = mainNav.classList.toggle('is-open');
+            mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); // NEU
         });
 
         // Schließe Menü bei Klick außerhalb
         document.addEventListener('click', (e) => {
             if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                 mainNav.classList.remove('is-open');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false'); // NEU
             }
         });
     }
