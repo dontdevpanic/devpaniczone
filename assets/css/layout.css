@@ -18,7 +18,7 @@
       6.7 Code-Block Header/Footer ..... ~346
       6.8 Tutorials Grid ............... ~379
       6.9 Responsive icon-grid-res ..... ~397
-      6.10 Mobile First icon-grid ...... ~425
+      6.10 Mobile First icon-grid ...... ~435
 
    =================================== */
 
@@ -151,14 +151,14 @@
     grid-template-columns: 1fr;
 }
 
-/* 640px: 2 Spalten */
+/* 2 columns at 640px */
 @media (min-width: 640px) {
     .categories-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* 1024px: 3 Spalten */
+/* 3 columns at 1024px */
 @media (min-width: 1024px) {
     .categories-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -168,21 +168,21 @@
 
 /* ----- 6.2 Grid-3 (Auto-fit) ----- */
 
-/* Basis: Mobile = 1 Spalte */
+/* Mobile default: single column */
 .grid-3 {
     display: grid;
     grid-template-columns: 1fr;
     gap: 15px;
 }
 
-/* Tablet: Mindestens 2 Spalten (ab ~350px pro Item) */
+/* Tablet: auto-fit with min. 350px per item */
 @media (min-width: 768px) {
     .grid-3 {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
 }
 
-/* Desktop: Spalten passen sich an (3-4 Spalten je nach Breite) */
+/* Desktop: auto-fit with min. 300px per item (yields 3–4 columns depending on viewport) */
 @media (min-width: 1024px) {
     .grid-3 {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -199,7 +199,7 @@
 
 /* ----- 6.3 Grid-4 (1-4 Spalten) ----- */
 
-/* Basis: Mobile = 1 Spalte */
+/* Mobile default: single column */
 .grid-4 {
     display: grid;
     grid-template-columns: 1fr;
@@ -211,21 +211,21 @@
     padding-top: 0.5rem;
 }
 
-/* Tablet: 2 Spalten */
+/* Tablet: 2 columns */
 @media (min-width: 768px) {
     .grid-4 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Desktop: 3 Spalten */
+/* Desktop: 3 columns */
 @media (min-width: 1024px) {
     .grid-4 {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Large Desktop: 4 Spalten */
+/* Large desktop: 4 columns */
 @media (min-width: 1440px) {
     .grid-4 {
         grid-template-columns: repeat(4, 1fr);
@@ -234,7 +234,7 @@
 
 /* ----- 6.4 Grid-2col ----- */
 
-/* Generisches 2-Spalten Grid */
+/* Generic 2-column grid */
 .grid-2col {
     display: grid;
     gap: 1.5rem;
@@ -277,14 +277,14 @@
     margin: 0;
 }
 
-/* 640px: 2 Spalten */
+/* 2 columns at 640px */
 @media (min-width: 640px) {
     .grid-2col {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* ---- Background Styling Grid ---- */
+/* ---- Background styling variant ---- */
 .grid-2col-bg {
     padding: 1.5rem;
     background-color: var(--bg-secondary);
@@ -292,9 +292,9 @@
     border: 1px solid var(--border-color);
 }
 
-/* ----- 6.5 Grid-2-1col (2:1 Verhältnis) ----- */
-/* Linke Spalte 2x so breit wie rechte */
+/* ----- 6.5 Grid-2-1col (2:1 ratio) ----- */
 
+/* Left column is twice as wide as the right column */
 .grid-2-1col {
     display: grid;
     gap: 2rem;
@@ -302,7 +302,7 @@
     align-items: center;
 }
 
-/* 640px: 2:1 Verhältnis */
+/* 2:1 ratio at 640px */
 @media (min-width: 640px) {
     .grid-2-1col {
         grid-template-columns: 2fr 1fr;
@@ -311,8 +311,8 @@
 
 
 /* ----- 6.6 Grid-2col-cards ----- */
-/* Grid für gleich hohe Cards/Code-Blocks */
 
+/* Equal-height card/code-block grid */
 .grid-2col-cards {
     display: grid;
     gap: 1.5rem;
@@ -325,14 +325,14 @@
     padding: 15px 0 10px;
 }
 
-/* Code-Blocks in diesem Grid zu Flex-Containern machen */
+/* Code blocks act as flex containers to fill available height */
 .grid-2col-cards>.code-block {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
-/* Content-Bereich soll wachsen und restlichen Platz füllen */
+/* Content area expands to fill remaining space */
 .grid-2col-cards>.code-block>div:not(.code-header) {
     flex: 1;
 }
@@ -397,7 +397,7 @@
     gap: 1.5rem;
 }
 
-/* Desktop: 2 Spalten nebeneinander */
+/* 2 columns at 768px */
 @media (min-width: 768px) {
     .tutorials-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -435,8 +435,8 @@
 /* 6.10 Mobile First icon-grid */
 .icon-grid {
     display: grid;
+    /* single column on mobile */
     grid-template-columns: 1fr;
-    /* auf Handy: alles untereinander */
     gap: 1.5rem;
     margin: 2rem 0;
 }
@@ -461,21 +461,21 @@
     font-size: 1.15rem;
 }
 
-/* TABLET */
+/* Tablet: 2 columns */
 @media (min-width: 600px) {
     .icon-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* DESKTOP */
+/* Desktop: 3 columns */
 @media (min-width: 900px) {
     .icon-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* BREITE DESKTOPS */
+/* Wide desktop: 6 columns */
 @media (min-width: 1200px) {
     .icon-grid {
         grid-template-columns: repeat(6, 1fr);

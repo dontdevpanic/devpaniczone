@@ -1,5 +1,5 @@
 /* ============================================================================
-    DEVPANICZONE - TUTORIALS STYLESHEET
+    TUTORIALS.CSS - DEVPANICZONE
     ===========================================================================
      
     TABLE OF CONTENTS:
@@ -38,7 +38,7 @@
     margin-bottom: 0.5rem;
 }
 
-/* Kleiner als Homepage */
+/* smaller than homepage */
 .tutorial-hero .hero-title {
     font-size: 2rem;
     padding-top: 1.5rem;
@@ -54,7 +54,7 @@
 3. TUTORIAL GRID BOXES
 =============================================================================== */
 
-/* Comparison Grid - für Side-by-Side Vergleiche (z.B. unsafe vs safe code) */
+/* Comparison grid - side-by-side comparsion (e.g. unsafe vs safe code) */
 .comparison-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -101,7 +101,7 @@
     color: #dc3545;
 }
 
-/* Responsive: Bei kleinen Bildschirmen untereinander statt nebeneinander */
+/* Stacks vertically on small screens */
 @media (max-width: 768px) {
     .comparison-grid {
         grid-template-columns: 1fr;
@@ -257,8 +257,7 @@
 }
 
 /* Cheatsheet Grid */
-/* Spezialfall: auto-fit + minmax() */
-/* ist von Natur aus responsiv und passt sich automatisch an */
+/* auto-fit+minmax() is inherently responsive */
 .cheatsheet-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -325,7 +324,7 @@
     }
 }
 
-/* V2 Farbcodierte Kategorien */
+/* V2 color coded category grid */
 .cheatsheet-grid-2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -345,7 +344,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Farbvarianten für verschiedene Kategorien */
+/* color variants */
 .cheatsheet-section-2:nth-child(1) {
     border-left-color: var(--accent-blue);
 }
@@ -427,7 +426,7 @@
     }
 }
 
-/* V3 Akzent */
+/* V3 accents */
 
 .cheatsheet-grid-3 {
     display: grid;
@@ -589,7 +588,6 @@
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
     border-radius: 0 0 8px 8px;
-    /* Untere Ecken abrunden */
     font-size: 0.9rem;
 }
 
@@ -616,7 +614,7 @@
     }
 }
 
-/* ---- Code Block Inhalt ---- */
+/* ---- Code block content ---- */
 .code-block pre {
     margin: 0;
     padding: 1.5rem;
@@ -627,7 +625,7 @@
 
 .code-block code {
     display: block;
-    /* Default für Code in <pre> */
+    /* Default for code in <pre> */
     width: auto;
     font-family: var(--font-code);
     font-size: 0.9rem;
@@ -637,7 +635,7 @@
     border-radius: 0;
 }
 
-/* Inline-Code in Listen, Header und Footer */
+/* Inline-Code lists, header, footer */
 .grid-2col-cards .code-block .arrow-list code,
 .grid-2col-cards .code-block .check-list code,
 .grid-2col-cards .code-block .cross-list code,
@@ -1032,24 +1030,24 @@ ul.cross-list li::before {
     white-space: nowrap;
 }
 
-/* ---- Flexible Spalten-Breiten ---- */
+/* ---- flexible cols ---- */
 .ref-table th,
 .ref-table td {
     width: auto;
 }
 
-/* Erste Spalte bekommt eine Mindestbreite */
+/* first col */
 .ref-table thead th:first-child {
     min-width: 100px;
     white-space: nowrap;
 }
 
-/* Optional: Bestimmte Spalten sollen nicht umbrechen */
+/* Prevents specific columns from wrapping */
 .ref-table td:first-child {
     white-space: nowrap;
 }
 
-/* Falls doch mal fixe Breiten, diese explizite Klasse */
+/* Use this class to explicitly set fixed column widths */
 .ref-table.table-3col thead th:nth-child(1) {
     width: 15%;
     min-width: 100px;
@@ -1063,7 +1061,7 @@ ul.cross-list li::before {
     width: 40%;
 }
 
-/* ---- Responsive: Cards auf Mobile ---- */
+/* ---- cards on mobile ---- */
 @media (max-width: 767px) {
     .ref-table thead {
         display: none;
@@ -1117,7 +1115,7 @@ ul.cross-list li::before {
     }
 }
 
-/* ---- Table Varianten ---- */
+/* ---- Table variants ---- */
 .ref-table.table-striped tbody tr:nth-child(even) {
     background: rgba(255, 255, 255, 0.02);
 }
@@ -1131,8 +1129,8 @@ ul.cross-list li::before {
     border: 1px solid var(--border-color);
 }
 
-/* ---- Früher Umbruch für Tabellen mit langen Code-Beispielen ---- */
-/* Verwendung: <table class="ref-table ref-table-early-break"> */
+/* ---- Early wrap breakpoint for tables with long code examples ---- */
+/* ---- use: <table class="ref-table ref-table-early-break"> ---- */
 @media (max-width: 1024px) {
     .ref-table.ref-table-early-break thead {
         display: none;
@@ -1163,7 +1161,7 @@ ul.cross-list li::before {
         border: none;
         text-align: left;
         white-space: normal;
-        /* Überschreibt nowrap für längere Inhalte */
+        /* overrides nowrap for longer content */
     }
 
     .ref-table.ref-table-early-break td::before {
@@ -1182,14 +1180,13 @@ ul.cross-list li::before {
         border-bottom: 1px solid var(--border-color);
         margin-bottom: 0.5rem;
         white-space: nowrap;
-        /* Erste Spalte (Element) bleibt kompakt */
     }
 
     .ref-table.ref-table-early-break td:first-child::before {
         display: none;
     }
 
-    /* Code in Cards darf umbrechen */
+    /* Alllow wrap for code in cards */
     .ref-table.ref-table-early-break code {
         white-space: pre-wrap;
         word-break: break-word;
@@ -1202,17 +1199,17 @@ ul.cross-list li::before {
    Erweiterung für Tabellen mit 4+ Spalten
    ============================================ */
 
-/* ---- Wrapper für horizontales Scrollen ---- */
+/* ---- Wrapper for horizontal scrolling ---- */
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
     margin: 1.5rem 0;
     border-radius: 8px;
-    /* Scrollbar-Hinweis auf Mobile */
+    /* Scrollbar hint on mobile */
     -webkit-overflow-scrolling: touch;
 }
 
-/* Optionaler Scroll-Hinweis */
+/* optional scroll-hint */
 .table-wrapper::after {
     content: '';
     display: none;
@@ -1220,7 +1217,6 @@ ul.cross-list li::before {
 
 @media (max-width: 767px) {
     .table-wrapper {
-        /* Subtiler Schatten rechts als Scroll-Hinweis */
         background:
             linear-gradient(to right, var(--bg-secondary), var(--bg-secondary)),
             linear-gradient(to right, var(--bg-secondary), var(--bg-secondary)),
@@ -1237,7 +1233,6 @@ ul.cross-list li::before {
 .styled-table {
     width: 100%;
     min-width: 600px;
-    /* Verhindert zu starkes Quetschen */
     border-collapse: collapse;
     background: var(--bg-secondary);
     border-radius: 8px;
@@ -1281,7 +1276,7 @@ ul.cross-list li::before {
     background: var(--bg-tertiary);
 }
 
-/* Code in Tabellen */
+/* Code in tables */
 .styled-table code {
     font-family: var(--font-code);
     font-size: 0.8125rem;
@@ -1291,13 +1286,13 @@ ul.cross-list li::before {
     white-space: nowrap;
 }
 
-/* Erste Spalte hervorheben */
+/* highlicht first col */
 .styled-table td:first-child {
     font-weight: 500;
     color: var(--heading-secondary);
 }
 
-/* ---- Kompakte Variante für viele Spalten ---- */
+/* ---- compact variant for many cols ---- */
 .styled-table.table-compact th,
 .styled-table.table-compact td {
     padding: 0.625rem 0.5rem;
@@ -1309,7 +1304,7 @@ ul.cross-list li::before {
     padding: 0.1em 0.3em;
 }
 
-/* ---- Zentrierte Spalten (für Sterne, Icons, kurze Werte) ---- */
+/* ---- center for short content ---- */
 .styled-table th.text-center,
 .styled-table td.text-center {
     text-align: center;
@@ -1332,8 +1327,7 @@ ul.cross-list li::before {
     }
 }
 
-/* ---- Alternative: Card-Layout für styled-table ---- */
-/* Nur aktivieren wenn gewünscht mit .table-cards-mobile */
+/* ---- card-layout für styled-table ---- */
 @media (max-width: 767px) {
     .styled-table.table-cards-mobile {
         min-width: unset;
@@ -1392,7 +1386,7 @@ ul.cross-list li::before {
    =============================================================================== */
 
 
-/* ---- Beschreibungslisten ---- */
+/* ---- description list ---- */
 dl {
     width: 100%;
     border-collapse: collapse;
@@ -1535,7 +1529,7 @@ summary:hover {
     }
 }
 
-/* Unterkategorie-Hinweis in Prev/Next Navigation */
+/* subcategory prev/next navigation */
 .tutorial-nav-category {
     display: block;
     font-size: 0.75rem;
@@ -1544,7 +1538,7 @@ summary:hover {
     font-weight: 400;
 }
 
-/* Highlight wenn Kategorie wechselt */
+/* highlight changed category */
 .tutorial-nav-category.is-new {
     color: var(--accent-blue);
     font-weight: 600;
