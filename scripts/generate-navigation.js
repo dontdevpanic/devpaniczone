@@ -202,7 +202,7 @@ const TUTORIAL_ORDER = {
     ],
     'tutorials/css/css-specials': [
         'css-organization.html',
-        // 'css-lucide-icons.html'
+        'css-lucide-icons.html'
     ],
     'tutorials/bootstrap/bootstrap-basics': [
         // Platzhalter
