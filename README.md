@@ -4,7 +4,7 @@
 
 A growing collection of web development tutorials and cheatsheets - built as a personal learning lab and reference for day-to-day use.
 
-[![Visit devpaniczone.de](https://img.shields.io/badge/visit-devpaniczone.de-steelblue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://devpaniczone.de/) &nbsp; &nbsp; [![Repo](https://img.shields.io/badge/repository-darkred?style=for-the-badge&logo=github)](https://github.com/dontdevpanic/devpaniczone) &nbsp; &nbsp;[![Github PAges](https://img.shields.io/badge/github-pages-steelblue?style=for-the-badge&logo=github)](https://dontdevpanic.github.io/devpaniczone/)
+[![Visit devpaniczone.de](https://img.shields.io/badge/visit-devpaniczone.de-steelblue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://devpaniczone.de/) &nbsp; &nbsp; [![Repo](https://img.shields.io/badge/repository-darkred?style=for-the-badge&logo=github)](https://github.com/dontdevpanic/devpaniczone)
 
 [Zur deutschen Version](#deutsche-version)
 
@@ -186,7 +186,7 @@ MIT - see [LICENSE](LICENSE) for details.
 
 Eine wachsende Sammlung von Web-Development-Tutorials und Cheatsheets — entstanden als persönliches Lernlabor und Nachschlagewerk für den täglichen Gebrauch.
 
-[![Visit devpaniczone.de](https://img.shields.io/badge/visit-devpaniczone.de-steelblue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://devpaniczone.de/) &nbsp; &nbsp; [![Repo](https://img.shields.io/badge/repository-darkred?style=for-the-badge&logo=github)](https://github.com/dontdevpanic/devpaniczone) &nbsp; &nbsp;[![Github PAges](https://img.shields.io/badge/github-pages-steelblue?style=for-the-badge&logo=github)](https://dontdevpanic.github.io/devpaniczone/)
+[![Visit devpaniczone.de](https://img.shields.io/badge/visit-devpaniczone.de-steelblue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://devpaniczone.de/) &nbsp; &nbsp; [![Repo](https://img.shields.io/badge/repository-darkred?style=for-the-badge&logo=github)](https://github.com/dontdevpanic/devpaniczone)
 
 ---
 
