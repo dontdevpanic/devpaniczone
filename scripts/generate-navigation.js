@@ -133,6 +133,12 @@ const HEADER_TEMPLATE = `<header class="site-header">
                     <span></span>
                     <span></span>
                 </button>
+
+                <a href="https://github.com/dontdevpanic" class="github-link" aria-label="DevPanicZone auf GitHub" target="_blank" rel="noopener noreferrer">
+                    <svg aria-hidden="true" width="20" height="20">
+                        <use href="#github"></use>
+                    </svg>
+                </a>
             </div>
         </div>
     </div>
