@@ -184,7 +184,7 @@ MIT - see [LICENSE](LICENSE) for details.
 
 **Don't DevPanic. Cheat.**
 
-Eine wachsende Sammlung von Web-Development-Tutorials und Cheatsheets — entstanden als persönliches Lernlabor und Nachschlagewerk für den täglichen Gebrauch.
+Eine wachsende Sammlung von Web-Development-Tutorials und Cheatsheets - entstanden als persönliches Lernlabor und Nachschlagewerk für den täglichen Gebrauch.
 
 [![Visit devpaniczone.de](https://img.shields.io/badge/visit-devpaniczone.de-steelblue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://devpaniczone.de/) &nbsp; &nbsp; [![Repo](https://img.shields.io/badge/repository-darkred?style=for-the-badge&logo=github)](https://github.com/dontdevpanic/devpaniczone)
 
@@ -192,7 +192,7 @@ Eine wachsende Sammlung von Web-Development-Tutorials und Cheatsheets — entsta
 
 ## Über das Projekt
 
-DevPanicZone ist mein Weg zurück in die aktive Webentwicklung. Nach Jahren mit hauptsächlich WordPress Custom CSS wollte ich meine HTML- und CSS-Kenntnisse auf den aktuellen Stand bringen — und dabei JavaScript und PHP von Grund auf lernen.
+DevPanicZone ist mein Weg zurück in die aktive Webentwicklung. Nach Jahren mit hauptsächlich WordPress Custom CSS wollte ich meine HTML- und CSS-Kenntnisse auf den aktuellen Stand bringen - und dabei JavaScript und PHP von Grund auf lernen.
 
 Das Projekt dient zwei Zwecken:
 
@@ -207,9 +207,9 @@ Das Projekt dient zwei Zwecken:
 - Integrierte Suchfunktion mit Dropdown-Schnellsuche und vollständigem Suchindex
 - Automatisch generierte Navigation (Header-Dropdowns, Footer, Breadcrumbs, Sidebar, kategorieübergreifende Vor/Zurück-Buttons)
 - Interaktive JavaScript-Tools (Live Code Editor, HTML Code Escaper, Entity Encoder, To-Do App)
-- WCAG 2.1 AA konform — semantisches HTML, ARIA-Attribute, Farbkontraste geprüft
+- WCAG 2.1 AA konform - semantisches HTML, ARIA-Attribute, Farbkontraste geprüft
 - Modulare CSS-Architektur mit CSS Custom Properties und Dark/Light Mode
-- DSGVO-konform — Syntax-Highlighting mit lokal gehostetem Prism.js
+- DSGVO-konform - Syntax-Highlighting mit lokal gehostetem Prism.js
 - Custom SVG-Sprite-System für theme-fähige Icons
 
 ---
@@ -293,9 +293,9 @@ root/
 
 `npm run build` führt automatisch drei Schritte aus:
 
-1. **`generate-navigation.js`** — aktualisiert alle Navigationselemente seitenübergreifend (Header-Dropdowns, Footer, Breadcrumbs, Sidebar, Vor/Zurück-Buttons, Tutorial-Grids) anhand der Konfiguration in `TUTORIAL_ORDER` und `CATEGORY_NAMES`
-2. **Suchindex-Generierung** — erstellt `assets/data/search-index.json` und `assets/data/tutorials.json` aus allen Tutorial-Inhalten
-3. **Prettier** — formatiert alle HTML-Dateien einheitlich
+1. **`generate-navigation.js`** - aktualisiert alle Navigationselemente seitenübergreifend (Header-Dropdowns, Footer, Breadcrumbs, Sidebar, Vor/Zurück-Buttons, Tutorial-Grids) anhand der Konfiguration in `TUTORIAL_ORDER` und `CATEGORY_NAMES`
+2. **Suchindex-Generierung** - erstellt `assets/data/search-index.json` und `assets/data/tutorials.json` aus allen Tutorial-Inhalten
+3. **Prettier** - formatiert alle HTML-Dateien einheitlich
 
 > Hinweis: Die generierten Datendateien (`search-index.json`, `tutorials.json`) müssen nach jedem Build, der neue Tutorials hinzufügt oder umbenennt, erneut per FTP auf den Server hochgeladen werden.
 
@@ -303,7 +303,7 @@ root/
 
 ## Status
 
-🚧 **Work in Progress** — dieses Projekt wächst kontinuierlich mit meinem Lernfortschritt.
+🚧 **Work in Progress** - dieses Projekt wächst kontinuierlich mit meinem Lernfortschritt.
 
 **Aktuell verfügbar:**
 - HTML-Grundlagen und semantische Struktur
@@ -341,13 +341,13 @@ npm run build
 
 ## Contributing
 
-Das ist ein persönliches Projekt und Lerntagebuch — für externe Beiträge ist es nicht eingerichtet. Falls du einen Fehler entdeckst oder eine Anmerkung hast, kannst du gerne ein Issue öffnen. Feedback ist immer willkommen.
+Das ist ein persönliches Projekt und Lerntagebuch - für externe Beiträge ist es nicht eingerichtet. Falls du einen Fehler entdeckst oder eine Anmerkung hast, kannst du gerne ein Issue öffnen. Feedback ist immer willkommen.
 
 ---
 
 ## Lizenz
 
-MIT — siehe [LICENSE](LICENSE) für Details.
+MIT - siehe [LICENSE](LICENSE) für Details.
 
 ---
 
