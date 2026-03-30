@@ -192,6 +192,7 @@ const TUTORIAL_ORDER = {
         'html-formulare.html',
         'html-audio-video.html',
         'html-quellcode-sichtbar-machen.html',
+        'html-iframes.html',
         'html-svg-sprites.html'
     ],
     'tutorials/css/css-basics': [
