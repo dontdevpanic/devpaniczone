@@ -189,6 +189,7 @@ const TUTORIAL_ORDER = {
     ],
     'tutorials/html/html-advanced': [
         'html-semantik.html',
+        'html-accessibility.html',
         'html-formulare.html',
         'html-audio-video.html',
         'html-quellcode-sichtbar-machen.html',
