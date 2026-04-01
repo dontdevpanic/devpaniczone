@@ -190,10 +190,11 @@ const TUTORIAL_ORDER = {
     'tutorials/html/html-advanced': [
         'html-semantik.html',
         'html-accessibility.html',
+        'html-aira.html',
         'html-formulare.html',
         'html-audio-video.html',
-        'html-quellcode-sichtbar-machen.html',
         'html-iframes.html',
+        'html-quellcode-sichtbar-machen.html',
         'html-svg-sprites.html'
     ],
     'tutorials/css/css-basics': [

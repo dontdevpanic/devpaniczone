@@ -6,10 +6,10 @@
         <meta name="robots" content="index, follow" />
         <meta
             name="description"
-            content="Lerne, wie du mit HTML barrierefreie Websites gestaltest: von Kontrasten, Tastaturbedienung und Fokus bis zu ARIA-Rollen, Screenreader-Optimierung und Skip-Links."
+            content="Wie ARIA-Rollen und semantisches HTML zusammenarbeiten: Barrierefreie Navigation, Tastatursteuerung und verständliche Struktur für Screenreader."
         />
         <meta name="author" content="DevPanicZone" />
-        <title>ARIA-Rollen & Barrierefreiheit | DevPanicZone</title>
+        <title>ARIA-Rollen & Barrierefreiheit - DevPanicZone | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
         <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
         <link rel="stylesheet" href="/assets/css/style.css" />
@@ -196,13 +196,16 @@
                         <span class="breadcrumb-separator">›</span>
                         <a href="/tutorials/html/" class="breadcrumb-link">HTML</a>
                         <span class="breadcrumb-separator">›</span>
-                        <span class="breadcrumb-current">HTML Barrierefreiheit im Web</span>
+                        <span class="breadcrumb-current">ARIA-Rollen & Barrierefreiheit</span>
                     </nav>
-                    <!----------------------------------------------- 
-                ================ HERO BEARBEITEN ================
-                ------------------------------------------------>
-                    <h1 class="hero-title">HTML Barrierefreiheit im Web</h1>
-                    <p class="hero-subtitle">Barrierefreiheit in HTML ist kein Extra, sondern gutes Webdesign.</p>
+                    <h1 class="hero-title">ARIA-Rollen & Barrierefreiheit</h1>
+                    <p class="hero-subtitle">
+                        Barrierefreiheit bedeutet, dass Websites für alle Menschen zugänglich sind – auch für
+                        diejenigen, die mit Screenreader oder Tastatur arbeiten. HTML bringt dafür schon viel mit, aber
+                        mit
+                        <strong>ARIA</strong>
+                        kannst du gezielt nachhelfen, wenn semantische Elemente allein nicht ausreichen.
+                    </p>
                 </div>
             </section>
 
@@ -242,63 +245,20 @@
                     <nav class="sidebar-toc" aria-label="Inhaltsverzeichnis">
                         <ul class="toc-list">
                             <!-- Sidebar-Anchor-Start -->
+                            <li class="toc-level-1"><a href="#was-ist-aria">Was ist ARIA?</a></li>
                             <li class="toc-level-1">
-                                <a href="#warum-barrierefreiheit-wichtig-ist">Warum Barrierefreiheit wichtig ist</a>
+                                <a href="#wichtige-aria-rollen-typen">Wichtige ARIA-Rollen-Typen</a>
                             </li>
+                            <li class="toc-level-1"><a href="#wie-aria-funktioniert">Wie ARIA funktioniert</a></li>
                             <li class="toc-level-1">
-                                <a href="#wahrnehmbarkeit-farben-kontraste-schriftgroessen">
-                                    Wahrnehmbarkeit: Farben, Kontraste &amp; Schriftgrößen
-                                </a>
+                                <a href="#tastaturnavigation-und-fokus">Tastaturnavigation und Fokus</a>
                             </li>
+                            <li class="toc-level-1"><a href="#haeufige-aria-attribute">Häufige ARIA-Attribute</a></li>
                             <li class="toc-level-1">
-                                <a href="#bedienbarkeit-tastatur-fokus-und-sichtbare-navigation">
-                                    Bedienbarkeit: Tastatur, Fokus und sichtbare Navigation
-                                </a>
+                                <a href="#aria-in-komplexeren-strukturen">ARIA in komplexeren Strukturen</a>
                             </li>
-                            <li class="toc-level-1">
-                                <a href="#verstaendlichkeit-klare-struktur-sinnvolle-alternativen">
-                                    Verständlichkeit: Klare Struktur &amp; sinnvolle Alternativen
-                                </a>
-                            </li>
-                            <li class="toc-level-1">
-                                <a href="#robustheit-kompatibilitaet-mit-technologien">
-                                    Robustheit: Kompatibilität mit Technologien
-                                </a>
-                            </li>
-                            <li class="toc-level-1">
-                                <a href="#checkliste-barrierefreiheit-verbessern">
-                                    Checkliste: Barrierefreiheit verbessern
-                                </a>
-                            </li>
-                            <li class="toc-level-1">
-                                <a href="#weitere-zentrale-themen-zu-html-barrierefreiheit">
-                                    Weitere zentrale Themen zu HTML &amp; Barrierefreiheit
-                                </a>
-                            </li>
-                            <li class="toc-level-2"><a href="#sprache-richtig-angeben">Sprache richtig angeben</a></li>
-                            <li class="toc-level-2">
-                                <a href="#multimedia-inhalte-zugaenglich-machen">
-                                    Multimedia-Inhalte zugänglich machen
-                                </a>
-                            </li>
-                            <li class="toc-level-2">
-                                <a href="#skip-links---springe-zum-inhalt">Skip-Links - „Springe zum Inhalt“</a>
-                            </li>
-                            <li class="toc-level-2">
-                                <a href="#dynamische-inhalte-und-aria-live-regions">
-                                    Dynamische Inhalte und ARIA live regions
-                                </a>
-                            </li>
-                            <li class="toc-level-2">
-                                <a href="#designentscheidungen-mitdenken">Designentscheidungen mitdenken</a>
-                            </li>
-                            <li class="toc-level-2">
-                                <a href="#tool-tipp-accessibility-checks-im-browser">
-                                    Tool-Tipp: Accessibility-Checks im Browser
-                                </a>
-                            </li>
+                            <li class="toc-level-1"><a href="#zusammenfassung">Zusammenfassung</a></li>
                             <li class="toc-level-1"><a href="#teste-es-selbst">Teste es selbst</a></li>
-                            <li class="toc-level-1"><a href="#mehr-aus-html">Mehr aus HTML</a></li>
                             <!-- Sidebar-Anchor-End -->
                         </ul>
                     </nav>
@@ -343,12 +303,12 @@
                             <li class="sidebar-group-title">HTML Advanced</li>
                             <li><a href="/tutorials/html/html-advanced/html-semantik.html">Semantisches HTML</a></li>
                             <li>
-                                <a href="/tutorials/html/html-advanced/html-accessibility.html" class="active">
+                                <a href="/tutorials/html/html-advanced/html-accessibility.html">
                                     HTML Barrierefreiheit im Web
                                 </a>
                             </li>
                             <li>
-                                <a href="/tutorials/html/html-advanced/html-aira.html">
+                                <a href="/tutorials/html/html-advanced/html-aira.html" class="active">
                                     ARIA-Rollen & Barrierefreiheit
                                 </a>
                             </li>
@@ -373,107 +333,143 @@
 
                 <!-- Wrapper .container -->
                 <div class="container">
-                    <!-- Warum Barrierefreiheit wichtig ist -->
+                    <!-- Was ist ARIA? -->
                     <section class="tutorials-content">
-                        <h2 id="warum-barrierefreiheit-wichtig-ist">Warum Barrierefreiheit wichtig ist</h2>
+                        <h2 id="was-ist-aria">Was ist ARIA?</h2>
                         <p>
-                            Barrierefreiheit (Accessibility oder kurz „a11y“) sorgt dafür, dass Websites von allen
-                            Menschen nutzbar sind – unabhängig von körperlichen, technischen oder situativen
-                            Einschränkungen.
+                            <strong>ARIA</strong>
+                            steht für
+                            <em>Accessible Rich Internet Applications</em>
+                            und erweitert HTML um Attribute, mit denen du beschreiben kannst,
+                            <em>was</em>
+                            ein Element ist oder
+                            <em>wie</em>
+                            es sich verhält – besonders dann, wenn du eigene UI-Komponenten baust (z.&nbsp;B. Menüs,
+                            Tabs, Slider).
                         </p>
-                        <p>
-                            Eine barrierefreie Website ist nicht nur ein ethisches oder gesetzliches Thema, sondern auch
-                            ein Zeichen für gute Nutzerfreundlichkeit (UX). Sie hilft:
-                        </p>
-                        <ul class="arrow-list">
-                            <li>Menschen mit Seh-, Hör- oder motorischen Einschränkungen,</li>
-                            <li>Menschen mit kognitiven Einschränkungen oder Reizüberflutung,</li>
-                            <li>
-                                und allen anderen, die in bestimmten Situationen (z. B. auf dem Handy bei Sonne oder
-                                ohne Maus) eingeschränkt sind.
-                            </li>
-                        </ul>
                         <div class="info-box">
                             <strong class="box-title no-toc">
-                                Gute Accessibility bedeutet also
+                                Wichtig
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle" />
                                 </svg>
                             </strong>
                             <p>
-                                Inhalte sind verständlich, steuerbar, wahrnehmbar und robust - die vier Prinzipien der
-                                <strong>WCAG</strong>
-                                (Web Content Accessibility Guidelines).
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Wahrnehmbarkeit: Farben, Kontraste & Schriftgrößen -->
-                    <section class="tutorials-content">
-                        <h2>Wahrnehmbarkeit: Farben, Kontraste & Schriftgrößen</h2>
-                        <p>
-                            Inhalte müssen so gestaltet sein, dass sie von allen Nutzern gesehen oder gehört werden
-                            können. Wichtig sind dabei vor allem:
-                        </p>
-
-                        <ul class="arrow-list">
-                            <li>
-                                <strong>Kontrastverhältnis:</strong>
-                                Text sollte ein Kontrastverhältnis von mindestens
-                                <code>4.5:1</code>
-                                (normaler Text) bzw.
-                                <code>3:1</code>
-                                (großer Text) zum Hintergrund haben.
-                            </li>
-                            <li>
-                                <strong>Keine Information nur durch Farbe:</strong>
-                                Farben sollten nie allein Information tragen (z. B. rot = Fehler). Ergänze Symbole oder
-                                Text.
-                            </li>
-                            <li>
-                                <strong>Flexible Schriftgrößen:</strong>
-                                Verwende relative Einheiten wie
-                                <code>em</code>
+                                Nutze ARIA nur, wenn wirklich nötig. Native HTML-Elemente wie
+                                <code class="inline">&lt;button&gt;</code>
+                                ,
+                                <code class="inline">&lt;nav&gt;</code>
                                 oder
-                                <code>rem</code>
-                                statt Pixel, damit Nutzer ihre Schriftgröße selbst anpassen können.
-                            </li>
-                        </ul>
-                        <!-- Code Block language-html -->
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;p style=&quot;font-size: 1.2rem; color: #222; background: #f1f1f1;&quot;&gt;
-    Gut lesbarer Text mit ausreichendem Kontrast
-&lt;/p&gt;</code></pre>
-                            <p style="font-size: 1.2rem; color: #222; background: #f1f1f1">
-                                Gut lesbarer Text mit ausreichendem Kontrast
+                                <code class="inline">&lt;form&gt;</code>
+                                sind bereits barrierefrei und brauchen keine zusätzlichen Rollen.
                             </p>
                         </div>
                     </section>
 
-                    <!-- Bedienbarkeit: Tastatur, Fokus und sichtbare Navigation
- -->
+                    <!-- Wichtige ARIA-Rollen-Typen -->
                     <section class="tutorials-content">
-                        <h2 id="bedienbarkeit-tastatur-fokus-und-sichtbare-navigation">
-                            Bedienbarkeit: Tastatur, Fokus und sichtbare Navigation
-                        </h2>
+                        <h2 id="wichtige-aria-rollen-typen">Wichtige ARIA-Rollen-Typen</h2>
                         <p>
-                            Alle Funktionen sollten auch ohne Maus erreichbar sein. Nutzer navigieren oft mit der
-                            <kbd>Tab</kbd>
-                            -Taste (vorwärts) und
-                            <kbd>Shift</kbd>
-                            +
-                            <kbd>Tab</kbd>
-                            (rückwärts). Der Fokus sollte dabei sichtbar bleiben.
+                            ARIA-Rollen lassen sich grob in drei Gruppen einteilen. Diese helfen Screenreadern, die
+                            Struktur und Bedeutung deiner Seite zu verstehen.
                         </p>
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Rollen-Typ</th>
+                                    <th>Beispiele</th>
+                                    <th>Bedeutung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Landmark Roles</strong></td>
+                                    <td>
+                                        <code class="inline">banner</code>
+                                        ,
+                                        <code class="inline">navigation</code>
+                                        ,
+                                        <code class="inline">main</code>
+                                        ,
+                                        <code class="inline">complementary</code>
+                                        ,
+                                        <code class="inline">contentinfo</code>
+                                    </td>
+                                    <td>
+                                        Definieren Hauptbereiche der Seite (Header, Navigation, Hauptinhalt, Footer
+                                        usw.).
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Widget Roles</strong></td>
+                                    <td>
+                                        <code class="inline">button</code>
+                                        ,
+                                        <code class="inline">checkbox</code>
+                                        ,
+                                        <code class="inline">tab</code>
+                                        ,
+                                        <code class="inline">slider</code>
+                                        ,
+                                        <code class="inline">dialog</code>
+                                    </td>
+                                    <td>Interaktive Elemente, die Benutzereingaben oder Aktionen ermöglichen.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Document Structure Roles</strong></td>
+                                    <td>
+                                        <code class="inline">article</code>
+                                        ,
+                                        <code class="inline">heading</code>
+                                        ,
+                                        <code class="inline">list</code>
+                                        ,
+                                        <code class="inline">table</code>
+                                        ,
+                                        <code class="inline">separator</code>
+                                    </td>
+                                    <td>Beschreiben die inhaltliche Struktur – ähnlich wie semantische HTML-Tags.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Live Region Roles</strong></td>
+                                    <td>
+                                        <code class="inline">alert</code>
+                                        ,
+                                        <code class="inline">status</code>
+                                        ,
+                                        <code class="inline">log</code>
+                                    </td>
+                                    <td>Teilen Screenreadern dynamische Änderungen mit, z. B. bei AJAX-Inhalten.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="info-box">
+                            <strong class="box-title no-toc">
+                                Tipp
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>
+                                Die meisten modernen Screenreader erkennen Landmark-Rollen automatisch, wenn du die
+                                passenden HTML5-Tags nutzt. Zum Beispiel entspricht
+                                <code class="inline">&lt;header&gt;</code>
+                                automatisch der Rolle
+                                <code class="inline">banner</code>
+                                .
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Wie ARIA funktioniert -->
+                    <section class="tutorials-content">
+                        <h2 id="wie-aria-funktioniert">Wie ARIA funktioniert</h2>
+                        <p>
+                            Das zentrale Attribut ist
+                            <code class="inline">role</code>
+                            . Damit sagst du Screenreadern, welche Funktion ein Element hat - unabhängig vom Tag selbst.
+                        </p>
+
                         <!-- Code Block language-html -->
                         <div class="code-block">
                             <div class="code-header">
@@ -485,23 +481,23 @@
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-html">&lt;button&gt;Klick mich&lt;/button&gt;
-&lt;style&gt;
-    button:focus {
-    outline: 3px solid orange; /* Sichtbarer Fokusrahmen */
-    outline-offset: 2px;
-    }
-&lt;/style&gt;</code></pre>
+                            <pre><code class="language-html">&lt;div role=&quot;button&quot;&gt;
+    Menü öffnen
+&lt;/div&gt;</code></pre>
                         </div>
+
                         <p>
-                            Falls du eigene Elemente z. B. mit
+                            Ein
                             <code class="inline">&lt;div&gt;</code>
-                            interaktiv machst, setze
-                            <code class="inline">tabindex="0"</code>
-                            , damit sie per Tab erreichbar sind:
+                            hat normalerweise keine Bedeutung. Durch
+                            <code class="inline">role="button"</code>
+                            weiß der Screenreader: Das ist ein Button. Damit das Element auch
+                            <em>per Tastatur</em>
+                            erreichbar ist, ergänzt du außerdem:
                         </p>
+
                         <!-- Code Block language-html -->
-                        <div class="code-block">
+                        <div class="code-block mt-xl">
                             <div class="code-header">
                                 <span class="code-lang">HTML</span>
                                 <button class="code-copy">
@@ -512,174 +508,102 @@
                                 </button>
                             </div>
                             <pre><code class="language-html">&lt;div role=&quot;button&quot; tabindex=&quot;0&quot;&gt;
-    Interaktives Element
+    Menü öffnen
 &lt;/div&gt;</code></pre>
                         </div>
-                    </section>
 
-                    <!-- Verständlichkeit: Klare Struktur & sinnvolle Alternativen -->
-                    <section class="tutorials-content">
-                        <h2>Verständlichkeit: Klare Struktur & sinnvolle Alternativen</h2>
-                        <ul class="arrow-list">
-                            <li>
-                                Verwende semantische HTML-Elemente - z. B.
-                                <code class="inline">&lt;nav&gt;</code>
-                                ,
-                                <code class="inline">&lt;main&gt;</code>
-                                ,
-                                <code class="inline">&lt;footer&gt;</code>
-                                - damit Screenreader den Aufbau verstehen.
-                            </li>
-                            <li>
-                                Gib Bildern
-                                <code class="inline">alt</code>
-                                -Texte, die den Inhalt beschreiben.
-                            </li>
-                            <li>
-                                Beschrifte Formulare eindeutig -
-                                <code class="inline">&lt;label&gt;</code>
-                                .
-                            </li>
-                            <li>
-                                Nutze aussagekräftige Linktexte („Mehr über Barrierefreiheit erfahren“ statt „Hier
-                                klicken“).
-                            </li>
-                        </ul>
-                        <!-- Code Block language-html -->
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;img src=&quot;diagramm.png&quot; alt=&quot;Diagramm mit steigenden Umsätzen 2025&quot;&gt;
-                        
-&lt;label for=&quot;email&quot;&gt;E-Mail-Adresse:&lt;/label&gt;
-&lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot;&gt;</code></pre>
-                        </div>
-                    </section>
-
-                    <!-- Robustheit: Kompatibilität mit Technologien -->
-                    <section class="tutorials-content">
-                        <h2 id="robustheit-kompatibilitaet-mit-technologien">
-                            Robustheit: Kompatibilität mit Technologien
-                        </h2>
                         <p>
-                            Inhalte sollten mit verschiedenen Geräten, Browsern und Assistenzsystemen funktionieren –
-                            besonders Screenreadern. Hier kommen
-                            <strong>ARIA-Attribute</strong>
-                            ins Spiel:
+                            <code class="inline">tabindex="0"</code>
+                            bedeutet: Das Element ist über die
+                            <kbd>Tab</kbd>
+                            -Taste erreichbar.
                         </p>
-                        <table class="ref-table">
-                            <thead>
-                                <tr>
-                                    <th>Rolle</th>
-                                    <th>Beschreibung</th>
-                                    <th>Beispiel</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>role="button"</code></td>
-                                    <td>Markiert ein Element als Schaltfläche</td>
-                                    <td><code>&lt;div role="button"&gt;OK&lt;/div&gt;</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>role="navigation"</code></td>
-                                    <td>Kennzeichnet den Hauptnavigationsbereich</td>
-                                    <td><code>&lt;nav role="navigation"&gt;...&lt;/nav&gt;</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>aria-label</code></td>
-                                    <td>Beschreibt ein Element für Screenreader</td>
-                                    <td><code>&lt;button aria-label="Menü öffnen"&gt;☰&lt;/button&gt;</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>aria-hidden="true"</code></td>
-                                    <td>Verbirgt ein Element vor Screenreadern</td>
-                                    <td><code>&lt;span aria-hidden="true"&gt;★&lt;/span&gt;</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>aria-live</code></td>
-                                    <td>Screenreader werden über Änderungen informiert</td>
-                                    <td><code>&lt;div aria-live="polite"&gt;Neue Nachricht&lt;/div&gt;</code></td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </section>
 
-                    <!-- Checkliste: Barrierefreiheit verbessern -->
+                    <!-- Tastaturnavigation und Fokus -->
                     <section class="tutorials-content">
-                        <h2 id="checkliste-barrierefreiheit-verbessern">Checkliste: Barrierefreiheit verbessern</h2>
-                        <ul class="no-disk">
-                            <li>[ ] Fokus ist sichtbar (Tastaturbedienung testen)</li>
-                            <li>
-                                [ ] Bilder haben sinnvolle
-                                <code class="inline">alt</code>
-                                -Texte
-                            </li>
-                            <li>
-                                [ ] Überschriften sind logisch verschachtelt
-                                <code class="inline">h1</code>
-                                –
-                                <code class="inline">h6</code>
-                            </li>
-                            <li>[ ] Texte sind gut lesbar (Kontrast & Schriftgröße)</li>
-                            <li>[ ] Formularfelder sind beschriftet</li>
-                            <li>[ ] Keine Information nur durch Farbe vermittelt</li>
-                            <li>
-                                [ ] Eigene Widgets haben passende
-                                <code class="inline">role</code>
-                                -Attribute
-                            </li>
-                            <li>[ ] Inhalte funktionieren mit Screenreadern</li>
-                        </ul>
+                        <h2 id="tastaturnavigation-und-fokus">Tastaturnavigation und Fokus</h2>
+                        <p>
+                            Die
+                            <kbd>Tab</kbd>
+                            -Taste springt durch alle fokussierbaren Elemente. Damit das sinnvoll funktioniert, ist eine
+                            korrekte Semantik oder ARIA-Rolle entscheidend. Browser erkennen automatisch Schaltflächen,
+                            Links und Formulareingaben – aber nicht selbstgebaute Elemente.
+                        </p>
+
                         <div class="info-box">
                             <strong class="box-title no-toc">
-                                Hilfreiches Tool
+                                Tipp
                                 <svg class="icon-ui">
                                     <use href="#dpz-info-circle" />
                                 </svg>
                             </strong>
                             <p>
-                                Die DevTools Extension
-                                <a
-                                    href="https://chromewebstore.google.com/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="axe DevTools – öffnet in neuem Tab"
-                                >
-                                    axe DevTools
-                                </a>
-                                hilft dir, die Probleme auf deiner Seite zu erkennen.
+                                Wenn du per Tastatur navigierst, sollte immer klar sichtbar sein, welches Element
+                                aktuell den Fokus hat. Das kannst du über CSS steuern:
                             </p>
+                            <pre><code class="language-css">[tabindex]:focus, button:focus {
+    outline: 2px solid orange;
+}</code></pre>
                         </div>
                     </section>
 
-                    <!-- Weitere zentrale Themen zu HTML & Barrierefreiheit -->
+                    <!-- Häufige ARIA-Attribute -->
                     <section class="tutorials-content">
-                        <h2>Weitere zentrale Themen zu HTML & Barrierefreiheit</h2>
+                        <h2 id="haeufige-aria-attribute">Häufige ARIA-Attribute</h2>
                         <p>
-                            Barrierefreiheit endet nicht bei semantischen Tags oder ARIA-Rollen. Hier findest du weitere
-                            wichtige Punkte, die das Nutzererlebnis für alle verbessern – unabhängig von Gerät oder
-                            Einschränkung.
+                            Neben
+                            <code class="inline">role</code>
+                            gibt es weitere Attribute, die den Zustand eines Elements beschreiben:
                         </p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Attribut</th>
+                                    <th>Bedeutung</th>
+                                    <th>Beispiel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">aria-label</code></td>
+                                    <td>Alternativer Text für Screenreader</td>
+                                    <td>
+                                        <code class="inline">
+                                            &lt;button aria-label="Menü öffnen"&gt;☰&lt;/button&gt;
+                                        </code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-expanded</code></td>
+                                    <td>Zeigt an, ob ein Bereich geöffnet oder geschlossen ist</td>
+                                    <td>
+                                        <code class="inline">
+                                            &lt;button aria-expanded="false"&gt;Menü&lt;/button&gt;
+                                        </code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-hidden</code></td>
+                                    <td>Versteckt Elemente vor Screenreadern (z.&nbsp;B. Deko-Icons)</td>
+                                    <td><code class="inline">&lt;span aria-hidden="true"&gt;★&lt;/span&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-current</code></td>
+                                    <td>Markiert das aktuelle Element in einer Navigation</td>
+                                    <td>
+                                        <code class="inline">&lt;a aria-current="page"&gt;Startseite&lt;/a&gt;</code>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
 
-                    <!-- Sprache richtig angeben -->
+                    <!-- ARIA in komplexeren Strukturen -->
                     <section class="tutorials-content">
-                        <h3 id="sprache-richtig-angeben">Sprache richtig angeben</h3>
-                        <p>
-                            Mit dem
-                            <code class="inline">lang</code>
-                            -Attribut teilst du Screenreadern mit, in welcher Sprache der Inhalt vorgelesen werden soll.
-                            Das gilt sowohl für das gesamte Dokument als auch für einzelne fremdsprachige Wörter.
-                        </p>
-
+                        <h2 id="aria-in-komplexeren-strukturen">ARIA in komplexeren Strukturen</h2>
+                        <p>ARIA kann auch ganze Bereiche strukturieren, etwa für Navigation, Tabs oder Dialoge:</p>
                         <!-- Code Block language-html -->
                         <div class="code-block">
                             <div class="code-header">
@@ -691,144 +615,42 @@
                                     <span class="copy-text">Kopieren</span>
                                 </button>
                             </div>
-                            <pre><code class="language-html">&lt;html lang=&quot;de&quot;&gt;
-&lt;body&gt;
-    &lt;p&gt;Dieses Tutorial ist auf &lt;span lang=&quot;en&quot;&gt;accessibility&lt;/span&gt; spezialisiert.&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                        </div>
-                    </section>
-
-                    <!-- Multimedia-Inhalte zugänglich machen -->
-                    <section class="tutorials-content">
-                        <h3 id="multimedia-inhalte-zugaenglich-machen">Multimedia-Inhalte zugänglich machen</h3>
-                        <p>
-                            Audio- und Video-Inhalte benötigen Alternativen, damit sie auch für Menschen mit Hör- oder
-                            Sehbeeinträchtigungen verständlich sind. Dazu gehören Untertitel, Transkripte oder
-                            Audiodeskriptionen.
-                        </p>
-
-                        <!-- Code Block language-html -->
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;video controls&gt;
-    &lt;source src=&quot;video.mp4&quot; type=&quot;video/mp4&quot;&gt;
-    &lt;track src=&quot;untertitel.vtt&quot; kind=&quot;subtitles&quot; srclang=&quot;de&quot; label=&quot;Deutsch&quot;&gt;
-&lt;/video&gt;</code></pre>
-                        </div>
-                    </section>
-
-                    <!-- Skip-Links - „Springe zum Inhalt“ -->
-                    <section class="tutorials-content">
-                        <h3 id="skip-links---springe-zum-inhalt">Skip-Links - „Springe zum Inhalt“</h3>
-                        <p>
-                            Mit sogenannten
-                            <em>Skip-Links</em>
-                            können Nutzer, die per Tastatur navigieren, direkt zum Hauptinhalt springen, ohne sich durch
-                            die Navigation zu tabben.
-                        </p>
-
-                        <!-- Code Block language-html -->
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;a href=&quot;#main&quot; class=&quot;skip-link&quot;&gt;Direkt zum Inhalt springen&lt;/a&gt;
-                            
-&lt;main id=&quot;main&quot;&gt;
-    &lt;h1&gt;Seiteninhalt&lt;/h1&gt;
-&lt;/main&gt;
-
-&lt;style&gt;
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: #000;
-    color: #fff;
-    padding: .5em;
-    z-index: 100;
-}
-.skip-link:focus {
-    top: 0;
-}
-&lt;/style&gt;</code></pre>
-                        </div>
-                    </section>
-
-                    <!-- Dynamische Inhalte und ARIA live regions -->
-                    <section class="tutorials-content">
-                        <h3 id="dynamische-inhalte-und-aria-live-regions">Dynamische Inhalte und ARIA live regions</h3>
-                        <p>
-                            Wenn du mit JavaScript Inhalte aktualisierst, solltest du sicherstellen, dass Screenreader
-                            diese Änderungen automatisch erfassen. Dafür gibt es die
-                            <code class="inline">aria-live</code>
-                            -Regionen.
-                        </p>
-                        <!-- Code Block language-html -->
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang">HTML</span>
-                                <button class="code-copy">
-                                    <span class="copy-icon">
-                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
-                                    </span>
-                                    <span class="copy-text">Kopieren</span>
-                                </button>
-                            </div>
-                            <pre><code class="language-html">&lt;div aria-live=&quot;polite&quot;&gt;Neue Nachricht: Keine&lt;/div&gt;</code></pre>
+                            <pre><code class="language-html">&lt;nav role=&quot;navigation&quot; aria-label=&quot;Hauptnavigation&quot;&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a aria-current=&quot;page&quot;&gt;Startseite&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a&gt;Über uns&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
                         </div>
                         <p>
-                            Wird der Inhalt dieses Elements per JavaScript geändert, liest der Screenreader die neue
-                            Nachricht automatisch vor.
+                            So kann ein Screenreader direkt ansagen: „Navigation, 2 Elemente, Startseite aktuell“ – ohne
+                            dass du JavaScript brauchst.
                         </p>
                     </section>
 
-                    <!-- Designentscheidungen mitdenken -->
+                    <!-- Zusammenfassung -->
                     <section class="tutorials-content">
-                        <h3 id="designentscheidungen-mitdenken">Designentscheidungen mitdenken</h3>
+                        <h2 id="zusammenfassung">Zusammenfassung</h2>
                         <ul class="arrow-list">
+                            <li>Nutze native HTML-Elemente immer bevorzugt.</li>
+                            <li>ARIA ergänzt nur dort, wo HTML keine passende Bedeutung bietet.</li>
                             <li>
-                                Genügend Abstand zwischen Buttons und Links, damit sie auch per Touch gut bedienbar
-                                sind.
+                                <code class="inline">role</code>
+                                beschreibt
+                                <em>was</em>
+                                ein Element ist.
                             </li>
-                            <li>Verwende keinen Text als Bild – lieber echten Text mit CSS gestalten.</li>
-                            <li>Vermeide blinkende Animationen oder Effekte, die ablenken oder schaden können.</li>
-                            <li>Stelle sicher, dass Kontrast und Schriftgröße auf allen Geräten gut lesbar sind.</li>
+                            <li>
+                                <code class="inline">aria-*</code>
+                                -Attribute beschreiben
+                                <em>wie</em>
+                                es sich verhält.
+                            </li>
+                            <li>
+                                <code class="inline">tabindex</code>
+                                und sichtbare Fokus-Stile sichern die Tastaturnavigation.
+                            </li>
                         </ul>
-                    </section>
-
-                    <!-- Tool-Tipp: Accessibility-Checks im Browser -->
-                    <section class="tutorials-content">
-                        <h3 id="tool-tipp-accessibility-checks-im-browser">
-                            Tool-Tipp: Accessibility-Checks im Browser
-                        </h3>
-                        <p>
-                            In den Entwicklertools von Chrome, Firefox oder Edge findest du unter dem Reiter
-                            <strong>„Accessibility“</strong>
-                            oder
-                            <strong>„Lighthouse“</strong>
-                            automatische Prüfungen. Sie zeigen dir schnell, ob Alternativtexte fehlen oder Kontraste zu
-                            gering sind.
-                        </p>
-                        <p>
-                            So kannst du deine Seite direkt im Browser auf Barrierefreiheit testen – ganz ohne
-                            zusätzliche Tools.
-                        </p>
                     </section>
 
                     <!-- Code Editor -->
@@ -865,16 +687,16 @@
                     <section class="tutorials-content">
                         <nav class="tutorial-nav">
                             <div class="tutorial-nav-prev">
-                                <a href="/tutorials/html/html-advanced/html-semantik.html">
+                                <a href="/tutorials/html/html-advanced/html-accessibility.html">
                                     <span class="tutorial-nav-label">← Vorheriges</span>
-                                    <span class="tutorial-nav-link">Semantisches HTML</span>
+                                    <span class="tutorial-nav-link">HTML Barrierefreiheit im Web</span>
                                     <span class="tutorial-nav-category">HTML Advanced</span>
                                 </a>
                             </div>
                             <div class="tutorial-nav-next">
-                                <a href="/tutorials/html/html-advanced/html-aira.html">
+                                <a href="/tutorials/html/html-advanced/html-formulare.html">
                                     <span class="tutorial-nav-label">Nächstes →</span>
-                                    <span class="tutorial-nav-link">ARIA-Rollen & Barrierefreiheit</span>
+                                    <span class="tutorial-nav-link">HTML Formulare</span>
                                     <span class="tutorial-nav-category">HTML Advanced</span>
                                 </a>
                             </div>
