@@ -1132,11 +1132,18 @@ ul.cross-list li::before {
 /* ---- Early wrap breakpoint for tables with long code examples ---- */
 /* ---- use: <table class="ref-table ref-table-early-break"> ---- */
 @media (max-width: 1024px) {
+
     .ref-table.ref-table-early-break thead {
         display: none;
     }
 
-    .ref-table.ref-table-early-break,
+    .ref-table.ref-table-early-break {
+        display: block;
+        width: 100%;
+        overflow: visible;
+        border-collapse: separate;
+    }
+
     .ref-table.ref-table-early-break tbody,
     .ref-table.ref-table-early-break tr {
         display: block;
@@ -1186,11 +1193,96 @@ ul.cross-list li::before {
         display: none;
     }
 
-    /* Alllow wrap for code in cards */
-    .ref-table.ref-table-early-break code {
+    /* Allow wrap for code in cards */
+    /* .ref-table.ref-table-early-break code {
+            white-space: pre-wrap;
+            word-break: break-word;
+        } */
+    /* table.ref-table.ref-table-early-break code {
+            white-space: pre-wrap;
+            word-break: break-word;
+        } */
+    table.ref-table.ref-table-early-break td code.inline {
         white-space: pre-wrap;
         word-break: break-word;
+        display: inline-block;
+        max-width: 100%;
     }
+
+    /* .ref-table.ref-table-early-break thead {
+        display: none;
+    } */
+
+    /* .ref-table.ref-table-early-break {
+        overflow: visible;
+        border-collapse: separate;
+    } */
+
+    /* .ref-table.ref-table-early-break,
+    .ref-table.ref-table-early-break tbody,
+    .ref-table.ref-table-early-break tr {
+        display: block;
+        width: 100%;
+    } */
+
+    /* .ref-table.ref-table-early-break tr {
+        margin-bottom: 1rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+    } */
+
+    /* .ref-table.ref-table-early-break tr:hover {
+        background: var(--bg-tertiary);
+    } */
+
+    /* .ref-table.ref-table-early-break td {
+        display: block;
+        padding: 0.5rem 0;
+        border: none;
+        text-align: left;
+        white-space: normal; */
+    /* overrides nowrap for longer content */
+    /* } */
+
+    /* .ref-table.ref-table-early-break td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        color: var(--accent-blue);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+    } */
+
+    /* .ref-table.ref-table-early-break td:first-child {
+        font-size: 1.125rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 0.5rem;
+        white-space: nowrap;
+    } */
+
+    /* .ref-table.ref-table-early-break td:first-child::before {
+        display: none;
+    } */
+
+    /* Alllow wrap for code in cards */
+    /* .ref-table.ref-table-early-break code {
+        white-space: pre-wrap;
+        word-break: break-word;
+    } */
+    /* table.ref-table.ref-table-early-break code {
+        white-space: pre-wrap;
+        word-break: break-word;
+    } */
+    /* table.ref-table.ref-table-early-break td code.inline {
+        white-space: pre-wrap;
+        word-break: break-word;
+        display: inline-block;
+        max-width: 100%;
+    } */
 }
 
 

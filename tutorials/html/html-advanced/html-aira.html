@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="de">
+
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="index, follow" />
-        <meta
-            name="description"
-            content="Wie ARIA-Rollen und semantisches HTML zusammenarbeiten: Barrierefreie Navigation, Tastatursteuerung und verständliche Struktur für Screenreader."
-        />
+        <meta name="description"
+            content="Wie ARIA-Rollen und semantisches HTML zusammenarbeiten: Barrierefreie Navigation, Tastatursteuerung und verständliche Struktur für Screenreader." />
         <meta name="author" content="DevPanicZone" />
         <title>ARIA-Rollen & Barrierefreiheit - DevPanicZone | DevPanicZone</title>
         <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
@@ -128,16 +127,10 @@
                             <div class="search-input-group">
                                 <svg class="search-icon" viewBox="0 0 23.25 28.09" aria-hidden="true">
                                     <path
-                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z"
-                                    />
+                                        d="M23.25,11.62c0,2.56-.83,4.93-2.24,6.86l7.07,7.08c.7.7.7,1.83,0,2.53-.7.7-1.83.7-2.53,0l-7.07-7.08c-1.92,1.41-4.29,2.24-6.86,2.24C5.2,23.25,0,18.04,0,11.62S5.2,0,11.62,0s11.62,5.2,11.62,11.62ZM11.62,19.67c4.44,0,8.05-3.6,8.05-8.05S16.07,3.58,11.62,3.58,3.58,7.18,3.58,11.62s3.6,8.05,8.05,8.05Z" />
                                 </svg>
-                                <input
-                                    type="search"
-                                    id="globalSearch"
-                                    class="search-input"
-                                    placeholder="Tutorials durchsuchen..."
-                                    aria-label="Suche"
-                                />
+                                <input type="search" id="globalSearch" class="search-input"
+                                    placeholder="Tutorials durchsuchen..." aria-label="Suche" />
                                 <kbd class="search-shortcut" aria-hidden="true">/</kbd>
                             </div>
 
@@ -159,24 +152,15 @@
                             </span>
                         </button>
 
-                        <button
-                            class="mobile-menu-toggle"
-                            id="mobileMenuToggle"
-                            aria-label="Menü öffnen"
-                            aria-expanded="false"
-                        >
+                        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menü öffnen"
+                            aria-expanded="false">
                             <span></span>
                             <span></span>
                             <span></span>
                         </button>
 
-                        <a
-                            href="https://github.com/dontdevpanic"
-                            class="github-link"
-                            aria-label="DevPanicZone auf GitHub"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
+                        <a href="https://github.com/dontdevpanic" class="github-link"
+                            aria-label="DevPanicZone auf GitHub" target="_blank" rel="noopener noreferrer">
                             <svg aria-hidden="true" width="20" height="20">
                                 <use href="#github"></use>
                             </svg>
@@ -210,12 +194,8 @@
             </section>
 
             <!-- Floating Button Links (Sidebar) -->
-            <button
-                class="sidebar-toggle"
-                id="sidebarToggle"
-                aria-label="Inhaltsverzeichnis öffnen"
-                title="Auf dieser Seite"
-            >
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Inhaltsverzeichnis öffnen"
+                title="Auf dieser Seite">
                 <span class="toggle-icon">☰</span>
             </button>
 
@@ -370,7 +350,7 @@
                     <section class="tutorials-content">
                         <h2 id="wichtige-aria-rollen-typen">Wichtige ARIA-Rollen-Typen</h2>
                         <p>
-                            ARIA-Rollen lassen sich grob in drei Gruppen einteilen. Diese helfen Screenreadern, die
+                            ARIA-Rollen lassen sich grob in vier Gruppen einteilen. Diese helfen Screenreadern, die
                             Struktur und Bedeutung deiner Seite zu verstehen.
                         </p>
                         <table class="ref-table">
@@ -557,7 +537,7 @@
                             gibt es weitere Attribute, die den Zustand eines Elements beschreiben:
                         </p>
 
-                        <table class="ref-table">
+                        <table class="ref-table ref-table-early-break">
                             <thead>
                                 <tr>
                                     <th>Attribut</th>
@@ -596,6 +576,36 @@
                                         <code class="inline">&lt;a aria-current="page"&gt;Startseite&lt;/a&gt;</code>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td><code class="inline">aria-disabled</code></td>
+                                    <td>Markiert ein Element als deaktiviert, ohne es aus dem Tab-Focus zu entfernen
+                                    </td>
+                                    <td>
+                                        <code class="inline">
+                                            &lt;button aria-disabled="true"&gt;Absenden&lt;/button&gt;
+                                        </code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-labelledby</code></td>
+                                    <td>Verknüpft ein Element mit einem anderen, das als Label dient</td>
+                                    <td>
+                                        <code class="inline">
+                                            &lt;section aria-labelledby="titel"&gt;&lt;h2 id="titel"&gt;...&lt;/h2&gt;&lt;/section&gt;
+                                        </code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-describedby</code></td>
+                                    <td>Verknüpft ein Element mit einem beschreibenden Text (z.&nbsp;B. Hinweis unter
+                                        einem Formularfeld)</td>
+                                    <td>
+                                        <code class="inline">
+                                            &lt;input aria-describedby="hinweis"&gt; 
+&lt;span id="hinweis"&gt;Mind. 8 Zeichen&lt;/span&gt;
+                                        </code>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </section>
@@ -628,6 +638,77 @@
                         </p>
                     </section>
 
+                    <!-- Live Regions -->
+                    <section class="tutorials-content">
+                        <h2 id="live-regions">Live Regions</h2>
+                        <p>
+                            Wenn sich Inhalte dynamisch ändern – z.&nbsp;B. nach einem AJAX-Request oder bei
+                            Formularvalidierung – bekommt ein Screenreader das normalerweise nicht mit.
+                            Mit <code class="inline">aria-live</code> kannst du Bereiche als „lebendig" markieren:
+                        </p>
+
+                        <table class="ref-table">
+                            <thead>
+                                <tr>
+                                    <th>Wert</th>
+                                    <th>Bedeutung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="inline">aria-live="polite"</code></td>
+                                    <td>Screenreader wartet, bis der Nutzer fertig ist, und liest dann vor</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-live="assertive"</code></td>
+                                    <td>Unterbricht sofort – nur für wirklich wichtige Meldungen</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline">aria-live="off"</code></td>
+                                    <td>Standardwert – Änderungen werden nicht angesagt</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="code-block mt-xl">
+                            <div class="code-header">
+                                <span class="code-lang">HTML</span>
+                                <button class="code-copy">
+                                    <span class="copy-icon">
+                                        <img src="/assets/icons/clipboard.svg" alt="Copy Icon" width="16" height="16" />
+                                    </span>
+                                    <span class="copy-text">Kopieren</span>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;div aria-live="polite" aria-atomic="true"&gt;
+                        &lt;!-- Inhalt wird per JavaScript aktualisiert --&gt;
+                    &lt;/div&gt;</code></pre>
+                        </div>
+
+                        <p>
+                            <code class="inline">aria-atomic="true"</code> sorgt dafür, dass der Screenreader
+                            den gesamten Bereich vorliest – nicht nur den geänderten Teil.
+                            Ohne <code class="inline">aria-atomic</code> würde er nur die neue Textstelle ansagen,
+                            was oft verwirrend klingt.
+                        </p>
+
+                        <div class="info-box">
+                            <strong class="box-title no-toc">
+                                Tipp
+                                <svg class="icon-ui">
+                                    <use href="#dpz-info-circle" />
+                                </svg>
+                            </strong>
+                            <p>
+                                Die Rollen <code class="inline">role="alert"</code> und
+                                <code class="inline">role="status"</code> verhalten sich wie eingebaute Live Regions –
+                                <code class="inline">alert</code> entspricht <code class="inline">assertive</code>,
+                                <code class="inline">status</code> entspricht <code class="inline">polite</code>.
+                                Du brauchst dann kein zusätzliches <code class="inline">aria-live</code>.
+                            </p>
+                        </div>
+                    </section>
+
                     <!-- Zusammenfassung -->
                     <section class="tutorials-content">
                         <h2 id="zusammenfassung">Zusammenfassung</h2>
@@ -650,6 +731,10 @@
                                 <code class="inline">tabindex</code>
                                 und sichtbare Fokus-Stile sichern die Tastaturnavigation.
                             </li>
+                            <li>
+                                <code class="inline">aria-live</code>
+                                macht dynamische Inhalte für Screenreader sichtbar.
+                            </li>
                         </ul>
                     </section>
 
@@ -662,11 +747,8 @@
                         </p>
                         <details>
                             <summary class="pb-lg">Editor öffnen</summary>
-                            <iframe
-                                src="/tutorials/javascript/javascript-projects/js-live-editor-fullscreen.html"
-                                class="tutorial-iframe"
-                                title="Live Code Editor"
-                            ></iframe>
+                            <iframe src="/tutorials/javascript/javascript-projects/js-live-editor-fullscreen.html"
+                                class="tutorial-iframe" title="Live Code Editor"></iframe>
                         </details>
                     </section>
 
@@ -735,4 +817,5 @@
         <script src="/assets/js/sidebar.js" defer></script>
         <script src="/assets/vendor/prism/prism.js" defer></script>
     </body>
+
 </html>
