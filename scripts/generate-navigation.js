@@ -191,6 +191,7 @@ const TUTORIAL_ORDER = {
         'html-semantik.html',
         'html-accessibility.html',
         'html-aira.html',
+        'html-data-attributes.html',
         'html-formulare.html',
         'html-audio-video.html',
         'html-iframes.html',
